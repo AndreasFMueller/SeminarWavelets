@@ -1,5 +1,5 @@
 %
-% buchcover.tex -- Cover für das Buch Klimawandel
+% buchcover.tex -- Cover für das Buch Wavelets
 %
 % (c) 2018 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
@@ -20,7 +20,7 @@
 \geometry{papersize={402mm,278mm},total={405mm,278mm},top=72.27pt, bottom=0pt, left=72.27pt, right=0pt}
 \newboolean{guidelines}
 \setboolean{guidelines}{true}
-\setboolean{guidelines}{false}
+%\setboolean{guidelines}{false}
 
 \begin{document}
 \begin{tikzpicture}[>=latex, scale=1]
@@ -43,12 +43,8 @@
 
 \begin{scope}
 \clip (0,0) rectangle({\bogenbreite},{\bogenhoehe});
-\node at (17.2,9.3) [scale=0.2]{\includegraphics{bild.jpg}};
+\node at (21.2,9.0) [scale=0.145]{\includegraphics{bild.jpg}};
 \end{scope}
-
-\node at ({\einschlag+2*\gelenk+\ruecken +1.5*\breite},12.5)
-	[color=white,scale=2.5]
-	{$\displaystyle C\frac{dT}{dt} = \bigl(1-\alpha(T)\bigr) Q -\varepsilon \sigma T^4$};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},24.3)
 	[color=white,scale=1]
@@ -58,7 +54,7 @@
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},21.9)
 	[color=white,scale=1]
 	{\hbox to\hsize{\hfill%
-	\sf \fontsize{50}{50}\selectfont Klimawandel}};
+	\sf \fontsize{50}{50}\selectfont Wavelets}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},19.7)
 	[color=white,scale=1]
@@ -69,48 +65,47 @@
 	[color=white,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
-	Matthias Baumann,
-	Oliver Dias,
-	Jonas Gründler,
-	Sebastian Lenhard%,
-	%Matthias Dunkel
+	Angelo Jimenez,
+	Virginia Fischer,
+	Kenneth Garcia,
+	Jesse Fowler%,
 	}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},17.75)
 	[color=white,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
-	%Jonas Gründler,
-	%Sebastian Lenhard,
-	Silvio Marti,
-	Michael Müller,
-	Hansruedi Patzen,
-	Melina Staub%,
+	Cesar Wise,
+	Alejandra Reese,
+	Allie Arnold,
+	Clay Sanchez%,
 	}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},17.1)
 	[color=white,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
-	%Hansruedi Patzen,
-	%Melina Staub,
-	Martin Stypinski,
-	Nicolas Tobler,
-	Raphael Unterer%
+	Kayleigh French,
+	Alexandria Griffin,
+	Isiah Lambert,
+	Carol Garner%,
 	}};
  
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},16.45)
 	[color=white,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
-%	Raphael Unterer
+	Tommy Padilla,
+	Carrie Newton,
+	Zackary Sullivan,
+	Rebecca Gordon%,
 	}};
  
 %\node at (0,3) [color=white] {\sf \LARGE Mathematisches Seminar 2017};
 
 % Rücken
 \node at ({\bogenbreite/2 + 0.05},20.5) [color=white,rotate=-90]
-	{\sf\fontsize{35}{0}\selectfont Klimawandel};
+	{\sf\fontsize{35}{0}\selectfont Wavelets};
 
 % Buchrückseite
 \node at ({\einschlag+0.5*\breite},18.6) [color=white] {\sf
