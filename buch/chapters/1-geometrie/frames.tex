@@ -1,8 +1,191 @@
 %
-% frames.tes
+% frames.tex
 %
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 \section{Frames
 \label{section:frames}}
+Eine orthonormierte Basis eines Hilbertraumes ist sehr starr.
+Es ist nicht möglich, auch nur einen einzigen Vektor ein kleines
+Bisschen zu ändern, ohne die Eigenschaften, die zum Satz~\ref{satz:parseval}
+geführt haben, zu zerstören.
+Im Hinblick auf die numerische Behandlung von Signalen ist das
+ein unerwünschter Zustand.
+Rundungsfehler werden unvermeidlich dazu führen, dass solche strengen
+Strukturen nur näherungsweise im Computer nachgebildet werden 
+können.
+
+Die Zerlegung eines Vektors $v$ in einer Orthonormalbasis enthält keine
+Redundanz.
+Geht einer der Koeffizienten $\hat{v}_k$ verloren, gibt es keine
+Chance, den Vektor zu rekonstruieren.
+Auch diese Situation ist unerwünscht, denn durch Rundungsfehler geht
+mindestens ein Teil der Information in einem Koeffizienten verloren.
+Wir suchen daher nach einer Verallgemeinerung des Basis-Begriffs, welche
+auf kontrollierte Weise Redundanz in die Koeffizienten $\hat{v}_k$
+bringt und damit eine robustere Konstruktion ermöglicht.
+
+\subsection{Ein geometrisches Beispiel}
+Wir suchen ein geeignetes Koordinatensystem, um ein Problem über
+Bienenwaben in der Ebene zu lösen.
+Selbstverständlich kann dafür das übliche rechtwinklige Koordinatensystem
+verwendet werden, aber die Ecken eines Sechsecks shaben darin die nicht
+sehr symmetrischen Koordinaten
+\begin{align*}
+&      &&\textstyle(-\frac12,\frac12\sqrt{3})&&\textstyle( \frac12,\frac12\sqrt{3})&     \\
+&(-1,0)&&                          &&                          &(1,0)\\
+&      &&\textstyle(-\frac12,-\frac12\sqrt{3})&&\textstyle( \frac12,-\frac12\sqrt{3})&     
+\end{align*}
+(Siehe auch Abbildung~\ref{buch:frame:hexagon}).
+Eine bessere Variante ist das Koordinatensystem auf der Basis der beiden
+Basisvektoren (in kartesischen Koordinaten)
+\[
+b_1 = \begin{pmatrix} 1\\0\end{pmatrix}
+\qquad
+\text{und}
+\qquad
+b_2 = \begin{pmatrix} -\frac12\\\frac12\sqrt{3}\end{pmatrix}.
+\]
+In diesem Koordinatensystem haben die Ecken des Sechsecks die Koordinaten
+\begin{align*}
+&      &&(0,1)  &&(-1,1)&&     \\
+&(-1,0)&&       &&      &&(1,0)\\
+&      &&(-1,-1)&&(0,-1)&&
+\end{align*}
+Was bereits viel besser aussieht.
+Trotzdem ist auch dies noch nicht ganz zufriedenstellend. 
+Zum Beispiel sind die Ecken links oben und rechts unten direkt durch den
+Basisvektor $b_2$ darstellbar, die Ecken rechts oben und links unten
+dagegen nur durch eine Linearkombination.
+Wir könnten natürlich auch die linke untere Ecke als Basisvektor nehmen,
+dann würde eiinfach die linke obere Ecke speziell.
+In dieser Situation lässt es sich also mit einer Basis gar nicht erreichen,
+dass alle Eckpunkte sich auf einfache Art darstellen lassen.
+
+Verzichten wir jedoch daruf, dass die Vektoren linear unabhängig sein müssen,
+können wir also ``Basis'' die drei Vektoren (in kartesischen Koordinaten)
+\begin{align*}
+b_1
+&=
+\begin{pmatrix}1\\0\end{pmatrix}
+&
+b_2
+&=
+\begin{pmatrix}-\frac12\\\frac12\sqrt{3}\end{pmatrix}
+&
+b_3
+&=
+\begin{pmatrix}-\frac12\\-\frac12\sqrt{3}\end{pmatrix}
+\end{align*}
+verwenden.
+Die drei Vektoren haben alle die Länge $1$, aber sie sind nicht
+orthogonal, sondern haben das Skalarprodukt
+\[
+\langle b_j,b_k\rangle
+=
+\begin{cases}
+-\frac12&\qquad j\ne k\\
+0&\qquad j=k.
+\end{cases}
+\]
+Zu jedem Vektor $v\in\mathbb R^2$ können wir wieder eie Koeffizienten
+$\hat{v}_k=\langle v,b_k\rangle$ berechnen und damit die Linearkombination
+\[
+v' = \sum_{k=1}^3 \hat{v}_k\,b_k
+\]
+bilden,
+doch es ist $v\ne v'$.
+Wir berechnen die Synthese für die Basisvektoren:
+\begin{align*}
+b_1'
+&=
+b_1 - \frac12 b_2 - \frac 12 b_3
+=
+\frac32b_1
+\\
+b_2'
+&=
+-\frac12 b_1 + b_2 -\frac12 b_3
+=
+\frac32b_2
+\\
+b_3'
+&=
+-\frac12b_1-\frac12 b_2 + b_3
+=
+\frac32b_3
+\end{align*}
+Die Synthese liefert also nicht den ursprünglichen Vektor, sondern das
+$frac32$-fache davon zurück.
+Dies ist bereits ein Ausdruck der Tatsache, dass die Information in den
+Koeffizienten $\hat{v}_k$ redundant ist.
+
+Diese Vektoren sind natürlich nicht mehr linear unabhängig, Vektoren
+der Ebene können also auf verschieden Art linear aus den $b_k$ kombiniert
+werden.
+Da $b_1+b_2+b_3=0$ ist, kann man zu den Koeffizienten $\hat{v}_k$
+eine beliebige Zahl $\alpha$ hinzuaddieren, und erhält
+\[
+\sum_{k=1}^3 (\hat{v}_k+\alpha)\, b_k
+=
+\sum_{k=1}^3 \hat{v}_k\,b_k
++\alpha
+\sum_{k=1}^3 b_k
+=
+\sum_{k=1}^3 \hat{v}_k\,b_k
+=
+\frac32 v.
+\]
+Die modifizierten Koeffizienten ergeben also das gleichen synthetisierten
+Vektor $\frac32 v$.
+
+Für die Norm des synthetisierten Vektors gilt natürlich
+\[
+\|v'\|^2
+=
+\frac94\|v\|^2
+=
+\sum_{k=1}^3 \hat{v}_k^2 
+-
+\frac12\sum_{k\ne l} \hat{v}_k\hat{v}_l.
+\]
+Die modifizierten Koeffizienten ergeben natürlich dieselbe Norm, also
+\begin{align*}
+\|v'\|^2
+&=
+\sum_{k=1}^3 (\hat{v}_k+\alpha)^2 
+-
+\frac12\sum_{k\ne l} (\hat{v}_k+\alpha)(\hat{v}_l+\alpha).
+\\
+&=
+\sum_{k=1}^3 \hat{v}_k^2
++2\alpha \sum_{k=1}^3 \hat{v}_k
++3\alpha^2
+-
+\frac12\sum_{k\ne l} \hat{v}_k\hat{v}_l
+-
+\sum_{k\ne l} \hat{v}_k \alpha
+-
+3\alpha^2
+\end{align*}
+
+
+Was zeichnet die Koeffizienten $\hat{v}_k$ gegenüber den modifizierten
+Koeffiziente $\hat{v}_k$ aus?
+Im Falle einer Orthonormalbasis konnte man dank der Parseval-Formel
+die Norm eines Vektors mit Hilfe der Quadratsumme der Koeffizienten
+berechnen.
+Wir berechnen daher
+\[
+f(\alpha)
+=
+\sum_{k=1}^n (\hat{v}_k+\alpha)^2
+=
+\sum_{k=1}^n \hat{v}_k^2 + 2\alpha \sum_{k=1}^3 \hat{v}_k + 3\alpha^2
+\]
+
+\subsection{Definition eines Frames}
+
+
+
 

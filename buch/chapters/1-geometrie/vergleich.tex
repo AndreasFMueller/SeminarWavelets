@@ -3,5 +3,469 @@
 %
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Vergleich von Signalen
+\section{Vergleich von Signalen und Vektorgeometrie
 \label{section:vergleich}}
+In diesem Abschnitt suchen wir eine geometrische Sprache für das
+Problem, zwei Signale zu vergleichen und ein Signal aus geeigneten
+Vergleichssignalen zusammenzusetzen.
+
+\subsection{Vergleich von Binärsignalen}
+Wir beginnen unsere Betrachtungen mit zwei diskrete Signale mit Werten $\pm 1$:
+\begin{align*}
+&x_1,x_2,x_3,\dots,x_N &&\in \{\pm 1\},
+\\
+&y_1,y_2,y_3,\dots,y_N &&\in \{\pm 1\},
+\end{align*}
+und versuchen eine Masszahl für die Ähnlichkeit dieser beiden
+Zahlfolgen zu entwickeln.
+
+Die Masszahl muss umso grösser sein, je öfter die Folgenglieder
+übereinstimmen, also $x_k=y_k$.
+Indizes $k$, für die die Folgenglieder entgegengesetzt sind, also
+$x_k\ne y_k$, müssen dagegen abgezogen werden.
+Eine mögliche Masszahl ist daher 
+\[
+\sum_{k=1}^N x_ky_k.
+\]
+Sind die beiden Folgen identisch, wird die Summe $N$.
+Sind die beiden Folgen genau entgegengesetzt, also $x_k=-y_k$, dann ist
+sie $-N$.
+Die Masszahl ist damit abhängig von der Anzahl der Datenpunkte.
+Damit wird es nicht gut möglich, Funktionsvergleiche über verschieden
+lange Datensätze miteinander zu vergleichen.
+Das Problem wird gelöst, indem man durch $N$ teilt und als Masszahl
+\[
+p=\frac{1}{N} \sum_{k=1}^N x_ky_k
+\]
+verwendet.
+Die Extremwerte werden jetzt $p=1$ für übereinstimmende Signale und
+$p=-1$ für entgegengesetzte Signale.
+
+Wenn die beiden Folgen nichts mitenander zu tun haben, dann erwarten
+wir, dass $x_k$ und $y_k$ jeweils etwa in der Hälfte der Fälle
+entgegengesetztes Vorzeichen haben werden, und gleiches in allen
+anderen.
+Dies führt auf $p=0$.
+Dies ist allerdings nicht ganz realistisch.
+Warum sollten die Werte $+1$ und $-1$ gleich häufig sein?
+Man könnte dies korrigieren, indem man den mittleren Wert beider Folgen
+subtrahiert.
+So erhält man die Kovarianz
+\begin{equation}
+\operatorname{cov}(x_k,y_k)
+=
+\frac1{N} \sum_{k=1}^N x_ky_k
+-
+\frac1{N} \sum_{k=1}^N x_k
+\cdot
+\frac1{N} \sum_{k=1}^N y_k.
+\label{geometrie:cov}
+\end{equation}
+Die Kovarianz verschwindet genau dann, wenn beiden Signale $x_k$ und $y_k$
+völlig unkorreliert sind.
+Offenbar reicht es auch vollständig aus, wenn nur eines der Signale
+im Mittel den Wert $0$ hat, dann verschwindet der zweite Term
+in~\eqref{geometrie:cov}.
+
+%Doch auch dies kann nicht ganz richtig sein.
+%Wenn nämlich der Mittelwert der $x_k$ nicht $0$ ist, dann ist die
+%mittlere Abweichung vom Mittelwert kleiner, so dass die Masszahl eher
+%zu klein wird.
+%Wir müssen daher durch die mittlere Abweichung teilen, dies führt uns
+%im Wesentlichen auf den Korrelationskoeffizienten
+%\begin{align*}
+%r
+%&=
+%\frac{
+%\operatorname{cov}(x_k, y_k)
+%}{
+%\sqrt{
+%\operatorname{var}(x_k)
+%\operatorname{var}(y_k)
+%}}
+%\\
+%r^2
+%=
+%\frac{
+%\displaystyle
+%\biggl(
+%\frac1{N} \sum_{k=1}^N x_ky_k
+%-
+%\frac1{N} \sum_{k=1}^N x_k
+%\cdot
+%\frac1{N} \sum_{k=1}^N y_k
+%\biggr)^2
+%}{
+%\displaystyle
+%\biggl(
+%\frac1N\sum_{k=1}^N x_k^2 - \biggl(\frac1N\sum_{k=1}^N x_k\biggr)^2
+%\biggr)
+%\biggl(
+%\frac1N\sum_{k=1}^N y_k^2 - \biggl(\frac1N\sum_{k=1}^N y_k\biggr)^2
+%\biggr)
+%},
+%\end{align*}
+%wie man ihn im Zusammenhang mit der  linearen Regression kennenlernt.
+
+\subsection{Vektorschreibweise}
+Die Ausführungen des letzten Abschnitts haben gezeigt, dass die Summe der
+Produkte der Signale eine Masszahl für die Ähnlichkeit zweier Signale ist.
+Die Summe der Produkte können wir aber als Skalarprodukte von Signalvektoren
+schreiben:
+\[
+\sum_{k=1}^N x_ky_k
+=
+\begin{pmatrix}x_1\\x_2\\\vdots\\x_N\end{pmatrix}
+\cdot
+\begin{pmatrix}y_1\\y_2\\\vdots\\y_N\end{pmatrix}
+=
+\begin{pmatrix}x_1&x_2&\dots&x_N\end{pmatrix}
+\cdot
+\begin{pmatrix}y_1\\y_2\\\vdots\\y_N\end{pmatrix}.
+\]
+Den Vorfaktor $\frac1{N}$ lassen wir für den Moment noch ausser Betracht.
+
+In der dreidimensionalen Vektorgeometrie können wir mit dem Skalarprodukt
+zweier Vektoren auch den Zwischenwinkel
+\[
+\cos\alpha
+=
+\frac{
+x\cdot y
+}{
+|x|\cdot |y|
+}
+\]
+berechnen.
+Die beiden Vektoren $x$ und $y$ sind gleich, wenn das Skalarprodukt
+den maximal möglichen Wert $|x|\cdot |y|$ annimmt.
+Die Vektoren sind entgegengesetzt, wenn $x\cdot y=-|x|\cdot |y|$ ist.
+Für alle Werte dazwischen sind die Vektoren linear unabhängig.
+Mindestens die geometrische Interpretation des Skalarproduktes gibt also
+wieder, was wir unter ``ähnlichen'' Vektoren verstehen möchten.
+
+Die geometrische Interpretation ist aber nicht unbedingt nötig.
+Wir brauchen nur, dass zwei Vektoren genau dann linear abhängig sind,
+wenn das Skalarprodukt seinen maximal oder minimal möglichen Wert annimmt.
+Dies gilt jedoch für jede Art von Skalarprodukt, nicht nur das oben
+verwendete.
+Es gilt sogar auch für den Fall kontinuierlicher Signale, also von
+Funktionen $t\mapsto x(t)$, wenn wir in der Lage sind, die mathematische
+Struktur des dreidimensionalen geometrischen Raumes mit Skalarprodukt
+in ausreichender Allgemeinheit nachzubilden.
+
+\subsection{Vektorraum und Skalarprodukt}
+Dazu müssen wir zunächst die Objekte definieren, deren Skalarprodukt wir
+nehmen wollen.
+\begin{definition}
+Ein Vektorraum über den reellen Zahlen $\mathbb R$ ist eine Menge $V$ 
+von Objekten, genannt Vektoren, versehen mit zwei Operationen, der
+Addition von Vektoren, geschrieben $+$, und der Multiplikation von Vektoren
+mit reellen Zahlen, sowie einem ausgezeichneten Element $0\in V$, mit
+folgenden Eigenschaften:
+\begin{enumerate}
+\item Die Addition ist assoziativ: $(u+v)+w = u+(v+w)$ für $u,v,w\in V$.
+\item Die Addition ist kommutativ: $u+v=v+u$ für $u,v\in V$.
+\item Die Multiplikation ist assoziativ: $(\lambda \mu)u=\lambda (\mu u)$ für
+\item Der Vektor $0\in V$ ist neutral bezüglich der Addition: $u+0=u$ für
+$u\in V$.
+\item Zu jedem Vektor $v$ gibt es einen Vektor $-v\in V$ derart, dass
+$v+(-v)=0$.
+$u\in V$ und $\lambda,\mu\in\mathbb R$.
+\item $(\lambda + \mu) u = \lambda u + \mu u$ für $u\in V$ und
+$\lambda,\mu\in \mathbb R$.
+\item $\lambda (u + v) = \lambda u + \lambda v$ für $u,v\in V$ und
+$\lambda\in\mathbb R$.
+\end{enumerate}
+\end{definition}
+Die $n$-dimensionalen Spalten-Vektoren $\mathbb R^n$ bilden ganz offensichtlich
+einen Vektorraum über $\mathbb R$.
+
+
+\begin{definition}
+Sei $V$ ein Vektorraum über $\mathbb R$.
+Eine Abbildung
+\[
+\langle\;,\;\rangle
+\colon
+V\times V\to\mathbb R
+:
+(u,v)\mapsto \langle u,v\rangle
+\]
+heisst ein Skalarprodukt, wenn
+\begin{enumerate}
+\item $\langle\;,\;\rangle$ ist linear im ersten Argument:
+\begin{equation}
+\langle \lambda_1 u_1+\lambda_2 u_2,v\rangle
+=
+\lambda_1 \langle u_1,v\rangle
++
+\lambda_2 \langle u_2,v\rangle
+\end{equation}
+\item $\langle\;,\;\rangle$ ist linear im zweiten Argumument:
+\begin{equation}
+\langle u,\lambda_1 v_1+\lambda_2 v_2\rangle
+=
+\lambda_1 \langle u,v_1\rangle
++
+\lambda_2 \langle u,v_2\rangle
+\end{equation}
+\item
+$\langle\;,\;\rangle$
+ist symmetrisch:
+$\langle u,v\rangle=\langle v,u\rangle$
+\item
+$\langle\;,\;\rangle$
+ist {\em positiv definit}: $\langle u,u\rangle > 0$ und
+$\langle u,u\rangle=0$ genau dann, wenn $u=0$.
+\end{enumerate}
+\end{definition}
+
+Für Vektoren $u,v\in\mathbb R^n$ ist das gewohnt Punkt-Produkt
+\[
+u\cdot v = u^t v = \langle u,v\rangle
+\]
+ein Skalarprodukt.
+Eine kurze Überlegung erfordert nur der letzte Punkt der Definition.
+Das Skalarprodukt eines Vektors mit sich selbst ist 
+\[
+\langle u,u\rangle = u^t u = \sum_{k=1}^n u_k^2 \ge 0.
+\]
+Wenn es $0$ ist, dann müssen alle Komponenten $u_k=0$ sein, also $u=0$.
+
+\begin{definition}
+Ist $\langle\;,\;\rangle$ ein Skalarprodukt auf $V$, dann ist die zugehörige
+Norm der Vektoren definiert als
+\[
+\| u \|^2 = \langle u,u\rangle
+\qquad\Leftrightarrow\qquad
+\| u\| = \sqrt{\langle u,u\rangle}.
+\]
+\end{definition}
+
+Die Definition der Norm ist sinnvoll, weil die Eigenschaft des Skalarprodukts,
+positiv definit zu sein, sicherstellt, dass die Wurzel immer wohldefiniert
+ist.
+Jedes Skalarprodukt hat automatisch die Eigenschaft, dass die Extremwerte
+des Skalarproduktes nur angenommen werden, wenn die Faktoren linear
+abhängig sind.
+Dies ist der Inhalt des folgenden Satzes.
+
+\begin{satz}
+Für eine Skalarprodukt $\langle\;,\;\rangle$ gilt die
+Cauchy-Schwarz-Ungleichung
+\begin{equation}
+|\langle u,v\rangle| \le \| u\|\cdot\| v\|
+\label{geometrie:cauchy-schwarz}
+\end{equation}
+mit Gleichheit genau dann, wenn $u$ und $v$ linear abhängig sind.
+\end{satz}
+
+\begin{proof}[Beweis]
+Seien $u,v\in V$ und $t\in \mathbb R$.
+Das Skalarprodukt ist positiv definit, also
+\begin{align*}
+0
+&\le
+\| u+tv \|
+\intertext{mit Gleichheit genau dann, wenn $u+tv=0$.
+Wir berechnen}
+&= \| u \|^2 + 2t \langle u,v\rangle + t^2 \|v\|^2
+\end{align*}
+Die rechte Seite ist eine quadratische Funktion $c+bt + at^2$, die ihr
+Minimum bei $t=-b/2a=-\langle u,v\rangle / \| v\|^2$ annimmt.
+Für den kleinstmöglichen Wert gilt daher
+\begin{align*}
+0
+&\le
+\|u\|^2
+-
+2\frac{\langle u,v\rangle^2}{\|v\|^2}
++
+\frac{\langle u,v\rangle^2}{\|v\|^4}\|v\|^2
+=
+\| u\|^2
+-
+\frac{\langle u,v\rangle^2}{\|v\|^2}
+\end{align*}
+Multiplizieren wir mit $\| v\|^2$ und bringen das Skalarprodukt auf die
+linke Seite, erhalten wir
+\begin{align*}
+\langle u,v\rangle^2
+&\le
+\|u\|^2 \cdot \|v\|^2
+\end{align*}
+Mit Gleichheit genau dann, wenn $ u+tv=0$ ist.
+\end{proof}
+
+Die Werte der Norm bestimmen das Skalarprodukt bereits vollständig.
+Die Linearität des Skalarproduktes bedeutet nämlich
+\begin{align}
+\| u+v\|^2
+&=
+\langle u+v,u+v\rangle
+\notag
+\\
+&=
+\langle u,u\rangle
++
+\langle v,u\rangle
++
+\langle u,v\rangle
++
+\langle v,v\rangle
+\notag
+\\
+&=
+\| u\|^2 + 2 \langle u,v\rangle + \|v\|^2
+\notag
+\\
+\Rightarrow
+\qquad
+\langle u,v\rangle
+&=
+\frac12(\|u+v\|^2 - \|u\|^2 - \|v\|^2).
+\label{geometrie:polar}
+\end{align}
+Die Bildung der Norm aus dem Skalarprodukt ist also nicht mit
+Informationsverlust verbunden.
+
+\subsection{Skalarprodukt und orthonormierte Basis}
+In der linearen Algebra lernt man, dass eine orthonormierte Basis besonders
+gut geeignet für die Beschreibung von Vektoren.
+
+\begin{definition}
+Eine Menge von Vektoren $\{e_k\,|\, k\in\mathbb N\}$ heisst orthonormiert,
+wenn
+\[
+\langle e_k,e_l\rangle
+=
+\delta_{kl}
+=
+\begin{cases}
+1 &\qquad k=l\\
+0 &\qquad k\ne l
+\end{cases}.
+\]
+Sie heisst eine Basis von $V$, wenn jeder Vektor von $V$ sich als
+Linearkombination der Vektoren $e_k$ schreiben lässt.
+\end{definition}
+
+Die Standardbasisvektoren
+\[
+e_1 = \begin{pmatrix}1\\0\\\vdots\\0\end{pmatrix},\quad
+e_2 = \begin{pmatrix}0\\1\\\vdots\\0\end{pmatrix},\quad
+\dots
+\qquad
+e_n = \begin{pmatrix}0\\0\\\vdots\\1\end{pmatrix},\quad
+\]
+ist natürlich eine Basis des Vektorraums $\mathbb R^n$.
+Mit dem früher verwendeten Skalarprodukt sind die $e_k$ orthonormiert.
+
+Die besondere Bedeutung einer orthonormierten Basis ist, dass sich damit
+ein Vektor $v\in V$ auf eine Folge $\hat{v}_k$ von Zahlen reduzieren 
+lässt, mit der sich die relevanten Operationen des Skalarproduktes
+immer noch durchführen lassen.
+Dies wird durch den folgenden Satz beschrieben.
+
+\begin{satz}
+\label{satz:parseval}
+Ist $\{e_k\,|\, k\in\mathbb N\}$ eine orthonormierte Basis des Vektorraumes
+$V$, dann lässt sich jeder Vektor auf genau eine Art in der Form 
+\begin{equation}
+v = \sum_{k=1}^n \hat v_k\, e_k
+\label{gemoetrie:zerlegung}
+\end{equation}
+schreiben, und für die Koeffiziente gilt
+\begin{equation}
+\hat{v}_k = \langle v,e_k\rangle.
+\label{geometrie:synthese}
+\end{equation}
+Für das Skalarprodukt zweier Vektoren gilt Parseval-Identität
+\begin{align}
+\langle u,v\rangle
+&=
+\sum_{k=1}^n \hat{u}_k\hat{v}_k
+\label{geometrie:parseval-prod}
+\\
+\|u\|
+&=
+\sum_{k=1}^n \hat{u}_k^2.
+\label{geometrie:parseval-norm}
+\end{align}
+\end{satz}
+
+\begin{proof}[Beweis]
+Da die Vektoren $e_k$ eine Basis von $V$ bilden, ist klar, dass es nur
+eine Darstellung von $v$ als Linearkombination der Vektoren $e_k$ geben
+kann, wir müssen nur noch nachprüfen, dass die Koeffizienten die angegebene
+Form haben.
+Dazu berechnen wir das Skalarprodukt der Summe in \eqref{gemoetrie:zerlegung}
+mit einem Vektor $e_k$:
+\begin{align*}
+\langle v,e_k\rangle
+&=
+\biggl\langle \sum_{l=1}^n \hat{v}_l\, e_l,e_k\biggr\rangle
+\\
+&=
+\sum_{l=1}^n \hat{v}_l\langle e_l,e_k\rangle
+\\
+&=
+\sum_{l=1}^n \hat{v}_l\delta_{kl}
+=
+\hat{v}_k.
+\end{align*}
+Jetzt können wir das Skalarprodukt zweier Vektoren auswerten, indem
+wir von beiden die Darstellung in der Orthonormalbasis verwenden:
+\begin{align*}
+\langle u,v\rangle
+&=
+\biggl\langle
+\sum_{k=1}^n \hat{u}_k\, e_k,\sum_{l=1}^n \hat{v}_l\, e_l
+\biggr\rangle
+=
+\sum_{k=1}^n \sum_{l=1}^n \hat{u}_k\hat{v}_l\, \langle e_k,e_l\rangle
+=
+\sum_{k=1}^n \sum_{l=1}^n \hat{u}_k\hat{v}_l\, \delta_{kl}
+=
+\sum_{k=1}^n \hat{u}_k\hat{v}_k.
+\end{align*}
+Damit ist \eqref{geometrie:parseval-prod} bewiesen.
+\eqref{geometrie:parseval-norm} folgt, indem man $v=u$ setzt.
+\end{proof}
+
+Dieser Satz zeigt, dass die Festlegung einer orthonormierten Basis von $V$
+viel mehr erreicht als auf den ersten Blick ersichtlich.
+Die Wahl der Basis legt eine lineare Abbildung
+\[
+\mathcal{T}
+\colon
+V\to \mathbb R^n
+:
+v \mapsto (\hat{v}_k\,|\, 1\le k\le n)
+\]
+fest.
+Die Syntheseformel~\eqref{geometrie:synthese} definiert die zugehörige
+Umkehrabbildung
+\[
+\mathcal{T}^{-1}
+\colon
+\mathbb R^n \to V
+:
+(a_k\,|\,1\le k \le n)
+\mapsto
+\sum_{k=1}^n a_k\,e_k.
+\]
+Die Parseval-Identität
+\eqref{geometrie:parseval-prod} besagt aber zusätzlich, dass
+die Abbildung $\mathcal{T}$ das Skalarprodukt in $V$ überführt in
+das Standardskalarprodukt in $\mathbb R^n$.
+Die Abbildung $\mathcal{T}$ ist also eine Isometrie der beiden Vektorräume
+$V$ und $\mathbb R^n$.
+Man verliert also nichts, wenn man ein Problem über Vektoren in $V$ in
+den (hoffentlich) einfacheren Vektorraum $\mathbb R^n$ transportiert,
+dort bearbeitet und die Resultate mit Hilfe von $\mathcal{T}^{-1}$
+wieder in $V$ zurückübersetzt.
+
+
+
