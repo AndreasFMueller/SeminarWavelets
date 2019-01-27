@@ -1,0 +1,175 @@
+%
+% einleitung.tex
+%
+% (c) 2018 Prof Dr Andreas Müller
+%
+\chapter*{Einleitung\label{chapter:einleitung}}
+\lhead{Einleitung}
+\addcontentsline{toc}{chapter}{Einleitung}
+Zeitabhängige Signale können verstanden werden als Funktionen $t\mapsto f(t)$
+mit $t\in\mathbb R$.
+Die Analysis lehrt eine Reihe von Methoden, wie man mit solchen
+Funktionen arbeiten kann.
+Dies ist jedoch eine mathematische Idealisierung.
+In der Praxis kennt man nur das Resultat eines Abtastprozesses, wo
+der Funktionswert $f(t_k)$ für diskrete Werte $t_i=t_0 + k\Delta t$
+ermittelt wird.
+Insbesondere gehen alle Informationen über den Verlauf einer Funktion $f(t)$
+zwischen den Abtastpunkten $t_k$ verloren.
+Trotzdem führt daran nichts vorbei, denn nur auf diese Art ist es möglich,
+Signale in einem digitalen System zu verarbeiten.
+
+Die Methoden der Analysis sind für folgen von Abtastwerten $x_k=f(t_k)$
+fast nutzlos.
+Sogar das Konzept der Frequenz ist fragwürdig, denn Sinus-Signal
+$s(t)=\sin(2\pi t/\Delta t)$ nimmt auf allen Abtastpunkten $t_k$
+den Wert $s(t_k)=\sin(2\pi t_0/\Delta t+2\pi k)=\sin(2\pi t_0/\Delta t)$
+den gleichen Wert an.
+Allgemeiner: ein Signal mit der gleichen Frequenz wie die Abtastfrequenz
+ist nicht von einem konstanten Signal unterscheidbar.
+Die Signalverarbeitung verlang daher nach einem Satz von Werkzeugen, die
+einerseits mit dieser Schwierigkeit fertig werden aber andererseits auch
+in der Lage sind gut verstandene technische Prozesse wie das Ausfiltern
+bestimmter Frequenzbereiche adäquat zu beschreiben.
+
+Das übliche und für den Ingenieur naheliegende Werkzeug ist die 
+Fourier-Theorie, die ursprünglich als analytisches Hilfsmittel zur Lösung
+von Differentialgleichungen entwickelt wurde.
+Sie macht erstmals möglich, ein Signal über die darin vertretenen
+Frequenzen zu charakterisieren und zu manipulieren.
+Mit der Entweckung der schnellen Fourier-Transformation
+(Fast Fourier Transform FFT) wurde ihr praktischer Einsatz in digitalen
+Problemlösungen möglich.
+Sie bringt die neue Idee in die Diskussion, ein Signal als Überlagerung
+von Beispielfunktionen zu betrachten, die besonderes einfach zu
+verstehen sind.
+Konkret sind dies die Funktionen $\sin kt$ und $\cos kt$ mit
+$k\in\mathbb N$ bei der Analyse periodischer Signale,
+oder allgemeiner die Funktion $t\mapsto e^{ikt}$ mit $k\in\mathbb Z$
+bei beliebigen Signalen.
+Die daraus entwickelte Theorie ist zwar sehr reichhaltig und auch erfolgreich,
+aber doch ein einem Punkt unbefriedigend.
+Die Fourier-Transformation liefert zu einem Signal detaillierte Information
+über die darin enthaltenen Frequenzen, dafür gehen aber Informationen
+darüber verloren, wann interessante Ereignisse eingetroffen sind.
+Die Information ist nicht ganz verloren, da sie immer noch in den Phasen
+der Koeffizienten stecken, aber sie sind für alle praktischen Zwecke 
+nicht mehr nutzbar, da nur über eine Rücktransformation wieder erschliessbar.
+
+Es stellt sich daher die Frage, ab es Möglichkeiten der Analyse von Signalen
+gibt, die nicht so radikal sind.
+Enthält ein Signal hohe Frequenzen, dann ändert sich das Signal rasch.
+Ein kurzes Ereignis passt auf diese Beschreibung, aber eine wesentliche
+Eigenschaft ist damit nicht beschrieben, nämlich wann es statt gefunden hat.
+Kann man Informationen über die in einem Signal vertretenen Frequenzen gewinnen,
+ohne auf Information darüber verzichten zu müssen, wann diese Ereignisse
+eingetreten sind?
+
+Für eine umfassende Antwort müssen mehrere Teilfragen untersucht werden.
+\begin{enumerate}
+\item
+Welche Arten von Vergleichssignalen soll man verwenden, um solche kurzlebigen
+Ereignisse zu beschreiben.
+Die trigonometrischen Funktionen sind zweifellos naheliegend und ihre
+analytischen Eigenchaften einladend, doch ihre unendliche Ausdehnung entlang
+der Zeitachse torpedieren von vornherein die Möglichkeit der zeitlichen
+Lokalisierung von interessanten Ereignissen.
+Gibt es Funktionen, die ähnliche oszillatorische Form haben
+aber trotzdem über hilfreiche analytische Eigenschaften haben.
+\item
+Wie vergleicht man ein gegebenes Signal mit einem Vergleichssignal?
+In der Fourier-Theorie lernt man einen ausgedehnten Satz von Integralformeln
+zur Berechnung der Fourier-Koeffizienten, wie müssen diese verallgemeinert
+werden?
+\item
+Wie rekonstruiert man das Signal aus dem Resultat der Analyse?
+In der Fourier-Theorie lernt man Summenformeln für die Fourierreihen
+und Integralformeln für ausgedehnte Signale, doch wie ist das für 
+die neuen Vergleichsfunktionen umzusetzen.
+\item
+Die Praxis arbeitet mit diskreten Signalen, wie lässt sich die Analyse
+diskretisieren.
+Unter welchen Voraussetzungen ist die Rekonstruktion des Signals
+aus der diskreten Analyse möglich?
+\item
+Das Verfahren ist nur dann praktisch einsetzbar, wenn sowohl die Analyse wie
+auch die Synthese mit effizienten numerischen Algorithmen möglich sind.
+Diese Algorithmen müssen ausserdem stabil sein, d.~h.~kleine Störungen in
+den Input-Daten oder Rundungsfehler während der Durchführung des Verfahrens
+dürfen sich nicht zu unbrauchbaren Resultaten aufschaukeln.
+\item
+Welche Vergleichssignale sind für welchen Anwendungszweck geeignet?
+\end{enumerate}
+Die nachkommenden Kapitel versuchen, Antworten auf diese Fragen zu
+geben.
+
+In Kapitel~\ref{chapter:geometrie} wird gezeigt, wie der Vergleich
+von Funktionen gleichbedeutend ist mit dem Skalarprodukt von Vektoren.
+Daraus entwickelt sich dann die Theorie der Hilberträume, der
+unendlichdimensionalen komplexen Vektorräume mit Skalarprodukt.
+Diese bilden den geometrischen Rahmen, in dem man die ganze 
+
+Die bekannte Fourier-Theorie wird im Kapitel~\ref{chapter:fourier} in
+diesen neuen Rahmen des Hilbertraumes eingeordnet.
+Es demonstriert, wie die Hilbertraumtheorie die Vielfalt der vielen
+verschiedenen Varianten der Fouriertheorie vereinheitlicht.
+
+Das Haar-Wavelet ist das älteste bekannte Wavelet.
+Es ist einfach und übersichtlich und kann als Beispiel für die
+Phänomene dienen, die bei komplizierteren Wavelets nicht so leicht
+zu verstehen sind.
+Es wird in Kapitel~\ref{chapter:haar} im Detail besprochen.
+
+Die stetige Wavelet-Transformation analysiert ein Signal auf höchst
+redundante Art.
+Die Hilbertraumtheorie wird in diesem Kapitel~\ref{chapter:cwt} hier
+erstmals allgemeiner angewendet.
+Wir lernen die Bedingungen kennen, die nötig sind, damit ein Signal
+aus seiner Wavelet-Transformation rekonstruierbar ist.
+Wir geben sogar eine Formel für die Rekonstruktion an.
+
+Bei der Diskretisation geht Information verloren.
+Das in Kapitel~\ref{chapter:shannon} diskutierte Abtast-Theorem
+von Shannon gibt an, unter welchen Voraussetzungen das Signal trotz
+des Informationsverlustes rekonstruierbar bleibt.
+
+Die diskrete Wavelet-Transformation überträgt die stetige
+Wavelet-Transformation auf abgetastete Signale.
+Der Begriff der Multiskalen-Analyse wird in Kapitel~\ref{chapter:msa}
+dazu verwendet, die angemessene Diskretisation im ``Frequenzraum''
+zu finden.
+
+Aus der Multiskalen-Analyse lassen sich auch die schnellen Algorithmen
+ableiten, welche Wavelets überhaupt erst praktisch nützlich machen.
+Diese Algorithmen werden in Kapitel~\ref{chapter:algo} hergeleitet.
+
+Selbst mit einer Multiskalen-Analyse brauchen die Algorithmen noch nicht
+perfekt zu sein.
+Schon bei der Fourier-Transformation war das Problem, dass zur Berechnung
+der Fourier-Transformation alle Input-Daten notwendig sind.
+Dies bedeutet, dass das Transformationsresultat erst verfügbar ist,
+wenn das ganze Signal abgetastet ist.
+Damit sind Verarbeitungen in Echtzeit von vornherein ausgeschlossen.
+Ein Ausweg besteht darin, dass die Transformationsoperationen sich auf
+einer nur sehr kleinen Anzahl Samples ausführen lassen.
+Genau dies wird erreicht, wenn die verwendeten Wavelets kompakten Träger
+haben.
+Solche Wavelets wurden von Ingrid Daubechies in den neunzehachtizger
+Jahren konstruiert und waren massgebend für den schnellen Siegeszug 
+der Wavelet-Transformation in den Anwendungen.
+
+Natürlich sind die Daubechies-Wavelets nicht die einzigen praktisch
+nützlichen Wavelets.
+Die verbleibenden Kapitel zeigen eine Reihe von alternativen Wavelets,
+zum Beispiel in Kapitel~\ref{chapter:spline} die Spline-Wavelets.
+Das Haar-Wavelet ist sowohl das einfachste Daubechies-Wavelet als auch
+das primäre Spline-Wavelet.
+
+
+
+
+
+
+
+
+

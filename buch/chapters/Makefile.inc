@@ -7,9 +7,21 @@
 CHAPTERFILES =								\
 	chapters/vorwort.tex						\
 	chapters/part1.tex						\
-	chapters/einleitung.tex						\
-	a-komplex/komplex.tex						\
-	a-komplex/komplexezahlen.tex					\
+	chapters/0-einleitung/einleitung.tex				\
+	chapters/1-geometrie/chapter.tex				\
+	chapters/1-geometrie/vergleich.tex				\
+	chapters/1-geometrie/hilbertraum.tex				\
+	chapters/1-geometrie/rekonstruktion.tex				\
+	chapters/1-geometrie/frames.tex					\
+	chapters/2-fourier/chapter.tex					\
+	chapters/3-haar/chapter.tex					\
+	chapters/4-cwt/chapter.tex					\
+	chapters/5-shannon/chapter.tex					\
+	chapters/6-msa/chapter.tex					\
+	chapters/7-algo/chapter.tex					\
+	chapters/8-kompakt/chapter.tex					\
+	chapters/9-spline/chapter.tex					\
+	chapters/a-komplex/komplexezahlen.tex				\
 	uebungsaufgaben/15001.tex					\
 	uebungsaufgaben/15002.tex					\
 	uebungsaufgaben/15003.tex					\
