@@ -1,0 +1,130 @@
+%
+% lststyles.tex -- styles for the listings package
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+%
+% lststyle for Matlab
+%
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    %numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+\lstdefinestyle{Matlab}{
+  numbers=left,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=Matlab,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\ttfamily\tiny
+}
+\lstdefinelanguage{Matlab}{
+  keywords={function,global,size,zeros,switch,case,otherwise,end,sin,cos,cot,floor,ode45,hold,polarplot},
+  sensitive=true
+}
+
+%
+% lst style for Maxima
+%
+\lstdefinelanguage{Maxima}{
+  keywords={addrow,addcol,zeromatrix,ident,augcoefmatrix,ratsubst,sum,diff,ev,tex,%
+    with_stdout,nouns,express,depends,load,length,submatrix,div,grad,curl,matrix,%
+    invert,lambda,facsum,expand,false,then,if,else,subst,batchload,%
+    rootscontract,solve,part,assume,sqrt,integrate,abs,inf,exp,sin,cos,sinh,cosh,taylor,ratsimp},
+  sensitive=true,
+  comment=[n][\itshape]{/*}{*/}
+}
+\lstdefinestyle{Maxima}{
+  numbers=left,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=Maxima,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\ttfamily\tiny
+}
+
+%
+% lst style for Octave
+%
+\lstset{language=Octave,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={function,global,size,zeros,switch,case,otherwise,end,sin,cos,cot,floor,ode45,hold,polarplot,endfunction,size,endswitch,cat,printf,for,endfor,if,return,endif,abs,while,endwhile},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    %numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+\lstdefinestyle{Octave}{
+  numbers=left,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=Octave,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\ttfamily\tiny
+}
+
+%
+% lst style for C
+%
+\lstdefinestyle{C}{
+  numbers=left,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\ttfamily\tiny
+}

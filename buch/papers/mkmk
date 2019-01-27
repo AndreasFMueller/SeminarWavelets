@@ -1,0 +1,22 @@
+#
+# mkmk -- build the makefile includes for all the papers
+#
+# (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+#
+awk 'BEGIN {
+	printf("#\n")
+	printf("# Makefile.inc\n")
+	printf("#\n")
+	printf("# (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil\n")
+	printf("#\n")
+	printf("PAPERFILES = \\\n")
+	printf("\tpapers/part2.tex \\\n")
+	printf("\tpapers/uebersicht.tex \\\n")
+}
+{
+	printf("\tpapers/%s/main.tex \\\n", $1)
+}
+END {
+	printf("\t\n")
+}' paperlist > Makefile.inc
+

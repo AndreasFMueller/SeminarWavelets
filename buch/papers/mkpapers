@@ -1,0 +1,16 @@
+#
+# mkpapers -- this script builds the paper inclusion commands
+#
+# (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+#
+awk 'BEGIN {
+	printf("%%\n")
+	printf("%% addpapers.tex -- file to add all paper main files\n")
+	printf("%%\n")
+	printf("%% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil\n")
+	printf("%%\n")
+}
+{
+	printf("\\input{papers/%s/main.tex}\n", $1)
+}' paperlist > addpapers.tex
+

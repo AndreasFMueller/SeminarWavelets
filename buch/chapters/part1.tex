@@ -1,0 +1,23 @@
+%
+% part1.tex
+%
+% (c) 2018 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{refsection}
+\input{chapters/vorwort.tex}
+\part{Grundlagen}
+%\keineloesungen
+\input{chapters/einleitung.tex}		% *
+\begin{appendices}
+%\input{chapters/komplexezahlen.tex}
+\end{appendices}
+\vfill
+\pagebreak
+\ifodd\value{page}\else\null\clearpage\fi
+\lhead{Literatur}
+\rhead{}
+\printbibliography[heading=subbibliography]
+\label{buch:literatur}
+\end{refsection}
+
+
