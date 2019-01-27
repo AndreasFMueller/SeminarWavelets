@@ -3,7 +3,7 @@
 #
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
-CHAPTERS = 
+CHAPTERS = a-komplex
 
 images:
 	for d in ${CHAPTERS};						\
