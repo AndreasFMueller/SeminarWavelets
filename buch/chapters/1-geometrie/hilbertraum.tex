@@ -5,6 +5,7 @@
 %
 \section{Hilbertraum
 \label{section:hilbertraum}}
+\rhead{Hilbertraum}
 Die bisher entwickelte Theorie ist aus zwei Gründen nicht ausreichend für das,
 was wir vorhaben.
 
@@ -30,8 +31,385 @@ Der bisher formulierte Begriff des Skalarproduktes funktioniert daher
 nicht für komplexe Signale.
 
 \subsection{Komplexe Vektorräume mit Skalarprodukt}
+Es hindert uns nichts daran, in der Definition eines Vektorraums für die
+Menge der Skalare auch komplexe Zahlen zuzulassen.
+Ganz allgemein kann ein Vektorraum sinnvoll definiert werden, wenn die Menge
+der Skalare ein sogenannter Körper ist, wenn also die Addition
+und die Multiplikation mit von $0$ verschiedenen Skalaren umkehrbar ist.
+Dies trifft natürlich für komplexe Zahlen zu, aber auch für $\mathbb Q$.
+
+Die Definition der Länge eines Vektors und des Skalarproduktes auf dem
+Vektorraum $\mathbb C^n$ erfordert aber etwas mehr Sorgfalt.
+Die Quadratsumme der Komponenten funktioniert sicher nicht, da komplexe
+Zahlen negative Quadrate haben können.
+Die naheliegende Norm ist daher
+\begin{equation}
+\|v\| = \sum_{k=1}^n |v_k|^2.
+\label{buch:hilbert:norm1}
+\end{equation}
+Sie ist für alle von $0$ verschiedenen Vektoren positiv, also positiv
+definit.
+Wir wollen diese Norm aber aus einem Skalarprodukt gewinnen.
+Eine Möglichkeit ist
+\begin{equation}
+\langle u,v\rangle = \sum_{k=1}^n u_k\bar{v}_k.
+\label{hilbert:skalaransatz}
+\end{equation}
+Die zugehörige Norm ist \eqref{buch:hilbert:norm1}.
+
+Allerdings ist diese Bildung nicht mehr linear im zweiten Faktor.
+Multipliziert man $v$ mit $\lambda$ erhält man
+\[
+\langle u,\lambda v\rangle
+=
+\sum_{k=1}^n u_k\bar{\lambda} \bar{v}_k
+=
+\bar{\lambda}\sum_{k=1}^n u_k\bar{v}_k
+=
+\bar{\lambda}\langle u,v\rangle.
+\]
+Man sagt, $\langle\;,\;\rangle$ ist {\em konjugiert linear} im zweiten Argument.
+Im ersten Argument ist $\langle\;,\;\rangle$ aber immer noch linear.
+
+Die Konstruktion~\eqref{hilvert:skalaransatz} ist auch nicht mehr
+symmetrisch, vielmehr gilt:
+\[
+\langle v,u\rangle
+=
+\sum_{k=1}^n v_k\bar{u}_k
+=
+\overline{\sum_{k=1}^n u_k\bar{v}_k}
+=
+\overline{\langle u,v\rangle}.
+\]
+Vertauschen der Faktoren führt zum konjugiert komplexen Wert des
+Skalarproduktes.
+Man nennt diese Symmetrieeigenschaft von $\langle\;,\;\rangle$
+{\em hermitesch}.
+Hermitesche Formen zeichnen sich dadurch aus, dass
+\[
+\overline{\langle {\color{red}u},{\color{blue}u}\rangle}
+=
+\langle {\color{blue}u},{\color{red}u}\rangle.
+\]
+Nur die reellen Zahlen sind zu sich selbst konjugiert komplex, man kann
+also schliessen, dass für eine hermitesche Form
+$\langle u,u\rangle\in\mathbb R$ ist.
+
+Dies führt uns auf die folgende Definition eines Skalarproduktes für einen
+komplexen Vektorraum.
+\begin{definition}
+Eine Funktion
+\[
+\langle\;,\;\rangle
+\colon V\times V\to \mathbb C : (u,v) \mapsto \langle u,v\rangle
+\]
+heisst ein komplexes Skalarprodukt, wenn gilt:
+\begin{enumerate}
+\item $\langle \;,\;\rangle$ ist linear im ersten Argument.
+\item $\langle \;,\;\rangle$ ist konjugiert linear im zweiten Argument.
+\item $\langle\;,\;\rangle$ ist hermitesch,
+d.~h.~$\langle u,v\rangle=\overline{\langle v,u\rangle}$.
+\item $\langle \;,\;\rangle$ ist positiv definit, d.~h.~es gilt
+$\langle u,u\rangle \ge 0$ mit Gleichheit nur falls $u=0$.
+\end{enumerate}
+\end{definition}
+
+Die Herleitung der Cauchy-Schwarz-Ungleichung hat die Symmetrie
+und die Bilinearität des Skalarproduktes verwendet, sie lässt sich
+also auf diese hermitesche Skalarprodukt nicht direkt übertragen.
+
+\begin{satz}
+Sei $V$ ein komplexer Vektorraum mit komplexem Skalarprodukt
+$\langle\;,\;\rangle$,
+dann gilt
+\[
+|\langle u,v\rangle| \le \|u\|\cdot \|v\|
+\]
+mit Gleichheit genau dann, wenn $u$ und $v$ linear abhängig sind.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wie im reellen Fall berechnen wird die Norm von $u+tv$:
+\begin{align*}
+0&\le
+\| u+tv\|=\langle u+tv,u+tv\rangle
+=
+\|u\|^2 + \bar{t}\langle u,v\rangle + t\langle v,u\rangle + |t|^2 \|v\|^2
+\\
+&=
+\|u\|^2 + \bar{t}\langle u,v\rangle + t\overline{\langle u,v\rangle} + |t|^2 \|v\|^2
+\end{align*}
+mit Gleichheit genau dann, wenn $u+tv=0$.
+Die mittleren beiden Terme enthalten das Skalarprodukt, durch die Wahl
+$t=-\langle u,v\rangle/\|v\|^2$ wird daraus
+\begin{align*}
+0
+&\le
+\|u\|^2 - 2\frac{|\langle u,v\rangle|^2}{\|v\|^2}
++
+\biggl(\frac{|\langle u,v\rangle|}{\|v\|^2}\biggr)^2\|v\|^2
+\\
+&=
+\|u\|^2 - \frac{|\langle u,v\rangle|^2}{\|v\|^2}.
+\end{align*}
+Multiplikation mit $\|v\|^2$ liefert
+\begin{align*}
+0&\le \|u\|^2 \cdot \|v\|^2 - |\langle u,v\rangle|^2
+\\
+\Leftrightarrow
+\qquad
+|\langle u,v\rangle|^2
+&\le \|u\|^2 \cdot \|v\|^2
+\end{align*}
+mit Gleichheit genau dann, wenn $u+tv=0$.
+Damit ist die Cauchy-Schwarz-Ungleichung auch für den komplexen Fall bewiesen.
+\end{proof}
+
+Auch für ein komplexes Skalarprodukt gilt, dass die Werte der Norm
+das Skalarprodukt eindeutig bestimmen.
+Da die Norm jedoch immer reelle Werte annimmt, ist etwas mehr Arbeit
+erforderlich, um den Imaginärteil des Skalarproduktes wiederzugewinnen.
+Znächst rechnen wir wie im Fall des reellen Skalarproduktes
+\begin{align*}
+\| u+v\|^2 
+&=
+\|u\|^2 + \langle u,v\rangle + \langle v,u\rangle + \|v\|^2
+\\
+&=
+\|u\|^2 + \langle u,v\rangle + \overline{\langle u,v\rangle} + \|v\|^2
+\\
+&=
+\|u\|^2 + 2\operatorname{Re}\langle u,v\rangle + \|v\|^2
+\\
+\Rightarrow\qquad
+\operatorname{Re}\langle u,v\rangle
+&=
+\frac12(
+\|u+v\|^2 - \|u\|^2 - \|v\|^2
+).
+\intertext{
+Um den Imaginärteil zu bekommen, multiplizieren wir $v$ mit $i$:
+}
+\|u+iv\|^2
+&=
+\|u\|^2 + \langle u,iv\rangle + \langle iv,u\rangle + \|iv\|^2
+\\
+&=
+\|u\|^2 -i \langle u,v\rangle + i\langle v,u\rangle + |i|^2 \|v\|^2
+\\
+&=
+\|u\|^2 + \|v\|^2
+-i (\langle u,v\rangle - \overline{\langle u,v\rangle})
+\\
+&=
+\|u\|^2 + \|v\|^2
+-i (2i\operatorname{Im}\langle u,v\rangle)
+\\
+&=
+\|u\|^2 + \|v\|^2
++ 2\operatorname{Im}\langle u,v\rangle
+\\
+\Rightarrow\qquad
+\operatorname{Im}\langle u,v\rangle
+&=
+\frac12(
+\|u+iv\|^2- \|u\|^2 - \|v\|^2)
+\end{align*}
+Zusammengesetzt finden wir die Formel
+\begin{equation}
+\langle u,v\rangle
+=
+\frac12(
+\|u+v\|^2 - \|u\|^2 - \|v\|^2
+)
++
+\frac{i}2(
+\|u+iv\|^2- \|u\|^2 - \|v\|^2)
+)
+\label{hilbert:polarisierung}
+\end{equation}
+für das Skalarprodukt zweier beliebiger Vektoren, ausgedrückt
+ausschliesslich mit der Norm.
+Die Identität \eqref{hilbert:polarisierung} ist auch bekannt unter dem
+Namen Polar-Identität.
+
+Das Skalarprodukt erlaubt auch in einem komplexen Hilbertraum den Begriff
+der orthonormierten Basis zu definieren.
+
+\begin{satz}
+Wenn die Vektoren $\{e_k\,|\, 1\le k\le n\}$ eine orthonormierte Basis
+von $V$ bilden, dann lässt sich jeder Vektor $v\in V$ als Linearkombination
+\[
+v
+=
+\sum_{k=1}^n \hat{v}_k e_k
+\]
+der Vektoren $e_k$ schreiben.
+Die Koeffizienten sind eindeutig bestimmt und können mit Hilfe des
+Skalarproduktes als
+\[
+\hat{v}_k = \langle v,e_k\rangle
+\]
+gefunden werden.
+Ausserdem gilt für das Skalarprodukt die Parseval-Identität
+\begin{align*}
+\langle u,v\rangle &= \sum_{k=1}^n \hat{u}_k\bar{\hat{v}}_k
+\\
+\| u \|^2 &= \sum_{k=1}^n |\hat{u}_k|^2.
+\end{align*}
+\end{satz}
+
+Die Abbildung $T\colon V\to \mathbb C^n: v\mapsto (\hat{v}_k\,|\,1\le k\le n)$
+ist also wie im reellen Fall eine Isometrie.
+
 
 \subsection{Norm und Grenzwert in einem Hilbertraum}
+Bis jetzt haben wir immer in endlichdimensionalen Vektorräumen gearbeitet.
+Der tiefere Grund dafür war, dass die Arbeit mit unendlich vielen Basisvektoren
+$e_k$, $k\in\mathbb N$, erfordert, dass Ausdrücken der Form
+\begin{equation}
+\sum_{k=1}^\infty a_k e_k
+\label{hilbert:summe}
+\end{equation}
+ein Sinn gegeben werden muss.
+Die Algebra reicht dazu nicht, denn zum Ende der Berechnung einer Summe
+ohne Ende kann man grundsätzlich nicht gelangen.
+Ein Ausdruck wie \eqref{hilbert:summe} kann daher nur im Sinne eines
+Grenzwertes verstanden werden.
+In einem Vektorraum ist aber a priori nicht definiert, wie man die
+Approximation eines Vektors $v$ durch eine Folge von Vektoren $v_k$ zu
+verstehen hat.
+
+Mit der Einführung des Skalarproduktes und der daraus abgeleiteten Norm
+ändert sich das.
+\begin{definition}
+Sei $V$ ein Vektorraum mit Skalarprodukt.
+Eine Folge $v_k\in V$ konvergiert gegen den Vektor $v\in V$ für $k\to\infty$,
+wenn
+\[
+\| v_k - v\| \to  0 
+\qquad\Leftrightarrow\qquad
+\lim_{k\to\infty} v_k = v.
+\]
+\end{definition}
+
+Man erwartet, dass eine Folge einen Grenzwert hat, wenn die Folgenglieder
+immer näher zueinander rücken.
+
+\begin{definition}
+Eine Folge $v_k\in V$ heisst Cauchy-Folge, wenn es für jedes $\varepsilon > 0$
+ein $N(\varepsilon)\in\mathbb N$ gibt, so dass
+$\|v_k - v_m\| < \varepsilon$
+sobald $k,m>N(\varepsilon)$.
+\end{definition}
+
+Leider ist nicht garantiert, dass in einem komplexen Vektorraum eine
+Cauchy-Folge auch tatsächlich einen Grenzwert hat.
+
+\begin{beispiel}
+Wir betrachten den Vektorraum
+\[
+c_0 = \{ X=(x_0, x_1, \dots ,x_k,0,\dots)\,| x_i \in \mathbb C\}
+\]
+von Folgen, die nur endlich viele Terme haben, die von $0$ verschieden sind.
+Wir können diesem Vektorraum ein Skalarprodukt verpassen, indem wir
+\[
+\langle X,Y\rangle
+=
+\sum_{k=1}^\infty x_k\bar{y}_k
+\]
+setzen.
+Da in beiden Folgen nur endlich viele Terme von $0$ verschieden sind, ist
+die Summe auf der rechten Seite eine endliche Summe.
+Ganz offensichtlich ist dies ein komplexer Vektorraum mit Skalarprodukt.
+Jetzt betrachten wir die Folge
+\begin{align*}
+X_1 &= (1,0,0,0,\dots)
+\\
+X_2 &= (1,\frac12,0,0,\dots)
+\\
+X_3 &= (1,\frac12,\frac13,0,\dots)
+\\
+&\vdots
+\\
+X_k &= (1,\frac12,\frac13,\dots,\frac1k,0,\dots)
+\\
+&\vdots
+\end{align*}
+Wir behaupten, dies sei ein Cauchy-Folge.
+Dazu müssen wir Differentzen $\| X_n-X_m\|$ untersuchen.
+Wir dürfen annehmen, dass $m < n$ ist.
+Dann ist
+\begin{equation}
+\| X_n - X_m\|^2 = \sum_{k=m+1}^n \frac{1}{k^2}.
+<
+\sum_{k=m+1}^\infty \frac{1}{k^2}.
+\label{hilbert:eulercauchy}
+\end{equation}
+Auf der rechten Seite steht ein Reststück der Reihe
+\[
+\sum_{k=1}^\infty \frac{1}{k^2},
+\]
+die Euler als erster berechnet hat.
+Er hat den Wert $\frac{\pi^2}{6}$ gefunden.
+Die Tatsache, dass die Reihe konvergiert heisst aber auch, dass
+es für jedes $\varepsilon >0$ eine Zahl $N(\varepsilon)$ gibt derart,
+dass die rechte Seite von \eqref{hilbert:eulercauchy} kleiner ist
+als $\varepsilon$, wenn nur $m,n>N(\varepsilon)$.
+Die Folge $(X_k)$ ist also tatsächlich ein Cauchy-Folge.
+
+Als Grenzwert kommt nur die Folge 
+\[
+X = (1,\frac12, \frac13,\frac14,\dots)
+\]
+in Frage.
+Und tatsächlich ist
+\begin{equation}
+\|X-X_n\|^2
+=
+\sum_{k=n+1}^\infty \frac1{k^2},
+\label{hilbert:falscherabstand}
+\end{equation}
+wieder ein Reststück der Reihe von Euler.
+Also konvergiert tatsächlich $X_k$ gegen $X$.
+
+Die Folge $X$ ist aber gar nicht in $c_0$,
+da alle Folgenglieder von $0$ verschieden sind.
+Der Grenzwert einer Folge in $c_0$ muss also nicht mehr in $c_0$ sein.
+
+Genau genommen haben wir schon in \eqref{hilbert:falscherabstand}
+gemogelt.
+Die Abstandsmessung in $c_0$ ist ja mit Hilfe einer endlichen Summe
+definiert, hier haben wir aber eine unendliche Summe.
+\end{beispiel}
+
+Die Rekonstruktion eines Vektors mit Hilfe einer Linearkombination von
+Basisvektoren kann also grundsätzlich nur dann funktionieren, wenn verlangt
+wird, dass es zu jeder Cauchy-Folge von Vektoren auch tatsächlich einen
+Grenzwert gibt.
+
+\begin{definition}
+Ein komplexer Vektorraum $V$ mit Skalarprodukt heisst {\em vollständig}, 
+wenn jede Cauchy-Folge von Vektoren in $V$ einen Grenzwert in $V$ hat.
+Ein solcher Vektorraum heisst {\em Hilbertraum}.
+\end{definition}
+
+Der Vektorraum $c_0$ des obigen Beispiels lässt sich leicht zu einem
+Hilbertraum machen.
+
+\begin{beispiel}
+Sei $l^2$ der komplexe Vektorraum der quadratsummierbaren komplexen
+Zahlfolgen $(x_k)$, d.~h.
+\[
+l^2 = \left\{ (x_k)\,\left| \sum_{k=1}^\infty |x_k|^2 < \infty \right.\right\}
+\]
+mit dem Skalarprodukt
+\[
+\langle X,Y\rangle = \sum_{k=1}^\infty x_k\bar{y}_k.
+\]
+% XXX TODO: Vervollständigung: Summierbarkeit des Grenzwertes...
+\end{beispiel}
 
 \subsection{Basis eines Hilbertraumes}
 

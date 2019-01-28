@@ -4,5 +4,43 @@
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 \chapter{Stetige Wavelet-Transformation
-\label{chapter:ccwt}}
+\label{chapter:cwt}}
+Im Kapitel~\ref{chapter:haar} wurde am Beispiel des Haar-Servlets
+gezeigt, wie jede beliebige stetige Funktion als Linearkombination 
+skalierten und verschobenen Versionen einer einzigen Ausgangsfunktion
+$\psi(t)$ geschrieben werden kann.
+Das Haar-Wavelet hat einen Ausweg aus der Schwierigkeit der
+Fourier-Transformation gewiesen, Ereignisse sowohl auf der Zeitachse
+wie auch bezüglich ihrer Frequenz zu lokalisieren.
+Es bleibt aber eine Reihe von Schwierigkeiten, die vom Haar-Wavelet nicht
+adressiert werden:
+\begin{enumerate}
+\item
+Die Funktion $\psi$ ist nicht stetig, und alle daraus aufgebauten
+Approximationsfunktionen sind nicht stetig
+und erst recht nicht differenzierbar.
+\item
+Es werden nur Frequenzen verwendet, die $2^n$-fache einer Grundfrequenz
+sind.
+Die Analyse kann also nur Oktaven unterscheiden, während
+Töne auf einer Tonleiter Frequenzverhältnisse von $\sqrt[12]{2}$ haben.
+\end{enumerate}
+Ziel dieses Kapitels ist, vernünftige Kriterien für Waveletfunktionen
+$\psi(t)$ zu finden, so dass die Analyse und Synthese ähnlich einfach
+wie für Haar-Wavelets möglich bleibt.
+Ausserdem soll die stetige Wavelet-Transformation diskutiert werden,
+welche das Problem der ``Zwischenfrequenzen'' löst.
+
+\input{chapters/4-cwt/wavelets.tex}
+
+\section{Wavelet-Transformation}
+
+\section{Plancherel-Formel}
+
+\section{Umkehrformel}
+
+
+
+
+
 

@@ -5,6 +5,7 @@
 %
 \section{Frames
 \label{section:frames}}
+\rhead{Frames}
 Eine orthonormierte Basis eines Hilbertraumes ist sehr starr.
 Es ist nicht möglich, auch nur einen einzigen Vektor ein kleines
 Bisschen zu ändern, ohne die Eigenschaften, die zum Satz~\ref{satz:parseval}
@@ -25,7 +26,11 @@ Wir suchen daher nach einer Verallgemeinerung des Basis-Begriffs, welche
 auf kontrollierte Weise Redundanz in die Koeffizienten $\hat{v}_k$
 bringt und damit eine robustere Konstruktion ermöglicht.
 
-\subsection{Ein geometrisches Beispiel}
+\subsection{Ein geometrisches Beispiel
+\label{subsection:hexagon}}
+%
+% XXX TODO: Graphik des Hexagon-Koordinatensystems
+%
 Wir suchen ein geeignetes Koordinatensystem, um ein Problem über
 Bienenwaben in der Ebene zu lösen.
 Selbstverständlich kann dafür das übliche rechtwinklige Koordinatensystem
@@ -115,8 +120,12 @@ b_3'
 =
 \frac32b_3
 \end{align*}
-Die Synthese liefert also nicht den ursprünglichen Vektor, sondern das
-$frac32$-fache davon zurück.
+Die Synthese liefert also nicht den ursprünglichen Vektor, sondern
+\begin{equation}
+\sum_{k=1}^3 \hat{v}_k b_k = \frac32\,v
+\label{geometrie:32beispiel}
+\end{equation}
+zurück, das $frac32$-fache davon.
 Dies ist bereits ein Ausdruck der Tatsache, dass die Information in den
 Koeffizienten $\hat{v}_k$ redundant ist.
 
@@ -185,7 +194,212 @@ f(\alpha)
 \]
 
 \subsection{Definition eines Frames}
+Nach dem motivierenden Beispiel im vorangegangenen Abschnitt sind wir nun
+bereit, eine allgemeine Definition aufzubauen.
+Wir wollen also weiterhin die Vektoren eines Vektorraums $V$ mit Hilfe
+einer Menge von Vektoren $\{e_k\,|\,1\le k\le n\}$ linear kombinieren,
+verlangen aber nicht mehr, dass die Vektoren $e_k$ linear unabhängig sind.
+Dies bedeutet natürlich, dass die Darstellung eines Vektors $v\in V$
+nicht mehr eindeutig sein wird.
 
+Nicht jede Menge von Vektoren $\{e_k\,|\,1\le k\le n\}$ ist geeignet.
+Es muss ja immer noch jeder Vektor dargestellt werden können, das
+Erzeugnis der Vektoren muss also der ganze Vektorraum sein:
+\[
+U
+:=
+\langle e_k\,|\,1\le k\le n\rangle
+=
+V.
+\]
+Wäre das Erzeugnis nur ein echter Unterraum $U\subset V$, dann gäbe es
+einen Vektor $b\in V$, der senkrecht steht auf allen $b\perp V$.
+Wir fordern daher, dass es keinen Vektor gibt, der auf allen Vektoren $e_k$
+senkrecht steht.
 
+Damit die Berechnung effizient bleibt, möchten wir weiterhin nur mit den
+Koeffizienten $\hat{v}_k = \langle v,e_k\rangle$ arbeiten müssen.
+Für eine Orthonormalbasis hat die Parseval-Formel gezeigt, dass
+\[
+\sum_{k=1}^n |\hat{v}_k|^2 = \| v \|.
+\]
+In der aktuellen Situation können wir nicht mehr erwarten, dass dies 
+weiterhin funktioniert.
+Wir müssen aber mindestens verlangen, dass die Transformation
+\[
+\mathcal{T}
+\colon
+V\to \mathbb R^n
+:
+v\mapsto \hat{v}_k
+\]
+stetig ist, dass sich also kleine Änderungen von $v$ ebenfalls
+kleinen Änderungen des Vektors der $\hat{v}_k$ auswirken.
+Es muss also eine Konstante $B$ geben, so dass
+\[
+\sum_{k=1}^n |\hat{v}_k|^2
+=
+\sum_{k=1}^n |\langle v,e_k\rangle|^2
+\ge
+A \| v \|^2.
+\]
+
+Wir müssen aber auch sicherstellen, dass die Rekonstruktion des Vektors $v$
+auf stetige Art von den Koeffizienten $\hat{v}_k$ abhängt. 
+Eine kleine Änderung der Koeffizienten darf sich nur in beschränkten Änderungen
+im rekonstruierten Vektor $v$ auswirken.
+Es muss also eine Konstante $B$ geben, so dass
+\[
+\sum_{k=1}^n |\hat{v}_k|^2
+=
+\sum_{k=1}^n |\langle v,e_k\rangle|^2
+\le
+B \| v \|^2
+\]
+gilt.
+
+Damit haben wir alle Elemente zusammen für die folgende Definition,
+die auch für unendlichdimensionale Hilberträume funktioniert.
+
+\begin{definition}
+\label{definition:frame}
+Eine Teilmenge $\{ e_k\,|\, k\in K\}\subset V$ heisst ein {\em Frame},
+wenn es zwei von $0$ verschiedene Konstanten $A$ und $B$ gibt, so dass
+\[
+A\|v\|^2 \le \sum_{k\in K} |\langle v, e_k\rangle|^2 \le B \| v\|^2
+\]
+gilt für jeden Vektor $v\in V$.
+Die Konstanten $A$ und $B$ heissen die {\em Framekonstanten} des Frames.
+Das Frame heisst {\em straff}, wenn $A=B$ ist.
+\end{definition}
+
+\begin{beispiel}
+Das Beispiel von Abschnitt~\ref{subsection:hexagon} ist ein Frame.
+Die Formel \eqref{geometrie:32beispiel} zeigt, dass die Framekonstanten
+des Frames $A=B=\frac32$ ist.
+Das Frame ist also sogar straff.
+\end{beispiel}
+
+In der Definition wird nicht erwähnt, dass die Vektoren des Frames den
+ganzen Raum aufspannen müssen.
+Diese Eigenschaft folgt jedoch direkt aus der Definition eines Frames,
+wie der folgende Satz zeigt.
+
+\begin{satz}
+Ist $\mathcal{B}=\{ e_k\,|\, k\in K\}$ ein Frame des Hilbertraumes $V$
+mit Framekonstanten $A$ und $B$, dann gibt es keinen Vektor $v\in V$,
+der auf allen Vektoren $e_k$ senkrecht steht.
+\end{satz}
+
+\begin{proof}[Beweis]
+Nehmen wir an, es gäbe einen Vektor $v\in V$ mit $\langle v,e_k\rangle=0$
+für alle $k\in K$.
+Dann folgt aus den Frame-Ungleichungen
+\[
+\| v \|^2 \le \frac1{A} \sum_{k\in K} |\langle v,e_k\rangle|^2 = 0
+\qquad\Rightarrow\qquad
+v=0.
+\]
+Der Nullvektor ist also der einzige Vektor, der auf allen Framevektoren
+senkrecht steht.
+\end{proof}
+
+Eine orthonormierte Basis war die bevorzugte Wahl für eine Basis, weil
+sich damit die Transformation $\mathcal{T}$ besonders leicht invertieren
+lässt.
+Der Satz~\ref{satz:parseval} hat gezeigt, dass die Transformation %$\mathcal{T}$
+eine Isometrie ist, insbesondere gilt
+\[
+\|v\|^2
+=
+\sum_{k\in K} |\hat{v}_k|^2
+=
+\sum_{k\in K} |\langle v,e_k\rangle|^2.
+\]
+Dies bedeutet, dass eine orthonormierte Basis ein straffes Frame mit
+Framekonstanten $A=B=1$ ist.
+Umgekehrt drängt sich die Frage auf, ob straffe Frames oder spezielle
+Werte der Frame-Konstanten eine besondere Bedeutung für die Invertierbarkeit
+haben.
+
+\subsection{Allgemeine Frames}
+Die Wahl der Indexmenge $K$ in der Definition~\ref{definition:frame}
+war einigermassen willkürlich.
+Schon bei der Fouriertransformation ist eine solche diskrete Menge
+für die Indizierung der Vergleichsfunktionen nicht mehr ausreichend.
+Dort werden nämlich die Funktion $e^{i\omega t}$ mit $\omega\in\mathbb R$
+verwendet.
+Auch die geplante Anwendung auf Wavelets ist davon betroffen.
+Dort wollen wir mit Funktionen $\psi_{a,b}$ vergleichen, die 
+skalierte und verschobene Versionen eines Mutter-Wavelets $\psi$ sind,
+mit Skalierungsfaktor $a\in\mathbb R^*$ und $b\in \mathbb R$.
+
+Lässt man eine beliebige Indexmenge zu, ist die Definition der
+Transformation $T$
+\[
+k
+\mapsto
+(Tv)(k) = \langle v,e_k\rangle
+\]
+als komplexwertige Funktion auf $K$ immer noch sinnvoll.
+Für eine überabzählbare Indexmenge $K$ ist die Summe 
+\[
+\sum_{k\in K} |\langle v,e_k\rangle|^2,
+\]
+die in der Definition eines Frames auftritt, schlicht sinnlos.
+Wir stehen hier also vor einem ähnlichen Problem wie bei der Frage,
+wie man aus dem Raum der Signale auf $\mathbb R$ einen Hilbertraum machen kann.
+Diese Frage wird in Kapitel~\ref{chapter:fourier} im Detail beantwortet.
+
+Nehmen wir für den Moment an, dass es gelungen ist, eine Hilbertraum $H$
+von Funktionen auf $K$ zu konstruieren.
+Die Frame-Ungleichung kann dann mit Hilfe der Norm von $H$ formuliert
+werden, sie lautet
+\[
+A\|v\|^2 \le \|Tv\|^2 \le B\|v\|^2.
+\]
+Die Norm in der Mitte ist als Norm in $H$ zu lesen.
+Diese Ungleichungen sagen immer noch aus, dass kein Vektor $v\in V$ bei
+der Transformation $T$ ``unsichtbar'' wird.
+Wäre nämlich $Tv=0$ in $H$, dann wäre auch $\|Tv\|=0$ und damit
+$\|v\|=0$.
+Die Frame-Ungleichung stellt also sicher, dass die Abbildung $T$ 
+injektiv und damit potentiell invertierbar ist.
+
+Es ist aber keinesfalls garantiert, dass das Bild der Transformation $T$
+den ganzen Hilbertraum $T$ abdeckt, ganz im Gegenteil.
+Schon im Beispiel in Abschnitt~\ref{subsection:hexagon} wurde gezeigt,
+dass die mit Hilfe eines Frames gefundenen Koeffizienten redundant sind.
+Alle Vektoren der Menge
+\[
+\left\{
+\left.
+\begin{pmatrix}\hat{v}_1\\\hat{v}_2\\\hat{v}_3\end{pmatrix}
++\alpha\begin{pmatrix}1\\1\\1\end{pmatrix}
+\,
+\right|\,
+\alpha \in\mathbb R
+\right\}
+\]
+beschreiben den gleichen Punkt in der Ebene, aber nur einer davon 
+wird von der Transformation $T$ erreicht.
+Dies entspricht natürlich genau dem, was man erwartet: der Bildraum
+der Ebene $\mathbb R^2$ unter der Abbildung $T$ ist ein zweidimensionaler
+Teilraum des $\mathbb R^3$.
+
+Die Abbildung $T$ wird daher im Allgemeinen nicht invertierbar sein, aber
+wir dürfen hoffen, dass es eine Formel gibt, mit der man aus $Tv$ den 
+Vektor $v$ rekonstruieren kann.
+Im Falle des Beispiels war dies die Formel
+\[
+v = \frac23 \sum_{k=1}^3 \langle v,e_k\rangle \, e_k.
+\]
+Für ein beliebiges Frame ist so eine Formel natürlich wieder wegen
+der Summe nicht sinnvoll.
+Dach in Kapitel~\ref{chapter:fourier} werden wir sehen, dass sie sich
+oft durch eine Integralformel ersetzen lässt.
+Die Konstruktion eines solchen vektorwertigen Integrals ist allerdings
+etwas subtil, wird kehren zu dieser Problematik im Kapitel~\ref{chapter:cwt}
+zurück.
 
 

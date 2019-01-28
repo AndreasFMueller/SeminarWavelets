@@ -1,0 +1,145 @@
+%
+% l2.tex -- L2 Räume 
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Der Hilbertraum $L^2$
+\label{section:l2}}
+\rhead{Der Hilbertraum $L^2$}
+
+\subsection{Definition des Skalarproduktes}
+
+\subsection{Lebesgue-Integral und Vollständigkeit}
+
+\subsection{$L^2$ und $L^1$}
+Eine integrierbare Funktion ist nicht automatisch
+quadratintegrierbar.
+Wenn eine Funktion gerade noch langsam genug anwächst, dass ihr
+Integral existiert, kann das Quadrat der Funktion bereits zu schnell
+anwachsen, so dass das Quadrat nicht mehr integrierbar ist.
+
+\begin{beispiel}
+Auf dem Interval $I=[0,1]$ ist die Funktion
+\[
+f\colon I\to \mathbb R: t\mapsto \begin{cases} 0&\qquad t=0\\
+t^{-\alpha}&\qquad t > 0
+\end{cases}
+\]
+gegeben, der genaue Wert von $\alpha$ wird später festgelegt.
+Die Integrale von $f$ und $f^2$ sind
+\begin{align*}
+\int_0^1 |f(t)|\,dt
+&=
+\int_0^1 t^{-\alpha}\,dt
+=
+\biggl[\frac{1}{1-\alpha}t^{1-\alpha}\biggr]_0^1
+=
+\begin{cases}
+\frac{1}{1-\alpha}&\qquad \alpha < 1\\
+\infty&\qquad \alpha \ge 1
+\end{cases}
+\\
+\int_0^1|f(t)|^2\,dt
+&=
+\int_0^1 t^{-2\alpha}\,dt
+=
+\begin{cases}
+\frac{1}{1-2\alpha}&\qquad \alpha < \frac12\\
+\infty&\qquad \alpha \ge \frac12
+\end{cases}
+\end{align*}
+Für $\frac12<\alpha<1$ tritt also die Situation ein, dass das Integral
+von $f$ existiert, das von $f^2$ aber nicht\footnote{In der Rechnung in
+diesem und im nächsten Beispiel wurde der Fall $\alpha=1$ nicht sorgfältig
+nachgerechnet.
+In diesem Fall ist die Stammfunktion nämlich $\log|t|$, der jedoch
+auch für $t\to 0$ und $t\infty$ divergiert.
+Die Behauptungen sind daher auch in diesem Fall richtig.}.
+\end{beispiel}
+
+Die umgekehrte Situation kann für Funktionen auf $\mathbb R$ eintreten,
+die zu langsam abfallen, um integrierbar zu sein. 
+Da das Quadrieren kleine Werte noch kleiner macht, kann das Quadrat
+der Funktion schnell genug abfallen, so dass es integrierbar ist.
+Eine solche Funktion ist in $L^2(\mathbb R)$, aber nicht in $L^2(\mathbb R)$.
+
+\begin{beispiel}
+Auf dem Interval $J=[1,\infty)$ ist die Funktion
+$f(t)=t^{-\alpha}$ gegeben.
+Die Integrale von $f$ und $f^2$ sind
+\begin{align*}
+\int_1^\infty |f(t)|\,dt
+&=
+\int_1^\infty t^{-\alpha}\,dt
+=
+\biggl[\frac{t^{1-\alpha}}{1-\alpha}\biggr]_1^\infty
+=
+\begin{cases}
+\frac{1}{\alpha-1}&\qquad \alpha > 1\\
+\infty &\qquad \alpha \le 1
+\end{cases}
+\\
+\int_1^\infty |f(t)|^2\,dt
+&=
+\int_1^\infty t^{-2\alpha}\,dt
+=
+\biggl[\frac{t^{1-2\alpha}}{1-2\alpha}\biggr]_1^\infty
+=
+\begin{cases}
+\frac{1}{2\alpha-1}&\qquad \alpha > \frac12\\
+\infty &\qquad \alpha \le \frac12
+\end{cases}
+\end{align*}
+Man liest daraus ab, dass für $\frac12<\alpha < 1$ die Funktion $f$ zwar
+in $L^2([0,\infty))$, nicht aber in $L^1([1,\infty))$ ist.
+\end{beispiel}
+
+Der Fall des letzten Beispiels kann vermieden werden, wenn man den
+Definitionsbereich der Funktion auf ein kompaktes Interval beschränkt.
+Dann folgt, der folgende Satz.
+
+\begin{satz}
+\label{satz:l2inl1}
+Ist $I$ ein kompaktes Interval, dann ist $L^2(I)\subset L^1(I)$, oder:
+jede quadratintegrierbare Funktion auf einem kompakten Interval ist 
+integrierbar.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir zerlegen die Funktion $f$ in eine Summe $f=f_-+f_+$. 
+Dabei setzen wir:
+\begin{align*}
+f_+(t) &= 
+\begin{cases}
+f(t)&\qquad |f(t)| > 1\\
+0   &\qquad\text{sonst}
+\end{cases}
+&&\text{und}
+&
+f_(t)
+&=
+\begin{cases}
+0   &\qquad |f(t)| > 1\\
+f(t)&\qquad f(t)\le 1
+\end{cases}
+\end{align*}
+Die Teilfunktion $f_+$ sammelt also all jene Werte, die beim Quadrieren
+grösser werden, die Teilfunktion $f_-$ dagegen diejenigen Werte, die
+beim Quadrieren kleiner werden.
+Wir schätzen jetzt das Integral von $|f|$ ab, indem wir es in die Summanden
+$f_+$ und $f_-$ zerlegen:
+\begin{align*}
+\int_I |f(t)|\,dt
+&=
+\int_I |f_+(t)|\,dt + \int_I |f_-(t)|\,dt
+\le
+\int_I |f_+(t)|^2\,dt + \int_I 1\,dt
+\le 
+\int_I |f(t)|^2\,dt + |I|
+\le \|f\|^2 + |I|.
+\end{align*}
+Da nach Voraussetzung $f^2$ integrierbar ist und das Interval $I$ kompakt ist
+und damit beschränkte Länge $|I|$ länge hat, ist das Integral von $|f|$
+ebenfalls beschränkt.
+\end{proof}
+

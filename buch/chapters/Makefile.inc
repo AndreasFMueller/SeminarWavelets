@@ -14,8 +14,10 @@ CHAPTERFILES =								\
 	chapters/1-geometrie/rekonstruktion.tex				\
 	chapters/1-geometrie/frames.tex					\
 	chapters/2-fourier/chapter.tex					\
+	chapters/2-fourier/l2.tex					\
 	chapters/3-haar/chapter.tex					\
 	chapters/4-cwt/chapter.tex					\
+	chapters/4-cwt/wavelets.tex					\
 	chapters/5-shannon/chapter.tex					\
 	chapters/6-msa/chapter.tex					\
 	chapters/7-algo/chapter.tex					\
