@@ -7,9 +7,269 @@
 \label{section:l2}}
 \rhead{Der Hilbertraum $L^2$}
 
+\subsection{Funktionenräume}
+Wir bezeichnen mit $\mathbb C^X$ die Menge der Funktionen
+$f\colon X\to \mathbb C$.
+Sie wird auf natürliche Art zu einem Vektorraum, indem man die
+Addition von Funktionen und die Multiplikation mit Skalaren
+punktweise definiert.
+Seien $f,g$ Funktionen auf $X$, dann definieren wir die Summe $f+g$ und
+$\lambda f$ als
+\begin{align*}
+f+g&\colon X\to\mathbb C: x \mapsto f(x) + g(x)
+\\
+\lambda f &\colon X \to \mathbb C: x \mapsto \lambda f(x).
+\end{align*}
+Die Signale, die im Folgenden analysiert werden sollen, sind jedoch
+nicht beliebige Funktionen.
+Sie haben zusätzliche Eigenschaften, zum Beispiel sind sie oft stetig,
+oder beschränkt.
+Die bekannten Rechenregeln für stetige Funktionen stellen sicher, dass
+diese Eigenschaften in Summen von Funktionen und skalaren Vielfachen
+erhalten bleiben.
+
+Wenn die Funktion $f$ durch andere Funktionen approximiert werden soll,
+dann wird dazu ein Abstandsbegriff benötigt.
+
+\begin{definition}
+Eine reellwertige Funktion $\|\mathstrut\cdot\mathstrut\|$ heisst
+eine Norm auf dem Vektorraum $V$, wenn sie folgende Eigenschaften hat:
+\begin{enumerate}
+\item $\|v\|=0\;\Leftrightarrow\; v = 0$
+\item $\| \lambda u \| = |\lambda| \,\|u\|$
+\item $\|u + v\| \le \|u\| + \|v\|$ (Dreiecksungleichung)
+\end{enumerate}
+\end{definition}
+
+Die Norm, die in Abschnitt~\ref{section:hilbertraum} aus dem Skalarprodukt
+gewonnen wurde, hat tatsächlich diese Eigenschaften.
+Dabei ist nur die Dreiecksungleichung nicht unmittelbar klar.
+Doch aus der Cauchy-Schwarz-Ungleichung folgt
+\begin{align*}
+\| u + v \|^2
+&=
+\langle u+v,u+v\rangle
+=
+\| u \|^2 + 2\operatorname{Re} \langle u,v\rangle + \| v\|^2
+\\
+&\le
+\| u \|^2 + 2|\operatorname{Re} \langle u,v\rangle| + \| v\|^2
+\\
+&\le
+\| u \|^2 + 2|\langle u,v\rangle| + \| v\|^2
+\\
+&\le
+\| u \|^2 + 2\| u \| \cdot \|v\| + \| v\|^2
+=
+(\|u\| + \| v \|)^2
+\\
+\|u+v\|
+&=
+\|u\| + \|v\|
+\end{align*}
+
+\begin{definition}
+Der Vektorraum der stetigen Funktionen auf $X\subset R^n$ ist die Menge
+\[
+C_{\mathbb C}(X)
+=
+C(X)
+=
+\{ f\in \mathbb C^X\,|\, \text{$f$ ist stetig}\}
+\]
+mit der punktweisen Addition und Multiplikation mit Skalaren und der
+Norm
+\[
+\| f \| = \sup_{x\in X} |f(x)|.
+\]
+$\|f\|$ heisst auch die Supremum-Norm.
+\end{definition}
+
+Man beachte, dass diese Norm nicht von einem Skalarprodukt herkommt.
+Man kann aber zeigen, dass Cauchy-Folgen in dieser Norm gegen eine
+stetige Funktion konvergieren.
+Diese Norm stellt also sicher, dass die Grenzfunktion einer
+Approximationsfolge aus stetigen Funktion wieder stetig ist.
+Umgekehrt können wir bei einer anderen Norm wie der im nächsten
+Abschnitt definierten $L^2$-Norm nicht mehr garantieren, dass 
+Grenzfunktionen stetig sind.
+Dies verursacht zwar ein paar mathematische Unannehmlichkeiten,
+kommt aber den Anwendungen entgegen, da in der Praxis durchaus
+nicht stetige Signale vorkommen.
+
 \subsection{Definition des Skalarproduktes}
+In diesem Abschnitt betrachten wir ausschliesslich Funktionen, die auf
+einem endlichen oder unendlichen Interval $I$ definiert sind.
+
+\begin{definition}
+Das Skalarprodukt zweier Funktionen $f,g\colon I\to\mathbb C$ ist definiert
+als
+\[
+\langle f,g\rangle
+=
+\int_I f(t) \bar{g}(t)\,dt
+\]
+\end{definition}
+
+Die bekannten Rechenregeln für Integrale stellen sicher, dass dies
+tatsächlich ein sesquilineares Produkt ist, wie die folgende Rechnung
+zeigt.
+\begin{align*}
+\langle \lambda_1 f_1+\lambda_2 f_2,g\rangle
+&=
+\int_I (\lambda_1 f_1(t) + \lambda_2 f_2(t))\bar{g}(t)\,dt
+\\
+&=
+\lambda_1 \int_I f_1(t) \bar{g}(t)\,dt + \lambda_2 \int_I f_2(t)\bar{g}(t)\,dt
+= \lambda_1 \langle f_1,g\rangle + \lambda_2 \langle f_2,g\rangle
+\\
+\langle f,\mu_1 g_1 + \mu_2 g_2\rangle
+&=
+\int_I f(t) \overline{(\mu_1 g_1(t) + \mu_2 g_2(t))}\,dt
+=
+\bar{\mu}_1 \int_I f(t) \bar{g}_1(t)\,dt
++
+\bar{\mu}_2 \int_I f(t) \bar{g}_2(t)\,dt
+\\
+&=
+\bar{\mu}_1 \langle f,g_1\rangle
++
+\bar{\mu}_2 \langle f,g_2\rangle
+\\
+\overline{
+\langle f,g\rangle
+}
+&=
+\overline{ \int_I f(t)\bar{g}(t)\,dt}
+=
+\int_i \bar{f}(t) g(t)\,dt
+=
+\int_i g(t) \bar{f}(t)\,dt
+=
+\langle g,f\rangle.
+\end{align*}
+Weniger klar ist jedoch, dieses Produkt auch tatsächlich definit ist.
+Die aus dem Skalarprodukt abgeleitete Norm ist
+\[
+\|f\|^2 = \int_I |f(t)|^2\,dt \ge 0.
+\]
+Für eine stetige Funktion folgt tatsächlich für dass die Norm nur
+verschwinden kann, wenn die Funktion überall verschwindet.
+Eine Funktion, die nur an endlich vielen Stellen nicht verschwindet,
+ist immer noch integrierbar und ihr Integral ist $0$.
+Eine solche Funktion hätte also Norm $0$ ohne selbst die Nullfunktion zu
+sein.
+Dies deutet an, dass wir bei der Auswahl der Funktionenmenge, mit der
+wir arbeiten wollen, sehr viel sorgfältiger sein müssen.
+
+Die Definition ist natürlich nur sinnvoll für Funktionen, für die diese
+Integrale tatsächlich existieren.
+\begin{definition}
+Sei $p\in \{1,2\}$ 
+\begin{align*}
+\mathcal{L}^p(I)
+=
+\left\{ f \in \mathbb C^I \, \left|
+\text{
+$f$ ist integrierbar und $\int_I |f(t)|^p\,dt<\infty$
+}
+\right.\right\}
+\end{align*}
+mit zugehöriger Norm
+\[
+\|f\|_p = \biggl(\int_I |f(t)|^p \,dt\biggr)^{\frac1p}.
+\]
+\end{definition}
+
+Für $p=2$ ist die Norm $\|f\|_2$ bereits bekannt, es ist die Norm, die
+vom Skalarprodukt herkommt.
 
 \subsection{Lebesgue-Integral und Vollständigkeit}
+Das Riemann-Integral, das man im Analysis-Unterricht kennen lernt, 
+ist leider nicht geeignet für das vorliegende Approximationsproblem.
+Eine Funktion soll durch quadratintegrierbare Funktionen approximiert
+werden im Sinne der Norm $\|\mathstrut\cdot\mathstrut\|_2$.
+Doch kann man leicht Folgen konstruieren, die im Sinne dieser Norm
+Cauchy-Folgen sind, aber die Grenzfunktion ist nicht mehr integrierbar.
+
+\begin{beispiel}
+Die Menge $[0,1]\cap \mathbb Q$ der rationalen Zahlen im Interval
+$[0,1]$ ist abzählbar, es gibt  also eine Folge $q_k$, die alle rationalen
+Zahlen durchläuft.
+Daraus kann man jetzt eine Funktionen-Folge $f_n$ wie folgt konstruieren:
+\[
+f_n(t) = \begin{cases} 
+1&\qquad \text{$t=t_k$ für ein $k\le n$}\\
+0&\qquad\text{sonst}.
+\end{cases}
+\]
+Jede der Funktionen $f_n$ ist integrierbar, denn sie weichen nur an
+endlich vielen, genauer an $n$ Stellen von $0$ ab.
+Ihr Integral ist daher $0$.
+Der Abstand zwischen zwei Funktionen der Folge ist $\| f_n-f_m\|_2 = 0$,
+da auch die Differenz nur an endlich vielen Stellen von $0$ verschieden ist.
+Trotzdem kann man nicht sagen, dass die Folge eine Grenzfunktion hat.
+Punktweise konvergiert die Folge $f_n$ gegen die Funktion
+\[
+f_{\mathbb Q}(t) = \begin{cases}
+1&\qquad t\in\mathbb Q\\
+0&\qquad\text{sonst}
+\end{cases}
+\]
+Diese Funktion ist aber nicht einmal integrierbar im Sinne des
+Riemann-Integrals.
+\end{beispiel}
+
+Das Beispiel illustriert die Unzulänglichkeit des Riemann-Integrals.
+Die Lösung besteht darin, den Integralbegriff zu erweitern.
+Dies ist Henri Lebesgue in seiner Disseration 1902 gelungen.
+Das Lebesgue-Integral ist für alle Riemann-integrierbaren Funktionen
+definiert und ergibt denselben Wert.
+Es ist also für konkrete Berechnungen nicht relevant.
+Es erweitert die Menge der integrierbaren Funktionen und stellt insbesondere
+sicher, dass die Grenzfunktionen von Folgen unter genügend allgemeinen
+Voraussetzungen integrierbar sind und dass Integral und Grenzwert vertauschbar
+sind.
+Damit ist die Klasse gross genug für das Approximationsproblem.
+
+% XXX Fubini
+% XXX Fatou
+% XXX Dominated convergence
+
+Das Lebesgue-Integral betrachtet die Funktion $f_{\mathbb Q}$ 
+als integrierbar mit Integralwert $0$.
+Für eine beliebige integrierbare Funktion $g$ ist daher auch 
+$g+f_{\mathbb Q}$ integrierbar und hat den gleichen Integralwert
+wie $g$.
+In $\mathcal{L}^p$ sind daher sehr viele Funktionen nicht unterscheidbar,
+da sie sich nur um eine Funktion mit Integral $0$ unterscheiden.
+
+\begin{definition}
+Die Menge $L^p(I)$ besteht aus Äquivalenzklassen von Funktionen in
+$\mathcal{L}^p(I)$, die sich durch eine Nullfunktion unterscheiden.
+Zwei Funktionen $f_1,f_2\in L^p(I)$ werden als gleich betrachtet,
+wenn
+\[
+\int_I
+|f_2-f_1|
+\,dx
+=0
+\]
+ist.
+\end{definition}
+
+Die Menge $L^p(I)$ erbt von $\mathcal{L}^p(I)$ die Struktur eines
+Vektorraums mit der Norm $\|\mathstrut\cdot\mathstrut\|_p$.
+Der Raum $L^2(I)$ wird dank der oben formulierten Grenzwertsätze zu
+einem Hilbertraum.
+Damit ist Raum $L^2(I)$ als die Bühne für die nachfolgend zu diskutierende
+Approximationstheorie bereitgestellt.
+
+Die Definition von $L^p(I)$ als Menge von Äquivalenzklassen von Funktionen
+ist etwas schwerfällig und ungewohnt, für die Praxis aber kaum von Bedeutung.
+Jegliche Rechnungen mit Funktionen finden immer mit einem
+Riemann-integrierbaren Repräsentaten statt.
+
 
 \subsection{$L^2$ und $L^1$}
 Eine integrierbare Funktion ist nicht automatisch
