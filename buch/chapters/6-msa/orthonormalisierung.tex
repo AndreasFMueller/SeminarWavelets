@@ -1,0 +1,73 @@
+%
+% orthonormalisierung.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Orthonormalisierung
+\label{section:orthonormalisierung}}
+\rhead{Orthonormalisierung}
+Die Funktion
+\[
+\varphi_{B^2}(t)
+=
+\begin{cases}
+  t&\qquad 0\le t \le 1\\
+2-t&\qquad 1\le t \le 2\\
+  0&\qquad \text{sonst}
+\end{cases}
+\]
+erfüllt die Skalierungsgleichung
+\[
+\varphi_{B^2}(t)
+= 
+\frac12\varphi_{B^2}(2t)
++
+\varphi_{B^2}(2t-1)
++
+\frac12\varphi_{B^2}(2t-2).
+\]
+Wir werden in Kapitel~\ref{chapter:spline} zeigen, dass sich daraus ein
+geeignetes Mutterwavelet konstruieren lässt.
+Eine grundlegende Schwierigkeit, die dabei gelöst werden muss, ist, dass
+die Translate $\varphi_{B^2}(t-b)$ für $b\in\mathbb N$ nicht orthonormiert
+sind.
+Vielmehr ist das Skalarprodukt
+\begin{align*}
+\langle \varphi_{B^2}, T_{-1}\varphi_{B^2}\rangle
+&=
+\int_0^1 t\cdot (1-t)\,dt
+=
+\biggl[
+\frac{t^2}{2}-\frac{t^3}{3}
+\biggl]_0^1
+=
+\frac12-\frac13 = \frac16\ne 0
+\end{align*}
+
+% XXX TODO bild zu \varphi_{B^2} und der Berechnung des Skalarproduktes
+
+In diesem Abschnitt soll daher die folgende Aufgabe gelöst werden
+\begin{aufgabe}
+\label{aufgabe:orthonormalisierung}
+Gegeben $\varphi\in L^2(\mathbb R)$ konstruiere eine Funktion 
+$\varphi_1\in L^2(\mathbb R)$, die eine Linearkombination von 
+Translaten von $\varphi$ ist, also
+\[
+\varphi_1(t) = \sum_{k=-\infty}^\infty c_k \varphi(t-k)
+\]
+und so, dass die Translate orthonormiert sind.
+\end{aufgabe}
+
+In der Linearen Algebra lernt man üblicherweise das Verfahren von
+Gram-Schmidt zur Orthonormalisierung einer Basis eines Vektorraumes.
+Es beginnt beim ersten Vektor der nur in seiner Länge verändert wird.
+Die folgenden Vektoren werden dann sukzessive modifiziert, so dass sie
+auf den bisher behandelten Vektoren senkrecht stehen.
+Dieses Vorgehen ist im vorliegenden Fall nicht angebracht, da die
+entstehenden Vektoren nicht alle Translate des ersten Vektor sind.
+
+\begin{proof}[Lösung]
+Zunächst können wir annehmen, dass $\|\varphi\|=1$ ist.
+\end{proof}
+
+

@@ -10,16 +10,23 @@ CHAPTERFILES =								\
 	chapters/0-einleitung/einleitung.tex				\
 	chapters/1-geometrie/chapter.tex				\
 	chapters/1-geometrie/vergleich.tex				\
+	chapters/1-geometrie/funktionen.tex				\
 	chapters/1-geometrie/hilbertraum.tex				\
 	chapters/1-geometrie/rekonstruktion.tex				\
 	chapters/1-geometrie/frames.tex					\
 	chapters/2-fourier/chapter.tex					\
 	chapters/2-fourier/l2.tex					\
+	chapters/2-fourier/reihen.tex					\
+	chapters/2-fourier/integral.tex					\
+	chapters/2-fourier/windowed.tex					\
 	chapters/3-haar/chapter.tex					\
 	chapters/4-cwt/chapter.tex					\
 	chapters/4-cwt/wavelets.tex					\
 	chapters/5-shannon/chapter.tex					\
 	chapters/6-msa/chapter.tex					\
+	chapters/6-msa/definition.tex					\
+	chapters/6-msa/skalfour.tex					\
+	chapters/6-msa/orthonormalisierung.tex				\
 	chapters/7-algo/chapter.tex					\
 	chapters/8-kompakt/chapter.tex					\
 	chapters/9-spline/chapter.tex					\
