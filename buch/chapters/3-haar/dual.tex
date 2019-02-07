@@ -1,0 +1,87 @@
+%
+% dual.tex -- duale unterteilung
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Dualzahlen-Unterteilung%
+\label{section:dualzahlen}}
+\rhead{Dualzahlen}
+Wir legen die Untertteilung $x_k = k$ mit $k\in\mathbb Z$ zu Grunde.
+Wir schreiben dafür
+\[
+U_0
+=
+\{ k\,|\, k\in\mathbb Z\}
+=
+\mathbb Z.
+\]
+Abtastung erolgt also nur an ganzzahligen $x$-Werten und
+Translationen um ganze Zahlen sind uneingeschränkt möglich.
+
+Um mehr Detail zu erhalten, kann das Abtastinterval halbiert werden.
+Die Unterteilung bekommt dann die Form
+\[
+U_1
+=
+\{ k2^{-1}\,|\, k\in\mathbb Z\}
+=
+2^{-1}\mathbb Z.
+\]
+Offenbar können damit doppelt so hohe Frequenzen abgetastet werden.
+Beim Übergang von $U_0$ zu $U_1$ können die bereits bekannten Samples
+an den Stellen $U_0$ weiterverwendet werden.
+In $U_1$ sind Translationen um ganzzahlige Vielfache von $\frac12$ 
+möglich.
+
+Der Verfeinerungsprozess kann weitergeführt werden, so dass beliebig
+feine Unterteilung
+\[
+U_j = \{ k2^{-j}\,|\,k\in\mathbb Z\}
+\]
+entstehen.
+In jedem Schritt wird die Menge an Informationen der gesampelten Funktion
+verdoppelt, ohne dass früher gefundene Samples nutzlos werden.
+In $U_j$ sind Verschiebungen um ganzzahlige Vielfache von $2^{-j}$ 
+möglich.
+Es wird daher in $U_j$ nicht nur möglich, Signale für genügend grosses $j$
+beliebig genau zu approximieren, sondern auch beliebig fein aufgelöste
+Translationen abzubilden.
+Wir bezeichnen den Vektorraum der stückweise konstanten Funktionen
+bezüglich der Unterteilung $U_j$ mit $V_j$.
+Es gilt also $V_j \subset V_{j+1}$.
+
+Man kann auch versuchen, eine Basis zu konstruieren.
+Im Vektorraum $V_j$ können die Funktionen mit Samplewerten
+\[
+e^{(l)}_k = \frac{1}{2^{-j/2}}\delta_{kl}
+\]
+als Basisvektoren verwendet werden.
+Wegen
+\[
+\langle e^{(l)},e^{(r)}\rangle
+=
+2^{-j}
+\biggl(
+\frac{1}{2^{-j/2}}
+\biggr)^2\delta_{lr}
+=
+\delta_{lr},
+\]
+Jeder einzelne der Vektorräume $V_j$ hat also eine einfach anzgebende
+Basis.
+
+Die Konstruktion ist aber trotzdem nicht befriedigend.
+Zum einen sind die Funktionen $e^{(k)}$ der verschiedenen Vektorräume
+nicht orthogonal.
+Andererseits lösen sie das bereits angesprochen Problem der Redundanz
+der Information nicht.
+Das Skalarprodukt eines Signals mit $e^{(l)}$ ist im Wesentlichen der
+Abstastwert in der Nähe von $l2^{-j}$.
+Für langsam veränderliche Signale sind nahe beeinander liegende 
+Abtastwerte nahe beeinander.
+Mit den Vektorräumen $V_j$ ist es also möglich, ein Signal beliebig
+genau abzutasten, aber die naheliegende Basis führt nicht zu einer
+effizienten Charakterisierung des Signals.
+
+
+

@@ -1,0 +1,222 @@
+%
+% stueckweise.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Stückweise konstante Funktionen%
+\label{section:stueckweise}}
+\rhead{Stückweise konstante Funktionen}
+Eine Funktion $f\colon[a,b]\to\mathbb R$ heisst {\em stückweise konstant},
+wenn es eine Unterteilung des Intervals $[a,b]$ durch Punkte
+$x_k\in\mathbb R$ mit $0\le k\le n$ gibt, also
+\[
+a=x_0 < x_1 < \dots < x_k < \dots < x_{n-1} < x_n = b,
+\]
+so dass die Funktion $f$ in jedem Teilinterval $[x_k,x_{k+1})$
+konstant ist.
+Es gibt also eine Menge von Zahlen $f_k$ derart, dass
+\[
+f(x)
+=
+f_k
+\qquad\text{falls}\qquad
+x_k \le x < x_{k+1}.
+\]
+Stückweise konstante Funktionen sind natürlich nicht überall stetig sein,
+vielmehr ist jeder der Punkte $x_k$ ein potentielle Unstetigkeitsstelle.
+Es gilt nämlich
+\begin{align*}
+\lim_{x\to x_k-} f(x)
+&=
+f_{k-1}&\forall k\text{ mit }&1\le k \le n
+\\
+\lim_{x\to x_k+} f(x)
+&=
+f_k&\forall k\text{ mit }&0\le k \le n-1
+\end{align*}
+Wenn also $f_k\ne f_{k-1}$, dann ist $x_k$ eine Unstetigkeitsstelle.
+$f(x)$ ist immer noch rechtsseitig stetig, aber der linksseitige
+Grenzwert ist verschieden, die Funktion hat einen Sprung an der
+Stelle $x_k$.
+
+Stückweise konstante Funktionen sind zwar nicht stetig, aber sie können
+stetige Funktionen beliebig genau approximieren.
+Dazu ist aber auch nötig, die Punkte $x_k$ genügen nahe beeinander zu
+haben.
+Wir nennen die grösste Länge eines Teilintervals einer Unterteilung
+\[
+\delta(U)
+=
+\delta(\{x_0,\dots,x_n\})
+=
+\max_{0\le k < n} (x_{k+1}-x_{k})
+\]
+das {\em Korn} der Unterteilung.
+Es wird also behauptet, dass eine stetige Funktion durch eine stückweise
+konstante Funktion beliebig genau approximiert werden kann, wenn das
+Korn der Unterteilung klein genug gemacht wird.
+Genauer, sei $\varepsilon>0$ geben.
+Da die Funktion $f(x)$ stetig ist, gibt es eine Zahl $\delta>0$ derart,
+dass
+\[
+|f(x) - f(y)| < \varepsilon\qquad\forall x,y\in [a,b]\quad\text{mit}\quad
+|x-y|<\delta.
+\]
+Wählt man nun eine Unterteilung des Intervals mit Korn
+$\delta(\{x_0,\dots,x_n\}) < \delta$ und setzt
+\[
+g_k = f(x_k),\quad 0\le k < n.
+\]
+Die Zahlen $g_k$ definieren eine stückweise konstante Funktion, die 
+die Funktion $f$ mit maximalem Fehler $\varepsilon$ approximiert:
+\[
+|f(x)-g(x)|
+=
+|f(x) - f(x_k) + f(x_k) - g(x_k)|
+\le
+|f(x) - f(x_k)| + |f(x_k) - g(x_k)|
+<
+\varepsilon + 0
+\]
+für $x\in [x_k,x_{k+1})$.
+
+Sei $f$ ein stetige Funktion, und $\{x_0,\dots,x_n\}$ eine Unterteilung
+des Intervals $[a,b]$.
+Dann kann man sofort mehrere stückweise approximationen Approximationen 
+konstruieren:
+\begin{align*}
+\overline{f}(x)
+&= 
+\sup_{x\in[x_k,x_{k+1})} f(x)
+&\text{falls }&x\in[x_k,x_{k+1}]
+\\
+\underline{f}(x)
+&= 
+\inf_{x\in[x_k,x_{k+1})} f(x)
+&\text{falls }&x\in[x_k,x_{k+1}]
+\end{align*}
+Die Funktion $\overline{f}$ ist also immer mindestens so gross wie $f$
+und $\underline{f}$ ist immer höchstens so gross wie $f$.
+Es gilt also
+\[
+\underline{f}(x) \le f(x) \le \overline{f}(x)
+\]
+für $x\in[a,b]$.
+Ausserdem gilt für die weiter oben konstruierte Approximation $g(x)$ der
+Funktion $f(x)$ die Ungleichung
+\[
+\underline{f}(x) \le g(x) \le \overline{f}(x)
+\]
+für $x\in[a,b]$.
+
+Die stetigen Funktionen auf einem Interval bilden einen Vektorraum: eine
+Summe von stetigen Funktionen ist wieder eine stetige Funktionen.
+Intuitiv ist auch klar, dass ein Summe stückweise konstanter Funktionen
+wieder stückweise konstant ist.
+Es ist aber auch klar, dass die Summe zweier Funktionen, die verschiedene
+Unterteilungen verwenden, im allgemeinen mit keiner der Unterteilungen
+stückweise konstant ist.
+Seien $U_f=\{x_0^{(f)},\dots,x_n^{(f)}\}$ und
+$U_g=\{x_0^{(g)},\dots,x_m^{(g)}\}$ die Unterteilung, bezüglich der 
+die Funktionen $f$ und $g$ stückweise konstant sind.
+Dann ist die Vereinigungsmenge
+\[
+U= \{x_0,\dots,x_N\} = U_f\cup U_g
+\]
+eine Unterteilung von $[a,b]$.
+Da alle Teilpunkte von $U_f$ in $U$ sind, ist $f$ auch eine stückweise
+konstante Funktion bezüglich der Unterteilung $U$. 
+Ebenso ist $g$ eine stückweise konstante Funktion bezüglich $U$.
+Da $U$ eine gemeinsame Unterteilung für $f$ und $g$ ist, kann man
+die Summe $h=f+g$ als stückweise konstante Funktion mit
+\[
+h_k
+=
+(f+g)(x_k)
+= 
+f(x_k) + f(x_k)
+\qquad\text{mit}\quad
+0\le k\le N
+\]
+betrachten.
+Die Vereinigung der Unterteilungen stellt also sicher, dass sich
+zu zwei beliebigen stückweise konstanten Funktionen immer eine
+gemeinsame Unterteilung finden lässt, die klar macht, dass $f+g$
+wieder eine stückweise konstante Funktion ist.
+Die Vektorraumstruktur verlangt also etwas mehr sorgfalt.
+
+Das Integral einer stückweise konstanten Funktion ist besonders einfach 
+zu berechnen, nämlich
+\[
+\int_{\mathbb R} f(x)\,dx = \sum_{k=0}^{n-1} f_i\cdot (x_{k+1}-x_k).
+\]
+Dies ist im wesentlichen die Definition des Riemann Integrals.
+Genauer wird das Riemann-Integral einer stetigen Funktion jeweils
+konstruiert mit Hilfe von genügend feinen Unterteilungen und den
+Approximationen $\overline{f}$ und $\underline{f}$.
+Dazu bildet man die Integrale
+\begin{align*}
+\int_a^b \underline{f}(x)\,dx
+=
+\sum_{k=0}^{n-1} \underline{f}_{k}\,(x_{k+1}-x_k)
+\le
+\sum_{k=0}^{n-1} \overline{f}_{k}\,(x_{k+1}-x_k)
+=
+\int_a^b \overline{f}(x)\,dx
+\end{align*}
+Verfeinerung des Korns der verwendeten Unterteilung bringt für eine
+stetige Funktion die beiden Schranken näher zusammen.
+Das Integral der stetigen Funktion $f(x)$ ist dann der Grenzwert
+dieser beiden Schranken:
+\[
+\lim_{\delta\to 0}
+\int_a^b \underline{f}(x)\,dx
+=
+\int_a^b f(x)\,dx
+=
+\lim_{\delta\to 0}
+\int_a^b \overline{f}(x)\,dx,
+\]
+wobei für den Grenzwert Unterteilungen verwendet werden sollen, deren
+Korn $\delta$ gegen $0$ geht.
+Das Riemann-Integral verträgt sich daher gut mit den arithmetischen
+Operationen: es ist eine lineare Abbildung.
+Es verträgt sich aber auch mit dem Begriff der Approximation von
+stetigen Funktionen: nahe beeinanderliegende Funktionen haben nahe
+beeinanderliegende Integrale.
+
+Die stückweise konstanten Funktionen bilden aber auch einen Vektorraum
+mit Skalarprodukt.
+Das Skalarprodukt ist wieder definiert durch
+\[
+\langle f,g\rangle
+=
+\int_a^b
+f(x) g(x)\,dx.
+\]
+Ist $U$ eine gemeinsame Unterteilung für die stückweise konstanten
+Funktionen $f$ und $g$, dann ist das Skalarprodukt
+\[
+\langle f,g\rangle
+=
+\sum_{k=0}^{n-1} f(x_k) g(x_k).
+\]
+Das Skalarprodukt hat also genau die gleiche Form wie das Skalarprodukt
+in einem endlichdimensionalen Vektorraum.
+Daraus kann zum Beispiel geschlossen werden, dass für dieses Skalarprodukt
+die Cauchy-Schwarz-Ungleichung gilt und dass es positiv definit ist.
+
+
+Der Vektorraum der stückweise konstanten Funktionen kann nicht vollständig
+sein.
+Jede stetige Funktion ist ein Grenzwert von stückweise konstanten
+Funktionen.
+Selbstverständlich kann man analoge Art auch einen komplexen
+Vektorraum mit hermitschem Skalarprodukt konstruieren.
+Weil er nicht vollständig ist, kann er kein Hilbertraum sein.
+Um ihn besser zu verstehen wäre es schön, wenn man eine Hilbert-Basis
+angeben könnte, also eine Folge von orthonormierten Funktionen, mit
+denen man jede Funktion approximieren kann.
+Die vielen möglichen Teilpunkte des Intervals sind dafür aber eher 
+hinderlich.
+
