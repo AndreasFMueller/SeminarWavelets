@@ -24,6 +24,7 @@ CHAPTERFILES =								\
 	chapters/3-haar/sampling.tex					\
 	chapters/3-haar/dual.tex					\
 	chapters/3-haar/wavelet.tex					\
+	chapters/3-haar/paradox.tex					\
 	chapters/4-cwt/chapter.tex					\
 	chapters/4-cwt/wavelets.tex					\
 	chapters/5-shannon/chapter.tex					\

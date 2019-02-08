@@ -15,13 +15,14 @@ a=x_0 < x_1 < \dots < x_k < \dots < x_{n-1} < x_n = b,
 so dass die Funktion $f$ in jedem Teilinterval $[x_k,x_{k+1})$
 konstant ist.
 Es gibt also eine Menge von Zahlen $f_k$ derart, dass
-\[
+\begin{equation}
 f(x)
 =
 f_k
 \qquad\text{falls}\qquad
 x_k \le x < x_{k+1}.
-\]
+\label{buch:stückweisef}
+\end{equation}
 Stückweise konstante Funktionen sind natürlich nicht überall stetig sein,
 vielmehr ist jeder der Punkte $x_k$ ein potentielle Unstetigkeitsstelle.
 Es gilt nämlich
@@ -38,6 +39,26 @@ Wenn also $f_k\ne f_{k-1}$, dann ist $x_k$ eine Unstetigkeitsstelle.
 $f(x)$ ist immer noch rechtsseitig stetig, aber der linksseitige
 Grenzwert ist verschieden, die Funktion hat einen Sprung an der
 Stelle $x_k$.
+
+Mit Hilfe der charakteristischen Funktion eines Intervals lässt sich
+eine stückweise konstante Funktion etwas eleganter schreiben.
+Wir definieren  die {\em charakteristische Funktion} oder
+{\em Indikatorfunktion} des Intervals $I$ als
+\[
+\chi_{I}(x) = \begin{cases}
+1&\qquad x\in I\\
+0&\qquad x\not\in I.
+\end{cases}
+\]
+Damit kann man die stückweise konsante Funktion $f(x)$ aus
+\eqref{buch:stückweisef}
+als Linearkombination
+\[
+f(x)
+=
+\sum_{k=0}^{n-1} f_k\chi_{[x_k,x_{k+1})}(x)
+\]
+von Indikatorfunktionen schreiben.
 
 Stückweise konstante Funktionen sind zwar nicht stetig, aber sie können
 stetige Funktionen beliebig genau approximieren.
@@ -205,7 +226,6 @@ Das Skalarprodukt hat also genau die gleiche Form wie das Skalarprodukt
 in einem endlichdimensionalen Vektorraum.
 Daraus kann zum Beispiel geschlossen werden, dass für dieses Skalarprodukt
 die Cauchy-Schwarz-Ungleichung gilt und dass es positiv definit ist.
-
 
 Der Vektorraum der stückweise konstanten Funktionen kann nicht vollständig
 sein.

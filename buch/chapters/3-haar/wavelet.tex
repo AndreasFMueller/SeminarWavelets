@@ -6,4 +6,370 @@
 \section{Wavelet%
 \label{section:haar-wavelet}}
 \rhead{Wavelet}
+Im vorangegangenen Abschnitt wurde die Menge $\mathbb D$ konstruiert, die
+einerseits ``grobe'' Unterteilungen $U_j$ für kleines $j$ enthält, die ohne
+grossen Abtastaufwand eine grobe Darstellung des Signals ermöglich,
+andererseits für grosses $j$ aber auch beliebig ``feine'' Unterteilungen
+enthält, mit denen das Signal beliebig genau wiedergegeben werden kann.
+Die bereits erfassten ``groben'' Abtastwerte passen zudem genau in die
+``feinen'' Abtastreihen.
+
+Wir haben auch versucht, eine orthonormierte Basis für die Vektorräume
+$V_j$ der Signale zu konstruieren.
+Natürlich bilden die einzelnen in $V_j$ gefundenen Basisfunktionen eine 
+Hilbert-Basis des Vektorraumes $V_\infty$, aber die Funktionen sind
+nicht orthogonal.
+Zum Beispiel haben die Funktionen 
+\begin{align*}
+f&=2^{j/2}\chi_{[0,2^{-j})}
+\\
+g&=2^{(j+1)/2}\chi_{[0,2^{-j-1})},
+\end{align*}
+das Skalarprodukt
+\[
+\langle f,g\rangle 
+=
+\int_{-\infty}^\infty
+2^{j/2}\chi_{[0,2^{-j})}(x)
+2^{(j+1)/2}\chi_{[0,2^{-j-1})}(x)\,dx
+=
+\int_0^{2^{-j-1}} 2^{j/2}\cdot 2^{(j+1)/2}\,dx
+=
+2^{-j-1}2^{j + 1/2}
+=
+\frac{1}{\sqrt{2}}\ne 0
+\]
+verschwindet nicht.
+Das Sampling mit der Funktion $g$ nimmt einen Teil der Information,
+die das Sampling mit $f$ schon ermittel hat, nochmals auf.
+
+Um eine orthonormierte Basis von $V_\infty$ zu erhalten, müssen also
+bei der Erweiterung von $V_j$ zu $V_{j+1}$ neue Basisfunktionen
+konstruiert werden, die nur die neue Information aufnehmen, die die
+feinere Unterteilung in $V_{j+1}$ zu erfassen in der Lage ist.
+Das Sampling eines Signals $f(x)$ mit der Funktion $e^{(l)}$ in $V_j$
+ermittel das Integral
+\[
+\langle f,e^{(l)}\rangle
+=
+2^{j/2}
+\int_{l2^{-j}}^{(l+1)2^{-j}} f(x)\,dx,
+\]
+also im wesentlichen den Mittelwert über das Interval $[l2^{-j},(l+1)2^{-j})$.
+Veränderungen des Signals innerhalb des Intervals sind in $V_j$ nicht
+auflösbar.
+Beim Sampling in $V_{j+1}$ stehen zwei Basisfunktionen zur Verfügung, die
+den gleichen Bereich abdecken.
+Jede dieser Basisfunktionen ermittel das Integral über eine Hälfte des
+Intervals.
+Veränderungen innerhalb der Intervalhälften sind in $V_{j+1}$ wieder nicht
+erkennbar.
+Die neue Information in $V_{j+1}$ ist also, wie sich der Mittelwert
+in der ersten Intervalhälfte vom Mittelwert in der zweiten Intervalhälfte
+unterscheidet, also die Differenz
+\[
+\int_{l2^{-j}}^{(l+\frac12)2^{-j}} f(x)\,dx
+-
+\int_{(l+\frac12)2^{-j}}^{(l+1)2^{-j}} f(x)\,dx.
+\]
+Dies lässt sich als ein Skalarprodukt
+\[
+\langle f,
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
+-
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
+\rangle
+\]
+schreiben.
+Die Funktion rechts im Skalarprodukt ist also diejenige, die genau die
+neue Information in $V_{j+1}$ ermittelt.
+
+Die eben angestellte heuristische Überlegung legt nahe, dass die Funktionen
+\[
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
+-
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
+\]
+zu den Basisfunktionen, die man in $V_j$ bereits hat, hinzugefügt werden
+müssen.
+Allerdings sind diese Funktionen noch nicht orthonormiert, denn die
+Norm ist
+\[
+\|
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
+-
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
+\|^2
+=
+\int_{-\infty}^\infty
+|
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
+-
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
+|^2
+\,dx
+=
+2^{-j}.
+\]
+Wir verwenden daher die Funktionen
+\[
+\psi_{l,j}(x) = 2^{j/2}(
+\chi_{[l2^{-j},(l+\frac12)2^{-j})(x)}
+-
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})(x)}
+)
+\]
+als Basis.
+Um dies zu rechtfertigen, muss gezeigt werden, dass diese Funktionen auf
+allen Funktionen in $V_j$ orthogonal und auch untereinander orthogonal
+sind.
+
+Betrachen wir erst die Frage, ob die Funktionen untereinander orthonormiert
+sind.
+$\psi_{l,j}(x)$ ist nur im Interval $[l2^{-j},(l+1)2^{-j})$ von $0$
+verschieden.
+Zwei Funktionen $\psi_{l,j}(x)$ und $\psi_{k,j}(x)$ mit $l\ne k$ sind
+also nirgends gleichzzeitig von $0$ verschieden, das Skalarprodukt ist
+daher $0$.
+Dass das Skalarprodukt von $\psi_{l,j}(x)$ mit sich selbst $1$ ist wurde
+durch die oben gewählte Normierung sichergestellt.
+
+Eine Funktion in $V_j$ ist auf ganzzahligen Intervallen der Länge
+$2^{-j}$ konstant.
+Es muss also nur gezeigt werden, dass das Skalarprodukt von $\psi_{l,j}(x)$
+mit den charakteristischen Funktionen der Intervalle $[k2^{-j},(k+1)2^{-j})$
+verschwindet.
+Man rechnet
+\[
+\langle \chi_{[k2^{-j},(k+1)2^{-j})},\psi_{l,j}\rangle
+=
+\int_{-\infty}^\infty \chi_{[k2^{-j},(k+1)2^{-j})}(x) \psi_{l,j}(x)\,dx
+=
+\int_{k2^{-j}}^{(k+1)2^{-j}} \psi_{l,j}(x)\,dx.
+\]
+Da $\psi_{l,j}$ verschwindet in Intervallen $[k2^{-j},(k+1)2^{-j})$ mit
+$k\ne l$, braucht nur der Fall $k=l$ zu untersucht werden.
+In diesem Fall gilt
+\[
+\langle \chi_{[l2^{-j},(l+1)2^{-j})},\psi_{l,j}\rangle
+=
+\int_{l2^{-j}}^{(l+1)2^{-j}} \psi_{l,j}(x)\,dx
+=
+2^{j/2}
+\int_{l2^{-j}}^{(l+\frac12)2^{-j}} \,dx
+-
+2^{j/2}
+\int_{(l+\frac12)2^{-j}}^{(l+1)2^{-j}} \,dx
+=
+2^{j/2}
+-
+2^{j/2}
+=
+0,
+\]
+die Funktionen sind also orthogonal.
+
+Die Funktionen $\psi_{l,j}(x)$ ermöglichen, wirklich alle Funktionen
+in $V_{j+1}$ darzustellen.
+Um dies einzusehen, muss man nur zeigen, dass sich die Indikatorfunktionen
+der Halbintervalle $[l2^{-j},(l+\frac12)2^{-j})$ und
+$[(l+\frac12)2^{-j},(l+1)2^{-j})$ linear aus der bereits in $V_j$ vorhandenen
+Indikatorfunktion von $[l2^{-j},(l+1)2^{-j})$ und $\psi_{l,j}$
+kombinieren lässt.
+Mit Hilfe der Identität
+\[
+\chi_{[l2^{-j},(l+1)2^{-j})}
+=
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
++
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
+\]
+bildet man
+\begin{align*}
+\chi_{[l2^{-j},(l+1)2^{-j})}
++
+2^{-j/2}\psi_{l,j}
+&=
+(
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
++
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
+)
++
+(
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
+-
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
+)
+\\
+&=
+2
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
+\\
+\chi_{[l2^{-j},(l+1)2^{-j})}
+-
+2^{-j/2}\psi_{l,j}
+&=
+(
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
++
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
+)
+-
+(
+\chi_{[l2^{-j},(l+\frac12)2^{-j})}
+-
+\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
+)
+\\
+&=
+2\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}.
+\end{align*}
+Bis auf den Faktor $2$ lassen sich die gesuchten Indikatorfunktionen
+kombinieren.
+
+Die Funktionen $\psi_{l,j}$ erfassen also genau die Details, die beim
+Abtasten mit der feineren Unterteilung mit Korn $2^{-j-1}$ erkennbar
+werden.
+Aber warum bei $U_0$ beginnen?
+Der Mittelwert zweier benachbarter Abtastwerte sagt bereits einiges
+über die Werte aus, der Unterschied dieser Werte ist aber das, was
+was erst in der Abtastung mit ganzzahligen Abtastpunkten erkennbar wird.
+Wir könnten also auch mit $U_{-1}$ beginnen, der Unterteilung
+\[
+U_{-1} = \{\dots -4,-2,0,2,4,6,8,\cdots\},
+\]
+und der Menge $V_{-1}$ der stückweise konstanten Funktionen mit
+Sprungestellen bei geraden Zahlen.
+Doch warum da aufhören: Es gibt eine Zerlegung des Raums der stückweise
+konstanten Funktionen mit Sprungstellen in $\mathbb D$ in Form einer
+Kette
+\begin{equation}
+\{0\}
+\subset
+\dots
+\subset
+V_{-2}\subset V_{-1} \subset V_{0} \subset V_{2} \subset\dots\subset
+V_j \subset V_{j+1}\subset\dots \subset V_{\infty}
+\label{haar:kette}
+\end{equation}
+mit folgenden zum Teil noch nachzuweisenden Eigenschaften:
+\begin{enumerate}
+% XXX Problem approximation
+\item
+Jede stückweise konstante Funktion lässt sich beliebig genau
+durch Funktionen aus $V_j$ approximieren, also
+\[
+\bigcup_{j\in\mathbb Z} V_j = V_\infty
+\]
+\item
+Es gibt eine orthonormierte Familie von Funktionen $\psi_{l,j}\in V_{j+1}$
+die auf $V_j$ orthogonal sind, und die genau das erfassen, was in $V_{j+1}$
+gegenüber $V_j$ dargestellt werden kann.
+Etwas formaler: die $\psi_{l,j}$ spannen einen Unterraum
+$W_{j} = \langle \psi_{l,j}\,|\, l\in\mathbb Z\rangle \subset V_{j+1}$
+auf derart, dass
+\[
+V_{j+1} = V_j \oplus W_j.
+\]
+\item 
+Die Funktionen $\psi_{l,j}$ sind Translate einer einzigen Funktion.
+Die Funktion $\psi_{l,j}$ ist die Verschiebung der Funktion $\psi_{0,j}$ 
+um $l2^{-j}$.
+\item
+Die Funktionen $\psi_{0,j}$ sind Streckung der Funktion
+$\psi_{0,0}$ um den Faktor $2^{-j}$, die wir auch mit
+$\psi(x)=\psi_{0,0}(x)$ bezeichnen wollen:
+\[
+\psi_{0,j}(x) = \frac1{2^{j/2}}\psi_{0,0}(2^jx).
+\]
+$\psi$ heisst das {\em Mutter-Wavelet}.
+\item 
+Nur für die Nullfunktion verschwinden alle Abtastungen mit Funktionen
+$\psi_{l,j}$, oder etwas formeller:
+\[
+\bigcap_{j\in\mathbb Z} = \{0\}.
+\]
+\end{enumerate}
+
+Die Konstruktion der Funktionen $\psi$ zeigt aber noch eine weitere 
+Besonderheit, die später von Nutzen sein wird.
+Die $\psi$-Funktionen wurden als Differenzen von charakteristischen
+Funktionen von Intervallen aufeinanderfolgenden Endpunkten in $U_{j+1}$
+aufgebaut.
+Alle diese charakteristischen Funktionen sind verschobene und geeignet
+gestreckte Versionen der charakteristischen Funktion des Grundintervals
+$[0,1)$.
+Setzen wir
+\[
+\varphi(x) = \chi_{[0,1)} (x),
+\]
+dann ist
+\[
+\chi_{[l2^{-j},(l+1)2^{-j})}(x)
+=
+\varphi((x-l2^{-j})2^j).
+\]
+% XXX Begründung
+Und auch die Funktion $\psi_{0,0}$, aus der sich alle $\psi_{l,j}$ durch
+Streckung und Verschiebung gewinnen lassen, lässt sich aus $\varphi$
+aufbauen:
+\begin{equation}
+\psi_{0,0}(x) = \varphi(2x) - \varphi(2x - 1).
+\label{haar:psiphi}
+\end{equation}
+Die Funktion $\varphi$ heisst auch das {\em Vater-Wavelet}.
+Das Vater-Wavelet $\varphi$ erfüllt eine ähnliche Relation
+wie \eqref{haar:psiphi}.
+Bei der Konstruktion haben wir diese Relation sogar in entscheidender
+Weise gebraucht, indem wir das Interval in zwei Halbintervalle aufgeteilt
+haben.
+Diese Aufteilung bedeutet
+\[
+\varphi(x) = \varphi(2x) + \varphi(2x-1),
+\]
+bis auf das Vorzeichen des zweiten Summanden dasselbe wie 
+\eqref{haar:psiphi}.
+
+Das Vater-Wavelet und seine ganzzahlig verschobenen Kopien bilden
+eine Basis des Vektorraumes $V_0$.
+Schreiben wir $\varphi_k(x)=\varphi(x-k)$, dann ist
+\[
+V_0 = \langle \varphi_k\,|\, k\in\mathbb Z\rangle.
+\]
+Die feiner aufgelösten Funktionen $V_j$ haben die gestauchten Funktionen
+$D_{2^j}\varphi_K$ mit
+$(D_{2^j}\varphi_k)(x)=\varphi_k(2^jx)$ als Basis.
+Diese sind zwar orthogonal, aber erst $2^{j/2}\varphi_k(2^jx)$ sind
+orthonormiert.
+Die Funktionen $\varphi$ und $\psi$ liefern daher die Zerlegung
+des Raumes
+\[
+V_1
+=
+V_0 \oplus W_1
+=
+\langle \varphi_k\,|\,k\in\mathbb Z\rangle
+\oplus
+\langle \psi_k\,|\,k\in\mathbb Z\rangle
+\]
+in zwei orthogonale Teilräume.
+
+Aus diesem Beispiel können wir einen Plan für die Konstruktion allgemeinerer
+Wavelet-Basen ableiten.
+Wir hätten gerne eine Aufteilung des interessiernden Funktionenraumes
+in Form einer Kette \eqref{haar:kette} derart, dass die ``Zwischenräume''
+$W_j$ eine Orthonormalbasis haben, die aus verschobenen und gestreckten
+Kopien
+$\psi()$
+einer einzigen Funktion $\psi$, dem Mutter-Wavelet, besteht.
+Das Mutter-Wavelet ist eine Linearkombination von verschobenen
+und skalierten Kopien des Vaterwavelets $\varphi(x)$, welches seinerseits
+eine Linearkombination von verschobenen und skalierten Kopien seiner
+selbst ist.
+Die Koeffizienten der Linearkombinationen für $\psi$ und $\varphi$ sind
+bis auf die Vorzeichen identisch.
+
+
+
 

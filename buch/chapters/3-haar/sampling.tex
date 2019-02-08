@@ -52,12 +52,18 @@ Auch das Skalarprodukt
 kann allein mit Vektoroperationen durchgeführt werden.
 
 Es ist auch einfach, eine Basis zu finden.
-Definiert man die stückweise konstanten Funktionen $e^{(l)}$
-durch die Abtastwerte
+Dazu kann man die Indikatorfunktionen der $\chi_{[lh,(l+1)h)}(x)$
+verwenden.
+Zwecks Normierung verwenden wir statt der Indikatorfunktion die
+Funktionen
 \[
-e_k^{(l)} = \sqrt{\frac{n}{b-a}}\delta_{kl},
+e^{(l)}(x) = \sqrt{\frac{n}{b-a}}\chi_{[lh,(l+1)h)}(x)j
 \]
-dann gilt für die Skalarprodukte
+Sie sind auch definiert durch die Abtastwerte
+\[
+e_k^{(l)} = \sqrt{\frac{n}{b-a}}\delta_{kl}.
+\]
+Die Skalarprodukte dieser Funktionen sind
 \[
 \langle e^{(l)}, e^{(r)}\rangle
 =
