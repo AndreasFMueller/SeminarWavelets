@@ -6,5 +6,218 @@
 \section{Plancherel-Formel%
 \label{section:cwt:plancherel}}
 \rhead{Plancherel-Formel}
+Die Plancherel-Formel der Fourier-Theorie besagt, dass die
+Fourier-Transformation eine Isometrie ist.
+Das Skalarprodukt zweier Funktionen und das Skalarprodukt der
+Fourier-Transformierten ist dasselbe.
+Daraus folgt unmittelbar, dass die Transformation stetig und
+umkehrbar ist.
+Es ist daher erstrebenswert, wenn eine ähnliche Formel auch
+auch für die stetige Wavelet-Transformation gilt.
+
+\subsection{Das Skalarprodukt auf $H$}
+Der Definnitionsbereich $H=\mathbb R^* \times \mathbb R$ der
+Wavelet-Transformierten kan auf verschiedene Arten mit einer Integration
+ausgestattet werden.
+Wir versuchen das ``richtige'' Mass zu erraten, im
+Abschnitt~\ref{subsection:haarmass} werden wir eine abstrakte Begründung
+geben.
+
+Die Variable $b$ verhält sich genau wie dei Variable $t$ bei Integration
+einer Funktion von $t$.
+Funktionen werden durch den Parameter $b$ verschoben, dabei darf sich
+das Integral nicht ändern.
+Das ist genau die Eigenschaft, mit deren Hilfe das Lebesgue-Mass
+definiert wurde.
+
+Die Variable $a$ funktioniert dagegen als Skalierungsparameter.
+Grössere Werte von $a$ ziehen den Träger des Integranden um den Faktor $a$ 
+in die Länge.
+
+\begin{definition}
+Das Mass auf $H$ ist definiert duch das Integral
+\[
+\int_H F(a,b)\,db \,\frac{da}{a^2}
+\]
+und das Skalaprodukt von Funktionen auf $H$ ist
+\[
+\langle F,G\rangle_H
+=
+\int_{H} F(a,b)\overline{G(a,b)}\,db \,\frac{da}{a^2}.
+\]
+\end{definition}
+
+Dieses Mass ist im folgenden Sinn das richtige Mass.
+Wenden wir auf die Argumente einer Funktion auf $H$ die Transformation
+\[
+(a,b) \mapsto (\alpha a, \beta + \alpha b)
+\]
+an, ändert sich das Integral wie folgt:
+\begin{align*}
+\int_H F(\alpha a,\beta + \alpha b)\,d(\beta + \alpha b)\,\alpha\frac{da}{|\alpha a|^2}
+&=
+\int_H F(\alpha a,\beta + \alpha b) \alpha\,db \ \frac{da}{|a|^2},
+\end{align*}
+die Transformation der Funktion ändert also das Integral nicht.
+Die Wahl des Integrals ist so, dass die Skalierung und Translation
+das Integral nicht ändert.
+
+\subsection{Die Plancherel-Formel}
+Ziel dieses Abschnitts ist, in Satz~\ref{satz:wplancherel} die
+Plancherel-Formel für die Wavelet-Transformation zu beweisen.
+Dabei können wir die Plancherel-Formel für die Fourier-Transformation
+verwenden, denn es gilt
+\[
+\mathcal{W}f (a,b)
+=
+\langle f,\psi_{a,b} \rangle
+=
+\langle \hat{f}, \hat{\psi}_{a,b}\rangle.
+\]
+Wir müssen daher die Fourier-Transformation von $\psi_{a,b}$ besser
+verstehen.
+Nach den Rechenregeln für die Fourier-Transformation gilt
+\[
+\hat{\psi}_{a,b}(\omega)
+=
+e^{-i\omega b} \hat{\psi}_a(\omega)
+=
+\sqrt{|a|}e^{-i\omega b} \hat{\psi}(a\omega).
+\]
+Die Wavelet-Transformation kann daher geschrieben werden als
+\begin{align*}
+\mathcal{W}f (a,b)
+&=
+\int_{-\infty}^\infty 
+\hat{f}(\omega)
+\sqrt{|a|}e^{i\omega b} \overline{\hat{\psi}(a\omega)}
+\,d\omega
+=
+\int_{-\infty}^\infty
+\bigl(
+\sqrt{|a|}
+\hat{f}(\omega)
+\overline{\hat{\psi}(a\omega)}
+\bigr)
+e^{i\omega b}
+\,d\omega
+\\
+&=
+\frac1{2\pi}
+\int_{-\infty}^\infty
+\underbrace{
+2\pi
+\sqrt{|a|}
+\hat{f}(\omega)
+\overline{\hat{\psi}(a\omega)}}_{\displaystyle F_a(\omega)}
+e^{i\omega b}
+\,d\omega
+\end{align*}
+Daraus kann man ablesen, dass $F_a(\omega)$ die Fourier-Umkehrtransformierte
+der Funktion $b\mapsto \mathcal{W}f(a,b)$ ist.
+
+% XXX Formel beweisen
+\begin{equation}
+\hat{F}_a(-b) = \mathcal{W}f(a, b)
+\end{equation}
+
+\begin{satz}
+\label{satz:wplancherel}
+Sei $\psi$ ein Wavelet mit der Konstanten $C_{\psi}$, wie sie in
+der Zulässigkeitsbedingung auftritt.
+Dann gilt
+\begin{equation}
+\langle \mathcal{W}f,\mathcal{W}g\rangle
+=
+C_{\psi}\langle f,g\rangle
+\end{equation}
+für beliebige Funktionen $f,g\in L^2$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir verwenden 
+\begin{align}
+\langle \mathcal{W}f, \mathcal{W}g\rangle_H
+&=
+\int_{\mathbb R^*} \int_{-\infty}^\infty
+\mathcal{W}f (a,b)
+\overline{\mathcal{W}g (a,b)} \,db \,\frac{da}{|a|^2}
+\notag
+\\
+&=
+\int_{\mathbb R^*} \int_{-\infty}^\infty
+\hat{F}_a(-b) \overline{\hat{G}_a(-b)}\,db\,\frac{da}{|a|^2}
+\notag
+\\
+&=
+\int_{\mathbb R^*} 
+\langle
+\hat{F}_a,\hat{G}_a
+\rangle
+\,\frac{da}{|a|^2}
+\notag
+\\
+&=
+\int_{\mathbb R^*} \langle F_a, G_a\rangle \,\frac{da}{|a|^2}
+\notag
+\\
+&=
+\int_{\mathbb R^*}
+\int_{-\infty}^\infty
+(2\pi)^2 |a|\hat{f}(\omega) \overline{\hat{g}(\omega)} |\hat{\psi}(a\omega)|^2
+\,d\omega
+\,\frac{da}{|a|^2}
+\notag
+\\
+&=
+\int_{-\infty}^\infty
+(2\pi)^2 \hat{f}(\omega) \overline{\hat{g}(\omega)}
+\int_{\mathbb R^*}
+|\hat{\psi}(a\omega)|^2
+\,\frac{da}{|a|}
+\,d\omega.
+\label{cwtplancherel:p1}
+\end{align}
+Das Produkt $\hat{f}(\omega)\overline{\hat{g}(\omega)}$ deutet darauf hin,
+dass dies fast schon ein Skalarprodukt ist.
+Es wird tatsächlich das Skalarprodukt, wenn das innere Integral konstant ist.
+Wir betrachten dieses separat und setzen $a\omega = s$, was
+\begin{align*}
+\int_{\mathbb R^*} |\hat{\psi}(a\omega)|^2 \,\frac{da}{|a|}
+&=
+\int_{\mathbb R^*} |\hat{\psi}(s)|^2 \,\frac{ds/\omega}{|s/\omega|}
+=
+\int_{\mathbb R^*} |\hat{\psi}(s)|^2 \,\frac{ds}{|s|}
+=
+C_{\psi}
+\end{align*}
+ergibt.
+Eingesetzt \eqref{cwtplancherel:p1} finden wir
+\begin{align*}
+\langle \mathcal{W}f, \mathcal{W}g\rangle_H
+&=
+(2\pi)^2
+C_{\psi}
+\int_{-\infty}^\infty \hat{f}(\omega)\overline{\hat{g}(\omega)}\,d\omega
+=
+(2\pi)^2
+C_{\psi}
+\langle \hat{f},\hat{g}\rangle
+=
+(2\pi)^2
+C_{\psi}
+\langle f,g\rangle.
+\end{align*}
+Damit ist die Plancherel-Formel bewiesen.
+\end{proof}
+
+\subsection{Das Haar-Mass auf $\mathbb R^* \ltimes \mathbb R$
+\label{subsection:haar-mass}}
+
+
+
+
+
+
 
 
