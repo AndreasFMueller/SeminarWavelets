@@ -17,9 +17,10 @@ for (b = (bmin:bstep:bmax))
 	for (A = (Amin:Astep:Amax))
 		a = 2^(A - 2);
 		a = A;
-		w = sqrt(a/2) * (2*cos(b) - cos(b+a) - cos(b-a));
-		w = round(100 * abs(w) / sqrt(2*a));
+		w = (2*cos(b) - cos(b+a) - cos(b-a));
+		w = abs(w) / sqrt(2*a);
 		w = w * sqrt(2*pi)/4;
+		w = round(100 * w);
 		fprintf(f, "\\punkt{%.3f}{%.3f}{%.0f}\n", A, b, w);
 	endfor
 endfor

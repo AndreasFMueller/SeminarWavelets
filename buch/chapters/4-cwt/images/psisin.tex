@@ -23,15 +23,15 @@
 
 \input{psidots.tex}
 
-\draw[->,line width=1pt] (-2.3,0)--(12.5,0) coordinate[label={$b$}];
-\draw[->,line width=1pt] (0,-0.2)--(0,10.5) coordinate[label={right:$a$}];
+\draw[->,line width=1pt] ({-41*\pxs},0)--(12.3,0) coordinate[label={$b$}];
+\draw[->,line width=1pt] (0,-0.2)--(0,10.4) coordinate[label={right:$a$}];
 
 \foreach \y in {1,2,...,6}{
-	\draw[line width=0.1pt] (-2,{\y*3.1415/2})--(12,{\y*3.1415/2});
+	\draw[line width=0.1pt] ({-41*\pxs},{\y*3.1415/2})--({229*\pxs},{\y*3.1415/2});
 	\draw[line width=1pt] (-0.1,{\y*3.1415/2})--(0.1,{\y*3.1415/2});
 }
 \foreach \y in {-1,...,7}{
-	\draw[line width=0.1pt] ({\y*3.1415/2},0)--({\y*3.1415/2},10);
+	\draw[line width=0.1pt] ({\y*3.1415/2},0)--({\y*3.1415/2},{10+\pxs});
 	\draw[line width=1pt] ({\y*3.1415/2},-0.1)--({\y*3.14159/2},0.1);
 }
 

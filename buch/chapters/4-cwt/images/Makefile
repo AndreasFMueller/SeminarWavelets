@@ -3,7 +3,9 @@
 #
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
-all:	psigraph.pdf psisin.pdf
+single:	f.pdf
+
+all:	psigraph.pdf psisin.pdf notes.pdf
 
 psigraph.pdf:	psigraph.tex
 	pdflatex psigraph.tex
@@ -18,3 +20,16 @@ wsin.pdf:	wsin.tex wsindots.tex
 
 wsindots.tex:	wsin.m
 	octave < wsin.m
+
+notes.pdf:	notes.tex notes.png
+	pdflatex notes.tex
+notesdots.tex:	notes.m
+	octave notes.m
+
+notes:	notes.c
+	gcc -o notes -Wall notes.c -lgsl -L/usr/local/lib -lpng16 -lz
+notes.png:	notes
+	./notes
+
+f.pdf:	f.tex
+	pdflatex f.tex

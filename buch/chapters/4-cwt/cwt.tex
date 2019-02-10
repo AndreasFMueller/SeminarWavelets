@@ -40,9 +40,9 @@ Es ist also nur genauer zu untersuchen, ob sich die Norm mit $a>0$ ändern
 kann.
 Dazu berechnen wir
 \begin{align*}
-\| \psi_{a,b} \|
+\| \psi_{a,b} \|^2
 &=
-\| \psi_a \|
+\| \psi_a \|^2
 =
 \int_{-\infty}^\infty |\psi_a(t)|^2 \, dt
 =
@@ -54,7 +54,7 @@ Dazu berechnen wir
 &=
 \int_{-\infty}^\infty |\psi(s)|^2 \,ds
 =
-\|\psi\|=1.
+\|\psi\|^2=1.
 \end{align*}
 Darin haben wir verwendet, dass $a>0$.
 Damit ist gezeigt, dass sich die Norm nicht ändert.
@@ -125,6 +125,21 @@ Stelle des Signals genauer anzuschauen durch Wahl von $b$ sowie die
 Details genauer aufzulösen durch Vergrösserung von $a$.
 
 \begin{beispiel}
+\begin{figure}
+\centering
+\includegraphics{chapters/4-cwt/images/psigraph.pdf}
+\caption{Graph der Funktion $\psi(t)$ für das Beispiel der
+Wavelet-Transformation in Abbildung~\ref{cwt:psi-cwt}.
+\label{cwt:psi-graph}}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/4-cwt/images/psisin.pdf}
+\caption{Wavelet-Transformation der Funktion $f(t)=\sin t$ berechnet
+mit dem Wavelet $\psi(t)$ von Abbildung~\ref{cwt:psi-graph}
+\label{cwt:psi-cwt}}
+\end{figure}
+Der Graph der Funktion ist auch in Abbildung~\ref{cwt:psi-graph} dargestellt.
 Wir betrachten die Funktion
 \[
 \psi(t) = \begin{cases}
@@ -202,9 +217,47 @@ Wir setzen daher $b=(2k+1)\frac{\pi}2$ und berechnen den Wert von
 &=
 \mathcal{W}f\biggl(a,(2k+1)\frac{\pi}2\biggr)
 =
-\pm
-\frac{1}{\sqrt{2|a|}}2\sin a.
+2\cos\biggl((2k+1)\frac{\pi}2\biggr)
+-\cos\biggl((2k+1)\frac{\pi}2 -a\biggr)
+-\cos\biggl((2k+1)\frac{\pi}2 +a\biggr)
+\\
+&=
+0
+\pm(\sin a - \sin a)
+=0.
 \end{align*}
+Wenn $b$ ein ganzzahliges Vielfaches von $\pi$ ist, also $b=k\pi$, dann ist 
+\begin{align*}
+\mathcal{W}f(a,b)
+&=
+\frac{1}{\sqrt{2|a|}}(2\cos k\pi - \cos(k\pi +a) -\cos(k\pi-a))
+\\
+\intertext{Die Kosinus-Funktion ist symmetrisch bezüglich $b$, so dass die
+beiden letzten Terme gleich sind.  }
+&=
+\frac{1}{\sqrt{2|a|}}(2\cos k\pi - 2\cos(k\pi +a))
+\\
+&=
+\frac{1}{\sqrt{2|a|}}(2\cos k\pi - 2\cos k\pi \cos a + 2 \sin k\pi \sin a))
+\\
+\intertext{Der letzte Term verschwindet, weil $\sin k\pi=0$.
+Im ersten Term können wir $\cos k\pi=(-1)^k$ ersetzen und erhalten}
+&=
+\frac{2(-1)^k}{\sqrt{2|a|}}(1 - \cos a)
+\end{align*}
+
+Die Wavelet-Transformation $\mathcal{W}f$ ist in Abbildung~\ref{cwt:psi-cwt}
+dargestellt.
+Intensivere Farbe bedeutet grösseren absoluten Betrag von $\mathcal{W}f$.
+Immer wenn die Funktion $\psi$ so skaliert ist, dass sie auf jeder
+Seite des Nullpunkts eine ganze Zahl vollständiger Sinus-Perioden abdeckt,
+verschwindet der Wert der Wavelet-Transformation.
+Wenn dagegen $a$ so gewählt ist, dass auf jeder Seite in halbe Periode
+``übrig'' bleibt, dann nimmt die Wavelet-Transformation den grösstmöglichen
+Wert an.
+Da das Signal $\sin t$ periodisch ist, ist auch die Wavelet-Transformiation
+$\mathcal{W}f$ periodisch in $b$.
+Dies erklärt das Muster in Abbildung~\ref{cwt:psi-cwt}.
 \end{beispiel}
 
 \begin{beispiel}
@@ -251,4 +304,56 @@ Jetzt lässt sich das Integral explizit ausrechnen}
 \biggr)
 \end{align*}
 \end{beispiel}
+
+\begin{beispiel}
+Dieses Beispiel stammt aus \cite[p.~60]{buch:blatter}.
+\begin{figure}
+\centering
+\includegraphics{chapters/4-cwt/images/f.pdf}
+\caption{Funktion $f(t)$ aus \cite[p.~60]{buch:blatter}
+\label{cwt:blatterfgraph}}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics{chapters/4-cwt/images/notes.pdf}
+\caption{Stetige Wavelet-Transformation der Funktion \eqref{cwt:blatterf}
+(Graph in Abbildung~\ref{cwt:blatterfgraph}).
+\label{cwt:blattercwt}}
+\end{figure}
+Wir berechnen die die Wavelet-Transformation der folgenden Funktion $f$
+für das Mexikanerhut-Wavelet.
+\begin{equation}
+f(t) = \begin{cases}
+2.883 \cdot (2 - 2\,|t+2|)&\qquad -3\le t \le -1\\
+1.205\cdot (1-\cos(2\pi t))&\qquad 0\le t \le 3\\
+0.968\cdot \frac12(1-\cos(5\pi t))&\qquad 4\le t \le 6\\
+0&\qquad\text{sonst.}
+\end{cases}
+\label{cwt:blatterf}
+\end{equation}
+Eine graphische Darstellung der Funktion ist in Abbildung~\ref{cwt:blatterf}
+gegeben.
+Die numerisch berechnete Transformation ist in Abbildung~\ref{cwt:blattercwt}
+dargestellt.
+Die Funktion besteht aus drei Teilfunktionen, die von Intervallen getrennt sind,
+in denen die Funktion verschwindet.
+In den Intervallen $[0,3]$ und $[4,6]$ hat die Funktion oszillatorischen
+Charakter.
+Die Wavelet-Transformation ist in der Lage, dieses Verhalten zu detektieren.
+Es lässt sich sogar eine ungefähre Aussage über die Frequenzverhältnisse
+machen.
+Die Oszillation im Interval $[4,6]$ hat $2.5$-mal höhere Frequenz als im
+Interval $[0,3]$, was sich darin äussert, dass die Schwerpunkte der roten
+Flächen bei etwa $2.5$-mal geringerem $a$ liegen.
+\end{beispiel}
+
+In den Abbildungen \ref{cwt:psi-cwt} und \ref{cwt:blattercwt} werden 
+die Skalenfaktoren $a$ auf der vertikalen Achse abgetragen.
+Grössere Werte von $a$ bedeutet dabei grössere ``Wellenlänge'' des Wavelets,
+so dass die ``hochfrequenten'' Koeffizienten am unteren Rand des
+Intensitätsgraphen sind.
+In Anwendungen der Signalverarbeitung wird daher oft $1/a$ oder $-\log a$ 
+auf der vertikalen Achse aufgetragen, so dass hohe Frequenzen wie in
+einem Sonogramm weiter oben dargestellt werden.
+
 
