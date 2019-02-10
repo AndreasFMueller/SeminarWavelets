@@ -27,6 +27,9 @@ CHAPTERFILES =								\
 	chapters/3-haar/paradox.tex					\
 	chapters/4-cwt/chapter.tex					\
 	chapters/4-cwt/wavelets.tex					\
+	chapters/4-cwt/cwt.tex						\
+	chapters/4-cwt/plancherel.tex					\
+	chapters/4-cwt/umkehrformel.tex					\
 	chapters/5-shannon/chapter.tex					\
 	chapters/6-msa/chapter.tex					\
 	chapters/6-msa/definition.tex					\

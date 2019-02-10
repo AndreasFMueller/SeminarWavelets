@@ -6,3 +6,34 @@
 \chapter{Spline-Wavelets
 \label{chapter:spline}}
 \lhead{Spline-Wavelets}
+Das Haar-Wavelet ist charakterisiert durch die erzeugende Funktion $H_0$,
+die in einer Funktionalgleichung der Fourier-Transformierten von $\varphi$
+vorkommt.
+Es stellt sich heraus, dass sich eine solche Funktionalgleichung für 
+Faltungen von $\varphi$ mit sich selbst sofort ableiten lassen.
+Allerdings bilden die verschobenen Kopien keine orthonormierte Basis,
+dazu müssen sie erst orthonormiert werden.
+Da sich dafür aber ein Verfahren angeben lässt, kann man eine Familie 
+von Wavelets konstruieren, die sich dadurch auszeichnen, dass sie
+stückweise polynomiell sind, genauso wie das Haar-Wavelet stückweise
+konstant war.
+Dies sind die B-Spline-Wavelets, die in diesem Kapitel dargestellt werden
+sollen.
+
+Die B-Spline-Wavelets haben nicht kompakten Träger, aber Koeffizienten
+mit grossem Index sind sehr klein.
+Ausserdem sind sie wie die Wavelet-Koeffizienten typischerweise irrational,
+müssen also in einer Implementation notwendigerweise gerundet werden.
+Die Stabilität der Wavelet-Transformation stellt sicher, dass die Rundung
+nicht zu unbrauchbaren Resultaten führt.
+Indem sehr kleine Koeffizienten zu $0$ gerundet werden, können auch die
+B-Spline-Wavelets als Wavelets mit kompaktem Träger behandelt werden.
+Dasselbe gilt natürlich auch für jede andere Form von Wavelet, bei dem
+die Werte der Koeffizienten rasch gegen $0$ gehen.
+
+
+
+
+
+
+

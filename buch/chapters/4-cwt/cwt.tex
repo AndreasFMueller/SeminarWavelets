@@ -1,0 +1,254 @@
+%
+% cwt.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Stetige Wavelet-Transformation
+\label{sextion:cwt}}
+\rhead{Stetige Wavelet-Transformation}
+Ein Wavelet soll nun dazu verwendet werden, ein Signal $f(t)$
+abzutasten.
+Da das Wavelet lokalisiert ist, müssen wir es der $t$-Achse entlang
+verschieben, um jeden Abschnitt des Signals sinnvoll abtasten zu
+können.
+Da das Wavelet auch im Frequenzbereich lokalisiert ist, müssen wir
+es ausserdem skalieren, um sowohl kurzwellige wie auch langwellige
+Details des Signals zu erfassen.
+
+Sei also $\psi$ ein Wavelet, also eine Funktion, die die
+Zulässigkeitsbedingung~\eqref{cwt:zulaessig} erfüllt\footnote{Die nachfolgenden
+Definitionen sind zum Teil auch sinnvoll, wenn die Zulässigkeitsbedingung
+nicht erfüllt ist, doch ist die so entstehende Transformation nicht unbedingt
+stetig oder umkehrbar.}.
+Wir setzen daher
+\[
+\psi_{a,b}(t) = \frac{1}{\sqrt{|a|}} \psi\biggl(\frac{t-b}a\biggr).
+\]
+Den Spezialfall $b=0$ kürzen wir $\psi_a = \psi_{a,0}$ ab.
+
+\begin{lemma}
+Die verschobenen und gestreckten Kopien $\psi_{a,b}$ von $\psi$ haben alle
+die gleiche Norm: $\|\psi_{a,b}\|=1$.
+\end{lemma}
+
+\begin{proof}[Beweis]
+Zunächst ist klar, dass die Verschiebung um $b$ die Norm nicht ändert.
+Ebenso kann man sich überlegen, dass ein negatives Vorzeichen von $a$
+ausser der Skalierung um den Betrag $|a|$ die Funktion am Nullpunkt spiegelt,
+was die Norm ebenfalls unverändert lässt.
+Es ist also nur genauer zu untersuchen, ob sich die Norm mit $a>0$ ändern
+kann.
+Dazu berechnen wir
+\begin{align*}
+\| \psi_{a,b} \|
+&=
+\| \psi_a \|
+=
+\int_{-\infty}^\infty |\psi_a(t)|^2 \, dt
+=
+\int_{-\infty}^\infty
+\biggl|\psi\biggl(\frac{t}{a}\biggr)\biggr|^2\cdot \frac1{|a|}
+\,dt
+\\
+\intertext{Darin substituieren wir $s=t/a$ und erhalten}
+&=
+\int_{-\infty}^\infty |\psi(s)|^2 \,ds
+=
+\|\psi\|=1.
+\end{align*}
+Darin haben wir verwendet, dass $a>0$.
+Damit ist gezeigt, dass sich die Norm nicht ändert.
+\end{proof}
+
+\begin{beispiel}
+Bei den Haar-Wavelets haben wir als Streckungsfaktoren die Zweierpotenzen
+$2^j$ mit $j\in\mathbb Z$ verwendet.
+Damit alle Wavelets die gleiche Norm bekamen, haben wir mit dem Faktor
+$2^{-j/2}$ kompensiert.
+
+Selbstverständlich können wir aber auch das Haar Mutter-Wavelet
+\[
+\psi_{\text{Haar}} = \chi_{[0,\frac12)} - \chi_{[\frac12,1)}
+\]
+als Ausgangspunkt wählen.
+Dann ist $\psi_{\text{Haar},a,b}$ eine stückweise konstante Funktion,
+die für $a>0$ beim Punkt $b$ auf den Wert $1/\sqrt{|a|}$ springt,
+beim Punkt $b+a/2$ auf $-1/\sqrt{|a|}$ und ab $b+a$ wieder verschwindet.
+Der Träger der Funktion $\psi_{\text{Haar},a,b}$ ist also das Interval
+$[b,b+a]$.
+% XXX Abbildung für das skalierte  Haar-Wavelet
+\end{beispiel}
+
+\begin{beispiel}
+Sei $\psi=\frac1{\sqrt{2\pi}} e^{-t^2/2}$ die Wahrscheinlichkeitsdichte
+der Standardnormalverteilung.
+Man kann nachrechnen, dass $\psi$ die Zulässigkeitsbedingung erfüllt.
+Die $\sigma$ skalierten und um $\mu$ verschobenen Funktionen sind
+\[
+\psi_{\sigma,\mu}(t)
+=
+\frac{1}{\sqrt{2\pi\sigma}} e^{-(t-b)^2/2\sigma^2},
+\]
+die Wahrscheinlichkeitsdichte einer Normalverteilung mit Erwartungswert $\mu$
+und Varianz $\sigma^2$.
+\end{beispiel}
+
+Die Funktionen $\psi_{a,b}$ können jetzt als Analyse-Funktionen für das
+Signal dienen.
+
+\begin{definition}
+Die stetige Wavelet-Transformation des Signals $f(t)$ mit dem Wavelet
+$\psi$ ist die Funktion
+\[
+\mathcal{W}f (a,b)
+=
+\langle f,\psi_{a,b}\rangle
+=
+\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty f(t)\,\overline{
+\psi\biggl(\frac{t-b}{a}\biggr)}\,dt.
+\]
+Der Definitionsbereich dieser Funktion ist die Menge
+\[
+\mathbb R^2_-
+=
+\mathbb R^*\times \mathbb R
+=
+\mathbb R^2 - (\{0\}\times \mathbb R)
+\]
+die Ebene ohne die Achse $a=0$.
+\end{definition}
+
+Die Wavelet-Transformation liefert also eine Funktion von {\em zwei}
+Variablen.
+Die beiden Parameter erlauben, unabhängig voneinander eine bestimmte
+Stelle des Signals genauer anzuschauen durch Wahl von $b$ sowie die
+Details genauer aufzulösen durch Vergrösserung von $a$.
+
+\begin{beispiel}
+Wir betrachten die Funktion
+\[
+\psi(t) = \begin{cases}
+-\frac1{\sqrt{2}}&\qquad -1\le t< 0\\
+\frac1{\sqrt{2}}&\qquad 0\le t< 1\\
+0&\qquad\text{sonst}
+\end{cases}
+\]
+Dies ist eine gestreckte und verschobene Version des Haar-Wavelets,
+und erfüllt daher automatisch die Zulässigkeitsbedingung für ein Wavelet.
+Ausserdem gilt $\|\psi\|=1$.
+Gegenüber dem Haar-Mutter-Wavelet hat diese Funktion den Vorteil, dass 
+sie antisymmetrisch ist, so dass auch die stetige Wavelettransformation
+einer antisymmetrischen Funktion wieder symmetrisch sein wird.
+
+Wir berechnen jetzt die stetige Wavelet-Transformat des Signals $f(t)=\sin t$.
+Nach Definition ist
+\begin{align*}
+\mathcal{W}f(a,b)
+&=
+\int_{-\infty}^\infty f(t)
+\frac{1}{\sqrt{|a|}}\overline{\psi\biggl(\frac{t-b}{a}\biggr)}
+\,dt.
+\\
+\intertext{Da sich das Integral über ganz $\mathbb R$ erstreckt, können
+wir das Integral um $b$ verschieben, und erhalten}
+&=
+\frac{1}{\sqrt{|a|}}
+\int_{-\infty}^\infty f(t+b)\overline{\psi\biggl(\frac{t}{a}\biggr)}\,dt.
+\\
+\intertext{Substituieren wir $as=t$, können wir auch den Skalierungsfaktor
+von $\psi$ auf das Signal verschieben:}
+&=
+\sqrt{|a|}
+\int_{-\infty}^\infty f(as+b)\overline{\psi(s)}\,ds.
+\\
+\intertext{Für $a<0$ bekommt man ein negatives Vorzeichen, aber es tauschen
+auch die Integrationsgrenzen ihre Plätze.
+Jetzt können wir das Signal $f$ einsetzen und mit der Definition der
+Funktion $\psi$ das Integral vereinfachen}
+&=
+\sqrt{\frac{|a|}{2}}
+\biggl(
+-
+\int_{-1}^0 \sin(as+b)\,dt
++
+\int_{0}^1 \sin(as+b)\,dt
+\biggr)
+\\
+&=
+\sqrt{\frac{|a|}{2}}
+\biggl(
+-
+\biggl[-\frac{\cos(as+b)}{a}\biggr]_{-1}^0
++
+\biggl[-\frac{\cos(as+b)}{a}\biggr]_{0}^1
+\biggr)
+\\
+&=
+\frac{1}{\sqrt{2|a|}}
+(
+\cos(b) - \cos(-a+b) -\cos(a+b)+\cos(b)
+)
+\\
+&=
+\frac{1}{\sqrt{2|a|}}
+(2\cos b - \cos(b+a) - \cos(b-a))
+\end{align*}
+Wir betrachten einige einfach zu berechnende Werte von $\mathcal{W}f$.
+Die Kosinus-Funktion ist antisymmetrisch bezüglich ungeraden Vielfachen
+von $\pi/2$.
+Wir setzen daher $b=(2k+1)\frac{\pi}2$ und berechnen den Wert von
+\begin{align*}
+\mathcal{W}f(a,b)
+&=
+\mathcal{W}f\biggl(a,(2k+1)\frac{\pi}2\biggr)
+=
+\pm
+\frac{1}{\sqrt{2|a|}}2\sin a.
+\end{align*}
+\end{beispiel}
+
+\begin{beispiel}
+Sei wieder $\psi=\psi_{\text{Haar}}$ das Haar-Wavelet.
+Wir berechnen die stetige Wavelet-Transformation der Sinus-Funktion
+$f(t)=\sin t$.
+Der Einfachheit halber führen wir die Berechnung der Wavelet-Transformation
+zunächst für $a>0$ durch.
+Nach Definition ist gilt
+\begin{align*}
+\mathcal{W}f (a,b)
+&=
+\frac{1}{\sqrt{|a|}}
+\int_{-\infty}^\infty \sin t\cdot \psi\biggl(\frac{t-b}{a}\biggr)\,dt.
+\\
+\intertext{Da sich das Integral über die ganze reelle Achse erstreckt,
+können wir $t$ durch $t+b$ ersetzen, ohne dass sich das Integral ändert.
+Wir erhalten daher}
+&=
+\frac{1}{\sqrt{|a|}}
+\int_{-\infty}^\infty \sin (t+b)\cdot \psi\biggl(\frac{t}{a}\biggr)\,dt
+=
+\frac{1}{\sqrt{|a|}}
+\int_{-\infty}^\infty \sin (as+b)\cdot \psi(s) a\,ds.
+\\
+\intertext{Dabei haben wir $t=as$ substituiert.
+Jetzt lässt sich das Integral explizit ausrechnen}
+&=
+\sqrt{a}
+\int_{0}^{\frac12} \sin(as+b)\,ds
+-
+\sqrt{a}
+\int_{\frac12}^{1} \sin(as+b)\,ds
+\\
+&=
+\sqrt{a}
+\biggl[-\frac{\cos(as+b)}{a}\biggr]_{0}^{\frac12}
+-
+\sqrt{a}
+\biggl[-\frac{\cos(as+b)}{a}\biggr]_{\frac12}^1
+=
+\frac{1}{\sqrt{a}}\biggl(
+-1 + 2\cos({\textstyle\frac12}a+b) - \cos(a+b)
+\biggr)
+\end{align*}
+\end{beispiel}
+
