@@ -6,4 +6,92 @@
 \section{Umkehrformel%
 \label{section:cwt:umkehrformel}}
 \rhead{Umkehrformel}
+Die Plancherel-Formel von Satz~{satz:wplancherel} zeigt, dass die
+Wavelettransformation~\eqref{cwt:definition:eq} bis auf den Faktor
+$C_{\psi}$ eine Isomietrie ist.
+Zu jeder Wavelet-Transformierten sollten daher die ursprüngliche
+Funktionen wiedergewonnen werden können.
+Ziel dieses Abschnitts ist die Konstruktion einer Umkehrformel, 
+die $f$ aus $\mathcal{W}f$ wiedergewinnt.
+
+\begin{satz}
+Unter geeigneten Stetitkeitsvoraussetzungen an die Funktion $f$ gilt
+\begin{equation}
+f(t) = \frac{1}{C_{\psi}}\int_{\mathbb R^*}\int_{-\infty}^\infty
+\mathcal{W}f(a,b) \psi_{a,b}(t)
+\,db\,\frac{da}{|a|^2}
+\label{cwt:umkehr}
+\end{equation}
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir haben zu zeigen, dass die Funktion
+\[
+\tilde{f}(t) = \frac{1}{C_{\psi}}\int_{\mathbb R^*}\int_{-\infty}^\infty
+\mathcal{W}f(a,b) \psi_{a,b}(t)
+\,db\,\frac{da}{|a|^2}
+\]
+existiert, in $L^2$ liegt  und mit $f$ übereinstimmt.
+
+Wir nehmen zunächst an, dass $\tilde{f}$ tatsächlich existiert und eine
+$L^2$-Funktion ist.
+Um zu zeigen, dass $\tilde{f}$ mit $f$ übereinstimmt, berechnen wir das
+Skalarprodukt von $\tilde{f}$ mit beliebigen Funktionen $g\in L^2$.
+Durch Vertauschung der Integrationsreihenfolge in~\eqref{cwt:umkehr:beweis1}
+und Verwendung der Plancherel-Formel in~\eqref{cwt:umkehr:beweis2}
+finden wir.
+\begin{align}
+\langle \tilde{f},g\rangle
+&=
+\int_{-\infty}^\infty
+\frac1{C_{\psi}} \int_{\mathbb R^*}\int_{-\infty}^\infty
+\mathcal{W}f(a,b)
+\psi_{a,b}(t)
+\,db\,\frac{da}{|a|^2}
+\bar{g}(t)
+\,dt
+\notag
+\\
+&=
+\frac1{C_{\psi}} \int_{\mathbb R^*}\int_{-\infty}^\infty
+\mathcal{W}f(a,b)
+\int_{-\infty}^\infty
+\bar{g}(t)
+\psi_{a,b}(t)
+\,dt
+\,db\,\frac{da}{|a|^2}
+\label{cwt:umkehr:beweis1}
+\\
+&=
+\frac1{C_{\psi}} \int_{\mathbb R^*}\int_{-\infty}^\infty
+\mathcal{W}f(a,b)
+\underbrace{
+\overline{
+\int_{-\infty}^\infty
+g(t)
+\bar{\psi}_{a,b}(t)
+\,dt
+}}_{\displaystyle\mathcal{W}g(a,b)}
+\,db\,\frac{da}{|a|^2}
+\notag
+\\
+&=
+\frac{1}{C_{\psi}}
+\langle \mathcal{W}f, \mathcal{W}g \rangle_H
+=
+\langle f, g\rangle.
+\label{cwt:ummkehr:beweis2}
+\end{align}
+Die Funktion $\tilde{f}$ hat mit allen Funktion $g$ das gleiche Skalarprodukt
+wie $f$.
+Daraus folgt $\tilde{f}=f$.
+
+Die bisherigen Überlegungen haben nur gezeigt, dass die
+Formel~\label{cwt:umkehr} eine sogenannte schache Lösung des Umkehrproblems
+liefern kann.
+Der Nachweis, dass die Funktion $\tilde{f}$ ist etwas technisch und kann
+in \cite{buch:daubechies} nachgelesen werden.
+\end{proof}
+
+
 
