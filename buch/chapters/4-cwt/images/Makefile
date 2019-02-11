@@ -3,9 +3,9 @@
 #
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
-single:	f.pdf
+single:	mexican.pdf
 
-all:	psigraph.pdf psisin.pdf notes.pdf
+all:	psigraph.pdf psisin.pdf notes.pdf f.pdf
 
 psigraph.pdf:	psigraph.tex
 	pdflatex psigraph.tex
@@ -33,3 +33,6 @@ notes.png:	notes
 
 f.pdf:	f.tex
 	pdflatex f.tex
+
+mexican.pdf:	mexican.tex
+	pdflatex mexican.tex

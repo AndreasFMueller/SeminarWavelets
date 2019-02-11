@@ -140,17 +140,27 @@ M \int_{-M}^M |\psi(t)|\,dt < \infty.
 Darin haben wir die Aussagen von Satz~\ref{satz:l2inl1} verwendet,
 dass $L^2$-Funktionen auf einem beschränkten Interval integrierbar sind.
 Ein weiterer interessanter Fall sind Wavelets, die für $t\to\infty$
-sehr rasch abfallen, zum Beispiel das Mexikanerhut-Wavelet
+sehr rasch abfallen, wie im folgenden Beispiel.
+
+\begin{beispiel}
+\begin{figure}
+\centering
+\includegraphics{chapters/4-cwt/images/mexican.pdf}
+\caption{Mexikaner-Hut Wavelet gemäss
+\eqref{wavelet:mexikanerhut}
+\label{wavelet:mexikanerhut:graph}}
+\end{figure}
+Das Mexikanerhut-Wavelet ist definiert durch die Funktion
 \begin{equation}
 \psi_{\text{M}}(t) = \frac{2}{\pi^{\frac14}\sqrt{3}}(1-t^2) e^{-t^2/2}.
 \label{wavelet:mexikanerhut}
 \end{equation}
 Der Faktor $e^{-t^2/2}$ fällt derart schnell ab, dass auch $|t|^k e^{-t^2/2}$
 immer noch exponentiell schnell gegen Null abfällt.
+Sein Graph ist dargestellt in Abbildung~\ref{wavelet:mexikanerhut:graph}.
 Die Funktion $\psi_{\text{M}}$ ist zudem eine ungerade Funktion und
 erfüllt damit automatisch die Bedingung von Satz~\ref{satz:zulaessigkeit}.
-
-% XXX TODO: Graph des Maxikanerhut-Wavelets
+\end{beispiel}
 
 Das Kriterium von Satz~\ref{satz:zulaessigkeit} führt uns aber auch auf
 das folgende Paradoxon. 
