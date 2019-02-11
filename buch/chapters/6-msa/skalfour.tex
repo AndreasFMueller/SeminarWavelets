@@ -20,7 +20,7 @@ Fourier-Theorie.
 % Interval-Trick: Aufteilung eines Fourier-Integrals in Teilintervalle
 %                 für ganzzahlige Argumente
 %
-\subsection{Der Interval-Trick}
+\subsection{Der Interval-Trick und der Periodisierungs-Operator}
 Wir werden im Folgenden wiederholt einenn Trick verwenden, mit dem
 Fourier-Integrale über $\mathbb R$ in gewöhnliche Integrale
 über ein endliches Interval umgeformt werden können.
@@ -48,23 +48,110 @@ Für das Fourier-Integral folgt dann
 \label{msa:intervaltrick}
 \end{align}
 Der Klammerausdruck ist eine $2\pi$-periodische Funktion auf $\mathbb R$.
-Wir schreiben dafür.
+Wir werden diese Operation wiederholt benötigen und spendieren ihr daher
+eine formelle Definition
+
+\begin{definition}
+Für eine Funktion $f\in L^2(\mathbb R)$ ist die periodisch gemachte Funktion
 \[
-\mathcal{P}f(t) = \sum_{k\in\mathbb Z} f(t+2\pi k).
+\mathcal{P}f(t) = \sum_{k\in\mathbb Z} f(t+2\pi k)
 \]
+eine Funktion $L^2([0,2\pi])$.
+\end{definition}
+
+\begin{proof}[Beweis]
+Die Definition behauptet, dass die Operation $\mathcal{P}$ für
+quadratintegrierbare Funktionen auf $\mathbb R$ eine quadratintegrierbare
+Funktion $2\pi$-periodische Funktion ergibt.
+Wir rechnen dazu nach
+\begin{align*}
+\int_{0}^{2\pi}
+| \mathcal{P}f(t)|^2
+\,dt
+&=
+\int_{0}^{2\pi}
+\biggl|
+\sum_{k\in\mathbb Z}f(t+2\pi k)
+\biggr|^2
+\,dt
+\\
+&\le
+\int_{-\infty}^\infty |f(t)|^2 \,dt
+=
+\| f\|^2.
+\qedhere
+\end{align*}
+\end{proof}
+
 Da $b\in\mathbb Z$, berechnet das Integral~\eqref{msa:intervaltrick}
-bis auf einen Faktor $2\pi$ die Fourier-Koeffizienten von $\mathcal{P}f$:
+bis auf einen Faktor $2\pi$ die Fourier-Koeffizienten von $\mathcal{P}f$.
+Wir haben daher den folgenden Satz gefunden:
+
+\begin{satz}
+\label{msa:Pfourier}
+Ist $f\in L^2(\mathbb R)$, dann sind die Fourier-Koeffizienten von
+$\mathcal{P}f$
 \[
 \widehat{\mathcal{P}f}(b)
 =
 \frac1{2\pi}\int_{0}^{2\pi} \mathcal{P}f(t) e^{ibt}\,dt
 =
 \frac1{2\pi}
-\int_{-\infty}^\infty f(t) e^{ibt}\,dt.
+\int_{-\infty}^\infty f(t) e^{ibt}\,dt
+=
+\frac{1}{\sqrt{2\pi}} \hat{f}(-b).
 \]
+\end{satz}
+
 Die Fourier-Koeffizienten der periodisch gemachten Funktion $\mathcal{P}f$ 
 hängen also mit den Werte der Fourier-Transformation an ganzzahligen
 Punkten zusammen.
+
+\begin{lemma}
+Der Periodisierungs-Operator $\mathcal{P}$ ist linear:
+\begin{align*}
+\mathcal{P}(f+g)(t)
+&=
+\mathcal{P}f(t) + \mathcal{P}g(t)
+\\
+\mathcal{P}(\lambda f)(t)
+&=
+\lambda \mathcal{P}f(t)
+\end{align*}
+\end{lemma}
+
+\begin{proof}[Beweis]
+Diese Identitäten können durch Nachrechnen verifiziert werden:
+\begin{align*}
+\mathcal{P}(f+g)(t)
+&=
+\sum_{k\in\mathbb Z}(f+g)(t+2\pi k)
+=
+\sum_{k\in\mathbb Z}\bigl(f(t+2\pi k)+ g(t+2\pi k)\bigr)
+\\
+&=
+\sum_{k\in\mathbb Z}\bigl(f(t+2\pi k)
++
+\sum_{k\in\mathbb Z}g(t+2\pi k)\bigr)
+\\
+&=
+\mathcal{P}f(t)
++
+\mathcal{P}g(t)
+\\
+\mathcal{P}(\lambda f)(t)
+&=
+\sum_{k\in\mathbb Z}(\lambda f)(t+2\pi k)
+=
+\sum_{k\in\mathbb Z}\lambda f(t+2\pi k)
+=
+\lambda
+\sum_{k\in\mathbb Z}f(t+2\pi k)
+=
+\lambda \mathcal{P}f(t)
+\qedhere
+\end{align*}
+\end{proof}
 
 %
 % Orthogonalitätsbedingung für die Translate des Vater-Wavelets
@@ -123,8 +210,8 @@ Diese Funktion muss daher eine Konstante sein.
 
 \begin{satz}
 \label{satz:msa:orthogonalitaetsbedingung}
-Damit die ganzzahligen Translate einer Funktion $\varphi$ alle orthogonal
-sind, ist notwendig und hinreichend, dass 
+Damit die ganzzahligen Translate einer Funktion $\varphi\in L^2$ alle
+orthogonal sind, ist notwendig und hinreichend, dass 
 \begin{equation}
 \mathcal{P}|\hat{\varphi}|^2(\omega)
 =
@@ -135,6 +222,53 @@ sind, ist notwendig und hinreichend, dass
 \end{equation}
 für fast alle $\omega\in\mathbb R$.
 \end{satz}
+
+Dieselbe Idee lässt sich auch auf Funktionen anwenden, die orthogonal
+sind mit allen Translaten.
+
+\begin{satz}
+\label{satz:msa:alleorthogonal}
+Seien $\varphi,\psi\in L^2$, dann ist $\varphi$ orthogonal zu allen
+ganzzahligen Translaten $T_b\psi$  von $\psi$ genau dann, wenn
+\begin{equation}
+\sum_{k\in\mathbb Z} \hat{\varphi}(t+2\pi k)\overline{\hat{\psi}(t+2\pi k)}
+=
+0
+\end{equation}
+für fast alle $\omega\in\mathbb R$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Nach Voraussetzung gilt für alle $b\in\mathbb Z$
+\begin{align*}
+0
+&=
+\langle \varphi,T_b\psi\rangle
+=
+\langle \hat{\varphi}, \widehat{T_b\psi}\rangle
+=
+\int_{-\infty}^\infty
+\hat{\varphi}(\omega)\, \overline{\hat{\psi}(\omega)} e^{ib\omega}
+\,d\omega
+\\
+&=
+2\pi
+\widehat{\mathcal{P}(\hat{\varphi}\bar{\hat{\psi}})}(b)
+\end{align*}
+Die $2\pi$-periodische Funktion $\mathcal{P}(\hat{\varphi}\bar{\hat{\psi}})$ 
+hat also lauter verschwindende Fourier-Koeffizienten, also verschwindet
+sie.
+Nach Definition ist
+\[
+\mathcal{P}(\hat{\varphi}\bar{\hat{\psi}})
+=
+\sum_{k\in\mathbb Z}
+\hat{\varphi}(\omega + 2\pi k)
+\bar{\hat{\psi}}(\omega + 2\pi k)
+=0.
+\]
+Dies beweist die Aussage.
+\end{proof}
 
 %
 % Skalierungsrelation
@@ -196,6 +330,7 @@ Orthogonalitätsbedingung~\eqref{msa:orthogonalitaetsbedingung}
 Durch $H$ ausdrücken lässt.
 
 \begin{satz}
+\label{satz:Hbed}
 Die erzeugende Funktion $H(s)$ einer Multiskalen-Analyse erfüllt die
 Bedingung
 \begin{equation}
@@ -283,4 +418,262 @@ Dies gilt für fast alle $\omega$, also müssen die beiden $H$-Terme zusammen
 $1$ geben.
 Damit ist die Aussage \eqref{msa:Hbed} bewiesen.
 \end{proof}
+
+\subsection{Skalierungsrelationen für $f\in V_1$}
+Die Multiskalen-Analyse besagt, dass $V_0 \oplus W_0 = V_1$, und das
+$\varphi$ ein orthogonale Basis von $V_0$ ist.
+Eine Funktion $f\in V_1$ muss dann eine Linear-Kombination von
+skalierten Funktionen $\varphi_{1,b}(t)=\varphi(2t-b)$ sein.
+Es gibt also $f_k\in\mathbb C$ mit
+\[
+f(t) = \sum_{b\in\mathbb Z} f_k \varphi_{1,b}(t).
+\]
+Die Fourier-Transformierte davon ist
+\[
+\hat{f}(\omega)
+=
+\sum_{b\in\mathbb Z}
+f_k
+\frac{1}{\sqrt{2}}
+e^{ib\omega/2}
+\hat{\varphi}
+\biggl(\frac{\omega}2\biggr).
+\]
+Der Faktor $\hat{\varphi}$ hängt nicht von $b$ ab un kann ausgeklammert
+werden.
+Für die verbleibende Funktion führen wir folgende Bezeichnung ein.
+
+\begin{definition}
+Für eine $f\in V_1$ sei $m_f$ definiert durch
+\[
+m_f(\omega)
+=
+\frac{1}{\sqrt{2}} \sum_{b\in\mathbb Z} f_k e^{-ib\omega}.
+\]
+\end{definition}
+
+\begin{lemma}
+\label{msa:mfskal}
+Für eine Funktion $f\in V_1$ gilt
+\begin{equation}
+\hat{f}(\omega)
+=
+m_f\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\label{msa:mfskaleq}
+\end{equation}
+für fast alle $\omega\in\mathbb R$.
+\end{lemma}
+
+Die Funktion $H$ ist natürlich nichts anders als der Spezialfall
+des skalierten Vater-Wavelet $f=D_2\varphi\in V_1$, also $H=m_{D_2\varphi}$.
+
+In der Multiskalen-Analyse ist bilden die Translate des Mutter-Wavelet $\psi$
+ein orthonormierte Basis von $V_1$.
+Die Funktion $m_{\psi}$ erfüllt daher nicht nur \eqref{msa:mfskaleq},
+es muss ausserdem eine Relation geben, ausdrückt, dass alle Translate auf
+$V_0$ orthogonal sind.
+Dieser Zusammenhang wird gegeben durch das folgende Lemma.
+
+\begin{lemma}
+Eine Funktion $f\in V_1$ ist genau dann in $W_0$, wenn 
+\[
+m_f(\omega + \pi)\overline{H(\omega + \pi)}
++
+m_f(\omega)\overline{H(\omega)}
+=
+0
+\]
+für fast alle $\omega\in\mathbb R$.
+\end{lemma}
+
+\begin{proof}[Beweis]
+Die Funktion $f\in W_0$ genau dann, wenn $f$ orthogonal ist auf allen
+Translaten von $\varphi$.
+Nach Satz~\ref{satz:msa:alleorthogonal} ist dies gleichbedeutend mit
+\[
+\sum_{k\in\mathbb Z}
+\hat{f}(t+2\pi k)
+\overline{\hat{\varphi}(t+2\pi k)}
+=
+0
+\]
+Die Summe auf der rechten Seite kann wieder in je eine Summe für die
+Geraden und die ungeraden $k$ aufgeteilt werden.
+\begin{align*}
+0
+&=
+\sum_{k\in\mathbb Z}
+\hat{f}(\omega+2\pi+4\pi k)
+\overline{\hat{\varphi}(\omega+2\pi+4\pi k)}
++
+\sum_{k\in\mathbb Z}
+\hat{f}(\omega+4\pi k)
+\overline{\hat{\varphi}(\omega+4\pi k)}
+\\
+\intertext{Die Terme auf der rechten Seite können mit Hilfe von
+Lemma~\ref{msa:skalomega} für $H$ Lemma~\label{msa:mfskal} für $m_f$
+durch Ausdrücke mit $H$ und $m_f$ ersetzt werden.
+Da sowohl $m_f$ als auch $H$ $2\pi$-periodisch sind, können sie aus
+der Summe ausgeklammert werden:}
+&=
+\sum_{k\in\mathbb Z}
+m_f\biggl(\frac{\omega}2+\pi\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2+\pi+2\pi k\biggr)
+\bar{H}\biggl(\frac{\omega}2+\pi\biggr)
+\bar{\hat{\varphi}}\biggl(\frac{\omega}2+\pi+2\pi k\biggr)
+\\
+&\qquad
++
+\sum_{k\in\mathbb Z}
+m_f\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2+2\pi k\biggr)
+\bar{H}\biggl(\frac{\omega}2\biggr)
+\bar{\hat{\varphi}}\biggl(\frac{\omega}2+2\pi k\biggr)
+\\
+&=
+m_f\biggl(\frac{\omega}2+\pi\biggr)
+\bar{H}\biggl(\frac{\omega}2+\pi\biggr)
+\underbrace{
+\sum_{k\in\mathbb Z}
+\biggl|\hat{\varphi}\biggl(\frac{\omega}2+\pi+2\pi k\biggr)\biggr|^2
+}_{\displaystyle = \frac{1}{2\pi}}
++
+m_f\biggl(\frac{\omega}2\biggr)
+\bar{H}\biggl(\frac{\omega}2\biggr)
+\underbrace{
+\sum_{k\in\mathbb Z}
+\biggl|\hat{\varphi}\biggl(\frac{\omega}2+2\pi k\biggr)\biggr|^2
+}_{\displaystyle = \frac{1}{2\pi}}
+\\
+&=
+\biggl(
+m_f\biggl(\frac{\omega}2+\pi\biggr)
+\bar{H}\biggl(\frac{\omega}2+\pi\biggr)
++
+m_f\biggl(\frac{\omega}2\biggr)
+\bar{H}\biggl(\frac{\omega}2\biggr)
+\biggr)
+\cdot
+\frac{1}{2\pi}
+\end{align*}
+Woraus die Behauptung folgt.
+\end{proof}
+
+%
+% Skalierungsrelation für \psi
+%
+\subsection{Skalierungsrelation für $\psi$}
+Die Axiome der Multiskalen-Analyse besagen, dass es eine Funktion $\psi$
+gibt derart, dass die Translate von $\psi$ eine orthonormierte Basis
+von $W_0$ sind.
+In den Sätzen dieses Abschnitts wurde genau dieser Sachverhalt bereits
+für das Vater-Wavelet $\varphi$ untersucht.
+Sowie ganz allgemein für eine Funktion $f\in V_1$ untersucht.
+Für das Mutter-Wavelet $\psi$ müssen diese Eigenschaften alle
+auch gelten.
+Wir fassen diese im folgenden Satz zusammen.
+
+\begin{satz}
+Die Funktion $m_\psi$, die zum Mutter-Wavelet einer Multiskalen-Analyse 
+gehört, erfüllt
+\[
+m_{\psi}\biggl(\frac{\omega}2+\pi\biggr)
+\bar{H}\biggl(\frac{\omega}2+\pi\biggr)
++
+m_{\psi}\biggl(\frac{\omega}2i\biggr)
+\bar{H}\biggl(\frac{\omega}2\biggr)
+=
+0
+\]
+Wenn die Translate von $\psi$ orthonormiert sind, dann gilt
+zusätzlich
+\[
+\biggl|m_\psi\biggl(\frac{\omega}2+\pi\biggr)\biggr|^2
++
+\biggl|m_\psi\biggl(\frac{\omega}2\biggr)\biggr|^2
+=
+1.
+\]
+\end{satz}
+
+Ausserdem gilt natürlich immer noch die Relation~\eqref{msa:Hbed}
+für die Funktion.
+Diese Bedingungen schränkten stark ein, was $\psi$ überhaupt sein
+kann.
+Wir zeigen zunächst, wie sich aus $\varphi$ eine Funktion $\psi$
+konstruieren lässt, die als Mutter-Wavelet in Frage kommt.
+
+\begin{lemma}
+Ist $\varphi$ das Vater-Wavelet einer Multiskalen-Analyse, dann sind die
+Translate der Funktion mit der Fourier-Transformierten
+\begin{equation}
+\hat{\psi}(\omega)
+=
+e^{i\omega/2}
+\overline{\bar{H}\biggl(\frac{\omega}2\biggr)}
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\label{msa:psivorschlag}
+\end{equation}
+orthonormiert.
+\end{lemma}
+
+\begin{proof}[Beweis]
+Die Translate sind orthonormiert, wenn die
+Bedingung~\eqref{msa:orthogonalitaetsbedingung}
+für $\psi$ erfüllt ist.
+Setzen wir \eqref{msa:psivorschlag} ein, erhalten wir
+\begin{align*}
+\sum_{k\in\mathbb Z} |\hat{\psi}(\omega+2\pi k)|^2
+&=
+\sum_{k\in\mathbb Z} |\hat{\psi}(\omega + 4\pi k)|^2
++
+\sum_{k\in\mathbb Z} |\hat{\psi}(\omega + 4\pi k + 2\pi)|^2
+\\
+&=
+\sum_{k\in\mathbb Z}
+\biggl| H\biggl(\frac{\omega}2+2\pi k\biggr)\biggr|^2
+\biggl| \hat{\varphi}\biggl(\frac{\omega}2 + 2\pi k\biggr) \biggr|^2
++
+\sum_{k\in\mathbb Z}
+\biggl|H\biggl(\frac{\omega}2+2\pi k+ \pi\biggr) \biggr|^2
+\biggl|\hat{\varphi}\biggl(\frac{\omega}2 + 2\pi k + \pi\biggr) \biggr|^2
+\\
+&=
+\biggl|H\biggl(\frac{\omega}2\biggr) \biggr|^2
+\underbrace{
+\sum_{k\in\mathbb Z}
+\biggl|\hat{\varphi}\biggl(\frac{\omega}2 + 2\pi k\biggr)  \biggr|^2
+}_{\displaystyle\frac{1}{2\pi}}
++
+\biggl|H\biggl(\frac{\omega}2+\pi\biggr) \biggr|^2
+\underbrace{
+\sum_{k\in\mathbb Z}
+\biggl|\hat{\varphi}\biggl(\frac{\omega}2 + 2\pi k + \pi\biggr) \biggr|^2
+}_{\displaystyle\frac{1}{2\pi}}
+\\
+&=
+\biggl(
+\biggl|H\biggl(\frac{\omega}2\biggr) \biggr|^2
++
+\biggl|H\biggl(\frac{\omega}2+\pi\biggr) \biggr|^2
+\biggr)
+\cdot
+\frac{1}{2\pi}
+=
+\frac{1}{2\pi}
+\end{align*}
+fast überall in $\mathbb R$.
+Folglich erfüllt $\psi$
+Orthonormalitätsbedingung~\eqref{msa:orthogonalitaetsbedingung}.
+\end{proof}
+
+Für eine Multiskalen-Analyse muss aber noch mehr gezeigt werden.
+Es muss gezeigt werden, dass die Translate von $\psi$ eine
+Basis von $W_0$ bilden.
+Ausserdem ist zu untersichen, wieviel Freiheit bei der Wahl von 
+$\hat{\psi}$ in \eqref{msa:psivorschlag} besteht.
+
+
+
 
