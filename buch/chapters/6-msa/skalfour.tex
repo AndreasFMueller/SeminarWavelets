@@ -5,6 +5,282 @@
 %
 \section{Skalierungsrelation und Fouriertransformation
 \label{section:skalfour}}
-\rhead{Skalierungsrealtion und Fouriertranbsformation}
+\rhead{Skalierungsrelation und Fouriertransformation}
 
 % XXX TODO Funktion H und Skalierungsrelation
+
+Gibt es überhaupt eine Funktion $\varphi$ derart, dass die Translate
+$T_b\varphi$ alle orthogonal sind?
+Ausser natürlich der charakteristischen Funktion des Einheitsintervals,
+welche das Vater-Wavelet des Haar-Wavelets ist.
+In diesem Abschnitt untersuchen wir diese Eigenschaft mit Hilfe der 
+Fourier-Theorie.
+
+%
+% Interval-Trick: Aufteilung eines Fourier-Integrals in Teilintervalle
+%                 für ganzzahlige Argumente
+%
+\subsection{Der Interval-Trick}
+Wir werden im Folgenden wiederholt einenn Trick verwenden, mit dem
+Fourier-Integrale über $\mathbb R$ in gewöhnliche Integrale
+über ein endliches Interval umgeformt werden können.
+Sei $f$ eine Funktion auf $\mathbb R$ und $b\in\mathbb Z$.
+Da $b$ eine ganze Zahl ist, ist
+\[
+e^{ib(t+2\pi k)}
+=
+e^{ibt}\underbrace{e^{2\pi i bk}}_{\displaystyle = 1}
+=
+e^{ibt},
+\]
+da $bk$ ebenfalls eine ganze Zahl ist.
+Dann kann man den Integrationsbereich $\mathbb R$ in Intervalle der
+Länge $2\pi$ jeweils zwischen $2\pi k$ und $2\pi(k+1)$ aufteilen.
+Für das Fourier-Integral folgt dann
+\begin{align}
+\int_{-\infty}^\infty f(t) e^{ibt}\,dt
+&=
+\sum_{k\in\mathbb Z} \int_{2\pi k}^{2\pi(k+1)} f(t) e^{ibt}\,dt
+=
+\sum_{k\in\mathbb Z} \int_{0}^{2\pi} f(t+2\pi k) e^{ibt}\,dt
+=
+\int_{0}^{2\pi} \biggl(\sum_{k\in\mathbb Z} f(t+2\pi k)\biggr) e^{ibt}\,dt
+\label{msa:intervaltrick}
+\end{align}
+Der Klammerausdruck ist eine $2\pi$-periodische Funktion auf $\mathbb R$.
+Wir schreiben dafür.
+\[
+\mathcal{P}f(t) = \sum_{k\in\mathbb Z} f(t+2\pi k).
+\]
+Da $b\in\mathbb Z$, berechnet das Integral~\eqref{msa:intervaltrick}
+bis auf einen Faktor $2\pi$ die Fourier-Koeffizienten von $\mathcal{P}f$:
+\[
+\widehat{\mathcal{P}f}(b)
+=
+\frac1{2\pi}\int_{0}^{2\pi} \mathcal{P}f(t) e^{ibt}\,dt
+=
+\frac1{2\pi}
+\int_{-\infty}^\infty f(t) e^{ibt}\,dt.
+\]
+Die Fourier-Koeffizienten der periodisch gemachten Funktion $\mathcal{P}f$ 
+hängen also mit den Werte der Fourier-Transformation an ganzzahligen
+Punkten zusammen.
+
+%
+% Orthogonalitätsbedingung für die Translate des Vater-Wavelets
+%
+\subsection{Orthogonalität der Translate von $\varphi$}
+Die Funktion $\varphi$ hat die Bedingung zu erfüllen, dass
+\[
+\langle \varphi, T_b\varphi\rangle = \delta_{b0}
+\qquad\forall b\in\mathbb Z.
+\]
+Wir verwenden die Plancherel-Formel für die Fourier-Transformation,
+um dieses Skalarprodukt zu vereinfachen:
+\begin{align*}
+\langle \varphi,T_b\varphi\rangle
+&=
+\langle \hat{\varphi},\widehat{T_b\varphi}\rangle
+=
+\int_{-\infty}^\infty
+\hat{\varphi}(\omega) e^{i\omega b}\overline{\hat{\varphi}(\omega)}
+\,d\omega
+=
+\int_{-\infty}^\infty
+|\hat{\varphi}(\omega)|^2 e^{i\omega b}
+\,d\omega.
+\\
+\intertext{Dies ist genau ein Integral der Art~\eqref{msa:intervaltrick}.
+Wir können es daher durch Fourier-Koeffizienten der periodische 
+gemachten Funktion $\mathcal{P}|\hat{\varphi}|^2$ ausdrücken und
+erhalten
+}
+&=
+\int_0^{2\pi}
+\mathcal{P}|\hat{\varphi}|^2(\omega) e^{ib\omega}
+\,d\omega
+=
+\int_0^{2\pi}
+\biggl(
+\sum_{k\in\mathbb Z}
+|\hat{\varphi}(\omega + 2\pi k)|^2\biggr)
+e^{i\omega b}
+\,d\omega.
+\end{align*}
+Die Orthogonalitätsbedingung lautet jetzt, dass 
+\[
+\langle \varphi,T_b\varphi\rangle
+=
+2\pi
+\widehat{\mathcal{P}|\varphi|^2}(b)
+=
+\delta_{0b}.
+\]
+Die Funktion $\mathcal{P}|\varphi|^2$ ist also $2\pi$-periodisch und
+derart, dass alle Fourier-Koeffizienten auss der Koeffizienten für
+$b=0$ verschwinden.
+Diese Funktion muss daher eine Konstante sein.
+
+\begin{satz}
+\label{satz:msa:orthogonalitaetsbedingung}
+Damit die ganzzahligen Translate einer Funktion $\varphi$ alle orthogonal
+sind, ist notwendig und hinreichend, dass 
+\begin{equation}
+\mathcal{P}|\hat{\varphi}|^2(\omega)
+=
+\sum_{k\in\mathbb Z} |\hat{\varphi}(\omega + 2\pi k)|^2
+=
+\frac1{2\pi}
+\label{msa:orthogonalitaetsbedingung}
+\end{equation}
+für fast alle $\omega\in\mathbb R$.
+\end{satz}
+
+%
+% Skalierungsrelation
+%
+\subsection{Die Skalierungsrelation}
+Das Vater-Wavelet einer Multiskalen-Analyse muss einer Skalierungsrelation
+genügen, die wir in der Form
+\begin{equation}
+\varphi(t)
+=
+\sqrt{2} \sum_{k\in\mathbb Z} h_k \varphi(2t-k)
+\label{msa:skalt}
+\end{equation}
+schreiben.
+Wir wenden darauf die Fourier-Transformation an und erhalten
+\[
+\hat{\varphi}(t)
+=
+\sqrt{2} \sum_{k\in\mathbb Z} h_k e^{-ik\omega/2} \frac12\hat{\varphi}\biggl(\frac{\omega}{2}\biggr)
+=
+\frac1{\sqrt{2}}
+\biggl(\sum_{k\in\mathbb Z}h_ke^{-ik\omega/2}\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\]
+
+\begin{definition}
+Schreiben wir 
+\[
+H(s)
+=
+\frac1{\sqrt{2}}
+\sum_{k\in\mathbb Z}h_ke^{-iks},
+\]
+sie heisst die {\em erzeugende Funktion} einer Multiskalen-Analyse.
+\end{definition}
+
+Mit der erzeugenden Funktion $H(s)$ wird die
+Skalierungsbedingung~\eqref{msa:skalt} im Zeitbereich
+für das Vater-Wavelet zu der Bedingung
+\begin{equation}
+\hat{\varphi}(\omega) 
+=
+H\biggl(\frac{\omega}2\biggr)\,\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\label{msa:skalomega}
+\end{equation}
+im Frequenzbereich.
+Wir haben in \eqref{msa:skalomega}
+also eine zusätzliche Bedingung zur Orthogonalitätsbedingung
+\eqref{msa:orthogonalitaetsbedingung}.
+
+Man beachte, dass die Funktion $H(s)$ ausschliesslich durch die
+Koeffizienten der Skalierungsrelation bestimmt ist.
+Die Funktionalgleichung~\eqref{msa:skalomega} deutet bereits an,
+dass diese Koeffizienten die Funktion $\varphi$ eindeutig bestimmen
+könnten.
+
+Ein weiterer Schritt in diese Richtung ist, dass sich die
+Orthogonalitätsbedingung~\eqref{msa:orthogonalitaetsbedingung}
+Durch $H$ ausdrücken lässt.
+
+\begin{satz}
+Die erzeugende Funktion $H(s)$ einer Multiskalen-Analyse erfüllt die
+Bedingung
+\begin{equation}
+|H(\omega)|^2 + |H(\omega+\pi)|^2 = 1
+\label{msa:Hbed}
+\end{equation}
+für fast alle $\omega\in\mathbb R$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir wenden spalten die Summe in der Orthogonalitätsbedingung in zwei
+Teilsummen mit geraden und ungeraden $k$ auf:
+\begin{align*}
+\frac{1}{2\pi}
+&=
+\sum_{k\in\mathbb Z} |\hat{\varphi}(\omega + 2\pi k)|^2
+=
+\sum_{k\in\mathbb Z} |\hat{\varphi}(\omega + 4\pi k)|^2
++
+\sum_{k\in\mathbb Z} |\hat{\varphi}(\omega + 4\pi k + 2\pi)|^2
+\\
+\intertext{und wenden auf jeden Summanden die 
+Skalierungsrelation~\eqref{msa:skalomega} an:}
+&=
+\sum_{k\in\mathbb Z}
+\biggl|
+H\biggl(\frac{\omega}2+2\pi k\biggr)
+\hat\varphi\biggl(\frac{\omega}2 + 2\pi k\biggr)
+\biggr|^2
++
+\sum_{k\in\mathbb Z}
+\biggl|
+H\biggl(\frac{\omega}2 + \pi + 2\pi k\biggr)
+\hat\varphi\biggl(\frac{\omega}2 + \pi+ 2\pi k\biggr)
+\biggr|^2
+\\
+&=
+\biggl|
+H\biggl(\frac{\omega}2+2\pi k\biggr)
+\biggr|^2
+\sum_{k\in\mathbb Z}
+\biggl|
+\hat\varphi\biggl(\frac{\omega}2 + 2\pi k\biggr)
+\biggr|^2
++
+\biggl|
+H\biggl(\frac{\omega}2 + \pi + 2\pi k\biggr)
+\biggr|^2
+\sum_{k\in\mathbb Z}
+\biggl|
+\hat\varphi\biggl(\frac{\omega}2 + \pi+ 2\pi k\biggr)
+\biggr|^2
+\intertext{Darin können wir die Summanden $2\pi k$ in den Argumenten von
+$H$ weglassen, weil $H$ $2\pi$-periodisch ist.
+$k$ verschwindet damit aus den Faktoren $H$, die daher aus der
+Summe ausgeklammert werden können:}
+\\
+&=
+\biggl|
+H\biggl(\frac{\omega}2\biggr)
+\biggr|^2
+\mathcal{P}|\hat{\varphi}|^2\biggl(\frac{\omega}2\biggr)
++
+\biggl|
+H\biggl(\frac{\omega}2 + \pi\biggr)
+\biggr|^2
+\mathcal{P}|\hat{\varphi}|^2\biggl(\frac{\omega}2+\pi\biggr)
+\\
+\intertext{Aus der Orthogonalitätsbedingung folgt, dass die Terme
+$\mathcal{P}|\hat{\varphi}|^2$ fast überall konstant sind:}
+&=
+\biggl|
+H\biggl(\frac{\omega}2\biggr)
+\biggr|^2
+\cdot
+\frac1{2\pi}
++
+\biggl|
+H\biggl(\frac{\omega}2 + \pi\biggr)
+\biggr|^2
+\cdot
+\frac1{2\pi}.
+\end{align*}
+Dies gilt für fast alle $\omega$, also müssen die beiden $H$-Terme zusammen
+$1$ geben.
+Damit ist die Aussage \eqref{msa:Hbed} bewiesen.
+\end{proof}
+
