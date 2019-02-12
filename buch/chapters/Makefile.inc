@@ -36,6 +36,8 @@ CHAPTERFILES =								\
 	chapters/6-msa/skalfour.tex					\
 	chapters/6-msa/orthonormalisierung.tex				\
 	chapters/7-algo/chapter.tex					\
+	chapters/7-algo/fast.tex					\
+	chapters/7-algo/rekonstruktion.tex				\
 	chapters/8-kompakt/chapter.tex					\
 	chapters/9-spline/chapter.tex					\
 	chapters/a-komplex/komplexezahlen.tex				\

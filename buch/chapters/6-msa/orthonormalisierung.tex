@@ -49,13 +49,13 @@ Vielmehr ist das Skalarprodukt
 In diesem Abschnitt soll daher die folgende Aufgabe gelöst werden
 \begin{aufgabe}
 \label{aufgabe:orthonormalisierung}
-Gegeben $\varphi\in L^2(\mathbb R)$ konstruiere eine Funktion 
-$\varphi_1\in L^2(\mathbb R)$, die eine Linearkombination von 
-Translaten von $\varphi$ ist, also
+Gegeben $f\in L^2(\mathbb R)$ konstruiere eine Funktion 
+$F\in L^2(\mathbb R)$, die eine Linearkombination von 
+Translaten von $f$ ist, also
 \[
-\varphi_1(t) = \sum_{k=-\infty}^\infty c_k \varphi(t-k)
+F(t) = \sum_{k=-\infty}^\infty c_k f(t-k)
 \]
-und so, dass die Translate orthonormiert sind.
+und so, dass die Translate von $F$ orthonormiert sind.
 \end{aufgabe}
 
 In der Linearen Algebra lernt man üblicherweise das Verfahren von
@@ -67,7 +67,59 @@ Dieses Vorgehen ist im vorliegenden Fall nicht angebracht, da die
 entstehenden Vektoren nicht alle Translate des ersten Vektor sind.
 
 \begin{proof}[Lösung]
-Zunächst können wir annehmen, dass $\|\varphi\|=1$ ist.
+In Satz~\label{satz:msa:orthogonalitaetsbedingung} wurde eine Bedingung
+formuliert, mit der man entscheiden kann, ob die Translate einer 
+Funktion orthogonal sind.
+Für die Fourier-Transformation muss gelten
+\[
+\mathcal{P}|\hat{F}|^2(\omega)
+=
+\frac{1}{2\pi}.
+\]
+Die Funktion 
+\[
+\Phi(\omega)
+=
+2\pi\mathcal{P}|\hat{f}|^2(\omega)
+\]
+ist $2\pi$-periodisch, also auch die Funktion $1/\sqrt{\Phi(\omega)}$.
+Sie kann daher in eine Fourier-Reihe entwickelt werden
+\[
+\frac{1}{\sqrt{\Phi(\omega}}
+=
+\sum_{k\in\mathbb Z} c_ke^{-ik\omega}
+\]
+Wir setzen 
+\[
+\hat{F}(\omega)
+=
+\frac{1}{\sqrt{\Phi(\omega)}} 
+\hat{f}(\omega)
+=
+\sum_{k\in\mathbb Z} c_ke^{-ik\omega}\hat{f}(\omega)
+\]
+Offenbar bedeutet dies, dass $F$ eine Linearkombination von Translaten
+von $f$ ist.
+Wir können aber auch die Orthogonalitätsbedingung verifizieren:
+\begin{align*}
+\mathcal{P}|\hat{F}|^2
+=
+\frac{1}{\Phi(\omega)} \mathcal{P}|\hat{f}|^2(\omega)
+=
+\frac{1}{2\pi}
+\end{align*}
+Die Translate der Funktion $F$ sind daher orthonormiert.
 \end{proof}
+
+Diese Lösung zeigt, dass unter der Voraussetzung, dass die Funktion
+$\Phi(\omega)=\mathcal{P}|\hat{f}(\omega)|^2$ so ist, dass auch
+$1/\sqrt{\Phi(\omega}$ eine quadratinterierbare periodische Funktion ist,
+dann lassen sich die Translate von $f$ so linear zu $F$ kombinieren, dass die
+die Translate von $F$ orthonormiert sind.
+Dieser Prozess ersetzt also das Gram-Schmidtsche Orthogonalisierungsverfahren
+im Falle der Wavelets.
+
+
+
 
 
