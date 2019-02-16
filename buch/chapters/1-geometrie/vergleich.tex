@@ -10,7 +10,11 @@ In diesem Abschnitt suchen wir eine geometrische Sprache für das
 Problem, zwei Signale zu vergleichen und ein Signal aus geeigneten
 Vergleichssignalen zusammenzusetzen.
 
-\subsection{Vergleich von Binärsignalen}
+\subsection{Vergleich von Signalen}
+Beginnend mit Binärsignalen entwickeln wir ein anschauliches Mass für die
+``Ähnlichkeit'' von zwei Signalen.
+
+\subsubsection{Binärsignale}
 Wir beginnen unsere Betrachtungen mit zwei diskrete Signale mit Werten $\pm 1$:
 \begin{align*}
 &x_1,x_2,x_3,\dots,x_N &&\in \{\pm 1\},
@@ -47,6 +51,9 @@ wir, dass $x_k$ und $y_k$ jeweils etwa in der Hälfte der Fälle
 entgegengesetztes Vorzeichen haben werden, und gleiches in allen
 anderen.
 Dies führt auf $p=0$.
+Die Zahl $p$ könnte also als Mass dafür dienen, wie ähnlich die beiden Signale
+sind.
+
 Dies ist allerdings nicht ganz realistisch.
 Warum sollten die Werte $+1$ und $-1$ gleich häufig sein?
 Man könnte dies korrigieren, indem man den mittleren Wert beider Folgen
@@ -67,6 +74,140 @@ völlig unkorreliert sind.
 Offenbar reicht es auch vollständig aus, wenn nur eines der Signale
 im Mittel den Wert $0$ hat, dann verschwindet der zweite Term
 in~\eqref{geometrie:cov}.
+
+\subsubsection{Reellwertige Signale}
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/1-geometrie/images/sinsin.pdf}
+\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
+verrauschen Sinus-Signal $\color{blue}y(t)$.
+Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
+hauptsächlich im ersten und dritten Quadranten.
+\label{geometrie:kovarianz:sinsin:image}}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/1-geometrie/images/sincos.pdf}
+\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
+verrauschen Kosinus-Signal $\color{blue}y(t)$.
+Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
+in ungefähr gleicher Zahl in allen vier Quadranten, die Kovarianz
+wird klein sein.
+\label{geometrie:kovarianz:sincos:image}}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/1-geometrie/images/sinrect.pdf}
+\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
+verrauschen Rechteck-Signal $\color{blue}y(t)$.
+Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
+hauptsächlich im ersten und dritten Quadranten.
+\label{geometrie:kovarianz:sinrect:image}}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/1-geometrie/images/cosrect.pdf}
+\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
+verrauschen und phasenverschobenen Rechteck-Signal $\color{blue}y(t)$.
+Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
+in ungefähr gleicher Zahl in allen vier Quadranten, die Kovarianz
+wird klein sein.
+\label{geometrie:kovarianz:cosrect:image}}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/1-geometrie/images/sinrand.pdf}
+\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
+weissen Rausch-Signal $\color{blue}y(t)$ (normalverteilte Zufallswerte
+mit Erwartungswert $0$).
+Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
+in ungefähr gleicher Zahl in allen vier Quadranten, die Kovarianz
+wird klein sein.
+\label{geometrie:kovarianz:sinrand:image}}
+\end{figure}
+
+
+Binäre Signale sind nicht allzu realistisch, wir möchten daher zwei
+beliebige rellwertige Signale vergleichen.
+Die früher verwendete Summe der Produkte der Signalwerte wird grösser,
+wenn die Signalwerte grösser werden, sie ist also nicht geeignet als
+absolutes Mass für die Ähnlichkeit zweier Funktionen.
+Wir müssen daher mit einem Faktor korrigieren, der die ungefähre
+Grösse der Absolutbeträge des Signals wiedergibt.
+\[
+\frac1{N}
+\sum_{k=1}^N x_k^2
+\qquad\text{bzw.}\qquad
+\frac1{N}
+\sum_{k=1}^N y_k^2
+\]
+verwenden.
+Diese haben allerdings die falsche Masseinheit, nämlich die des
+Quadrates des Signals, wir müssen also ihre Quadratwurzel verwenden.
+Für Signale mit Mittelwert $0$ führt dies auf
+\[
+\frac{
+\frac{1}{N}\sum_{k=1}^N x_ky_k
+}{
+\sqrt{\frac{1}{N}\sum_{k=1}^N x_k^2}
+\sqrt{\frac{1}{N}\sum_{k=1}^N y_k^2}
+}
+\qquad\text{oder}\qquad
+r
+=
+\frac{\operatorname{cov}(x_k,y_k)}{\sqrt{\operatorname{var}(x_k)}\sqrt{\operatorname{var}(y_k)}}
+\]
+Die Grösse $r$ ist auch bekannt als der Korrelationskoeffizient.
+
+In den Abbildung~\ref{geometrie:kovarianz:sinsin:image} bis
+\ref{geometrie:kovarianz:sinrand:image} wird ein Sinus-Signal
+mit Werten $x(t)=sin t$ abgetastet und verglichen mit
+einer Reihen anderer Signale,
+die alle ebenfalls den Mittelwert $0$ haben.
+Wir wollen beurteilen, wie gut die Summe
+\[
+\frac{1}{N}\sum_{k=1}^N x_ky_k
+\]
+wiedergibt, ob die Funktionen etwas miteinander zu tun haben.
+Dazu wird im linken Teil der Abbildung jeweils das Sinus-Signal
+$x(t)$ rot eingezeichnet und das damit zu vergleichende Signal $y(t)$
+blau.
+Der Unterschiede zwischen den beiden Werten wird durch einen 
+violetten Balken eingezeichnet.
+
+Im rechten Teil der Abbildung wird dann für jeden Zeitpunkt
+das Wertepaar $(x(t),y(t))$ als violetter Punkt eingetragen.
+Punkte im ersten und dritten Quadranten führen auf einen positiven
+Summanden in der Summe, Punkte im zweiten und vierten Quadranten
+führen auf einen negativen Beitrag.
+Die Summe wird also besonders gross, wenn die violetten Punkte vor
+Allem im ersten und dritten Quadranten liegen, und besonders negativ,
+wenn sie vor Allem im zweiten und vierten Quadranten liegen.
+
+Liegen die violetten Punkte in allen Quadranten gleichmässig, ist
+davon auszugehen, dass sich die positiven und negativen Werte des
+Produktes im Mittel wegheben werden, dass also die Summe der
+Produkte nur einen kleinen Werte haben wird.
+
+Die Abbildungen~\ref{geometrie:kovarianz:sinsin:image} und
+\ref{geometrie:kovarianz:sinrect:image} zeigen den Vergleich
+des Sinus-Signals mit einer verrauschen Version eines Sinus-Signals
+bzw.~eines Rechteck-Signals $\operatorname{sign}(\sin(t))$.
+In beiden Fällen liegen die violetten Punkte vorzugsweise im ersten
+und dritten Quadranten, 
+
+In den anderen Abbildungen
+wird das Sinus-Signal der Reihe nach mit einem verrauschten
+Kosinus-Signal (Abbildung~\ref{geometrie:kovarianz:sincos:image}),
+einem phasenverschobenen verrauschten Rechtecksignal
+(Abbildung~\ref{geometrie:kovarianz:cosrect:image})
+und mit einem reinen weissen Rauschen
+(Abbildung~\ref{geometrie:kovarianz:sinrand:image})
+verglichen.
+In diesen Fällen verteilen sich die violetten Punkte gleichmässig
+über alle vier Quadranten, man erwartet also einen kleinen Wert
+der Summe, was eine geringe Ähnlichkeit der blauen Signale mit dem
+Sinus-Signal ausdrückt.
 
 %Doch auch dies kann nicht ganz richtig sein.
 %Wenn nämlich der Mittelwert der $x_k$ nicht $0$ ist, dann ist die
