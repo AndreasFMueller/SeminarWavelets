@@ -3,7 +3,7 @@
 %
 % (c) 2018 Prof Dr Andreas Müller
 %
-\section{Funktionenrämue
+\section{Funktionenräume%
 \label{section:funktionenraume}}
 \rhead{Funktionräume}
 
@@ -16,17 +16,6 @@ Man kann zu einem Argument einen konstanten Wert hinzuaddieren oder mit
 einer Zahl multiplizieren, bevor man eine Funktion auswertet.
 Daraus ergeben sich die zwei Operationen der Translation und der Dilatation.
 
-\begin{definition}
-Sei $f$ eine Funktion auf $\mathbb R$ mit Werten in $Y$.
-Dann setzt man
-\begin{align*}
-T_bf&\colon \mathbb R \to Y: t\mapsto f(t-b)&&\text{Translation}
-\\
-D_af&\colon \mathbb R \to Y: t\mapsto f(t/a)&&\text{Dilatation}
-\end{align*}
-\end{definition}
-
-% XXX TODO Graphik zur Visualisierung von T_b und D_a
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/translation.pdf}
@@ -43,38 +32,107 @@ Wavelet $\psi$. Das Wavelet $D_a\psi$ ist zentriert im Punkt $a\cdot c$.
 \label{geometrie:Da:image}}
 \end{figure}
 
+\begin{definition}
+Sei $f$ eine Funktion auf $\mathbb R$ mit Werten in $Y$.
+Dann setzt man
+\begin{align*}
+T_bf&\colon \mathbb R \to Y: t\mapsto f(t-b)&&\text{Translation}
+\\
+D_af&\colon \mathbb R \to Y: t\mapsto f(t/a)&&\text{Dilatation}
+\end{align*}
+\end{definition}
+
+Die Wirkung der beiden Operatoren ist in den
+Abbildungen~\ref{geometrie:Tb:image} und \ref{geometrie:Da:image} dargestellt.
+Der Operator $D_a$ dehnt den Graphen der Funktion entlang der
+$t$-Achse um den Faktor $a$ während der Operator $T_b$ den Graphen
+der Funktion um den Betrag $b$ entlant der $t$-Achse verschiebt.
+
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/1-geometrie/images/kommutator.pdf}
+\caption{Die Operatoren $T_b$ und $D_a$ vertauschen nicht.
+Der rote Pfad wendet erst $T_b$ und dann $D_a$ an, der blaue zuerst
+$D_a$ und dann erst $T_b$.
+In beiden Fällen erhält man ein um den Faktor $a$ gestrecktes
+Wellenpaket.
+Im Fall $T_b\circ D_a$ erhält man ein im Punkt $b$ zentriertes Wellenpaket
+(blaue), während es im Falle $D_a\circ T_b$ im Punkt $ab$ zentriert ist (rot).
+Wendet man in der unteren Zeile statt $T_b$ den Operator $T_{ab}$ an, 
+kommen die beiden Wellenpakete zur Deckung, was die Vertauschungsregel
+von Satz~\ref{satz:kommutator} bestätigt.
+\label{geometrie:kommutator:image}}
+\end{figure}
 
 \begin{satz}
+\label{satz:kommutator}
 Translation $T_b$ und Dilatation $D_a$ sind lineare Abbildungen.
 Die beiden Operatoren vertauschen nicht, vielmehr gilt
-$T_bD_a = D_aT_{ab}$.
+$T_{ab}D_a = D_aT_b$.
 \end{satz}
 
 \begin{proof}[Beweis]
-
-Wir berechnen die Wirkung beider Operatoren in verschiedener Reihenfolge
-nach:
+Die Linearität der Operatoren wird durch Nachrechnen verifiziert.
+Für eine Linearkombination $\lambda f+\mu g$ zweier Funktion $f$ und $g$ gilt:
 \begin{align*}
-(D_aT_bf)(t)
+D_a(\lambda f+\mu g)(t)
+&=
+(\lambda f+\mu g)(t/a)
+=
+\lambda f(t/a)+\mu g(t/a)
+=
+\lambda (D_af)(t)+\mu (D_ag)(t),
+\\
+T_b(\lambda f+ \mu g)(t)
+&=
+(\lambda f+\mu g)(t-b)
+=
+\lambda f(t-b)+\mu g(t-b)
+=
+\lambda (T_bf)(t)+\mu (T_bg)(t),
+\end{align*}
+Ohne Argumente geschrieben heisst dies
+\begin{align*}
+D_a(\lambda f+\mu g) &= \lambda D_af + \mu D_ag
+\\
+T_b(\lambda f+\mu g) &= \lambda T_bf + \mu T_bg
+\end{align*}
+Damit ist die Linearität bewiesen.
+
+Für die Vertauschungsregel müssen die beiden Seiten der Regel
+berechnet werden.
+Die Wirkung der beiden Operatoren in verschiedener Reihenfolge
+ist:
+\begin{align*}
+(T_bf)(t)
+&=
+f(t-b)
+\\
+(D_af)(t)
+&=
+f(t/a)
+\\
+(D_aT_bf)
 &=
 (T_bf)(t/a)
 =
-f((t-b)/a) = f(t/a - b/a)
-\\
-(T_bD_a f)(t)
-&=
-(D_af)(t - b)
+f(t/a-b)
 =
-f(t/a - b)
-=
-f(((t-ab)/a)
+f((t-ab)/a)
 \\
+(T_{ab}D_a f)(t)
 &=
-(D_aT_{ab}f)(t)
+(D_af)(t - ab)
+=
+f((t-ab)/a)
 \end{align*}
+Daraus kann man ablesen, dass $T_{ab}D_a=D_aT_b$.
 \end{proof}
 
-% XXX TODO Graphik zur Illustration der Rechenregeln für T_b und D_a
+Die Abbildung~\ref{geometrie:kommutator:image} illustriert die
+Vertauschungsregel für die Operatoren $T_b$ und $D_a$ und liefert
+einen ``graphischen'' Beweis für die Vertauschungsregel von
+Satz~\ref{satz:kommutator}.
 
 \begin{satz}
 Die einzigen stetigen Funktionen, die Eigenvektoren von $T_b$ sind für

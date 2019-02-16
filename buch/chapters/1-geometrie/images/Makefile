@@ -9,7 +9,8 @@ all:	sinsin.pdf	\
 	cosrect.pdf	\
 	sinrand.pdf	\
 	translation.pdf	\
-	dilatation.pdf
+	dilatation.pdf	\
+	kommutator.pdf
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
@@ -41,5 +42,8 @@ translation.pdf:	translation.tex
 
 dilatation.pdf:	dilatation.tex
 	pdflatex dilatation.tex
+
+kommutator.pdf:	kommutator.tex
+	pdflatex kommutator.tex
 
 
