@@ -1,0 +1,34 @@
+%
+% stueckcommmon.tex -- template for standalon tikz images
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\def\pivalue{3.1415926}
+\def\frequency{3}
+
+\draw[->,line width=0.7pt] (-0.1,0)--({4*\pivalue+0.4},0) coordinate[label=$t$];
+\draw[->,line width=0.7pt] (0,-2.1)--(0,2.3) coordinate[label={right:$f(t)$}];
+
+\draw[line width=1pt,color=red] plot[domain=0:{4*\pivalue},samples=200]
+	({\x},{2*sin(\frequency*(\x+sin(0.5*\x*180/\pivalue))*180/\pivalue)});
+
+\begin{scope}
+\clip (0,-2.1) rectangle ({4*\pivalue},2.1);
+\foreach \x in {0,1,...,\xsteps}{
+	\draw[line width=1pt,color=blue]
+		({\x*\xstep},{2*sin(\frequency*((\x*\xstep)+sin(0.5*\x*\xstep*(180/\pivalue)))*(180/\pivalue))})--
+	({(\x+1)*\xstep},{2*sin(\frequency*((\x*\xstep)+sin(0.5*\x*\xstep*(180/\pivalue)))*(180/\pivalue))});
+	\draw[line width=0.1pt,color=blue]
+		({(\x+1)*\xstep},{2*sin(\frequency*((\x*\xstep)+sin(0.5*\x*\xstep*(180/\pivalue)))*(180/\pivalue))})--
+	({(\x+1)*\xstep},{2*sin(\frequency*(((\x+1)*\xstep)+sin(0.5*(\x+1)*\xstep*(180/\pivalue)))*(180/\pivalue))});
+	
+}
+\end{scope}
+
+\foreach \x in {1,...,12}{
+	\draw[line width=0.7pt] ({\x},-0.1)--({\x},0.1);
+	\node at ({\x},-0.1) [below] {$\mathstrut\x$};
+}
+\node at (0,0) [below right] {$\mathstrut 0$};
+
