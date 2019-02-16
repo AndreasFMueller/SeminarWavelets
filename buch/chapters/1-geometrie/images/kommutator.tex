@@ -41,18 +41,18 @@
 %
 % Wirkung von T_b
 %
-\begin{scope}[xshift=2.5cm,yshift=2.5cm]
+\begin{scope}[xshift=2cm,yshift=2.5cm]
 \fill[color=red!10]
-	plot[domain=-2.2:4.2,samples={\steps}]
+	plot[domain=-1.7:4.7,samples={\steps}]
 		({\x},{2*exp(-(\x-\b)*(\x-\b)*2))}) --
-	plot[domain=4.2:-2.2,samples={\steps}]
+	plot[domain=4.7:-1.7,samples={\steps}]
 		({\x},{-2*exp(-(\x-\b)*(\x-\b)*2))}) -- cycle;
 \draw[->,color=red,line width=0.7pt] (0,-2.1)--({\b},-2.1);
 \draw[line width=0.1pt,color=red] ({\b},0)--({\b},-2.2);
 \node at ({\b/2},-2.1) [below] {$b\mathstrut$};
-\draw[->,line width=0.7pt] (-2.2,0)--(4.5,0) coordinate[label=$t$];
-\draw[->,line width=0.7pt] (0,-2.2)--(0,2.3);
-\draw[line width=1pt,color=red] plot[domain=-2.2:4.2,samples={\steps}]
+\draw[->,line width=0.7pt] (-1.7,0)--(5,0) coordinate[label=$t$];
+\draw[->,line width=0.7pt] (0,-1.7)--(0,2.3);
+\draw[line width=1pt,color=red] plot[domain=-1.7:4.7,samples={\steps}]
 	({\x},{2*exp(-(\x-\b)*(\x-\b)*2)*sin(\frequency*(\x-\b)*(180/\pivalue)});
 \fill[color=red] (\b,0) circle[radius=0.08];
 \end{scope}
@@ -83,37 +83,37 @@
 %
 % Wirkung von D_a und T_b
 %
-\begin{scope}[xshift=2.5cm,yshift=-2.5cm]
+\begin{scope}[xshift=2cm,yshift=-2.5cm]
 \fill[color=blue!10]
-	plot[domain={-2.2}:{4.2},samples={\steps}]
+	plot[domain={-1.7}:{4.7},samples={\steps}]
 		({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)}) --
-	plot[domain={4.2}:{-2.2},samples={\steps}]
+	plot[domain={4.7}:{-1.7},samples={\steps}]
 		({\x},{-2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)}) -- cycle;
 \fill[color=red!10]
-	plot[domain=-2.2:4.2,samples={\steps}]
+	plot[domain=-1.7:4.7,samples={\steps}]
 		({\x},{2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))}) --
-	plot[domain=4.2:-2.2,samples={\steps}]
+	plot[domain=4.7:-1.7,samples={\steps}]
 		({\x},{-2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))}) -- cycle;
 
 \begin{scope}
 \clip
-	plot[domain={-2.2}:{4.2},samples={\steps}]
+	plot[domain={-1.7}:{4.7},samples={\steps}]
 		({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)}) --
-	plot[domain={4.2}:{-2.2},samples={\steps}]
+	plot[domain={4.7}:{-1.7},samples={\steps}]
 		({\x},{-2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)}) -- cycle;
 \definecolor{pink}{rgb}{0.8,0.2,1}
 \fill[color=pink!20]
-	plot[domain=-2.2:4.2,samples={\steps}]
+	plot[domain=-1.7:4.7,samples={\steps}]
 		({\x},{2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))}) --
-	plot[domain=2.2:-4.2,samples={\steps}]
+	plot[domain=4.7:-1.7,samples={\steps}]
 		({\x},{-2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))}) -- cycle;
 \end{scope}
 
-\draw[->,line width=0.7pt] (-2.2,0)--(4.5,0) coordinate[label=$t$];
-\draw[->,line width=0.7pt] (0,-2.2)--(0,2.3);
-\draw[line width=1pt,color=blue] plot[domain={-2.2}:{4.2},samples={\steps}]
+\draw[->,line width=0.7pt] (-1.7,0)--(5,0) coordinate[label=$t$];
+\draw[->,line width=0.7pt] (0,-1.7)--(0,2.3);
+\draw[line width=1pt,color=blue] plot[domain={-1.7}:{4.7},samples={\steps}]
 	({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)*sin(\frequency*((\x-\b)/\a)*(180/\pivalue)});
-\draw[line width=1pt,color=red] plot[domain=-2.2:4.2,samples={\steps}]
+\draw[line width=1pt,color=red] plot[domain=-1.7:4.7,samples={\steps}]
 	({\x},{2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2)*sin(\frequency*((\x/\a)-\b)*(180/\pivalue)});
 \fill[color=red] ({\a*\b},0) circle[radius=0.08];
 \fill[color=blue] (\b,0) circle[radius=0.08];
