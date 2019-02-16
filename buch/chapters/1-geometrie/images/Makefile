@@ -3,7 +3,12 @@
 #
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
-all:	sinsin.pdf sincos.pdf sinrect.pdf cosrect.pdf sinrand.pdf
+all:	sinsin.pdf	\
+	sincos.pdf	\
+	sinrect.pdf	\
+	cosrect.pdf	\
+	sinrand.pdf	\
+	translation.pdf
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
@@ -30,5 +35,7 @@ pointfiles = 		\
 $(pointfiles):	points.m
 	octave points.m
 
+translation.pdf:	translation.tex
+	pdflatex translation.tex
 
 
