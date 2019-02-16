@@ -8,7 +8,8 @@ all:	sinsin.pdf	\
 	sinrect.pdf	\
 	cosrect.pdf	\
 	sinrand.pdf	\
-	translation.pdf
+	translation.pdf	\
+	dilatation.pdf
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
@@ -37,5 +38,8 @@ $(pointfiles):	points.m
 
 translation.pdf:	translation.tex
 	pdflatex translation.tex
+
+dilatation.pdf:	dilatation.tex
+	pdflatex dilatation.tex
 
 
