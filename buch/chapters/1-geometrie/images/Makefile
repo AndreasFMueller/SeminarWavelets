@@ -13,7 +13,8 @@ all:	sinsin.pdf	\
 	kommutator.pdf	\
 	hexagon.pdf	\
 	hexagon1.pdf	\
-	hexagon2.pdf
+	hexagon2.pdf	\
+	hexagon3.pdf
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
@@ -57,4 +58,7 @@ hexagon1.pdf:	hexagon1.tex
 
 hexagon2.pdf:	hexagon2.tex
 	pdflatex hexagon2.tex
+
+hexagon3.pdf:	hexagon3.tex
+	pdflatex hexagon3.tex
 
