@@ -8,22 +8,25 @@ if [ $# -lt 2 ]
 then
 	echo "not enough arguments"
 	echo "usage: ./setup <topic> <number>"
-	echo "files will be named MathSem-<number>-<topic>.pdf and <topic>handout.pdf"
+	echo "files will be named MathSem-<number>-<topic>.pdf and <topic>-handout.pdf"
 	exit 1
 fi
 
-presentation=${1}
+topic=${1}
 number=${2}
-directory=${number}_${presentation}
+directory=${number}_${topic}
 
 mkdir ${directory}
 cp 00_template/common.tex ${directory}
 cp 00_template/slides.tex ${directory}
-cp 00_template/presentation.tex \
-	${directory}/MathSem-${number}-${presentation}.tex
-cp 00_template/handout.tex \
-	${directory}/${presentation}-handout.tex
 
-sed -e "s/xxx/${presentation}/g" -e "s/yyy/${number}/g" \
+sed -e "s/xxx/${topic}/g" -e "s/yyy/${number}/g" 			\
 	00_template/Makefile > ${directory}/Makefile
+
+sed -e "s/xxx/${topic}/g" -e "s/yyy/${number}/g" 			\
+	00_template/handout.tex > ${directory}/${topic}-handout.tex
+
+sed -e "s/xxx/${topic}/g" -e "s/yyy/${number}/g" 			\
+	00_template/presentation.tex 					\
+		> ${directory}/MathSem-${number}-${topic}.tex
 

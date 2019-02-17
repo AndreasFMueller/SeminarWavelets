@@ -8,7 +8,7 @@ all:	xxx-handout.pdf MathSem-yyy-xxx.pdf
 SOURCES = common.tex slides.tex
 
 MathSem-yyy-xxx.pdf:	MathSem-yyy-xxx.tex $(SOURCES)
-	pdflatex STAT-yyy-xxx.tex
+	pdflatex MathSem-yyy-xxx.tex
 
 xxx-handout.pdf:	xxx-handout.tex $(SOURCES)
 	pdflatex xxx-handout.tex
