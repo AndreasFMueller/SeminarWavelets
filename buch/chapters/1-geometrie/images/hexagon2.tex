@@ -38,11 +38,6 @@
 	({\innerradius*cos(240)},{\innerradius*sin(240)})--
 	({\innerradius*cos(300)},{\innerradius*sin(300)})--cycle;
 
-%\foreach \p in {30,90,...,330}{
-%	\draw[color=gray!20,line width=2pt] (0,0)--
-%		({(\outerradius+\a)*cos(\p)},{(\outerradius+\a)*sin(\p)});
-%}
-
 \def\achsen{
 	\draw[->,line width=0.7pt] ({-1.2*\a},0)--({1.2*\a},0)
 		coordinate[label={$x$}];
@@ -53,9 +48,10 @@
 \begin{scope}[xshift=4cm]
 	\achsen
 	\draw[->,line width=1pt,color=red] (0,0)--({\a},0);
-	\node at ({\a},0) [above right] {$(1,0)$};
+	\node at ({\a},0) [below] {$(1,0)$};
 	\punkt{\a*cos(0)}{\a*sin(0)}
 	\node[color=red] at ({\a/2},0) [above] {$b_1$};
+	\fill[color=red] (0,0) circle[radius=0.06];
 \end{scope}
 
 \begin{scope}[xshift=2cm,yshift=3.464cm]
@@ -67,6 +63,7 @@
 	\punkt{\a*cos(60)}{\a*sin(60)}
 	\node[color=red] at ({\a/2},0) [above] {$b_1$};
 	\node[color=red] at ({\a-\a/4},{\a*sqrt(3)/4}) [right] {$b_2$};
+	\fill[color=red] (0,0) circle[radius=0.06];
 \end{scope}
 
 \begin{scope}[xshift=-2cm,yshift=3.464cm]
@@ -76,14 +73,16 @@
 		{$(0,1)$};
 	\punkt{\a*cos(120)}{\a*sin(120)}
 	\node[color=red] at ({-\a/4},{\a*sqrt(3)/4}) [left] {$b_2$};
+	\fill[color=red] (0,0) circle[radius=0.06];
 \end{scope}
 
 \begin{scope}[xshift=-4cm]
 	\achsen
 	\draw[->,line width=1pt,color=red] (0,0)--({-\a},0);
-	\node at ({-\a},0) [above left] {$(-1,0)$};
+	\node at ({-\a},0) [below] {$(-1,0)$};
 	\punkt{\a*cos(180)}{\a*sin(180)}
 	\node[color=red] at ({-\a/2},0) [above] {$-b_1$};
+	\fill[color=red] (0,0) circle[radius=0.06];
 \end{scope}
 
 \begin{scope}[xshift=-2cm,yshift=-3.464cm]
@@ -96,6 +95,7 @@
 	\punkt{\a*cos(240)}{\a*sin(240)}
 	\node[color=red] at ({-\a/2},0) [above] {$-b_1$};
 	\node[color=red] at ({-\a+\a/4},{-\a*sqrt(3)/4}) [left] {$-b_2$};
+	\fill[color=red] (0,0) circle[radius=0.06];
 \end{scope}
 
 \begin{scope}[xshift=2cm,yshift=-3.464cm]
@@ -105,6 +105,7 @@
 		{$(0,-1)$};
 	\punkt{\a*cos(300)}{\a*sin(300)}
 	\node[color=red] at ({\a/4},{-\a*sqrt(3)/4}) [right] {$-b_2$};
+	\fill[color=red] (0,0) circle[radius=0.06];
 \end{scope}
 
 \end{tikzpicture}

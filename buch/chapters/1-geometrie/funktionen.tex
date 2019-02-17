@@ -6,8 +6,84 @@
 \section{Funktionenräume%
 \label{section:funktionenraume}}
 \rhead{Funktionräume}
+Die abgetasteten Signale haben einen endlichdimensionalen Vektorraum
+mit Skalarprodukt gebildet und darin könnte man auch bereits ein
+ansprechend interessante Theorie aufbauen.
+Zum Beispiel könnte man bereits eine Form der diskreten
+Fourier-Transformation entwickeln, wie das zum Beispiel in
+\cite{buch:mathsem-klima} geschieht.
+Für die Entwicklung der Wavelet-Theorie ist notwendig, dass Signale
+entlang der Zeitachse beliebig fein aufgelöst werden können, was
+mit einem bereits abgetasteten Signal nicht möglich ist.
+Es muss daher eine Theorie entwickelt werden, in der man mit
+Funktionen genau gleich arbeiten kann wie mit den Vektoren von
+Abtastwerten.
+Insbesondere wird angestrebt, Skalarprodukte von Funktionen
+zu bilden und orthonormierte Basen zu konstruieren, dieses Ziel wird
+allerdings erst in Kapitel~\ref{chapter:fourier} erreicht werden.
 
 \subsection{Vektorräume von Funktionen}
+Sein $X$ eine Menge, dann ist
+\[
+\mathbb R^X = \{ f\colon X\to\mathbb R\}
+\]
+die Menge der Funktionen auf $X$ mit reellen Werten.
+Sie kann auf natürlich Art und Weise zu einem Vektorraum gemacht werden.
+Dazu müssen die Operationen Addition und Multiplikation mit Skalaren
+definiert werden
+
+\begin{definition}
+Die Vektorraum-Operationen auf $\mathbb R^X$ sind definiert durch
+\[
+\begin{aligned}
+f,g&\in \mathbb R^X
+	&&\Rightarrow
+	&(f+g)&\colon X\to\mathbb R:x\mapsto f(x)+g(x)
+\\
+f&\in\mathbb R^X, \lambda\in\mathbb R
+	&&\Rightarrow
+	&(\lambda f)&\colon X\to\mathbb R:x\mapsto \lambda f(x)
+\end{aligned}
+\]
+\end{definition}
+
+\begin{beispiel}
+Für $X=\{1,\dots,N\}$ ist $f\in \mathbb R^X$ gleichbedeutend mit
+der Vorgabe der Funktionswerte $(f(1),\dots,f(N))$.
+Diese können auch als Spaltenvektoren
+\[
+\vec{f} = \begin{pmatrix}f(1)\\\vdots\\f(N)\end{pmatrix}
+\]
+geschrieben werden.
+Die Rechenoperationen in $\mathbb R^X$ und $\mathbb R^N$ sind gleichbedeutent,
+wie man zum Beispiel für die Addition verifizieren kann:
+\[
+\overrightarrow{(f+g)}
+=
+\begin{pmatrix}
+(f+g)(x_1)\\\vdots\\(f+g)(x_N)
+\end{pmatrix}
+=
+\begin{pmatrix}
+f(x_1)+g(x_1)\\\vdots\\f(x_N)+g(x_N)
+\end{pmatrix}
+=
+\begin{pmatrix}
+f(x_1)\\\vdots\\f(x_N)
+\end{pmatrix}
++
+\begin{pmatrix}
+g(x_1)\\\vdots\\g(x_N)
+\end{pmatrix}
+=
+\vec{f} + \vec{g}.
+\]
+$\mathbb R^X$ ist also nur eine neue Schreibweise für den altbekannten
+Vektorraum $\mathbb R^N$.
+\end{beispiel}
+
+Die Konstruktion wird interessant, wenn $X$ zusätzliche Struktur hat.
+Wenn $X$ eine Teilmenge von $\mathbb R^n$ ist, dann 
 
 \subsection{Translation und Dilatation}
 Der Definitionsbereich $\mathbb R$ zeichnet sich durch die darin zur
