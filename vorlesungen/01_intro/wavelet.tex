@@ -1,0 +1,26 @@
+%
+% wavelet.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{tikzpicture}[>=latex]
+
+\def\pivalue{3.1415}
+
+\fill[color=red!10]
+	plot[domain=-6.5:6.5,samples=200]
+	({\x},{3*exp(-(\x/\a)*(\x/\a)/4)})
+	--
+	plot[domain=6.5:-6.5,samples=200]
+	({\x},{-3*exp(-(\x/\a)*(\x/\a)/4)})
+	--cycle;
+
+\draw[line width=1.4pt,color=red]
+	plot[domain=-6.5:6.5,samples=400]
+	({\x},{3*sin(3*(\x/\a)*(180/\pivalue))*exp(-(\x/\a)*(\x/\a)/4)});
+
+\draw[->,line width=0.7pt] (-6.5,0)--(6.8,0) coordinate[label={$t$}];
+\draw[->,line width=0.7pt] (0,-3.1)--(0,3.3);
+
+\end{tikzpicture}
+
