@@ -40,12 +40,10 @@ Dazu gehört das hexagonale Gitter in Abbildung~\ref{geometrie:hexagon:image}.
 Selbstverständlich kann dafür das übliche rechtwinklige Koordinatensystem
 verwendet werden, aber die Ecken eines Sechsecks shaben darin die nicht
 sehr symmetrischen Koordinaten
-\begin{align*}
-&      &&\textstyle(-\frac12,\frac12\sqrt{3})&&\textstyle( \frac12,\frac12\sqrt{3})&     \\
-&(-1,0)&&                          &&                          &(1,0)\\
-&      &&\textstyle(-\frac12,-\frac12\sqrt{3})&&\textstyle( \frac12,-\frac12\sqrt{3})&     
-\end{align*}
-(Siehe auch Abbildung~\ref{buch:frame:hexagon}).
+\begin{center}
+\includegraphics{chapters/1-geometrie/images/hexagon1.pdf}
+\end{center}
+(Siehe auch Abbildung~\ref{geometrie:hexagon:image}).
 Eine bessere Variante ist das Koordinatensystem auf der Basis der beiden
 Basisvektoren (in kartesischen Koordinaten)
 \[
@@ -56,11 +54,35 @@ b_1 = \begin{pmatrix} 1\\0\end{pmatrix}
 b_2 = \begin{pmatrix} -\frac12\\\frac12\sqrt{3}\end{pmatrix}.
 \]
 In diesem Koordinatensystem haben die Ecken des Sechsecks die Koordinaten
-\begin{align*}
-&      &&(0,1)  &&(-1,1)&&     \\
-&(-1,0)&&       &&      &&(1,0)\\
-&      &&(-1,-1)&&(0,-1)&&
-\end{align*}
+\begin{center}
+\includegraphics{chapters/1-geometrie/images/hexagon2.pdf}
+\end{center}
+%\begin{center}
+%\begin{tikzpicture}
+%\def\a{1.8}
+%\foreach \p in {0,60,...,360}{
+%	\draw[line width=0.1pt] ({\a*cos(\p)},{\a*sin(\p)})--
+%		({\a*cos(\p+60)},{\a*sin(\p+60)});
+%}
+%\foreach \p in {0,60,...,300}{
+%	\fill[color=white] ({\a*cos(\p)-0.65},{\a*sin(\p)-0.25})
+%		rectangle ({\a*cos(\p)+0.65},{\a*sin(\p)+0.25});
+%}
+%
+%\node at (0,0) {$0$};
+%\node at ({\a},0) {$(1,0)$};
+%\node at ({-\a},0) {$(-1,0)$};
+%\node at ({0.5*\a},{\a*sqrt(3)/2}) {$(1,1)$};
+%\node at ({0.5*\a},{-\a*sqrt(3)/2}) {$(0,-1)$};
+%\node at ({-0.5*\a},{\a*sqrt(3)/2}) {$(0,1)$};
+%\node at ({-0.5*\a},{-\a*sqrt(3)/2}) {$(-1,-1)$};
+%\end{tikzpicture}
+%\end{center}
+%\begin{align*}
+%&      &&(0,1)  &&(1,1)&&     \\
+%&(-1,0)&&       &&      &&(1,0)\\
+%&      &&(-1,-1)&&(0,-1)&&
+%\end{align*}
 Was bereits viel besser aussieht.
 Trotzdem ist auch dies noch nicht ganz zufriedenstellend. 
 Zum Beispiel sind die Ecken links oben und rechts unten direkt durch den

@@ -11,7 +11,9 @@ all:	sinsin.pdf	\
 	translation.pdf	\
 	dilatation.pdf	\
 	kommutator.pdf	\
-	hexagon.pdf
+	hexagon.pdf	\
+	hexagon1.pdf	\
+	hexagon2.pdf
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
@@ -49,4 +51,10 @@ kommutator.pdf:	kommutator.tex
 
 hexagon.pdf:	hexagon.tex
 	pdflatex hexagon.tex
+
+hexagon1.pdf:	hexagon1.tex
+	pdflatex hexagon1.tex
+
+hexagon2.pdf:	hexagon2.tex
+	pdflatex hexagon2.tex
 
