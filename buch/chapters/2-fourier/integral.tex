@@ -6,3 +6,206 @@
 \section{Fourier-Integral
 \label{section:fourier-integral}}
 \rhead{Fourier-Integral}
+Für Funktionen $f\in L^2(\mathbb R)$ ist die Fourier-Transformation
+\[
+\hat{f}(\omega)
+=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty f(t) f(t)e^{-i\omega t}\,dt
+\]
+wohldefiniert.
+Wir schreiben die Fourier-Transformation auch
+\[
+\mathcal{F}\colon f\mapsto \hat{f}.
+\]
+Sie verallgemeinert die Eigenschaften der Fourier-Koeffizienten $c_k$
+für Funktionen auf $\mathbb R$.
+Für die Rechungen in den folgenden Kapiteln stellen wir hier die
+wichtigsen Formeln für die Fourier-Transformation zusammen.
+
+\begin{satz}
+Für $\hat{f}\in L^2(\mathbb R)$ gilt die Umkehrformel
+\[
+f(t)
+=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty} \hat{f}(\omega)e^{i\omega t}\,d\omega.
+\]
+\end{satz}
+
+Die Fourier-Transformation ist also eine invertierbare lineare Abbildung,
+$\mathcal{F}^{-1}(\hat{f}) = f$.
+
+\begin{satz}
+Die Fourier-Transformation $\mathcal F\colon f\mapsto f$ ist eine linear
+Abbildung, die sich mit Translation, Dilatation und Ableitung wie folgt
+verträgt:
+\begin{align*}
+\widehat{T_bf}(\omega)
+&=
+e^{-i\omega b}\hat{f}(\omega).
+\\
+\widehat{D_af}(\omega)
+&=
+a \hat{f}(a\omega)
+\\
+\widehat{e^{ibt}f}(\omega)
+&=
+(T_b\hat{f})(\omega).
+\end{align*}
+\end{satz}
+
+\begin{proof}[Beweis]
+Durch direkte Rechnung finden wir:
+\begin{align*}
+\widehat{T_bf}(\omega)
+&=
+\int_{-\infty}^{\infty} (T_bf)(t)e^{-i\omega t}\,dt
+=
+\int_{-\infty}^{\infty} f(\underbrace{t-b}_{\displaystyle=t'})e^{-i\omega t}\,dt
+=
+\int_{-\infty}^{\infty} f(t')e^{-i\omega(t'+b)}\,dt'
+\\
+&=
+e^{-i\omega b}
+\int_{-\infty}^{\infty} f(t')e^{-i\omega t'}\,dt'
+=
+e^{-i\omega b}\hat{f}(\omega).
+\\
+\widehat{D_af}(\omega)
+&=
+\int_{-\infty}^\infty (D_af)(t)e^{-i\omega t}\,dt
+=
+\int_{-\infty}^\infty f(\underbrace{t/a}_{\displaystyle=t'})e^{-i\omega t}\,dt
+=
+\int_{-\infty}^\infty f(t')e^{-i\omega at'}\,a\,dt'
+=
+a \hat{f}(a\omega)
+\\
+\widehat{e^{ibt}f}(\omega)
+&=
+\int_{-\infty}^\infty e^{ibt}f(t)e^{-i\omega t}\,dt
+=
+\int_{-\infty}^\infty f(t)e^{-i(\omega -b)t}\,dt
+=
+\hat{f}(\omega-b)
+=
+(T_b\hat{f})(\omega).
+\end{align*}
+Damit sind alle drei Identitäten bewiesen.
+\end{proof}
+
+Schreibt man $M_b$ für den Operator, der eine Funktion mit dem
+Faktor $e^{ibt}$ multipliziert, also
+\[
+(M_bf)(t) = e^{ibt}f(t),
+\]
+dann kann man die Relationen noch etwas kompakter schreiben:
+\begin{align*}
+\widehat{T_bf}
+&=
+M_{-b}\hat{f}
+\\
+\widehat{M_bf}
+&=
+T_b\hat{f},
+\end{align*}
+oder mit der Schreibweise $\mathcal{F}f$ für die Fourier-Transformation
+\[
+\begin{aligned}
+\mathcal{F}T_b f &= M_{-b}\mathcal F
+&&\Rightarrow &
+\mathcal{F}T_b &= M_{-b}\mathcal{F}
+\\
+\mathcal{F}M_b f&=T_b\mathcal{F}T_bf
+&&\Rightarrow &
+\mathcal{F}M_b&=T_b\mathcal{F}T_b
+\\
+\mathcal{F}D_af&=a D_{1/a} \mathcal F f
+&&\Rightarrow &
+\mathcal{F}D_a&=a D_{1/a} \mathcal F 
+\end{aligned}
+\]
+
+\begin{satz}
+Für zwei Funktionen $f,g\in L^2(\mathbb R)$ gilt die Plancherel-Formel
+\begin{align*}
+\langle f,g\rangle
+&=
+\langle \hat{f},\hat{g}\rangle.
+\\
+\|f\|&=\|\hat{f}\|
+\end{align*}
+Die Fourier-Transformation $\mathcal{F}\colon f\mapsto \hat{f}$ ist
+also eine Isometrie.
+\end{satz}
+
+\begin{satz}
+Für differenzierbare Funktionen $f$ gilt
+\[
+\widehat{f'}(\omega) = i\omega \hat{f}(\omega)
+\]
+Falls für $g\in L^2(\mathbb R)$ mit $\|tg\|^2<\infty$, dann ist $\hat{g}$
+fast überall differenzierbar und es gilt
+\[
+-\widehat{i t f}(\omega) = \hat{f}'(\omega).
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Formeln hängen davon ab, ob partiell integiert oder die Ableitung
+unter des Integral genommen werden darf:
+\begin{align*}
+\widehat{f'}(\omega)
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty \underbrace{f'(t)}_{\uparrow}\underbrace{e^{-i\omega t}}_{\downarrow}\,dt
+=
+\frac{1}{\sqrt{2\pi}}
+\biggl[
+f(t)e^{-i\omega t}\,dt
+\biggr]_{-\infty}^\infty
++
+\frac{1}{\sqrt{2\pi}}
+\cdot
+i\omega
+\int_{-\infty}^\infty f(t)e^{-i\omega t}\,dt
+=
+i\omega\hat{f}(\omega),
+\\
+\hat{f}'(\omega)
+&=
+\frac{d}{d\omega}
+\frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty
+f(t) e^{-i\omega t}\,dt
+=
+\frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty
+-it f(t) e^{-i\omega t}\,dt
+=
+-\widehat{itf}(\omega)
+\qedhere
+\end{align*}
+\end{proof}
+
+Schreibt man $\partial_t$ für die Ableitung nach $t$ und $\partial_\omega$
+für die Ableitung nach $\omega$ und $\mu_{t}$ bzw.~$\mu_{\omega}$ für
+die Multiplikation $t$ bzw.~$\omega$, dann kann man die Regeln wieder
+kompakter schreiben:
+\[
+\begin{aligned}
+\mathcal{F}\partial_t f &= i\mu_{\omega}\mathcal{F}f
+&&\Rightarrow&
+\mathcal{F}\partial_t &= i\mu_{\omega}\mathcal{F}
+\\
+-i\mathcal{F}\mu_t f &= \partial_\omega\mathcal{F} f
+&&\Rightarrow&
+-i\mathcal{F}\mu_t &= \partial_\omega\mathcal{F}.
+\end{aligned}
+\]
+
+
+
+
+
+
+

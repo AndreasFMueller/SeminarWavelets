@@ -403,3 +403,74 @@ und damit beschränkte Länge $|I|$ länge hat, ist das Integral von $|f|$
 ebenfalls beschränkt.
 \end{proof}
 
+\subsection{Die Operatoren $T_b$ und $D_a$}
+
+\begin{satz}
+Für eine Funktion $f,g\in\mathbb R$ gilt
+\[
+\begin{aligned}
+\langle T_bf,T_bg\rangle
+&=
+\langle f,g\rangle
+&&
+&
+\| T_bf\|^2 &= \|f\|^2
+\\
+\langle D_af,D_ag\rangle
+&=
+|a|\cdot
+\langle f,g\rangle
+&&
+&
+\| D_af\|^2 &= |a|\cdot \|f\|^2.
+\end{aligned}
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Translation ändert die Norm nicht weil das Lebesgue-Integral 
+translationsinvariant ist, wie man sich durch die Rechnung
+\begin{align*}
+\int_{-\infty}^\infty (T_bf)(t)\,\overline{(T_bg)(t)}\,dt
+&=
+\int_{\infty}^\infty f(\underbrace{t-b}_{\displaystyle=t'})\bar{g}(t-b)\,dt
+=
+\int_{\infty}^\infty f(t')\bar{g}(t')\,dt'
+=
+\langle f,g\rangle
+\\
+\int_{-\infty}^\infty |(T_bf)(t)|^2\,dt
+&=
+\int_{-\infty}^\infty |f(\underbrace{t-b}_{\displaystyle=t'})|^2\,dt
+=
+\int_{-\infty}^\infty |f(t')|^2\,dt'
+=
+\|f\|^2
+\end{align*}
+überzeugen kann.
+Für $D_a$ findet man ähnlich
+\begin{align*}
+\langle D_af,D_ag\rangle
+&=
+\int_{-\infty}^\infty (D_af)(t)\,\overline{(D_ag)(t)}\,dt
+=
+\int_{-\infty}^\infty
+f(\underbrace{t/a}_{\displaystyle=t'})
+\overline{g(t/a)}
+\,dt
+=
+\int_{-\infty}^\infty f(t')\bar{g}(t')\,|a|\,dt'
+\\
+&=
+|a|\cdot \langle f,g\rangle.
+\qedhere
+\end{align*}
+\end{proof}
+
+
+
+
+
+
+
+

@@ -1,0 +1,137 @@
+%
+% heisenberg.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Heisenbergsche Unschärfe-Relation
+\label{section:heisenberg}}
+\rhead{Heisenbergsche Unschärferelation}
+Die Fourier-Transformation eines in der Zeit gut lokalisierten
+Signals $f(t)$ zeigt, wie gut das selbe Signal im Frequenzraum
+lokalisiert ist.
+Um diese Idee zu quantifizieren brauchen wir zunächst ein Mass für
+die Lokalisierung von $f(t)$ bzw.~$\hat{f}(\omega)$.
+Wäre $f$ eine Wahrscheinlichkeitsdichte, dann wäre die Varianz ein
+naheliegendes Mass dafür.
+Die Funktion muss aber nicht $\le 0$ sein, man könnte das Problem
+aber korrigeren, indem man stattdessen $|f(t)|^2$ verwendet.
+Das Mass für die Lokalisierung in Zeit und Frequenz ist daher
+\begin{align*}
+\int_{-\infty}^\infty
+t^2 \, |f(t)|^2\,dt
+&=
+\int_{-\infty}^\infty
+|t\,f(t)|^2\,dt
+=
+\|tf\|^2
+\\
+\int_{-\infty}^\infty
+\omega^2\,|\hat{f}(\omega)|^2\,d\omega
+&=
+\int_{-\infty}^\infty
+|\omega\,\hat{f}(\omega)|^2\,d\omega
+=
+\|\omega \hat{f}\|^2.
+\end{align*}
+Je grösser diese Normen werden, desto schlechter ist das Signal in der
+entsprechenden Variable lokalisiert.
+
+Die Heisenbergsche Unschärferelation besagt, dass ein Signal nicht
+in Zeit und Frequenz gleichzeit beliebig gut lokalisiert sein kann.
+Sie drückt dies dadurch aus, dass das Produkt der beiden Normen 
+eine untere Schranke hat.
+
+\begin{satz}[Heisenberg]
+Ist $f\in L^2(\mathbb R)$ derart, dass 
+$\|tf\|<\infty$ und $\|\omega\hat{f}\|<\infty$, dann gilt
+\begin{equation}
+\| tf \| \cdot \| \omega \hat{f}(\omega)\| \ge \frac12\| f\|^2.
+\label{heisenberg:gleichung}
+\end{equation}
+Die untere Schranke wir erreicht für Gauss-Funktionen, also Funktionen
+der Form $De^{-t^2/2\sigma^2}$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Voraussetzungen garantieren, dass die Fourier-Transformation existiert.
+Ausserdem bedeutet $\|\omega\hat{f}\|<\infty$, dass $\omega\hat{f}(\omega)$ 
+eine $L^2$-Funktion ist.
+Nach den Rechenregeln für die Fourier-Transformation besagen, dass 
+$f$ fast überall differenzierbar sein muss, enn es gilt
+\[
+i\omega \hat{f}(\omega) = \widehat {f'}(\omega).
+\]
+Damit kann man die Lokalisierung von $\hat{f}$ durch $f$ ausdrücken:
+\begin{align*}
+\|\omega \hat{f}\|^2
+&=
+\int_{-\infty}^\infty |i\omega \hat{f}(\omega)|^2\,d\omega
+=
+\int_{-\infty}^\infty |\widehat{f'}(\omega)|^2\,d\omega
+\\
+&=
+\int_{-\infty}^\infty f'(t)|^2\,dt.
+\end{align*}
+Jetzt kann man die Cauchy-Schwarz-Ungleichung auf die Funktione $f'$ und $tf$
+anwenden:
+\begin{align*}
+\|tf\| \cdot \| f'\|
+&\ge
+| \operatorname{Re}\langle tf,f'\rangle |
+=
+\biggl|
+\int_{-\infty}^\infty
+\frac 12\bigl( tf(t)\bar{f}'(t)  + t\bar{f}(t)f'(t)\biggr)\,dt
+\biggr|
+\\
+&=
+\biggl|
+\int_{-\infty}^\infty t\cdot \frac{d}{dt}\biggl(\frac12|f(t)|^2\biggr)\,dt
+\biggr|
+=
+\biggl|
+\underbrace{
+\biggl[
+\frac12 t\,|f(t)|^2
+\biggr]_{-\infty}^{\infty}
+}_{\displaystyle=0}
+-
+\frac12\underbrace{\int_{-\infty}^\infty |f(t)|^2\,dt}_{\displaystyle=\|f\|^2}
+\biggr|
+\\
+&=
+\frac12 \|f\|^2.
+\end{align*}
+Damit ist die Ungleichung~\eqref{heisenberg:gleichung} bewiesen.
+
+Gleichheit wird erreicht, wenn die beiden Faktoren in der 
+Ungleichung~\eqref{heisenberg:gleichung} linear abhängig sein.
+Es gibt also einen Proportionalitätsfaktor $c\in\mathbb C$ derart,
+dass
+\[
+\begin{aligned}
+&&
+tf(t)&=cf'(t)
+\\
+&\Rightarrow&
+\frac{t}{c}&=\frac{d}{dt}\log f(t)
+\\
+&\Rightarrow&
+\frac{t^2}{2c}&=\log f(t) + C
+\\
+&\Rightarrow&
+f(t)&=De^{t^2/2c}.
+\end{aligned}
+\]
+Da die Funktion $f$ in $L^2(\mathbb R)$ sein muss, kommen nur negative
+Konstanten $c$ in Frage, wir bezeichnen sie mit $c=-\sigma^2$.
+Gleichheit in der Ungleichung~\eqref{heisenberg:gleichung} tritt also
+genau dann auf, wenn $f$ die Form
+\[
+f(t) = D e^{-\frac{t^2}{2\sigma^2}}
+\]
+hat.
+\end{proof}
+
+
+
