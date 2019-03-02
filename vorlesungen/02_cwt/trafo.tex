@@ -1,0 +1,53 @@
+%
+% trafo.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\def\curve#1#2#3{
+\begin{scope}
+\clip (-6.5,-3) rectangle (6.5,3);
+\draw[line width=1pt,color=red]
+	plot[domain={((#2)-2*abs(#1))}:{((#2)+2*abs(#1))},samples=100]
+	({\x},{(#3)*sin(8*((\x-(#2))/(#1))*(180/3.1415))*exp(-((\x-(#2))/(#1))*((\x-(#2))/(#1)))/sqrt(abs(#1))});
+\end{scope}
+}
+
+\def\flaeche#1#2#3{
+\begin{scope}
+\clip (-6.5,-3) rectangle (6.5,3);
+\fill[color=red!20]
+	plot[domain={((#2)-2*abs(#1))}:{((#2)+2*abs(#1))},samples=200]
+	({\x},{(#3)*exp(-((\x-(#2))/(#1))*((\x-(#2))/(#1)))/sqrt(abs(#1))})
+	--
+	plot[domain={((#2)+2*abs(#1))}:{((#2)-2*abs(#1))},samples=200]
+	({\x},{-(#3)*exp(-((\x-(#2))/(#1))*((\x-(#2))/(#1)))/sqrt(abs(#1))})
+	--cycle;
+\end{scope}
+}
+
+\def\achsen#1{
+	\draw[->,line width=0.7pt] (-6.6,0)--(7.0,0) coordinate[label={$t$}];
+	\draw[->,line width=0.7pt] (0,{-#1})--(0,{#1});
+	\foreach \x in {1,...,6}{
+		\draw[line width=0.7pt] ({\x},-0.08)--({\x},0.08);
+		\draw[line width=0.7pt] ({-\x},-0.08)--({-\x},0.08);
+	}
+}
+
+\def\cwt#1#2#3{
+	\draw[->,line width=0.7pt]
+		(-6.6,{#3-2})--(7.0,{#3-2}) coordinate[label={$b$}];
+	\draw[->,line width=0.7pt]
+		(0,{#3-2.1})--(0,{#3+0.4}) coordinate[label={left:$a$}];
+	\fill[color=red] ({#2},{#3-2+#1}) circle[radius=0.08];
+}
+
+%\input{gabor.tex}
+
+%\input{translation.tex}
+
+%\input{dilatation.tex}
+
+\input{transdil.tex}
+

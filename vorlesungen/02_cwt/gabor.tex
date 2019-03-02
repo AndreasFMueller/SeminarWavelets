@@ -1,0 +1,32 @@
+%
+% gabor.tex -- gabor wavelet
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\begin{frame}
+\frametitle{Gabor-Wavelet}
+Sinus-Signal lokalisiert mit Exponentialfunktion
+\uncover<2->{
+\[
+\psi(t) = \sin(8t)\cdot e^{-t^2}
+\]
+}
+\begin{tikzpicture}[>=latex]
+\uncover<3->{
+\flaeche{2}{0}{2.82}
+}
+\draw[->,line width=0.7pt] (-6.6,0)--(7.0,0) coordinate[label={$t$}];
+\draw[->,line width=0.7pt] (0,-2)--(0,2.3) coordinate[label={left:$f(t)$}];
+\uncover<4->{
+\curve{2}{0}{2.82}
+}
+\foreach \x in {1,2,3}{
+	\draw[line width=0.7pt] ({2*\x},-0.1)--({2*\x},0.1);
+	\draw[line width=0.7pt] ({-2*\x},-0.1)--({-2*\x},0.1);
+	\node at ({2*\x},-0.1) [below] {$\x$};
+	\node at ({-2*\x},0.1) [above] {$-\x$};
+}
+\end{tikzpicture}
+\end{frame}
+

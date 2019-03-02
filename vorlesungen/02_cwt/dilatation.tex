@@ -1,0 +1,60 @@
+%
+% dilatation.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}
+\frametitle{Dilatation}
+\begin{center}
+\begin{tikzpicture}[>=latex]
+
+\draw[line width=1pt,color=blue!40] (2.5,-4)--(2.5,-1.3);
+
+\ifthenelse{\boolean{presentation}}{
+
+\node at (0,2) [left] {$T_{2.5}D_{a}\psi(t)=\mathstrut$};
+
+\foreach \a in {1,...,5}{
+	\only<\a>{
+		\pgfmathparse{exp(0.2*(\a-6))}
+		\xdef\A{\pgfmathresult}
+		\node at (0,2) [right]
+			{$T_{2.5}D_{\A}\psi(t)=\psi((t-2.5)/\A)$};
+		\flaeche{\A}{2.5}{1}
+		\achsen{1.5}
+		\curve{\A}{2.5}{1}
+		\cwt{\A}{2.5}{-2.0}
+	}
+}
+\only<6>{
+	\node at (0,2) [right] {$T_{2.5}D_1\psi(t)=\psi(t-2.5)$};
+	\flaeche{1}{2.5}{1}
+	\achsen{1.5}
+	\curve{1}{2.5}{1}
+	\cwt{1}{2.5}{-2.0}
+}
+\foreach \a in {7,...,11}{
+	\only<\a>{
+		\pgfmathparse{exp(0.2*(\a-6))}
+		\xdef\A{\pgfmathresult}
+		\node at (0,2) [right]
+			{$T_{2.5}D_{\A}\psi(t)=\psi((t-2.5)/\A)$};
+		\flaeche{\A}{2.5}{1}
+		\achsen{1.5}
+		\curve{\A}{2.5}{1}
+		\cwt{\A}{2.5}{-2.0}
+	}
+}
+}{
+	\node at (0,2) {$T_bD_a\psi(t)=T_{2.5}D_a\psi(t)=\psi((t-2.5)/a)=\psi((5-2.5)/1.4)$};
+	\flaeche{1.4}{2.5}{1}
+	\achsen{1.5}
+	\curve{1.4}{2.5}{1}
+	\cwt{1.4}{2.5}{-2.0}
+}
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
