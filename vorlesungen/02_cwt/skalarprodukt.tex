@@ -3,6 +3,9 @@
 %
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
+\theoremstyle{definition}
+\newtheorem{cauchyschwarz}{Chauchy-Schwarz-Ungleichung}
+
 \begin{frame}
 \frametitle{Skalarprodukt}
 Abgetastete Signale:
@@ -11,12 +14,32 @@ Abgetastete Signale:
 =
 \sum_{k\in\mathbb Z} x_k\bar{y}_k
 \]
-$f$, $g$ zeitaghängige Signale $t\mapsto f(t)$ und $t\mapsto g(t)$
-\[
+\uncover<2->{%
+$f$, $g$ zeitabhängige Signale $t\mapsto f(t)$ und $t\mapsto g(t)$
+\begin{equation}
 \langle f,g\rangle
 =
 \int_{-\infty}^\infty f(t)\bar{g}(t)\,dt
+\label{skalarprodukt}
+\end{equation}%
+}
+\uncover<3->{%
+\begin{definition}
+Die quadratintegrierbaren Funktionen $L^2=\{f\colon\mathbb R\to\mathbb C\,|
+\,\int_{\mathbb R}|f(t)|^2\,dt<\infty\}$ bilden einen Vektorraum mit dem Skalarprodukt
+\eqref{skalarprodukt}.
+\end{definition}
+}
+\uncover<4->{%
+\begin{cauchyschwarz}
+Für $f,g\in L^2(\mathbb R)$ gilt
+\[
+\langle f,g\rangle \le
+\|f\|\cdot \|g\|
 \]
+mit Gleichheit genau dann wenn $f$ und $g$ linear abhängig sind.
+\end{cauchyschwarz}
+}
 \end{frame}
 
 

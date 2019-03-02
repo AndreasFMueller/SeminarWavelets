@@ -51,7 +51,7 @@
 \draw[line width=0.1pt,color=red] ({\b},0)--({\b},-2.2);
 \node at ({\b/2},-2.1) [below] {$b\mathstrut$};
 \draw[->,line width=0.7pt] (-1.7,0)--(5,0) coordinate[label=$t$];
-\draw[->,line width=0.7pt] (0,-1.7)--(0,2.3);
+\draw[->,line width=0.7pt] (0,-2.2)--(0,2.3);
 \draw[line width=1pt,color=red] plot[domain=-1.7:4.7,samples={\steps}]
 	({\x},{2*exp(-(\x-\b)*(\x-\b)*2)*sin(\frequency*(\x-\b)*(180/\pivalue)});
 \fill[color=red] (\b,0) circle[radius=0.08];
@@ -110,7 +110,7 @@
 \end{scope}
 
 \draw[->,line width=0.7pt] (-1.7,0)--(5,0) coordinate[label=$t$];
-\draw[->,line width=0.7pt] (0,-1.7)--(0,2.3);
+\draw[->,line width=0.7pt] (0,-2.2)--(0,2.3);
 \draw[line width=1pt,color=blue] plot[domain={-1.7}:{4.7},samples={\steps}]
 	({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)*sin(\frequency*((\x-\b)/\a)*(180/\pivalue)});
 \draw[line width=1pt,color=red] plot[domain=-1.7:4.7,samples={\steps}]

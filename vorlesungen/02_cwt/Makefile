@@ -12,7 +12,9 @@ SOURCES = common.tex slides.tex				\
 	gabor.tex					\
 	dilatation.tex					\
 	translation.tex					\
-	transdil.tex
+	transdil.tex					\
+	cwt.tex						\
+	fourier.tex
 
 MathSem-02-cwt.pdf:	MathSem-02-cwt.tex $(SOURCES)
 	pdflatex MathSem-02-cwt.tex

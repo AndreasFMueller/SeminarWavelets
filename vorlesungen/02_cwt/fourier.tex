@@ -1,0 +1,129 @@
+%
+% fourier.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\theoremstyle{plancherel}
+\newtheorem{plancherel}{Plancherel-Formel}
+
+\begin{frame}
+\frametitle{Fourier-Transformation}
+\begin{definition}[Fourier-Transformation]
+Für $f\in L^1(\mathbb R)$ gilt
+\begin{align*}
+(\mathcal{F}f)(\omega)
+=
+\hat{f}(\omega)
+&=
+\frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty f(t) e^{-i\omega t}\,dt
+\\
+&=
+\langle f,e_\omega\rangle,\qquad\text{mit}\quad e_{\omega}(t) = e^{i\omega t}
+\end{align*}
+\end{definition}
+\uncover<2->{
+\begin{plancherel}
+Die Fourier-Transformation ist eine Isometrie:
+\[
+\int_{-\infty}^\infty f(t)\bar{g}(t)\,dt
+=
+\langle f,g\rangle
+=
+\langle \mathcal{F}f,\mathcal{F}g\rangle
+=
+\int_{-\infty}^\infty \hat{f}(\omega)\bar{\hat{g}}(\omega)\,d\omega
+\]
+\end{plancherel}
+}
+\end{frame}
+
+%
+% Fourier-Transformation und Translation
+%
+\begin{frame}
+\frametitle{Fourier-Transformation und $T_b$}
+\begin{align*}
+\widehat{T_bf}(\omega)
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty} T_bf(t)\,e^{-i\omega t}\,dt
+\uncover<2->{
+=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty} f(\underbrace{t-b}_{\displaystyle=t'})\,e^{-i\omega t}\,dt
+}
+\\
+&\uncover<3->{=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty} f(t')\,e^{-i\omega (t'+b)}\,dt'}
+\uncover<4->{=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty} f(t')\,e^{-i\omega t'}\,dt'
+\cdot
+e^{-i\omega b}}
+\\[14pt]
+&\uncover<5->{=
+e^{-i\omega b}\hat{f}(\omega)}
+\end{align*}
+\uncover<6->{
+\begin{satz}
+Die Fouriertransformierte der verschobenen Funktion ist
+\begin{align*}
+\widehat{T_bf}
+&=
+e^{-i\omega b} \hat{f}
+\uncover<7->{%
+=: M_{e^{-i\omega b}}\hat{f}}
+\\
+\uncover<8->{\widehat{M_{e^{i\omega b}}f}}
+&\uncover<8->{=
+T_b\hat{f}}
+\end{align*}
+\end{satz}}
+\end{frame}
+
+%
+% Fourier-Transformation und Translation
+%
+\begin{frame}
+\frametitle{Fourier-Transformation und $D_a$}
+\begin{align*}
+\widehat{D_af}(\omega)
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty}
+D_af(t)\,e^{-i\omega t}\,dt
+\uncover<2->{=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty}
+\frac{1}{\sqrt{|a|}}
+f(\underbrace{t/a}_{\displaystyle=t'})\,e^{-i\omega t}\,dt}
+\\
+&\uncover<3->{=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty}
+\frac{1}{\sqrt{|a|}}
+f(t')e^{i\omega at'}
+|a|\, dt'}
+\uncover<4->{=
+\sqrt{|a|}
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty}
+f(t')e^{i(a\omega)t'}
+\, dt'}
+\\[14pt]
+&\uncover<5->{=(D_{1/a}\hat{f})(\omega)}
+\end{align*}
+\uncover<6->{
+\begin{satz}
+Die Fouriertransformierte der gestreckten Funktion ist
+\[
+\widehat{D_af}(\omega)
+=
+(D_{1/a}\hat{f})(\omega)
+\]
+\end{satz}}
+\end{frame}
+
+
+
