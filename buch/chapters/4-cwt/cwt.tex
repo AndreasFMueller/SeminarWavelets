@@ -377,4 +377,54 @@ In Anwendungen der Signalverarbeitung wird daher oft $1/a$ oder $-\log a$
 auf der vertikalen Achse aufgetragen, so dass hohe Frequenzen wie in
 einem Sonogramm weiter oben dargestellt werden.
 
+\begin{beispiel}
+In diesem Beispiel verwenden wir komplexe Morlet-Wavelets
+\begin{equation}
+\psi(t) = e^{-\frac{t^2}2 +5it}
+\end{equation}
+um das Sweep-Signal mit linear ansteigender Frequenz
+\begin{equation}
+f(t)
+=
+\sin(t(4+0.2t))
+\label{cwt:sweep-function}
+\end{equation}
+zwischen $t=0$ und $t=26$.
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/4-cwt/images/sweep2.pdf}
+\caption{Absolutwert und Phase der stetigen Wavelet-Transformation
+der Sweep-Funktion~\eqref{cwt:sweep-function} 
+für komplexe Morlet-Wavelets $\psi(t) = e^{-t^2/2+5it}$.
+\label{cwt:sweep-cwt-abs-phase}}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/4-cwt/images/sweep.pdf}
+\caption{Farbcodierte Darstellung der stetigen Wavelet-Transformation
+der Sweep-Funktion~\eqref{cwt:sweep-function}
+für komplexe Morlet-Wavelets $\psi(t) = e^{-t^2/2} \sin(5t)$.
+\label{cwt:sweep-cwt-color}}
+\end{figure}
+Die Resultate sind in Abbildungen~\ref{cwt:sweep-cwt-abs-phase} und
+\ref{cwt:sweep-cwt-color} dargestellt.
+Der Absolutwert der stetigen Wavelettransformation zeigt die aktuelle
+Frequenz des Sweep-Signals an.
+Das Maximum der Amplitude für jeden $b$-Wert ist in
+Abbildung~\ref{cwt:sweep-cwt-abs-phase} dunkelgrün hervorgehoben.
+Danke der komplexen Oszillation $e^{5it}$ ändert zwar die Phase relativ
+rasch entlang des Maximums, der Absolutwert ändert dagegen nur 
+langsam.
+In Abbildung~\ref{cwt:sweep-cwt-color} ist die Phase durch die Farbe
+codiert, auch hier wird offensichtlich, dass die Phase sehr schnell ändert,
+während die Amplitude nur langsam abfällt.
 
+Ein reelles Wavelet ergibt dagegen immer dann einen maximalen Wert der
+Wavelet-Transformation, wenn die Extrema des Wavelets mit den Extrema
+des Signals zusammenfallen.
+Die komplexen Oszillation $e^{5it}=\cos 5t + i\sin 5t$ kann durch einen
+Phasenfaktor immer so modifiziert werden, dass die Extrema des Realteils
+mit den Extrema des Signals zusammenfallen.
+Dieser Phasenfaktor hat genau die entgegengesetzte Phase der
+Wavelettransformation.
+\end{beispiel}

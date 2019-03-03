@@ -3,9 +3,7 @@
 #
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
-single:	mexican.pdf
-
-all:	psigraph.pdf psisin.pdf notes.pdf f.pdf
+all:	psigraph.pdf psisin.pdf notes.pdf f.pdf mexican.pdf sweep.pdf sweep2.pdf
 
 psigraph.pdf:	psigraph.tex
 	pdflatex psigraph.tex
@@ -36,3 +34,27 @@ f.pdf:	f.tex
 
 mexican.pdf:	mexican.tex
 	pdflatex mexican.tex
+
+sweep:	sweep.cpp
+	g++ -o sweep -Wall -O2 -g sweep.cpp -L/usr/local/lib -lpng16 -lz 
+
+sweep.png:	sweep
+	./sweep -M -osweep.png
+sweep.jpg:	sweep.png
+	convert sweep.png -density 300 -units PixelsPerInch sweep.jpg
+
+sweep-abs.png:	sweep
+	./sweep -M -A -osweep-abs.png
+sweep-abs.jpg:	sweep-abs.png
+	convert sweep-abs.png -density 300 -units PixelsPerInch sweep-abs.jpg
+
+sweep-phase.png:	sweep
+	./sweep -M -P -osweep-phase.png
+sweep-phase.jpg:	sweep-phase.png
+	convert sweep-phase.png -density 300 -units PixelsPerInch sweep-phase.jpg
+
+sweep.pdf:	sweep.jpg sweep.tex
+	pdflatex sweep.tex
+
+sweep2.pdf:	sweep-abs.jpg sweep-phase.jpg sweep2.tex
+	pdflatex sweep2.tex
