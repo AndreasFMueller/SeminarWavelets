@@ -201,6 +201,51 @@ von zwei Variablen $(a,b)\in\mathbb R^*\times\mathbb R$
 }
 
 %
+% 
+%
+\begin{frame}
+\frametitle{Analyse eines Sweep mit Morlet-Wavelet}
+\begin{tabular}{ll}
+\ifthenelse{\boolean{presentation}}{
+\begin{minipage}{8.5cm}
+\includegraphics[width=\hsize]{../../buch/chapters/4-cwt/images/sweep.pdf}
+\end{minipage}
+}{
+\begin{minipage}{9.5cm}
+\includegraphics[width=\hsize]{../../buch/chapters/4-cwt/images/sweep.pdf}
+\end{minipage}
+}&%
+\ifthenelse{\boolean{presentation}}{
+\begin{minipage}{4.1cm}
+Wavelet:
+\[
+\psi(t) = e^{-t^2/2} \cdot e^{5it}
+\]
+Signal:
+\[
+f(t)
+=
+\sin(t\cdot(4+0.2t))
+\]
+\end{minipage}
+}{
+\begin{minipage}{4.5cm}
+Wavelet:
+\[
+\psi(t) = e^{-t^2/2} \cdot e^{5it}
+\]
+Signal:
+\[
+f(t)
+=
+\sin(t\cdot(4+0.2t))
+\]
+\end{minipage}
+}
+\end{tabular}
+\end{frame}
+
+%
 % Eigenschaften der Transformation
 %
 \begin{frame}
