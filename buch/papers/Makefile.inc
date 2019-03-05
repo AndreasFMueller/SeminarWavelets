@@ -6,5 +6,14 @@
 PAPERFILES = \
 	papers/part2.tex \
 	papers/uebersicht.tex \
-	papers/template/main.tex \
+	papers/autotune/main.tex \
+	papers/deconvolve/main.tex \
+	papers/fpga/main.tex \
+	papers/compress/main.tex \
+	papers/visuell/main.tex \
+	papers/complex/main.tex \
+	papers/2dwavelets/main.tex \
+	papers/gis/main.tex \
+	papers/meteor/main.tex \
+	papers/wwt/main.tex \
 	
