@@ -11,6 +11,7 @@ all:	sinsin.pdf	\
 	translation.pdf	\
 	dilatation.pdf	\
 	kommutator.pdf	\
+	kommutatorD.pdf	\
 	hexagon.pdf	\
 	hexagon1.pdf	\
 	hexagon2.pdf	\
@@ -49,6 +50,9 @@ dilatation.pdf:	dilatation.tex
 
 kommutator.pdf:	kommutator.tex
 	pdflatex kommutator.tex
+
+kommutatorD.pdf:	kommutatorD.tex
+	pdflatex kommutatorD.tex
 
 hexagon.pdf:	hexagon.tex
 	pdflatex hexagon.tex

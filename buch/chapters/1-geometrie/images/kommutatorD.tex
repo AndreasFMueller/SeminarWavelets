@@ -1,5 +1,5 @@
 %
-% kommutator.tex -- Kommutator von T_b und D_a
+% kommutatorD.tex -- Kommutator von T_b und D_a
 %
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
@@ -66,9 +66,9 @@
 \begin{scope}[xshift=-3.5cm,yshift=-2.5cm]
 \fill[color=blue!10]
 	plot[domain={-3.2}:{3.2},samples={\steps}]
-		({\x},{2*exp(-(\x/\a)*(\x/\a)*2)}) --
+		({\x},{2*exp(-(\x/\a)*(\x/\a)*2)/sqrt(\a)}) --
 	plot[domain={3.2}:{-3.2},samples={\steps}]
-		({\x},{-2*exp(-(\x/\a)*(\x/\a)*2)}) -- cycle;
+		({\x},{-2*exp(-(\x/\a)*(\x/\a)*2)/sqrt(\a)}) -- cycle;
 \draw[color=blue,line width=0.1pt] ({-\sigmavalue*\a},2.1)--({-\sigmavalue*\a},{-2.2});
 \draw[color=blue,line width=0.1pt] ({\sigmavalue*\a},2.1)--({\sigmavalue*\a},{-2.2});
 \draw[<->,color=blue,line width=0.7pt] ({-\sigmavalue*\a},-2.1)--({\sigmavalue*\a},-2.1);
@@ -77,7 +77,7 @@
 \node at ({-0.5*\sigmavalue*\a},-2.1) [below] {$a\sigma\mathstrut$};
 \node at ({0.5*\sigmavalue*\a},-2.1) [below] {$a\sigma\mathstrut$};
 \draw[line width=1pt,color=blue] plot[domain={-3.2}:{3.2},samples={\steps}]
-	({\x},{2*exp(-(\x/\a)*(\x/\a)*2)*sin(\frequency*(\x/\a)*(180/\pivalue)});
+	({\x},{2*exp(-(\x/\a)*(\x/\a)*2)*sin(\frequency*(\x/\a)*(180/\pivalue))/sqrt(\a)});
 \fill[color=blue] (0,0) circle[radius=0.08];
 \end{scope}
 
@@ -87,35 +87,35 @@
 \begin{scope}[xshift=2cm,yshift=-2.5cm]
 \fill[color=blue!10]
 	plot[domain={-1.7}:{4.7},samples={\steps}]
-		({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)}) --
+		({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)/sqrt(\a)}) --
 	plot[domain={4.7}:{-1.7},samples={\steps}]
-		({\x},{-2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)}) -- cycle;
+		({\x},{-2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)/sqrt(\a)}) -- cycle;
 \fill[color=red!10]
 	plot[domain=-1.7:4.7,samples={\steps}]
-		({\x},{2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))}) --
+		({\x},{2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))/sqrt(\a)}) --
 	plot[domain=4.7:-1.7,samples={\steps}]
-		({\x},{-2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))}) -- cycle;
+		({\x},{-2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))/sqrt(\a)}) -- cycle;
 
 \begin{scope}
 \clip
 	plot[domain={-1.7}:{4.7},samples={\steps}]
-		({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)}) --
+		({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)/sqrt(\a)}) --
 	plot[domain={4.7}:{-1.7},samples={\steps}]
-		({\x},{-2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)}) -- cycle;
+		({\x},{-2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)/sqrt(\a)}) -- cycle;
 \definecolor{pink}{rgb}{0.8,0.2,1}
 \fill[color=pink!20]
 	plot[domain=-1.7:4.7,samples={\steps}]
-		({\x},{2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))}) --
+		({\x},{2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))/sqrt(\a)}) --
 	plot[domain=4.7:-1.7,samples={\steps}]
-		({\x},{-2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))}) -- cycle;
+		({\x},{-2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2))/sqrt(\a)}) -- cycle;
 \end{scope}
 
 \draw[->,line width=0.7pt] (-1.7,0)--(5,0) coordinate[label=$t$];
 \draw[->,line width=0.7pt] (0,-2.2)--(0,2.3);
 \draw[line width=1pt,color=blue] plot[domain={-1.7}:{4.7},samples={\steps}]
-	({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)*sin(\frequency*((\x-\b)/\a)*(180/\pivalue)});
+	({\x},{2*exp(-((\x-\b)/\a)*((\x-\b)/\a)*2)*sin(\frequency*((\x-\b)/\a)*(180/\pivalue))/sqrt(\a)});
 \draw[line width=1pt,color=red] plot[domain=-1.7:4.7,samples={\steps}]
-	({\x},{2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2)*sin(\frequency*((\x/\a)-\b)*(180/\pivalue)});
+	({\x},{2*exp(-((\x/\a)-\b)*((\x/\a)-\b)*2)*sin(\frequency*((\x/\a)-\b)*(180/\pivalue))/sqrt(\a)});
 \fill[color=red] ({\a*\b},0) circle[radius=0.08];
 \fill[color=blue] (\b,0) circle[radius=0.08];
 \draw[line width=0.1pt,color=blue] ({\b},0)--({\b},-2.1);
@@ -138,10 +138,10 @@
 \def\r{2}
 
 \draw[->,line width=0.7pt,color=blue] (-5.7,{\r/2}) arc (150:210:\r);
-\node[color=blue] at (-6,0) [right] {$\tilde{D}_a$};
+\node[color=blue] at (-6,0) [right] {${D}_a$};
 
 \draw[<-,line width=0.7pt,color=red] (5.4,{-\r/2}) arc (-30:30:\r);
-\node[color=red] at (5.7,0) [left] {$\tilde{D}_a$};
+\node[color=red] at (5.7,0) [left] {${D}_a$};
 
 \end{tikzpicture}
 \end{document}
