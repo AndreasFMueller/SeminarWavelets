@@ -1,0 +1,36 @@
+%
+% cwt.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}
+\frametitle{Stetige Wavelet-Transformation}
+
+
+\begin{definition}
+$\psi(t)$ ein Mutter-Wavelet $\psi\in L^2(\mathbb R)$, $f\in L^2(\mathbb R)$,
+dann ist die stetige Wavelet-Transformation
+\[
+\mathcal{W}f(a,b)
+=
+\mathcal{W}_{\psi}f(a,b)
+=
+\langle f,\psi_{a,b}\rangle
+=
+\int_{-\infty}^\infty f(t)\frac{1}{\sqrt{|a|}}\overline{\psi\biggl(
+\frac{t-b}a\biggr)}\,dt
+\]
+\end{definition}
+
+\uncover<2->{
+\begin{aufgabe}
+\begin{itemize}
+\item<3->
+Gegeben $\mathcal{W}f(a,b)$, finde $f(t)$.
+\item<4->
+Finde Voraussetzungen an $\psi$, damit dies möglich ist.
+\end{itemize}
+\end{aufgabe}
+}
+
+\end{frame}
