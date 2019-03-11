@@ -48,6 +48,9 @@ für $a >\frac12$.
 Eine graphische Darstellung der Funktionen $f$ und $\psi$ ist in
 Abbildung~\ref{04001:funktionen} zu finden.
 \begin{teilaufgaben}
+%
+% Loesung Teilaufgabe a)
+%
 \item
 Beweis durch Nachrechnen:
 \begin{align*}
@@ -70,9 +73,15 @@ t-\frac{1}{2\pi}\sin 2\pi t
 Alternativ kann man aus Symmetriebetrachtungen erkennen, dass der Graph
 von $\psi(t)^2$ das Rechteck mit Ecken $(-1,0)$ und $(1,1)$ halbiert.
 Da das Rechteck den Flächeninhalt $2$ hat, folgt die Normierungsbedingung.
+%
+% Lösung Teilaufgabe b)
+%
 \item
 Das Wavelet $\psi$ ist eine ungerade Funktion, daher verschwindet ihr
 Integral.
+%
+% Lösung Teilaufgabe c)
+%
 \item
 In diesem Fall ist das Wavelet
 \[
@@ -108,7 +117,7 @@ von $\mathcal{W}f(a,b)$ ist also nur von $0$ bis $b+\frac12$ zu erstrecken:
 \cos 2\pi(t-b)
 \biggr]_0^{b+\frac12}
 \\
-%&=
+&=
 -\frac{\sqrt{2}}{2\pi}(\cos\pi - \cos(2\pi b))
 =
 \frac{\sqrt{2}}{2\pi}(1+\cos(2\pi b))
@@ -168,6 +177,9 @@ Abbildung~\ref{04001:wavelet2} dargestellt.
 für das Signal $f$ und das Signal $\psi$ aus Abbildung~\ref{04001:funktionen}
 \label{04001:wavelet2}}
 \end{figure}
+%
+% Lösung von Teilaufgabe d)
+%
 \item
 Für $a\le\frac12$ wird das Wavelet von der $D_a$-Operation so stark gestaucht,
 dass höchstens ein Endpunkt des Intervals $[0,1]$ im Träger der Funktion
@@ -233,6 +245,50 @@ Wie im Fall $a=\frac12$ berechnet man
 Die Träger von $\psi_{a,b}$ und $f$ schneiden
 sich nicht, $\mathcal{W}f(a,b)=0$.
 \end{enumerate}
+%
+% Lösung von Teilaufgabe e)
+%
 \item
+%
+% Lösung von Teilaufgabe f)
+%
+\item
+Zwar folgt die Zulässigkeitsbedingung für $\psi$ aus dem
+Satz~\ref{satz:zulaessigkeit} und der in Teilaufgabe b) bewiesenen
+Tatsache, dass $\int \psi(t)\,dt=0$, doch können wir sie in diesem Fall
+auch direkt nachweisen.
+Dazu berechnen wir zunächst die Fourier-Transformierte des Wavelets:
+\begin{align*}
+\hat{\psi}(\omega)
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty \psi(t)e^{-i\omega t}\,dt
+=
+\frac{1}{\sqrt{2\pi}}
+\int_{-1}^{1} \sin(\pi t)e^{-i\omega t}\,dt
+=
+\frac{1}{\sqrt{2\pi}}
+\int_{-1}^1
+\frac1{2i} (e^{i\pi t}-e^{-i\pi t})e^{-i\omega t}\,dt
+\end{align*}
+Darin haben wir die komplexe Darstellung der Sinus-Funktion verwendet.
+Die Integrale über die komplexen Exponentialfunktionen können explizit
+ausgewertet werden:
+\begin{align*}
+\int_{-1}^1 \frac{1}{2i}e^{i(\pi-\omega)t}\,dt
+&=
+\biggl[
+\frac{1}{i(\pi-\omega)}
+\frac1{2i}
+e^{i(\pi-\omega)t}
+\biggr]_{-1}^1
+=
+\frac{1}{i(\pi-\omega)}
+\cdot
+\frac1{2i}(e^{i(\pi-\omega)}-e^{-i(\pi-\omega)})
+=
+\frac{\sin(\pi-\omega)}{i(\pi-\omega)}
+\\
+\end{align*}
 \end{teilaufgaben}
 \end{loesung}
