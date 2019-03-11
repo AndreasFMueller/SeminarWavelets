@@ -195,35 +195,36 @@ Umkehrformel muss gleiche Skalarprodukte mit $\vec{w}$ haben wie $\vec{v}$:
 \langle \text{Umkehrformel für $\vec{v}$},\vec{w}\rangle
 \qquad\text{für alle $\vec{w}\in\mathbb R^n$}
 \]
+\uncover<2->{
 Nachrechnen
 \begin{align*}
 &\hbox to8cm{\hfill}\\[-20pt]
 \langle\vec{v},\vec{w}\rangle
 &\stackrel{?}{=}
 \ifthenelse{\boolean{presentation}}{
-\only<1>{
+\only<3>{
 \biggl\langle
 \sum_{j=1}^n \langle \vec{v},\vec{b}_j\rangle\,\vec{b}_j,\vec{w}
 \biggr\rangle
 }
-\only<2>{
+\only<4>{
 \sum_{j=1}^n \langle \vec{v},\vec{b}_j\rangle\,\langle\vec{b}_j,\vec{w}\rangle
 }
-\only<3>{
+\only<5>{
 \sum_{j=1}^n \langle \vec{v},\vec{b}_j\rangle\,
 \overline{\langle\vec{w},\vec{b}_j\rangle}
 }
-\only<4->{
+\only<6->{
 \sum_{j=1}^n v_j\bar{w}_j
 }
-\only<5->{
+\only<7->{
 \qquad\text{Parseval-/Plancherel-Formel}
 }}{
 \sum_{j=1}^n v_j\bar{w}_j
 \qquad\text{Parseval-/Plancherel-Formel}
 }
 \end{align*}
-\uncover<6->{%
+\uncover<8->{%
 \begin{parseval}
 $f,g$ $2\pi$-periodische Formeln mit Fourierkoeffizienten 
 $a_k^f,a_k^g$ und $b_k^f,b_k^g$, dann gilt
@@ -243,8 +244,9 @@ b_k^f \overline{b_k^g}
 )
 \]
 \end{parseval}}
+}
 \vspace*{-10pt}
-\uncover<7->{%
+\uncover<9->{%
 \begin{plancherel}
 Für $f,g\in L^2(\mathbb R)$ gilt
 \[
@@ -271,6 +273,7 @@ Umkehrformel muss gleiche Skalarprodukte mit $g$ haben wie $f$:
 \langle \text{Umkehrformel für $f$},g\rangle
 \qquad\text{für alle $g\in L^2$}
 \]
+\uncover<2->{
 Nachrechnen
 \begin{align*}
 &\hbox to8cm{\hfill}\\[-20pt]
@@ -278,14 +281,14 @@ Nachrechnen
 &
 \stackrel{?}{=}
 \ifthenelse{\boolean{presentation}}{
-\only<1>{
+\only<3>{
 \biggl\langle
 \int_{\mathbb R^+}\int_{-\infty}^\infty
 \mathcal{W}f(a,b)\,\psi_{a,b}
 \, db\,\frac{da}{|a|^2},
 g
 \biggr\rangle}
-\only<2>{
+\only<4>{
 \int_{-\infty}^\infty
 \int_{\mathbb R^+}\int_{-\infty}^\infty
 \mathcal{W}f(a,b)\,\psi_{a,b}(t)
@@ -294,7 +297,7 @@ g
 \overline{g(t)}
 \,dt
 }
-\only<3>{
+\only<5>{
 \int_{\mathbb R^+}\int_{-\infty}^\infty
 \mathcal{W}f(a,b)
 \int_{-\infty}^\infty
@@ -304,7 +307,7 @@ g
 \,dt
 \, db\,\frac{da}{|a|^2}
 }
-\only<4>{
+\only<6>{
 \int_{\mathbb R^+}\int_{-\infty}^\infty
 \mathcal{W}f(a,b)
 \langle
@@ -313,7 +316,7 @@ g
 \rangle
 \, db\,\frac{da}{|a|^2}
 }
-\only<5>{
+\only<7>{
 \int_{\mathbb R^+}\int_{-\infty}^\infty
 \mathcal{W}f(a,b)
 \overline{
@@ -323,17 +326,17 @@ g,
 \rangle}
 \, db\,\frac{da}{|a|^2}
 }
-\only<6-8>{
+\only<8-10>{
 \int_{\mathbb R^+}\int_{-\infty}^\infty
 \mathcal{W}f(a,b)
 \overline{\mathcal{W}g(a,b)}
 \, db\,\frac{da}{|a|^2}}
-\only<9->{
+\only<11->{
 \langle 
 \mathcal{W}f(a,b),
 \mathcal{W}g(a,b)
 \rangle_H}
-\only<10->{\qquad\text{Plancherel-Formel}}}{
+\only<12->{\qquad\text{Plancherel-Formel}}}{
 \langle 
 \mathcal{W}f(a,b),
 \mathcal{W}g(a,b)
@@ -341,12 +344,13 @@ g,
 \qquad\text{Plancherel-Formel}
 }
 \end{align*}
+}
 
-\uncover<7->{
+\uncover<9->{
 \begin{definition}
 Die Menge $H=\{(a,b)\,|\, a\in\mathbb R^*\wedge b\in\mathbb R\}$
 heisst die {\em Heisenberg-Gruppe}.
-\uncover<8->{%
+\uncover<10->{%
 Für Funktionen auf $H$ gilt das Skalarprodukt
 \[
 \langle u,v\rangle_H
@@ -416,7 +420,9 @@ f(t) \overline{\psi_{a,b}(t)}\,dt
 \,d\omega
 }
 \\
-&\only<6>{=
+&
+\ifthenelse{\boolean{presentation}}{
+\only<6>{=
 \int_{-\infty}^\infty
 \hat{f}(\omega) \overline{
 \frac{1}{\sqrt{2\pi}}
@@ -425,7 +431,8 @@ f(t) \overline{\psi_{a,b}(t)}\,dt
 \,dt'
 }
 \,d\omega
-}
+}}{}
+\ifthenelse{\boolean{presentation}}{
 \only<7>{=
 \int_{-\infty}^\infty
 \hat{f}(\omega)
@@ -437,7 +444,8 @@ e^{i\omega b}
 \,dt'
 }
 \,d\omega
-}
+}}{}
+\ifthenelse{\boolean{presentation}}{
 \only<8>{=
 \int_{-\infty}^\infty
 \hat{f}(\omega)
@@ -448,7 +456,8 @@ e^{i\omega b}
 \widehat{\psi}(a\omega)
 }
 \,d\omega
-}
+}}{}
+\ifthenelse{\boolean{presentation}}{
 \only<9>{=
 \int_{-\infty}^\infty
 \hat{f}(\omega)
@@ -459,7 +468,8 @@ e^{i\omega b}
 }
 e^{i\omega b}
 \,d\omega
-}
+}}{}
+\ifthenelse{\boolean{presentation}}{
 \only<10>{=
 \frac{1}{\sqrt{2\pi}}
 \int_{-\infty}^\infty
@@ -472,7 +482,7 @@ e^{i\omega b}
 }
 e^{i\omega b}
 \,d\omega
-}
+}}{}
 \only<11->{=
 \frac{1}{\sqrt{2\pi}}
 \int_{-\infty}^\infty
@@ -487,19 +497,6 @@ e^{i\omega b}
 e^{i\omega b}
 \,d\omega
 }
-%\only<12->{=
-%\frac{1}{\sqrt{2\pi}}
-%\int_{-\infty}^\infty
-%\sqrt{2\pi}
-%\hat{f}(\omega)
-%\sqrt{|a|}
-%\,
-%\overline{
-%\widehat{\psi}(a\omega)
-%}
-%e^{i\omega b}
-%\,d\omega
-%}
 \\
 \uncover<13->{\mathcal{W}f(a,b)}
 &\uncover<12->{=\check{F}_a(b)}
@@ -543,6 +540,7 @@ Durch Nachrechnen
 \int_{\mathbb R^*}
 \langle F_a,G_a\rangle
 \,\frac{da}{|a|^2}}
+\ifthenelse{\boolean{presentation}}{
 \only<8>{=
 \int_{\mathbb R^*}
 \int_{-\infty}^\infty F_a(\omega)\overline{G_a(\omega)}\,d\omega
@@ -551,7 +549,8 @@ Durch Nachrechnen
 \int_{\mathbb R^*}
 \int_{-\infty}^\infty
 \sqrt{2\pi}\sqrt{|a|}\,\hat{f}(\omega) \,\overline{\hat{\psi}(a\omega)}
-\,\overline{\sqrt{2\pi}\,\sqrt{|a|}\,\hat{g}(\omega)\, \overline{\hat{\psi}(a\omega)}}
+\,\overline{\sqrt{2\pi}\,\sqrt{|a|}\,\hat{g}(\omega)\,
+	\overline{\hat{\psi}(a\omega)}}
 \,d\omega
 \,\frac{da}{|a|^2}}
 \only<10->{=
@@ -560,9 +559,10 @@ Durch Nachrechnen
 \overline{\hat{g}(\omega)}\,  \hat{\psi}(a\omega)
 \,d\omega
 \,\frac{da}{|a|^2}
-}
+}}
 \\
 &
+\ifthenelse{\boolean{presentation}}{
 \only<11>{=
 2\pi
 \int_{-\infty}^\infty
@@ -572,7 +572,7 @@ Durch Nachrechnen
 |\hat{\psi}(a\omega)|^2
 \,\frac{da}{|a|}
 \,d\omega
-}
+}}{}
 \only<12>{=
 \int_{-\infty}^\infty
 \hat{f}(\omega) 
@@ -623,10 +623,14 @@ Für $f\in L^2(\mathbb R)$ gilt
 =
 \frac{1}{C_\psi}
 \int_{\mathbb R^*}\int_{-\infty}^\infty \mathcal{W}f(a,b)\,\psi_{a,b}(t)\,db\,\frac{da}{|a|^2}
+\uncover<4->{
 \quad\Rightarrow\quad
-\langle\mathring{f},g\rangle = \langle f,g\rangle\quad\forall g\in L^2(\mathbb R)
+\langle\mathring{f},g\rangle = \langle f,g\rangle
+\quad\forall g\in L^2(\mathbb R)
+}
 \]
-Unter zusätzlichen ``Regularitätsbedingungen'': $\mathring{f}(t)=f(t)$
+\uncover<5->{Unter zusätzlichen ``Regularitätsbedingungen'':
+$\mathring{f}(t)=f(t)$}
 \end{umkehrformelW}}
 
 \end{frame}
