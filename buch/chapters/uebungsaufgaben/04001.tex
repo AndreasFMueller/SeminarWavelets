@@ -1,6 +1,9 @@
 Betrachten Sie das Wavelet
 \[
+\psi\colon
 t\mapsto
+\psi(t)
+=
 \begin{cases}
 \sin(\pi t)&\qquad -1 \le t\le 1\\
 0&\qquad\text{sonst}
@@ -28,10 +31,14 @@ für $a >\frac12$.
 \end{teilaufgaben}
 
 \begin{loesung}
+\definecolor{pink}{rgb}{0.8,0.2,1}
 \begin{figure}
 \begin{tikzpicture}[>=latex,scale=2]
 \draw[->,line width=0.7pt] (-3.1,0)--(3.3,0) coordinate[label={$t$}];
 \draw[->,line width=0.7pt] (0,-1.1)--(0,1.3) coordinate[label={right:$f(t)$}];
+\fill[color=red!10] (0,0)--(1,0)--(1,1)--(0,1)--cycle;
+\fill[color=pink!10] plot[domain=0:180,samples=100] ({\x/180},{sin(\x)})--cycle;
+\fill[color=blue!10] plot[domain=-180:0,samples=100] ({\x/180},{sin(\x)})--cycle;
 \draw[line width=1pt,color=red] (-3,0)--(0,0);
 \draw[line width=0.3pt,color=red] (0,0)--(0,1);
 \draw[line width=1pt,color=red] (0,1)--(1,1);
@@ -250,15 +257,32 @@ sich nicht, $\mathcal{W}f(a,b)=0$.
 %
 \item
 %
-% Lösung von Teilaufgabe f)
+% Lösung von Teilaufgabe f) Zulässigkeitsbedingung
 %
+\begin{figure}
+\centering
+\begin{tikzpicture}[>=latex]
+\def\perioden{5}
+\draw[->,line width=0.7pt] (-6.3,0)--(6.5,0) coordinate[label={$\omega$}];
+\draw[->,line width=0.7pt] (0,-0.8)--(0,2.5) coordinate[label={right:$\operatorname{Im}\hat{\psi}(\omega)|$}];
+\draw[color=red,line width=1pt] plot[domain=-{\perioden*360+1}:{\perioden*360+1},samples=300]
+	({\x*3.1415/(\perioden*180)},{5*(sqrt(2)/sqrt(3.14159))*sin(\x)*(\x/180)/(3.14159*(1-(\x/180)*(\x/180)))});
+\foreach \x in {-10,...,10}{
+	\draw[line width=0.7pt] ({\x*3.1415/\perioden},-0.1)--({\x*3.1415/\perioden},0.1);
+	\node at ({3.14159/\perioden},-0.1) [below] {$\pi$};
+	\node at ({-3.14159/\perioden},-0.1) [below] {$-\pi$};
+}
+\end{tikzpicture}
+\caption{Fourier-Spektrum des Wavelets von Aufgabe~\ref{04001}
+\label{04001:spektrum}}
+\end{figure}
 \item
 Zwar folgt die Zulässigkeitsbedingung für $\psi$ aus dem
 Satz~\ref{satz:zulaessigkeit} und der in Teilaufgabe b) bewiesenen
 Tatsache, dass $\int \psi(t)\,dt=0$, doch können wir sie in diesem Fall
 auch direkt nachweisen.
 Dazu berechnen wir zunächst die Fourier-Transformierte des Wavelets:
-\begin{align*}
+\begin{align}
 \hat{\psi}(\omega)
 &=
 \frac{1}{\sqrt{2\pi}}
@@ -270,7 +294,8 @@ Dazu berechnen wir zunächst die Fourier-Transformierte des Wavelets:
 \frac{1}{\sqrt{2\pi}}
 \int_{-1}^1
 \frac1{2i} (e^{i\pi t}-e^{-i\pi t})e^{-i\omega t}\,dt
-\end{align*}
+\label{04001:fourier1}
+\end{align}
 Darin haben wir die komplexe Darstellung der Sinus-Funktion verwendet.
 Die Integrale über die komplexen Exponentialfunktionen können explizit
 ausgewertet werden:
@@ -286,8 +311,11 @@ e^{i(\pi-\omega)t}
 \frac{1}{i(\pi-\omega)}
 \cdot
 \frac1{2i}(e^{i(\pi-\omega)}-e^{-i(\pi-\omega)})
-=
+\\
+&=
 \frac{\sin(\pi-\omega)}{i(\pi-\omega)}
+=
+-i\frac{\sin(\omega)}{\pi-\omega}
 \\
 \int_{-1}^1 \frac{1}{2i}e^{-i(\pi+\omega)t}\,dt
 &=
@@ -300,8 +328,59 @@ e^{-i(\pi+\omega)t}
 -\frac{1}{i(\pi+\omega)}
 \cdot
 \frac1{2i}(e^{-i(\pi+\omega)}-e^{i(\pi+\omega)})
-=
+\\
+&=
 \frac{\sin(\pi+\omega)}{i(\pi+\omega)}
+=
+i\frac{\sin(\omega)}{\pi+\omega}
 \end{align*}
+Zusammen mit \eqref{04001:fourier1} finden wir jetzt für die
+Fourier-Transformation
+\begin{align}
+\hat{\psi}(\omega)
+&=
+\frac{1}{\sqrt{2\pi}}
+\biggl(
+\frac{\sin(\pi-\omega)}{i(\pi-\omega)}
+-
+\frac{\sin(\pi+\omega)}{i(\pi+\omega)}
+\biggr)
+=
+\frac{i\sin\omega}{\sqrt{2\pi}}
+\frac{\pi+\omega-\pi+\omega}{\pi^2-\omega^2}
+=
+\frac{i\sin\omega}{\sqrt{2\pi}}
+\frac{2\omega}{\pi^2-\omega^2}
+\label{04001:fourier2}
+\end{align}
+wegen 
+\[
+\lim_{x\to 0}\frac{\sin x}{x}
+\]
+kann man am ersten Ausdruck von \eqref{04001:fourier2} ablesen,
+dass $\hat{\psi}$ beschränkt ist trotz der Nullstellen der Nenner
+bei $\pm \pi$.
+Für $\omega\to\infty$ fällt $\hat{\psi}$ wie $1/|\omega|$, somit fällt
+$|\hat{\psi}(\omega)|^2/|\omega|$ wie $1/|\omega|^3$, was sicher
+integrierbar ist.
+Es ist also nur noch zu klären, ob auch das Integral bei $\omega=0$
+konvergiert.
+Aus der letzten Form in~\eqref{04001:fourier2} folgt, dass
+\[
+\lim_{\omega\to\infty} \frac{|\hat{\psi}(\omega)|^2}{|\omega|}
+=
+\frac{2}{\pi}
+\lim_{\omega\to\infty} \frac{|\omega|}{\pi^2-\omega^2}\sin^2\omega
+=
+0.
+\]
+Die Funktion $|\hat{\psi}(\omega)|^2/|\omega|$ ist daher in einer
+Umgebung von $0$ beschränkt und stetig.
+Wir können daher schliessen, dass
+\[
+\int_{\infty}^\infty\frac{|\hat{\psi}(\omega)|^2}{\omega}\,d\omega < \infty,
+\]
+das Wavelet $\psi$ erfüllt die Zulässigkeitsbedingung.
+\qedhere
 \end{teilaufgaben}
 \end{loesung}
