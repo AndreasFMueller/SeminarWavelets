@@ -20,11 +20,14 @@ f(t)
 \]
 analysiert werden.
 \begin{teilaufgaben}
-\item Rechnen Sie nach, dass $\|\psi\|=1$
-\item Überprüfen Sie, dass $\int\psi\,dt=0$
+\item Rechnen Sie nach, dass $\|\psi\|=1$.
+\item Überprüfen Sie, dass $\int\psi\,dt=0$.
+\item Rechnen Sie nach, dass $\mathcal{W}f(-a,b)=-\mathcal{W}f(a,b)$.
+Dieses Resultat erlaubt, in den folgenden Teilaufgaben nur den Fall $a>0$
+zu betrachten.
 \item Berechne Sie die stetige Wavelet-Transformation $\mathcal{W}f(\frac12,b)$.
 \item Berechnen Sie die stetige Wavelet-Transformation $\mathcal{W}f(a,b)$
-für $a\le\frac12$.
+für $0<a\le\frac12$.
 \item Berechne Sie die stetige Wavelet-Transformation $\mathcal{W}f(a,b)$
 für $a >\frac12$.
 \item Verifizieren Sie die Zulässigkeitsbedingung für das Wavelet $\psi$.
@@ -34,11 +37,11 @@ für $a >\frac12$.
 \definecolor{pink}{rgb}{0.8,0.2,1}
 \begin{figure}
 \begin{tikzpicture}[>=latex,scale=2]
-\draw[->,line width=0.7pt] (-3.1,0)--(3.3,0) coordinate[label={$t$}];
-\draw[->,line width=0.7pt] (0,-1.1)--(0,1.3) coordinate[label={right:$f(t)$}];
 \fill[color=red!10] (0,0)--(1,0)--(1,1)--(0,1)--cycle;
 \fill[color=pink!10] plot[domain=0:180,samples=100] ({\x/180},{sin(\x)})--cycle;
 \fill[color=blue!10] plot[domain=-180:0,samples=100] ({\x/180},{sin(\x)})--cycle;
+\draw[->,line width=0.7pt] (-3.1,0)--(3.3,0) coordinate[label={$t$}];
+\draw[->,line width=0.7pt] (0,-1.1)--(0,1.3) coordinate[label={right:$f(t)$}];
 \draw[line width=1pt,color=red] (-3,0)--(0,0);
 \draw[line width=0.3pt,color=red] (0,0)--(0,1);
 \draw[line width=1pt,color=red] (0,1)--(1,1);
@@ -49,7 +52,7 @@ für $a >\frac12$.
 	plot[domain=-180:180,samples=100] ({\x/180},{sin(\x)})
 	--(3,0);
 \end{tikzpicture}
-\caption{Signal $f(t)$ (rot) und Wavelet $\psi$ (blau) für Aufgabe~4.1
+\caption{Signal $f(t)$ (rot) und Wavelet $\psi$ (blau) für Aufgabe~4.1.
 \label{04001:funktionen}}
 \end{figure}
 Eine graphische Darstellung der Funktionen $f$ und $\psi$ ist in
@@ -88,6 +91,20 @@ Das Wavelet $\psi$ ist eine ungerade Funktion, daher verschwindet ihr
 Integral.
 %
 % Lösung Teilaufgabe c)
+%
+\item
+Für das Wavelet gilt $\psi(-t)=-\psi(t)$.
+\begin{align*}
+\mathcal{W}f(-a,b)
+&=
+\int_{-\infty}^\infty f(t)\psi((t-b)/(-a))\,dt
+=
+-\int_{-\infty}^\infty f(t)\psi((t-b)/a)\,dt
+=
+-\mathcal{W}f(a,b).
+\end{align*}
+%
+%
 %
 \item
 In diesem Fall ist das Wavelet
@@ -151,9 +168,10 @@ zu $1$ zu erstrecken:
 \cos \pi
 )
 =
--\frac{\sqrt{2}}{2\pi}(1+\cos 2\pi(1-b)).
-=
--\frac{\sqrt{2}}{\pi}\cos^2\pi(1-b)
+-\frac{\sqrt{2}}{2\pi}(1+\cos 2\pi(1-b))
+\\
+&=
+-\frac{\sqrt{2}}{\pi}\cos^2\pi(1-b).
 \end{align*}
 \item
 Fall $b > \frac12$:
@@ -165,14 +183,32 @@ Abbildung~\ref{04001:wavelet2} dargestellt.
 \begin{figure}
 \centering
 \begin{tikzpicture}[>=latex,scale=4]
-\draw[->,line width=0.7pt] (-1.1,0)--(2.1,0) coordinate[label={$b$}];
-\draw[->,line width=0.7pt] (0,-0.6)--(0,0.6) coordinate[label={right:$\mathcal{W}f(a,b)$}];
-\draw[color=red,line width=1pt] (-1.1,0)--(-0.5,0)--
-	plot[domain=-0.5:0.5,samples=100] ({\x},{sqrt(2)*(1+cos(2*\x*180))/(2*3.1415)})
+\def\vs{1}
+
+\foreach \a in {0.25,0.125,0.0625}{
+\draw[color=red!40,line width=1pt]
+	(-1.1,0)--({-\a},0)--
+	plot[domain={-\a}:{\a},samples=100]
+		({\x},{\vs*\a*(1+cos((\x/\a)*180))/(sqrt(\a)*3.1415)})
 	--
-	plot[domain=0.5:1.5,samples=100] ({\x},{-sqrt(2)*(1+cos(2*(1-\x)*180))/(2*3.1415)})
-	--(2.05,0)
-;
+	plot[domain={1-\a}:{1+\a},samples=100]
+		({\x},{-\vs*\a*(1+cos(((1-\x)/\a)*180))/(sqrt(\a)*3.1415)})
+	--(2.05,0);
+}
+\draw[->,line width=0.7pt] (-1.1,0)--(2.1,0)
+	coordinate[label={$b$}];
+\draw[->,line width=0.7pt] (0,-0.6)--(0,0.6)
+	coordinate[label={right:$\mathcal{W}f(a,b)$}];
+\def\a{0.5}
+\draw[color=red,line width=1pt] (-1.1,0)--(-0.5,0)--
+	(-1.1,0)--({-\a},0)--
+	plot[domain={-\a}:{\a},samples=100]
+		({\x},{\vs*\a*(1+cos((\x/\a)*180))/(sqrt(\a)*3.1415)})
+	--
+	plot[domain={1-\a}:{1+\a},samples=100]
+		({\x},{-\vs*\a*(1+cos(((1-\x)/\a)*180))/(sqrt(\a)*3.1415)})
+	--(2.05,0);
+
 \draw[line width=0.7pt] (-1,-0.025)--(-1,0.025);
 \draw[line width=0.7pt] (1,-0.025)--(1,0.025);
 \draw[line width=0.7pt] (2,-0.025)--(2,0.025);
@@ -180,8 +216,13 @@ Abbildung~\ref{04001:wavelet2} dargestellt.
 \node at (1,-0.025) [below] {$1$};
 \node at (2,-0.025) [below] {$2$};
 \end{tikzpicture}
-\caption{Werte der stetige Wavelet-Transformation $\mathcal{W}(\frac12,b)$
-für das Signal $f$ und das Signal $\psi$ aus Abbildung~\ref{04001:funktionen}
+\caption{Werte der stetige Wavelet-Transformation $\mathcal{W}f(\frac12,b)$
+(rot)
+für das Signal $f$ und das Signal $\psi$ aus Abbildung~\ref{04001:funktionen}.
+Die Werte der Wavelet-Transformation $\mathcal{W}f(a,b)$ für
+$a=\frac14,\frac18,\frac1{16}$ sind hellrot gezeichnet.
+Die Wavelet-Transformation detektiert die Sprungstellen bei $t=0$ und
+$t=1$, die Genauigkeit steigt je kleiner $a$ ist.
 \label{04001:wavelet2}}
 \end{figure}
 %
@@ -211,12 +252,12 @@ Wie im Fall $a=\frac12$ berechnet man
 \biggr]_0^{b+a}
 \\
 &=
--\frac{a}{\pi\sqrt{|a|}}(\cos\pi - \cos(\pi b/a))
+-\frac{a}{\pi\sqrt{|a|}}(\cos\pi - \cos\pi \frac{b}{a}))
 =
-\frac{a}{\pi\sqrt{|a|}}(1+\cos(\pi b/a))
+\frac{a}{\pi\sqrt{|a|}}(1+\cos(\pi \frac{b}{a}))
 \\
 &=
-\frac{a}{2\pi\sqrt{|a|}}\cos^2\frac{\pi b}{2a}
+\frac{a}{2\pi\sqrt{|a|}}\cos^2\frac{\pi b}{2a}.
 \end{align*}
 \item Fall $a\le b \le 1-a$:
 Der Träger von $\psi_{a,b}$ liegt ganz innerhalb des Intervals $[0,1]$,
@@ -228,34 +269,128 @@ Wie im Fall $a=\frac12$ berechnet man
 \begin{align*}
 \mathcal{W}f(a,b)
 &=
-\int_{b-a}^{1} \frac{1}{\sqrt{|a|}} \sin \pi(t-b)/a\,dt
+\int_{b-a}^{1} \frac{1}{\sqrt{|a|}} \sin \pi\frac{t-b}{a}\,dt
 =
 \biggl[
 -
 \frac{a}{\pi\sqrt{|a|}}
-\cos \pi(t-b)/a
+\cos \pi\frac{t-b}{a}
 \biggr]_{b-a}^1
 \\
 &=
 -\frac{a}{\pi\sqrt{|a|}}(
-\cos(\pi (1-b)/a)
+\cos\pi \frac{1-b}{a}
 -
 \cos\pi 
 )
 =
--\frac{a}{\pi\sqrt{|a|}}(1+\cos(\pi(1- b)/a))
+-\frac{a}{\pi\sqrt{|a|}}\biggl(1+\cos\pi\frac{1- b}{a}\biggr)
 \\
 &=
--\frac{a}{2\pi\sqrt{|a|}}\cos^2\frac{\pi(1- b)}{2a}
+-\frac{a}{2\pi\sqrt{|a|}}\cos^2\frac{\pi(1- b)}{2a}.
 \end{align*}
 \item Fall $1+a\le b$:
 Die Träger von $\psi_{a,b}$ und $f$ schneiden
 sich nicht, $\mathcal{W}f(a,b)=0$.
 \end{enumerate}
 %
-% Lösung von Teilaufgabe e)
+% Lösung von Teilaufgabe e), a > 1/2
 %
 \item
+Der Träger der Funktion $\psi_{a,b}(t)$ ist das Interval $[b-a,b+a]$.
+Die folgenden Fälle sind zu unterscheiden
+\begin{enumerate}
+\item
+Fall $b+a < 0$: die Träger von $\psi_{a,b}$ und von $f$ sind disjunkt,
+daher ist $\mathcal{W}f(a,b)=0$ in diesem Fall.
+\item 
+Fall $0\le b+a\le 1$: das Integral ist über das Interval von $0$ bis $a+b$ zu
+erstrecken:
+\begin{align*}
+\mathcal{W}f(a,b)
+&=
+\frac{1}{\sqrt{|a|}}
+\int_0^{b+a} \sin\pi\frac{t-b}{a}\,dt
+=
+\frac{1}{\sqrt{|a|}}
+\biggl[
+-\frac{a}{\pi} \cos\frac{t-b}{a}
+\biggr]_0^{b+a}
+\\
+&=
+-
+\frac{1}{\sqrt{|a|}}
+\frac{a}{\pi}
+\biggl(
+\cos \pi
+-
+\cos\frac{\pi b}{a}
+\biggr)
+=
+\frac{a}{\pi\sqrt{|a|}}
+\biggl(1+\cos\frac{\pi b}{a}\biggr).
+\end{align*}
+\item
+Fall $b-a \le 0$ und $1 \le b+a$: In diesem Fall ist der Träger von $f$
+ganz im Träger von $\psi_{a,b}$ enthalten, das Integral ist also über das
+Interval $[0,1]$ zu erstrecken:
+\begin{align*}
+\mathcal{W}f(a,b)
+&=
+\frac{1}{\sqrt{|a|}}
+\int_0^1 
+\sin \pi\frac{t-b}{a}
+\,dt
+=
+\frac{1}{\sqrt{|a|}}
+\biggl[
+-\frac{a}{\pi} \cos\frac{t-b}{a}
+\biggr]_0^1
+\\
+&=
+-\frac{1}{\sqrt{|a|}}
+\frac{a}{\pi}
+\biggl(
+\cos\pi\frac{1-b}{a}
+-
+\cos\pi \frac{b}{a}
+\biggr).
+\end{align*}
+\item
+Fall $0\le b-a\le 1$: Das Integral ist zu erstrecken über das Interval
+$[b-a,1]$:
+\begin{align*}
+\mathcal{W}f(a,b)
+&=
+\frac{1}{\sqrt{|a|}}
+\int_{b-a}^1
+\sin\pi\frac{t-b}{a}\,dt
+=
+\frac{1}{\sqrt{|a|}}
+\biggl[
+-
+\frac{a}{\pi} \cos\pi\frac{t-b}{a}
+\biggr]_{b-a}^1
+\\
+&=
+-
+\frac{1}{\sqrt{|a|}}
+\frac{a}{\pi}
+\biggl(
+\cos\pi
+-
+\cos\pi\frac{1-b}{a}
+\biggr)
+=
+\frac{1}{\sqrt{|a|}}
+\frac{a}{\pi}\biggl(
+1+\cos\pi\frac{1-b}a
+\biggr).
+\end{align*}
+\item
+Fall $1<b-a$: die Träger von $\psi_{a,b}$ and $f$ schneiden sich nicht,
+also ist $\mathcal{W}f(a,b)=0$.
+\end{enumerate}
 %
 % Lösung von Teilaufgabe f) Zulässigkeitsbedingung
 %
@@ -273,7 +408,7 @@ sich nicht, $\mathcal{W}f(a,b)=0$.
 	\node at ({-3.14159/\perioden},-0.1) [below] {$-\pi$};
 }
 \end{tikzpicture}
-\caption{Fourier-Spektrum des Wavelets von Aufgabe~\ref{04001}
+\caption{Fourier-Spektrum des Wavelets von Aufgabe~\ref{04001}.
 \label{04001:spektrum}}
 \end{figure}
 \item
@@ -293,7 +428,7 @@ Dazu berechnen wir zunächst die Fourier-Transformierte des Wavelets:
 =
 \frac{1}{\sqrt{2\pi}}
 \int_{-1}^1
-\frac1{2i} (e^{i\pi t}-e^{-i\pi t})e^{-i\omega t}\,dt
+\frac1{2i} (e^{i\pi t}-e^{-i\pi t})e^{-i\omega t}\,dt.
 \label{04001:fourier1}
 \end{align}
 Darin haben wir die komplexe Darstellung der Sinus-Funktion verwendet.
@@ -332,7 +467,7 @@ e^{-i(\pi+\omega)t}
 &=
 \frac{\sin(\pi+\omega)}{i(\pi+\omega)}
 =
-i\frac{\sin(\omega)}{\pi+\omega}
+i\frac{\sin(\omega)}{\pi+\omega}.
 \end{align*}
 Zusammen mit \eqref{04001:fourier1} finden wir jetzt für die
 Fourier-Transformation
@@ -350,10 +485,10 @@ Fourier-Transformation
 \frac{\pi+\omega-\pi+\omega}{\pi^2-\omega^2}
 =
 \frac{i\sin\omega}{\sqrt{2\pi}}
-\frac{2\omega}{\pi^2-\omega^2}
+\frac{2\omega}{\pi^2-\omega^2}.
 \label{04001:fourier2}
 \end{align}
-wegen 
+Wegen 
 \[
 \lim_{x\to 0}\frac{\sin x}{x}
 \]
