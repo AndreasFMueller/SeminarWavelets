@@ -13,14 +13,14 @@ Analyse mit verschobenen und gestreckten Kopien von $\psi$:
 \[
 \psi_{a,b}(t)
 =
-T_bD_af(t)
+T_bD_a\psi(t)
 =
 \frac{1}{\sqrt{|a|}}\psi\biggl(\frac{t-b}{a}\biggr)
 \]
 \vspace{-10pt}
 \begin{itemize}
 \item<2-> Translation um $b$
-\item<3-> Dialatation mit $a\ne 0$\uncover<4->{, $a<0$ $\Rightarrow$ mit Spiegelung}
+\item<3-> Dilatation mit $a\ne 0$\uncover<4->{, $a<0$ $\Rightarrow$ mit Spiegelung}
 \end{itemize}
 \uncover<5->{%
 \begin{definition}[Stetige Wavelet Transformation]
@@ -101,8 +101,8 @@ von zwei Variablen $(a,b)\in\mathbb R^*\times\mathbb R$
 
 \only<1,2,4,6,8,10,12,14,16,18,20,22,24>{
 \draw[->,line width=0.7pt] (-4.1,0)--(7.3,0) coordinate[label={$t$}];
-\draw[->,line width=0.7pt] (0,-0.1)--(0,{2*2.883+0.3})
-        coordinate[label={right:$f(t)$}];
+\draw[->,line width=0.7pt] (0,-0.1)--(0,{0.75*11+0.3})
+        coordinate[label={right:$f(t)\mathstrut$}];
 }
 
 \draw[line width=1pt,color=blue]
@@ -122,7 +122,7 @@ von zwei Variablen $(a,b)\in\mathbb R^*\times\mathbb R$
 \only<3,5,7,9,11,13,15,17,19,21,23,25,26>{
 	\draw[->,line width=1pt] (-4.1,0)--(7.3,0) coordinate[label={$b$}];
 	\draw[->,line width=1pt] (0,-0.1)--(0,{0.75*11+0.3})
-		coordinate[label={right:$a$}];
+		coordinate[label={right:$a\mathstrut$}];
 
 	\draw[line width=1pt] (-0.1,{0.3333*0.75*11})--(0.1,{0.3333*0.75*11});
 	\draw[line width=1pt] (-0.1,{0.6666*0.75*11})--(0.1,{0.6666*0.75*11});

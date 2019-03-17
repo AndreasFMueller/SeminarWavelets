@@ -17,6 +17,7 @@
 \def\b{1}
 \def\pivalue{3.14159}
 \def\frequency{5*\pivalue}
+\def\sigmavalue{0.5}
 
 \def\steps{600}
 
@@ -26,11 +27,11 @@
 		({\x},{2*exp(-\x*\x*2))}) --
 	plot[domain=3.2:-3.2,samples={\steps}]
 		({\x},{-2*exp(-\x*\x*2))}) -- cycle;
-\draw[line width=0.1pt] (-1,2.1)--(-1,-2.2);
-\draw[line width=0.1pt] (1,2.1)--(1,-2.2);
-\draw[<->,line width=0.7pt] (-1,-2.1)--(1,-2.1);
-\node at (0.5,-2.1) [below] {$\sigma\mathstrut$};
-\node at (-0.5,-2.1) [below] {$\sigma\mathstrut$};
+\draw[line width=0.1pt] ({-\sigmavalue},2.1)--({-\sigmavalue},-2.2);
+\draw[line width=0.1pt] ({\sigmavalue},2.1)--({\sigmavalue},-2.2);
+\draw[<->,line width=0.7pt] ({-\sigmavalue},-2.1)--({\sigmavalue},-2.1);
+\node at ({0.5*\sigmavalue)},-2.1) [below] {$\sigma\mathstrut$};
+\node at ({-0.5*\sigmavalue)},-2.1) [below] {$\sigma\mathstrut$};
 \draw[->,line width=0.7pt] (-3.2,0)--(3.5,0) coordinate[label=$t$];
 \draw[->,line width=0.7pt] (0,-2.2)--(0,2.3);
 \draw[line width=1pt] plot[domain=-3.2:3.2,samples={\steps}]
@@ -68,13 +69,13 @@
 		({\x},{2*exp(-(\x/\a)*(\x/\a)*2)}) --
 	plot[domain={3.2}:{-3.2},samples={\steps}]
 		({\x},{-2*exp(-(\x/\a)*(\x/\a)*2)}) -- cycle;
-\draw[color=blue,line width=0.1pt] ({-\a},2.1)--({-\a},{-2.2});
-\draw[color=blue,line width=0.1pt] ({\a},2.1)--({\a},{-2.2});
-\draw[<->,color=blue,line width=0.7pt] ({-\a},-2.1)--({\a},-2.1);
+\draw[color=blue,line width=0.1pt] ({-\sigmavalue*\a},2.1)--({-\sigmavalue*\a},{-2.2});
+\draw[color=blue,line width=0.1pt] ({\sigmavalue*\a},2.1)--({\sigmavalue*\a},{-2.2});
+\draw[<->,color=blue,line width=0.7pt] ({-\sigmavalue*\a},-2.1)--({\sigmavalue*\a},-2.1);
 \draw[->,line width=0.7pt] (-3.2,0)--(3.5,0) coordinate[label=$t$];
 \draw[->,line width=0.7pt] (0,-2.2)--(0,2.3);
-\node at ({-0.5*\a},-2.1) [below] {$a\sigma\mathstrut$};
-\node at ({0.5*\a},-2.1) [below] {$a\sigma\mathstrut$};
+\node at ({-0.5*\sigmavalue*\a},-2.1) [below] {$a\sigma\mathstrut$};
+\node at ({0.5*\sigmavalue*\a},-2.1) [below] {$a\sigma\mathstrut$};
 \draw[line width=1pt,color=blue] plot[domain={-3.2}:{3.2},samples={\steps}]
 	({\x},{2*exp(-(\x/\a)*(\x/\a)*2)*sin(\frequency*(\x/\a)*(180/\pivalue)});
 \fill[color=blue] (0,0) circle[radius=0.08];
@@ -137,10 +138,10 @@
 \def\r{2}
 
 \draw[->,line width=0.7pt,color=blue] (-5.7,{\r/2}) arc (150:210:\r);
-\node[color=blue] at (-6,0) [right] {$D_a$};
+\node[color=blue] at (-6,0) [right] {$\tilde{D}_a$};
 
 \draw[<-,line width=0.7pt,color=red] (5.4,{-\r/2}) arc (-30:30:\r);
-\node[color=red] at (5.7,0) [left] {$D_a$};
+\node[color=red] at (5.7,0) [left] {$\tilde{D}_a$};
 
 \end{tikzpicture}
 \end{document}

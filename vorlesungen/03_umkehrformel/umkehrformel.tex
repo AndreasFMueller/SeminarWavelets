@@ -1,0 +1,130 @@
+%
+% umkehrformel.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}
+\frametitle{Umkehrformel für $\mathbb R^n$}
+Gegeben: $\mathcal{B}=\{\vec{b}_1,\dots,\vec{b}_n\}\subset\mathbb R^n$
+orthonormierte Basis, d.~h.
+\[
+\langle \vec{b}_j,\vec{b}_i\rangle = \delta_{ji}
+\]
+\uncover<2->{%
+Koordinaten eines Vektors $\vec{v}$ in der Basis
+\[
+	v_i = \langle \vec{v},\vec{b}_i\rangle
+\]
+}
+\uncover<3->{%
+Rekonstruktion:
+\[
+\vec{w}
+=
+\sum_{j=1}^{n} v_j\vec{b}_j
+\uncover<4->{%
+=
+\sum_{j=1}^n \langle \vec{v},\vec{b}_j\rangle \vec{b}_j}
+\]
+}
+\uncover<5->{%
+Verifikation: $\vec{w}$ hat die gleichen Koordinaten wie $\vec{v}$
+\begin{align*}
+\uncover<6->{\langle \vec{w},\vec{b}_i\rangle}
+&\uncover<7->{=\biggl\langle
+\sum_{j=1}^n \langle \vec{v},\vec{b}_j\rangle\vec{b}_j, \vec{b}_i
+\biggr\rangle}
+\uncover<8->{=
+\sum_{j=1}^n \langle \vec{v},\vec{b}_j\rangle \langle \vec{b}_j,\vec{b}_i\rangle}
+\uncover<9->{=
+\sum_{j=1}^n \langle \vec{v},\vec{b}_j\rangle \delta_{ji}}
+\uncover<10->{=
+\langle \vec{v},\vec{b}_i\rangle}
+\uncover<11->{\quad{\color{red}\checkmark}}
+\end{align*}
+}
+
+\end{frame}
+
+%
+% Vermutung für Umkehrformel für CWT
+%
+\begin{frame}
+\frametitle{Umkehrformel für CWT}
+\begin{cwt}
+Wavelet-Transformierte von $f\in L^2(\mathbb R)$:
+\[
+\mathcal{W}f(a,b)
+=
+\frac{1}{\sqrt{|a|}}
+\int_{-\infty}^\infty f(t) \overline{\psi\biggl(\frac{t-b}{a}\biggr)} \,dt
+\uncover<2->{=
+\langle f,\psi_{a,b}\rangle}
+\]
+\end{cwt}
+\uncover<3->{%
+Analyse mit
+\begin{itemize}
+\item<4->
+$L^2$-Skalarprodukt
+\item<5->
+``Basis'': $T_bD_a \psi = \psi_{a,b}$
+\end{itemize}
+}
+\uncover<6->{%
+\begin{umkehrformel}
+\ifthenelse{\boolean{presentation}}{
+\only<6>{%
+Für $\vec{v}\in \mathbb R^n$ mit Basis
+$\mathcal{B}=\{\vec{b}_1,\dots,\vec{b}_n\}$
+}
+\only<7>{%
+Für $f\in L^2$ mit Basis
+$\mathcal{B}=\{\vec{b}_1,\dots,\vec{b}_n\}$
+}
+\only<8-13>{%
+Für $f\in L^2$ mit ``Basis''
+$\psi_{a,b}$:
+}
+\only<14->{für $\mathcal{W}f(a,b)$:\phantom{$L^2$ mit ``Basis''}}
+\[
+\only<6>{
+\vec{v}=\sum_{j=1}^\infty \langle \vec{v},\vec{b}_j\rangle\,\vec{b}_j
+}
+\only<7>{
+f=\sum_{j=1}^\infty \langle f,\vec{b}_j\rangle\, \vec{b}_j
+}
+\only<8>{
+f=\sum_{a,b}^{\phantom{\infty}} \langle f,\psi_{a,b}\rangle\, \psi_{a,b}
+}
+\only<9>{
+f=\sum_{a,b}^{\phantom{\infty}} \mathcal{W}f(a,b)\,\psi_{a,b}
+}
+\only<10>{
+f(t)=\sum_{a,b}^{\phantom{\infty}} \mathcal{W}f(a,b)\,\psi_{a,b}(t)
+}
+\only<11>{
+f(t)=\sum_{a}^{\phantom{\infty}} \int_{-\infty}^\infty \mathcal{W}f(a,b)\,\psi_{a,b}(t)\, db
+}
+\only<12>{
+f(t)=\int_{\mathbb R^+} \int_{-\infty}^\infty \mathcal{W}f(a,b)\psi_{a,b}(t)\, db \,da
+}
+\only<13>{
+f(t)=\int_{\mathbb R^+} \int_{-\infty}^\infty \mathcal{W}f(a,b)\psi_{a,b}(t)\, db \,\frac{da}{|a|^2}
+}
+\only<14>{
+f(t)
+\stackrel{{\color{red}?}}{=}
+\int_{\mathbb R^+} \int_{-\infty}^\infty \mathcal{W}f(a,b)\psi_{a,b}(t)\, db \,\frac{da}{|a|^2}
+}
+\]}{
+\[
+f(t)
+\stackrel{{\color{red}?}}{=}
+\int_{\mathbb R^+} \int_{-\infty}^\infty \mathcal{W}f(a,b)\psi_{a,b}(t)\, db \,\frac{da}{|a|^2}
+\]
+}
+\end{umkehrformel}
+}
+\end{frame}
+

@@ -1,0 +1,231 @@
+%
+% beweis.tex -- Beweis der Plancherel Formel für \mathcal{W}
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+%
+% Plan für den Beweis der Plancherel Formel
+%
+\begin{frame}
+\frametitle{Plan für den Beweis der Plancherel-Formel}
+\begin{enumerate}
+\item<2-> $a$ als konstant betrachten:
+\[
+\int_{-\infty}^\infty
+\mathcal{W}f(a,b)\overline{\mathcal{W}g(a,b)}
+\,db
+=
+\langle \mathcal{W}f(a,\,\cdot\,), \mathcal{W}g(a,\,\cdot\,)\rangle
+\]
+\uncover<3->{%
+Plancherel-Formel für Fourier-Transformation ist anwendbar.
+}
+\item<4-> Plancherel-Formel für die Integration über $a\in\mathbb R^*$ 
+\end{enumerate}
+\end{frame}
+
+%
+% Partielle Funktion $b\mapsto \mathcal{W}f(a,b)$
+%
+\begin{frame}
+\frametitle{Partielle Funktion $b\mapsto\mathcal{W}f(a,b)$}
+\begin{align*}
+&\hbox to11cm{\hfill}\\[-20pt]
+b \mapsto
+\mathcal{W}f(a,b)&=
+\langle f,\psi_{a,b}\rangle
+=
+\int_{-\infty}^\infty 
+f(t) \overline{\psi_{a,b}(t)}\,dt
+\intertext{\uncover<2->{Umformung mit Plancherel-Formel}}
+\uncover<3->{
+\langle f,\psi_{a,b}\rangle}
+&\uncover<4->{=
+\langle \hat{f}, \widehat{\psi_{a,b}}\rangle}
+\uncover<4->{=
+\int_{-\infty}^\infty
+\hat{f}(\omega) \overline{\widehat{\psi_{a,b}}(\omega)}
+\,d\omega}
+\\
+&\uncover<5->{=
+\int_{-\infty}^\infty
+\hat{f}(\omega) \overline{
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+\psi_{a,b}(t) e^{-i\omega t}
+\,dt
+}
+\,d\omega
+}
+\\
+&
+\ifthenelse{\boolean{presentation}}{
+\only<6>{=
+\int_{-\infty}^\infty
+\hat{f}(\omega) \overline{
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+\psi_{a,0}(t') e^{-i\omega (t'+b)}
+\,dt'
+}
+\,d\omega
+}}{}
+\ifthenelse{\boolean{presentation}}{
+\only<7>{=
+\int_{-\infty}^\infty
+\hat{f}(\omega)
+e^{i\omega b}
+\overline{
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+\psi_{a,0}(t') e^{-i\omega t'}
+\,dt'
+}
+\,d\omega
+}}{}
+\ifthenelse{\boolean{presentation}}{
+\only<8>{=
+\int_{-\infty}^\infty
+\hat{f}(\omega)
+e^{i\omega b}
+\sqrt{|a|}
+\,
+\overline{
+\widehat{\psi}(a\omega)
+}
+\,d\omega
+}}{}
+\ifthenelse{\boolean{presentation}}{
+\only<9>{=
+\int_{-\infty}^\infty
+\hat{f}(\omega)
+\sqrt{|a|}
+\,
+\overline{
+\widehat{\psi}(a\omega)
+}
+e^{i\omega b}
+\,d\omega
+}}{}
+\ifthenelse{\boolean{presentation}}{
+\only<10>{=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+\sqrt{2\pi}
+\hat{f}(\omega)
+\sqrt{|a|}
+\,
+\overline{
+\widehat{\psi}(a\omega)
+}
+e^{i\omega b}
+\,d\omega
+}}{}
+\only<11->{=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+\underbrace{
+\sqrt{2\pi}
+\hat{f}(\omega)
+\sqrt{|a|}
+\,
+\overline{
+\widehat{\psi}(a\omega)
+}}_{\displaystyle=F_a(\omega)}
+e^{i\omega b}
+\,d\omega
+}
+\\
+\uncover<13->{\mathcal{W}f(a,b)}
+&\uncover<12->{=\check{F}_a(b)}
+\end{align*}
+\end{frame}
+
+
+%
+% Plancherel Formel für \mathcal{W}
+%
+\begin{frame}
+\frametitle{Plancherel-Formel für $\mathcal{W}$}
+\begin{plancherelW}
+\[
+\langle \mathcal{W}f,\mathcal{W}g\rangle_H
+=
+C_{\psi} \langle f,g\rangle
+\]
+\end{plancherelW}
+
+\uncover<2->{
+\begin{proof}[Beweis]
+Durch Nachrechnen
+\begin{align*}
+&\hbox to11cm{\hfill}\\[-20pt]
+\uncover<3->{\langle \mathcal{W}f,\mathcal{W}g\rangle_H}
+&\uncover<4->{=
+\int_{\mathbb R^*}\int_{-\infty}^\infty
+\mathcal{W}f(a,b)
+\overline{\mathcal{W}g(a,b)}
+\,db\,\frac{da}{|a|^2}}
+\\
+&\only<5>{=
+\int_{\mathbb R^*} \int_{-\infty}^\infty
+\check{F}_a(b) \overline{\check{G}_a(b)} \,db\,\frac{da}{|a|^2}}
+\only<6>{=
+\int_{\mathbb R^*}
+\langle \check{F}_a,\check{G}_a\rangle
+\,\frac{da}{|a|^2}}
+\only<7>{=
+\int_{\mathbb R^*}
+\langle F_a,G_a\rangle
+\,\frac{da}{|a|^2}}
+\ifthenelse{\boolean{presentation}}{
+\only<8>{=
+\int_{\mathbb R^*}
+\int_{-\infty}^\infty F_a(\omega)\overline{G_a(\omega)}\,d\omega
+\,\frac{da}{|a|^2}}
+\only<9>{=
+\int_{\mathbb R^*}
+\int_{-\infty}^\infty
+\sqrt{2\pi}\sqrt{|a|}\,\hat{f}(\omega) \,\overline{\hat{\psi}(a\omega)}
+\,\overline{\sqrt{2\pi}\,\sqrt{|a|}\,\hat{g}(\omega)\,
+	\overline{\hat{\psi}(a\omega)}}
+\,d\omega
+\,\frac{da}{|a|^2}}
+\only<10->{=
+\int_{\mathbb R^*} \int_{-\infty}^\infty
+2\pi |a|\,\hat{f}(\omega)\, \overline{\hat{\psi}(a\omega)}\,
+\overline{\hat{g}(\omega)}\,  \hat{\psi}(a\omega)
+\,d\omega
+\,\frac{da}{|a|^2}
+}}{}
+\\
+&
+\ifthenelse{\boolean{presentation}}{
+\only<11>{=
+2\pi
+\int_{-\infty}^\infty
+\hat{f}(\omega) 
+\overline{\hat{g}(\omega)}
+\int_{\mathbb R^*}
+|\hat{\psi}(a\omega)|^2
+\,\frac{da}{|a|}
+\,d\omega
+}}{}
+\only<12>{=
+\int_{-\infty}^\infty
+\hat{f}(\omega) 
+\overline{\hat{g}(\omega)}
+\underbrace{
+2\pi
+\int_{\mathbb R^*}
+|\hat{\psi}(a\omega)|^2
+\,\frac{da}{|a|}}_{\displaystyle = C_\psi}
+\,d\omega
+}
+\qedhere
+\end{align*}
+\end{proof}
+}
+\end{frame}
+

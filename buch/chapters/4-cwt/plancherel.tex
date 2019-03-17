@@ -62,11 +62,13 @@ die Transformation der Funktion ändert also das Integral nicht.
 Die Wahl des Integrals ist so, dass die Skalierung und Translation
 das Integral nicht ändert.
 
-\subsection{Die Plancherel-Formel}
-Ziel dieses Abschnitts ist, in Satz~\ref{satz:wplancherel} die
-Plancherel-Formel für die Wavelet-Transformation zu beweisen.
-Dabei können wir die Plancherel-Formel für die Fourier-Transformation
-verwenden, denn es gilt
+\subsection{Die Abhängigkeit von $b$}
+Die partielle Funktion $b\mapsto \mathcal{W}f(a,b)$ ist etwas einfacher
+zu verstehen, wir versuchen sie daher zunächst für konstantes $a$
+anders auszudrücken.
+Da die Wavelet-Transformierte ein Skalarprodukt in $L^2(\mathbb R)$
+ist, können wir die Plancherel-Formel für die Fouriertransformation
+verwenden und erhalten.
 \[
 \mathcal{W}f (a,b)
 =
@@ -74,9 +76,8 @@ verwenden, denn es gilt
 =
 \langle \hat{f}, \hat{\psi}_{a,b}\rangle.
 \]
-Wir müssen daher die Fourier-Transformation von $\psi_{a,b}$ besser
-verstehen.
-Nach den Rechenregeln für die Fourier-Transformation gilt
+Die Fouriertransformierte von $\psi_{a,b}$ ist aber bereits bekannt,
+sie ist
 \[
 \hat{\psi}_{a,b}(\omega)
 =
@@ -84,7 +85,8 @@ e^{-i\omega b} \hat{\psi}_a(\omega)
 =
 \sqrt{|a|}e^{-i\omega b} \hat{\psi}(a\omega).
 \]
-Die Wavelet-Transformation kann daher geschrieben werden als
+Damit kann jetzt die Wavelet-Transformierte als Skalarprodukt im
+Frequenzraum geschrieben werden:
 \begin{align*}
 \mathcal{W}f (a,b)
 &=
@@ -103,10 +105,10 @@ e^{i\omega b}
 \,d\omega
 \\
 &=
-\frac1{2\pi}
+\frac1{\sqrt{2\pi}}
 \int_{-\infty}^\infty
 \underbrace{
-2\pi
+\sqrt{2\pi}
 \sqrt{|a|}
 \hat{f}(\omega)
 \overline{\hat{\psi}(a\omega)}}_{\displaystyle F_a(\omega)}
@@ -115,11 +117,33 @@ e^{i\omega b}
 \end{align*}
 Daraus kann man ablesen, dass $F_a(\omega)$ die Fourier-Umkehrtransformierte
 der Funktion $b\mapsto \mathcal{W}f(a,b)$ ist.
-
-% XXX Formel beweisen
+Bezeichnen wir die Fourier-Umkehrtransformierte mit dem umgekehrten
+Dach über dem Funktionsbuchstaben,
+dann folgt
 \begin{equation}
-\hat{F}_a(-b) = \mathcal{W}f(a, b)
+\check{F}_a(b) = \mathcal{W}f(a, b)
+\label{cwt:checkF}
 \end{equation}
+
+\subsection{Die Plancherel-Formel}
+Ziel dieses Abschnitts ist, in Satz~\ref{satz:wplancherel} die
+Plancherel-Formel für die Wavelet-Transformation zu beweisen.
+Wir wollen diesen Beweis auf die Plancherel-Formel für die 
+Fourier-Transformation stützen, die bereits die Formel~\eqref{cwt:checkF}
+für die $b$-Abhängigkeit geliefert hat.
+Wir werden natürlich wieder die Funktion $F_a(\omega)$ benötigen.
+Da die Plancherel-Formel das Skalarprodukt zweier Funktionen berechnet,
+werden wir eine zweite Funktion $g$ bezeichnen, die zugehörige, analog
+zu $F_a(\omega)$ gebildete Funktion wird mit $G_a(\omega)$ bezeichnet,
+es ist
+\[
+G_a(\omega)
+=
+\sqrt{2\pi}\sqrt{|a|}
+\hat{g}(\omega)
+\overline{\hat{\psi}(a\omega)}.
+\]
+Damit sind wir jetzt in der Lage, die Plancherel-Formel zu beweisen:
 
 \begin{satz}
 \label{satz:wplancherel}
@@ -146,13 +170,13 @@ Wir verwenden
 \\
 &=
 \int_{\mathbb R^*} \int_{-\infty}^\infty
-\hat{F}_a(-b) \overline{\hat{G}_a(-b)}\,db\,\frac{da}{|a|^2}
+\hat{F}_a(b) \overline{\hat{G}_a(b)}\,db\,\frac{da}{|a|^2}
 \notag
 \\
 &=
 \int_{\mathbb R^*} 
 \langle
-\hat{F}_a,\hat{G}_a
+\check{F}_a,\check{G}_a
 \rangle
 \,\frac{da}{|a|^2}
 \notag
@@ -164,17 +188,19 @@ Wir verwenden
 &=
 \int_{\mathbb R^*}
 \int_{-\infty}^\infty
-(2\pi)^2 |a|\hat{f}(\omega) \overline{\hat{g}(\omega)} |\hat{\psi}(a\omega)|^2
+2\pi |a|\hat{f}(\omega) \overline{\hat{g}(\omega)} |\hat{\psi}(a\omega)|^2
 \,d\omega
 \,\frac{da}{|a|^2}
 \notag
 \\
 &=
 \int_{-\infty}^\infty
-(2\pi)^2 \hat{f}(\omega) \overline{\hat{g}(\omega)}
+\hat{f}(\omega) \overline{\hat{g}(\omega)}
+\underbrace{
+2\pi
 \int_{\mathbb R^*}
 |\hat{\psi}(a\omega)|^2
-\,\frac{da}{|a|}
+\,\frac{da}{|a|}}_{\displaystyle=C_\psi}
 \,d\omega.
 \label{cwtplancherel:p1}
 \end{align}
@@ -189,22 +215,19 @@ Wir betrachten dieses separat und setzen $a\omega = s$, was
 =
 \int_{\mathbb R^*} |\hat{\psi}(s)|^2 \,\frac{ds}{|s|}
 =
-C_{\psi}
+\frac{C_{\psi}}{2\pi}
 \end{align*}
 ergibt.
 Eingesetzt \eqref{cwtplancherel:p1} finden wir
 \begin{align*}
 \langle \mathcal{W}f, \mathcal{W}g\rangle_H
 &=
-(2\pi)^2
 C_{\psi}
 \int_{-\infty}^\infty \hat{f}(\omega)\overline{\hat{g}(\omega)}\,d\omega
 =
-(2\pi)^2
 C_{\psi}
 \langle \hat{f},\hat{g}\rangle
 =
-(2\pi)^2
 C_{\psi}
 \langle f,g\rangle.
 \end{align*}

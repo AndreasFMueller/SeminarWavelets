@@ -1,0 +1,46 @@
+%
+% resultate.tex -- Resultate
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}
+\frametitle{Resultate}
+\begin{zulaessig}
+Eine Funktion $\psi\in L^2(\mathbb R)$ mit $\|\psi\|=1$ ist zulässig,
+wenn
+\[
+C_{\psi}
+=
+2\pi
+\int_{\mathbb R^*} \frac{|\hat{\psi}(a\omega)|^2}{|a|}\,da < \infty
+\uncover<6->{%
+\quad\Rightarrow\quad
+\hat{\psi}(0)=0}
+\uncover<7->{%
+\quad\Rightarrow\quad
+\int_{-\infty}^\infty \psi(t)\,dt = 0}
+\]
+\uncover<2->{%
+Gilt zum Beispiel für differenzierbare Wavelets mit kompaktem Träger.
+}
+\end{zulaessig}
+
+\uncover<3->{%
+\begin{umkehrformelW}
+Für $f\in L^2(\mathbb R)$ gilt
+\[
+\mathring{f}(t)
+=
+\frac{1}{C_\psi}
+\int_{\mathbb R^*}\int_{-\infty}^\infty \mathcal{W}f(a,b)\,\psi_{a,b}(t)\,db\,\frac{da}{|a|^2}
+\uncover<4->{
+\quad\Rightarrow\quad
+\langle\mathring{f},g\rangle = \langle f,g\rangle
+\quad\forall g\in L^2(\mathbb R)
+}
+\]
+\uncover<5->{Unter zusätzlichen ``Regularitätsbedingungen'':
+$\mathring{f}(t)=f(t)$}
+\end{umkehrformelW}}
+
+\end{frame}
