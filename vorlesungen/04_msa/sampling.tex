@@ -26,6 +26,7 @@
 		({\x},{2*sin(15*\x*(12-\x))});
 	\def\xold{0}
 	\def\yold{0}
+\ifthenelse{\boolean{presentation}}{
 	\only<1>{
 		\foreach \x in {1,...,12}{ \stufe{\x} }
 	}
@@ -41,6 +42,9 @@
 	\only<5>{
 		\foreach \x in {0.0625,0.125,...,12}{ \stufe{\x} }
 	}
+}{
+	\foreach \x in {0.25,0.5,...,12}{ \stufe{\x} }
+}
 \end{tikzpicture}
 \end{center}
 

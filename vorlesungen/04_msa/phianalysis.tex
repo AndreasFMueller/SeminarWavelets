@@ -27,19 +27,28 @@
 
 	\begin{scope}
 		\clip (-0.1,-2.1) rectangle (12.3,2.1);
-		\foreach \x in {1,...,12}{
-			\pgfmathparse{\x-1}
-			\xdef\xlinks{\pgfmathresult}
-			\pgfmathparse{\x}
-			\xdef\xrechts{\pgfmathresult}
-			\only<\x>{ \stufe{\xlinks}{\xrechts} }
-		}
-		\foreach \x in {13,...,36}{
+		\ifthenelse{\boolean{presentation}}{
+			\foreach \x in {1,...,12}{
+				\pgfmathparse{\x-1}
+				\xdef\xlinks{\pgfmathresult}
+				\pgfmathparse{\x}
+				\xdef\xrechts{\pgfmathresult}
+				\only<\x>{ \stufe{\xlinks}{\xrechts} }
+			}
+			\foreach \x in {13,...,36}{
+				\pgfmathparse{(\x-13)*0.5}
+				\xdef\xlinks{\pgfmathresult}
+				\pgfmathparse{(\x-12)*0.5}
+				\xdef\xrechts{\pgfmathresult}
+				\only<\x>{ \stufe{\xlinks}{\xrechts} }
+			}
+		}{
+			\def\x{17}
 			\pgfmathparse{(\x-13)*0.5}
 			\xdef\xlinks{\pgfmathresult}
 			\pgfmathparse{(\x-12)*0.5}
 			\xdef\xrechts{\pgfmathresult}
-			\only<\x>{ \stufe{\xlinks}{\xrechts} }
+			\stufe{\xlinks}{\xrechts}
 		}
 	\end{scope}
 
@@ -58,38 +67,46 @@
 \end{tikzpicture}
 \end{center}
 
+\ifthenelse{\boolean{presentation}}{
 \begin{align*}
-f(t) &\simeq
-\only<1-12>{
-	\uncover<1->{  a_{0,0}  T_0\varphi(t) +\mathstrut}
-	\uncover<2->{  a_{0,1}  T_1\varphi(t) +\mathstrut}
-	\uncover<3->{  a_{0,2}  T_2\varphi(t) +\mathstrut}
-	\uncover<4->{  a_{0,3}  T_3\varphi(t) +\mathstrut}
-	\uncover<5->{  a_{0,4}  T_4\varphi(t) +\dots}
-}
-\only<13-36>{
-	\uncover<13->{ a_{1,0} D_{\frac12}T_0\varphi(t)+\mathstrut }
-	\uncover<14->{ a_{1,1} D_{\frac12}T_1\varphi(t)+\mathstrut }
-	\uncover<15->{ a_{1,2} D_{\frac12}T_2\varphi(t)+\mathstrut }
-	\uncover<16->{ a_{1,3} D_{\frac12}T_3\varphi(t)+\dots }
-}
-\\
-&
-\only<5-12>{=
-	\uncover<6->{
-		\sum_{k\in\mathbb Z} a_{0,k} T_k\varphi(t)
+	f(t) &\simeq
+	\only<1-12>{
+		\uncover<1->{  a_{0,0}  T_0\varphi(t) +\mathstrut}
+		\uncover<2->{  a_{0,1}  T_1\varphi(t) +\mathstrut}
+		\uncover<3->{  a_{0,2}  T_2\varphi(t) +\mathstrut}
+		\uncover<4->{  a_{0,3}  T_3\varphi(t) +\mathstrut}
+		\uncover<5->{  a_{0,4}  T_4\varphi(t) +\dots}
 	}
-}
-\only<16-36>{=
-	\uncover<17->{
-		\sum_{k\in\mathbb Z} a_{1,k} D_{\frac12}T_k\varphi(t)
+	\only<13-36>{
+		\uncover<13->{ a_{1,0} D_{\frac12}T_0\varphi(t)+\mathstrut }
+		\uncover<14->{ a_{1,1} D_{\frac12}T_1\varphi(t)+\mathstrut }
+		\uncover<15->{ a_{1,2} D_{\frac12}T_2\varphi(t)+\mathstrut }
+		\uncover<16->{ a_{1,3} D_{\frac12}T_3\varphi(t)+\dots }
 	}
+	\\
+	&
+	\only<5-12>{=
+		\uncover<6->{
+			\sum_{k\in\mathbb Z} a_{0,k} T_k\varphi(t)
+		}
+	}
+	\only<16-36>{=
+		\uncover<17->{
+			\sum_{k\in\mathbb Z} a_{1,k} D_{\frac12}T_k\varphi(t)
+		}
+	}
+	\end{align*}
+}{
+	\begin{align*}
+	f(t) &\simeq
+		a_{1,0} D_{\frac12}T_0\varphi(t)+
+		a_{1,1} D_{\frac12}T_1\varphi(t)+
+		a_{1,2} D_{\frac12}T_2\varphi(t)+
+		a_{1,3} D_{\frac12}T_3\varphi(t)+\dots 
+	\\
+		&=\sum_{k\in\mathbb Z} a_{1,k} D_{\frac12}T_k\varphi(t)
+	\end{align*}
 }
-\end{align*}
 
 \end{frame}
-
-
-
-
 

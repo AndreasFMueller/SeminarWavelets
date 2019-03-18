@@ -44,19 +44,23 @@
 		\end{scope}
 	}
 
-	\only<1>{ \kurve{1}{2}{13} }
-	\only<2>{ \kurve{0.5}{1}{13} }
-	\only<3>{ \kurve{0.25}{0.5}{13} }
-	\only<4>{ \kurve{0.125}{0.25}{13} }
-	\only<5>{ \kurve{0.0625}{0.125}{13} }
+	\ifthenelse{\boolean{presentation}}{
+		\only<1>{ \kurve{1}{2}{13} }
+		\only<2>{ \kurve{0.5}{1}{13} }
+		\only<3>{ \kurve{0.25}{0.5}{13} }
+		\only<4>{ \kurve{0.125}{0.25}{13} }
+		\only<5>{ \kurve{0.0625}{0.125}{13} }
 
-	\setboolean{blocks}{true}
+		\setboolean{blocks}{true}
 
-	\only<6>{ \kurve{1}{2}{13} }
-	\only<7>{ \kurve{0.5}{1}{13} }
-	\only<8>{ \kurve{0.25}{0.5}{13} }
-	\only<9>{ \kurve{0.125}{0.25}{13} }
-	\only<10>{ \kurve{0.0625}{0.125}{13} }
+		\only<6>{ \kurve{1}{2}{13} }
+		\only<7>{ \kurve{0.5}{1}{13} }
+		\only<8>{ \kurve{0.25}{0.5}{13} }
+		\only<9>{ \kurve{0.125}{0.25}{13} }
+		\only<10>{ \kurve{0.0625}{0.125}{13} }
+	}{
+		\kurve{0.25}{0.5}{13}
+	}
 
 	\draw[->,line width=0.7pt] (-0.1,0)--(12.6,0)
 		coordinate[label={$t$}];
