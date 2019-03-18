@@ -8,10 +8,51 @@
 \begin{refsection}
 \chapterauthor{Jonas Gründler und Nicolas Tobler}
 
-\section{Abschnitt}
-\rhead{Abschnitt}
+\section{Introduction}
+\rhead{Introduction}
 
-\section{Schlussfolgerung}
+Hardware implementation of a Wavelet transform and inverse transform using VHDL
+
+
+\section{Lifting Scheme}
+\rhead{Lifting Scheme}
+
+The Lifting Scheme is an widely used algorythm which is tho times more efficient in termes of multiplication uses. 
+
+%https://en.wikipedia.org/wiki/Lifting_scheme
+%http://wavelets.org/schemes-lifting.php
+
+\subsection{Polyphase Decomposition}
+
+%https://www.dsprelated.com/freebooks/sasp/Polyphase_Decomposition.html
+
+Polyphase definition is
+\begin{equation}
+H(z)=E_{0}(z^2)+z^{−1} E_1(z^2)
+\end{equation}
+
+Polyphase components are
+\begin{equation}
+E_0(z) = \sum_{n=-\inf}^\inf h(2n)z^{-n}
+\end{equation}
+\begin{equation}
+E_1(z) = \sum_{n=-\inf}^\inf h(2n+1)z^{-n}
+\end{equation}
+
+Haar Wavelet in z notation is
+$g(n)$ are the Father Wavelet coefficients whereas $h(n)$ are the corresponding mother coefficinents. 
+\begin{equation}
+{\mathcal {Z}} \{g(n)\} = 1 + z^-1
+\end{equation}
+\begin{equation}
+{\mathcal {Z}} \{(n)\} = 1 - z^-1
+\end{equation}
+
+
+\section{Implementation}
+
+
+\section{Conclusions}
 \rhead{Schlussfolgerung}
 
 \printbibliography[heading=subbibliography]
