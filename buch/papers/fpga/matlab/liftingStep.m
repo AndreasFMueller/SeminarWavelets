@@ -13,7 +13,7 @@ stem(g); hold off;
 sum(g)
 
 t = 1:201;
-x = sin(2*pi*t/30) + 1.2*cos(2*pi*t/87);
+x = sin(2*pi*t/50);% + 1.2*cos(2*pi*t/87);
 
 figure(1)
 subplot(2,1,1)
@@ -21,15 +21,10 @@ plot(t, x)
 
 haar = true;
 
-s = zeros(1, 101);
-d = zeros(1, 101);
+s = zeros(1, 101); % lp
+d = zeros(1, 101); % hp
 for i = 2:100
     if haar
-%         s(i) = x(2*i);
-%         d(i) = x(2*i+1);
-%         d(i) = d(i) - s(i);
-%         s(i) = s(i) + 1/2*d(i);
-
         s(i) = x(2*i);
         d(i) = x(2*i+1);
         d(i) = d(i) - s(i);
@@ -46,15 +41,12 @@ end
 subplot(2,1,2)
 plot(s); hold on;
 plot(d); hold off;
+legend({'s (lp)', 'd (hp)'});
 
 y = zeros(1, 201);
 
 for i = 2:100
     if haar
-%         s(i) = s(i) - 1/2*d(i);
-%         d(i) = d(i) + s(i);
-%         y(2*i+1) = d(i);
-%         y(2*i) = s(i);
         s(i) = s(i) - 1/2*d(i);
         d(i) = d(i) + s(i);
         y(2*i+1) = d(i);

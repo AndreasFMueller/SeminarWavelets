@@ -12,7 +12,9 @@ for i = 1:N
 %     x = interp(c,2^(i+0)); 
     x = repelem(c, 2^(i+0));
     x = x /(2^i);
-    im(i,:) = x;
+    size(im)
+    size(x)
+    im(i,1:length(x)) = x;
 end
 
 end
