@@ -1,5 +1,11 @@
-t = 1:2201;
-x = sin(2*pi*t/40) + 1.2*cos(2*pi*t/500);
+t = 1:3000;
+x = sin(2*pi*t/500);% + 1.2*cos(2*pi*t/40);
+
+x(1:2000) = zeros(1,2000);
+
+x(501+348:1000+348) = [(1:250) (250:-1:1)]/250;
+
+toVhdlRecord(int16(x*2^15), '..\vhdl\data\xVector.hex')
 
 figure(1)
 subplot(3,1,1)
@@ -19,9 +25,12 @@ for n = 1:N
         d(i) = d(i) - s(i);
         s(i) = s(i) + 1/2*d(i);
     end
-    ds{n } = d;
+    ds{n} = [d];
     x = s(1:len);
 end
+
+
+
 
 subplot(3,1,2)
 plot(s); hold on;
@@ -30,14 +39,15 @@ for i = 1:N
 end
 hold off;
 
+%%
 im2 = wavlet2img(ds, {});
 im = imresize(im2,[N*30 size(im2,2)]);
 subplot(3,1,3)
 imshow(im(:, 200:end-200), [])
 
-legend({'s (lp)', 'd (hp)'});
-
 %%
+% i=6
+% ds{i} = ds{i}*0.5
 
 for n = N:-1:1
     len = length(s);
@@ -52,6 +62,11 @@ for n = N:-1:1
     s = y;
 end
 
+
+
+
 subplot(3,1,1)
 hold on;
 plot(y, 'x'); hold off;
+
+
