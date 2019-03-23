@@ -40,10 +40,11 @@ architecture rtl of haar_tb is
             clk : in std_logic;
             rst : in std_logic;
             x : in signed(n-1 downto 0);
+            rdy_in : in std_logic;
             
             d : out signed(n-1 downto 0);
             s : out signed(n-1 downto 0);
-            rdy : out std_logic
+            rdy_out : out std_logic
         );
 	end component;
 	
@@ -57,10 +58,11 @@ begin
 			clk => clk,
 			rst => rst,
 			x => x,
+			rdy_in => '1',
 
 			d => d,
 			s => s,
-			rdy => rdy
+			rdy_out => rdy
 		);
 
 	clk <= not clk after clk_period/2;
@@ -78,6 +80,10 @@ begin
 	   
 	    report "Loading file";
 	    x_vector <= readFromFile("D:/Temp/xVector.hex");
+	   
+	    x <= (others => '0');
+	   
+	    wait for clk_period*20;
 	   
 		for i in 0 to DEPTH-1 loop
 		    t <= i;

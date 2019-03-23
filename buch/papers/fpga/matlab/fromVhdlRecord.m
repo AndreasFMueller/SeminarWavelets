@@ -12,6 +12,7 @@ function [ vector ] = fromVhdlRecord( filename )
         vector = [vector value];
         line = fgetl(f);
     end
+    fclose(f);
     vector = uint16(vector);
     vector = typecast(vector, 'int16');
     
