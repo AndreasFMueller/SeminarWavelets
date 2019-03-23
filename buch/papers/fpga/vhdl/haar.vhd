@@ -66,7 +66,7 @@ begin
 		x_z1 <= (others => '0');
 		d_int <= (others => '0');
         s_int <= (others => '0');
-		rdy_out_int <= '1';
+		rdy_out_int <= '0';
 		state <= '0';
 	elsif rising_edge(clk) then
         d_int <= d_int_next;
