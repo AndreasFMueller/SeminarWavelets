@@ -1,15 +1,23 @@
 t = 1:3000;
 x = sin(2*pi*t/500);% + 1.2*cos(2*pi*t/40);
 
-x(1:2000) = zeros(1,2000);
+x = int16(x*2^15*0.1); %quantize x
 
-x(501+348:1000+348) = [(1:250) (250:-1:1)]/250;
+% x(1:2000) = zeros(1,2000);
+% x(501+348:1000+348) = [(1:250) (250:-1:1)]/250;
 
-toVhdlRecord(int16(x*2^15), '..\vhdl\data\xVector.hex')
+toVhdlRecord(x, 'D:/Temp/xVector.hex')
+sVhdl = fromVhdlRecord('D:/Temp/sVector.hex');
+dVhdl = fromVhdlRecord('D:/Temp/dVector.hex');
 
 figure(1)
 subplot(3,1,1)
-plot(t, x)
+plot(t, x); hold on;
+plot(t, sVhdl);
+plot(t, dVhdl); hold off;
+legend({'x', 'sVhdl', 'dVhdl'})
+
+%%
 
 N = 7
 
