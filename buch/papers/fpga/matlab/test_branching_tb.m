@@ -38,7 +38,7 @@ plot(t, d2Vhdl, 'o');
 plot(t, d3Vhdl, 'o');
 plot(t, sVhdl, 'o'); hold off;
 %plot(t, rdysVhdl, 'o');
-legend({'x', 'd0', 'd1', 'd2', 'd3', 's','rdys'})
+legend({'x', 'd0', 'd1', 'd2', 'd3', 's'})
     
 sDif = compareDelayed(repelem(s, 2), sVhdl, 2);
 dDif = compareDelayed(repelem(d, 2), dVhdl, 2);
