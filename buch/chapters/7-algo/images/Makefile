@@ -5,9 +5,6 @@
 #
 all:	db1.pdf db2.pdf db3.pdf db4.pdf
 
-phiimage.pdf:	phiimage.tex  phi.tex
-	pdflatex phiimage.tex
-
 db1.pdf:	db1.tex phi-db1.tex psi-db1.tex
 	pdflatex db1.tex
 
