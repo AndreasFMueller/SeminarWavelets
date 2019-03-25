@@ -1,0 +1,212 @@
+%
+% umkehrung.tex -- Umkehrtransformation
+%
+% (c) 2019 Prof Dr Andreas Müller
+%
+\section{Umkehrung}
+
+%
+% Basistransformation
+%
+\begin{frame}
+\frametitle{Basistransformation}
+\begin{block}{Basen}
+Orthonormierte
+Basen $\mathcal{B}=\{b_j\,|\,1\le j\le n\}$ und
+$\mathcal{C}=\{c_j\,|\,1\le j\le n\}$:
+\[
+v
+=
+\sum_i \xi_i b_i
+\uncover<2->{=
+\sum_l \eta_l c_l}
+\]
+\end{block}
+\uncover<3->{
+\begin{block}{Transformationsmatrix}
+\[
+b_i
+=
+\sum_{j} t_{ji} c_j
+\uncover<4->{
+\quad\Rightarrow\quad
+v
+=
+\sum_i\xi_i b_i
+}
+\uncover<5->{=
+\sum_{j,i} t_{ji}\xi_i c_j}
+\uncover<6->{\quad\Rightarrow\quad
+\eta_j = \sum_i t_ji\xi_i}
+\uncover<7->{\quad\Rightarrow\quad
+\eta = T\xi}
+\]
+\end{block}
+}
+\end{frame}
+
+%
+% Orthogonalität
+%
+\begin{frame}
+\frametitle{Orthogonalität}
+$b_i$ und $c_j$ sind orthogonal:
+\[
+\langle b_i,b_j\rangle=0\;\forall i,j
+\qquad\text{und}\qquad
+\langle c_i,c_j\rangle=0\;\forall i,j
+\]
+\uncover<2->{
+\begin{block}{Transformationsmatrix}
+\[
+\langle b_i,b_j\rangle
+\uncover<3->{=
+\biggl\langle
+\sum_{k} t_{ki} c_k,
+\sum_{l} t_{lj} c_l
+\biggr\rangle}
+\uncover<4->{=
+\sum_{k,l}
+t_{ki} \bar{t}_{lj}
+\underbrace{
+\langle c_k, c_l\rangle
+}_{\displaystyle=\delta_{kl}}}
+\uncover<5->{=
+\sum_{k}
+t_{ki} \bar{t}_{kj}}
+\uncover<6->{=
+\sum_{k}
+\bar{t}_{kj}
+t_{ki}}
+\]
+\uncover<7->{Notation: $T^* =\overline{T}^t$, komplex konjugierte und transponierte Matrix $T$}
+\uncover<8->{
+\[
+T^*T = E
+\uncover<9->{\quad\Rightarrow\quad
+T^{-1} = T^*}
+\]
+}
+\uncover<10->{``orthogonale komplexe Matrix'', unitäre Matrix}
+\end{block}
+}
+\end{frame}
+
+%
+% Umkehrtransformation für die Wavelet-Transformation
+%
+\begin{frame}
+\frametitle{Umkehrtransformation --- Matrixform}
+\bgroup
+\setlength{\tabcolsep}{4pt}
+\def\arraystretch{1.5}
+\begin{tabular}{>{$}c<{$}|
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}|}
+          &\dots &a_{j,-2}&b_{j,-2}&a_{j,-1}&b_{j,-1}&a_{j,0}&b_{j,0}&a_{j,1}&b_{j,1}&a_{j,2}&b_{j,2}&\dots \\
+\hline
+\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
+a_{j+1,-2}&\dots &h_{ 2}  &g_{ 2}  &h_{ 0}  &g_{ 0}  &h_{-2} &g_{-2} &h_{-4} &g_{-4} &h_{-6} &g_{-6} &\dots \\
+a_{j+1,-1}&\dots &h_{ 3}  &g_{ 3}  &h_{ 1}  &g_{ 1}  &h_{-1} &g_{-1} &h_{-3} &g_{-3} &h_{-5} &g_{-5} &\dots \\
+a_{j+1, 0}&\dots &h_{ 4}  &g_{ 4}  &h_{ 2}  &g_{ 2}  &h_{ 0} &g_{ 0} &h_{-2} &g_{-2} &h_{-4} &g_{-4} &\dots \\
+a_{j+1, 1}&\dots &h_{ 5}  &g_{ 5}  &h_{ 3}  &g_{ 3}  &h_{ 1} &g_{ 1} &h_{-1} &g_{-1} &h_{-3} &g_{-3} &\dots \\
+a_{j+1, 2}&\dots &h_{ 6}  &g_{ 6}  &h_{ 4}  &g_{ 4}  &h_{ 2} &g_{ 2} &h_{ 0} &g_{ 0} &h_{-2} &g_{-2} &\dots \\
+a_{j+1, 3}&\dots &h_{ 7}  &g_{ 7}  &h_{ 5}  &g_{ 5}  &h_{ 3} &g_{ 3} &h_{ 1} &g_{ 1} &h_{-1} &g_{-1} &\dots \\
+a_{j+1, 4}&\dots &h_{ 8}  &g_{ 8}  &h_{ 6}  &g_{ 6}  &h_{ 4} &g_{ 4} &h_{ 2} &g_{ 2} &h_{ 0} &g_{ 0} &\dots \\
+a_{j+1, 5}&\dots &h_{ 9}  &g_{ 9}  &h_{ 7}  &g_{ 7}  &h_{ 5} &g_{ 5} &h_{ 3} &g_{ 3} &h_{ 1} &g_{ 1} &\dots \\
+\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
+\hline
+\end{tabular}
+\egroup
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Umkehrtransformation --- Formel}
+Transformationsformeln:
+\[
+\begin{aligned}
+a_{j+1,k}
+&=
+\dots
++
+h_{k+4}
+a_{j,-2}
++
+g_{k+4}
+b_{j,-2}
++
+h_{k+2}
+a_{j,-1}
++
+g_{k+2}
+b_{j,-1}
+\\
+&\qquad
++
+h_{k}
+a_{j,0}
++
+g_{k}
+b_{j,0}
++
+h_{k-2}
+a_{j,1}
++
+g_{k-2}
+b_{j,1}
++
+\dots
+\\
+&\uncover<2->{=
+\dots
++
+h_{k+4}
+a_{j,-2}
++
+h_{k+2}
+a_{j,-1}
++
+h_{k}
+a_{j,0}
++
+h_{k-2}
+a_{j,1}}
+\\
+&\uncover<3->{\qquad
++
+g_{k+4}
+b_{j,-2}
++
+g_{k+2}
+b_{j,-1}
++
+g_{k}
+b_{j,0}
++
+g_{k-2}
+b_{j,1}
++
+\dots}
+\\
+&\uncover<4->{=
+\sum_{l\in\mathbb Z}
+h_{k-2l}
+a_{j,l}
++
+\sum_{l\in\mathbb Z}
+g_{k-2l}
+b_{j,l}.}
+\end{aligned}
+\]
+\end{frame}

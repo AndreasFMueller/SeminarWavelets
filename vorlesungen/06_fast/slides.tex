@@ -1,0 +1,76 @@
+%
+% slides.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\ifthenelse{\boolean{presentation}}{
+\begin{frame}
+\titlepage
+\end{frame}
+}{}
+
+\begin{frame}
+\frametitle{Skalierungsrelation}
+\begin{block}{Aus Multiskalen-Analyse}
+Koeffizienten $h_k$ und $g_k$ derart, dass
+\begin{align*}
+\varphi
+&=
+\sum_{k\in\mathbb Z}
+h_k
+D_{\frac12}T_k \varphi
+&&\Rightarrow&
+\varphi_{j+1,l} &= \sum_{k\in\mathbb Z} h_k\varphi_{j,l+k}
+\\
+\psi
+&=
+\sum_{k\in\mathbb Z}
+g_k
+D_{\frac12}T_k \varphi
+&&\Rightarrow&
+\psi_{j+1,l} &= \sum_{k\in\mathbb Z} g_k\varphi_{j,l+k}
+\end{align*}
+\end{block}
+\begin{block}{Gesucht: Wavelet-Analyse}
+Wavelet-Koeffizienten:
+\begin{align*}
+a_{j,k} & = \langle f, \varphi_{j,k} \rangle
+&&
+\\
+b_{j,k} & = \langle f, \psi_{j,k} \rangle
+&&
+\text{Features der Grösse $2^{-j}$ bei $k2^{-j}$}
+\end{align*}
+\end{block}
+\end{frame}
+
+%
+% Sampling
+%
+\begin{frame}
+\frametitle{Sampling}
+\[
+\left.
+\begin{aligned}
+&\text{$j$ sehr gross}\\
+&\uncover<2->{\text{$a_{j,k}=\mathstrut$ Features der Grösse $2^{-j}$}}\\
+&\uncover<3->{\text{$f$ ändert nahe bei $k2^{-j}$ langsam}}
+\end{aligned}
+\uncover<4->{
+\quad\right\}
+\quad\Rightarrow\quad
+\text{$a_{j,k}=\mathstrut$ Funktionswert bei $k2^{-j}$}}
+\]
+\uncover<5->{
+\[
+a_{j,k} = \text{Samples mit Auflösung $2^{-j}$}
+\]
+}
+\end{frame}
+
+\input{analyse.tex}
+
+\input{umkehrung.tex}
+
+\input{db.tex}
