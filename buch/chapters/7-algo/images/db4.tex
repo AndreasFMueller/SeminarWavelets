@@ -1,0 +1,27 @@
+%
+% db4.tex -- daubechies wavelet 4
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\begin{tikzpicture}[>=latex,scale=2]
+
+\input{phi-db4.tex}
+\input{psi-db4.tex}
+
+\draw[->,line width=0.7pt] (-0.1,0)--(7.3,0) coordinate[label={$t$}];
+\draw[->,line width=0.7pt] (0,-1.1)--(0,1.6);
+
+\foreach \x in {1,...,7}{
+	\draw[line width=0.7pt] ({\x},-0.05)--({\x},0.05);
+}
+
+\end{tikzpicture}
+\end{document}

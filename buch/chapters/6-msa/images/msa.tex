@@ -13,6 +13,7 @@
 \begin{document}
 \begin{tikzpicture}[>=latex]
 
+\definecolor{darkgreen}{rgb}{0,0.5,0.1}
 
 \def\punkt#1#2{
 	\fill #1 circle[radius=0.05];
@@ -48,6 +49,10 @@
 	(-5.85,0.6) rectangle (6.3,1.0);
 \draw[color=white,line width=1pt] (-5.85,1)--(6.3,1);
 
+\foreach \x in {-5.5,-4.5,...,5.5}{
+	\fill[color=darkgreen] ({\x},0.8) circle[radius=0.08];
+}
+
 \zeile{-25}{25}{0.25}{2}
 %\zeilegrau{-26}{-23}{0.25}{2}
 \zeile{-11}{12}{0.5}{1}
@@ -61,14 +66,15 @@
 \draw[->,line width=0.3pt] (-6.6,0)--(6.7,0) coordinate[label=$b$];
 \draw[->,line width=0.3pt] (0,-3)--(0,3) coordinate[label={right:$j=-\log_2(a)$}];
 
-%\node at (0.5,0) [above] {$\varphi$};
-%\node at (1.5,0) [above] {$T_1\varphi$};
-%\node at (2.5,0) [above] {$T_2\varphi$};
-%\node at (3.5,0) [above] {$T_3\varphi$};
+\node at (0.0,-0.1) [above right] {$\varphi$};
+\node at (1.0,-0.1) [above right] {$T_1\varphi$};
+\node at (2.0,-0.1) [above right] {$T_2\varphi$};
+\node at (3.0,-0.1) [above right] {$T_3\varphi$};
 
-\node at (0.0,0.9) [above] {$\psi$};
-\node at (1.0,0.9) [above] {$T_2\psi$};
-\node at (2.5,0.9) [above] {$T_5\psi$};
+\node[color=darkgreen] at (0.5,0.9) [above] {$\psi$};
+\node[color=darkgreen] at (1.5,0.9) [above] {$T_1\psi$};
+\node[color=darkgreen] at (2.5,0.9) [above] {$T_2\psi$};
+\node[color=darkgreen] at (3.5,0.9) [above] {$T_3\psi$};
 
 \node at (-6.5,2.2) [right] {$V_2$};
 \node at (-6.4,1.2) [right] {$V_1$};

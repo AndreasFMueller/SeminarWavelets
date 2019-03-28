@@ -1,0 +1,104 @@
+%
+% schnell.tex -- Schnelle Algorithmen
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}
+\frametitle{Schneller Algorithmus}
+\begin{align*}
+\varphi
+&=
+\frac1{\sqrt{2}}(D_{\frac12}\varphi + D_{\frac12}T_1\varphi)
+&&\uncover<2->{\Rightarrow}&
+\uncover<2->{\langle f,\varphi\rangle}
+&\uncover<2->{=
+\frac1{\sqrt{2}} \langle f,D_{\frac12}\varphi\rangle
++
+\frac1{\sqrt{2}} \langle f,D_{\frac12}T_1\varphi\rangle}
+\\
+&&&\uncover<8->{\Rightarrow}&
+\uncover<9->{a_{j,k}}&\uncover<9->{=\frac1{\sqrt{2}} (a_{j+1,2k} + a_{j+1,2k+1})}
+\\
+\uncover<3->{\psi}
+&\uncover<3->{=
+\frac1{\sqrt{2}}(D_{\frac12}\varphi - D_{\frac12}T_1\varphi)}
+&&\uncover<4->{\Rightarrow}&
+\uncover<4->{\langle f,\psi\rangle}
+&\uncover<4->{=
+\frac1{\sqrt{2}} \langle f,D_{\frac12}\varphi\rangle
+-
+\frac1{\sqrt{2}} \langle f,D_{\frac12}T_1\varphi\rangle}
+\\
+&&&\uncover<10->{\Rightarrow}&
+\uncover<10->{b_{j,k}}&\uncover<10->{=\frac1{\sqrt{2}} (a_{j+1,2k} - a_{j+1,2k+1})}
+\end{align*}
+\uncover<5->{
+Für Sampling-Interval $2^{-N}$:
+\begin{itemize}
+\item<6-> $a_{N,k}$ sind Sample-Werte
+\item<7-> $a_{j,k}$ mit $j<N$ sind gemittelte Samples für Auflösung $2^{-j}$
+\end{itemize}
+}
+
+\end{frame}
+
+%
+% allgemeiner schneller Algorithmus
+%
+\begin{frame}
+\frametitle{Schneller Algorithmus (Verallgemeinerung)}
+\begin{align*}
+\varphi
+&=
+\frac1{\sqrt{2}}
+\sum_{l\in\mathbb Z} h_l D_{\frac12}T_l\varphi
+&&\uncover<3->{\Rightarrow}&
+\uncover<3->{\langle f,\varphi\rangle}
+&\uncover<3->{=
+\frac{1}{\sqrt{2}} \sum_{k\in\mathbb Z} \bar{h}_k\langle f,D_{\frac12}T_k\varphi\rangle}
+\\
+&&&\uncover<7->{\Rightarrow}&
+\uncover<7->{a_{j,k}}
+&\uncover<7->{=
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z}\bar{h}_l a_{j+1,2k+l}}
+\\
+\uncover<4->{\psi}
+&\uncover<4->{=
+\frac1{\sqrt{2}}
+\sum_{l\in\mathbb Z} g_l D_{\frac12}T_l\varphi}
+&&\uncover<6->{\Rightarrow}&
+\uncover<6->{\langle f,\varphi\rangle}
+&\uncover<6->{=
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l\langle f,D_{\frac12}T_l\varphi\rangle}
+\\
+&&&\uncover<8->{\Rightarrow}&
+\uncover<8->{b_{j,k}}
+&\uncover<8->{=
+\frac{1}{\sqrt{2}} 
+\sum_{l\in\mathbb Z} \bar{g}_l a_{j+1,2k+l}}
+\end{align*}
+
+\uncover<2->{
+\begin{haarfall}
+\[
+\left.
+\begin{aligned}
+\varphi&=\text{Vater-Haar-Wavelet}\\
+\uncover<5->{\psi}&\uncover<5->{=\text{Haar-Wavelet}}
+\end{aligned}
+\quad
+\right\}
+\qquad
+\Rightarrow
+\qquad
+\left\{
+\quad
+\begin{aligned}
+h_0&=1,&h_1&= 1\\
+\uncover<5->{g_0}&\uncover<5->{=1,}&\uncover<5->{g_1}&\uncover<5->{=-1}
+\end{aligned}
+\right.
+\]
+\end{haarfall}
+}
+\end{frame}

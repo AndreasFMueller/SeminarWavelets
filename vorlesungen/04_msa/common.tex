@@ -1,0 +1,41 @@
+%
+% common.tex -- gemeinsame Definitionen
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{epic}
+\usepackage{color}
+\usepackage{array}
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\mode<beamer>{%
+\usetheme[hideothersubsections,hidetitle]{Hannover}
+}
+\beamertemplatenavigationsymbolsempty
+\title[MSA]{Multiskalenanalyse}
+\author[A.~Müller]{Prof.~Dr.~Andreas Müller}
+\date[]{18.~März 2019}
+\newboolean{presentation}
+
+\theoremstyle{definition}
+\newtheorem{beispiel}{Beispiel}
+\newtheorem{folgerungen}{Folgerungen}
+\newtheorem{frage}{Frage}
+\newtheorem{raumW}{Orthogonalkomplement $W_j$}
+\newtheorem{osumme}{Orthogonale Summe}
+\newtheorem{haarfall}{Spezialfall Haar-Wavelet}
+
+% linsys
+\newcolumntype{\linsysR}{>{$}r<{$}}
+\newcolumntype{\linsysL}{>{$}l<{$}}
+\newcolumntype{\linsysC}{>{$}c<{$}}
+\newenvironment{linsys}[1]{%
+\begin{tabular}{*{#1}{\linsysR@{\;}\linsysC}@{\;}\linsysR}}%
+{\end{tabular}}
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
