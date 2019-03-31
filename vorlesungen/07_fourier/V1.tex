@@ -49,3 +49,94 @@ Spezialfall: $H=m_\varphi$, gleiche Rechnung
 \end{block}
 
 \end{frame}
+
+%
+%
+%
+\begin{frame}
+\frametitle{Orthogonalitätsrelationen}
+\begin{align*}
+\{T_b\varphi\,|\,b\in\mathbb Z\}&\;\text{orthonormiert}
+&&\Rightarrow&
+1&=|H(\omega+\pi)|^2 + |H(\omega)|^2
+\\
+\{T_b\psi\,|\,b\in\mathbb Z\}&\;\text{orthonormiert}
+&&\Rightarrow&
+1&=|m_\psi(\omega+\pi)|^2 + |m_\psi(\omega)|^2
+\\
+\psi&\perp T_b\varphi
+\;\forall b\in\mathbb Z
+&&\Rightarrow&
+0&=m_\psi(\omega+\pi) \overline{H(\omega+\pi)} + m_\psi(\omega)\overline{H(\omega)}
+\end{align*}
+Vektoriell:
+\begin{align*}
+\left|
+\begin{pmatrix}
+H(\omega)\\
+H(\omega+\pi)
+\end{pmatrix}
+\right|^2
+=
+\left|
+\begin{pmatrix}
+m_\psi(\omega)\\
+m_\psi(\omega+\pi)
+\end{pmatrix}
+\right|^2
+&=
+1
+&&\text{und}
+&
+\begin{pmatrix}
+m_\psi(\omega)\\
+m_\psi(\omega+\pi)
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+H(\omega)\\
+H(\omega+\pi)
+\end{pmatrix}
+&=
+0
+\end{align*}
+\[
+\begin{pmatrix}
+m_\psi(\omega)\\
+m_\psi(\omega+\pi)
+\end{pmatrix}
+=
+\lambda(\omega)
+\begin{pmatrix}
+\overline{H(\omega+\pi)}\\
+-\overline{H(\omega)}
+\end{pmatrix},
+\quad \lambda(\omega) \in\mathbb C, |\lambda(\omega)|=1,
+\lambda(\omega)=-\lambda(\omega+\pi)
+\]
+\end{frame}
+
+
+\begin{frame}
+\frametitle{$\psi$ bestimmt durch $H$}
+\[
+\hat{\psi}(\omega)
+=
+m_\psi\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+=
+\lambda\biggl(\frac{\omega}2\biggr)
+\overline{H\biggl(\frac{\omega}2+\pi\biggr)}
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+=
+e^{i\omega/2}
+p\biggl(\frac{\omega}2\biggr)
+\overline{H\biggl(\frac{\omega}2+\pi\biggr)}
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\]
+
+
+\end{frame}
+
+
+
