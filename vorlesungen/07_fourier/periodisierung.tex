@@ -1,0 +1,100 @@
+%
+% periodisierung.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+%
+% Periodisierungstrick
+%
+\begin{frame}
+\frametitle{Periodisierungstrick}
+\begin{block}{Aufgabe}
+Integrale der Form
+$\int_{-\infty}^\infty f(t) e^{ibt}\,dt$ mit $b\in\mathbb Z$ vereinfachen
+\end{block}
+\uncover<2->{
+\begin{block}{Idee}
+Integral in Integrale über Intervalle der Länge $2\pi$ aufteilen:
+\begin{align*}
+\int_{-\infty}^\infty f(t) e^{ibt}\,dt
+&\uncover<3->{=
+\sum_{k\in\mathbb Z}
+\int_{2\pi k}^{2\pi(k+1)} f(t) e^{ibt}\,dt}
+\uncover<4->{=
+\sum_{k\in\mathbb Z}
+\int_0^{2\pi}
+f(2\pi  +t) e^{ib(2\pi+t)}\,dt}
+\\
+&\uncover<5->{=
+\sum_{k\in\mathbb Z}
+\int_0^{2\pi}
+f(2\pi  +t)
+e^{ibt}
+\,dt}
+\uncover<6->{=
+\int_0^{2\pi}
+e^{ibt}
+\underbrace{
+\sum_{k\in\mathbb Z}
+f(2\pi  +t)
+}_{\displaystyle=\mathcal{P}f(t)}
+\,dt}
+\end{align*}
+\uncover<7->{$2\pi \times$Fourier-$b$-Koeffizient der $2\pi$-periodischen
+Funktion
+$\mathcal{P}f(t)$}
+\end{block}
+}
+\end{frame}
+
+%
+% Anwendungen des Periodisierungstricks
+%
+\begin{frame}
+\frametitle{Anwendungen des Periodisierungstricks}
+In Orthonormalisierungsbedingungen treten vor allem Integralwerte $0$ oder $1$
+auf:
+\uncover<2->{
+\begin{block}{$\int_{-\infty}^{\infty}f(t)e^{ibt}\,dt=0$ für alle $b\in\mathbb Z$}
+\vspace{-20pt}
+\uncover<3->{
+\begin{align*}
+\uncover<5->{
+2\pi\cdot c_b
+=
+}
+\int_{-\infty}^\infty f(t) e^{ibt}\,dt
+&\uncover<4->{=
+\int_{0}^{2\pi} \mathcal Pf(t) e^{ibt} \,dt
+=
+0}
+\end{align*}
+}
+\uncover<6->{%
+Alle Fourier-Koeffizienten von $\mathcal{P}f$ verschwinden:}
+\uncover<7->{$\Rightarrow\; \mathcal{P}f(t)=0$.}
+\end{block}
+}
+
+\uncover<8->{
+\begin{block}{$\int_{-\infty}^{\infty}f(t)e^{ibt}\,dt=\delta_{b0}$ für $b\in\mathbb Z$}
+\vspace{-20pt}
+\uncover<9->{
+\begin{align*}
+\uncover<10->{2\pi\cdot c_b
+=}
+\int_{-\infty}^\infty f(t) e^{ibt}\,dt
+&=
+\int_{0}^{2\pi} \mathcal Pf(t) e^{ibt} \,dt
+=
+\delta_{b0}
+\end{align*}
+}
+\uncover<11->{
+Fourier-Reihe von $\mathcal{P}f$ summieren:}
+\uncover<12->{$\mathcal Pf(t) = c_0 = \displaystyle\frac1{2\pi}$}
+\end{block}
+}
+
+\end{frame}
