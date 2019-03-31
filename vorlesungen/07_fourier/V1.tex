@@ -1,0 +1,51 @@
+%
+% V1.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\begin{frame}
+\frametitle{Darstellung von Funktionen in $V_1$}
+
+\begin{block}{$f\in V_1$ lässt sich aus $\varphi_{1,b}$ linear kombinieren}
+\vspace{-20pt}
+
+\begin{align*}
+f(t)
+&=
+\sum_{b\in\mathbb Z} f_k \varphi_{1,b}(t)
+\\[-15pt]
+\intertext{\vspace{-10pt} Fourier-Transformierte:}
+\hat{f}(\omega)
+&=
+\sum_{b\in\mathbb Z} f_b\frac{1}{\sqrt{2}} e^{ib\omega/2}
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\end{align*}
+\end{block}
+
+\vspace{-15pt}
+
+\begin{definition}
+\vspace{-10pt}
+\[
+m_f(s)
+=
+\frac{1}{\sqrt{2}}
+\sum_{b\in\mathbb Z} f_k e^{-ibs}
+\]
+\end{definition}
+
+\vspace{-15pt}
+
+\begin{block}{Allgemeine Skalierungsrelation}
+\vspace{-10pt}
+\[
+\hat{f}(\omega)
+=
+m_f\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\]
+Spezialfall: $H=m_\varphi$, gleiche Rechnung
+\end{block}
+
+\end{frame}

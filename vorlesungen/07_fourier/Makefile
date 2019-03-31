@@ -10,7 +10,10 @@ SOURCES =								\
 	slides.tex							\
 	plan.tex							\
 	periodisierung.tex						\
-	tphi.tex
+	tphi.tex							\
+	phipsi.tex							\
+	H.tex								\
+	V1.tex
 
 MathSem-07-fourier.pdf:	MathSem-07-fourier.tex $(SOURCES)
 	pdflatex MathSem-07-fourier.tex
