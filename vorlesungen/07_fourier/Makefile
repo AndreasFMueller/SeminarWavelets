@@ -13,7 +13,8 @@ SOURCES =								\
 	tphi.tex							\
 	phipsi.tex							\
 	H.tex								\
-	V1.tex
+	V1.tex								\
+	phi.tex
 
 MathSem-07-fourier.pdf:	MathSem-07-fourier.tex $(SOURCES)
 	pdflatex MathSem-07-fourier.tex
