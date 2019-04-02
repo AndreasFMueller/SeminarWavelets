@@ -24,12 +24,12 @@ Integral in Integrale über Intervalle der Länge $2\pi$ aufteilen:
 \uncover<4->{=
 \sum_{k\in\mathbb Z}
 \int_0^{2\pi}
-f(2\pi  +t) e^{ib(2\pi+t)}\,dt}
+f(2\pi k+t) e^{ib(2\pi k+t)}\,dt}
 \\
 &\uncover<5->{=
 \sum_{k\in\mathbb Z}
 \int_0^{2\pi}
-f(2\pi  +t)
+f(2\pi k+t)
 e^{ibt}
 \,dt}
 \uncover<6->{=
@@ -37,7 +37,7 @@ e^{ibt}
 e^{ibt}
 \underbrace{
 \sum_{k\in\mathbb Z}
-f(2\pi  +t)
+f(2\pi k+t)
 }_{\displaystyle=\mathcal{P}f(t)}
 \,dt}
 \end{align*}
