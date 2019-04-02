@@ -1,0 +1,219 @@
+%
+% V1.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\begin{frame}
+\frametitle{Darstellung von Funktionen in $V_1$}
+
+\begin{block}{$f\in V_1$ lässt sich aus $\varphi_{1,b}$ linear kombinieren}
+\vspace{-20pt}
+
+\begin{align*}
+f(t)
+&=
+\sum_{b\in\mathbb Z} f_k \varphi_{1,b}(t)
+\\[-15pt]
+\intertext{\vspace{-10pt}%
+\uncover<2->{Fourier-Transformierte:}}
+\uncover<3->{\hat{f}(\omega)}
+&\uncover<3->{=
+\sum_{b\in\mathbb Z} f_b\frac{1}{\sqrt{2}} e^{ib\omega/2}
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)}
+\end{align*}
+\end{block}
+
+\vspace{-25pt}
+
+\uncover<4->{
+\begin{definition}
+\vspace{-15pt}
+\begin{align*}
+m_f(s)
+&=
+\frac{1}{\sqrt{2}}
+\sum_{b\in\mathbb Z} f_k e^{-ibs}
+&
+\uncover<5->{m_\psi(s)}
+&\uncover<5->{=
+\frac{1}{\sqrt{2}}
+\sum_{b\in\mathbb Z} g_k e^{-ibs}}
+\end{align*}
+\end{definition}
+}
+
+\vspace{-15pt}
+
+\uncover<6->{
+\begin{block}{Allgemeine Skalierungsrelation}
+\vspace{-15pt}
+\begin{align*}
+\hat{f}(\omega)
+&=
+m_f\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+&
+\uncover<7->{\hat{\psi}(\omega)}
+&\uncover<7->{=
+m_\psi\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)}
+\end{align*}
+Spezialfall: $H=m_\varphi$, gleiche Rechnung
+\end{block}
+}
+
+\end{frame}
+
+%
+%
+%
+\begin{frame}
+\frametitle{Orthogonalitätsrelationen}
+\begin{align*}
+\{T_b\varphi\,|\,b\in\mathbb Z\}&\;\text{orthonormiert}
+&&\Rightarrow&
+1&=|H(\omega+\pi)|^2 + |H(\omega)|^2
+\\
+\{T_b\psi\,|\,b\in\mathbb Z\}&\;\text{orthonormiert}
+&&\Rightarrow&
+1&=|m_\psi(\omega+\pi)|^2 + |m_\psi(\omega)|^2
+\\
+\psi&\perp T_b\varphi
+\;\forall b\in\mathbb Z
+&&\Rightarrow&
+0&=m_\psi(\omega+\pi) \overline{H(\omega+\pi)} + m_\psi(\omega)\overline{H(\omega)}
+\end{align*}
+\uncover<2->{
+Vektoriell:
+\begin{align*}
+\left|
+\begin{pmatrix}
+H(\omega)\\
+H(\omega+\pi)
+\end{pmatrix}
+\right|^2
+=
+\left|
+\begin{pmatrix}
+m_\psi(\omega)\\
+m_\psi(\omega+\pi)
+\end{pmatrix}
+\right|^2
+&=
+1
+&&\text{und}
+&
+\begin{pmatrix}
+m_\psi(\omega)\\
+m_\psi(\omega+\pi)
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+H(\omega)\\
+H(\omega+\pi)
+\end{pmatrix}
+&=
+0
+\end{align*}
+}
+\uncover<3->{
+\[
+\begin{pmatrix}
+m_\psi(\omega)\\
+m_\psi(\omega+\pi)
+\end{pmatrix}
+=
+\lambda(\omega)
+\begin{pmatrix}
+\overline{H(\omega+\pi)}\\
+-\overline{H(\omega)}
+\end{pmatrix},
+\quad \lambda(\omega) \in\mathbb C, |\lambda(\omega)|=1,
+\lambda(\omega)=-\lambda(\omega+\pi)
+\]
+}
+\end{frame}
+
+%
+% psi bestimmt durch H
+%
+\begin{frame}
+\frametitle{$\psi$ bestimmt durch $H$}
+\[
+\hat{\psi}(\omega)
+=
+m_\psi\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\uncover<2->{=
+\lambda\biggl(\frac{\omega}2\biggr)
+\overline{H\biggl(\frac{\omega}2+\pi\biggr)}
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+}
+\uncover<3->{=
+e^{i\omega/2}
+p\biggl(\frac{\omega}2\biggr)
+\overline{H\biggl(\frac{\omega}2+\pi\biggr)}
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+}
+\]
+\uncover<4->{%
+D.~h.~es gibt verschiedene Lösungen für $m_{\psi}$. 
+}
+\uncover<5->{%
+Naheliegend: $p(\omega)=1$:
+}
+\begin{align*}
+\uncover<6->{m_\psi\biggl(\frac{\omega}2\biggr)}
+&\uncover<6->{=
+e^{i\omega/2}
+\overline{H\biggl(\frac{\omega}2+\pi\biggr)}
+}
+\ifthenelse{\boolean{presentation}}{
+\only<7>{=
+\frac1{\sqrt{2}}
+\sum_{k\in\mathbb Z}
+\bar{h}_k e^{ik(\frac{\omega}2 + \pi)}
+e^{i\omega/2}
+}
+\only<8>{=
+\frac{1}{\sqrt{2}}
+\sum_{k\in\mathbb Z}
+\bar{h}_k (-1)^k e^{i(k+1)\omega/2}
+}
+\only<9>{=
+\frac{1}{\sqrt{2}}
+\sum_{k\in\mathbb Z}
+\bar{h}_k (-1)^k e^{-i(-k-1)\omega/2}
+\qquad \text{setze } -k'=k+1
+}
+}{}
+\only<10->{=
+\frac{1}{\sqrt{2}}
+\sum_{k'\in\mathbb Z}
+\bar{h}_{-k'-1}
+(-1)^{k'+1}
+e^{-ik'\omega/2}
+\quad\text{wegen $k=-k'-1$}
+}
+\\
+&\uncover<11->{\mathstrut=
+\phantom{e^{i\omega/2}
+\overline{H\biggl(\frac{\omega}2+\pi\biggr)}=\mathstrut}
+\frac{1}{\sqrt{2}} \sum_{k'\in\mathbb Z} g_{k'}e^{-ik'\omega/2}
+}
+\end{align*}
+\uncover<12->{%
+$\Rightarrow$
+Darstellung von $\psi$ in der Basis $\varphi_{1,b}$ ist durch $h_k$
+vollständig bestimmt%
+}%
+\uncover<13->{:
+\[
+g_k = (-1)^{k+1}\bar{h}_{-k-1}
+\]
+}
+\end{frame}
+
+
+

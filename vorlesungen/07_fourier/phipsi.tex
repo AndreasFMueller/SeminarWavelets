@@ -1,0 +1,53 @@
+%
+% phipsi.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}
+\frametitle{Orthogonalität von $\varphi$ und $\psi$}
+\begin{block}{$\psi \perp T_b\varphi$}
+\uncover<2->{
+Periodisierungstrick anwenden:
+\begin{align*}
+0
+=
+\langle \psi, T_b\varphi\rangle
+&\uncover<3->{=
+\langle \hat\psi, \widehat{T_b\varphi}\rangle}
+\uncover<4->{=
+\int_{-\infty}^\infty
+\hat{\psi}(\omega)
+e^{ib\omega}
+\overline{\hat{\varphi}(\omega)}
+\,d\omega}
+\uncover<5->{=
+\int_{-\infty}^\infty
+\hat{\psi}(\omega)
+\overline{\hat{\varphi}(\omega)}
+e^{ib\omega}
+\,d\omega}
+\\
+&\uncover<6->{=
+\int_0^{2\pi}
+(P\hat\psi\overline{\hat{\varphi}})(\omega)
+e^{ib\omega}
+\,d\omega}
+\end{align*}
+}
+\end{block}
+\uncover<7->{
+\begin{block}{Fourier-Bedingung für $\psi \perp T_b\varphi$}
+Alle ganzzahlige Translate von $\varphi$ sind orthognal auf $\psi$ genau
+dann, wenn
+\[
+\uncover<8->{
+(\mathcal{P}\hat{\psi}\overline{\hat{\varphi}})(\omega)}
+\uncover<9->{=
+\sum_{k\in\mathbb Z}
+\hat{\psi}(\omega+2\pi k)\overline{\hat{\varphi}(\omega+2\pi k)}}
+\uncover<8->{=
+0}
+\]
+\end{block}
+}
+\end{frame}

@@ -1,0 +1,54 @@
+%
+% tphi.tex -- translsate von phi sind orthogonal
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\begin{frame}
+\frametitle{Translate von $\varphi$}
+\begin{block}{Translate von $\varphi$ sind orthonormiert}
+\[
+\langle \varphi,T_b\varphi\rangle = \delta_{0b}
+\]
+\end{block}
+\uncover<2->{
+Periodisierungstrick anwenden:
+\begin{align*}
+\delta_{0b}
+=
+\langle \varphi,T_b\varphi\rangle
+&\uncover<3->{=
+\langle \hat{\varphi}, \widehat{T_b\varphi}\rangle}
+\uncover<4->{=
+\int_{-\infty}^\infty
+\hat{\varphi}(\omega) e^{i\omega b}
+\overline{\hat{\varphi}(\omega)}
+\,d\omega}
+\uncover<5->{=
+\int_{-\infty}^{\infty}
+|\hat{\varphi}(\omega)|^2 e^{ib\omega}
+\,d\omega}
+\\
+&\uncover<6->{= \int_0^{2\pi}
+\mathcal{P}
+|\hat{\varphi}(\omega)|^2
+e^{ib\omega}
+\,d\omega}
+\end{align*}
+}
+
+\uncover<7->{
+\begin{block}{Fourier-Bedingung für orthonormierte Translate}
+Ganzzahlige Translate von $\varphi$ sind orthonormiert genau dann wenn
+\[
+\mathcal{P}|\hat{\varphi}|^2 (\omega)
+\uncover<9->{=
+\sum_{k\in\mathbb Z} |\hat{\varphi}(\omega+2\pi k)|^2
+}
+\uncover<8->{=
+\frac1{2\pi}
+}
+\]
+\end{block}
+}
+\end{frame}

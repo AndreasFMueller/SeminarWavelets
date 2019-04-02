@@ -1,0 +1,47 @@
+%
+% phi.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}
+\frametitle{$\varphi$ bestimmt durch $H$}
+Ausgangspunkt:
+\[
+\hat{\varphi}(\omega)
+=
+H\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\]
+Iteration:
+\[
+\hat{\varphi}(\omega)
+=
+\only<2->{H\biggl(\frac{\omega}2\biggr)}
+\only<3->{H\biggl(\frac{\omega}4\biggr)}
+\only<4->{H\biggl(\frac{\omega}8\biggr)}
+\only<5->{H\biggl(\frac{\omega}{16}\biggr)}
+\only<6->{H\biggl(\frac{\omega}{32}\biggr)}
+\ifthenelse{\boolean{presentation}}{
+\only<2>{\hat{\varphi}\biggl(\frac{\omega}2\biggr)}
+\only<3>{\hat{\varphi}\biggl(\frac{\omega}4\biggr)}
+\only<4>{\hat{\varphi}\biggl(\frac{\omega}8\biggr)}
+\only<5>{\hat{\varphi}\biggl(\frac{\omega}{16}\biggr)}
+\only<6>{\hat{\varphi}\biggl(\frac{\omega}{32}\biggr)}
+}{}
+\only<7->{\dots}
+\]
+\uncover<7->{Grenzwert }
+\uncover<9->{existiert für stetiges $\hat{\varphi}$ mit
+$\hat{\varphi}=1$}
+\[
+\uncover<7->{\hat{\varphi}(\omega)=}
+\uncover<8->{
+\prod_{k=1}^\infty
+H\biggl(\frac{\omega}{2^k}\biggr)
+}
+\ifthenelse{\boolean{presentation}}{
+\uncover<8-9>{\cdot \lim_{k\to\infty}\hat{\varphi}\biggl(\frac{\omega}{2^k}\biggr)}
+}{}
+\]
+\uncover<10->{$\Rightarrow$ $\hat{\varphi}$ vollständig durch $H$ bestimmt.}
+\end{frame}
