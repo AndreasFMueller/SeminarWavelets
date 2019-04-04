@@ -24,8 +24,8 @@ Fourier-Theorie.
 Wir werden im Folgenden wiederholt einen Trick verwenden, mit dem
 Fourier-Integrale über $\mathbb R$ in gewöhnliche Integrale
 über ein endliches Interval umgeformt werden können.
-Sei $f$ eine Funktion auf $\mathbb R$ und $b\in\mathbb Z$.
-Da $b$ eine ganze Zahl ist, ist
+Sei $f$ eine Funktion auf $\mathbb R$ und $b,\,k\in\mathbb Z$.
+Da $b,\,k$ ganze Zahlen sind, ist
 \[
 e^{ib(t+2\pi k)}
 =
@@ -38,13 +38,13 @@ Dann kann man den Integrationsbereich $\mathbb R$ in Intervalle der
 Länge $2\pi$ jeweils zwischen $2\pi k$ und $2\pi(k+1)$ aufteilen.
 Für das Fourier-Integral folgt dann
 \begin{align}
-\int_{-\infty}^\infty f(t) e^{ibt}\,dt
+\int_{-\infty}^\infty f(t) e^{-ibt}\,dt
 &=
-\sum_{k\in\mathbb Z} \int_{2\pi k}^{2\pi(k+1)} f(t) e^{ibt}\,dt
+\sum_{k\in\mathbb Z} \int_{2\pi k}^{2\pi(k+1)} f(t) e^{-ibt}\,dt
 =
-\sum_{k\in\mathbb Z} \int_{0}^{2\pi} f(t+2\pi k) e^{ibt}\,dt
+\sum_{k\in\mathbb Z} \int_{0}^{2\pi} f(t+2\pi k) e^{-ibt}\,dt
 =
-\int_{0}^{2\pi} \biggl(\sum_{k\in\mathbb Z} f(t+2\pi k)\biggr) e^{ibt}\,dt
+\int_{0}^{2\pi} \biggl(\sum_{k\in\mathbb Z} f(t+2\pi k)\biggr) e^{-ibt}\,dt
 \label{msa:intervaltrick}
 \end{align}
 Der Klammerausdruck ist eine $2\pi$-periodische Funktion auf $\mathbb R$.
@@ -94,12 +94,12 @@ $\mathcal{P}f$
 \[
 \widehat{\mathcal{P}f}(b)
 =
-\frac1{2\pi}\int_{0}^{2\pi} \mathcal{P}f(t) e^{ibt}\,dt
+\frac1{2\pi}\int_{0}^{2\pi} \mathcal{P}f(t) e^{-ibt}\,dt
 =
 \frac1{2\pi}
-\int_{-\infty}^\infty f(t) e^{ibt}\,dt
+\int_{-\infty}^\infty f(t) e^{-ibt}\,dt
 =
-\frac{1}{\sqrt{2\pi}} \hat{f}(-b).
+\frac{1}{\sqrt{2\pi}} \hat{f}(b).
 \]
 \end{satz}
 
@@ -184,14 +184,14 @@ erhalten
 }
 &=
 \int_0^{2\pi}
-\mathcal{P}|\hat{\varphi}|^2(\omega) e^{ib\omega}
+\mathcal{P}|\hat{\varphi}|^2(\omega) e^{-ib\omega}
 \,d\omega
 =
 \int_0^{2\pi}
 \biggl(
 \sum_{k\in\mathbb Z}
 |\hat{\varphi}(\omega + 2\pi k)|^2\biggr)
-e^{i\omega b}
+e^{-i\omega b}
 \,d\omega.
 \end{align*}
 Die Orthogonalitätsbedingung lautet jetzt, dass 
@@ -199,7 +199,7 @@ Die Orthogonalitätsbedingung lautet jetzt, dass
 \langle \varphi,T_b\varphi\rangle
 =
 2\pi
-\widehat{\mathcal{P}|\varphi|^2}(b)
+\widehat{\mathcal{P}|\varphi|^2}(-b)
 =
 \delta_{0b}.
 \]
@@ -231,7 +231,7 @@ sind mit allen Translaten.
 Seien $\varphi,\psi\in L^2$, dann ist $\varphi$ orthogonal zu allen
 ganzzahligen Translaten $T_b\psi$  von $\psi$ genau dann, wenn
 \begin{equation}
-\sum_{k\in\mathbb Z} \hat{\varphi}(t+2\pi k)\overline{\hat{\psi}(t+2\pi k)}
+\sum_{k\in\mathbb Z} \hat{\varphi}(\omega+2\pi k)\overline{\hat{\psi}(\omega+2\pi k)}
 =
 0
 \end{equation}
@@ -341,7 +341,7 @@ für fast alle $\omega\in\mathbb R$.
 \end{satz}
 
 \begin{proof}[Beweis]
-Wir wenden spalten die Summe in der Orthogonalitätsbedingung in zwei
+Wir spalten die Summe in der Orthogonalitätsbedingung in zwei
 Teilsummen mit geraden und ungeraden $k$ auf:
 \begin{align*}
 \frac{1}{2\pi}
@@ -439,7 +439,7 @@ e^{ib\omega/2}
 \hat{\varphi}
 \biggl(\frac{\omega}2\biggr).
 \]
-Der Faktor $\hat{\varphi}$ hängt nicht von $b$ ab un kann ausgeklammert
+Der Faktor $\hat{\varphi}$ hängt nicht von $b$ ab und kann ausgeklammert
 werden.
 Für die verbleibende Funktion führen wir folgende Bezeichnung ein.
 
@@ -468,10 +468,10 @@ für fast alle $\omega\in\mathbb R$.
 Die Funktion $H$ ist natürlich nichts anders als der Spezialfall
 des skalierten Vater-Wavelet $f=D_2\varphi\in V_1$, also $H=m_{D_2\varphi}$.
 
-In der Multiskalen-Analyse ist bilden die Translate des Mutter-Wavelet $\psi$
+In der Multiskalen-Analyse bilden die Translate des Mutter-Wavelet $\psi$
 ein orthonormierte Basis von $V_1$.
 Die Funktion $m_{\psi}$ erfüllt daher nicht nur \eqref{msa:mfskaleq},
-es muss ausserdem eine Relation geben, ausdrückt, dass alle Translate auf
+es muss ausserdem eine Relation geben, die ausdrückt, dass alle Translate auf
 $V_0$ orthogonal sind.
 Dieser Zusammenhang wird gegeben durch das folgende Lemma.
 
@@ -493,8 +493,8 @@ Translaten von $\varphi$.
 Nach Satz~\ref{satz:msa:alleorthogonal} ist dies gleichbedeutend mit
 \[
 \sum_{k\in\mathbb Z}
-\hat{f}(t+2\pi k)
-\overline{\hat{\varphi}(t+2\pi k)}
+\hat{f}(\omega+2\pi k)
+\overline{\hat{\varphi}(\omega+2\pi k)}
 =
 0
 \]
@@ -512,7 +512,7 @@ Geraden und die ungeraden $k$ aufgeteilt werden.
 \overline{\hat{\varphi}(\omega+4\pi k)}
 \\
 \intertext{Die Terme auf der rechten Seite können mit Hilfe von
-Lemma~\ref{msa:skalomega} für $H$ Lemma~\label{msa:mfskal} für $m_f$
+Lemma~\ref{msa:skalomega} für $H$ und Lemma~\ref{msa:mfskal} für $m_f$
 durch Ausdrücke mit $H$ und $m_f$ ersetzt werden.
 Da sowohl $m_f$ als auch $H$ $2\pi$-periodisch sind, können sie aus
 der Summe ausgeklammert werden:}
@@ -728,7 +728,7 @@ nur für solche Funktionen in $W_0$, deren Translate orthonormiert sind,
 eben zum Beispiel für $\psi$.
 Für $\psi$ kommen also nur Funktionen in Frage, deren $m_{\psi}$ 
 fast überall zu einem auf $\vec{H}$ orthogonalen Einheitsvektor
-$\vec{m}_\psi$ Anlass gibt.
+$\vec{m}_\psi$ Anlass geben.
 
 Wir suchen daher zu einem vorgegebenen Vektor $\vec{v}\in\mathbb C^2$
 alle Vektoren $\vec{u}\in\mathbb C^2$, die auf $\vec{v}$ senkrecht stehen.
@@ -775,7 +775,7 @@ Setzen wir $p(\omega) = \lambda(\omega)e^{-i\omega}$, dann folgt
 p(\omega+\pi) = \lambda(\omega+\pi)e^{-i\omega-i\pi}
 =-\lambda(\omega)e^{-i\omega} (-1) = p(\omega),
 \]
-die Funktion $p(\omega)$ ist daher $\pi$ periodisch.
+die Funktion $p(\omega)$ ist daher $\pi$-periodisch.
 Aus der Festlegung~\ref{msa:psivorschlag} für $\hat{\psi}$ folgt
 \[
 \hat{f}(\omega)= p(\omega)\hat{\psi}(\omega),
@@ -829,8 +829,8 @@ sein, die überall den Betrag $1$ hat.
 % Eindeutigkeit von $\varphi$
 %
 \subsection{Eindeutigkeit von $\varphi$}
-Die Skalierungsrelation \eqref{msa:skalt} für die Funktion hat auf
-die Relation \eqref{msa:skalomega} für die Fouriertransformation
+Die Skalierungsrelation \eqref{msa:skalt} für die Funktion $\varphi$ hat auf
+die Relation \eqref{msa:skalomega} für deren Fouriertransformation
 $\hat{\varphi}$ geführt.
 Iteriert man \eqref{msa:skalomega}, erhält man
 \begin{align*}
