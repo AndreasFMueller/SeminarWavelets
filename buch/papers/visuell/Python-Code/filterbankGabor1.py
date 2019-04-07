@@ -1,5 +1,6 @@
 # Import python library for this notebook
 import numpy as np # fundamental package for scientific computing
+import cv2
 import matplotlib.pyplot as plt # package for plot function
     
 def genGabor(sz, omega, theta, func=np.cos, K=np.pi):
@@ -28,30 +29,48 @@ def genFilterbank(params):
         sinFilterBank.append(sinGabor)
         cosFilterBank.append(cosGabor)
         gaborParams.append(gaborParam)
-    return sinFilterBank, cosFilterBank
+    return sinFilterBank, cosFilterBank, gaborParams
     
     
     
     
-def plotFilterBank(filterBank):   
+def plotFilterBank(filterBank, gaborParams):   
     plt.figure()
     n = len(filterBank)
     sqLen = np.sqrt(n)
     for i in range(n):
         plt.subplot(sqLen, sqLen,i+1)
-        # title(r'$\theta$={theta:.2f}$\omega$={omega}'.format(**gaborParams[i]))
+        plt.title('t={:0.1f}, o={:0.1f}'.format(gaborParams[i]['theta'], gaborParams[i]['omega']))
         plt.axis('off'); 
         plt.imshow(filterBank[i], cmap='gray') # delete 'gray' to apply a colormap (looks nice)
-    
 
-theta = np.arange(0, np.pi, np.pi/8) # range of theta
-omega = np.arange(0.2, 0.6, 0.05) # range of omega
+def plotConvs(filterBank, img, gaborParams):
+    plt.figure()
+    n = len(filterBank)
+    sqLen = np.sqrt(n)
+    for i in range(n):
+        plt.figure()
+        plt.title('theta = {:0.2f}, omega = {:0.2f}'.format(gaborParams[i]['theta'], gaborParams[i]['omega']))
+#        print('theta = ' + str(gaborParams[i]['theta']) + ' omega = ' + str(gaborParams[i]['omega']))
+        plt.imshow(cv2.filter2D(img, -1, filterBank[i]), cmap='gray') # delete 'gray' to apply a colormap (looks nice)
+
+
+
+theta = np.arange(0, np.pi, np.pi/4) # range of theta
+omega = np.arange(0.1, 0.4, 0.1) # range of omega
 params = [(t,o) for o in omega for t in theta]
-sinFB, cosFB = genFilterbank(params)
+sinFB, cosFB, gaborParams = genFilterbank(params)
 print("start plotting sinFilterbank")
-plotFilterBank(sinFB)
+plotFilterBank(sinFB, gaborParams)
 print("start plotting cosFilterbank")
-plotFilterBank(cosFB)
+plotFilterBank(cosFB, gaborParams)
 
-#img = plt.imread('\testpatterns\lines.png') TODO
+img = cv2.imread('testpatterns/lines.png', cv2.IMREAD_GRAYSCALE )
+rows, cols = img.shape
+M = cv2.getRotationMatrix2D((cols/2,rows/2),45,1) # center, angle, scale
+img = cv2.warpAffine(img, M , (cols, rows)) # rotate image
 
+plt.figure()
+plt.imshow(img, cmap='gray')
+
+plotConvs(sinFB,img, gaborParams)
