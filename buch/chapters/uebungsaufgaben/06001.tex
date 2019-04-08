@@ -1,0 +1,50 @@
+Verwenden Sie die Skalierungsrelation das Vater-Wavelets um die
+Summe der Koeffizienten $h_k$ zu berechnen.
+
+\begin{loesung}
+Die Skalierungsrelation ist
+\[
+\varphi(t) = \sqrt{2} \sum_{k\in\mathbb Z} h_k \varphi(2t-k)
+\]
+Wir analysieren das kosntante Signal $1$ mit dem Vaterwavelet
+\begin{align*}
+\langle 1,\varphi\rangle
+&=
+\int_{-\infty}^\infty
+\bar{\varphi}(t)\,dt
+=
+\sqrt{2}
+\sum_{k\in\mathbb Z} 
+h_k
+\int_{-\infty}^\infty
+\bar{\varphi}(2t-k)
+\,dt
+=
+\sqrt{2}
+\sum_{k\in\mathbb Z} 
+h_k
+\int_{-\infty}^\infty
+\bar{\varphi}(\tau-k)
+\frac12
+\,d\tau
+\\
+&=
+\frac{1}{\sqrt{2}}
+\sum_{k\in\mathbb Z} 
+h_k
+\int_{-\infty}^\infty
+\bar{\varphi}(\tau)
+\,d\tau
+=
+\frac{1}{\sqrt{2}}
+\langle 1,\varphi\rangle
+\sum_{k\in\mathbb Z} h_k
+\\
+\sqrt{2}
+&=
+\sum_{k\in\mathbb Z} h_k.
+\qedhere
+\end{align*}
+\end{loesung}
+
+
