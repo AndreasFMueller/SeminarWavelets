@@ -140,7 +140,7 @@ t^k
 \uncover<7->{$\Leftrightarrow$
 hohe ``Glattheit'' von
 $\hat{\psi}$ 
-bei $\omega$}
+bei $\omega=0$}
 \end{block}
 %\vspace{-10pt}
 \uncover<8->{
@@ -203,7 +203,7 @@ H(\omega)
 \biggl(\frac{1+e^{-i\omega}}{2}\biggr)^N
 B(\omega)
 \]
-trigonometrisches Polynom
+trigonometrisches Polynom%
 \uncover<4->{, $B(\omega)$ hat keine Nullstelle bei $\omega=\pi$}
 \end{block}
 }
@@ -227,7 +227,7 @@ $M(\omega)$ enthält den Faktor
 \biggl(\frac{1+e^{-i\omega}}2\biggr)^N
 \biggl(\frac{1+e^{+i\omega}}2\biggr)^N
 \ifthenelse{\boolean{presentation}}{
-\only<4>{=\biggl(\frac{1+2\cos\omega+1}4\biggr)
+\only<4>{=\biggl(\frac{1+2\cos\omega+1}4\biggr)^N
 }}{}
 \only<5->{=
 \biggl(\frac{1+\cos\omega}2\biggr)^N}
@@ -298,16 +298,16 @@ welches die Gleichung~\eqref{algcond} erfüllt.
 \sum_{k=1}^N \frac{\mathstrut C_k'}{\mathstrut (1-y)^k}
 }
 \]
-\uncover<3->{Symmetrie: $C_k'=C_k$}
+\uncover<3->{Symmetrie: }\uncover<4->{$C_k'=C_k$}
 \end{block}
 \[
-\uncover<4->{P_N(y) = \sum_{k=1}^N C_ky^{N-k}}
+\uncover<5->{P_N(y) = \sum_{k=1}^N C_ky^{N-k}}
 \]
-\uncover<5->{erfüllt}
+\uncover<6->{erfüllt}
 \[
-\uncover<6->{1=
+\uncover<7->{1=
 P_N(y) (1-y)^N + y^N P_N(1-y)}
 \]
-\uncover<7->{%
+\uncover<8->{%
 $\Rightarrow$ Für jedes $N$ gibt es ein geeignetes Polynom.}
 \end{frame}
