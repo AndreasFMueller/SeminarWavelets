@@ -129,6 +129,35 @@ $V_{j+1} = V_j \oplus = W_j$.
 Man beachte, es wird nicht verlangt, dass die $T_b\psi$ orthogonal
 sein müssen.
 
+Die Funktion $\varphi$ ist enthalten in $V_0$.
+Wegen $V_0\subset V_1$ ist $\varphi\in V_1$.
+Da die Funktionen $\varphi_{1,k}$ eine orthonormierte Basis von $V_1$
+bilden, muss es Koeffizienten $h_k$ geben derart, dass
+\begin{equation}
+\varphi(t) = \sum_{k\in\mathbb Z} h_k\varphi_{1,k}(t)
+=
+\sqrt{2}\sum_{k\in\mathbb Z}h_k\varphi(2t-k)
+\label{msa:skalrel-h}
+\end{equation}
+gilt.
+
+Aus der Tatsache, dass die Funktionen $\varphi_{1,k}$ eine orthonormierte
+Basis von $V_1$ bilden kann man schliessen, dass es Koeffizienten $g_k$
+geben muss derart, dass
+\begin{equation}
+\psi(t)
+=
+\sum_{k\in\mathbb Z} g_k\varphi_{1,k}(t).
+=
+\sum_{k\in\mathbb Z}\sqrt{2}g_k \varphi(2t-k).
+\label{msa:skalrel-g}
+\end{equation}
+A priori haben die Koeffizienten $g_k$ nicht mit den Koeffizienten $h_k$
+zu tun.
+Wir werden später zeigen, dass eine Multiskalenanalyse und damit
+insbesondere auch die $g$-Koeffizienten vollständig durch
+die $h$-Koeffizienten bestimmt sind.
+
 \begin{beispiel}
 Das Haar-Wavelet erzeugt eine Multiskalen-Analyse von $L^2(\mathbb R)$.
 % XXX TODO Haar MRA darstellen
