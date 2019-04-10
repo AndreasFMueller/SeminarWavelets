@@ -3,12 +3,44 @@
 %
 % (c) 2019 Hochschule Rapperswil
 %
-\chapter{Signalanalyse in GIS\label{chapter:gis}}
-\lhead{Signalanalyse in GIS}
+\chapter{Signalanalyse von UHF Teilentladungssignale im Zeitbereich \label{chapter:gis}}
+\lhead{Signalanalyse von UHF Teilentladungssignale im Zeitbereich}
 \begin{refsection}
 \chapterauthor{Kris Wyss}
 
-\section{Abschnitt}
+\section{Vorwort}
+\rhead{Vorwort}
+
+Gasisolierte Schaltanlagen (GIS) dienen der elektrischen Energieverteilung, dem Schutz der Komponenten und ermöglichen eine sichere Wartung des Energieübertragungsnetzes.
+Als Isoliergas wird Schwefelhaxafluorid (SF6) eingesetzt. SF6 hat bei Atmosphärendruck eine etwa drei mal so grosse dielekrische Festigkeit wie Luft. 
+Es besitzt auch um den Faktor 3-4 mal bessere Lichtbogenlöscheingeschaft als Luft. 
+Diese Eigenschaften führen zu einer erheblichen Platzeinsparung gegenüber einer luftisolierten Schaltanlage (AIS). \cite{buch:ABB}
+Deshalb und wegen einigen anderen Gründen, aufgezeigt in \cite{buch:GIS/AIS}, hat sich der Einsatz von GIS überall dort durchgesetzt wo Boden teuer ist. Zum Beispiel in urbanen Gebieten. Aber auch bei luftisolierten Schaltanlagen ab 72.5 kV sind die Leistungsschalter mit SF6 Isoliert. 
+Bei Leistungsschaltern dient das SF6 als Löschgas des Lichtbogens, welcher bis zu mehren tausend Ampere trägt, wenn ein Teil des Übertragungsnetzes von der Last freigeschaltet wird. \cite{buch:ABB} 
+
+Bei der Quantifizierung der Qualität einer GIS spielt der Begriff Teilentladung (TE) eine wichtige Rolle. 
+Wenn das E-Feld örtlich über die dielektrische Festigkeit steigt entstehen elektrische Entladungen welche nur ein Teil der Isolationsstrecke überbrücken und nicht zu einem kompletten Durchschlag führen, daher die Namensgebung Teilentladung. \cite{buch:Küchler}
+Teilentladung im Isolierstoff lässt das Isoliermedium  schneller altern. Dies kann zum dielektischen Durchschlag führen welcher einen Totalausfall der Anlage zur folge hat.
+Aufgrund dessen ist TE ein wichtiges Qualitätsmerkmal bei Hochspannungskomponenten. 
+
+Im Falle einer Teilentladung werden verschiedene  physikalische Prozesse gestartet. 
+Durch den Lichtbogen wird eine ultrahochfrequente (UHF) elektromagnetische Welle emittiert.
+Die schnellste gemessene Anstiegszeit des Strompulses in SF6 liegt bei 24ps.
+Dies entspricht einem Frequenzband hoch bis zu 14 GHz. \cite{skript:Judd24ps} 
+Aufgrund der schnellen Erhitzung des Gases rund um den Lichtbogen wird danach eine Schallwelle abgestrahlt. 
+Ebenfalls durch die grosse Erhitzung wird das Isoliergas SF6 zersetzt. 
+Somit gibt es diverse Möglichkeiten für das Messen und Lokalisieren der TE in GIS. \cite{skript:StatusReviewPDMeasurement}
+In dieser Arbeit wird auf die Analyse der UHF TE-Signale eingegangen. Es wird versucht, mittels dem Signalanalyseverfahren kontinuierliche Wavelet Transformation, fehlerspezifische Charakteristiken auszumachen.
+
+Test....
+
+\section{Einleitung}
+\rhead{Abschnitt}
+
+\section{Datenbearbeitung}
+\rhead{Abschnitt}
+
+\section{Auswertung}
 \rhead{Abschnitt}
 
 \section{Schlussfolgerung}
