@@ -1,0 +1,249 @@
+%
+% riesz.tex -- 
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+%
+% Lemma von Riesz
+%
+\subsection{Das Lemma von Riesz}
+
+\begin{lemma}[Riesz]
+Ist
+\[
+A(\omega)
+=
+\sum_{k=0}^n
+a_k \cos^k \omega,
+\qquad
+a_n\ne 0
+\]
+mit $A(0)=1$ und $A(\omega)\ge 0$ für alle $\omega$.
+Dann gibt es eine Funktion
+\[
+B(\omega)
+=
+\sum_{k=0}^n b_ke^{-ik\omega}
+\]
+mit $B(0)=1$ und $A(\omega)=B(\omega)B(-\omega)$.
+\end{lemma}
+
+Im Laufe des nachfolgenden Beweises werden wir wiederholt die folgende
+Identität verwenden:
+\begin{align}
+\frac{z+z^{-1}}2-\frac{s+s^{-1}}2
+&=
+\frac1{2s}(sz+sz^{-1}-s^2-1)
+=
+-
+\frac1{2s}(1-sz-sz^{-1}+s^2)
+\notag
+\\
+&=
+-
+\frac1{2s}(z-s)(z^{-1}-s)
+\label{buch:kompakt:cosh}
+\end{align}
+
+\begin{proof}[Beweis]
+Die Funktion $A(\omega)$ kann geschrieben werden als
+$A(\omega) = p(\cos\omega)$, wobei $p(x)$ ein Polynom vom
+Grad $n$ ist.
+Das Polynom $p(x)$ hat $n$ möglicherweise komplexe Nullstellen
+$c_1,\dots,c_n$, wobei komplexe Nullstellen in konjugiert komplexen
+Paaren auftreten.
+Das Polynom $p(x)$ kann daher faktorisiert werden in das Produkt
+\begin{align*}
+p(x)
+&=
+a_n(x-c_1)(x-c_2)\dots(x-c_n)
+=
+a_n \prod_{j=1}^n (x-c_j)
+\\
+A(\omega) = p(\cos\omega)
+&=
+a_n \prod_{j=1}^n (\cos \omega - c_j)
+\end{align*}
+Mit der Abkürzung $z=e^{-i\omega}$ können die Faktoren im Produkt als
+\[
+\cos\omega -c_j = \frac{z+z^{-1}}2-c_j
+\]
+geschrieben werden.
+
+Wir versuchen, das gesuchte Polynom $B(\omega)$ aus Lösungen des Problems
+für die einzelnen Faktoren von $p(x)$ aufzubauen.
+Ein einzelner Faktor $A_j(\omega=)=\cos\omega - c_j$ erfüllt die Bedingungen an
+$A$ im Lemma im Allgemeinen nicht.
+Ist zum Beispiel $c_j$ reell zwischen $-1$ und $1$, dann hat
+$\cos\omega-c_j$ eine Nullstelle hat daher auch negative Werte.
+Wenn $c_j$ komplex ist, dann ist $\cos\omega-c_j$ keine rellwertige
+Funktion.
+Wir unterscheiden daher die folgenden drei Fälle:
+\begin{enumerate}
+\item
+Fall $|c_j|\ge 1$ und $c_j\in\mathbb R$:
+In diesem Fall kann $c_j$ geschrieben werden als
+\[
+c_j = \frac{s+s^{-1}}2
+\quad
+\text{mit $s=\operatorname{sign}(c_j)\cdot \operatorname{arsinh}|c_j|$.}
+\]
+Dann wird
+\[
+A_j(\omega)
+=
+\cos\omega - c_j
+=
+\frac{z+z^{-1}}2 - \frac{s+s^{-1}}2
+=
+-\frac1{2s} (z-s)(z^{-1}-s)
+\]
+mit Hilfe von \eqref{buch:kompakt:cosh}.
+Falls $c_j < 0$ ist auch $s<0$ und wir können dem Produkt $B(\omega)$
+den Faktor $B_j(\omega)=(z-s)/\sqrt{2s}$ hinzufügen, für den gilt
+$B_j(\omega)B_j(-\omega)=A_j(\omega)$.
+Falls $c_j > 0$ ist auch $s>0$ und wir können dem Produkt $B(\omega)$
+den Faktor $B_j(\omega) =(z-s)/\sqrt{-2s}$ hinzufügen, für den
+gilt $B_j(\omega)B_j(-\omega)=-A_j(\omega)$.
+Das Vorzeichen im zweiten Fall stört nicht, weil wegen $A(\omega)\ge 0$
+noch ein weiterer Faktor $A_{j'}(\omega)$ vorhanden sein muss, der ebenfalls
+$A_{j'}(\omega)\le 0$ ist für alle $\omega$ und der daher ebenfalls
+mit dem ``falschen'' Vorzeichen in das Produkt eingeht, wodurch das
+Vorzeichen wieder korrigiert wird.
+\item
+Fall $|c_j|\ge 1$ und $c_j\in\mathbb R$:
+In diesem Fall hat $A_j(\omega)$ und damit $A(\omega)$ eine Nullstelle
+für jedes $\omega$ mit $\cos\omega=c_j$.
+Wegen $A(\omega)\ge 0$ müssen alle solchen Nullstellen in gerader
+Anzahl auftreten.
+Sei $\alpha$ so, dass $\cos\alpha = c_j$ und damit insbesondere auch
+\[
+c_j
+=
+\cos\alpha
+=
+\frac{s+s^{-1}}2
+\quad\text{mit $s=e^{i\alpha}$}.
+\]
+Wegen der Symmetrie der Funktion $\cos\omega$ gilt auch
+\[
+c_{j'}=
+\cos(-\alpha)
+=
+\frac{e^{-i\alpha}+e^{i\alpha}}2.
+\]
+Damit kann $A_j(\omega)^2$ geschrieben werden als
+\begin{align*}
+A_j(\omega)^2
+&=
+\biggl(
+\frac{z+z^{-1}}2-\frac{e^{i\alpha}+e^{-i\alpha}}2
+\biggr)
+\biggl(
+\frac{z+z^{-1}}2-\frac{e^{-i\alpha}+e^{i\alpha}}2
+\biggr)
+\\
+&=
+\frac{1}{2e^{i\alpha}}
+(z-e^{i\alpha})
+(z^{-1}-e^{i\alpha})
+\frac{1}{2e^{-i\alpha}}
+(z-e^{-i\alpha})
+(z^{-1}-e^{-i\alpha})
+\\
+&=
+\frac{1}{2}
+(z-e^{i\alpha})
+(z-e^{-i\alpha})
+\cdot
+\frac{1}{2}
+(z^{-1}-e^{i\alpha})
+(z^{-1}-e^{-i\alpha})
+\\
+&=
+\frac{1}{2}
+(z^2-2z\cos\alpha +1)
+\cdot
+\frac{1}{2}
+(z^{-2}-2z^{-1}\cos\alpha +1)
+\end{align*}
+Wir fügen daher der Funktion $B(\omega)$ den Faktor
+$B_j(\omega)=\frac12(z^2-2z\cos\alpha +1)$ hinzu, für
+den 
+$B_j(\omega)B_j(-\omega)=A_j(\omega)^2$ gilt.
+\item
+Fall $c_j\in\mathbb C\setminus\mathbb R$:
+In diesem Fall gibt es einen zweiten, komplex konjugierten Faktor mit
+$c_{j'}=\bar{c}_j$.
+Wir möchten $c_j$ wieder als
+\begin{equation}
+c_j
+=
+\frac{s+s^{-1}}2
+\label{buch:kompakt:cj}
+\end{equation}
+darstellen.
+Dazu multiplizieren wir \eqref{buch:kompakt:cj} mit $s$ und erhalten die
+quadratische Gleichung
+\[
+s^2-2c_j s+1=0
+\]
+mit der Lösung
+\[
+s=c_j\pm\sqrt{c_j^2-1},
+\]
+die immer mindestens eine Lösung hat.
+Wir dürfen daher annehmen, dass
+\[
+c_j = \frac{s+s^{-1}}2
+\qquad\text{und}\qquad
+c_{j'} = \bar{c}_j = \frac{\bar{s}+\bar{s}^{-1}}2.
+\]
+Damit können wir jetzt das Produkt $A_j(\omega)A_{j'}(\omega)$ 
+wie folgt faktorisieren:
+\begin{align*}
+A_j(\omega)A_{j'}(\omega)
+&=
+\biggl(
+\frac{z+z^{-1}}2 - \frac{s+s^{-1}}2
+\biggr)
+\biggl(
+\frac{z+z^{-1}}2 - \frac{\bar{s}+\bar{s}^{-1}}2
+\biggr)
+\\
+&=
+\frac{1}{2s}
+(z-s)(z^{-1}-s)
+\cdot
+\frac{1}{2\bar{s}}
+(z-\bar{s})(z^{-1}-\bar{s})
+\\
+&=
+\frac{1}{4|s|^2}(z-s)(z^{-1}-s)(z-\bar{s})(z^{-1}-\bar{s})
+\\
+&=
+\frac1{2|s|}
+(z-s)
+(z-\bar{s})
+\cdot
+\frac1{2|s|}
+(z^{-1}-s)
+(z^{-1}-\bar{s})
+\\
+&=
+\frac1{2|s|}(z^2-2z\operatorname{Re}s -|s|^2)
+\cdot
+\frac1{2|s|}(z^{-2}-2z^{-1}\operatorname{Re}s -|s|^2).
+\end{align*}
+Wir fügen in diesem Fall den Faktor $B_j(\omega)=(z^2-2z\operatorname{Re}s-|s|^2)/2|s|$ hinzu.
+\end{enumerate}
+In allen drei Fällen haben wir für die behandelten Faktoren $A_j(\omega)$
+und der eventuell zugehörigen Faktoren $A_{j'}(\omega)$ eine Funktion
+$B_j(\omega)$ gefunden, so dass das Projekt all dieser Faktoren
+\[
+B(\omega) = \prod_j B_j(\omega)
+\]
+genau die im Lemma versprochenen Eigenschaften hat.
+\end{proof}
+
