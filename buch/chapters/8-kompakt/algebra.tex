@@ -15,9 +15,164 @@
 % Partialbruchzerlegung
 %
 \subsection{Partialbruchzerlegung}
+Es muss ein Polynom $P(y)$ gefunden werden mit der Eigenschaft, dass
+\[
+y^N P(1-y) + (1-y)^N P(y) = 1
+\]
+Division durch $y^N(1-y)^N$ macht daraus
+\[
+Q(y)
+=
+\frac{1}{y^N(1-y)^N}
+=
+\frac{P(1-y)}{(1-y)^N}
++
+\frac{P(y)}{y^N}
+\]
+Die beiden Terme auf der rechten Seite sind rationale Funktionen, die im
+Nenner ausschliesslich Potenzen von $1-y$ im ersten und $y$ im zweiten
+Term haben.
+Dies sind genau die Nenner, die man in der Partialbruchzerlegung der linken
+Seite findet.
 
+Wir berechnen daher die Partialbruchzerlegung
+\begin{equation}
+\frac{1}{y^N(1-y)^N}
+=
+\sum_{k=1}^N\frac{C_k}{y^k}
++
+\sum_{k=1}^N\frac{C'_k}{(1-y)^k}
+\label{buch:kompakt:pbruch}
+\end{equation}
+von $Q(y)$.
+Der Ausdruck $Q(y)$ ist symmetrisch bezüglich bezüglich der Abbildung
+$y\leftrightarrow 1-y$.
+Da die Koeffizienten der Partialbruchzerlegung eindeutig bestimmt sind,
+müssen die Koeffizienten der beiden Summen in \eqref{buch:kompakt:pbruch}
+übereinstimmen: $C'_k=C_k$ für $k=1,\dots,N$.
 
+Multipliziert man \eqref{buch:kompakt:pbruch} wieder mit $y^N(1-y)^N$,
+erhält man
+\begin{align*}
+1
+&=
+(1-y)^N
+\underbrace{\sum_{k=1}^\infty C_k y^{N-k}}_{\displaystyle =P(y)}
+\mathstrut
++
+y^N
+\sum_{k=1}^\infty C_k (1-y)^{N-k}
+\\
+&=
+(1-y)^N
+P_N(y)
++
+y^N
+P_N(1-y).
+\end{align*}
+Das Polynom $P_N(y)$, gebildet mit den Koeffizienten der Partialbruchzerlegung
+von $Q(y)$ löst also das eingangs gestellte Problem.
 
+\subsubsection{Die Fälle $N=2$ und $N=3$}
+Wir berechnen die Partialbruchzerlegung für kleine Werte von $N$.
+Für $N=2$ ist
+\begin{align*}
+\frac{1}{y^2(1-y)^2}
+&=
+\frac{C_1}{y}
++
+\frac{C_2}{y^2}
++
+\frac{C_1}{(1-y)}
++
+\frac{C_2}{(1-y)^2}
+\\
+&=
+\frac{C_1y+C_2}{y^2}
++
+\frac{C_1(1-y)+C_2}{(1-y)^2}
+\\
+&=
+\frac{1}{y^2(1-y)^2}
+\bigl(
+(C_1y+C_2)(1-2y+y^2)
++
+(C_1+C_2-C_1y)y^2
+\bigr)
+\intertext{oder nach Multiplikation mit $y^N(1-y)^N$}
+\\
+1
+&=
+C_2
++
+(C_1-2C_2) y
++
+(C_2-2C_1) y^2
++
+C_1 y^3
++
+(C_1+C_2)y^2
+-C_1y^3
+\\
+&=
+C_2 + (C_1-2C_2) y + (2C_2-C_1)y^2.
+\end{align*}
+Durch Koeffizientenvergleich findet man die Bedingungen
+\[
+\begin{aligned}
+C_2&=1,
+&
+C_1-2C_2&=0
+&&
+\text{und}
+&
+2C_2-C_1&=0.
+\end{aligned}
+\]
+Die dritte Bedingung ist identisch mit der zweiten.
+Aus der ersten und der zweiten Bedingung folgt $C_1=2$.
+Es folgt
+\[
+P_2(y) = C_1y + C_2
+=
+2y+1.
+\]
+
+Die analoge Rechnung für $N=3$ liefert die Bedingungen
+\[
+\begin{aligned}
+C_3&=1
+\\
+C_2-3C_3&=0     &&\Rightarrow&C_2&=3C_3=3
+\\
+3C_3-3C_2+C_1&=0&&\Rightarrow&C_1&=3C_2-3C_3=6
+\\
+4C_2-2C_1&=0    &&\Rightarrow&C_1&=2C_2=6
+\\
+C_1-2C_2&=0     &&\Rightarrow&C_1&=2C_2=6
+\end{aligned}
+\]
+Man liest daraus das Polynom
+\[
+P_3(y) = 1+3y+6y^2
+\]
+ab.
+Auf die gleiche Weise findet man auch
+\begin{align*}
+P_4(y) &=
+1 + 4y + 10y^2 + 20y^3
+\end{align*}
+Daraus kann man die Vermutung ablesen, dass
+\[
+P_N(y)
+=
+\sum_{k=0}^N
+\binom{N-k}{k}
+y^k
+\]
+sein könnte.
+
+\subsubsection{Der allgemeine Fall}
 
 
 
