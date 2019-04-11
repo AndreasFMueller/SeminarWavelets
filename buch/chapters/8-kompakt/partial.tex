@@ -4,13 +4,11 @@
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 
-%
-% Partialbruchzerlegung
-%
-\subsection{Partialbruchzerlegung}
+\section{Partialbruchzerlegung\label{section:partialbruch}}
+\rhead{Partialbruchzerlegung}
 Es muss ein Polynom $P(y)$ gefunden werden mit der Eigenschaft, dass
 \begin{equation}
-y^N P(1-y) + (1-y)^N P(y) = 1
+y^N P(1-y) + (1-y)^N P(y) = 1.
 \label{buch:kompakt:bedingung}
 \end{equation}
 Division durch $y^N(1-y)^N$ macht daraus
@@ -67,7 +65,7 @@ P_N(1-y).
 Das Polynom $P_N(y)$, gebildet mit den Koeffizienten der Partialbruchzerlegung
 von $Q(y)$ löst also das eingangs gestellte Problem.
 
-\subsubsection{Die Fälle $N=2$ und $N=3$}
+\subsection{Die Fälle $N=2$ und $N=3$}
 Wir berechnen die Partialbruchzerlegung für kleine Werte von $N$.
 Für $N=2$ ist
 \begin{align*}
@@ -166,7 +164,7 @@ y^k
 \end{equation}
 sein könnte.
 
-\subsubsection{Der allgemeine Fall}
+\subsection{Der allgemeine Fall}
 Das Polynom $P_N(y)$ ist die einzige Lösung vom Grad $N-1$ der Gleichung
 $
 (1-y)^NP(y)+y^NP(1-y)=1.
@@ -213,7 +211,7 @@ P_N(y) = \sum_{k=0}^{N-1} \binom{N+k-1}{k}y^k,
 \end{equation}
 was die Vermutung \eqref{buch:kompakt:vermutung} bestätigt.
 
-\subsubsection{Weitere Lösungen von höherem Grad}
+\subsection{Weitere Lösungen von höherem Grad}
 Das Polynom $P_N(y)$ ist nicht die einzige Lösung der Gleichung
 \eqref{buch:kompakt:bedingung}.
 Weitere Lösungen $P(y)$ haben aber notwendigerweise Grad mindestens $N$.

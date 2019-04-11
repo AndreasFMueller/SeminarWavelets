@@ -42,6 +42,9 @@ CHAPTERFILES =								\
 	chapters/8-kompakt/algebra.tex					\
 	chapters/8-kompakt/riesz.tex					\
 	chapters/8-kompakt/partial.tex					\
+	chapters/8-kompakt/ordnung.tex					\
+	chapters/8-kompakt/betrag.tex					\
+	chapters/8-kompakt/bedingungen.tex				\
 	chapters/9-spline/chapter.tex					\
 	chapters/a-komplex/komplexezahlen.tex				\
 	uebungsaufgaben/15001.tex					\

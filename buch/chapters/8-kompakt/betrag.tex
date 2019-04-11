@@ -1,0 +1,142 @@
+%
+% betrag.tex
+%
+% (c) 2019 prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Betrag\label{section:betrag}}
+\rhead{Betrag}
+Um die Funktion $H(\omega)$ zu bestimmen untersuchen wir erst den
+Betrag $|H(\omega)|^2$.
+Hier verwenden wir jetzt, dass die Koeffizienten der Skalierungsrelation
+reell sein sollen.
+Dies hat zur Folge, dass
+\[
+\overline{H(\omega})
+=
+\overline{
+\frac1{\sqrt{2}}
+\sum_{k\in\mathbb Z} h_ke^{-ik\omega}
+}
+=
+\frac1{\sqrt{2}}
+\sum_{k\in\mathbb Z} \bar{h}_ke^{ik\omega}
+=
+\frac1{\sqrt{2}}
+\sum_{k\in\mathbb Z} h_ke^{-ik(-\omega)}
+=
+H(-\omega)
+\]
+Damit ist
+\[
+M(\omega)
+=
+|H(\omega)|^2
+=
+H(\omega)
+\overline{H(\omega)}
+=
+H(\omega)H(-\omega).
+\]
+Dieser Ausdruck ändert sich nicht, wenn man $\omega$ durch $-\omega$
+ersetzt, die Funktion $M(\omega)$ ist daher eine gerade Funktion.
+Da sie ausserdem ein trigonometrisches Polynom ist, muss sie geschrieben
+werden können als ein Polynom in $\cos\omega$.
+
+Die Faktorisierung \eqref{buch:kompakt:HB} von $H(\omega)$
+zeigt, dass $M(\omega)$ den Faktor
+\[
+\biggl(\frac{1+e^{-i\omega}}2\biggr)^N
+\biggl(\frac{1+e^{i\omega}}2\biggr)^N
+=
+\biggl( \frac{1+\cos\omega}2\biggr)^N
+=
+\biggl(
+\cos\frac{\omega}2
+\biggr)^N
+\]
+enthält.
+Oder für $M(\omega)$
+\begin{equation}
+M(\omega)
+= 
+\biggl(
+\cos\frac{\omega}2
+\biggr)^N
+B(\omega)B(-\omega)
+\label{buch:kompakt:MB}
+\end{equation}
+Um $B(\omega)$ zu finden ist daher zunächst
+$A(\omega)=B(\omega)B(-\omega)$
+zu bestimmen, in einem zweiten Schritt kann man dann eine
+Faktorisierung von $A(\omega)$ mit Hilfe von $B(\omega)$ suchen.
+
+Der Faktor $A(\omega)$ ist wieder in trigonometrisches Polynom,
+welches als Funktion von $\omega$ gerade ist.
+Es muss also wieder als Polynom in $\cos\omega$
+in der Form $A(\omega)=\tilde{P}(\cos\omega)$
+geschrieben werden können.
+Aus der Halbwinkelformel für den Kosinus folgt
+\[
+\cos^2\frac{\omega}2
+=
+\frac{1+\cos\omega}2,
+\]
+so dass das Polynom $A(\omega)$ auch durch $\cos^2\frac{\omega}2$
+ausgedrückt werden kann.
+Wir verwenden im folgenden die Variable 
+\[
+y=\sin^2\frac{\omega}2
+\qquad\Rightarrow\qquad
+1-y=\cos^2\frac{\omega}2.
+\]
+Damit wird auch 
+\[
+\cos\omega
+=
+2\cos^2\frac{\omega}2
+-1
+=
+2(1-y)-1
+=
+1-2y.
+\]
+Die Funktion $A(\omega)$ als Polynom in $\cos\omega$ wird
+dann zu $\tilde{P}(1-2y) = P(y)$.
+Um $A(\omega)$ zu bestimmen ist also ein Polynom $P(y)$ zu finden.
+Für die Funktion $M(\omega)$ folgt jetzt
+\[
+M(\omega)
+=
+\biggl(\cos\frac{\omega}2\biggr)^N
+A(\omega)
+=
+(1-y)^N P(y).
+\]
+
+Die Funktion $M(\omega)$ genügt auch der Relation
+\[
+M(\omega) + M(\omega+\pi)=1,
+\]
+die wir bis jetzt noch nicht genutzt haben.
+In der Variablen $y$ ausgedrückt ist
+\[
+\cos^2\frac{\omega+\pi}2
+=
+\sin^2\frac{\omega}2
+=
+y
+\]
+Setzen wir \eqref{buch:kompakt:MB} ein, wird daraus die Relation
+\begin{equation}
+1
+=
+M(\omega) + M(\omega+\pi)
+=
+(1-y)^N P(y) + y^N P(1-y).
+\label{buch:kompakt:Prel}
+\end{equation}
+Um $A(\omega)$ zu finden ist also ein Polynom
+$P(y)$ zu finden, welches die Relation
+\eqref{buch:kompakt:Prel} erfüllt.
+
+

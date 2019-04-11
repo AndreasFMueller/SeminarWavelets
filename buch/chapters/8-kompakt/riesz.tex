@@ -7,7 +7,23 @@
 %
 % Lemma von Riesz
 %
-\subsection{Das Lemma von Riesz}
+\section{Das Lemma von Riesz\label{section:riesz}}
+\rhead{Das Lemma von Riesz}
+Mit Hilfe der Partialbruchzerlegung war es im
+Abschnitt~\ref{section:partialbruch}
+möglich, die Funktion $M(\omega)$ als Polynom in $\cos\omega$ zu finden,
+welches die Identität
+\[
+M(\omega) + M(\omega + \pi) = 1
+\]
+erfüllt.
+Gesucht wird aber eine Funktion $H(\omega)$ mit
+$M(\omega)=H(\omega)H(-\omega)$.
+Diese Faktorisierung wird ermöglicht dank des in diesem Abschnitt
+formulierten und beschriebenen Lemmas von Riesz.
+
+\subsection{Das Lemma\label{subsection:riesz}}
+Das Lemma von Riesz ist die folgende etwas überraschende Aussage:
 
 \begin{lemma}[Riesz]
 Ist
@@ -240,10 +256,17 @@ Wir fügen in diesem Fall den Faktor $B_j(\omega)=(z^2-2z\operatorname{Re}s-|s|^
 \end{enumerate}
 In allen drei Fällen haben wir für die behandelten Faktoren $A_j(\omega)$
 und der eventuell zugehörigen Faktoren $A_{j'}(\omega)$ eine Funktion
-$B_j(\omega)$ gefunden, so dass das Projekt all dieser Faktoren
+$B_j(\omega)$ gefunden, so dass das Produkt all dieser Faktoren
 \[
 B(\omega) = \prod_j B_j(\omega)
 \]
 genau die im Lemma versprochenen Eigenschaften hat.
 \end{proof}
+
+\subsection{Haar-Wavelet}
+
+\subsection{Daubechies-Wavelets}
+
+
+
 
