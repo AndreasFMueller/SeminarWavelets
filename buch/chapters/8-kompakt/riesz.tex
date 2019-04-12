@@ -24,6 +24,7 @@ formulierten und beschriebenen Lemmas von Riesz.
 Das Lemma von Riesz ist die folgende etwas überraschende Aussage:
 
 \begin{lemma}[Riesz]
+\label{lemma:riesz}
 Ist
 \[
 A(\omega)
@@ -260,4 +261,117 @@ B(\omega) = \prod_j B_j(\omega)
 \]
 genau die im Lemma versprochenen Eigenschaften hat.
 \end{proof}
+
+Aus dem Beweis des Lemmas lässt sich auch ein Algorithmus ablesen, mit
+dem das Polynom $B(\omega)$ konstruiert werden kann.
+\begin{enumerate}
+\item
+Bestimme die Nullstellen von $A(\omega) = P((1-\cos \omega)/2)$ 
+als Polynom in $\omega$ und schreibe $A(\omega)$ als Produkt
+\[
+A(\omega) = \prod_j (\cos\omega - c_j)
+\]
+\item Für jede Nullstelle $c_j$ mit $|c_j|>1$ füge einen Faktor 
+\[
+B_j(z)=\frac{1}{\sqrt{-2s}}(z-s),\qquad s = \operatorname{sign}c_j\cdot \operatorname{arsinh}|c_j|
+\]
+zu $B(z)$ hinzu.
+\item
+Jede Nullstelle $c_j \in\mathbb R$ mit $|c_j|<1$ kommt eine Gerade Anzahl mal
+vor, füge für jedes Paar einen Faktor
+\[
+B_j(z) = \frac12(z^2 -2 z\cos \alpha +1),
+\qquad\text{mit $c_j=\cos\alpha$}
+\]
+hinzu.
+\item
+Für jede Nullstelle $c_j\in \mathbb C\setminus\mathbb R$ gibt es
+eine konjugiert komplexe Nullstelle $c_{j'}=\bar{c}_j$.
+Füge für beide einen Faktor
+\[
+B_j(z) = \frac{1}{2|s|}(z^2 -2z\operatorname{Re}s-|s|^2),
+\qquad
+\text{wobei $s$ eine Lösung von $s^2 -2c_js+1=0$ ist,}
+\]
+hinzu.
+\end{enumerate}
+
+\begin{beispiel}
+\label{buch:kompakt:db2riesz}
+Als Beispiel für den im Beweis des Lemmas von Riesz formulierten Algorithmus
+wenden wir ihn auf das Polynom
+\[
+A(\omega)
+=
+2-\cos\omega
+=
+2-\frac12(e^{i\omega}+e^{-i\omega})
+\]
+an.
+Das Polynom $-(\cos\omega -2)$ hat nur einen einzigen Faktor mit $c_0=2$.
+Der Faktor $B_j(z)$ muss von der Form $B_j(z)=b_0+b_1z$ sein.
+Setze man dies für $B_j$ ein, erhält man
+\[
+A(\omega)
+=
+2-\cos\omega
+=
+(b_0+b_1e^{i\omega})
+(b_0+b_1e^{-i\omega})
+=
+b_0^2 + b_1^2 +b_0b_1\cos\alpha 
+\]
+Durch Koeffizientengleich liest man ab
+\begin{align*}
+2&=b_0^2 + b_1^2
+\\
+-\frac12&=b_0b_1.
+\end{align*}
+Setzt man die zweite Gleichung in die erste ein, erhält man die biquadratische
+Gleichung
+\[
+2=b_0^2 + \frac{1}{4b_0^2}
+\qquad\Leftrightarrow\qquad
+b_0^4-2b_0^2 + \frac14 = 0
+\]
+mit den Lösungen
+\[
+b_0^2 = 1\pm \sqrt{1-\frac14} = \frac{2\pm\sqrt{3}}{2}
+\qquad\Rightarrow\qquad
+b_0 = \pm \frac{1\pm\sqrt{3}}2.
+\]
+Tatsächlich ist
+\[
+\biggl(
+\frac{1\pm\sqrt{3}}2
+\biggr)^2
+=
+\frac{1\pm 2\sqrt{3}+3}{4}
+=
+\frac{2\pm\sqrt{3}}2.
+\]
+Die zugehörigen Wert von $b_1$ sind
+\[
+b_1
+=
+\mp
+\frac{1}{2}\frac{2}{1\pm\sqrt{3}}
+=
+\mp
+\frac{1}{1\pm\sqrt{3}}
+=
+\mp
+\frac{1\mp \sqrt{3}}{1-3}
+=
+\pm
+\frac{1\mp\sqrt{3}}{2}.
+\]
+Wählt man in allen Fällen das obere Zeichen, wird
+\[
+B(\omega)
+= 
+\frac{1+\sqrt{3}}2 + \frac{1-\sqrt{3}}2 e^{i\omega}.
+\]
+\end{beispiel}
+
 

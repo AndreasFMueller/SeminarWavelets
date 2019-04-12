@@ -5,5 +5,136 @@
 %
 \section{Daubechies-Wavelets\label{section:daubechies}}
 \rhead{Daubechies-Wavelets}
+In den vorangegangenen Abschnitten wurde gezeigt, wie die erzeugende
+Funktion $H(s)$ einer Multiskalen-Analyse mit Wavelets beliebiger
+Ordnung bestimmt werden kann.
+Es wurde auch klar, dass das Haar-Wavelet eine Lösung dieser Aufgabe
+ist.
+Nachdem die Existenz solcher Multiskalen-Analysen nun etabliert ist,
+sollen in diesem Abschnitt die Koeffizienten $h_k$ dieser Wavelets
+explizit konstruiert werden.
+
+In Lemma~\ref{buch:kompakt:lemma-partial} wurden die Lösungen für das
+Polynom $P(y)$ bereits charakterisiert.
+Um die erzeugende Funktion zu bestimmen, sind noch folgende Schritte
+durchzuführen.
+\begin{enumerate}
+\item
+Die Funktion $A(\omega)=P(y)$ mit $y=\sin^2\frac{\omega}2$ muss
+bestimmt und als Polynom in $\cos\omega=1-2y$ ausgedrückt werden.
+\item
+Die Funktion $A(\omega)$ muss mit Hilfe des Lemmas \ref{lemma:riesz}
+von Riesz in das Produkt $A(\omega)=B(\omega)B(-\omega)$ zerlegt
+werden.
+\item
+Die erzeugende Funktion ist dann
+\[
+H(\omega)
+=
+\biggl(
+\frac{1+e^{-i\omega}}2
+\biggr)^N
+B(\omega),
+\]
+aus ihr müssen die Koeffizienten $h_k$ abgelesen werden.
+\end{enumerate}
+
+Wir führen den Prozess im folgenden für $N=2$ und $N=3$ durch.
+
+\subsection{Der Fall $N=2$}
+Für $N=2$ is $P_N(y)=P_2(y)=1+2y$.
+Wegen $y=(1-\cos \omega)/2$ folgt
+\[
+A(\omega) = 1 + 2\frac{1-\cos\omega}2 = 2-\cos\omega
+= 2- \cos\omega
+\]
+Wegen $\cos\omega\le 1$ ist $A(\omega) \ge 0$, die Voraussetzungen des
+Riesz-Lemmas~\ref{lemma:riesz} sind damit erfüllt.
+
+Im Beispiel auf Seite~\pageref{buch:kompakt:db2riesz} wird bereits
+die Funktion $B(z)$ gefunden, die nach dem Lemma~\ref{lemma:riesz}
+von Riesz existieren muss.
+Es war
+\[
+B(\omega)
+=
+\frac{1+\sqrt{3}}2 + \frac{1-\sqrt{3}}2e^{-i\omega}.
+\]
+Daraus kann man jetzt die erzeugende Funktion ableiten
+\begin{align*}
+H(\omega)
+&=
+\biggl(\frac{1+e^{-i\omega}}2\biggr)^2 B(\omega)
+=
+\frac14(1+2e^{-i\omega}+e^{-2i\omega})
+\biggl(
+\frac{1+\sqrt{3}}2 + \frac{1-\sqrt{3}}2e^{-i\omega}
+\biggr).
+\\
+&=
+\frac18(
+(1+\sqrt{3})
++
+(2(1+\sqrt{3})+1-\sqrt{3}) e^{-i\omega}
++
+(1+\sqrt{3}+2(1-\sqrt{3})) e^{-2i\omega}
++
+(1-\sqrt{3})e^{-3i\omega}
+)
+\\
+&=
+\frac14\biggl(
+\frac{1+\sqrt{3}}2
++
+\frac{3+\sqrt{3}}2 e^{-i\omega}
++
+\frac{3-\sqrt{3}}2 e^{-2i\omega}
++
+\frac{1-\sqrt{3}}2 e^{-3i\omega}
+\biggr)
+\\
+&=
+\frac1{\sqrt{2}}
+\biggl(
+\frac{1+\sqrt{3}}{4\sqrt{2}}
++
+\frac{3+\sqrt{3}}{4\sqrt{2}} e^{-i\omega}
++
+\frac{3-\sqrt{3}}{4\sqrt{2}} e^{-2i\omega}
++
+\frac{1-\sqrt{3}}{4\sqrt{2}} e^{-3i\omega}
+\biggr)
+\end{align*}
+Daraus kann man die Koeffizienten der Skalierungsrelation ablesen:
+\begin{align*}
+h_0
+&=
+\frac{1+\sqrt{3}}{4\sqrt{2}}
+=
+\phantom{-}
+0.482962913144534
+\\
+h_1
+&=
+\frac{3+\sqrt{3}}{4\sqrt{2}}
+=
+\phantom{-}
+0.836516303737808
+\\
+h_2
+&=
+\frac{3-\sqrt{3}}{4\sqrt{2}}
+=
+\phantom{-}
+0.224143868042013
+\\
+h_3
+&=
+\frac{1-\sqrt{3}}{4\sqrt{2}}
+=
+-0.129409522551260
+\end{align*}
+
+
 
 

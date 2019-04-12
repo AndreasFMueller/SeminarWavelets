@@ -205,11 +205,21 @@ Im vorliegenden Fall ist $\alpha=-N$ und damit sind die Koeffizienten
 (-1)^k \binom{N+k-1}{k}.
 \end{align*}
 Daraus können wir das Polynom $P_N(y)$ ablesen.
-Wegen $(-y)^k(-1)^k=y^k$ folgt
+Wegen $(-y)^k(-1)^k=y^k$ folgt das folgende Lemma,
+welches auch die Vermutung \eqref{buch:kompakt:vermutung} bestätigt.
+
+\begin{lemma}
+\label{buch:kompakt:lemma-partial}
+Das Polynom
 \begin{equation}
 P_N(y) = \sum_{k=0}^{N-1} \binom{N+k-1}{k}y^k,
 \end{equation}
-was die Vermutung \eqref{buch:kompakt:vermutung} bestätigt.
+ist das einzige Polynom vom Grad $N$, welches die Gleichung
+\[
+(1-y)^NP_N(y) + y^NP_N(1-y)=1
+\]
+erfüllt.
+\end{lemma}
 
 \subsection{Weitere Lösungen von höherem Grad}
 Das Polynom $P_N(y)$ ist nicht die einzige Lösung der Gleichung
@@ -246,7 +256,18 @@ erfüllt sein.
 Es genügt daher, dass $R(y)$ ein Polynom ist, welches bezüglich $y=\frac12$
 antisymmetrisch ist.
 
-
+\begin{lemma}
+Eine beliebige Lösung $P(y)$ der Gleichung 
+\[
+(1-y)^N P(y) + y^N P(1-y)=1
+\]
+hat die Form
+\[
+P(y) = P_N(y) + y^N R(y),
+\]
+wobei $R(y)$ ein bezüglich $y=\frac12$ antisymmetrisches Polynom ist,
+also $R(1-y)=-R(y)$.
+\end{lemma}
 
 
 
