@@ -4,7 +4,7 @@
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
 
-function Winverse(filename, a, b, h, J, farbe)
+function retval = Winverse(a, b, h, J)
 	l = size(h)(2);
 	g = zeros(1,l);
 	for i = (1:l)
@@ -43,12 +43,18 @@ function Winverse(filename, a, b, h, J, farbe)
 		b(1,:) = zeros(1, N);
 		a(1,:) = a(2,:);
 	end
+	retval = a;
+end
 
+function plotcurves(filename, a, h, J, farbe)
+	l = size(h)(2);
+	N = l * 2^J;
+	delta = 2^(-J);
 	f = fopen(filename, "w");
 	fprintf(f, "\\draw[line width=1pt,color=%s] ", farbe);
 	top = (l - 1) * 2^J;
 	for i = (0:top-1)
-		if (i > 1)
+		if (i > 0)
 			fprintf(f, "--");
 		end
 		fprintf(f, "(%.5f, %.5f)\n", i * delta, a(1, i+1));
@@ -63,7 +69,8 @@ function Wphi(filename, h, J, farbe)
 	a = zeros(2, N);
 	b = zeros(2, N);
 	a(1,1) = 1;
-	Winverse(filename, a, b, h, J, farbe);
+	a = Winverse(a, b, h, J);
+	plotcurves(filename, a, h, J, farbe)
 end
 
 function Wpsi(filename, h, J, farbe)
@@ -72,6 +79,7 @@ function Wpsi(filename, h, J, farbe)
 	a = zeros(2, N);
 	b = zeros(2, N);
 	b(1,1) = 1;
-	Winverse(filename, a, b, h, J, farbe);
+	a = Winverse(a, b, h, J);
+	plotcurves(filename, a, h, J, farbe)
 end
 
