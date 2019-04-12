@@ -136,5 +136,101 @@ h_3
 \end{align*}
 
 
+\subsection{Der Fall $N=3$}
+Für $N=3$ ist $P_N(y)=P_3(y)=1+3y+6y^2$.
+Wir ersetzen wieder $y=(1-\cos\omega)/2$ 
+\begin{align*}
+A(\omega)
+&=
+1+3(1-\cos\omega)/2 + 6(1-\cos\omega)^2/4
+\\
+&=
+1+\frac32-\frac32\cos\omega
++
+\frac32(1-2\cos\omega+\cos^2\omega)
+\\
+&=
+4
+-
+\frac92\cos\omega
++
+\frac32\cos^2\omega
+\\
+&=
+\frac32(\cos^2\omega -3\cos\omega + \frac{8}3)
+\end{align*}
+Jetzt muss eine Funktion $B(\omega)$ als Polynom in $e^{i\omega}$
+gefunden werden derart, dass $A(\omega)=B(\omega)B(-\omega)$.
+Der Ansatz
+\[
+B(\omega)
+=
+b_0 + b_1 e^{i\omega} + b_2 e^{2i\omega}
+\]
+führt auf
+\begin{align*}
+A(\omega)
+=
+B(\omega)B(-\omega)
+&=
+(b_0 + b_1 e^{i\omega} + b_2 e^{2i\omega})
+(b_0 + b_1 e^{-i\omega} + b_2 e^{-2i\omega})
+\\
+&=
+b_0^2 + b_1^2 + b_2^2
++
+(b_0b_1 + b_2b_1)
+(e^{i\omega}+e^{-i\omega})
++
+b_0b_2
+(e^{2i\omega}+e^{-2i\omega})
+\\
+&=
+b_0^2 + b_1^2 + b_2^2
++
+2(b_0b_1 + b_2b_1)
+\frac{e^{i\omega}+e^{-i\omega}}2
++
+2b_0b_2
+\frac{e^{2i\omega}+e^{-2i\omega}}2
+\\
+&=
+b_0^2 + b_1^2 + b_2^2
++
+2(b_0b_1 + b_2b_1)
+\cos\omega
++
+2b_0b_2
+\cos 2\omega
+\\
+&=
+b_0^2 + b_1^2 + b_2^2
++
+2(b_0b_1 + b_2b_1)
+\cos\omega
++
+2b_0b_2
+(2\cos^2\omega-1)
+\\
+&=
+b_0^2 + b_1^2 + b_2^2 -2b_0b_2
++
+2(b_0b_1 + b_2b_1)
+\cos\omega
++
+4b_0b_2
+\cos^2\omega
+\end{align*}
+Durch Koeffizientenvergleich lesen wir die Gleichungen
+\begin{align*}
+b_0^2+b_1^2+b_2^2-2b_0b_2&=\frac83
+\\
+(b_0+b_2)b_1 &= -\frac94
+\\
+b_0b_2
+&=
+\frac{3}{8}
+\end{align*}
+
 
 
