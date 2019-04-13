@@ -93,10 +93,10 @@ begin
 			x <= signed(x_vector(i));
 			wait for clk_period/2;
 			s_vector(i) <= std_logic_vector(s);
-			d0_vector(i) <= std_logic_vector(ds((16*0)-1 downto (16*0)));
-			d0_vector(i) <= std_logic_vector(ds((16*1)-1 downto (16*1)));
-			d0_vector(i) <= std_logic_vector(ds((16*2)-1 downto (16*2)));
-			d0_vector(i) <= std_logic_vector(ds((16*3)-1 downto (16*3)));
+			d0_vector(i) <= std_logic_vector(ds((16*1)-1 downto (16*0)));
+			d1_vector(i) <= std_logic_vector(ds((16*2)-1 downto (16*1)));
+			d2_vector(i) <= std_logic_vector(ds((16*3)-1 downto (16*2)));
+			d3_vector(i) <= std_logic_vector(ds((16*4)-1 downto (16*3)));
 			
 			rdys_vector(i) <= (("000000000000") & std_logic_vector(rdys));
 			wait for clk_period/2;

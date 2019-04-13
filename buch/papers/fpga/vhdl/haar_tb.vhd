@@ -26,12 +26,14 @@ architecture rtl of haar_tb is
 	signal x_vector : ram_t;
 	signal s_vector : ram_t;
 	signal d_vector : ram_t;
+	signal y_vector : ram_t;
 	
 	signal x : signed(15 downto 0);
 	signal d : signed(15 downto 0);
 	signal s : signed(15 downto 0);
+	signal y : signed(15 downto 0);
 	signal rdy : std_logic;
-
+	
 	component haar is
         generic (
             n : integer
@@ -48,9 +50,27 @@ architecture rtl of haar_tb is
         );
 	end component;
 	
+	component inv_haar is
+        generic (
+            n : integer
+        );
+        port (
+            clk : in std_logic;
+            rst : in std_logic;
+            
+            d : in signed(n-1 downto 0);
+            s : in signed(n-1 downto 0);
+            rdy_in : in std_logic;
+            
+            y : out signed(n-1 downto 0)
+        );
+    end component;
+
+	
+	
 begin
   
-	dut : component haar
+	dut1 : component haar
 		generic map (
 			n => 16
 			)
@@ -64,6 +84,21 @@ begin
 			s => s,
 			rdy_out => rdy
 		);
+		
+	dut2 : component inv_haar
+        generic map (
+            n => 16
+            )
+        port map (
+            clk => clk,
+            rst => rst,
+            
+            d => d,
+            s => s,
+            rdy_in => '1',
+
+            y => y
+        );
 
 	clk <= not clk after clk_period/2;
 
@@ -91,11 +126,13 @@ begin
 			wait for clk_period/2;
 			s_vector(i) <= std_logic_vector(s);
 			d_vector(i) <= std_logic_vector(d);
+			y_vector(i) <= std_logic_vector(y);
 			wait for clk_period/2;
 		end loop;
 		report "test finished";
 		test_ok <= writeToFile(s_vector, "D:/Temp/sVector.hex");
 		test_ok <= writeToFile(d_vector, "D:/Temp/dVector.hex");
+		test_ok <= writeToFile(y_vector, "D:/Temp/yVector.hex");
 		report "output files generated";
 		wait;
 	end process;
