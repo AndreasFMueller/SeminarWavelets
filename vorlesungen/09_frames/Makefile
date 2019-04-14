@@ -6,7 +6,7 @@
 all:	frames-handout.pdf MathSem-09-frames.pdf
 
 SOURCES = common.tex slides.tex comparison.tex voraussetzungen.tex \
-	berechnung.tex
+	berechnung.tex domain.tex
 
 MathSem-09-frames.pdf:	MathSem-09-frames.tex $(SOURCES)
 	pdflatex MathSem-09-frames.tex
