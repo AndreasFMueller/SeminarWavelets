@@ -43,13 +43,13 @@ def plotConvs(filterBank, img, gaborParams):
 
 if __name__ == '__main__':
     # Constants
-    filterSize = 255
-    sigma = 20  # stddeviation of kernels
+    filterSize = 15
+    sigma = 2  # stddeviation of kernels
     gamma = 0.5 # spatial aspect ration
     
 
     theta = np.arange(0, np.pi, np.pi/5) # changing orientation of kernels
-    wavelength = np.arange(20,40,4) # wa
+    wavelength = np.arange(1,6,1) # wa
     params = [(t,w) for w in wavelength for t in theta]
     filterBank, gaborParams, k = genFilterbank(params, filterSize, sigma, gamma)
     print("start plotting sinFilterbank")
@@ -57,6 +57,7 @@ if __name__ == '__main__':
     print("start plotting cosFilterbank")
     
     img = cv2.imread('testpatterns/serveimage.png', cv2.IMREAD_GRAYSCALE )
+    img = cv2.resize(img,(124,124))
     rows, cols = img.shape
     M = cv2.getRotationMatrix2D((cols/2,rows/2),45,1) # center, angle, scale
     img = cv2.warpAffine(img, M , (cols, rows)) # rotate image
