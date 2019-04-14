@@ -45,9 +45,9 @@ dVhdl = fromVhdlRecord('D:/Temp/dVector.hex');
 yVhdl = fromVhdlRecord('D:/Temp/yVector.hex');
 
 %% adapt calculated data to fit vhdl data
-dExtended = delayRep( d , 2^1, -2 + (2^1)+1, L);
+dExtended = delayRep( d , 2^1, -1 + (2^1)+1, L);
 dVhdlShort = extractCoefFromStream( dVhdl, 1, -((2^1) +1) );
-sExtended = delayRep( s , 2^1, -2 + (2^1)+1, L);
+sExtended = delayRep( s , 2^1, -1 + (2^1)+1, L);
 sVhdlShort = extractCoefFromStream( sVhdl, 1, -((2^1) +1) );
 
 yExtended = delayRep( y , 1, (2^1)+1, L);
@@ -75,11 +75,11 @@ y_diff = yVhdl - yExtended;
 
 %% Plot diffs
 
-figure(2)
-title('Differences')
-plot(d_diff); hold on;
-plot(s_diff);
-plot(y_diff); hold off;
+% figure(2)
+% title('Differences')
+% plot(d_diff); hold on;
+% plot(s_diff);
+% plot(y_diff); hold off;
 
 assert(all(d_diff == 0), 'd is wrong');
 assert(all(s_diff == 0), 's is wrong');

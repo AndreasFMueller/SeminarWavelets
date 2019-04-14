@@ -5,7 +5,7 @@ N = 4;
 t = 1:L;
 x = sin(2*pi*t/128);% + 1.2*cos(2*pi*t/40); %500
 
-x = x+(t/1000);
+% x = x+(t/1000);
 
 x = int16(floor(x*2^15*0.1)); %quantize x
 
@@ -56,6 +56,7 @@ dsVhdl{2} = fromVhdlRecord('D:/Temp/d1Vector.hex');
 dsVhdl{3} = fromVhdlRecord('D:/Temp/d2Vector.hex');
 dsVhdl{4} = fromVhdlRecord('D:/Temp/d3Vector.hex');
 
+
 yVhdl = fromVhdlRecord('D:/Temp/yVector.hex');
 
 rdysVhdl = fromVhdlRecord('D:/Temp/rdysVector.hex');
@@ -64,10 +65,10 @@ rdysVhdl = fromVhdlRecord('D:/Temp/rdysVector.hex');
 dsExtended = cell(1, N);
 dsVhdlShort = cell(1, N);
 for i = 1:N
-    dsExtended{i} = delayRep( ds{i} , 2^i, -2 + (2^i)+i, L);
+    dsExtended{i} = delayRep( ds{i} , 2^i, -1 + (2^i)+i, L);
     dsVhdlShort{i} = extractCoefFromStream( dsVhdl{i}, i, -((2^i) +i) );
 end
-sExtended = delayRep( s , 2^i, -2 + (2^i)+i, L);
+sExtended = delayRep( s , 2^i, -1 + (2^i)+i, L);
 sVhdlShort = extractCoefFromStream( sVhdl, i, -((2^i) +i) );
 
 yExtended = delayRep( y , 1, (2^1)+1, L);
@@ -90,7 +91,7 @@ plot(s); hold off;
 legend({'d0 vhdl', 'd0', 'd1vhdl', 'd1', 'd2vhdl', 'd2', 'd3vhdl', 'd3', 's', 'svhdl'})
 title('coefficients short')
 
-% xlim([1 100])
+xlim([1 100])
 
 %% Plot 
 figure(1)
@@ -111,23 +112,24 @@ plot(t, dsVhdl{4}, 'co');
 plot(t, dsExtended{4}, 'c-');
 
 plot(t, sVhdl, 'mo');
-plot(t, sExtended, 'm-');
+plot(t, sExtended, 'm-'); hold off;
 
-plot(t, sVhdl, 'ro');
-plot(t, sExtended, 'r-'); hold off;
-
-legend({'x', 'd0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's', 'sVhdl', 'y', 'yVhdl'})
+legend({'x', 'd0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's', 'sVhdl'})
 title('coefficients extended')
 
-% xlim([0 100])
+xlim([0 100])
 
 %% calc difference
-diffs = cell(1, N+1);
+diffs = cell(1, N+2);
+meanDiffs = zeros(1, N+2);
 for i = 1:N
    diffs{i} = dsVhdl{i} - dsExtended{i};
+   meanDiffs(i) = mean(abs(diffs{i}));
 end
 diffs{i+1} = sVhdl - sExtended;
+meanDiffs(i+1) = mean(abs(diffs{i+1}));
 diffs{i+2} = yVhdl - yExtended;
+meanDiffs(i+2) = mean(abs(diffs{i+2}));
 
 %% Plot diffs
 figure(2)
@@ -136,3 +138,64 @@ for i = 1:N+2
    plot(diffs{i}); hold on;
 end
 hold off;
+
+% assert(meanDiffs(1) == 0, 'd0 is wrong');
+% assert(meanDiffs(2) == 0, 'd1 is wrong');
+% assert(meanDiffs(3) == 0, 'd2 is wrong');
+% assert(meanDiffs(4) == 0, 'd3 is wrong');
+% assert(meanDiffs(5) == 0, 's is wrong');
+% assert(meanDiffs(6) == 0, 'y is wrong');
+
+
+%% Delay chain
+
+%% get data from vhdl simulaton
+sVhdlDelayed = fromVhdlRecord('D:/Temp/s_delayedVector.hex');
+dsVhdlDelayed = cell(1, N);
+dsVhdlDelayed{1} = fromVhdlRecord('D:/Temp/d0_delayedVector.hex');
+dsVhdlDelayed{2} = fromVhdlRecord('D:/Temp/d1_delayedVector.hex');
+dsVhdlDelayed{3} = fromVhdlRecord('D:/Temp/d2_delayedVector.hex');
+dsVhdlDelayed{4} = fromVhdlRecord('D:/Temp/d3_delayedVector.hex');
+
+%% adapt calculated data to fit vhdl data
+for i = 1:N
+    dsExtended{i} = delayRep( ds{i} , 2^i, 9+(2^4)-i, L);
+end
+sExtended = delayRep( s , 2^i, 9+(2^4)-i, L);
+
+%% Plot 
+figure(3)
+
+plot(t, dsVhdlDelayed{1}, 'gx'); hold on;
+plot(t, dsExtended{1}, 'g-');
+
+plot(t, dsVhdlDelayed{2}, 'bx');
+plot(t, dsExtended{2}, 'b-');
+
+plot(t, dsVhdlDelayed{3}, 'rx');
+plot(t, dsExtended{3}, 'r-');
+
+plot(t, dsVhdlDelayed{4}, 'cx');
+plot(t, dsExtended{4}, 'c-');
+
+plot(t, sVhdlDelayed, 'mx');
+plot(t, sExtended, 'm-'); hold off;
+
+legend({'d0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's', 'sVhdl'})
+title('coefficients extended')
+
+xlim([0 100])
+
+%% Plot 
+figure(4)
+
+plot(t, x, 'k-'); hold on;
+
+plot(t, yVhdl, 'mo');
+plot(t, yExtended, 'm-'); hold off;
+
+legend({'x', 'y', 'yVhdl'})
+
+xlim([0 100])
+
+

@@ -11,6 +11,7 @@ entity branching is
         clk : in std_logic;
         rst : in std_logic;
         x : in signed(n-1 downto 0);
+        rdy_in : in std_logic;
         
         s : out signed(n-1 downto 0);
         ds : out signed((nBranch*n)-1 downto 0);
@@ -52,7 +53,7 @@ begin
   rdys_out <= rdys_int(nBranch+1-1 downto 1);
   
   xs_int <= (ss_int(((nBranch-1)*n)-1 downto 0) & x);
-  rdys_int(0) <= '1';
+  rdys_int(0) <= rdy_in;
   
   instances : for i in 0 to nBranch-1 generate
       haar_n : haar

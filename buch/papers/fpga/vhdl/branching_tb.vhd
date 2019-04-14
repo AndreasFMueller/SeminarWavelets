@@ -35,6 +35,8 @@ architecture rtl of branching_tb is
 	signal ds : signed((16*4)-1 downto 0);
 	signal s : signed(15 downto 0);
 	signal rdys : signed(3 downto 0);
+	
+	signal rdy_in : std_logic;
 
     component branching is
         generic (
@@ -45,6 +47,7 @@ architecture rtl of branching_tb is
             clk : in std_logic;
             rst : in std_logic;
             x : in signed(n-1 downto 0);
+            rdy_in : in std_logic;
             
             s : out signed(n-1 downto 0);
             ds : out signed((nBranch*n)-1 downto 0);
@@ -63,6 +66,7 @@ begin
 			clk => clk,
 			rst => rst,
 			x => x,
+			rdy_in => rdy_in,
 			s => s,
 			ds => ds,
 			rdys_out => rdys
@@ -85,8 +89,11 @@ begin
 	    x_vector <= readFromFile("D:/Temp/xVector.hex");
 	   
 	    x <= (others => '0');
+	    rdy_in <= '0';
 	   
 	    wait for clk_period*20;
+	   
+	    rdy_in <= '1';
 	   
 		for i in 0 to DEPTH-1 loop
 		    t <= i;
