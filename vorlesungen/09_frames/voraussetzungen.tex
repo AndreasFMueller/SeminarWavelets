@@ -1,0 +1,43 @@
+%
+% voraussetzungen.tex
+%
+% (c) 2019 Prof Dr Andreas Müller
+%
+\begin{frame}
+\frametitle{Voraussetzungen}
+
+\begin{columns}[T,totalwidth=\linewidth]
+\begin{column}{0.48\textwidth}
+\uncover<2->{
+\begin{block}{Zulässigkeitsbedingung}
+\[
+C_\psi
+=
+2\pi
+\int_{-\infty}^\infty
+\frac{|\hat{\psi}(a)|^2}{|a|}\,da
+\]
+\end{block}
+}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<3->{
+\begin{block}{Multiskalenanalyse}
+\vspace{-10pt}
+\[
+\{0\}
+\subset\dots\subset V_0 \subset V_1 \subset \dots \subset L^2(\mathbb R)
+\]
+\vspace{-10pt}
+\begin{enumerate}
+\item $D_{\frac12}:V_j\to V_{j+1}$ ist eine Isometrie
+\item Die Translate von $\varphi$ bilden eine orthonormierte Basis von $V_0$
+\item $W_0$ ist das Orthogonalkomplement von $V_0$ in $V_1$:
+$V_0\oplus W_0=V_1$
+\item Die Translate von $\psi$ bilden eine Basis $W_0$
+\end{enumerate}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+
