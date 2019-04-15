@@ -40,14 +40,13 @@ architecture rtl of fifoDelay is
 
 begin
   
-    output : process(sig_ram, rdy_ram, out_ptr) is
+    output : process(y_int, rdy_out_int) is
     begin
         y <= y_int;
         rdy_out <= rdy_out_int;
     end process;
   
     calc: process(in_ptr, out_ptr) is
-        variable d_int_next_div2 : signed(n-1 downto 0);
     begin 
         in_ptr_next <= in_ptr;
         out_ptr_next <= out_ptr;

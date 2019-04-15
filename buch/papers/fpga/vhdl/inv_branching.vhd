@@ -24,15 +24,10 @@ architecture rtl of inv_branching is
 
 	signal rdys_int : signed(nBranch-1 downto 0);
 	
-	
 	signal ds_int : signed((nBranch*n)-1 downto 0);
 	signal ss_int : signed((nBranch*n)-1 downto 0);
 	
 	signal ys_int : signed((nBranch*n)-1 downto 0);
-	
-	
-	signal state : std_logic;
-	signal state_next : std_logic;
 	
 	component inv_haar is
         generic (

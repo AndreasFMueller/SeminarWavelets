@@ -23,8 +23,6 @@ end coef_delay;
 
 architecture rtl of coef_delay is
 	
-	signal dummy : std_logic;
-	
 	component fifoDelay is
         generic (
             n : integer;
@@ -49,7 +47,7 @@ architecture rtl of coef_delay is
         variable temp : delays_type;
     begin
         forLoop: for i in 0 to nBranch - 1 loop
-            temp(i) := ((2**nBranch)+nBranch-1) - ((2**(i+1))+((i*2))) + nBranch; -- replace 0 wieht (i+1)
+            temp(i) := ((2**nBranch)+nBranch-1) - ((2**(i+1))+((i*2))) + nBranch;
         end loop;
         return temp;
     end function delays_init;
@@ -87,7 +85,7 @@ begin
          rdy_in => rdys_in(nBranch-1),
 
          y => s_out,
-         rdy_out => dummy
+         rdy_out => open
      );
 
 end architecture rtl;

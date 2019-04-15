@@ -32,14 +32,14 @@ architecture rtl of haar is
 	
 begin
   
-  output : process(d_int, rdy_out_int) is
+  output : process(d_int, s_int, rdy_out_int) is
   begin
     d <= d_int;
     s <= s_int;
     rdy_out <= rdy_out_int;
   end process;
   
-  calc: process(x, rdy_out_int, d_int, x_z1, d_int_next, rdy_in) is
+  calc: process(x, d_int, s_int, x_z1, d_int_next, rdy_in, state) is
     variable d_int_next_div2 : signed(n-1 downto 0);
   begin 
     d_int_next <= d_int;

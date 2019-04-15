@@ -194,16 +194,18 @@ begin
             d1_vector(i) <= std_logic_vector(ds((16*2)-1 downto (16*1)));
             d2_vector(i) <= std_logic_vector(ds((16*3)-1 downto (16*2)));
             d3_vector(i) <= std_logic_vector(ds((16*4)-1 downto (16*3)));
+			rdys_vector(i) <= (("000000000000") & std_logic_vector(rdys));
+			
 			
 			s_delayed_vector(i) <= std_logic_vector(s_delayed);
 			d0_delayed_vector(i) <= std_logic_vector(ds_delayed((16*1)-1 downto (16*0)));
 			d1_delayed_vector(i) <= std_logic_vector(ds_delayed((16*2)-1 downto (16*1)));
 			d2_delayed_vector(i) <= std_logic_vector(ds_delayed((16*3)-1 downto (16*2)));
 			d3_delayed_vector(i) <= std_logic_vector(ds_delayed((16*4)-1 downto (16*3)));
+			rdys_delayed_vector(i) <= (("000000000000") & std_logic_vector(rdys_delayed));
 			
 			y_vector(i) <= std_logic_vector(y);
 			
-			rdys_delayed_vector(i) <= (("000000000000") & std_logic_vector(rdys_delayed));
 			wait for clk_period/2;
 		end loop;
 		report "test finished";

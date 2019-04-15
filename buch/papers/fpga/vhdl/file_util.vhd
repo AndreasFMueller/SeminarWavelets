@@ -48,9 +48,7 @@ package body file_util is
    impure function writeToFile(input : ram_t; FileName : STRING) return boolean is
         file FileHandle       : TEXT open WRITE_MODE is FileName;
         variable CurrentLine  : LINE;
-        variable TempWord     : STD_LOGIC_VECTOR(len - 1 downto 0);
-        variable Result       : ram_t    := (others => (others => '0'));
-    
+        variable TempWord     : STD_LOGIC_VECTOR(len - 1 downto 0);    
     begin
         for i in 0 to DEPTH - 1 loop
             TempWord := input(i);
@@ -58,7 +56,7 @@ package body file_util is
             writeline(FileHandle ,CurrentLine);
         end loop;
         
-        return true;
+        return true; --sadly, there are no impure procedures, so i need to return something 
 
     end function;
 
