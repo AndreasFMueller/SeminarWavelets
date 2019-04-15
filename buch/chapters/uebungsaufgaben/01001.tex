@@ -1,0 +1,142 @@
+Betrachten Sie die Menge $\mathcal{B}=\{b_1,b_2,b_3,b_4\}$ bestehend aus 
+den vier Vektoren
+\[
+b_1
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+1\\1\\1
+\end{pmatrix},\quad
+b_2
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+-1\\-1\\1
+\end{pmatrix},\quad
+b_3
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+1\\-1\\-1
+\end{pmatrix}
+\quad\text{und}\quad
+b_4
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+-1\\1\\-1
+\end{pmatrix}.
+\]
+\begin{teilaufgaben}
+\item
+Berechnen Sie die Wirkung des Gram-Operators $G$ für die Menge $\mathcal{B}$
+auf den Standardbasisvektoren.
+\item
+Finden Sie die Matrix des Gram-Operators in der Standardbasis
+\item
+Ist $\mathcal{B}$ ein Frame und wenn ja, finden Sie die Frame-Konstanten.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Der Gram-Operator ist definiert durch
+\[
+Gx = \sum_{j=1}^4 \langle x,b_j\rangle b_j.
+\]
+Für $Ge_k$ sind also die Skalarprodukte $\langle e_k,b_j\rangle$
+zu bestimmen.
+Das Skalarprodukt $\langle e_k,b_j\rangle$ ist die $k$-te Komponente 
+des Vektors $b_j$.
+Man kann daher die Wirkung Gram-Operators direkt ablesen:
+\begin{align*}
+Ge_1
+&=
+\frac{1}{\sqrt{3}} b_1
+-
+\frac{1}{\sqrt{3}} b_2
++
+\frac{1}{\sqrt{3}} b_3
+-
+\frac{1}{\sqrt{3}} b_4
+=
+\frac13
+\begin{pmatrix}
+4\\0\\0
+\end{pmatrix}
+=
+\frac43 e_1
+\\
+Ge_2
+&=
+\frac{1}{\sqrt{3}} b_1
+-
+\frac{1}{\sqrt{3}} b_2
+-
+\frac{1}{\sqrt{3}} b_3
++
+\frac{1}{\sqrt{3}} b_4
+=
+\frac13
+\begin{pmatrix}
+0\\4\\0
+\end{pmatrix}
+=
+\frac43 e_2
+\\
+Ge_3
+&=
+\frac{1}{\sqrt{3}} b_1
++
+\frac{1}{\sqrt{3}} b_2
+-
+\frac{1}{\sqrt{3}} b_3
+-
+\frac{1}{\sqrt{3}} b_4
+=
+\frac13
+\begin{pmatrix}
+0\\0\\4
+\end{pmatrix}
+=
+\frac43 e_3
+\end{align*}
+\item
+Aus den Resultaten von a) kann man ablesen, dass $G=\frac43*$.
+Alternativ kann man die Gram-Matrix auch berechnen aus der Matrix 
+\[
+B
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+ 1&-1& 1&-1\\
+ 1&-1&-1& 1\\
+ 1& 1&-1&-1
+\end{pmatrix}.
+\]
+Die Skalarprodukte $\langle x,b_j\rangle$ für einen Vektor $x\in\mathbb R^3$
+werden berechnet mit $xB^t$.
+Die Linearkombination $Gx$ entsteht durch Linearkombination der vier Spalten
+von $B$ mit Hilfe der vier Skalarprodukte bin $xB$.
+Dazu müssen die Skalarprodukte als Spaltenvektor geschrieben werden, also
+als $(x^tB)^t=B^tx$.
+Somit ist
+\[
+Gx = BB^t x
+\qquad\Rightarrow\qquad
+G=BB^t
+=
+\frac{4}{3}
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}.
+\]
+\item
+Da der Gram-Operator das $\frac43$-fache der Einheitsmatrix ist, ist
+$\mathcal{B}$ sogar ein straffes Frame mit der Framekonstanten $A=B=\frac43$.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
+

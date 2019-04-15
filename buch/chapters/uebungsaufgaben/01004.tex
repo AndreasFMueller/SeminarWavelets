@@ -1,0 +1,45 @@
+Bilden sie die Vektoren von $\mathbb R^3$ deren Komponenten alle Permutationen
+der Zahlen $1$, $2$ und $3$ sind.
+Bilden diese Vektoren ein Frame?
+Ist das Frame straff?
+
+\begin{loesung}
+Die Vektoren sind, geschrieben als Spalten einer Matrix,
+\[
+B
+=
+\begin{pmatrix}
+1&2&1&2&3&3\\
+2&1&3&3&1&2\\
+3&3&2&1&2&1
+\end{pmatrix}
+\]
+Der Gram-Operator ist
+\[
+G=BB^t
+=
+\begin{pmatrix}
+28&22&22\\
+22&28&22\\
+22&22&28
+\end{pmatrix}
+\]
+hat Rang $3$, also liegt ein Frame vor.
+$G$ ist aber nicht ein Vielfaches der Einheitsmatrix, also ist das Frame
+nicht straff.
+Um die Frame-Konstanten zu bestimmen berechnen wir die Eigenwerte
+mit Hilfe des charakteristischen Polynoms
+\[
+\chi_{G}(\lambda)
+=
+-\lambda^3 + 84\lambda^2 -900 \lambda + 2592.
+\]
+Das Polynom lässt sich faktorisieren in
+\[
+\chi_{G}(\lambda)
+=
+-(\lambda - 72)(\lambda - 6)^2.
+\]
+Daraus liest man die Frame-Konstanten $A=6$ und $B=72$ ab.
+\end{loesung}
+

@@ -1,0 +1,61 @@
+Betrachten Sie die Menge $\mathcal{B}$ bestehend aus den vier Vektoren
+\[
+b_1
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+1\\1\\1
+\end{pmatrix},\quad
+b_2
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+-1\\-1\\1
+\end{pmatrix},\quad
+b_3
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+1\\-1\\1
+\end{pmatrix}
+\quad\text{und}\quad
+b_4
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+-1\\1\\1
+\end{pmatrix}.
+\]
+Bilden die Vektoren ein Frame?
+
+\begin{loesung}
+Wir berechnen wie in Aufgabe \ref{01001} den Gram-Operator aus der
+Matrix
+\[
+B
+=
+\frac{1}{\sqrt{3}}
+\begin{pmatrix}
+1&-1& 1&-1\\
+1&-1&-1& 1\\
+1& 1& 1& 1
+\end{pmatrix}.
+\]
+Der Gram-Operator ist
+\[
+G=BB^t
+=
+\frac43
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}
+\]
+Die Menge $\mathcal{B}$ ist also ein straffes Frame mit der Frame-Konstanten
+$\frac43$.
+Das Frame $\mathcal{B}$ ist bis auf die Vorzeichen einzelner Vektoren
+identisch mit dem Frame von Aufgabe~\ref{01001}.
+\end{loesung}
+
+
