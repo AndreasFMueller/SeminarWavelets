@@ -62,14 +62,14 @@ Wenn das inhomogene elektrische Feld über der Kapazität C einen kritischen Wer
 
 \begin{figure}[H]
 	\centering
-\begin{circuitikz} \draw
+\begin{circuitikz} [scale=0.8] \draw
 (0,1)node[vee]{Spitze} (0,1)--(0,0)
 to[C=C] (0,-3)
 to[R=R]  (0,-5)
 node[rground]{}
 
-(0, 0) -- (1.5, 0.0) -- (1.5, -1) 
-to[american gas filled surge arrester=F] (1.5, -2) -- (1.5, -3) -- (0,-3)
+(0, 0) -- (2, 0.0) -- (2, -1) 
+to[american gas filled surge arrester=F] (2, -2) -- (2, -3) -- (0,-3)
 	;
 \end{circuitikz}
 \caption{ESB: Koronaentladung} \label{fig:M1}
