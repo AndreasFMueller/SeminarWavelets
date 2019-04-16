@@ -20,22 +20,65 @@ Bei Leistungsschaltern dient das SF6 als Löschgas des Lichtbogens, welcher bis 
 
 Bei der Quantifizierung der Qualität einer GIS spielt der Begriff Teilentladung (TE) eine wichtige Rolle. 
 Wenn das E-Feld örtlich über die dielektrische Festigkeit steigt entstehen elektrische Entladungen welche nur ein Teil der Isolationsstrecke überbrücken und nicht zu einem kompletten Durchschlag führen, daher die Namensgebung Teilentladung. \cite{buch:Kuchler}
-Teilentladung im Isolierstoff lässt das Isoliermedium  schneller altern. Dies kann zum dielektischen Durchschlag führen welcher einen Totalausfall der Anlage zur folge hat.
+Teilentladung im Isolierstoff lässt das Isoliermedium  schneller altern. Dies kann zum dielektrischen Durchschlag führen welcher einen Totalausfall der Anlage zur folge hat.
 Aufgrund dessen ist TE ein wichtiges Qualitätsmerkmal bei Hochspannungskomponenten. 
 
 Im Falle einer Teilentladung werden verschiedene  physikalische Prozesse gestartet. 
+Die Entladung hat einen Strompuls zur folge.
 Durch den Lichtbogen wird eine ultrahochfrequente (UHF) elektromagnetische Welle emittiert.
 Die schnellste gemessene Anstiegszeit des Strompulses in SF6 liegt bei 24ps.
 Dies entspricht einem Frequenzband hoch bis zu 14 GHz. \cite{skript:Judd24ps} 
 Aufgrund der schnellen Erhitzung des Gases rund um den Lichtbogen wird danach eine Schallwelle abgestrahlt. 
 Ebenfalls durch die grosse Erhitzung wird das Isoliergas SF6 zersetzt. 
-Somit gibt es diverse Möglichkeiten für das Messen und Lokalisieren der TE in GIS. \cite{skript:StatusReviewPDMeasurement}
-In dieser Arbeit wird auf die Analyse der UHF TE-Signale eingegangen. Es wird versucht, mittels dem Signalanalyseverfahren kontinuierliche Wavelet Transformation, fehlerspezifische Charakteristiken auszumachen.
+Somit kann TE chemisch, akustisch oder elektromagnetisch gemessen und lokalisiert werden.\cite{skript:StatusReviewPDMeasurement}
+In dieser Arbeit wird auf die Analyse der UHF TE-Signale eingegangen.
+Es wird versucht, mittels dem Signalanalyseverfahren kontinuierliche Wavelet Transformation, fehlerspezifische Charakteristiken im Zeitsignal der elektromagnetischen Welle auszumachen.
 
-Test....
 
 \section{Einleitung}
 \rhead{Abschnitt}
+
+TE wird in zwei Grundkategorien unterteilt \cite{buch:Kuchler}, die Innere- und Äussere-TE. 
+Die Innere-TE ist dadurch charakterisiert das sich die TE-Quelle im Innern eines festen oder flüssigen Isolierstoffes befindet. 
+Spezifiziert auf GIS gehören zu Kategorie der Inneren-TE Lunker, Risse/Spalten in Isolierstoffe und Delamination zwischen Isolierschichten.
+ 
+Entladungen an äusseren Leiterstrukturen wird als Äussere-TE oder Korona bezeichnet. 
+In GIS kommen folgende Fehler aus dieser Kategorie vor, Oberflächenentladung und Koronaentladung. 
+Oberflächenentladungen treten bei nicht einhalten der Herstellungstoleranzen, zwischen leitendem und isolierendem Material, auf.
+Eine weitere Quelle sind potenzialfrei leitende Partikel auf festen Isolierstoffen.
+Brauen an spannungsführenden- und an leitfähigen-Teilen auf Erdpotenzial führen zu Koronaentladung. \cite{buch:Kuchler}\cite{skript:AeussreTE}\cite{skript:InnereTE}
+Hier werden UHF TE-Signale von Oberflächenentladung und Hohlraumentladungen analysiert. 
+Im weiteren Abschnitt werfen wir einen genauer physikalischen Blick auf die zwei Endladungsarten und die herkömmliche Fehleranalyse.
+
+\subsection{Oberflächenentladung}
+
+Diese Endladungsart entsteht wenn an Oberflächen von Festisolierstoffen hohe elektrische Feldstärken auftreten. 
+Dies kann Konstruktionsbedingt oder Aufgrund von unsauberer Montage entstehen.
+Wenn sich ein Braue oberhalb eines Festisolierstoffes befindet oder ein loser metallischer Partikel auf einem Isolierstoff, dann entladen sich die Stromimpulse über dem Isoliermaterial.
+%Bild..... 
+
+Das Ersatzschaltbild besteht aus einer Kapazität C parallel zu einer Funkenstrecke F und einem Widerstand R in Serie. 
+Wenn das inhomogene elektrische Feld über der Kapazität C einen kritischen Wert überschreitet entlädt sich die gespeicherte Energie über die Funkenstrecke F gegen Erde.
+
+\begin{figure}[H]
+	\centering
+\begin{circuitikz} \draw
+(0,1)node[vee]{Spitze} (0,1)--(0,0)
+to[C=C] (0,-3)
+to[R=R]  (0,-5)
+node[rground]{}
+
+(0, 0) -- (1.5, 0.0) -- (1.5, -1) 
+to[american gas filled surge arrester=F] (1.5, -2) -- (1.5, -3) -- (0,-3)
+	;
+\end{circuitikz}
+\caption{ESB: Koronaentladung} \label{fig:M1}
+\end{figure}
+
+
+\subsection{Hohlraumentladung}
+
+%Fehlerarten -> ESB Fehlstellen -> Messverfahren (TE repetitiv 50Hz)für PRPD Pattern UHF FFT, etc.....-> 
 
 \section{Datenbearbeitung}
 \rhead{Abschnitt}
