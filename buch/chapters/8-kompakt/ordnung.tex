@@ -1,0 +1,116 @@
+%
+% ordnung.tex
+%
+% (c) 2019 prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Ordnung\label{section:ordnung}}
+\rhead{Ordnung}
+Bis jetzt haben wir nur die Bedingungen \eqref{buch:kompakt:hsumme}
+und \eqref{buch:kompakt:orthorel} an die Koeffizienten 
+$h_k$ der Skalierungsrelation.
+Wir haben ebenfalls bereits gesehen, dass für grösseren Träger die
+Bedinungen \eqref{buch:kompakt:orthorel} nicht ausreichen, die
+Koeffizienten festzulegen.
+Es werden daher zusätzliche Bedingungen nötig sein, um die
+Multiskalenanalyse eindeutig zu bestimmen.
+
+\begin{definition}
+Das Wavelet $\psi(t)$ heisst von Ordnung $N$ wenn
+$t^N\psi(t)\in L^1(\mathbb R)$ und
+\[
+\int_{\mathbb R} t^k\psi(t)\,dt=0\quad \text{für $k<N$.}
+\]
+\end{definition}
+
+Für ein Wavelet der Ordnung $N$ folgt mit Hilfe der Ableitung unter
+dem Integralzeichen
+\begin{align*}
+\frac{d}{d\omega}
+\hat{\psi}(\omega)
+&=
+\frac{d}{d\omega}
+\frac{1}{\sqrt{2\pi}}
+\int_{\mathbb R}
+\psi(t) e^{-i\omega t}\,dt
+=
+\frac{1}{\sqrt{2\pi}}
+\int_{\mathbb R}
+(-it)
+\psi(t) e^{-i\omega t}\,dt
+\\
+\frac{d^k}{d\omega^k}
+\hat{\psi}(\omega)
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{\mathbb R}
+(-it)^k
+\psi(t) e^{-i\omega t}\,dt.
+\end{align*}
+Für ein Wavelet der Ordnung $N$ sind die Ableitungen von $\hat{\psi}(\omega)$
+im Nullpunkt
+\[
+\frac{d^k}{d\omega^k}
+\hat{\psi}(0)
+=
+\frac{(-i)^k}{\sqrt{2\pi}}
+\int_{\mathbb R} t^k \psi(t) \,dt = 0
+\]
+
+für $k<N$. 
+Die Taylorreihe von $\hat{\psi}$ hat daher die Form
+\[
+\hat{\psi}(\omega)
+=
+\frac{\hat{\psi}^{(N)}(0)}{N!} \omega^N + \text{Terme höherer Ordnung}
+\]
+Insbesondere hat $\hat{\psi}$ eine Nullstelle $N$-ter Ordnung bei $\omega=0$.
+
+Aus dem Zusammenhang zwischen Vater- und Mutter-Wavelet im Frequenzbereich
+\[
+\hat{\psi}(\omega)
+=
+e^{i\omega/2}
+\overline{H\biggl(\frac{\omega}+\pi\biggr)}
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\]
+folgt daher, dass auch die Funktion $H$ eine Nullstelle $N$-ter
+Ordnung haben muss.
+Da $\hat{\varphi}(0)\ne 0$ und $e^{i\omega}\ne 0$ ist, muss daher
+$H$ eine Nullstelle $N$-ter Ordnung bei $\pi$ haben.
+
+Das trigonometrische Polynom
+\[
+\biggl(
+\frac{1+e^{-i\omega}}{2}
+\biggr)^N
+\]
+hat eine $N$-fache Nullstelle bei $\pi$, also muss es möglich sein,
+\begin{equation}
+H(\omega)
+= 
+\biggl(
+\frac{1+e^{-i\omega}}{2}
+\biggr)^N B(\omega)
+\label{buch:kompakt:HB}
+\end{equation}
+zu schreiben, wobei $B(\omega)$ ein trigonometrisches Polynom ist,
+welches keine Nullstelle bei $\omega=\pi$ hat.
+
+\begin{beispiel}
+Für das Haarwavelet ist
+\[
+H(\omega)
+=
+\frac{ 1+e^{-i\omega}}2
+\]
+und damit folgt $B(\omega)=1$.
+Wie früher gezeigt wurde, bestimmen die Relationen 
+\eqref{buch:kompakt:hsumme} und \eqref{buch:kompakt:orthorel}
+das Haar-Wavelet bereits eindeutig, so dass die Vorgabe der Ordnung
+nicht nötig ist.
+\end{beispiel}
+
+Das trigonometrische Polynom $B(\omega)$ soll in den nachfolgenden
+Abschnitten bestimmt werden.
+
+

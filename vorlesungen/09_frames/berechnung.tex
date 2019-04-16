@@ -1,0 +1,45 @@
+%
+% berechnung.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\begin{frame}
+\frametitle{Berechnung}
+
+\begin{columns}[T,totalwidth=\linewidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{CWT}
+\uncover<2->{%
+Langsam
+
+}
+\bigskip
+
+\uncover<4->{%
+Verwendung der FFT $\rightarrow$ Paper von R.~Seitz
+}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{DWT}
+\uncover<3->{%
+Schneller Algorithmus basierend auf den Koeffzienten der
+der Skalierungsrelation
+\begin{align*}
+\varphi(t)
+&=
+\sqrt{2}\sum_{k\in\mathbb Z} h_k \varphi(2t-k)
+\\
+\psi(t)
+&=
+\sqrt{2}\sum_{k\in\mathbb Z} g_k \varphi(2t-k)
+\intertext{mit}
+g_k&=(-1)^{k+1}\bar{h}_{-k-1}
+\end{align*}
+}
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}

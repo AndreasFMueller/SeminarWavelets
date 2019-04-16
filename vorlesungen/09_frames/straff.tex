@@ -1,0 +1,157 @@
+%
+% straff.tex
+%
+% (c) 2019 Prof Dr Andreas Müller
+%
+
+\begin{frame}
+\frametitle{Analyse}
+\begin{definition}
+$\mathcal{B}\subset X$ ein Frame, dann ist die Analyse mit diesem Frame
+\[
+T\colon
+X\to \mathbb C^n
+:
+x\mapsto \langle x,a_j\rangle, \quad a_j\in\mathcal{B}
+\]
+\end{definition}
+
+\vspace{-15pt}
+
+\uncover<2->{%
+\begin{block}{Norm}
+\[
+\|Tx\|^2
+= 
+\sum_j |\langle x,a_j\rangle|^2
+\]
+\end{block}
+}
+
+\vspace{-15pt}
+
+\uncover<3->{%
+\begin{block}{Frame}
+\[
+A\|x\|^2
+\le
+\| Tx\|^2
+\le
+B
+\|x\|^2
+\]
+}%
+\uncover<4->{Länge ändert sich ``massvoll''}
+\end{block}
+
+\end{frame}
+
+
+%
+% Gram-Operator
+%
+\begin{frame}
+\frametitle{Gram-Operator I}
+\begin{definition}
+\[
+Gx
+=
+\sum_j \langle x,a_j\rangle a_j
+\]
+\end{definition}
+\vspace{-15pt}
+\uncover<2->{
+\begin{block}{Symmetrie}
+\begin{align*}
+\langle Gx,y\rangle
+\uncover<3->{=
+\biggl\langle
+\sum_j \langle x,a_j\rangle a_j, 
+y
+\biggr\rangle}
+&\uncover<4->{=
+\sum_j
+\langle x,a_j\rangle \langle a_j,y\rangle}
+\\
+&\uncover<5->{=
+\biggl\langle
+x,
+\sum_j
+\overline{\langle a_j,y\rangle} a_j
+\biggr\rangle}
+\uncover<6->{=
+\biggl\langle
+x,
+\sum_j
+\langle y, a_j\rangle a_j
+\biggr\rangle}
+\uncover<7->{=
+\langle x,Gy\rangle}
+\end{align*}
+\end{block}
+}
+\end{frame}
+
+%
+% Gram Operator II
+%
+\begin{frame}
+\frametitle{Gram-Operator II}
+\begin{block}{Eigenwerte/Eigenvektoren}
+\[
+Gv = \lambda v 
+\uncover<2->{\qquad\Rightarrow\qquad
+\| Tx\|^2}
+\uncover<3->{=
+\langle Gx,x\rangle}
+\uncover<4->{=
+\lambda \langle x,x\rangle}
+\uncover<5->{=
+\lambda \|x\|^2}
+\uncover<6->{\qquad\Rightarrow\qquad
+A\le \lambda \le B}
+\]
+\end{block}
+\vspace{-15pt}
+\uncover<7->{
+\begin{block}{Diagonalisierbar}
+Basis aus Eigenvektoren $v_i$  mit Eigenwerten $\lambda_i$:
+\[
+Gv_i = \lambda_iv_i\qquad\forall i
+\]
+\end{block}
+}
+\vspace{-15pt}
+\uncover<8->{
+\begin{block}{Straffe Frames}
+\[
+A=\lambda_1=\dots=\lambda_n=B
+\uncover<9->{\qquad\Rightarrow\qquad
+Gx = Ax\qquad\forall x}
+\]
+}
+\end{block}
+\end{frame}
+
+%
+% Analyse und Umkehrformel
+%
+\begin{frame}
+\frametitle{Analyse und Umkehrformel}
+\begin{block}{Analyse}
+\[
+T\colon
+x \mapsto \langle x,a_j\rangle = c_j
+\]
+\end{block}
+\uncover<2->{
+\begin{block}{Umkehrformel}
+\[
+\frac{1}{A}\sum_j c_j a_j = \frac{1}{A}\sum_j \langle x, a_j\rangle a_j =x
+\]
+\end{block}
+}
+\uncover<3->{%
+Straffes Frame $\Leftrightarrow$ Plancherel-Formel
+}
+\end{frame}
