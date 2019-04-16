@@ -1,9 +1,9 @@
 from model_manager import ModelManager
 
 numEpochs = 2
-modelPath = '/outputs/model'
+modelPath = 'outputs/model'
 maxDataSize = 200000
-miniBatchSize = 128
+miniBatchSize = 256
 mdlManager = ModelManager()
 
 def train():

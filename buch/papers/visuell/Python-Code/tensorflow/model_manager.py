@@ -39,7 +39,7 @@ class ModelManager:
     
     def createLogDir(self, outputDir):
         # Create Output Directories
-        
+        print('Create output directories..')
         timeStr = time.strftime("%Y%m%d_%H%M%S", time.gmtime())
         
         self.writerDir = outputDir + '/' + timeStr
@@ -166,7 +166,7 @@ class ModelManager:
                         
                         # Calculate accuracy
                         # Back propigate using adam optimizer to update weights and biases.
-                        acc, _ = self.sess.run([self.mdl.accuracy, self.mdl.trainStep])
+                        acc, _ = self.sess.run([self.mdl.accuracy, self.mdl.trainStep])#ev feed_dict = {self.mdl.isTraining: False}
                         accHistTrain.append(acc)
                         
                     else:
@@ -197,7 +197,8 @@ class ModelManager:
             self.sess.run(self.testing_init_op) # Reset iterator to test miniBatch
             try:
                 while(True):
-                    acc, loss, confMatrix = self.sess.run([self.mdl.accuracy, self.mdl.loss, self.mdl.confusionMatrix])
+                    acc, loss, confMatrix = self.sess.run([self.mdl.accuracy, self.mdl.loss, 
+                                                           self.mdl.confusionMatrix])
                     accHistTest.append(acc)
                     lossHistTest.append(loss)
                     
@@ -235,24 +236,7 @@ class ModelManager:
     def saveModel(self, outputDir):
         print('Save tfModel')
         # prepare checkpoint writer
-        self.saver = tf.train.Saver({'k1': self.mdl.kernel1,
-                                     'b1': self.mdl.biases1,
-                                     'k2': self.mdl.kernel2,
-                                     'b2': self.mdl.biases2,
-                                     'k3': self.mdl.kernel3,
-                                     'b3': self.mdl.biases3,
-                                     'k4': self.mdl.kernel4,
-                                     'b4': self.mdl.biases4,
-                                     'fcW1': self.mdl.fc1Weights,
-                                     'fcB1': self.mdl.fc1Biases,
-                                     'fcW2': self.mdl.fc2Weights,
-                                     'fcB2': self.mdl.fc2Biases,
-                                     'fcW3': self.mdl.fc3Weights,
-                                     'fcB3': self.mdl.fc3Biases,
-                                     'fcW4': self.mdl.fc4Weights,
-                                     'fcB4': self.mdl.fc4Biases,
-                                     'fcW5': self.mdl.fc5Weights,
-                                     'fcB5': self.mdl.fc5Biases})
+        self.saver = tf.train.Saver(var_list=tf.global_variables())
         # Save the Model
         if os.path.exists(outputDir+'/weights.ckpt'):
             os.remove(outputDir + '/weights.ckpt')
@@ -264,24 +248,7 @@ class ModelManager:
         config.gpu_options.allow_growth = True
         # start session
         self.sess = tf.Session(config=config) 
-        self.saver = tf.train.Saver({'k1': self.mdl.kernel1,
-                                     'b1': self.mdl.biases1,
-                                     'k2': self.mdl.kernel2,
-                                     'b2': self.mdl.biases2,
-                                     'k3': self.mdl.kernel3,
-                                     'b3': self.mdl.biases3,
-                                     'k4': self.mdl.kernel4,
-                                     'b4': self.mdl.biases4,
-                                     'fcW1': self.mdl.fc1Weights,
-                                     'fcB1': self.mdl.fc1Biases,
-                                     'fcW2': self.mdl.fc2Weights,
-                                     'fcB2': self.mdl.fc2Biases,
-                                     'fcW3': self.mdl.fc3Weights,
-                                     'fcB3': self.mdl.fc3Biases,
-                                     'fcW4': self.mdl.fc4Weights,
-                                     'fcB4': self.mdl.fc4Biases,
-                                     'fcW5': self.mdl.fc5Weights,
-                                     'fcB5': self.mdl.fc5Biases})
+        self.saver = tf.train.Saver(var_list=tf.global_variables())
         self.saver.restore(self.sess, inputDir + "/weights.ckpt")
 
     

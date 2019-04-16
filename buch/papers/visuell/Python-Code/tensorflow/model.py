@@ -3,6 +3,7 @@
 import numpy as np
 import tensorflow as tf
 
+varianceEpsilon = 1e-3  # small float to prevent division by 0 in batch_norm
 learningRate = 1e-3
 stdDev = 1e-1 # standard deviation of all initializations
 
@@ -20,6 +21,7 @@ class Model:
         
         self.y = tf.reshape(y, [-1, self.datasetInfo.classCount])
         
+#        self.isTraining = tf.placeholder(tf.bool)
         
 
         # Convolutional Layer 1
@@ -33,7 +35,9 @@ class Model:
             self.biases1 = tf.Variable(tf.constant(0.0, shape=[features1], dtype=tf.float32),
                                  trainable=True, name='biases1')
             out = tf.nn.bias_add(conv, self.biases1)
-            outNorm = tf.keras.layers.BatchNormalization()(out)
+#            outNorm = tf.layers.batch_normalization(out, training=self.isTraining)
+            mean1, var1 = tf.nn.moments(out, [0])
+            outNorm = tf.nn.batch_normalization(out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
             conv1 = tf.nn.relu(outNorm)
     
         # Pooling 1
@@ -55,7 +59,9 @@ class Model:
             self.biases2 = tf.Variable(tf.constant(0.0, shape=[features2], dtype=tf.float32),
                                  trainable=True, name='biases2')
             out = tf.nn.bias_add(conv, self.biases2)
-            outNorm = tf.keras.layers.BatchNormalization()(out)
+#            outNorm = tf.layers.batch_normalization(out, training=self.isTraining)
+            mean1, var1 = tf.nn.moments(out, [0])
+            outNorm = tf.nn.batch_normalization(out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
             conv2 = tf.nn.relu(outNorm)
     
         # Pooling 2
@@ -77,7 +83,9 @@ class Model:
             self.biases3 = tf.Variable(tf.constant(0.0, shape=[features3], dtype=tf.float32),
                                  trainable=True, name='biases3')
             out = tf.nn.bias_add(conv, self.biases3)
-            outNorm = tf.keras.layers.BatchNormalization()(out)
+#            outNorm = tf.layers.batch_normalization(out, training=self.isTraining)
+            mean1, var1 = tf.nn.moments(out, [0])
+            outNorm = tf.nn.batch_normalization(out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
             conv3 = tf.nn.relu(outNorm)
     
         # Pooling 3
@@ -98,7 +106,9 @@ class Model:
             self.biases4 = tf.Variable(tf.constant(0.0, shape=[features4], dtype=tf.float32),
                                  trainable=True, name='biases3')
             out = tf.nn.bias_add(conv, self.biases4)
-            outNorm = tf.keras.layers.BatchNormalization()(out)
+#            outNorm = tf.layers.batch_normalization(out, training=self.isTraining)
+            mean1, var1 = tf.nn.moments(out, [0])
+            outNorm = tf.nn.batch_normalization(out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
             conv3 = tf.nn.relu(outNorm)
     
         # Pooling 3
@@ -121,7 +131,9 @@ class Model:
             self.fc1Biases = tf.Variable(tf.constant(1.0, shape=[nodesFc1], dtype=tf.float32),
                                     trainable = True, name = 'biasesFc1')
             fc1Out = tf.nn.bias_add(tf.matmul(flatten, self.fc1Weights), self.fc1Biases)
-            fc1Norm = tf.keras.layers.BatchNormalization()(fc1Out)
+#            fc1Norm = tf.layers.batch_normalization(fc1Out, training=self.isTraining)
+            mean1, var1 = tf.nn.moments(fc1Out, [0])
+            fc1Norm = tf.nn.batch_normalization(fc1Out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
             
         # Fully Connected 2
         with tf.name_scope('fc2'):
@@ -131,7 +143,9 @@ class Model:
             self.fc2Biases = tf.Variable(tf.constant(1.0, shape=[nodesFc2], dtype=tf.float32),
                                     trainable = True, name = 'biasesFc2')
             fc2Out = tf.nn.bias_add(tf.matmul(fc1Norm, self.fc2Weights), self.fc2Biases)
-            fc2Norm = tf.keras.layers.BatchNormalization()(fc2Out)
+#            fc2Norm = tf.layers.batch_normalization(fc2Out, training=self.isTraining)
+            mean1, var1 = tf.nn.moments(fc2Out, [0])
+            fc2Norm = tf.nn.batch_normalization(fc2Out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
             
         # Fully Connected 2
         with tf.name_scope('fc3'):
@@ -141,7 +155,9 @@ class Model:
             self.fc3Biases = tf.Variable(tf.constant(1.0, shape=[nodesFc3], dtype=tf.float32),
                                     trainable = True, name = 'biasesFc3')
             fc3Out = tf.nn.bias_add(tf.matmul(fc2Norm, self.fc3Weights), self.fc3Biases)
-            fc3Norm = tf.keras.layers.BatchNormalization()(fc3Out)
+#            fc3Norm = tf.layers.batch_normalization(fc3Out, training=self.isTraining)
+            mean1, var1 = tf.nn.moments(fc3Out, [0])
+            fc3Norm = tf.nn.batch_normalization(fc3Out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
             
         # Fully Connected 2
         with tf.name_scope('fc4'):
@@ -151,7 +167,9 @@ class Model:
             self.fc4Biases = tf.Variable(tf.constant(1.0, shape=[nodesFc4], dtype=tf.float32),
                                     trainable = True, name = 'biasesFc4')
             fc4Out = tf.nn.bias_add(tf.matmul(fc3Norm, self.fc4Weights), self.fc4Biases)
-            fc4Norm = tf.keras.layers.BatchNormalization()(fc4Out)
+#            fc4Norm = tf.layers.batch_normalization(fc4Out, training=self.isTraining)
+            mean1, var1 = tf.nn.moments(fc4Out, [0])
+            fc4Norm = tf.nn.batch_normalization(fc4Out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
 
         # Fully Connected 3 and Sigmoid Output
         with tf.name_scope('fc5'):
@@ -162,6 +180,8 @@ class Model:
             yLogits = tf.nn.bias_add(tf.matmul(fc4Norm, self.fc5Weights), self.fc5Biases)
             
             yOut = tf.nn.softmax(yLogits)
+            
+        
 
 
         # Loss
@@ -171,7 +191,10 @@ class Model:
 
         # Train
         with tf.name_scope('train'):
-            self.trainStep = tf.train.AdamOptimizer(learning_rate = learningRate).minimize(self.loss)
+            ## Updates Moving Averages for batchNorm
+            update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+            with tf.control_dependencies(update_ops):
+                self.trainStep = tf.train.AdamOptimizer(learning_rate = learningRate).minimize(self.loss)
             
         # Prediction
         with tf.name_scope('predict'):
