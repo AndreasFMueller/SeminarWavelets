@@ -11,36 +11,35 @@
 Die schnelle Wavelettransformation (Fast Wavelet Transform, FWT) mit reellen Wavelets besitzt eine Vielzahl nützlicher Eigenschaften.
 Je nach Anwendung besitzt sie jedoch auch zwei wesentliche Nachteile.
 
-Die Frequenz in der FWT ist nur in Zweierpotenzen der Abtastfrequenz berechnet.
+Erstens sind die Frequenzen in der FWT nur in Zweierpotenzen der Abtastfrequenz berechnet.
 Aus mathematischer Sicht ist das zwar ausreichend, für manche Anwendungen ist diese Auflösung jedoch zu grob.
 
-Aus der Fouriertheorie ist man sich zudem gewohnt, Phasen- und Amplitudeninformation getrennt betrachten zu können.
-Dies ist jedoch nur durch die Wahl komplexer Basisfunktionen möglich.
+Zweitens ist man sich aus der Fouriertheorie gewohnt, Phasen- und Amplitudeninformation getrennt betrachten zu können.
+Diese Eigenschaft folg direkt aus der Wahl komplexer Basisfunktionen und ist mit reellen Wavelets folglich nicht möglich.
 
 Die Antworten hierzu fanden wir in Kapitel~\ref{chapter:cwt}, die kontinuierliche Wavelettransformation mit komplexen Wavelets (Continuous Wavelet Transform, CCWT).
 
-Im ersten Teil dieses Kapitels benutzen wir für die CCWT ein analytisches Wavelet, das Morlet-Wavelet.
-Dadurch können wir ähnlich wie in der Fouriertransformation Amplitude und Phase separat betrachten.
-Wir werden auch ansehen, wie man ein beliebiges Wavelet zu einem komplexen Wavelet erweitern kann.
+Als erstes möchten wir folglich betrachten, wie wir mit komplexen Wavelets Amplituden- und Phasen-Information getrennt auswerten können, und wie wir geeignete Wavelets finden.
 
-Als nächstes finden wir eine Methode, die CCWT mittels Fouriertransformation effizient zu berechnen.
-Nach diskretisierung der Variablen $a$ und $b$ lässt sich die CCWT dann mittels FFT berechnen.
-Zudem erlaubt dies eine anschauliche Interpretation dessen, was die CCWT eigentlich tut.
+Als nächstes möchten wir die kontinuierliche Wavelettransformation mit komplexen Wavelets (Continuous Complex Wavelet Transform, CCWT) effizient berechnen können.
+Wir werden sehen, wie dies mittels Fourier-Transformation elegant erledigt werden kann.
 
-Die Berechnung mittels FFT eignet sich jedoch nicht für alle Wavelets.
-Welche Eigneschaften das Wavelet erfüllen muss, damit die Berechnung effizient durchfürbar ist, sehen wir im dritten Teil.
+Diese Berechnung liefert eine neue Interpretation der Wavelettransformation und führt zugleich zu einer Einschränkung der nützlichen Wavelets.
+Als drittes möchten wir deshalb betrachten, wie eine schnelle, komplexe Wavelettransformation verwendet werden kann.
 
-Die Multiplikation im Frequenz-Bereich entspricht bekanntlich der Faltung im Zeit-Bereich.
-Die Multiplikation mittels FFT führt allerdings zu einer zyklischen Faltung und dadurch zu unerwünschten Randeffekten.
-Im vierten Teil dieses Kapitels betrachten wir die Konsequenzen der zyklischen Faltung und wie man sie vermeiden kann (Signal Padding).
+Abschliessend betrachten wir noch die Effekte der zyklischen Faltung, welche durch die FFT erzielt wird.
+Dies führt zu -- möglicherweise störenden -- Randeffekten.
+Deren Vermeidung ist durch padding des Sinal vermeidbar, was allerdings zusätzliche Rechenleistung erfordert.
+Im letzten Teil dieses Kapitels betrachten wir folglich die Performance-Unterschiede, welche durch das PAdding entstehen.
 
-Als letztes betrachten wir eine Implementation in Matlab und analysieren, welche Operationen am meisten Zeit benötigen.
-Wir werden sehen, dass das Padding die Performanz deutlich beeinträchtigt.
 
-% 1. Morlet zur analyse unabh. von Phase
-% 2. CCWT als Faltung -> FFT
-% 3. Einschränkungen Wavelets
-% 4. Zyklische Faltung, Padding des Signals und Performanz
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Komplexe Wavelets}
+\rhead{Komplexe Wavelets}
+
+\section{Schnelle Berechnung der kontinuierlichen komplexen Wavelettransformation}
+\rhead{CCWT}
 
 \section{Abschnitt}
 \rhead{Abschnitt}
