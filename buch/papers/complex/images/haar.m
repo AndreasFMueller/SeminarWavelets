@@ -4,9 +4,9 @@
 n = 50; N = 6 * n;
 t = linspace(-1, 2, N)';
 
-h = [zeros(2*n, 1); ones(n,1); -ones(n, 1); zeros(2*n, 1)];
+h = sqrt(2) * [zeros(2*n, 1); ones(n,1); -ones(n, 1); zeros(2*n, 1)];
 
-hh = 1/pi * log( abs((t .* (t - 1) ) ./ (2 * (t - 1/2).^2)));
+hh = sqrt(2) / pi * log( abs((t .* (t - 1) ) ./ (2 * (t - 1/2).^2)));
 
 % plot(t, [h, hh]); xlim([-1, 2]); ylim([-2, 2]);
 
