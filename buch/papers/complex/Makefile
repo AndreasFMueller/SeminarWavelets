@@ -3,5 +3,12 @@
 #
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
-images:
-	echo "nothing to be done"
+all:	haar.pdf
+
+images:	haar.pdf
+
+haar.pdf:	haar.tex haar.data
+	pdflatex haar.tex
+
+haar.data:	haar.m
+	octave haar.m
