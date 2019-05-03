@@ -1,0 +1,39 @@
+\subsection{Analytische Wavelets und deren Norm}
+\rhead{Analytische WAvelets}
+
+Die Norm eines Wavelets muss $1$ sein.
+Folglich muss die Norm und jene, des zum Original-Wavelet analytischen Wavelets gleich sein.
+Bei analytischen Signalen ist dies jedoch nicht gegeben.
+Dies führt zur
+\begin{definition}
+	Sei $\psi$ ein beliebiges, reelles Wavelet. Dann ist
+	\[
+	\psi^\ast = \frac{1}{\sqrt{2}}\left(\psi + i\,\mathcal{H}\psi\right) 
+	\]
+	das zu $\psi$ \emph{analytische Wavelet}.
+\end{definition}
+
+Für die Norm eines analytischen Wavelets gilt
+\begin{satz}
+	\label{complex:norm}
+	Die Norm eines analytischen Wavelets ist gleich der Norm des Original-Wavelets.
+	\[\left\|\psi\right\| = \left\|\psi^\ast\right\|\].
+\end{satz}
+
+\begin{proof}
+	Wir rechnen nach:
+	\begin{align*}
+		\left\|\psi\right\| = \left\|\hat{\psi}\right\|
+		&= \int_{-\infty}^{\infty}\left|\hat{\psi}(\omega)\right|^2 d\omega \\
+		&= \int_{-\infty}^{0}\left|\hat{\psi}(\omega)\right|^2 d\omega +  \int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 d\omega \\
+		&=  2\int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 d\omega \\
+		&=  \int_{0}^{\infty}\left|\frac{2}{\sqrt{2}}\hat{\psi}(\omega)\right|^2 d\omega \\
+		&=  \int_{-\infty}^{\infty}\left|\hat{\psi}^\ast(\omega)\right|^2 d\omega 
+		= \left\|\hat{\psi}^\ast\right\| = \left\|\psi^\ast\right\|.
+	\end{align*}
+	Hierbei haben wir zu begin und am Ende die Placherel-Formel verwendet.
+	In Zeile drei nutzten wir die hermitesche Symmetrie der Fourier-Transformierten eines reellen Wavelets, nach welcher
+	\[\left|\hat{f}(\omega)\right| = \left|\hat{f}(-\omega)\right|\]
+	gilt.
+	Somit ist Satz~\ref{complex:norm} bewiesen.
+\end{proof}
