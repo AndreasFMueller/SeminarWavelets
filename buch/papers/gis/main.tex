@@ -68,12 +68,14 @@ Dies kann bei Wechselspannung 50Hz mehrmals pro Halbwelle geschehen \cite{skript
 \begin{figure}
 \centering
 \begin{circuitikz} [scale=0.6] \draw
+
 (0,1)node[vee]{Spitze} (0,1)--(0,0)
-to[C=$C$] (0,-3)
+to[C=$C$, v=$u_c(t)$] (0,-3)
 to[R=$R$]  (0,-5)
 node[rground]{}
 (0, 0) -- (3, 0.0) -- (3, -1) 
 to[american gas filled surge arrester=$F$] (3, -2) -- (3, -3) -- (0,-3)
+			(-2, 0) to[open, v=$u(t)$] (-2, -4)
 	;
 \end{circuitikz}
 \caption{ESB: Koronaentladung} \label{fig:M1}
@@ -91,11 +93,11 @@ In Abbildung \ref{fig:hohlraum} sind diverse Hohlräume 1--3 illustriert. Unter 
 Die beiden anderen Hohlräume haben Elektrodenkontakt und die Nummer 3 stellt eine Ablösung von der Leitfähigen Elektrodenschicht dar  \cite{buch:Kuchler, skript:InnereTE}.
 
 Elektrisch wird die Fehlerart mit dem Ersatzschaltbild gemäss \ref{fig:M2} modelliert. 
-Die Kapazität C\textsubscript{0} stellt dabei die Gesamtkapazität über die Isolierstrecke dar und C\textsubscript{h} ist die Hohlraumkapazität welche die Fehlerstelle abbildet.
+Die Kapazität $C\textsubscript{0}$ stellt dabei die Gesamtkapazität über die Isolierstrecke dar und $C\textsubscript{h}$ ist die Hohlraumkapazität welche die Fehlerstelle abbildet.
 Die Spannung $u_{h}(t)$ folgt der äusseren Spannung $u(t)$ bis die Zündspannung erreicht ist. 
-Bei dieser Spannung hat die Feldstärke über der Hohlraumkapazität einen kritischen Wert überschritten und die Energie, bei vorhanden sein eines Startelektrons, entlädt sich über die Funkenstrecke F.
-Die Spannung über $u{h}(t)$ sinkt bis zur Löschspannung, danach kann sich der selbe Vorgang mehrere Male pro Halbwelle wiederholen. 
-Über die Serienkapazität C\textsubscript{s} wird die Hohlraumkapazität C\textsubscript{h} via einen kapazitiven Verbschiebestrom nachgeladen \cite{buch:Kuchler}. 
+Bei dieser Spannung hat die Feldstärke über der Hohlraumkapazität einen kritischen Wert überschritten und die Energie, bei vorhanden sein eines Startelektrons, entlädt sich über die Funkenstrecke $F$.
+Die Spannung über $u-{h}(t)$ sinkt bis zur Löschspannung, danach kann sich der selbe Vorgang mehrere Male pro Halbwelle wiederholen. 
+Über die Serienkapazität $C\textsubscript{s}$ wird die Hohlraumkapazität $C\textsubscript{h}$ via einen kapazitiven Verbschiebestrom nachgeladen \cite{buch:Kuchler}. 
 
 \begin{figure}
 	\centering
@@ -196,12 +198,12 @@ Die Abtastzeit wurde für alle Signale gleich gewählt und liegt bei 100ps.
 \section{Datenbearbeitung}
 \rhead{Abschnitt}
 
-Die Zeitsignale welche untersucht wurden sind aufgenommen worden bei Laufzeitmessungen (TOF: Time of flight). 
-Bei einer TOF Messung sind nur die Anfänge der Signale von -interesse.
-Dies Bedeutet das selten die ganze Einhüllende aufgezeichnet wird und oft werden die Analog Digital Wander (ADC) übersteuert. 
+Die untersuchten Zeitsignale sind während Laufzeitmessungen (TOF: Time of flight) aufgenommen worden. 
+Bei einer TOF Messung sind nur die Anfänge der Signale von Interesse.
+Dies bedeutet, dass selten die ganze Einhüllende aufgezeichnet wird und oft werden die Analog Digital Wander (ADC) übersteuert. 
 Somit sind die Signale nicht brauchbar für eine CWT.
-Es wurden aus ca. 700 Aufzeichnungen vier passende Signale gefunden wo fast komplett abklingen und die Signalamplituden korrekt aufgezeichnet sind. 
-Mit Hilfe des Kundenberichtes welcher die PRPD Muster enthält und den Handnotizen wo die Zeitstempel und Ortsangaben vermerkt sind, konnten die Zeitsignale den Fehlerquellen zugeordnet werden.
+Es wurden aus ca. 700 Aufzeichnungen vier passende Signale gefunden welche genug lange aufgezeichnet wurden und bei denen die Signalamplituden nicht abgeschnitten sind. 
+Mit Hilfe des Kundenberichtes, welcher die PRPD Muster enthält, und den Handnotizen wo die Zeitstempel und Ortsangaben vermerkt sind, konnten die Zeitsignale den Fehlerquellen zugeordnet werden.
 Es sind je zwei Exemplare von Hohlraumentladung und Oberflächenentladung.
 \begin{figure}
 	\centering
@@ -248,38 +250,38 @@ Es sind je zwei Exemplare von Hohlraumentladung und Oberflächenentladung.
 \label{fig:Zeitsig}
 \end{figure}
 
-Damit die Messungen Sinnvoll miteinander vergleichbar sind, wurden einige Datenaufbereitungen im Matlabcode implementiert.
+Damit die Messungen sinnvoll miteinander vergleichbar sind, wurden einige Datenaufbereitungen im Matlabcode implementiert.
 Dies dient zur Harmonisierung der zu untersuchenden Signale (siehe Abbildung \ref{fig:Zeitsig}). 
 Auf diese wird im Folgenden kurz eingegangen.
 
-Durch transformieren von vielen Signalen hat sich gezeigt, dass der interessante Bereich, wo die CWT relevante Muster hervorbringt, in den ersten 300ns ist.
+Durch Transformieren von vielen Signalen hat sich gezeigt, dass der interessante Bereich, wo die CWT relevante Muster hervorbringt, in den ersten 300ns ist.
 Bei einer Abtastzeit von 100ps entspricht dies 3000 Datenpunkte.
-Um den Startpunkt des Signals zu extrahieren wurde ein Treshholdlevel mit folgendem Algorithmus implementiert.
-Aus den ersten 300 Datenwerte wird der Vektorindex $v_{max}$ mit dem grössten absolute Wert ermittelt.
-Der Tresholdlevel wird durch quadrieren von Wert in $v_{max}$ und multiplikation mit 3 festgelegt.
+Um den Startpunkt des Signals zu extrahieren wurde ein Thresholdlevel (Schwellenwert) mit folgendem Algorithmus implementiert.
+Aus den ersten 300 Datenwerte wird der Vektorindex $v_\text{max}$ mit dem grössten absoluten Wert ermittelt.
+Der Thresholdlevel
 \begin{equation}
-Treshholdlevel = 3*v_{max}^2
+\text{Tresholdlevel} = 3*v_\text{max}^2
 \end{equation}
+wird durch Quadrieren von Wert in $v_{max}$ und Multiplikation mit 3 festgelegt.
 Der Startpunkt wird ermittelt in dem das erste Vektorelement im Datenvektor $abs(v_d)^2$ gesucht wird welches diesen überschreitet.
 Dazu wird auch der gesamte Datenvektor quadriert.
 Mit dem Quadrieren wird ein grösserer Signal-Rausch Abstand (SNR) erzielt.
 
-Um die CWT Muster aussagekräftiger darzustellen wird auf der y-Achse nicht die Dilatationsskalierungen angezeigt. Stattdessen wird ein Rückschluss auf die Frequenz abgeleitet. Diese darf jedoch nur als Approximation betrachtet werden, da in einer CWT die Frequenzauflösung nicht der Auflösung einer Fourier-Transformation entspricht. Die Frequenzapproximation wird durch folgende Berechnung erreicht.
+Um die CWT Muster aussagekräftiger darzustellen wird auf der $y$-Achse nicht die Dilatationsskalierungen angezeigt. Stattdessen wird ein Rückschluss auf die Frequenz abgeleitet. Diese darf jedoch nur als Approximation betrachtet werden, da in einer CWT die Frequenzauflösung nicht der Auflösung einer Fourier-Transformation entspricht. Die Frequenzapproximation 
 \begin{equation}
 F_a=\dfrac{F_c}{a}
 \end{equation}
-Wobei $F_c$ der Mittelfrequenz des Wavelets entspricht.
+ist definiert durch die Division der Mittelfrequenz $F_c$ und dem Wavlet-Dilatationsfaktor $a$.
+
 Diese wird durch den höchsten Wert des Skalarproduktes 
-
 \begin{equation}
-F_c(t/a) = \max\langle x(t),y(t/a)\rangle
+F_c(t/a) = \max_a\langle \Psi(t),sin(t/a)\rangle
 \end{equation}
-
-zwischen dem Wavelet $x$ und dem Sinus $y$ berechnet.
+zwischen dem Wavelet $\Psi$ und dem Sinus berechnet.
 Wobei der Sinus mit dem Dilatationsfaktor $a$ gestreckt wird.
 In Abbildung \ref{fig:Mittenfrequ} ist die Mittenfrequenz von einem Daubechies-Wavelet Nr. 8 (db8) dargestellt.
 Die Variable $a$ steht für den Dilatationsskalierungsfaktor. 
-Damit wird erzielt das die y-Achse mit der approximierten Frequenz $F_a$ skaliert ist..
+Damit wird erzielt das die $y$-Achse mit der approximierten Frequenz $F_a$ skaliert ist.
 
 \begin{figure}
 	\centering

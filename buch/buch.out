@@ -1,0 +1,140 @@
+\BOOKMARK [-1][-]{part.1}{I Grundlagen}{}% 1
+\BOOKMARK [0][-]{chapter*.3}{Einleitung}{part.1}% 2
+\BOOKMARK [0][-]{chapter.1}{Sampling und Geometrie }{part.1}% 3
+\BOOKMARK [1][-]{section.1.1}{Vergleich von Signalen und Vektorgeometrie }{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.1.1}{Vergleich von Signalen}{section.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.1.2}{Vektorschreibweise}{section.1.1}% 6
+\BOOKMARK [2][-]{subsection.1.1.3}{Vektorraum und Skalarprodukt}{section.1.1}% 7
+\BOOKMARK [2][-]{subsection.1.1.4}{Skalarprodukt und orthonormierte Basis}{section.1.1}% 8
+\BOOKMARK [1][-]{section.1.2}{Funktionenr\344ume}{chapter.1}% 9
+\BOOKMARK [2][-]{subsection.1.2.1}{Vektorr\344ume von Funktionen}{section.1.2}% 10
+\BOOKMARK [2][-]{subsection.1.2.2}{Translation und Dilatation}{section.1.2}% 11
+\BOOKMARK [1][-]{section.1.3}{Hilbertraum }{chapter.1}% 12
+\BOOKMARK [2][-]{subsection.1.3.1}{Komplexe Vektorr\344ume mit Skalarprodukt}{section.1.3}% 13
+\BOOKMARK [2][-]{subsection.1.3.2}{Norm und Grenzwert in einem Hilbertraum}{section.1.3}% 14
+\BOOKMARK [2][-]{subsection.1.3.3}{Basis eines Hilbertraumes}{section.1.3}% 15
+\BOOKMARK [1][-]{section.1.4}{Frames }{chapter.1}% 16
+\BOOKMARK [2][-]{subsection.1.4.1}{Ein geometrisches Beispiel }{section.1.4}% 17
+\BOOKMARK [2][-]{subsection.1.4.2}{Definition eines Frames}{section.1.4}% 18
+\BOOKMARK [2][-]{subsection.1.4.3}{Allgemeine Frames}{section.1.4}% 19
+\BOOKMARK [1][-]{section.1.5}{Rekonstruktion }{chapter.1}% 20
+\BOOKMARK [0][-]{chapter.2}{Fouriertheorie und die L2-Hilbertr\344ume }{part.1}% 21
+\BOOKMARK [1][-]{section.2.1}{Der Hilbertraum L2 }{chapter.2}% 22
+\BOOKMARK [2][-]{subsection.2.1.1}{Funktionenr\344ume}{section.2.1}% 23
+\BOOKMARK [2][-]{subsection.2.1.2}{Definition des Skalarproduktes}{section.2.1}% 24
+\BOOKMARK [2][-]{subsection.2.1.3}{Lebesgue-Integral und Vollst\344ndigkeit}{section.2.1}% 25
+\BOOKMARK [2][-]{subsection.2.1.4}{L2 und L1}{section.2.1}% 26
+\BOOKMARK [2][-]{subsection.2.1.5}{Die Operatoren Tb und Da}{section.2.1}% 27
+\BOOKMARK [1][-]{section.2.2}{Fourier-Reihen }{chapter.2}% 28
+\BOOKMARK [2][-]{subsection.2.2.1}{Relle Fourier-Reihen}{section.2.2}% 29
+\BOOKMARK [2][-]{subsection.2.2.2}{Komplexe Fourier-Reihen}{section.2.2}% 30
+\BOOKMARK [1][-]{section.2.3}{Fourier-Integral }{chapter.2}% 31
+\BOOKMARK [1][-]{section.2.4}{Gefensterte Fourier-Transformation }{chapter.2}% 32
+\BOOKMARK [1][-]{section.2.5}{Heisenbergsche Unsch\344rfe-Relation }{chapter.2}% 33
+\BOOKMARK [0][-]{chapter.3}{Das Haar-Wavelet }{part.1}% 34
+\BOOKMARK [1][-]{section.3.1}{St\374ckweise konstante Funktionen}{chapter.3}% 35
+\BOOKMARK [2][-]{subsection.3.1.1}{Charakteristische Funktion}{section.3.1}% 36
+\BOOKMARK [2][-]{subsection.3.1.2}{Approximation stetiger Funktionen}{section.3.1}% 37
+\BOOKMARK [2][-]{subsection.3.1.3}{Integration st\374ckweise konstanter Funktionen}{section.3.1}% 38
+\BOOKMARK [1][-]{section.3.2}{Sampling}{chapter.3}% 39
+\BOOKMARK [1][-]{section.3.3}{Dualzahlen-Unterteilung}{chapter.3}% 40
+\BOOKMARK [1][-]{section.3.4}{Wavelet}{chapter.3}% 41
+\BOOKMARK [1][-]{section.3.5}{Haar-Approximation }{chapter.3}% 42
+\BOOKMARK [2][-]{subsection.3.5.1}{Sampling}{section.3.5}% 43
+\BOOKMARK [2][-]{subsection.3.5.2}{Filter}{section.3.5}% 44
+\BOOKMARK [2][-]{subsection.3.5.3}{Wavelet-Koeffizienten}{section.3.5}% 45
+\BOOKMARK [2][-]{subsection.3.5.4}{Der schnelle Approximations-Algorithmus}{section.3.5}% 46
+\BOOKMARK [2][-]{subsection.3.5.5}{Ein Paradoxon}{section.3.5}% 47
+\BOOKMARK [0][-]{chapter.4}{Stetige Wavelet-Transformation }{part.1}% 48
+\BOOKMARK [1][-]{section.4.1}{Wavelets}{chapter.4}% 49
+\BOOKMARK [1][-]{section.4.2}{Stetige Wavelet-Transformation }{chapter.4}% 50
+\BOOKMARK [1][-]{section.4.3}{Plancherel-Formel}{chapter.4}% 51
+\BOOKMARK [2][-]{subsection.4.3.1}{Das Skalarprodukt auf H}{section.4.3}% 52
+\BOOKMARK [2][-]{subsection.4.3.2}{Die Abh\344ngigkeit von b}{section.4.3}% 53
+\BOOKMARK [2][-]{subsection.4.3.3}{Die Plancherel-Formel}{section.4.3}% 54
+\BOOKMARK [2][-]{subsection.4.3.4}{Das Haar-Mass auf R* R }{section.4.3}% 55
+\BOOKMARK [1][-]{section.4.4}{Umkehrformel}{chapter.4}% 56
+\BOOKMARK [0][-]{chapter.5}{Abtasttheorem und Rekonstruktion }{part.1}% 57
+\BOOKMARK [0][-]{chapter.6}{Multiskalen-Analyse }{part.1}% 58
+\BOOKMARK [1][-]{section.6.1}{Skalen und Vektorr\344ume }{chapter.6}% 59
+\BOOKMARK [2][-]{subsection.6.1.1}{Ein Turm von Vektorr\344umen}{section.6.1}% 60
+\BOOKMARK [2][-]{subsection.6.1.2}{Orthogonalit\344t}{section.6.1}% 61
+\BOOKMARK [1][-]{section.6.2}{Skalierungsrelation und Fouriertransformation }{chapter.6}% 62
+\BOOKMARK [2][-]{subsection.6.2.1}{Der Interval-Trick und der Periodisierungs-Operator}{section.6.2}% 63
+\BOOKMARK [2][-]{subsection.6.2.2}{Orthogonalit\344t der Translate von }{section.6.2}% 64
+\BOOKMARK [2][-]{subsection.6.2.3}{Die Skalierungsrelation}{section.6.2}% 65
+\BOOKMARK [2][-]{subsection.6.2.4}{Skalierungsrelationen f\374r fV1}{section.6.2}% 66
+\BOOKMARK [2][-]{subsection.6.2.5}{Skalierungsrelation f\374r }{section.6.2}% 67
+\BOOKMARK [2][-]{subsection.6.2.6}{Eindeutigkeit von }{section.6.2}% 68
+\BOOKMARK [1][-]{section.6.3}{Mutter-Wavelet \040aus dem Vater-Wavelet }{chapter.6}% 69
+\BOOKMARK [1][-]{section.6.4}{Orthonormalisierung }{chapter.6}% 70
+\BOOKMARK [0][-]{chapter.7}{Schnelle Wavelet-Algorithmen }{part.1}% 71
+\BOOKMARK [1][-]{section.7.1}{Schnelle Algorithmen }{chapter.7}% 72
+\BOOKMARK [1][-]{section.7.2}{Schnelle Synthese}{chapter.7}% 73
+\BOOKMARK [2][-]{subsection.7.2.1}{Basiswechsel}{section.7.2}% 74
+\BOOKMARK [2][-]{subsection.7.2.2}{Invertierung}{section.7.2}% 75
+\BOOKMARK [2][-]{subsection.7.2.3}{Schnelle Wavelet-Synthese}{section.7.2}% 76
+\BOOKMARK [1][-]{section.7.3}{Rekonstruktion der Funktionen \040und \040}{chapter.7}% 77
+\BOOKMARK [0][-]{chapter.8}{Wavelets mit kompaktem Tr\344ger }{part.1}% 78
+\BOOKMARK [1][-]{section.8.1}{Bedingungen f\374r die Koeffizienten}{chapter.8}% 79
+\BOOKMARK [2][-]{subsection.8.1.1}{Kompakter Tr\344ger}{section.8.1}% 80
+\BOOKMARK [2][-]{subsection.8.1.2}{Normierung}{section.8.1}% 81
+\BOOKMARK [2][-]{subsection.8.1.3}{Orthogonalit\344t}{section.8.1}% 82
+\BOOKMARK [1][-]{section.8.2}{Ordnung}{chapter.8}% 83
+\BOOKMARK [1][-]{section.8.3}{Betrag}{chapter.8}% 84
+\BOOKMARK [1][-]{section.8.4}{Partialbruchzerlegung}{chapter.8}% 85
+\BOOKMARK [2][-]{subsection.8.4.1}{Die F\344lle N=2 und N=3}{section.8.4}% 86
+\BOOKMARK [2][-]{subsection.8.4.2}{Der allgemeine Fall}{section.8.4}% 87
+\BOOKMARK [2][-]{subsection.8.4.3}{Weitere L\366sungen von h\366herem Grad}{section.8.4}% 88
+\BOOKMARK [1][-]{section.8.5}{Das Lemma von Riesz}{chapter.8}% 89
+\BOOKMARK [1][-]{section.8.6}{Daubechies-Wavelets}{chapter.8}% 90
+\BOOKMARK [2][-]{subsection.8.6.1}{Der Fall N=2}{section.8.6}% 91
+\BOOKMARK [2][-]{subsection.8.6.2}{Der Fall N=3}{section.8.6}% 92
+\BOOKMARK [0][-]{chapter.9}{Spline-Wavelets }{part.1}% 93
+\BOOKMARK [0][-]{Anhang.1.A}{Komplexe Zahlen}{part.1}% 94
+\BOOKMARK [1][-]{section.1.A.1}{Der K\366rper C der komplexen Zahlen}{Anhang.1.A}% 95
+\BOOKMARK [2][-]{subsection.1.A.1.1}{Grundoperationen f\374r die komplexen Zahlen}{section.1.A.1}% 96
+\BOOKMARK [2][-]{subsection.1.A.1.2}{Polardarstellung}{section.1.A.1}% 97
+\BOOKMARK [2][-]{subsection.1.A.1.3}{Matrixdarstellung der komplexen Zahlen}{section.1.A.1}% 98
+\BOOKMARK [1][-]{section.1.A.2}{Komplexe Matrizen}{Anhang.1.A}% 99
+\BOOKMARK [2][-]{subsection.1.A.2.1}{Skalarprodukt f\374r komplexe Vektorr\344ume}{section.1.A.2}% 100
+\BOOKMARK [2][-]{subsection.1.A.2.2}{Eigenwertproblem f\374r komplexe Matrizen}{section.1.A.2}% 101
+\BOOKMARK [1][-]{section.1.A.3}{Lie-Algebren}{Anhang.1.A}% 102
+\BOOKMARK [-1][-]{part.2}{II Anwendungen und Weiterf\374hrende Themen}{}% 103
+\BOOKMARK [0][-]{chapter.10}{Autotune}{part.2}% 104
+\BOOKMARK [1][-]{section.10.1}{Abschnitt}{chapter.10}% 105
+\BOOKMARK [1][-]{section.10.2}{Schlussfolgerung}{chapter.10}% 106
+\BOOKMARK [0][-]{chapter.11}{Wavelet-Deconvolution}{part.2}% 107
+\BOOKMARK [1][-]{section.11.1}{Abschnitt}{chapter.11}% 108
+\BOOKMARK [1][-]{section.11.2}{Schlussfolgerung}{chapter.11}% 109
+\BOOKMARK [0][-]{chapter.12}{FPGA Implementation der schnellen Wavelet-Transformation}{part.2}% 110
+\BOOKMARK [1][-]{section.12.1}{Abschnitt}{chapter.12}% 111
+\BOOKMARK [1][-]{section.12.2}{Schlussfolgerung}{chapter.12}% 112
+\BOOKMARK [0][-]{chapter.13}{Audio-Kompression mit Daubechies Wavelets}{part.2}% 113
+\BOOKMARK [1][-]{section.13.1}{Abschnitt}{chapter.13}% 114
+\BOOKMARK [1][-]{section.13.2}{Schlussfolgerung}{chapter.13}% 115
+\BOOKMARK [0][-]{chapter.14}{Gabor-Wavelets und visuelle Wahrnehmung}{part.2}% 116
+\BOOKMARK [1][-]{section.14.1}{Abschnitt}{chapter.14}% 117
+\BOOKMARK [1][-]{section.14.2}{Schlussfolgerung}{chapter.14}% 118
+\BOOKMARK [0][-]{chapter.15}{Komplexe Morlet Wavelets und CWT}{part.2}% 119
+\BOOKMARK [1][-]{section.15.1}{Abschnitt}{chapter.15}% 120
+\BOOKMARK [1][-]{section.15.2}{Schlussfolgerung}{chapter.15}% 121
+\BOOKMARK [0][-]{chapter.16}{2D Wavelets und Oberfl\344chen}{part.2}% 122
+\BOOKMARK [1][-]{section.16.1}{Abschnitt}{chapter.16}% 123
+\BOOKMARK [1][-]{section.16.2}{Schlussfolgerung}{chapter.16}% 124
+\BOOKMARK [0][-]{chapter.17}{Signalanalyse von UHF Teilentladungssignalen im Zeitbereich }{part.2}% 125
+\BOOKMARK [1][-]{section.17.1}{Gasisolierte Schaltanlagen}{chapter.17}% 126
+\BOOKMARK [1][-]{section.17.2}{Fehlerarten und Analyse in GIS}{chapter.17}% 127
+\BOOKMARK [2][-]{subsection.17.2.1}{Oberfl\344chenentladung}{section.17.2}% 128
+\BOOKMARK [2][-]{subsection.17.2.2}{Hohlraumentladung}{section.17.2}% 129
+\BOOKMARK [2][-]{subsection.17.2.3}{Herk\366mmliche Fehleranalyse}{section.17.2}% 130
+\BOOKMARK [1][-]{section.17.3}{Messpfad}{chapter.17}% 131
+\BOOKMARK [1][-]{section.17.4}{Datenbearbeitung}{chapter.17}% 132
+\BOOKMARK [1][-]{section.17.5}{Auswertung kontinuierliche Wavelettransformation}{chapter.17}% 133
+\BOOKMARK [1][-]{section.17.6}{Schlussfolgerung}{chapter.17}% 134
+\BOOKMARK [0][-]{chapter.18}{Analyse von Meteor-Echos}{part.2}% 135
+\BOOKMARK [1][-]{section.18.1}{Abschnitt}{chapter.18}% 136
+\BOOKMARK [1][-]{section.18.2}{Schlussfolgerung}{chapter.18}% 137
+\BOOKMARK [0][-]{chapter.19}{Wetter-Wavelet-Transformation}{part.2}% 138
+\BOOKMARK [1][-]{section.19.1}{Abschnitt}{chapter.19}% 139
+\BOOKMARK [1][-]{section.19.2}{Schlussfolgerung}{chapter.19}% 140

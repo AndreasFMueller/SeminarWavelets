@@ -1,0 +1,151 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {ngerman}{}
+\contentsline {part}{I\hspace {1em}Grundlagen}{3}{part.1}% 
+\contentsline {chapter}{Einleitung}{5}{chapter*.3}% 
+\contentsline {chapter}{\numberline {1}Sampling und Geometrie }{9}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Vergleich von Signalen und Vektorgeometrie }{9}{section.1.1}% 
+\contentsline {subsection}{\numberline {1.1.1}Vergleich von Signalen}{9}{subsection.1.1.1}% 
+\contentsline {subsubsection}{Bin\IeC {\"a}rsignale}{10}{section*.4}% 
+\contentsline {subsubsection}{Reellwertige Signale}{10}{section*.5}% 
+\contentsline {subsection}{\numberline {1.1.2}Vektorschreibweise}{13}{subsection.1.1.2}% 
+\contentsline {subsection}{\numberline {1.1.3}Vektorraum und Skalarprodukt}{14}{subsection.1.1.3}% 
+\contentsline {subsection}{\numberline {1.1.4}Skalarprodukt und orthonormierte Basis}{15}{subsection.1.1.4}% 
+\contentsline {section}{\numberline {1.2}Funktionenr\IeC {\"a}ume}{17}{section.1.2}% 
+\contentsline {subsection}{\numberline {1.2.1}Vektorr\IeC {\"a}ume von Funktionen}{17}{subsection.1.2.1}% 
+\contentsline {subsection}{\numberline {1.2.2}Translation und Dilatation}{18}{subsection.1.2.2}% 
+\contentsline {section}{\numberline {1.3}Hilbertraum }{21}{section.1.3}% 
+\contentsline {subsection}{\numberline {1.3.1}Komplexe Vektorr\IeC {\"a}ume mit Skalarprodukt}{21}{subsection.1.3.1}% 
+\contentsline {subsection}{\numberline {1.3.2}Norm und Grenzwert in einem Hilbertraum}{24}{subsection.1.3.2}% 
+\contentsline {subsection}{\numberline {1.3.3}Basis eines Hilbertraumes}{26}{subsection.1.3.3}% 
+\contentsline {section}{\numberline {1.4}Frames }{26}{section.1.4}% 
+\contentsline {subsection}{\numberline {1.4.1}Ein geometrisches Beispiel }{26}{subsection.1.4.1}% 
+\contentsline {subsection}{\numberline {1.4.2}Definition eines Frames}{29}{subsection.1.4.2}% 
+\contentsline {subsection}{\numberline {1.4.3}Allgemeine Frames}{31}{subsection.1.4.3}% 
+\contentsline {section}{\numberline {1.5}Rekonstruktion }{33}{section.1.5}% 
+\contentsline {chapter}{\numberline {2}Fouriertheorie und die $L^2$-Hilbertr\IeC {\"a}ume }{39}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Der Hilbertraum $L^2$ }{39}{section.2.1}% 
+\contentsline {subsection}{\numberline {2.1.1}Funktionenr\IeC {\"a}ume}{39}{subsection.2.1.1}% 
+\contentsline {subsection}{\numberline {2.1.2}Definition des Skalarproduktes}{40}{subsection.2.1.2}% 
+\contentsline {subsection}{\numberline {2.1.3}Lebesgue-Integral und Vollst\IeC {\"a}ndigkeit}{41}{subsection.2.1.3}% 
+\contentsline {subsection}{\numberline {2.1.4}$L^2$ und $L^1$}{42}{subsection.2.1.4}% 
+\contentsline {subsection}{\numberline {2.1.5}Die Operatoren $T_b$ und $D_a$}{43}{subsection.2.1.5}% 
+\contentsline {section}{\numberline {2.2}Fourier-Reihen }{44}{section.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}Relle Fourier-Reihen}{44}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.2}Komplexe Fourier-Reihen}{44}{subsection.2.2.2}% 
+\contentsline {section}{\numberline {2.3}Fourier-Integral }{44}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}Gefensterte Fourier-Transformation }{46}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}Heisenbergsche Unsch\IeC {\"a}rfe-Relation }{46}{section.2.5}% 
+\contentsline {chapter}{\numberline {3}Das Haar-Wavelet }{49}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}St\IeC {\"u}ckweise konstante Funktionen}{49}{section.3.1}% 
+\contentsline {subsection}{\numberline {3.1.1}Charakteristische Funktion}{49}{subsection.3.1.1}% 
+\contentsline {subsection}{\numberline {3.1.2}Approximation stetiger Funktionen}{50}{subsection.3.1.2}% 
+\contentsline {subsection}{\numberline {3.1.3}Integration st\IeC {\"u}ckweise konstanter Funktionen}{52}{subsection.3.1.3}% 
+\contentsline {section}{\numberline {3.2}Sampling}{53}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Dualzahlen-Unterteilung}{55}{section.3.3}% 
+\contentsline {section}{\numberline {3.4}Wavelet}{56}{section.3.4}% 
+\contentsline {section}{\numberline {3.5}Haar-Approximation }{61}{section.3.5}% 
+\contentsline {subsection}{\numberline {3.5.1}Sampling}{61}{subsection.3.5.1}% 
+\contentsline {subsection}{\numberline {3.5.2}Filter}{61}{subsection.3.5.2}% 
+\contentsline {subsection}{\numberline {3.5.3}Wavelet-Koeffizienten}{62}{subsection.3.5.3}% 
+\contentsline {subsection}{\numberline {3.5.4}Der schnelle Approximations-Algorithmus}{62}{subsection.3.5.4}% 
+\contentsline {subsection}{\numberline {3.5.5}Ein Paradoxon}{63}{subsection.3.5.5}% 
+\contentsline {chapter}{\numberline {4}Stetige Wavelet-Transformation }{67}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Wavelets}{67}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Stetige Wavelet-Transformation }{69}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Plancherel-Formel}{77}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Das Skalarprodukt auf $H$}{78}{subsection.4.3.1}% 
+\contentsline {subsection}{\numberline {4.3.2}Die Abh\IeC {\"a}ngigkeit von $b$}{78}{subsection.4.3.2}% 
+\contentsline {subsection}{\numberline {4.3.3}Die Plancherel-Formel}{79}{subsection.4.3.3}% 
+\contentsline {subsection}{\numberline {4.3.4}Das Haar-Mass auf $\mathbb R^* \ltimes \mathbb R$ }{80}{subsection.4.3.4}% 
+\contentsline {section}{\numberline {4.4}Umkehrformel}{80}{section.4.4}% 
+\contentsline {chapter}{\numberline {5}Abtasttheorem und Rekonstruktion }{87}{chapter.5}% 
+\contentsline {chapter}{\numberline {6}Multiskalen-Analyse }{89}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}Skalen und Vektorr\IeC {\"a}ume }{89}{section.6.1}% 
+\contentsline {subsection}{\numberline {6.1.1}Ein Turm von Vektorr\IeC {\"a}umen}{89}{subsection.6.1.1}% 
+\contentsline {subsection}{\numberline {6.1.2}Orthogonalit\IeC {\"a}t}{91}{subsection.6.1.2}% 
+\contentsline {section}{\numberline {6.2}Skalierungsrelation und Fouriertransformation }{91}{section.6.2}% 
+\contentsline {subsection}{\numberline {6.2.1}Der Interval-Trick und der Periodisierungs-Operator}{91}{subsection.6.2.1}% 
+\contentsline {subsection}{\numberline {6.2.2}Orthogonalit\IeC {\"a}t der Translate von $\varphi $}{93}{subsection.6.2.2}% 
+\contentsline {subsection}{\numberline {6.2.3}Die Skalierungsrelation}{94}{subsection.6.2.3}% 
+\contentsline {subsection}{\numberline {6.2.4}Skalierungsrelationen f\IeC {\"u}r $f\in V_1$}{95}{subsection.6.2.4}% 
+\contentsline {subsection}{\numberline {6.2.5}Skalierungsrelation f\IeC {\"u}r $\psi $}{96}{subsection.6.2.5}% 
+\contentsline {subsection}{\numberline {6.2.6}Eindeutigkeit von $\varphi $}{99}{subsection.6.2.6}% 
+\contentsline {section}{\numberline {6.3}Mutter-Wavelet $\psi $ aus dem Vater-Wavelet $\varphi $}{99}{section.6.3}% 
+\contentsline {section}{\numberline {6.4}Orthonormalisierung }{100}{section.6.4}% 
+\contentsline {chapter}{\numberline {7}Schnelle Wavelet-Algorithmen }{103}{chapter.7}% 
+\contentsline {section}{\numberline {7.1}Schnelle Algorithmen }{103}{section.7.1}% 
+\contentsline {section}{\numberline {7.2}Schnelle Synthese}{105}{section.7.2}% 
+\contentsline {subsection}{\numberline {7.2.1}Basiswechsel}{105}{subsection.7.2.1}% 
+\contentsline {subsection}{\numberline {7.2.2}Invertierung}{106}{subsection.7.2.2}% 
+\contentsline {subsection}{\numberline {7.2.3}Schnelle Wavelet-Synthese}{107}{subsection.7.2.3}% 
+\contentsline {section}{\numberline {7.3}Rekonstruktion der Funktionen $\varphi $ und $\psi $ }{108}{section.7.3}% 
+\contentsline {chapter}{\numberline {8}Wavelets mit kompaktem Tr\IeC {\"a}ger }{115}{chapter.8}% 
+\contentsline {section}{\numberline {8.1}Bedingungen f\IeC {\"u}r die Koeffizienten}{115}{section.8.1}% 
+\contentsline {subsection}{\numberline {8.1.1}Kompakter Tr\IeC {\"a}ger}{115}{subsection.8.1.1}% 
+\contentsline {subsection}{\numberline {8.1.2}Normierung}{116}{subsection.8.1.2}% 
+\contentsline {subsection}{\numberline {8.1.3}Orthogonalit\IeC {\"a}t}{116}{subsection.8.1.3}% 
+\contentsline {section}{\numberline {8.2}Ordnung}{118}{section.8.2}% 
+\contentsline {section}{\numberline {8.3}Betrag}{119}{section.8.3}% 
+\contentsline {section}{\numberline {8.4}Partialbruchzerlegung}{120}{section.8.4}% 
+\contentsline {subsection}{\numberline {8.4.1}Die F\IeC {\"a}lle $N=2$ und $N=3$}{120}{subsection.8.4.1}% 
+\contentsline {subsection}{\numberline {8.4.2}Der allgemeine Fall}{121}{subsection.8.4.2}% 
+\contentsline {subsection}{\numberline {8.4.3}Weitere L\IeC {\"o}sungen von h\IeC {\"o}herem Grad}{122}{subsection.8.4.3}% 
+\contentsline {section}{\numberline {8.5}Das Lemma von Riesz}{123}{section.8.5}% 
+\contentsline {section}{\numberline {8.6}Daubechies-Wavelets}{127}{section.8.6}% 
+\contentsline {subsection}{\numberline {8.6.1}Der Fall $N=2$}{127}{subsection.8.6.1}% 
+\contentsline {subsection}{\numberline {8.6.2}Der Fall $N=3$}{128}{subsection.8.6.2}% 
+\contentsline {chapter}{\numberline {9}Spline-Wavelets }{129}{chapter.9}% 
+\contentsline {chapter}{\numberline {A}Komplexe Zahlen}{131}{Anhang.1.A}% 
+\contentsline {section}{\numberline {A.1}Der K\IeC {\"o}rper $\mathbb C$ der komplexen Zahlen}{131}{section.1.A.1}% 
+\contentsline {subsection}{\numberline {A.1.1}Grundoperationen f\IeC {\"u}r die komplexen Zahlen}{131}{subsection.1.A.1.1}% 
+\contentsline {subsection}{\numberline {A.1.2}Polardarstellung}{133}{subsection.1.A.1.2}% 
+\contentsline {subsection}{\numberline {A.1.3}Matrixdarstellung der komplexen Zahlen}{134}{subsection.1.A.1.3}% 
+\contentsline {section}{\numberline {A.2}Komplexe Matrizen}{135}{section.1.A.2}% 
+\contentsline {subsection}{\numberline {A.2.1}Skalarprodukt f\IeC {\"u}r komplexe Vektorr\IeC {\"a}ume}{135}{subsection.1.A.2.1}% 
+\contentsline {subsubsection}{Komplexes Skalarprodukt}{135}{section*.46}% 
+\contentsline {subsubsection}{Adjungierte Matrix}{136}{section*.47}% 
+\contentsline {subsubsection}{Unit\IeC {\"a}re Matrizen}{136}{section*.48}% 
+\contentsline {subsubsection}{Die spezielle unit\IeC {\"a}re Gruppe $\operatorname {SU}(2)$}{137}{section*.49}% 
+\contentsline {subsubsection}{Spur und Determinante}{138}{section*.50}% 
+\contentsline {subsection}{\numberline {A.2.2}Eigenwertproblem f\IeC {\"u}r komplexe Matrizen}{138}{subsection.1.A.2.2}% 
+\contentsline {subsubsection}{Definition}{138}{section*.51}% 
+\contentsline {subsubsection}{Selbstadjungierte Matrizen}{139}{section*.52}% 
+\contentsline {section}{\numberline {A.3}Lie-Algebren}{139}{section.1.A.3}% 
+\contentsline {part}{II\hspace {1em}Anwendungen und Weiterf\IeC {\"u}hrende Themen}{147}{part.2}% 
+\contentsline {chapter}{\numberline {10}Autotune}{151}{chapter.10}% 
+\contentsline {section}{\numberline {10.1}Abschnitt}{151}{section.10.1}% 
+\contentsline {section}{\numberline {10.2}Schlussfolgerung}{151}{section.10.2}% 
+\contentsline {chapter}{\numberline {11}Wavelet-Deconvolution}{153}{chapter.11}% 
+\contentsline {section}{\numberline {11.1}Abschnitt}{153}{section.11.1}% 
+\contentsline {section}{\numberline {11.2}Schlussfolgerung}{153}{section.11.2}% 
+\contentsline {chapter}{\numberline {12}FPGA Implementation der schnellen Wavelet-Transformation}{155}{chapter.12}% 
+\contentsline {section}{\numberline {12.1}Abschnitt}{155}{section.12.1}% 
+\contentsline {section}{\numberline {12.2}Schlussfolgerung}{155}{section.12.2}% 
+\contentsline {chapter}{\numberline {13}Audio-Kompression mit Daubechies Wavelets}{157}{chapter.13}% 
+\contentsline {section}{\numberline {13.1}Abschnitt}{157}{section.13.1}% 
+\contentsline {section}{\numberline {13.2}Schlussfolgerung}{157}{section.13.2}% 
+\contentsline {chapter}{\numberline {14}Gabor-Wavelets und visuelle Wahrnehmung}{159}{chapter.14}% 
+\contentsline {section}{\numberline {14.1}Abschnitt}{159}{section.14.1}% 
+\contentsline {section}{\numberline {14.2}Schlussfolgerung}{159}{section.14.2}% 
+\contentsline {chapter}{\numberline {15}Komplexe Morlet Wavelets und CWT}{161}{chapter.15}% 
+\contentsline {section}{\numberline {15.1}Abschnitt}{161}{section.15.1}% 
+\contentsline {section}{\numberline {15.2}Schlussfolgerung}{161}{section.15.2}% 
+\contentsline {chapter}{\numberline {16}2D Wavelets und Oberfl\IeC {\"a}chen}{163}{chapter.16}% 
+\contentsline {section}{\numberline {16.1}Abschnitt}{163}{section.16.1}% 
+\contentsline {section}{\numberline {16.2}Schlussfolgerung}{163}{section.16.2}% 
+\contentsline {chapter}{\numberline {17}Signalanalyse von UHF Teilentladungssignalen im Zeitbereich }{165}{chapter.17}% 
+\contentsline {section}{\numberline {17.1}Gasisolierte Schaltanlagen}{165}{section.17.1}% 
+\contentsline {section}{\numberline {17.2}Fehlerarten und Analyse in GIS}{166}{section.17.2}% 
+\contentsline {subsection}{\numberline {17.2.1}Oberfl\IeC {\"a}chenentladung}{166}{subsection.17.2.1}% 
+\contentsline {subsection}{\numberline {17.2.2}Hohlraumentladung}{167}{subsection.17.2.2}% 
+\contentsline {subsection}{\numberline {17.2.3}Herk\IeC {\"o}mmliche Fehleranalyse}{168}{subsection.17.2.3}% 
+\contentsline {section}{\numberline {17.3}Messpfad}{168}{section.17.3}% 
+\contentsline {section}{\numberline {17.4}Datenbearbeitung}{170}{section.17.4}% 
+\contentsline {section}{\numberline {17.5}Auswertung kontinuierliche Wavelettransformation}{171}{section.17.5}% 
+\contentsline {section}{\numberline {17.6}Schlussfolgerung}{171}{section.17.6}% 
+\contentsline {chapter}{\numberline {18}Analyse von Meteor-Echos}{173}{chapter.18}% 
+\contentsline {section}{\numberline {18.1}Abschnitt}{173}{section.18.1}% 
+\contentsline {section}{\numberline {18.2}Schlussfolgerung}{173}{section.18.2}% 
+\contentsline {chapter}{\numberline {19}Wetter-Wavelet-Transformation}{175}{chapter.19}% 
+\contentsline {section}{\numberline {19.1}Abschnitt}{175}{section.19.1}% 
+\contentsline {section}{\numberline {19.2}Schlussfolgerung}{175}{section.19.2}% 
