@@ -1,0 +1,66 @@
+\subsection{Analytische Signale und die Hilbert-Transformation}
+\rhead{Hilbert-Transformation}
+Im ersten Kapitel haben wir aus dem reellen Gabor-Wavelet und dem Wunsch nach Separation von Amplitude und Phase das komplexe Morlet-Wavelet gefunden.
+Hierzu haben wir die negativen Frequenzen aus dem Spektrum des Wavelets entfernt.
+Dieses Verfahren lässt isch mit der Hilbert-Transformation
+\[
+	\mathcal{H}f(t) =
+	\frac{1}{\pi}\int_{-\infty}^{\infty}\frac{f(x)}{t-x} dx
+\]
+elegant verallgemeinern.
+Hierzu benötigen wir den Begriff des analytischen Signals.
+\begin{definition}
+	Sei $f(t) \in \mathbb{R}$ ein reelles Zeitsignal, dann heisst
+	\begin{align*}
+		f^\ast(t) 
+		&= f(t) + i\,\mathcal{H}f(t)
+	\end{align*}
+	das zu $f(t)$ \emph{analytische Signal}\footnote{Der Begriff `analytisch' ist in diesem Kapitel immer im Sinne dieser Definition aus der Signaltheorie zu verstehen.
+	Er ist nicht zu verwechseln mit der Eigenschaft analytischer Funktionen in der Analysis.
+%	Die Analysis kennt den Begriff der analytischen Funktion. 
+%	Diese Eigenschaft ist in der komplexen Analysis jedoch äquivalent zur Holomorphie.
+%	Wo benötigt wird folglich von holomorphen Funktionen gesprochen, um Verwechslungen zu vermeiden.
+	}.
+\end{definition}
+
+\begin{satz}
+	Die Fourier-Transformierte eines analytischen Signals verschwindet für alle negativen Frequenzen.
+	Es gilt
+	\[
+		\hat{f}^\ast_{a,b}(\omega) = \left\lbrace\begin{matrix*}[r]	
+			2\hat{f}_{a,b} & 0 \le \omega \\ 0 & \text{sonst}\end{matrix*} \right..
+	\]
+\end{satz}
+
+\begin{proof}[Beweis]
+	Die Hilbert-Transformation besitzt die Form eines Faltungs-Integrals.
+	Es gilt
+	\begin{align*}
+		\mathcal{H} f(t) &= f(t) * \frac{1}{\pi t}.
+	\end{align*}
+	Diese Faltung wird im Frequenzbereich zur Multiplikation.
+	Mit der Signumsfunktion $\sgn(\omega)$ und der Identität
+	\begin{align*}
+		\mathcal{F} \left\lbrace t^{-1}\right\rbrace  &= -i\pi\sgn(\omega)
+	\end{align*}
+	wird die Hilberttransformation im Frequenzbereich zu
+	\begin{align*}
+		\mathcal{F}\left\lbrace \mathcal{H}f(t)\right\rbrace 
+		&= -i\sgn(\omega) \hat{f}.
+	\end{align*}
+	Für die Fourier-Transformierte von $f^\ast_{a,b}$ gilt folglich 
+	\begin{align*}
+		\hat{f}^\ast_{a,b} 
+		&= \hat{f}_{a,b} - i^2\sgn(\omega)\hat{f}_{a,b}\\
+		&=\left\lbrace\begin{matrix}
+			2\hat{f}_{a,b} & \omega > 0\\
+			0 & \omega \le 0
+		\end{matrix} \right.
+	\end{align*}
+\end{proof}
+
+Mittels Hilbert-Transformation kann man also aus jedem beliebigen, reellen Zeitsignal ein analytisches Signal konstruieren.
+Spektral ist dies gleichbedeutend damit, die negativen Frequenzen zu entfernen und die positiven zu verdoppeln, wie wir das im ersten Kapitel auf dem Weg vom Gabor- zum Morlet-Wavelet auch getan haben.
+Tatsächlich ist das Morlet-Wavelet das zum Gabor-Wavelet analytische Wavelet.
+Die Norm erhöht sich hierbei jedoch um den Faktor $\sqrt{2}$.
+Beim Gabor- und Morlet-Wavelet versteckt sich dieser Faktor im $c_\sigma$.

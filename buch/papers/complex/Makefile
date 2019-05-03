@@ -3,5 +3,10 @@
 #
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
-images:
-	echo "nothing to be done"
+.PHONY:	images
+
+images:	
+	cd images; make images; cd ..
+
+clean:
+	cd images; make clean; cd ..
