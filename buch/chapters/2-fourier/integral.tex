@@ -11,7 +11,7 @@ Für Funktionen $f\in L^2(\mathbb R)$ ist die Fourier-Transformation
 \hat{f}(\omega)
 =
 \frac{1}{\sqrt{2\pi}}
-\int_{-\infty}^\infty f(t) f(t)e^{-i\omega t}\,dt
+\int_{-\infty}^\infty f(t) e^{-i\omega t}\,dt
 \]
 wohldefiniert.
 Wir schreiben die Fourier-Transformation auch
@@ -34,7 +34,7 @@ f(t)
 \end{satz}
 
 Die Fourier-Transformation ist also eine invertierbare lineare Abbildung,
-$\mathcal{F}^{-1}(\hat{f}) = f$.
+$\mathcal{F}^{-1}\!\left\lbrace\hat{f}\right\rbrace = f$.
 
 \begin{satz}
 Die Fourier-Transformation $\mathcal F\colon f\mapsto f$ ist eine linear
@@ -113,7 +113,7 @@ T_b\hat{f},
 oder mit der Schreibweise $\mathcal{F}f$ für die Fourier-Transformation
 \[
 \begin{aligned}
-\mathcal{F}T_b f &= M_{-b}\mathcal F
+\mathcal{F}T_b f &= M_{-b}\mathcal F f
 &&\Rightarrow &
 \mathcal{F}T_b &= M_{-b}\mathcal{F}
 \\
