@@ -47,20 +47,18 @@ class ModelManager:
         os.makedirs(self.writerDir)
         return self.writerDir
     
-    def getData(self, maxDataSize):
+    def getData(self, maxDataSize, gaborInput, features1):
+        self.features1 = features1
+        self.gaborInput = gaborInput
         print("Getting data")
         (xTrain, yTrain), (xTest, yTest) = tf.keras.datasets.cifar10.load_data()
+        #TODO if gaborInput: calculate convolutional layer 1 with gabor filters
         print('Calculating labels as one-hot')
         with tf.Session() as sess:
             oneHotTrain =  tf.one_hot(yTrain, 10)
             oneHotTest = tf.one_hot(yTest, 10)
             yTrain = sess.run(oneHotTrain)
             yTest = sess.run(oneHotTest)
-#        print('Normalizing..') #TODO not sure if helpful?
-#        for i in range(len(xTrain)):
-#            xTrain[i] = self.normalize(xTrain[i])
-#        for i in range(len(xTest)):
-#            xTest[i] = self.normalize(xTest[i])
         
         print('Creating datasets')
         self.trainBatch = tf.data.Dataset.from_tensor_slices({'x': xTrain, 'y': yTrain})
@@ -101,7 +99,7 @@ class ModelManager:
         
         print('Build model')
         with tf.name_scope('model'):
-            self.mdl.build(self.x, self.y)
+            self.mdl.build(self.x, self.y, self.gaborInput, self.features1)
         
     def train(self, outputDir, numEpochs):
         assert (self.datasetInfo != None), "Call getData first"
