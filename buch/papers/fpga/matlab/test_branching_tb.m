@@ -74,8 +74,8 @@ sVhdlShort = extractCoefFromStream( sVhdl, i, -((2^i) +i) );
 yExtended = delayRep( y , 1, (2^1)+1, L);
 
 %% Plot coefficients short
-figure(1)
-subplot(2,1,1)
+figure(10)
+
 
 plot(dsVhdlShort{1}, 'o'); hold on;
 plot(ds{1});
@@ -95,7 +95,7 @@ xlim([1 100])
 
 %% Plot 
 figure(1)
-subplot(2,1,2)
+ax1 =  subplot(2,1,1);
 
 plot(t, x, 'k-'); hold on;
 
@@ -111,6 +111,8 @@ plot(t, dsExtended{3}, 'r-');
 plot(t, dsVhdl{4}, 'co');
 plot(t, dsExtended{4}, 'c-');
 
+plot(t, rdy2sig(rdysVhdl, 4)+100, 'o');
+
 plot(t, sVhdl, 'mo');
 plot(t, sExtended, 'm-'); hold off;
 
@@ -118,6 +120,18 @@ legend({'x', 'd0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's
 title('coefficients extended')
 
 xlim([0 100])
+
+ax2 = subplot(2,1,2);
+rdy_sigs = rdy2sig(rdysVhdl,4);
+plot(t, rdy_sigs(1,:), 'go'); hold on;
+plot(t, rdy_sigs(2,:), 'bo');
+plot(t, rdy_sigs(3,:), 'ro');
+plot(t, rdy_sigs(4,:), 'co'); hold off;
+xlim([0 100])
+ylim([0 5])
+title('ready signals')
+
+linkaxes([ax1, ax2], 'x')
 
 %% calc difference
 diffs = cell(1, N+2);
@@ -157,6 +171,9 @@ dsVhdlDelayed{2} = fromVhdlRecord('D:/Temp/d1_delayedVector.hex');
 dsVhdlDelayed{3} = fromVhdlRecord('D:/Temp/d2_delayedVector.hex');
 dsVhdlDelayed{4} = fromVhdlRecord('D:/Temp/d3_delayedVector.hex');
 
+rdysVhdlDelayed = fromVhdlRecord('D:/Temp/rdys_delayedVector.hex');
+
+
 %% adapt calculated data to fit vhdl data
 for i = 1:N
     dsExtended{i} = delayRep( ds{i} , 2^i, 9+(2^4)-i, L);
@@ -165,6 +182,7 @@ sExtended = delayRep( s , 2^i, 9+(2^4)-i, L);
 
 %% Plot 
 figure(3)
+subplot(2,1,1)
 
 plot(t, dsVhdlDelayed{1}, 'gx'); hold on;
 plot(t, dsExtended{1}, 'g-');
@@ -185,6 +203,16 @@ legend({'d0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's', 's
 title('coefficients extended')
 
 xlim([0 100])
+
+ax2 = subplot(2,1,2);
+rdy_sigs = rdy2sig(rdysVhdlDelayed,4);
+plot(t, rdy_sigs(1,:), 'go'); hold on;
+plot(t, rdy_sigs(2,:), 'bo');
+plot(t, rdy_sigs(3,:), 'ro');
+plot(t, rdy_sigs(4,:), 'co'); hold off;
+xlim([0 100])
+ylim([0 5])
+title('ready signals')
 
 %% Plot 
 figure(4)

@@ -124,7 +124,7 @@ begin
 		);
 		
 		
-    rdys_switched <= rdys; --(4-1-1 downto 0) & rdy_in;
+    rdys_switched <= rdys(2 downto 0) & rdy_in; --(4-1-1 downto 0) & rdy_in;
 
 	dut2 : component coef_delay
         generic map(

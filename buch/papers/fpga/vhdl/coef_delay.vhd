@@ -40,6 +40,20 @@ architecture rtl of coef_delay is
         );
     end component;
     
+    component fifoDelaySingle is
+        generic (
+            n : integer;
+            DELAY : integer
+        );
+        port (
+            clk : in std_logic;
+            rst : in std_logic;
+            
+            x : in std_logic;
+            y : out std_logic
+        );
+    end component;
+    
     -- Precalc delays
     type delays_type is array(0 to nBranch - 1) of integer;
     
@@ -52,10 +66,21 @@ architecture rtl of coef_delay is
         return temp;
     end function delays_init;
     
-	constant delays : delays_type := delays_init;
+    function rdy_delays_init return delays_type is
+            variable temp : delays_type;
+        begin
+            forLoop: for i in 0 to nBranch - 1 loop
+                temp(i) := ((2**nBranch)+nBranch-1) - ((2**(i+1))+((i))) + nBranch;
+            end loop;
+            return temp;
+        end function rdy_delays_init;
+    
+	constant delays     : delays_type := delays_init;
+	constant rdy_delays : delays_type := rdy_delays_init;
 	
 begin
   
+  -- data lines
   instances : for i in 0 to nBranch-1 generate
       fifoDelay_n : fifoDelay
       generic map (
@@ -66,10 +91,10 @@ begin
           clk => clk,
           rst => rst,
           x => ds_in((i*n) + n - 1 downto i*n),
-          rdy_in => rdys_in(i),
+          rdy_in => '0',
 
           y => ds_out((i*n) + n - 1 downto i*n),
-          rdy_out => rdys_out(i)
+          rdy_out => open
       );
    end generate instances;
    
@@ -87,5 +112,20 @@ begin
          y => s_out,
          rdy_out => open
      );
+     
+     -- rdy lines
+    rdy_instances : for i in 0 to nBranch-1 generate
+       fifoDelaySingle_n : fifoDelaySingle
+       generic map (
+           n => n,
+           DELAY => rdy_delays(i)
+           )
+       port map (
+           clk => clk,
+           rst => rst,
+           x => rdys_in(i),
+           y => rdys_out(i)
+       );
+    end generate rdy_instances;
 
 end architecture rtl;
