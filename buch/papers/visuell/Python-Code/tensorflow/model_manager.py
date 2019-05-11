@@ -47,8 +47,7 @@ class ModelManager:
         os.makedirs(self.writerDir)
         return self.writerDir
     
-    def getData(self, maxDataSize, gaborInput, features1):
-        self.features1 = features1
+    def getData(self, maxDataSize, gaborInput):
         self.gaborInput = gaborInput
         print("Getting data")
         (xTrain, yTrain), (xTest, yTest) = tf.keras.datasets.cifar10.load_data()
@@ -71,7 +70,7 @@ class ModelManager:
         self.trainBatch = self.trainBatch.shuffle(self.maxDataSize)
 
     
-    def build(self, miniBatchSize):
+    def build(self, miniBatchSize, features1):
         self.built = True
         self.mdl = Model(self.datasetInfo)
         
@@ -99,7 +98,7 @@ class ModelManager:
         
         print('Build model')
         with tf.name_scope('model'):
-            self.mdl.build(self.x, self.y, self.gaborInput, self.features1)
+            self.mdl.build(self.x, self.y, self.gaborInput, features1)
         
     def train(self, outputDir, numEpochs):
         assert (self.datasetInfo != None), "Call getData first"

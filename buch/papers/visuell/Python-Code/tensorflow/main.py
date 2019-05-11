@@ -1,6 +1,6 @@
 from model_manager import ModelManager
 
-numEpochs = 2
+numEpochs = 5
 modelPath = 'outputs/model'
 maxDataSize = 200000
 miniBatchSize = 256
