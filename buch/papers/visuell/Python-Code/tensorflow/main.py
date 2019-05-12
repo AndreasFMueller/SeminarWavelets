@@ -5,7 +5,7 @@ modelPath = 'outputs/model'
 maxDataSize = 200000
 miniBatchSize = 256
 mdlManager = ModelManager()
-gaborInput = False
+gaborInput = True
 features1 = 64
 
 def train():

@@ -10,6 +10,9 @@ from dataset_info import DatasetInfo
 
 from prog_train import ProgressTrain
 
+from gabor_layer import GaborLayer
+from util import ProgressBar
+
 class ModelManager:
     def __init__(self):
         print('TF version ', tf.__version__)
@@ -47,11 +50,16 @@ class ModelManager:
         os.makedirs(self.writerDir)
         return self.writerDir
     
-    def getData(self, maxDataSize, gaborInput):
+    def getData(self, maxDataSize, gaborInput, features1):
         self.gaborInput = gaborInput
+        self.features1 = features1
         print("Getting data")
         (xTrain, yTrain), (xTest, yTest) = tf.keras.datasets.cifar10.load_data()
-        #TODO if gaborInput: calculate convolutional layer 1 with gabor filters
+        self.filterBank = None
+        if self.gaborInput:
+            gl = GaborLayer(self.features1)
+            self.filterBank = gl.filterBank
+                
         print('Calculating labels as one-hot')
         with tf.Session() as sess:
             oneHotTrain =  tf.one_hot(yTrain, 10)
@@ -70,7 +78,7 @@ class ModelManager:
         self.trainBatch = self.trainBatch.shuffle(self.maxDataSize)
 
     
-    def build(self, miniBatchSize, features1):
+    def build(self, miniBatchSize):
         self.built = True
         self.mdl = Model(self.datasetInfo)
         
@@ -98,7 +106,7 @@ class ModelManager:
         
         print('Build model')
         with tf.name_scope('model'):
-            self.mdl.build(self.x, self.y, self.gaborInput, features1)
+            self.mdl.build(self.x, self.y, self.gaborInput, self.features1, self.filterBank)
         
     def train(self, outputDir, numEpochs):
         assert (self.datasetInfo != None), "Call getData first"
@@ -119,8 +127,9 @@ class ModelManager:
         print('create summaries')
         tf.summary.scalar('Loss', self.mdl.loss)
         tf.summary.scalar('Accuracy', self.mdl.accuracy)
-        tf.summary.histogram("weights1", self.mdl.kernel1)
-        tf.summary.histogram("biases1", self.mdl.biases1)
+        if not self.gaborInput:
+            tf.summary.histogram("weights1", self.mdl.kernel1)
+            tf.summary.histogram("biases1", self.mdl.biases1)
         tf.summary.histogram("weights2", self.mdl.kernel2)
         tf.summary.histogram("biases2", self.mdl.biases2)
         tf.summary.histogram("weights3", self.mdl.kernel3)

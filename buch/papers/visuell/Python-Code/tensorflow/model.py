@@ -15,7 +15,7 @@ class Model:
         
         
 
-    def build(self, x, y, gaborInput, features1):
+    def build(self, x, y, gaborInput, features1, filterBank=None):
         
         self.x = x
         
@@ -37,7 +37,15 @@ class Model:
                 outNorm = tf.nn.batch_normalization(out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
                 conv1 = tf.nn.relu(outNorm)
         else:
-            conv1 = self.x
+            # Convolutional Layer 1
+            with tf.name_scope('conv1'):   
+                # define kernel -> default values normally distributed
+                self.kernel1 = tf.Variable(filterBank, name='weights1', trainable=False, dtype=tf.float32)
+                stride = [1,1,1,1] # stride 1 for all directions
+                out = tf.nn.conv2d(self.x, self.kernel1, stride, padding='SAME')
+                mean1, var1 = tf.nn.moments(out, [0])
+                outNorm = tf.nn.batch_normalization(out, mean1, var1, None, None, variance_epsilon = varianceEpsilon)
+                conv1 = tf.nn.relu(outNorm)
 
         # Convolutional Layer2
         with tf.name_scope('conv2'):
