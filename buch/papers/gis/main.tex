@@ -296,10 +296,38 @@ Damit wird erzielt das die $y$-Achse mit der approximierten Frequenz $F_a$ skali
 \rhead{Abschnitt}
 In diesem Abschnitt wird behandelt wie die Auswertung von den vier Fehlsignalen angegangen wurde. 
 Ein Thema hier ist die Wahl des Wavelet und die Vorgehensweise während der Analyse. 
-Mit der Wahl des Wavelet kann bestimmt werden ob mehr Zeit- oder Frequenzauflösung gewünscht ist. 
-Der Grund dafür ist die Unschärferelation (Foreml.....) welche besagt das nicht gleichzeitig beide Auflösungen beliebig genau sein können.
+
+Mit der Wahl des Wavelet kann bestimmt werden ob mehr Zeit- $\Delta t$ oder Frequenzauflösung $\Delta f$ gewünscht ist. 
+Der Grund dafür ist die küpfmüllersche Unbestimmtheitsrelation (Unschärferelation der Nachrichtentechnik)
+\begin{equation}
+\Delta t \cdot \Delta f \geq k 
+\qquad\text{mit}\qquad
+k \in [0.5 ; 1]
+\end{equation}
+welche besagt das nicht gleichzeitig beide Auflösungen beliebig genau sein können.
+Der Wert von $k$ kann nur $0.5$ oder $1$ annehmen.
+
 Mit einem Haar-Wavelet erhält man eine sehr hohe Zeitauflösung wann ein Event stattgefunden hat und mit einem Morlet-Wavelet wird die Frequenzauflösung erhöht dafür wird der Preis von einer ungenaueren Zeitauflösung bezahlt.
-Veranschaulicht, mit zwei Graphen, ist die Unschärferelation in Abbildung ????.
+Veranschaulicht, mit zwei Graphen, ist die Unschärferelation in den Abbildungen \ref{fig:UnschRelMorl}\ref{fig:UnschRelHaar}. 
+Es sind die Wavelet-Transformationen von den Beiden Wavelets welche Oben zitierten sind.
+Gut ersichtlich ist beim Haar-Wavelet die gute Zeitauflösung welche sich durch die scharfen Kanten zeigt.
+Die Frequenzen jedoch sind über den Frequenzbereich verschmiert, diese Auflösung ist beim Morlet-Wavelet höher.
+\begin{figure}
+	\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{papers/gis/Bilder/UnschRelHaar}
+		\captionof{figure}{CWT Plott Haar}
+		\label{fig:UnschRelHaar}
+	\end{minipage}%
+	\begin{minipage}{.5\textwidth}
+	\centering
+	\includegraphics[width=.9\linewidth]{papers/gis/Bilder/UnschRelMorl}
+	\captionof{figure}{CWT Plott Morlet}
+	\label{fig:UnschRelMorl}
+\end{minipage}
+\end{figure}
+
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung} 
