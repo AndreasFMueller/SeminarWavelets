@@ -267,7 +267,8 @@ Der Startpunkt wird ermittelt in dem das erste Vektorelement im Datenvektor $abs
 Dazu wird auch der gesamte Datenvektor quadriert.
 Mit dem Quadrieren wird ein grösserer Signal-Rausch Abstand (SNR) erzielt.
 
-Um die CWT Muster aussagekräftiger darzustellen wird auf der $y$-Achse nicht die Dilatationsskalierungen angezeigt. Stattdessen wird ein Rückschluss auf die Frequenz abgeleitet. Diese darf jedoch nur als Approximation betrachtet werden, da in einer CWT die Frequenzauflösung nicht der Auflösung einer Fourier-Transformation entspricht. Die Frequenzapproximation 
+Um die CWT Muster aussagekräftiger darzustellen wird auf der $y$-Achse nicht die Dilatationsskalierungen angezeigt. Stattdessen wird ein Rückschluss auf die Frequenz abgeleitet. Diese darf jedoch nur als Approximation betrachtet werden, aufgrund der Unschärferelation (Referenz??) entspricht in einer CWT die Frequenzauflösung nicht der Auflösung einer Fourier-Transformation. 
+Die Frequenzapproximation 
 \begin{equation}
 F_a=\dfrac{F_c}{a}
 \end{equation}
@@ -293,9 +294,15 @@ Damit wird erzielt das die $y$-Achse mit der approximierten Frequenz $F_a$ skali
 
 \section{Auswertung kontinuierliche Wavelettransformation}
 \rhead{Abschnitt}
+In diesem Abschnitt wird behandelt wie die Auswertung von den vier Fehlsignalen angegangen wurde. 
+Ein Thema hier ist die Wahl des Wavelet und die Vorgehensweise während der Analyse. 
+Mit der Wahl des Wavelet kann bestimmt werden ob mehr Zeit- oder Frequenzauflösung gewünscht ist. 
+Der Grund dafür ist die Unschärferelation (Foreml.....) welche besagt das nicht gleichzeitig beide Auflösungen beliebig genau sein können.
+Mit einem Haar-Wavelet erhält man eine sehr hohe Zeitauflösung wann ein Event stattgefunden hat und mit einem Morlet-Wavelet wird die Frequenzauflösung erhöht dafür wird der Preis von einer ungenaueren Zeitauflösung bezahlt.
+Veranschaulicht, mit zwei Graphen, ist die Unschärferelation in Abbildung ????.
 
 \section{Schlussfolgerung}
-\rhead{Schlussfolgerung}
+\rhead{Schlussfolgerung} 
  
 \printbibliography[heading=subbibliography]
 \end{refsection}
