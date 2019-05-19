@@ -8,6 +8,36 @@
 \begin{refsection}
 \chapterauthor{Michael Schmid}
 
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=2pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\lstdefinestyle{mystyle}{
+	morekeywords={cwt,contourf,datetick}
+}
+
+
 \section{Einführung}
 \rhead{Einführung}
 
@@ -22,15 +52,48 @@ Nach der Einführung in die Theorie der Wavelets kam mir die Idee solche Wetterp
 In diesem Paper wird einerseits auf die theoretische Grundlage der Angewendeten Methoden sowie den besprochenen meteorologischen Phänomene zurückgegriffen und kurz erläutert. 
 Weiter wird auf den Prozess der eigentlichen Inhaltes des Papers vertieft eingegangen. Ein besonderes Augenmerk wird auf die allgemeine Vorgehensweise sowie deren Schwierigkeiten gelegt.
 \\
-\\
+
+
+
 
 \section{Wetterstation Seegräben}
 \rhead{Wetterstation Seegräben}
 
-Die Wetterstation Seegräben ist eine
+Die Wetterstation Seegräben ist eine privat geführte Wetterstation in der Gemeinde Seegräben im Kanton Zürich.
+
+Die Wetterstation ist aus einer DAVIS Vantage Pro2 6153 aufgebaut.
+Diese besteht aus einem Thermo- und  Hydrosensor, einem Windgeschwindigkeit und Richtungsmesser sowie einem Regenmesser. 
+Durch diese Sensoren werden folgende Daten aufgezeichnet:
+\\
+\\
+\\
+
+\begin{itemize}
+	\item Aussentemperatur
+	\item Luftfeuchtigkeit
+	\item Luftdruck
+	\item Windgeschwindigkeit
+	\item Windböen
+	\item Windrichtung
+	\item Regenmenge
+\end{itemize}
+
+Der Thermo- / Hydrosensor liegt zusammen mit dem Regenmengenmesser auf 2 Meter über dem Boden. Mit einem Abstand von rund 10 Meter zum nächsten Gebäude, werden optimale Messbedingungen geschaffen. Der Windmesser wurde am First des Gebäudes montiert. Mit einem Masten werden die Daten 1,5 Meter über dem First gemessen 
+
+Die Daten werden anschliessend mit einer Software von PC-Wetterstation.de weiterverarbeitet und auf eine rudiment\"aren Website Dargestellt. Mehr zur Verwendung der Wetterdaten im n\"achsten Kapitel
+
+
+
 
 \section{Datenaufarbeitung}
 \rhead{Datenaufarbeitung}
+Als n\"achster Schritt der Vorbereitung zur Wavelet Transformation, war die Aufbereitung der zur Verf\"ugung gestellten Daten der Wetterstation Seegr\"aben. Dazu musste erst analysiert werden wie die Daten auf der Website dargestellt werden.
+In der Sektion des Archiv auf der Website kann man die Wetterdaten im gew\"unschten Zeitraum tabellarisch darstellen lassen.
+Da f\"ur meine Anwendung eine M\"oglichst genaue Aufl\"osung der jeweiligen Daten erforderlich ist, mussten die Daten im Zeitraum von einem Tag dargestellt werden. Dies hatte zur Folge, dass man f\"ur jeden Tag ein Tabelle auf dem Archiv der Website \"offnen musste. Da mir die Zeit sowie auch die Lust fehlte jeden einzelnen Tag separat zu \"offnen und die Daten mittels "Copy und Paste" Verfahren in eine Excel-Tabelle einzuf\"ugen. War die Motivation sehr gross um eine Programm zu schreiben welche diese Aufgabe automatisieren sollte. Als Programmiersprache wurde hierf\"ur Python gewählt.
+Wie es so üblich ist mit Python, hat man das Wissen für zur Vollendung der Aufgabe nicht sogleich auswendig präsent, doch dank kurzen und gezielten Goolge abfragen sowie Besuchen des Stackoverflow Forums konnte das Wissen schnell angeeignet werden. Mit der Pandas Library und der Funktion "read\_html"\space konnten die Daten direkt mittel Aufruf aus dem Python Programm von der URL-Seite heruntergeladen werden.
+
+
+\lstinputlisting[language=Python,firstline=1,lastline=16,numbers=left,style = mystyle]{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/pictures/get_data.py}
 
 \section{Stetige Wavelet Transformation}
 \rhead{Stetige Wavelet Transformation}
