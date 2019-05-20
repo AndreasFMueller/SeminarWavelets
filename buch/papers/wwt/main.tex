@@ -69,15 +69,26 @@ Durch diese Sensoren werden folgende Daten aufgezeichnet:
 \\
 \\
 
+\begin{minipage}{0.5\textwidth}
 \begin{itemize}
 	\item Aussentemperatur
 	\item Luftfeuchtigkeit
 	\item Luftdruck
 	\item Windgeschwindigkeit
+
+\end{itemize}	
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{itemize}
 	\item Windböen
 	\item Windrichtung
 	\item Regenmenge
-\end{itemize}
+	\\
+	\\
+\end{itemize}	
+\end{minipage}
+\\
+\\
 
 Der Thermo- / Hydrosensor liegt zusammen mit dem Regenmengenmesser auf 2 Meter über dem Boden. Mit einem Abstand von rund 10 Meter zum nächsten Gebäude, werden optimale Messbedingungen geschaffen. Der Windmesser wurde am First des Gebäudes montiert. Mit einem Masten werden die Daten 1,5 Meter über dem First gemessen 
 
@@ -104,8 +115,12 @@ Da dies der Fall war, konnten die entsprechenden Link mittels einer einfachen Wh
 \newpage
 Folgend der essenzielle Ausschnitt aus dem Python Code:
 
-
-\lstinputlisting[language=Python,firstline=1,lastline=16,numbers=left,style = mystyle]{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/pictures/get_data.py}
+\begin{figure}[h]
+	\centering
+	\lstinputlisting[language=Python,firstline=1,lastline=16,numbers=left,style = mystyle]{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/pictures/get_data.py}
+	\caption{Python Codeausschnitt}
+	\label{fig:python-code}
+\end{figure}
 
 Die Daten konnten als nächster Schritt in einer Excel-Tabelle abgespeichert werden.
 Dort folgte der letzte feinschliff, dabei wurden alles überflüssigen Kopfzeilen und Statistiken entfernt.
@@ -121,19 +136,29 @@ Wie sich später herausstellte traten die fehlenden Tagen nicht zu den Zeitpunkt
 
 \subsection{Datendarstellung}
 Die Darstellung der gewonnen Daten konnten einfach mittels Matlab gemacht werden. Anbei die Plot der Rohdaten aus dem Jahre 2018, wobei nur jeder 10 Messpunkt geplotet wurde. Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen. 
-\\
-\\
-\input{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/temp2018.tex}
-\\
-\\
-\input{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/airp2018.tex}
-\\\\
-\input{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/wind2018.tex}
-\\
-\\
-\input{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/rain2018.tex}
-\\
-\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_temp_wwt.pdf}
+\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_airp_wwt.pdf}
+\caption{Rohdaten Temperatur und Luftdruck 2018}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_wind_wwt.pdf}
+	\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_rain_wwt.pdf}
+	\caption{Rohdaten Wind und Regen2018}
+\end{figure}
+
+\newpage
+\newpage
+
+töliwjfölsfs
+fds
+f
+dsfdsf
 
 \section{Stetige Wavelet-Transformation}
 \rhead{Stetige Wavelet-Transformation}
