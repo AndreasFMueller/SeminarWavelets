@@ -9,6 +9,7 @@
 \chapterauthor{Michael Schmid}
 
 
+
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -87,16 +88,62 @@ Die Daten werden anschliessend mit einer Software von PC-Wetterstation.de weiter
 
 \section{Datenaufarbeitung}
 \rhead{Datenaufarbeitung}
-Als n\"achster Schritt der Vorbereitung zur Wavelet Transformation, war die Aufbereitung der zur Verf\"ugung gestellten Daten der Wetterstation Seegr\"aben. Dazu musste erst analysiert werden wie die Daten auf der Website dargestellt werden.
+\subsection{Wetter-Archiv}
+Als n\"achster Schritt der Vorbereitung zur Wavelet Transformation, war die Aufbereitung der zur Verf\"ugung gestellten Daten der Wetterstation Seegr\"aben.
+Dazu musste erst analysiert werden wie die Daten auf der Website dargestellt werden.
 In der Sektion des Archiv auf der Website kann man die Wetterdaten im gew\"unschten Zeitraum tabellarisch darstellen lassen.
-Da f\"ur meine Anwendung eine M\"oglichst genaue Aufl\"osung der jeweiligen Daten erforderlich ist, mussten die Daten im Zeitraum von einem Tag dargestellt werden. Dies hatte zur Folge, dass man f\"ur jeden Tag ein Tabelle auf dem Archiv der Website \"offnen musste. Da mir die Zeit sowie auch die Lust fehlte jeden einzelnen Tag separat zu \"offnen und die Daten mittels "Copy und Paste" Verfahren in eine Excel-Tabelle einzuf\"ugen. War die Motivation sehr gross um eine Programm zu schreiben welche diese Aufgabe automatisieren sollte. Als Programmiersprache wurde hierf\"ur Python gewählt.
-Wie es so üblich ist mit Python, hat man das Wissen für zur Vollendung der Aufgabe nicht sogleich auswendig präsent, doch dank kurzen und gezielten Goolge abfragen sowie Besuchen des Stackoverflow Forums konnte das Wissen schnell angeeignet werden. Mit der Pandas Library und der Funktion "read\_html"\space konnten die Daten direkt mittel Aufruf aus dem Python Programm von der URL-Seite heruntergeladen werden.
+\subsection{Datenerfassung}
+Da f\"ur meine Anwendung eine M\"oglichst genaue Aufl\"osung der jeweiligen Daten erforderlich ist, mussten die Daten im Zeitraum von einem Tag dargestellt werden. 
+Dies hatte zur Folge, dass man f\"ur jeden Tag ein Tabelle auf dem Archiv der Website \"offnen musste. 
+Da mir die Zeit sowie auch die Lust fehlte jeden einzelnen Tag separat zu \"offnen und die Daten mittels "Copy und Paste" Verfahren in eine Excel-Tabelle einzuf\"ugen, War die Motivation gross  ein Programm zu schreiben welche diese Aufgabe automatisieren sollte.
+Als Programmiersprache wurde hierf\"ur Python gewählt.
+Wie es so üblich ist mit Python, hat man das Wissen für zur Vollendung der Aufgabe nicht sogleich auswendig präsent, doch dank kurzen und gezielten Goolge abfragen sowie Besuchen des Stackoverflow Forums konnte das Wissen schnell angeeignet werden.
+Mit der Pandas Library und der Funktion "read\_html"\space konnten die Daten direkt mittel Aufruf aus dem Python Programm von der URL-Seite heruntergeladen werden.
+Entscheidend für das Gelingen dieser Teilaufgabe war, dass die URL-Links der einzelnen Tage jeweils regelmässig aufgebaut sind.
+Da dies der Fall war, konnten die entsprechenden Link mittels einer einfachen While-Schleife zusammengesetzt werden.
+\newpage
+Folgend der essenzielle Ausschnitt aus dem Python Code:
 
 
 \lstinputlisting[language=Python,firstline=1,lastline=16,numbers=left,style = mystyle]{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/pictures/get_data.py}
 
-\section{Stetige Wavelet Transformation}
-\rhead{Stetige Wavelet Transformation}
+Die Daten konnten als nächster Schritt in einer Excel-Tabelle abgespeichert werden.
+Dort folgte der letzte feinschliff, dabei wurden alles überflüssigen Kopfzeilen und Statistiken entfernt.
+
+\subsubsection{Unregelmässigkeiten der Wetterstation}
+Bei der Datenerfassung durch das eben beschriebene Python Programm wurden einige Unregelmässigkeiten er Wetterstation Seegräben festgestellt.
+Das Programm wird jeweils durch einen Fehler abgebrochen, wenn der angegebene Link nicht abrufbar ist. 
+So fiel mir auf, dass unregelmässig auf das Jahr verteilt, gewisse Daten von Tagen fehlen, sprich der Link ist nicht abrufbar.
+Wenn man manuell auf der Website nach diesem Tag sucht, wird man auch nicht fündig.
+Dies trat teilweise sogar in Abschnitten von mehreren Tagen auf.
+Wie sich später herausstellte traten die fehlenden Tagen nicht zu den Zeitpunkten auf welche mich interessierten.
+\newpage
+
+\subsection{Datendarstellung}
+Die Darstellung der gewonnen Daten konnten einfach mittels Matlab gemacht werden. Anbei die Plot der Rohdaten aus dem Jahre 2018, wobei nur jeder 10 Messpunkt geplotet wurde. Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen. 
+\\
+\\
+\input{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/temp2018.tex}
+\\
+\\
+\input{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/airp2018.tex}
+\\\\
+\input{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/wind2018.tex}
+\\
+\\
+\input{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/rain2018.tex}
+\\
+\\
+
+\section{Stetige Wavelet-Transformation}
+\rhead{Stetige Wavelet-Transformation}
+
+Die Theoretischen Grundlagen rund um die Stetige Wavelet-Transformation wurde im Kapitel 4 genaustens erläutert. 
+In diesem Abschnitt der Seminararbeit wird öfters auf die Theorie des angesprochene Kapitel 4 referenziert ohne diese weiter zu erläutern. 
+Für die genaue Untersuchung vom Signalen, wobei möglichst viele Information gewonnen werden sollten, eignet sich die Stetige Wavelet-Transformation (folgend noch kurz cwt, aus dem Englishen continuous wavelet transform)
+ideal. 
+Regelmässig auftretende Frequenzen können dank der cwt gefunden und zusätzlich auch einem Zeitraum zugeteilt werden.
+
 
 \section{Analyse von Wettereignissen}
 \rhead{Analyse von Wetterereignissen}
