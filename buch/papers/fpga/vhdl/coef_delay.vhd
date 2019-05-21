@@ -70,7 +70,7 @@ architecture rtl of coef_delay is
             variable temp : delays_type;
         begin
             forLoop: for i in 0 to nBranch - 1 loop
-                temp(i) := ((2**nBranch)+nBranch-1) - ((2**(i+1))+((i))) + nBranch;
+                temp(i) := ((2**nBranch)+nBranch-1) - ((2**(i+1))+((i))) + nBranch + (2**i) +1-i;
             end loop;
             return temp;
         end function rdy_delays_init;

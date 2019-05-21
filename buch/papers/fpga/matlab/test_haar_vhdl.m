@@ -1,8 +1,8 @@
-L = 3000;
+L = 1500;
 
 
 %% Define input signal
-t = 1:L;
+t = 0:(L-1);
 x = sin(2*pi*t/500);% + 1.2*cos(2*pi*t/40);
 
 
@@ -12,8 +12,18 @@ x = int16(floor(x*2^15*0.1)); %quantize x
 % x(1:2000) = zeros(1,2000);
 % x(501+348:1000+348) = [(1:250) (250:-1:1)]/250;
 
+%% upsample
+
+rdy_in = int16(ones(1, length(x)));
+
+x2 = repelem(x, 2);
+t = 0:(2*L)-1;
+rdy_in = upsample(rdy_in, 2);
+
+
 %% Save for vhdl simulation
-toVhdlRecord(x, 'D:/Temp/xVector.hex')
+toVhdlRecord(x2,      'D:/Temp/xVector.hex')
+toVhdlRecord(rdy_in, 'D:/Temp/rdy_inVector.hex')
 
 %% Forward single wavelet transform int16
 len = ceil(length(x)/2);
@@ -39,6 +49,7 @@ for i = 1:len
 end
 y = yy;
 
+
 %% get data from vhdl simulaton
 sVhdl = fromVhdlRecord('D:/Temp/sVector.hex');
 dVhdl = fromVhdlRecord('D:/Temp/dVector.hex');
@@ -52,9 +63,14 @@ sVhdlShort = extractCoefFromStream( sVhdl, 1, -((2^1) +1) );
 
 yExtended = delayRep( y , 1, (2^1)+1, L);
 
+
+dExtended = repelem(dExtended, 2);
+sExtended = repelem(sExtended, 2);
+yExtended = repelem(yExtended, 2);
+
 %% Plot coefficients short
 figure(1)
-plot(t, x, 'k-'); hold on;
+plot(t, x2, 'k-'); hold on;
 
 plot(t, dVhdl, 'go');
 plot(t, dExtended, 'g-');
@@ -62,8 +78,8 @@ plot(t, dExtended, 'g-');
 plot(t, sVhdl, 'bo');
 plot(t, sExtended, 'b-');
 
-plot(t, yVhdl, 'ko');
-plot(t, yExtended, 'kx'); hold off;
+plot(t, yVhdl, 'ro');
+plot(t, yExtended, 'rx'); hold off;
 
 legend({'x', 'dVhdl', 'd', 'sVhdl', 's', 'yVhdl', 'y'})
 

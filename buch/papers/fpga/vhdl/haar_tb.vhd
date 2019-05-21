@@ -23,6 +23,7 @@ architecture rtl of haar_tb is
 	signal clk : std_logic := '0';
 	signal rst : std_logic := '1';
 	
+	signal rdy_in_vector : ram_t;
 	signal x_vector : ram_t;
 	signal s_vector : ram_t;
 	signal d_vector : ram_t;
@@ -115,10 +116,12 @@ begin
 	end process;
 
 	test_stimuli: process
+	variable rdy_in2 : std_logic_vector(15 downto 0);
 	begin
 	   
 	    report "Loading file";
 	    x_vector <= readFromFile("D:/Temp/xVector.hex");
+	    rdy_in_vector <= readFromFile("D:/Temp/rdy_inVector.hex");
 	   
 	    rdy_in <= '0';
 	    rdy_in_inv <= '0';
@@ -127,19 +130,20 @@ begin
 	   
 	    wait for clk_period*20;
 	   
-	    rdy_in <= '1';
-	   
 		for i in 0 to DEPTH-1 loop
 		    t <= i;
 			x <= signed(x_vector(i));
+			rdy_in2 := (rdy_in_vector(i));
+			rdy_in <= rdy_in2(0);
+			rdy_in_inv <= rdy_in2(0);
 			wait for clk_period/2;
 			s_vector(i) <= std_logic_vector(s);
 			d_vector(i) <= std_logic_vector(d);
 			y_vector(i) <= std_logic_vector(y);
-			rdy_out_vector(i) <= std_logic_vector(rdy_out);
+			rdy_out_vector(i) <= ("000000000000000" & rdy_out);
 			wait for clk_period/2;
 			
-			rdy_in_inv <= '1';
+			
 		end loop;
 		report "test finished";
 		test_ok <= writeToFile(s_vector, "D:/Temp/sVector.hex");

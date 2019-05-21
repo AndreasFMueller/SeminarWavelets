@@ -182,7 +182,7 @@ sExtended = delayRep( s , 2^i, 9+(2^4)-i, L);
 
 %% Plot 
 figure(3)
-subplot(2,1,1)
+ax1 = subplot(2,1,1);
 
 plot(t, dsVhdlDelayed{1}, 'gx'); hold on;
 plot(t, dsExtended{1}, 'g-');
@@ -212,6 +212,8 @@ plot(t, rdy_sigs(3,:), 'ro');
 plot(t, rdy_sigs(4,:), 'co'); hold off;
 xlim([0 100])
 ylim([0 5])
+grid
+linkaxes([ax1, ax2], 'x')
 title('ready signals')
 
 %% Plot 
@@ -222,7 +224,7 @@ plot(t, x, 'k-'); hold on;
 plot(t, yVhdl, 'mo');
 plot(t, yExtended, 'm-'); hold off;
 
-legend({'x', 'y', 'yVhdl'})
+legend({'x',  'yVhdl', 'y'})
 
 xlim([0 100])
 
