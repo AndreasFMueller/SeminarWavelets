@@ -60,7 +60,7 @@ Weiter wird auf den Prozess der eigentlichen Inhaltes des Papers vertieft eingeg
 \section{Wetterstation Seegräben}
 \rhead{Wetterstation Seegräben}
 
-Die Wetterstation Seegräben ist eine privat geführte Wetterstation in der Gemeinde Seegräben im Kanton Zürich.
+Die Wetterstation Seegräben ist eine privat geführte Wetterstation in der Gemeinde Seegräben im Kanton Zürich\cite{online:wss}.
 
 Die Wetterstation ist aus einer DAVIS Vantage Pro2 6153 aufgebaut.
 Diese besteht aus einem Thermo- und  Hydrosensor, einem Windgeschwindigkeit und Richtungsmesser sowie einem Regenmesser. 
@@ -69,26 +69,17 @@ Durch diese Sensoren werden folgende Daten aufgezeichnet:
 \\
 \\
 
-\begin{minipage}{0.5\textwidth}
-\begin{itemize}
-	\item Aussentemperatur
-	\item Luftfeuchtigkeit
-	\item Luftdruck
-	\item Windgeschwindigkeit
 
-\end{itemize}	
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
 \begin{itemize}
-	\item Windböen
-	\item Windrichtung
-	\item Regenmenge
-	\\
-	\\
+	\item \textbf{Aussentemperatur} in Grad Celcius
+	\item \textbf{Relative Luftfeuchtigkei} in Prozent
+	\item \textbf{Luftdruck} in hPa
+	\item \textbf{Windgeschwindigkeit} in Km/h gemittelt über 5 Minuten
+	\item \textbf{Windböen} in Km/h
+	\item \textbf{Windrichtung} nach Himmelsrichtung
+	\item \textbf{Regenmenge} in l/mm²
 \end{itemize}	
-\end{minipage}
-\\
-\\
+
 
 Der Thermo- / Hydrosensor liegt zusammen mit dem Regenmengenmesser auf 2 Meter über dem Boden. Mit einem Abstand von rund 10 Meter zum nächsten Gebäude, werden optimale Messbedingungen geschaffen. Der Windmesser wurde am First des Gebäudes montiert. Mit einem Masten werden die Daten 1,5 Meter über dem First gemessen 
 
@@ -114,10 +105,9 @@ Entscheidend für das Gelingen dieser Teilaufgabe war, dass die URL-Links der ei
 Da dies der Fall war, konnten die entsprechenden Link mittels einer einfachen While-Schleife zusammengesetzt werden.
 \newpage
 Folgend der essenzielle Ausschnitt aus dem Python Code:
-
 \begin{figure}[h]
 	\centering
-	\lstinputlisting[language=Python,firstline=1,lastline=16,numbers=left,style = mystyle]{/home/nunigan/Documents/MathSem/SeminarWavelets/buch/papers/wwt/pictures/get_data.py}
+	\lstinputlisting[language=Python,firstline=1,lastline=16,numbers=left,style = mystyle]{papers/wwt/code/get_data.py}
 	\caption{Python Codeausschnitt}
 	\label{fig:python-code}
 \end{figure}
@@ -132,48 +122,109 @@ So fiel mir auf, dass unregelmässig auf das Jahr verteilt, gewisse Daten von Ta
 Wenn man manuell auf der Website nach diesem Tag sucht, wird man auch nicht fündig.
 Dies trat teilweise sogar in Abschnitten von mehreren Tagen auf.
 Wie sich später herausstellte traten die fehlenden Tagen nicht zu den Zeitpunkten auf welche mich interessierten.
+
 \newpage
 
 \subsection{Datendarstellung}
 Die Darstellung der gewonnen Daten konnten einfach mittels Matlab gemacht werden. Anbei die Plot der Rohdaten aus dem Jahre 2018, wobei nur jeder 10 Messpunkt geplotet wurde. Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen. 
-
 \begin{figure}[h]
-\centering
-\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_temp_wwt.pdf}
-\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_airp_wwt.pdf}
-\caption{Rohdaten Temperatur und Luftdruck 2018}
+	\centering
+	\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_temp_wwt.pdf}
+	\caption{Rohdaten Temperatur 2018}
+	\label{fig:rawdata_temp_airp}
+	\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_airp_wwt.pdf}
+	\caption{Rohdaten Luftdruck 2018}
+	\label{fig:rawdata_temp_airp}
+	\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_wind_wwt.pdf}
+	\caption{Rohdaten Wind 2018}
+	\label{fig:rawdata_temp_airp}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	
+	\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_rain_wwt.pdf}
+	\caption{Rohdaten Regen 2018}
+	\label{fig:rawdata_wind_rain}
 \end{figure}
 
+\newpage
+\section{Stetige Wavelet-Transformation}
+\rhead{Stetige Wavelet-Transformation}
+\subsection{Thoretische Grundlagen}
+Die Theoretischen Grundlagen rund um die Stetige Wavelet-Transformation wurde im Kapitel \ref{chapter:cwt} genaustens erläutert. 
+In diesem Abschnitt der Seminararbeit wird öfters auf die Theorie des angesprochene Kapitel \ref{chapter:cwt} referenziert ohne diese weiter zu erläutern. 
+Für die genaue Untersuchung vom Signalen, wobei möglichst viele Information gewonnen werden sollten, eignet sich die Stetige Wavelet-Transformation (folgend noch kurz \textit{cwt} aus dem Englischen "continuous wavelet transform")
+ideal. 
+Regelmässig auftretende Frequenzen können dank der \textit{cwt} gefunden und zusätzlich auch einem Zeitraum zugeteilt werden.
+Darin besteht der Vorteil gegenüber der Fourier-Transfomration, denn dort kann man zwar aussagen, dass gewisse Frequenzen auftreten, aber nicht wann diese auftraten.
+In 
+\begin{equation}
+\mathcal{W}f (a,b)
+=
+\langle f,\psi_{a,b}\rangle
+=
+\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty f(t)\,\overline{
+	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt
+\label{eq:cwt}
+\end{equation}
+
+sieht man die Grundlegende Formel der \textit{cwt}. Wobei das $\psi_{a,b}$ für das Mutter-Wavelet steht, welches mit dem Koeffizienten $a$ skaliert und mit $b$ verschoben wird.
+
+Als Mutter-Wavelet wurde das analytische Gabor-Wavelet verwendet.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{papers/wwt/images/gabor.pdf}
+\caption{Analytisches Gabor Mutter-Wavelet}
+\label{fig:gabor_plot}
+\end{figure}
+
+\newpage
+\subsection{Berechung mit Matlab}
+Die Berechnung der \textit{cwt} wurde mit der numerischen Berechnugs-Software Matlab durchgeführt.
+Die essenzielle Funktion dabei war die cwt()-Funktion. Die Funktion arbeitete bei korrekter Parametrisierung auch wie gewünscht. Falls man jedoch genauer verstehen möchte wie die Funktion genau rechnet, muss man sich mit einer eher dürftigen Dokumentation herumschlagen. Glücklicherweise funktionierte die Funktion für meine Anwendung einwandfrei. Folgende Parameter wurden verwendet
+\lstinputlisting[language=Matlab,firstline=1,lastline=1,  numbers=left, style = mystyle]{papers/wwt/code/matlab.m}
+\label{fig:matlab_code_cwt}
+wobei Matlab das Gabor-Wavelet als 'amor' bezeichnet, mit 'VoicesPerOctave' konnte die Genauigkeit erhöht werden und die Variabel 'fs' beschreibt die Abtastfrequenz der Messsignale.
+Bei den Rückgabewerte werden die Wavelet-Werten in 'wt' als komplexe Matrix und die approximierten Frequenzen werden in 'F' abgespeichert.
+
+Anstatt den Skalierungsfaktor $a$ in \ref{eq:cwt}, wird eine approximierte Frequenz berechnet und zurückgegeben.
+Für jeden verwendeten Skalierungsfaktor $a$ wird eine Sinuskurve gesucht, welche am ehesten der Frequenz des entsprechenden Wavelet übereinstimmt. Siehe in \ref{fig:centerf} ein Beispiel mit einem Daubechies Wavelet der Nummer 7.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{papers/wwt/images/centerf.pdf}
+	\caption{Approximierte Frequenz eines db7-Wavelet}
+	\label{fig:centerf}
+\end{figure}
+
+
+\newpage
+\subsection{Verifikation approximierte Frequenz}
+Diese approximierte Frequenz konnte man mit den geeigneten Daten aus der aktuellen Anwendung der Wetterdaten sehr gut verifizieren.
+Der Temperaturverlauf während in einem Hochdruckgebiet ist sehr regelmässig und man sollte den 24 Stunden Tagesverlauf exakt erkennen.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_wind_wwt.pdf}
-	\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_rain_wwt.pdf}
-	\caption{Rohdaten Wind und Regen2018}
+	\includegraphics[width=1\textwidth]{papers/wwt/images/zoom.png}
+	\caption{Temperaturverlauf und entsp. cwt}
+	\label{fig:cwt_zoom}
 \end{figure}
 
-\newpage
-\newpage
+Die Ausgelesene Frequenz beträgt $f = 1.16\cdot10^{-5} \,\text{Hz}$, welches umgerechnet einer Periodendauer von $T = 86206.897\,\text{s}\approx 23\,\text{h }56\,\text{min } 47\,\text{s}$ entspricht.
+Damit kann die Frequenz im Rückgabewert der Matlab-Funktion als sehr genau betrachtet werden. Dabei darf nicht vergessen werden, dass nur alle 5 Minuten einen Datenpunkt aufgenommen wurde, und somit die Abweichung zu 24 Stunden kleiner ist als die Auflösung.
+Weiter kommt hinzu, dass jeder Tag zu der Jahreszeit im Frühling ca. 2 Minuten kürzer ist als der jeweils Vorgehende.
 
-töliwjfölsfs
-fds
-f
-dsfdsf
 
-\section{Stetige Wavelet-Transformation}
-\rhead{Stetige Wavelet-Transformation}
-
-Die Theoretischen Grundlagen rund um die Stetige Wavelet-Transformation wurde im Kapitel 4 genaustens erläutert. 
-In diesem Abschnitt der Seminararbeit wird öfters auf die Theorie des angesprochene Kapitel 4 referenziert ohne diese weiter zu erläutern. 
-Für die genaue Untersuchung vom Signalen, wobei möglichst viele Information gewonnen werden sollten, eignet sich die Stetige Wavelet-Transformation (folgend noch kurz cwt, aus dem Englishen continuous wavelet transform)
-ideal. 
-Regelmässig auftretende Frequenzen können dank der cwt gefunden und zusätzlich auch einem Zeitraum zugeteilt werden.
 
 
 \section{Analyse von Wettereignissen}
 \rhead{Analyse von Wetterereignissen}
+Aufgrund der Kenntnissen rund um die \textit{cwt} wurde die Annahme getroffen, dass signifikante Frequenzereignisse gut detektiert werden können. Bei einer typischen Sturmfront, welche öfter als Wintersturm in den Monaten Dezember und Januar auftreten, zeigten sich bei der Konsultation der Wetterdaten rapide Temperatur und Luftdruckwechsel, sowie ein erhöhtes Windaufkommen.
+Das Ziel der Analyse war, solche Ereignisse mittels einer geeigneten \textit{cwr} zu detektieren.
+\subsection{Sturmsaison 2018}
+Bereits bekannt war, dass in der Sturmsaison im Jahre 2018 einige Winterstürme aufgetreten sind. So wurde bei der Analyse nur auf diese Periode das Augenmerk gelegt.
 
-\subsection{Sturmtief}
+
+
 \rhead{Sturmtief}
 
 

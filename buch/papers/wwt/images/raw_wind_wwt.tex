@@ -9,17 +9,19 @@
 \usepackage{txfonts}
 \usepackage{pgfplots}
 \usepackage{csvsimple}
-\usetikzlibrary{arrows,intersections,math}
+\usetikzlibrary{arrows,intersections,math,backgrounds}
 \definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
 \begin{document}
 
 
 \begin{tikzpicture}[>=latex,scale=0.70, remember picture]]
-\draw[fill=orange, draw=white] (13,0.8) rectangle (14,0);
+\draw[fill=white, draw=white] (13,0.8) rectangle (14,0.38);
+
+\begin{scope}[on background layer]
 
 \begin{axis}[%
 width=4.61in,
-height=2in,
+height=1.1in,
 at={(0.758in,0.481in)},
 scale only axis,
 xmin=737061,
@@ -10464,5 +10466,6 @@ table[row sep=crcr]{%
 	737425.982638889	1.3\\
 };
 \end{axis}
+\end{scope}
 \end{tikzpicture}%
 \end{document}
