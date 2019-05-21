@@ -107,7 +107,7 @@ begin
          clk => clk,
          rst => rst,
          x => s_in,
-         rdy_in => rdys_in(nBranch-1),
+         rdy_in => '0',
 
          y => s_out,
          rdy_out => open
