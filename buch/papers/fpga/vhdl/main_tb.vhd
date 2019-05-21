@@ -5,10 +5,10 @@ use IEEE.numeric_std.all;
 library work;
 use work.file_util.all;
 
-entity coef_delay_tb is
+entity main_tb is
 end entity;
 
-architecture rtl of coef_delay_tb is
+architecture rtl of main_tb is
 	constant clk_period : time := 0.01 us;
 	
     signal test_ok : boolean := false;
