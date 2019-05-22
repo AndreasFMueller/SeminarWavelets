@@ -71,7 +71,7 @@ end
 sExtended = delayRep( s , 2^i, -1 + (2^i)+i, L);
 sVhdlShort = extractCoefFromStream( sVhdl, i, -((2^i) +i) );
 
-yExtended = delayRep( y , 1, (2^1)+1, L);
+yExtended = delayRep( y , 1, 25, L);
 
 %% Plot coefficients short
 figure(10)
@@ -153,12 +153,12 @@ for i = 1:N+2
 end
 hold off;
 
-% assert(meanDiffs(1) == 0, 'd0 is wrong');
-% assert(meanDiffs(2) == 0, 'd1 is wrong');
-% assert(meanDiffs(3) == 0, 'd2 is wrong');
-% assert(meanDiffs(4) == 0, 'd3 is wrong');
-% assert(meanDiffs(5) == 0, 's is wrong');
-% assert(meanDiffs(6) == 0, 'y is wrong');
+assert(meanDiffs(1) == 0, 'd0 is wrong');
+assert(meanDiffs(2) == 0, 'd1 is wrong');
+assert(meanDiffs(3) == 0, 'd2 is wrong');
+assert(meanDiffs(4) == 0, 'd3 is wrong');
+assert(meanDiffs(5) == 0, 's is wrong');
+assert(meanDiffs(6) == 0, 'y is wrong');
 
 
 %% Delay chain
@@ -210,7 +210,7 @@ plot(t, rdy_sigs(1,:), 'go'); hold on;
 plot(t, rdy_sigs(2,:), 'bo');
 plot(t, rdy_sigs(3,:), 'ro');
 plot(t, rdy_sigs(4,:), 'co'); hold off;
-xlim([0 100])
+xlim([0 200])
 ylim([0 5])
 grid
 linkaxes([ax1, ax2], 'x')
@@ -225,7 +225,4 @@ plot(t, yVhdl, 'mo');
 plot(t, yExtended, 'm-'); hold off;
 
 legend({'x',  'yVhdl', 'y'})
-
 xlim([0 100])
-
-

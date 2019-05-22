@@ -134,8 +134,8 @@ begin
 		    t <= i;
 			x <= signed(x_vector(i));
 			rdy_in2 := (rdy_in_vector(i));
+			rdy_in_inv <= rdy_in;
 			rdy_in <= rdy_in2(0);
-			rdy_in_inv <= rdy_in2(0);
 			wait for clk_period/2;
 			s_vector(i) <= std_logic_vector(s);
 			d_vector(i) <= std_logic_vector(d);

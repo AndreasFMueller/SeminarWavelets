@@ -54,7 +54,7 @@ begin
   begin
 	if rst = '1' then
         y_int <= (others => '0');
-		state <= '0';
+		state <= '1';
 	elsif rising_edge(clk) then
         y_int <= y_int_next;
 		state <= state_next;

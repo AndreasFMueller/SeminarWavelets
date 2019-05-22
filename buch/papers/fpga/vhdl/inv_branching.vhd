@@ -27,6 +27,24 @@ architecture rtl of inv_branching is
 	signal ds_int : signed((nBranch*n)-1 downto 0);
 	signal ss_int : signed((nBranch*n)-1 downto 0);
 	
+	
+	signal d0 : signed(n-1 downto 0);
+	signal d1 : signed(n-1 downto 0);
+	signal d2 : signed(n-1 downto 0);
+	signal d3 : signed(n-1 downto 0);
+	
+	signal s0 : signed(n-1 downto 0);
+	signal s1 : signed(n-1 downto 0);
+	signal s2 : signed(n-1 downto 0);
+	signal s3 : signed(n-1 downto 0);
+	
+	signal y0 : signed(n-1 downto 0);
+	signal y1 : signed(n-1 downto 0);
+	signal y2 : signed(n-1 downto 0);
+	signal y3 : signed(n-1 downto 0);
+	
+	
+	
 	signal ys_int : signed((nBranch*n)-1 downto 0);
 	
 	component inv_haar is
@@ -47,12 +65,27 @@ architecture rtl of inv_branching is
 	
 begin
   
-  rdys_int <= (rdys_in(nBranch-1-1 downto 0) & "1");
+  rdys_int <= rdys_in;
   
   ds_int <= ds;
-  ss_int <= s & ys_int((nBranch*n) - 1 downto n);
+  ss_int <= s & ys_int((nBranch*n) - 1 downto n); -- replace 0 with s
   
   y <= ys_int(n - 1 downto 0);
+  
+  d0 <= ds_int((0*n) + n - 1 downto 0*n);
+  d1 <= ds_int((1*n) + n - 1 downto 1*n);
+  d2 <= ds_int((2*n) + n - 1 downto 2*n);
+  d3 <= ds_int((3*n) + n - 1 downto 3*n);
+  
+  s0 <= ss_int((0*n) + n - 1 downto 0*n);
+  s1 <= ss_int((1*n) + n - 1 downto 1*n);
+  s2 <= ss_int((2*n) + n - 1 downto 2*n);
+  s3 <= ss_int((3*n) + n - 1 downto 3*n);
+  
+  y0 <= ys_int((0*n) + n - 1 downto 0*n);
+  y1 <= ys_int((1*n) + n - 1 downto 1*n);
+  y2 <= ys_int((2*n) + n - 1 downto 2*n);
+  y3 <= ys_int((3*n) + n - 1 downto 3*n);
   
   instances : for i in 0 to nBranch-1 generate
       inv_haar_n : inv_haar
