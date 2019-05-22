@@ -6,5 +6,8 @@ function [ out ] = rdy2sig( rdy , N)
     for i = 1:N
         out(i,:) = (bitand(rdy, 2^(i-1)) > 0)*i;
     end
+    
+    out(out == 0) = NaN;
+    out = out -1;
 end
 

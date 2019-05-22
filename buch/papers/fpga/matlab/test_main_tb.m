@@ -1,9 +1,19 @@
 L = 3000;
 N = 4;
 
+
+x_lim = 250;
+
 %% Define input signal
 t = 1:L;
-x = sin(2*pi*t/128);% + 1.2*cos(2*pi*t/40); %500
+
+x = zeros(1, L);
+
+
+x(1:64) = sin(2*pi*[0:64-1]/64);% + 1.2*cos(2*pi*t/40); %500
+
+x(100:150) = [1:51] / 50;
+x(150:200) = [50:-1:0]/50;
 
 % x = x+(t/1000);
 
@@ -91,35 +101,34 @@ plot(s); hold off;
 legend({'d0 vhdl', 'd0', 'd1vhdl', 'd1', 'd2vhdl', 'd2', 'd3vhdl', 'd3', 's', 'svhdl'})
 title('coefficients short')
 
-xlim([1 100])
+xlim([1 x_lim])
 
 %% Plot 
-figure(1)
+fig = figure(1);
 ax1 =  subplot(2,1,1);
 
 plot(t, x, 'k-'); hold on;
 
-plot(t, dsVhdl{1}, 'go');
+plot(t, dsVhdl{1}, 'g.');
 plot(t, dsExtended{1}, 'g-');
 
-plot(t, dsVhdl{2}, 'bo');
+plot(t, dsVhdl{2}, 'b.');
 plot(t, dsExtended{2}, 'b-');
 
-plot(t, dsVhdl{3}, 'ro');
+plot(t, dsVhdl{3}, 'r.');
 plot(t, dsExtended{3}, 'r-');
 
-plot(t, dsVhdl{4}, 'co');
+plot(t, dsVhdl{4}, 'c.');
 plot(t, dsExtended{4}, 'c-');
 
-plot(t, rdy2sig(rdysVhdl, 4)+100, 'o');
-
-plot(t, sVhdl, 'mo');
+plot(t, sVhdl, 'm.');
 plot(t, sExtended, 'm-'); hold off;
 
 legend({'x', 'd0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's', 'sVhdl'})
-title('coefficients extended')
+title('Coefficients')
 
-xlim([0 100])
+xlim([0 x_lim])
+grid
 
 ax2 = subplot(2,1,2);
 rdy_sigs = rdy2sig(rdysVhdl,4);
@@ -127,11 +136,18 @@ plot(t, rdy_sigs(1,:), 'go'); hold on;
 plot(t, rdy_sigs(2,:), 'bo');
 plot(t, rdy_sigs(3,:), 'ro');
 plot(t, rdy_sigs(4,:), 'co'); hold off;
-xlim([0 100])
-ylim([0 5])
-title('ready signals')
+
+yticks(0:3)
+yticklabels({'rdy_0' 'rdy_1' 'rdy_2' 'rdy_3'})
+
+xlim([0 x_lim])
+ylim([-0.5 3.5])
+title('Ready signals')
+grid
 
 linkaxes([ax1, ax2], 'x')
+subplotRatios(ax1, ax2)
+saveFig(fig, "coefs")
 
 %% calc difference
 diffs = cell(1, N+2);
@@ -146,12 +162,12 @@ diffs{i+2} = yVhdl - yExtended;
 meanDiffs(i+2) = mean(abs(diffs{i+2}));
 
 %% Plot diffs
-figure(2)
-title('Differences')
-for i = 1:N+2
-   plot(diffs{i}); hold on;
-end
-hold off;
+% figure(2)
+% title('Differences')
+% for i = 1:N+2
+%    plot(diffs{i}); hold on;
+% end
+% hold off;
 
 assert(meanDiffs(1) == 0, 'd0 is wrong');
 assert(meanDiffs(2) == 0, 'd1 is wrong');
@@ -181,28 +197,30 @@ end
 sExtended = delayRep( s , 2^i, 9+(2^4)-i, L);
 
 %% Plot 
-figure(3)
+fig = figure(3);
 ax1 = subplot(2,1,1);
 
-plot(t, dsVhdlDelayed{1}, 'gx'); hold on;
+plot(t, x, 'k-'); hold on;
+
+plot(t, dsVhdlDelayed{1}, 'g.');
 plot(t, dsExtended{1}, 'g-');
 
-plot(t, dsVhdlDelayed{2}, 'bx');
+plot(t, dsVhdlDelayed{2}, 'b.');
 plot(t, dsExtended{2}, 'b-');
 
-plot(t, dsVhdlDelayed{3}, 'rx');
+plot(t, dsVhdlDelayed{3}, 'r.');
 plot(t, dsExtended{3}, 'r-');
 
-plot(t, dsVhdlDelayed{4}, 'cx');
+plot(t, dsVhdlDelayed{4}, 'c.');
 plot(t, dsExtended{4}, 'c-');
 
-plot(t, sVhdlDelayed, 'mx');
+plot(t, sVhdlDelayed, 'm.');
 plot(t, sExtended, 'm-'); hold off;
 
-legend({'d0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's', 'sVhdl'})
-title('coefficients extended')
-
-xlim([0 100])
+legend({'x' 'd0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's', 'sVhdl'})
+title('Coefficients delayed')
+xlim([0 x_lim])
+grid
 
 ax2 = subplot(2,1,2);
 rdy_sigs = rdy2sig(rdysVhdlDelayed,4);
@@ -210,19 +228,27 @@ plot(t, rdy_sigs(1,:), 'go'); hold on;
 plot(t, rdy_sigs(2,:), 'bo');
 plot(t, rdy_sigs(3,:), 'ro');
 plot(t, rdy_sigs(4,:), 'co'); hold off;
-xlim([0 200])
-ylim([0 5])
+xlim([0 x_lim])
+ylim([-0.5 3.5])
+yticks(0:3)
+yticklabels({'rdy_0' 'rdy_1' 'rdy_2' 'rdy_3'})
 grid
 linkaxes([ax1, ax2], 'x')
-title('ready signals')
+title('Ready signals delayed')
+subplotRatios(ax1, ax2)
+
+saveFig(fig, "coefs_delayed")
 
 %% Plot 
-figure(4)
+fig = figure(4);
 
 plot(t, x, 'k-'); hold on;
 
-plot(t, yVhdl, 'mo');
+plot(t, yVhdl, 'm.');
 plot(t, yExtended, 'm-'); hold off;
 
 legend({'x',  'yVhdl', 'y'})
-xlim([0 100])
+xlim([0 x_lim])
+grid
+
+saveFig(fig, "output")
