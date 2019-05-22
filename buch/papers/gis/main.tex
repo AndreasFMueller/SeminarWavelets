@@ -267,15 +267,16 @@ Der Startpunkt wird ermittelt in dem das erste Vektorelement im Datenvektor $abs
 Dazu wird auch der gesamte Datenvektor quadriert.
 Mit dem Quadrieren wird ein grösserer Signal-Rausch Abstand (SNR) erzielt.
 
-Um die CWT Muster aussagekräftiger darzustellen wird auf der $y$-Achse nicht die Dilatationsskalierungen angezeigt. Stattdessen wird ein Rückschluss auf die Frequenz abgeleitet. Diese darf jedoch nur als Approximation betrachtet werden, da in einer CWT die Frequenzauflösung nicht der Auflösung einer Fourier-Transformation entspricht. Die Frequenzapproximation 
+Um die CWT Muster aussagekräftiger darzustellen wird auf der $y$-Achse nicht die Dilatationsskalierungen angezeigt. Stattdessen wird ein Rückschluss auf die Frequenz abgeleitet. Diese darf jedoch nur als Approximation betrachtet werden, aufgrund der Unschärferelation (Referenz??) entspricht in einer CWT die Frequenzauflösung nicht der Auflösung einer Fourier-Transformation. 
+Die Frequenzapproximation 
 \begin{equation}
 F_a=\dfrac{F_c}{a}
 \end{equation}
-ist definiert durch die Division der Mittelfrequenz $F_c$ und dem Wavlet-Dilatationsfaktor $a$.
+ist definiert durch die Division der Mittelfrequenz $F_c$ und dem Wavelet-Dilatationsfaktor $a$.
 
 Diese wird durch den höchsten Wert des Skalarproduktes 
 \begin{equation}
-F_c(t/a) = \max_a\langle \Psi(t),sin(t/a)\rangle
+F_c(t/a) = \max_a\langle \psi(t),\sin (t/a)\rangle
 \end{equation}
 zwischen dem Wavelet $\Psi$ und dem Sinus berechnet.
 Wobei der Sinus mit dem Dilatationsfaktor $a$ gestreckt wird.
@@ -293,9 +294,59 @@ Damit wird erzielt das die $y$-Achse mit der approximierten Frequenz $F_a$ skali
 
 \section{Auswertung kontinuierliche Wavelettransformation}
 \rhead{Abschnitt}
+In diesem Abschnitt wird behandelt wie die Auswertung der vier Fehlsignalen von den zwei verschiedenen Fehlerarten angegangen wurde. 
+Ein Thema hier ist die Wahl des Wavelet und die Vorgehensweise während der Analyse. 
+
+Mit der Wahl des Wavelet kann bestimmt werden ob mehr Zeit- $\Delta t$ oder Frequenzauflösung $\Delta f$ gewünscht ist. 
+Der Grund dafür ist die küpfmüllersche Unbestimmtheitsrelation (Unschärferelation der Nachrichtentechnik)
+\begin{equation}
+\Delta t \cdot \Delta f \geq k 
+\qquad\text{mit}\qquad
+k \in [0.5 ; 1]
+\end{equation}
+welche besagt das nicht gleichzeitig beide Auflösungen beliebig genau sein können.
+$k$ kann die Werte $0.5$ oder $1$ annehmen.
+
+Mit einem Haar-Wavelet erhält man eine sehr hohe Zeitauflösung wann ein Event stattgefunden hat und mit einem Morlet-Wavelet wird die Frequenzauflösung erhöht dafür wird der Preis von einer ungenaueren Zeitauflösung bezahlt.
+Veranschaulicht, mit zwei Graphen, ist die Unschärferelation in den Abbildungen \ref{fig:UnschRelMorl}\ref{fig:UnschRelHaar}. 
+Es sind die Wavelet-Transformationen von den Beiden Wavelets welche Oben zitiert sind.
+Der CWT Plot vom Haar-Wavelet weist scharfe Kanten auf welche gut mit den Minimums und Maximums des Zeitsignals korrelieren.
+Die Frequenzen sind jedoch über den Frequenzbereich verschmiert, diese Auflösung ist beim Morlet-Wavelet höher.
+
+Bei der Auswertung wurden Wavelets aus den folgenden Familien verwendet.
+\begin{itemize}
+	\item Haar
+	\item Daubechies 
+	\item Symlets
+	\item komplex Gaussian
+	\item komplex Morlet
+\end{itemize}
+Es sind von jeder Familie mit verschiedene Exponate jeweils zwei CWT Plots erstellt worden. 
+Die Zeitsignale von den Zweien gehörten jeweils zu einer der Beiden Fehlerarten Oberflächenentladung oder Hohlraumentladung.
+Visuell sind die zwei Plots miteinander verglichen worden.
+Bei Auffälligkeiten wurden zwei weitere Zeitsignale transformiert um diese zu bestätigen.
+Es konnte jedoch keine typische Bildcharakteristik gefunden werden welche nur bei einer Fehlerart auftritt.
+
+\begin{figure}
+	\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{papers/gis/Bilder/UnschRelHaar}
+		\captionof{figure}{CWT Plott Haar-Wavelet}
+		\label{fig:UnschRelHaar}
+	\end{minipage}%
+	\begin{minipage}{.5\textwidth}
+	\centering
+	\includegraphics[width=.9\linewidth]{papers/gis/Bilder/UnschRelMorl}
+	\captionof{figure}{CWT Plott Morlet-Wavelet}
+	\label{fig:UnschRelMorl}
+\end{minipage}
+\end{figure}
+
+
 
 \section{Schlussfolgerung}
-\rhead{Schlussfolgerung}
+\rhead{Schlussfolgerung} 
  
 \printbibliography[heading=subbibliography]
 \end{refsection}
