@@ -1,0 +1,9 @@
+In der Bildverarbeitung trifft man immer wieder auf den Begriff Deconvolution.
+Wird ein Bild aufgenommen, entsteht zwangsläufig eine gewisse Unschärfe.
+Mathematisch kann man dies als Faltung mit einer Pointspreadfuntion verstehen:
+$$f(x,y) = g(x,y)*psf(x,y),$$
+wobei $g(x,y)$ das Originalbild und $f(x,y)$ das unscharfe Ergebnis der Aufnahme ist.
+Den Prozess, diese Faltung (engl. convolution) Rückgängig zu machen, nennt man Deconvolution.
+
+In dieser Arbeit wird nun versucht, ein auf Wavelet basiertes Filter zur Verbesserung der Bildschärfe zu erstellen. Begonnen wird hierbei mit einer eindimensionalen Funktion. Das gleiche vogehen soll dann auf ein Bild angewendet werden.
+
