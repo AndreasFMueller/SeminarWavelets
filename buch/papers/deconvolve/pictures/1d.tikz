@@ -6,14 +6,13 @@
 %
 \definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
 \definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
-\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
 %
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=4.521in,
-height=3.53in,
-at={(0.758in,0.517in)},
+width=12cm,
+height=4.8cm,
+%at={(0.758in,0.517in)},
 scale only axis,
 xmin=0,
 xmax=0.1,
@@ -27,17 +26,6 @@ axis background/.style={fill=white},
 legend style={legend cell align=left, align=left, draw=white!15!black}
 ]
 \addplot [color=mycolor1]
-  table[row sep=crcr]{%
-0	0\\
-0.0333229166666666	0\\
-0.0333541666666666	1\\
-0.0666562500000001	1\\
-0.0666875	0\\
-0.0999895833333333	0\\
-};
-%\addlegendentry{data1}
-
-\addplot [color=mycolor2]
   table[row sep=crcr]{%
 0	0\\
 0.0177083333333334	0\\
@@ -154,9 +142,9 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 0.0823125	0\\
 0.0999895833333333	0\\
 };
-%\addlegendentry{data2}
+\addlegendentry{f(x)}
 
-\addplot [color=mycolor3]
+\addplot [color=mycolor2]
   table[row sep=crcr]{%
 0	0\\
 0.0307291666666667	0\\
@@ -209,24 +197,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 0.06928125	0\\
 0.0999895833333333	0\\
 };
-%\addlegendentry{data3}
+\addlegendentry{g(x)}
 
-\end{axis}
-
-\begin{axis}[%
-width=5.833in,
-height=4.375in,
-at={(0in,0in)},
-scale only axis,
-xmin=0,
-xmax=1,
-ymin=0,
-ymax=1,
-axis line style={draw=none},
-ticks=none,
-axis x line*=bottom,
-axis y line*=left,
-legend style={legend cell align=left, align=left, draw=white!15!black}
-]
 \end{axis}
 \end{tikzpicture}%
