@@ -44,14 +44,16 @@
 
 
 Seit langen konsultiere ich meine aktuellen Wetterdaten von eher unüblichen Internetseite.
-Dabei handelt es sich um eine Privat geführte Wetterstation welche die gemessenen Daten, kostenlos und sehr rudimentär im Internet grafisch darstellt.Weiter werden die Daten auch tabellarisch zur Verfügung gestellt.
+Dabei handelt es sich um eine Privat geführte Wetterstation welche die gemessenen Daten, kostenlos und sehr rudimentär im Internet grafisch darstellt.
+Weiter werden die Daten auch tabellarisch zur Verfügung gestellt.
 Das Feature welches is bis anhin am regelmässigsten nutze, war die grafische Darstellung der aktuellen Wetterdaten über den Zeitraum der letzten 24 Stunden.
 Bei speziellen Ereignissen des Wetters, vielen mir besondere und wiederkehrende Charakteristiken auf.
 \\
 \\
 Nach der Einführung in die Theorie der Wavelets kam mir die Idee, solche Wetterphänomene mittels einer geeigneten Wavelet Transformation zu detektieren.
 In diesem Paper wird einerseits auf die theoretischen Grundlagen der angewandten Methoden zurückgegriffen sowie die besprochenen meteorologischen Phänomene kurz erläutert. 
-Weiterführend wird auf den eigentlichen Prozess des Papers vertieft eingegangen. Ein besonderes Augenmerk wird auf die allgemeine Vorgehensweise sowie deren Schwierigkeiten gelegt.
+Weiterführend wird auf den eigentlichen Prozess des Papers vertieft eingegangen.
+Ein besonderes Augenmerk wird auf die allgemeine Vorgehensweise sowie deren Schwierigkeiten gelegt.
 \\
 
 
@@ -85,7 +87,8 @@ Der Thermo- / Hydrosensor liegt zusammen mit dem Regenmengenmesser auf 2 Meter �
 Mit einem Abstand von rund 10 Meter zum nächsten Gebäude, werden optimale Messbedingungen geschaffen.
 Der Windmesser wurde am First des Gebäudes montiert.
 Mit einem Masten werden die Daten 1,5 Meter über dem First gemessen.\cite{online:wss}
-Die Daten werden anschliessend mit einer Software von PC-Wetterstation.de weiterverarbeitet und auf eine rudiment\"aren Website Dargestellt. Mehr zur Verwendung der Wetterdaten im n\"achsten Kapitel.
+Die Daten werden anschliessend mit einer Software von PC-Wetterstation.de weiterverarbeitet und auf eine rudiment\"aren Website Dargestellt.
+Mehr zur Verwendung der Wetterdaten im n\"achsten Kapitel.
 
 \section{Datenaufarbeitung}
 \rhead{Datenaufarbeitung}
@@ -127,7 +130,9 @@ Wie sich später herausstellte traten die fehlenden Tagen nicht zu den Zeitpunkt
 \newpage
 
 \subsection{Datendarstellung}
-Die Darstellung der gewonnen Daten konnten einfach mittels Matlab gemacht werden. Anbei die Plot der Rohdaten aus dem Jahre 2018, wobei nur jeder 10 Messpunkt verwendet wurde. Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen. 
+Die Darstellung der gewonnen Daten konnten einfach mittels Matlab gemacht werden.
+Anbei die Plot der Rohdaten aus dem Jahre 2018, wobei nur jeder 10 Messpunkt verwendet wurde.
+Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen. 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\textwidth]{papers/wwt/images/raw_temp_wwt.pdf}
@@ -170,7 +175,8 @@ In
 \label{eq:cwt}
 \end{equation}
 
-sieht man die Grundlegende Formel der \textit{cwt}. Wobei das $\psi_{a,b}$ für das Mutter-Wavelet steht, welches mit dem Koeffizienten $a$ skaliert und mit $b$ verschoben wird.
+sieht man die Grundlegende Formel der \textit{cwt}.
+Wobei das $\psi_{a,b}$ für das Mutter-Wavelet steht, welches mit dem Koeffizienten $a$ skaliert und mit $b$ verschoben wird.
 
 Als Mutter-Wavelet wurde das analytische Gabor-Wavelet verwendet.
 \begin{figure}[h]
@@ -183,14 +189,19 @@ Als Mutter-Wavelet wurde das analytische Gabor-Wavelet verwendet.
 \newpage
 \subsection{Berechung mit Matlab}
 Die Berechnung der \textit{cwt} wurde mit der numerischen Berechnugs-Software Matlab durchgeführt.
-Die essenzielle Funktion dabei war die cwt()-Funktion. Die Funktion arbeitete bei korrekter Parametrisierung auch wie gewünscht. Falls man jedoch genauer verstehen möchte wie die Funktion genau rechnet, muss man sich mit einer eher dürftigen Dokumentation herumschlagen. Glücklicherweise funktionierte die Funktion für meine Anwendung einwandfrei. Folgende Parameter wurden verwendet
+Die essenzielle Funktion dabei war die cwt()-Funktion.
+Die Funktion arbeitete bei korrekter Parametrisierung auch wie gewünscht.
+Falls man jedoch genauer verstehen möchte wie die Funktion genau rechnet, muss man sich mit einer eher dürftigen Dokumentation herumschlagen.
+Glücklicherweise funktionierte die Funktion für meine Anwendung einwandfrei.
+Folgende Parameter wurden verwendet
 \lstinputlisting[language=Matlab,firstline=1,lastline=1,  numbers=left, style = mystyle]{papers/wwt/code/matlab.m}
 \label{fig:matlab_code_cwt}
 wobei Matlab das Gabor-Wavelet als 'amor' bezeichnet, mit 'VoicesPerOctave' konnte die Genauigkeit erhöht werden und die Variabel 'fs' beschreibt die Abtastfrequenz der Messsignale.
 Bei den Rückgabewerte werden die Wavelet-Werten in 'wt' als komplexe Matrix und die approximierten Frequenzen in 'F' abgespeichert.
 
 Anstatt den Skalierungsfaktor $a$ in \ref{eq:cwt}, wird eine approximierte Frequenz berechnet und zurückgegeben.
-Für jeden verwendeten Skalierungsfaktor $a$ wird eine Sinuskurve gesucht, welche am ehesten der Frequenz des entsprechenden Wavelet übereinstimmt. Siehe in \ref{fig:centerf} ein Beispiel mit einem Daubechies Wavelet der Nummer 7.
+Für jeden verwendeten Skalierungsfaktor $a$ wird eine Sinuskurve gesucht, welche am ehesten der Frequenz des entsprechenden Wavelet übereinstimmt.
+Siehe in \ref{fig:centerf} ein Beispiel mit einem Daubechies Wavelet der Nummer 7.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/centerf.pdf}
@@ -213,7 +224,8 @@ Der Temperaturverlauf während einer Hochdruckphase ist sehr regelmässig und ma
 
 Dank der Regelm"assigkeit des Temperaturverlaufs, sieht man im \textit{cwt}-Plot eine signifikante erh"ohung des Wertes bei einer gewissen Frequenz.
 Die Ausgelesene Frequenz beträgt $f = 1.16\cdot10^{-5} \,\text{Hz}$, welches umgerechnet einer Periodendauer von $T = 86206.897\,\text{s}\approx 23\,\text{h }56\,\text{min } 47\,\text{s}$ entspricht.
-Damit kann die Frequenz im Rückgabewert der Matlab-Funktion als sehr genau betrachtet werden. Dabei darf nicht vergessen werden, dass nur alle 5 Minuten einen Datenpunkt aufgenommen wurde, und somit die Abweichung zu 24 Stunden kleiner ist als die Auflösung.
+Damit kann die Frequenz im Rückgabewert der Matlab-Funktion als sehr genau betrachtet werden.
+Dabei darf nicht vergessen werden, dass nur alle 5 Minuten einen Datenpunkt aufgenommen wurde, und somit die Abweichung zu 24 Stunden kleiner ist als die Auflösung.
 Weiter kommt hinzu, dass jeder Tag zu der Jahreszeit im Frühling ca. 2 Minuten kürzer ist als der jeweils Vorgehende.\cite{online:sunset_time}
 
 
@@ -225,7 +237,8 @@ Aufgrund der Kenntnissen rund um die \textit{cwt} wurde die Annahme getroffen, d
 Bei einer typischen Sturmfront, welche öfters als Wintersturm in den Monaten Dezember und Januar auftreten, zeigten sich bei der Konsultation der Wetterdaten, rapide Temperatur- und Luftdruckwechsel, sowie ein erhöhtes Windaufkommen.
 Das Ziel der Analyse war, solche Ereignisse mittels einer geeigneten \textit{cwr} zu detektieren.
 \subsection{Sturmsaison 2018}
-Bereits bekannt war, dass in der Sturmsaison im Jahre 2018 einige Winterstürme aufgetreten sind. So wurde bei der Analyse nur auf diese Periode das Augenmerk gelegt.
+Bereits bekannt war, dass in der Sturmsaison im Jahre 2018 einige Winterstürme aufgetreten sind.
+So wurde bei der Analyse nur auf diese Periode das Augenmerk gelegt.
 \\
 \\
 \\
