@@ -95,7 +95,7 @@ dass alle Eckpunkte sich auf einfache Art darstellen lassen.
 
 Verzichten wir jedoch daruf, dass die Vektoren linear unabhängig sein müssen,
 können wir also ``Basis'' die drei Vektoren (in kartesischen Koordinaten)
-\begin{align*}
+\begin{align}
 b_1
 &=
 \begin{pmatrix}1\\0\end{pmatrix}
@@ -107,7 +107,8 @@ b_2
 b_3
 &=
 \begin{pmatrix}-\frac12\\-\frac12\sqrt{3}\end{pmatrix}
-\end{align*}
+\label{hexagonbasis}
+\end{align}
 verwenden.
 Die drei Vektoren haben alle die Länge $1$, aber sie sind nicht
 orthogonal, sondern haben das Skalarprodukt
@@ -116,7 +117,7 @@ orthogonal, sondern haben das Skalarprodukt
 =
 \begin{cases}
 -\frac12&\qquad j\ne k\\
-0&\qquad j=k.
+1&\qquad j=k.
 \end{cases}
 \]
 Zu jedem Vektor $v\in\mathbb R^2$ können wir wieder eie Koeffizienten
@@ -186,41 +187,89 @@ Für die Norm des synthetisierten Vektors gilt natürlich
 -
 \frac12\sum_{k\ne l} \hat{v}_k\hat{v}_l.
 \]
-Die modifizierten Koeffizienten ergeben natürlich dieselbe Norm, also
-\begin{align*}
-\|v'\|^2
-&=
-\sum_{k=1}^3 (\hat{v}_k+\alpha)^2 
--
-\frac12\sum_{k\ne l} (\hat{v}_k+\alpha)(\hat{v}_l+\alpha).
-\\
-&=
-\sum_{k=1}^3 \hat{v}_k^2
-+2\alpha \sum_{k=1}^3 \hat{v}_k
-+3\alpha^2
--
-\frac12\sum_{k\ne l} \hat{v}_k\hat{v}_l
--
-\sum_{k\ne l} \hat{v}_k \alpha
--
-3\alpha^2
-\end{align*}
+%Die modifizierten Koeffizienten ergeben natürlich dieselbe Norm, also
+%\begin{align*}
+%\|v'\|^2
+%&=
+%\sum_{k=1}^3 (\hat{v}_k+\alpha)^2 
+%-
+%\frac12\sum_{k\ne l} (\hat{v}_k+\alpha)(\hat{v}_l+\alpha).
+%\\
+%&=
+%\sum_{k=1}^3 \hat{v}_k^2
+%+2\alpha \sum_{k=1}^3 \hat{v}_k
+%+3\alpha^2
+%-
+%\frac12\sum_{k\ne l} \hat{v}_k\hat{v}_l
+%-
+%\sum_{k\ne l} \hat{v}_k \alpha
+%-
+%3\alpha^2
+%\end{align*}
 
 
 Was zeichnet die Koeffizienten $\hat{v}_k$ gegenüber den modifizierten
 Koeffiziente $\hat{v}_k$ aus?
+In Abbildung~\ref{3dbasisbild} sind die Koeffizienten $\hat{v}_k$ als
+dreidimensionaler Vektor $v'$ dargestellt.
+Punkte in der Ebene werden durch die Analyse mit Hilfe der Vektoren $b_k$
+auf Vektoren in der hellblau hervorgehobenen Ebene abgebildet.
+Die alternativen Linearkombinationen entstehen, indem man zu $v$
+ein Vielfaches des grünen Normalenvektors $n$ hinzuaddiert.
+Die gelb gezeichneten Punkte $w$ bilden eine Gerade senkrecht
+auf der hellblauen Ebene.
+Alle Punkte auf dieser Geraden führen auf die gleiche
+Linearkombination $\frac32v$.
+Die mit Hilfe der Skalarprodukte gefundene Linearkombination
+$\hat{v}_k=\langle v,b_k\rangle$ hat daher die Eigenschaft, 
+$v'$ unter all den Punkte auf der Geraden die kürzeste Länge hat.
+Oder: die Koeffizienten $\hat{v}_k$ zeichnen sich unter allen
+Koeffizienten $v_k$ mit der gleichen Linearkombination dadurch aus, 
+dass
+\begin{equation}
+\|v'\|^2
+=
+\sum_{k=1}^n |\hat{v}_k|^2
+\le
+\sum_{k=1}^n |v_k|^2
+\qquad
+\text{für Koeffizienten $v_k$ mit}
+\quad
+\sum_{k=1}^3 \hat{v}_kb_k
+=
+\sum_{k=1}^3 v_kb_k
+\label{hexagonbasiseigenschaft}
+\end{equation}
+ist.
+Die durch $\hat{v}_k$ gefundenen Koeffizienten zeichnen sich durch
+die minimale ``Koeffizientenenergie'' aus.
+
 Im Falle einer Orthonormalbasis konnte man dank der Plancherel-Formel
 die Norm eines Vektors mit Hilfe der Quadratsumme der Koeffizienten
 berechnen.
+Die Eigenschaft \eqref{hexagonbasiseigenschaft} kann also als erweiterte
+Form der Plancherel-Formel angesehen werden.
 
-Wir berechnen daher
-\[
-f(\alpha)
-=
-\sum_{k=1}^3 (\hat{v}_k+\alpha)^2
-=
-\sum_{k=1}^3 \hat{v}_k^2 + 2\alpha \sum_{k=1}^3 \hat{v}_k + 3\alpha^2
-\]
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/tri.pdf}
+\caption{Darstellung der Koeffizienten $\hat{v}_k$ bezüglich Vektoren $b_i$
+aus \eqref{hexagonbasis}.
+Die drei Vektoren $b_i$ haben als $\hat{v}_k$-Koeffizienten-Vektoren
+die Vektoren $b_i'$.
+Die $x$- und $y$-Achsrichtung werden auf die beiden blauen Vektoren
+abgebildet.
+Ein Vektor $v$ wird auf den Vektor $v'$ mit den Komponenten
+$\hat{v}_k$ abgebildet.
+Die Darstellung eines Vektors als Linearkombination der $b_i$ ist
+jedoch nicht eindeutig.
+Ändert man die Koeffizienten um den gleichen Wert, was gleichbedeutend damit
+ist, dass man dem Vektor $v'$ ein Vielfaches von $n$ hinzufügt, entsteht
+bei der Synthese $\sum \hat{v}_k b_k$ der gleiche Punkt.
+Alle gelben Punkte $w$ sind daher Koeffizienten, die den gleichen Punkt $v$
+ergeben, wenn man damit die Vektoren $b_i$ linear kombiniert.
+\label{3dbasisbild}}
+\end{figure}
 
 \subsection{Definition eines Frames}
 Nach dem motivierenden Beispiel im vorangegangenen Abschnitt sind wir nun
