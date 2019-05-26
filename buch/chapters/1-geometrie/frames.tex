@@ -154,6 +154,8 @@ Die Synthese liefert also nicht den ursprünglichen Vektor, sondern
 zurück, das $\frac32$-fache davon.
 Dies ist bereits ein Ausdruck der Tatsache, dass die Information in den
 Koeffizienten $\hat{v}_k$ redundant ist.
+Andererseits zeigt dies auch, dass alle Richtungen gleichermassen
+verzerrt werden.
 
 Diese Vektoren sind natürlich nicht mehr linear unabhängig, Vektoren
 der Ebene können also auf verschieden Art linear aus den $b_k$ kombiniert
@@ -210,13 +212,14 @@ Koeffiziente $\hat{v}_k$ aus?
 Im Falle einer Orthonormalbasis konnte man dank der Plancherel-Formel
 die Norm eines Vektors mit Hilfe der Quadratsumme der Koeffizienten
 berechnen.
+
 Wir berechnen daher
 \[
 f(\alpha)
 =
-\sum_{k=1}^n (\hat{v}_k+\alpha)^2
+\sum_{k=1}^3 (\hat{v}_k+\alpha)^2
 =
-\sum_{k=1}^n \hat{v}_k^2 + 2\alpha \sum_{k=1}^3 \hat{v}_k + 3\alpha^2
+\sum_{k=1}^3 \hat{v}_k^2 + 2\alpha \sum_{k=1}^3 \hat{v}_k + 3\alpha^2
 \]
 
 \subsection{Definition eines Frames}
