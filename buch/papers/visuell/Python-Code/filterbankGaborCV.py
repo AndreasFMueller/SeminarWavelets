@@ -27,30 +27,31 @@ def plotFilterBank(filterBank, gaborParams):
     sqLen = np.sqrt(n)
     for i in range(n):
         plt.subplot(sqLen, sqLen,i+1)
-        plt.title('t={:0.1f}, o={:0.1f}'.format(gaborParams[i]['theta'], gaborParams[i]['wavelength']))
-        plt.axis('off'); 
-        plt.imshow(filterBank[i], cmap='gray') # delete 'gray' to apply a colormap (looks nice)
+        plt.title('theta={:0.1f}, lamda={:0.1f}'.format(gaborParams[i]['theta'], gaborParams[i]['wavelength']))
+        plt.axis('off')
+        plt.imshow(filterBank[i]) # delete 'gray' to apply a colormap (looks nice)
 
 def plotConvs(filterBank, img, gaborParams):
     plt.figure()
     n = len(filterBank)
+    sqLen = np.sqrt(n)
     for i in range(n):
-        plt.figure()
-        plt.title('theta = {:0.2f}, lamda = {:0.2f}'.format(gaborParams[i]['theta'], gaborParams[i]['wavelength']))
-#        print('theta = ' + str(gaborParams[i]['theta']) + ' omega = ' + str(gaborParams[i]['omega']))
+        plt.subplot(sqLen, sqLen,i+1)
+        plt.title('theta = {:0.1f}, lamda = {:0.1f}'.format(gaborParams[i]['theta'], gaborParams[i]['wavelength']))
+        plt.axis('off')
         plt.imshow(convolve2d(img, filterBank[i], mode = 'same'), cmap='gray') # delete 'gray' to apply a colormap (looks nice)
 
 
 
 if __name__ == '__main__':
     # Constants
-    filterSize = 13
+    filterSize = 9
     sigma = 2  # stddeviation of kernels
     gamma = 0.5 # spatial aspect ration
     
 
-    theta = np.arange(0, np.pi, np.pi/5) # changing orientation of kernels
-    wavelength = np.arange(3,8,1) 
+    theta = np.arange(0, np.pi, np.pi/4) # changing orientation of kernels
+    wavelength = np.arange(3,8,(8-3)/4) 
     params = [(t,w) for w in wavelength for t in theta]
     filterBank, gaborParams, k = genFilterbank(params, filterSize, sigma, gamma)
     print("start plotting sinFilterbank")
@@ -60,9 +61,6 @@ if __name__ == '__main__':
     img = cv2.imread('testpatterns/serveimage.png', cv2.IMREAD_GRAYSCALE )
     img = cv2.resize(img,(32,32))
     rows, cols = img.shape
-    M = cv2.getRotationMatrix2D((cols/2,rows/2),45,1) # center, angle, scale
-    img = cv2.warpAffine(img, M , (cols, rows)) # rotate image
-    
     plt.figure()
     plt.imshow(img, cmap='gray')
     

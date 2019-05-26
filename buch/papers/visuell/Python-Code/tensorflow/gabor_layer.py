@@ -7,8 +7,9 @@ import matplotlib.pyplot as plt
 
 
 class GaborLayer():
-    def __init__(self, features):
-        self.filterBank, gaborParams = self.__genFilterBank(features)
+    def __init__(self):
+        pass
+#        self.filterBank, gaborParams = self.__genFilterBank(features)
 #        self.__plotFilterBank(self.filterBank, gaborParams)
         
         
@@ -24,7 +25,7 @@ class GaborLayer():
     
     
     
-    def __genFilterBank(self, features, size=9, sigma=2, gamma=0.8): 
+    def genFilterBank(self, features, size=9, sigma=2, gamma=0.8): 
         assert (np.sqrt(features) % 1 == 0), "features must have a integer root"
         
         s = np.sqrt(features)
@@ -32,18 +33,15 @@ class GaborLayer():
         wavelength = np.arange(3,8,5/s) 
         params = [(t,w) for w in wavelength for t in theta]
         
-        filterBank = np.zeros((size, size, 3, features))
+        filterBank = np.zeros((size, size, 1, features))
         gaborParams = []
-        i = 0
-        for (theta, wavelength) in params:
+        for i, (theta, wavelength) in enumerate(params):
             gaborParams.append({'wavelength': wavelength, 'theta':theta, 'sz':(size, size)})
             kernel = cv2.getGaborKernel((size,size), sigma, theta, wavelength, gamma, psi=0,ktype=cv2.CV_32F)
             norm = np.linalg.norm(kernel)
             if norm != 0: 
                 kernel /= norm
-            for j in range(3):
-                filterBank[:,:,j,i] = kernel
-            i += 1
+            filterBank[:,:,0,i] = kernel
 
         return filterBank, gaborParams
     

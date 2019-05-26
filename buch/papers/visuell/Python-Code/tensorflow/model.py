@@ -15,7 +15,7 @@ class Model:
         
         
 
-    def build(self, x, y, gaborInput, features1, filterBank=None):
+    def build(self, x, y, gaborInput, features1, filterBank=None, filterSize1=9):
         
         self.x = x
         
@@ -26,7 +26,7 @@ class Model:
             # Convolutional Layer 1
             with tf.name_scope('conv1'):   
                 # define kernel -> default values normally distributed
-                self.kernel1 = tf.Variable(tf.truncated_normal([3, 3, 3, features1], 
+                self.kernel1 = tf.Variable(tf.truncated_normal([filterSize1, filterSize1, 1, features1], 
                                         dtype=tf.float32, stddev=stdDev), name='weights1')
                 stride = [1,1,1,1] # stride 1 for all directions
                 conv = tf.nn.conv2d(self.x, self.kernel1, stride, padding='SAME')

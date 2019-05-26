@@ -40,6 +40,58 @@ class ModelManager:
             total_parameters += variable_parameters
         print('Total parameters: ' + str(total_parameters))
     
+#    def factorization(self, n):
+#        for i in range(int(sqrt(float(n))), 0, -1):
+#          if n % i == 0:
+#            if i == 1: print('Who would enter a prime number of filters')
+#            return (i, int(n / i))
+#        
+#    def put_kernels_on_grid (self, kernel, pad = 1):
+#
+#      '''Visualize conv. filters as an image (mostly for the 1st layer).
+#      Arranges filters into a grid, with some paddings between adjacent filters.
+#      Args:
+#        kernel:            tensor of shape [Y, X, NumChannels, NumKernels]
+#        pad:               number of black pixels around each filter (between them)
+#      Return:
+#        Tensor of shape [1, (Y+2*pad)*grid_Y, (X+2*pad)*grid_X, NumChannels].
+#      '''
+#      # get shape of the grid. NumKernels == grid_Y * grid_X
+#      (grid_Y, grid_X) = self.factorization (kernel.get_shape()[3].value)
+#    
+#      x_min = tf.reduce_min(kernel)
+#      x_max = tf.reduce_max(kernel)
+#      kernel = (kernel - x_min) / (x_max - x_min)
+#    
+#      # pad X and Y
+#      x = tf.pad(kernel, tf.constant( [[pad,pad],[pad, pad],[0,0],[0,0]] ), mode = 'CONSTANT')
+#    
+#      # X and Y dimensions, w.r.t. padding
+#      Y = kernel.get_shape()[0] + 2 * pad
+#      X = kernel.get_shape()[1] + 2 * pad
+#    
+#      channels = kernel.get_shape()[2]
+#    
+#      # put NumKernels to the 1st dimension
+#      x = tf.transpose(x, (3, 0, 1, 2))
+#      # organize grid on Y axis
+#      x = tf.reshape(x, tf.stack([grid_X, Y * grid_Y, X, channels]))
+#    
+#      # switch X and Y axes
+#      x = tf.transpose(x, (0, 2, 1, 3))
+#      # organize grid on X axis
+#      x = tf.reshape(x, tf.stack([1, X * grid_X, Y * grid_Y, channels]))
+#    
+#      # back to normal order (not combining with the next step for clarity)
+#      x = tf.transpose(x, (2, 1, 3, 0))
+#    
+#      # to tf.image_summary order [batch_size, height, width, channels],
+#      #   where in this case batch_size == 1
+#      x = tf.transpose(x, (3, 0, 1, 2))
+#    
+#      # scaling to [0, 255] is not necessary for tensorboard
+#    return x
+    
     def createLogDir(self, outputDir):
         # Create Output Directories
         print('Create output directories..')
@@ -50,15 +102,18 @@ class ModelManager:
         os.makedirs(self.writerDir)
         return self.writerDir
     
-    def getData(self, maxDataSize, gaborInput, features1):
+    def getData(self, maxDataSize, gaborInput, features1, filterSize1):
+        self.filterSize1 = filterSize1
         self.gaborInput = gaborInput
         self.features1 = features1
         print("Getting data")
         (xTrain, yTrain), (xTest, yTest) = tf.keras.datasets.cifar10.load_data()
+        xTrain = tf.image.rgb_to_grayscale(xTrain) # Convert to grayscale
+        xTest = tf.image.rgb_to_grayscale(xTest)
         self.filterBank = None
         if self.gaborInput:
-            gl = GaborLayer(self.features1)
-            self.filterBank = gl.filterBank
+            gl = GaborLayer()
+            self.filterBank, _ = gl.genFilterBank(self.features1, size=self.filterSize1)
                 
         print('Calculating labels as one-hot')
         with tf.Session() as sess:
@@ -106,7 +161,7 @@ class ModelManager:
         
         print('Build model')
         with tf.name_scope('model'):
-            self.mdl.build(self.x, self.y, self.gaborInput, self.features1, self.filterBank)
+            self.mdl.build(self.x, self.y, self.gaborInput, self.features1, self.filterBank, self.filterSize1)
         
     def train(self, outputDir, numEpochs):
         assert (self.datasetInfo != None), "Call getData first"
@@ -130,6 +185,17 @@ class ModelManager:
         if not self.gaborInput:
             tf.summary.histogram("weights1", self.mdl.kernel1)
             tf.summary.histogram("biases1", self.mdl.biases1)
+       
+        # scale weights to [0 255] and convert to uint8 (maybe change scaling?)
+        x_min = tf.reduce_min(self.mdl.kernel1)
+        x_max = tf.reduce_max(self.mdl.kernel1)
+        weights_0_to_1 = (self.mdl.kernel1 - x_min) / (x_max - x_min)
+        weights_0_to_255_uint8 = tf.image.convert_image_dtype (weights_0_to_1, dtype=tf.uint8)
+    
+        # to tf.image_summary format [batch_size, height, width, channels]
+        weights_transposed = tf.transpose (weights_0_to_255_uint8, [3, 0, 1, 2])
+
+        tf.summary.image("kernel_layer_1", weights_transposed, max_outputs=self.features1)
         tf.summary.histogram("weights2", self.mdl.kernel2)
         tf.summary.histogram("biases2", self.mdl.biases2)
         tf.summary.histogram("weights3", self.mdl.kernel3)
