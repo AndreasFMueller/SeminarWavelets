@@ -2,7 +2,7 @@ L = 3000;
 N = 4;
 
 
-x_lim = 250;
+x_lim = 350;
 
 %% Define input signal
 t = 1:L;
@@ -14,6 +14,7 @@ x(1:64) = sin(2*pi*[0:64-1]/64);% + 1.2*cos(2*pi*t/40); %500
 
 x(100:150) = [1:51] / 50;
 x(150:200) = [50:-1:0]/50;
+x(250:301) = [1];
 
 % x = x+(t/1000);
 
@@ -169,12 +170,12 @@ meanDiffs(i+2) = mean(abs(diffs{i+2}));
 % end
 % hold off;
 
-assert(meanDiffs(1) == 0, 'd0 is wrong');
-assert(meanDiffs(2) == 0, 'd1 is wrong');
-assert(meanDiffs(3) == 0, 'd2 is wrong');
-assert(meanDiffs(4) == 0, 'd3 is wrong');
-assert(meanDiffs(5) == 0, 's is wrong');
-assert(meanDiffs(6) == 0, 'y is wrong');
+% assert(meanDiffs(1) == 0, 'd0 is wrong');
+% assert(meanDiffs(2) == 0, 'd1 is wrong');
+% assert(meanDiffs(3) == 0, 'd2 is wrong');
+% assert(meanDiffs(4) == 0, 'd3 is wrong');
+% assert(meanDiffs(5) == 0, 's is wrong');
+% assert(meanDiffs(6) == 0, 'y is wrong');
 
 
 %% Delay chain

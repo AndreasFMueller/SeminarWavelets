@@ -10,6 +10,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{epstopdf}
 
 \input{packages.tex}
 
@@ -37,9 +40,64 @@
 \end{frame}
 
 \section{Introduction}
-\begin{frame}
 
+\begin{frame}
+	\frametitle{Theory 1}
+	"Factoring Wavelet Transforms Into Lifting Steps"\\
+	 (by Ingrid Daubechies and Wim Sweldens)\\
+	1. Polyphase components
+	\begin{equation}
+	\begin{aligned}
+		x = (x_k)_{k \in Z} \Rightarrow x_e &= (x_{2k})_{k \in Z} \\
+		x_o &= (x_{2k+1})_{k \in Z}
+		\end{aligned}
+	\end{equation}
+	where $x_e$ and $x_o$ are closely correlated
+\end{frame}
+
+\begin{frame}
+\frametitle{Theory 2}
+2. Predictor $P$ and difference $d$
+\begin{equation}
+d = x_e - P(x_o)
+\end{equation}
+it follows 
+\begin{equation}
+	x_e = P(x_o) + d
+\end{equation}
+and
+\begin{equation}
+	d_k = x_{2k+1} - (x_{2k} + x_{2k+2})/2
+\end{equation}\\
+Computing a prediction and recording is called a lifting step.
+\end{frame}
+\begin{frame}
+\frametitle{Theory 3}
+3. Update $U$ 
+\begin{equation}
+	s = x_e + U(d)
+\end{equation}
+in reverse
+\begin{equation}
+x_e = s -U(d)
+\end{equation}
+
+This way $x_o$ can be recovered from $x_e$.
+\includegraphics[scale=0.5]{lifting_step.pdf}
+\end{frame}
+\begin{frame}
+\frametitle{Theory 4}
+	This technique is then adapted for the Wavelet Transform: 
+	\includegraphics[scale=0.3]{lifting_step_wavelet.pdf}\\
+	where $P(z^{-1})^t$ and $P(z)$ depend on the Wavelet.
+	
+\end{frame}
+
+
+
+\begin{frame}
 \frametitle{Idea}
+
 \begin{figure}
 	\includegraphics[scale=0.7]{idea.pdf}
 \end{figure}
@@ -162,6 +220,11 @@
 \end{frame}
 
 
+\begin{frame}
+\frametitle{DB4}
+\centering
+	\includegraphics[scale=0.29]{db4.eps}
+\end{frame}
 
 
 

@@ -34,7 +34,7 @@ end
 
 
 %% Save for VHDL simulation
-toVhdlRecord(x, 'E:/Temp/xVector.hex')
+toVhdlRecord(x, 'D:/Temp/xVector.hex')
 
 %% Forward DB4 transform int16
 
@@ -49,7 +49,7 @@ for n = 1:N
         s(i) = xx(2*(i-1)+1) + sqrt(3)/4*d(i) + (sqrt(3)-2)/4*d(i+1);
         d(i) = d(i) + s(i-1);
         s(i) = (sqrt(3)+1)/sqrt(2)*s(i);
-        d(i) = (sqrt(3)+1)/sqrt(2)*d(i);
+        d(i) = (sqrt(3)-1)/sqrt(2)*d(i);
     end
     ds{n} = d;
     xx = s(1:len);
@@ -75,26 +75,26 @@ y = yy;
  
  %% get data from Vhdl simulation
  
- sVhdl = fromVhdlRecord('E:/Temp/sVector.hex');
+ sVhdl = fromVhdlRecord('D:/Temp/sVector.hex');
 dsVhdl = cell(1, N);
-dsVhdl{1} = fromVhdlRecord('E:/Temp/d0Vector.hex');
-dsVhdl{2} = fromVhdlRecord('E:/Temp/d1Vector.hex');
-dsVhdl{3} = fromVhdlRecord('E:/Temp/d2Vector.hex');
-dsVhdl{4} = fromVhdlRecord('E:/Temp/d3Vector.hex');
+dsVhdl{1} = fromVhdlRecord('D:/Temp/d0Vector.hex');
+dsVhdl{2} = fromVhdlRecord('D:/Temp/d1Vector.hex');
+dsVhdl{3} = fromVhdlRecord('D:/Temp/d2Vector.hex');
+dsVhdl{4} = fromVhdlRecord('D:/Temp/d3Vector.hex');
 
 
-yVhdl = fromVhdlRecord('E:/Temp/yVector.hex');
+yVhdl = fromVhdlRecord('D:/Temp/yVector.hex');
 
-rdysVhdl = fromVhdlRecord('E:/Temp/rdysVector.hex');
+rdysVhdl = fromVhdlRecord('D:/Temp/rdysVector.hex');
  %% adapt calculated data to fit vhdl data
  dsExtended = cell(1, N);
 dsVhdlShort = cell(1, N);
 for i = 1:N
-    dsExtended{i} = delayRep( ds{i} , 4^i, -1 + (4^i)+i, L);
+    dsExtended{i} = delayRep( ds{i} , 2^i, -1 + (2^i)+i, L);
     dsVhdlShort{i} = extractCoefFromStream( dsVhdl{i}, i, -((2^i) +i) );
 end
-sExtended = delayRep( s , 4^i, -1 + (4^i)+i, L);
-sVhdlShort = extractCoefFromStream( sVhdl, i, -((4^i) +i) );
+sExtended = delayRep( s , 2^i, -1 + (2^i)+i, L);
+sVhdlShort = extractCoefFromStream( sVhdl, i, -((2^i) +i) );
 
 yExtended = delayRep( y , 1, 25, L);
 
@@ -194,14 +194,14 @@ meanDiffs(i+2) = mean(abs(diffs{i+2}));
 % assert(meanDiffs(6) == 0, 'y is wrong');
 
 %% get data from vhdl simulaton
-sVhdlDelayed = fromVhdlRecord('E:/Temp/s_delayedVector.hex');
+sVhdlDelayed = fromVhdlRecord('D:/Temp/s_delayedVector.hex');
 dsVhdlDelayed = cell(1, N);
-dsVhdlDelayed{1} = fromVhdlRecord('E:/Temp/d0_delayedVector.hex');
-dsVhdlDelayed{2} = fromVhdlRecord('E:/Temp/d1_delayedVector.hex');
-dsVhdlDelayed{3} = fromVhdlRecord('E:/Temp/d2_delayedVector.hex');
-dsVhdlDelayed{4} = fromVhdlRecord('E:/Temp/d3_delayedVector.hex');
+dsVhdlDelayed{1} = fromVhdlRecord('D:/Temp/d0_delayedVector.hex');
+dsVhdlDelayed{2} = fromVhdlRecord('D:/Temp/d1_delayedVector.hex');
+dsVhdlDelayed{3} = fromVhdlRecord('D:/Temp/d2_delayedVector.hex');
+dsVhdlDelayed{4} = fromVhdlRecord('D:/Temp/d3_delayedVector.hex');
 
-rdysVhdlDelayed = fromVhdlRecord('E:/Temp/rdys_delayedVector.hex');
+rdysVhdlDelayed = fromVhdlRecord('D:/Temp/rdys_delayedVector.hex');
 
 %% adapt calculated data to fit vhdl data
 for i = 1:N
@@ -255,11 +255,11 @@ fig = figure(4);
 
 plot(t, x, 'k-'); hold on;
 
-plot(t, yVhdl, 'm.');
+ plot(t, yVhdl, 'm.');
 plot(t, yExtended, 'm-'); hold off;
 
 legend({'x',  'yVhdl', 'y'})
 xlim([0 x_lim])
 grid
-
+savefig(fig, 'db4')
 
