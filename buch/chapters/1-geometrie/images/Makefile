@@ -15,7 +15,8 @@ all:	sinsin.pdf	\
 	hexagon.pdf	\
 	hexagon1.pdf	\
 	hexagon2.pdf	\
-	hexagon3.pdf
+	hexagon3.pdf	\
+	tri.pdf
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
@@ -66,3 +67,11 @@ hexagon2.pdf:	hexagon2.tex
 hexagon3.pdf:	hexagon3.tex
 	pdflatex hexagon3.tex
 
+tri.png:	tri.pov
+	povray +A0.1 -W1920 -H1080 -Otri.png tri.pov
+
+tri.jpg:	tri.png Makefile
+	convert -extract 960x1080+470+0 tri.png -density 300 -units PixelsPerInch tri.jpg
+
+tri.pdf:	tri.tex tri.jpg
+	pdflatex tri.tex
