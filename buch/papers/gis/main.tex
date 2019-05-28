@@ -171,7 +171,7 @@ Aufgrund von diversen Unstetigkeitsstellen in einer GIS, wie z.B Stützisolatore
 Durch diese entstehen stehende Wellen in der GIS und die Signalleistung wird gedämpft. 
 In Abbildung \ref{fig:messketteingis} sind einige approximative Dämpfungswerte angezeigt \cite{report:PDBasicABB}.
 Eine GIS im Feld hat an diversen Stellen breitbandige Sensoren [4] die wie Antennen wirken. 
-An diesen kann das Signal aus der GIS gekoppelt werden. \cite{buch:UHFSignale, skript:Judd24ps, buch:Kuchler} 
+An diesen kann das Signal von der GIS ausgekoppelt werden \cite{buch:UHFSignale, skript:Judd24ps, buch:Kuchler}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{papers/gis/Bilder/MessketteInGIS}
@@ -183,7 +183,7 @@ Nach dem Sensor ist ein Hochpassfilter mit der Eckfrequenz 83MHz vorgeschaltet.
 Dieser dient zum Schutz der dahinterliegenden Messgeräte.
 Falls es zu einem dielektrischen Durchschlag kommt werden die hochenergetischen Signalanteile gegen Erde abgeleitet.
 Danach wird das Signal mit 50dB verstärkt.
-Die 50$\Omega$ Signalkabel werden an einen Multiplexer gehenkt. 
+Die 50$\Omega$ Signalkabel werden an einen Multiplexer angeschlossen. 
 Mit dem kann das Signal auf einem Frequenzanalysator oder Oszilloskop angezeigt werden. 
 Für die untersuchten Daten sind die Zeitsignale mit einem 10GS/s Oszilloskop mit 2GHz Bandbreite aufgezeichnet worden.
 Die Abtastzeit wurde für alle Signale gleich gewählt und liegt bei 100ps. 
@@ -260,7 +260,7 @@ Um den Startpunkt des Signals zu extrahieren wurde ein Thresholdlevel (Schwellen
 Aus den ersten 300 Datenwerte wird der Vektorindex $v_\text{max}$ mit dem grössten absoluten Wert ermittelt.
 Der Thresholdlevel
 \begin{equation}
-\text{Tresholdlevel} = 3*v_\text{max}^2
+\text{Tresholdlevel} = 3\cdot v_\text{max}^2
 \end{equation}
 wird durch Quadrieren von Wert in $v_{max}$ und Multiplikation mit 3 festgelegt.
 Der Startpunkt wird ermittelt in dem das erste Vektorelement im Datenvektor $abs(v_d)^2$ gesucht wird welches diesen überschreitet.
@@ -294,59 +294,80 @@ Damit wird erzielt das die $y$-Achse mit der approximierten Frequenz $F_a$ skali
 
 \section{Auswertung kontinuierliche Wavelettransformation}
 \rhead{Abschnitt}
-In diesem Abschnitt wird behandelt wie die Auswertung der vier Fehlsignalen von den zwei verschiedenen Fehlerarten angegangen wurde. 
+In diesem Abschnitt wird behandelt, wie die Auswertung der vier Fehlsignalen von den zwei verschiedenen Fehlerarten angegangen wurde. 
 Ein Thema hier ist die Wahl des Wavelet und die Vorgehensweise während der Analyse. 
 
 Mit der Wahl des Wavelet kann bestimmt werden ob mehr Zeit- $\Delta t$ oder Frequenzauflösung $\Delta f$ gewünscht ist. 
 Der Grund dafür ist die küpfmüllersche Unbestimmtheitsrelation (Unschärferelation der Nachrichtentechnik)
 \begin{equation}
-\Delta t \cdot \Delta f \geq k 
+\Delta t \cdot \Delta f = k
 \qquad\text{mit}\qquad
-k \in [0.5 ; 1]
+k = 1
 \end{equation}
 welche besagt das nicht gleichzeitig beide Auflösungen beliebig genau sein können.
-$k$ kann die Werte $0.5$ oder $1$ annehmen.
+Noch klarer wird der Zusammenhang bei der Grenzfallbetrachtung wenn auf ein Diracstoss mit unendlich kurzer Zeitdauers die Fouriertransformation angewendet wird.
+Es resultiert ein gerades Frequenzspektrum über den kompletten Frequenzbereich.
 
 Mit einem Haar-Wavelet erhält man eine sehr hohe Zeitauflösung wann ein Event stattgefunden hat und mit einem Morlet-Wavelet wird die Frequenzauflösung erhöht dafür wird der Preis von einer ungenaueren Zeitauflösung bezahlt.
-Veranschaulicht, mit zwei Graphen, ist die Unschärferelation in den Abbildungen \ref{fig:UnschRelMorl}\ref{fig:UnschRelHaar}. 
-Es sind die Wavelet-Transformationen von den Beiden Wavelets welche Oben zitiert sind.
+Veranschaulicht, mit zwei Graphen, ist die Unschärferelation in den Abbildungen \ref{fig:UnschRelMorl} und \ref{fig:UnschRelHaar}. 
 Der CWT Plot vom Haar-Wavelet weist scharfe Kanten auf welche gut mit den Minimums und Maximums des Zeitsignals korrelieren.
 Die Frequenzen sind jedoch über den Frequenzbereich verschmiert, diese Auflösung ist beim Morlet-Wavelet höher.
 
-Bei der Auswertung wurden Wavelets aus den folgenden Familien verwendet.
+Bei den reellwertigen Wavelets ist immer auch eine 'Perlenketten' ähnliche Struktur erkennbar (siehe Plots in Abbildung \ref{fig:UnschRelMorl} und \ref{fig:UnschRelHaar}).
+Ohne tiefere Überlegung könnte man versucht sein diese Struktur als mögliches fehlertypisches Merkmal zu interpretieren. 
+Bei genauerer Betrachtung wird jedoch klar das sich die Perlenketten zwischen den Nullstellen vom Zeitsignal befinden und sie keine brauchbare Information für unser Problem beinhalten.
+Die Perlenkettenbildung zwischen den Nullstellen kann umgangen werden wenn die CWT mit einem komplexen Wavelet durchgeführt wird.
+Interessant dabei ist, dass nun Schwebungen im Zeitsignal zu einer abgeschlossenen Kontur im CWT Plot führen.
+Dies ist gut erkennbar in der Abbildung \ref{fig:cgau5} im Zeitintervall von 28ns bis 33ns.
+
+Da bei dem zu untersuchenden Problem nicht klar war nach was genau gesucht werden sollte wurden Wavelets für verschiedene Signalcharakteristiken verwendet.
 \begin{itemize}
 	\item Haar
 	\item Daubechies 
 	\item Symlets
 	\item komplex Gaussian
-	\item komplex Morlet
+	\item real und komplex Morlet
 \end{itemize}
 Es sind von jeder Familie mit verschiedene Exponate jeweils zwei CWT Plots erstellt worden. 
-Die Zeitsignale von den Zweien gehörten jeweils zu einer der Beiden Fehlerarten Oberflächenentladung oder Hohlraumentladung.
+Die Zeitsignale von den Zweien gehörten je zu einer der beiden Fehlerarten Oberflächenentladung oder Hohlraumentladung.
 Visuell sind die zwei Plots miteinander verglichen worden.
 Bei Auffälligkeiten wurden zwei weitere Zeitsignale transformiert um diese zu bestätigen.
 Es konnte jedoch keine typische Bildcharakteristik gefunden werden welche nur bei einer Fehlerart auftritt.
-
 \begin{figure}
 	\centering
-	\begin{minipage}{.5\textwidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{papers/gis/Bilder/UnschRelHaar}
-		\captionof{figure}{CWT Plott Haar-Wavelet}
+		\includegraphics[width=1\linewidth]{papers/gis/Bilder/UnschRelHaar}
+		\captionof{figure}{CWT Plot Haar-Wavelet}
 		\label{fig:UnschRelHaar}
-	\end{minipage}%
-	\begin{minipage}{.5\textwidth}
+\end{figure}
+\begin{figure}
 	\centering
-	\includegraphics[width=.9\linewidth]{papers/gis/Bilder/UnschRelMorl}
-	\captionof{figure}{CWT Plott Morlet-Wavelet}
+	\includegraphics[width=1\linewidth]{papers/gis/Bilder/UnschRelMorl}
+	\captionof{figure}{CWT Plot Morlet-Wavelet}
 	\label{fig:UnschRelMorl}
-\end{minipage}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{papers/gis/Bilder/cgau5}
+	\captionof{figure}{CWT Plot komplexes Gausches-Wavelet Nr.5}
+	\label{fig:cgau5}
 \end{figure}
 
-
-
 \section{Schlussfolgerung}
-\rhead{Schlussfolgerung} 
+\rhead{Schlussfolgerung}
+In dieser Arbeit wurde versucht aus Zeitsignalen fehlerspezifische Charakteristiken zu extrahieren mit Hilfe der CWT Analyse.
+Die Verwendeten Signale stammen von TOF-Aufzeichnungen welche Vor-Ort bei einer Anlage im Betrieb aufgezeichnet wurden und bei denen eindeutige Klarheit über die Teilentladungsquelle vorlag. 
+Es wurde auf die physikalischen wie elektrotechnischen fehlerspezifische Phänomene eingegangen in der Hoffnung das aus diesen Erkenntnissen Rückschlüsse auf die CWT Plots gemacht werden können.
+In der Analyse des Messpfades wurde der Ausbreitungsweg elektromagnetischer Wellen innerhalb und ausserhalb einer GIS Aufgezeigt.
+Hier wird erstmals klar das, dass finden von fehlerspezifische Charakteristiken im CWT Plot schwierig sein könnte.
+Dies aufgrund der Tatsache das die GIS allem anderen als einem Koaxialkabel mit konstantem Wellenwiderstand entspricht und sich die Fehlstelle mehrere Meter weit Weg von der Koppelantenne befinden.
+Dadurch werden die Signale von der Fehlerquelle bis zur Koppelantenne extrem verzerrt und die ursprüngliche Form geht verloren.
+Bei der optischen Analyse beider Fehlerarten wurden keine Auffälligkeiten entdeckt. Der Autor schliesst dies auf die erwähnte Signalverzerrung.
+Bei der Beurteilung des Resultates der vorliegenden Arbeit sollte jedoch in Betracht gezogen werden das eventuell mit einer breiteren Datenbasis und Machine Learning fehlerspezifische Charakteristiken herausgefiltert werden könnten.
+
+Ein grosser Dank geht an Glenn Behrmann von der Firma ABB Schweiz AG. 
+Er hat mir die Aufzeichnungen zur Verfügung gestellt und wir hatten beim Projektstart interessante Diskussionen. An dieser Stelle möchte ich erwähnen das Herr Behrmann von Beginn an mich auf das Problem der Signalverzerrung aufmerksam gemacht hat.
  
+
 \printbibliography[heading=subbibliography]
 \end{refsection}
