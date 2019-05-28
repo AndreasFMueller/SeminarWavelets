@@ -73,7 +73,7 @@ Um die folgenden Abschnitte etwas übersichtlicher zu gestalten wird der Term `D
 Das Haar-Wavelet (db1) hat die Eigenschaft, dass es verschwindet, solange nicht mindestens ein lineares Signal analysiert wird.
 Für das db2 gilt dasselbe mit quadratischen Funktionen. 
 Die Ordnung des Wavelets nimmt also zusammen mit der Ordnung des analysierten Signals zu.
-\begin{figure}[h]
+\begin{figure}
 	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db1}
 	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db2}
 	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db4}
@@ -83,7 +83,7 @@ Die Ordnung des Wavelets nimmt also zusammen mit der Ordnung des analysierten Si
 \end{figure}
 
 Da im Audiobereich sehr transiente Signale möglich sind, können Daubechies-Wavelets einer hohen Ordnung sehr gute Werte liefern.
-Das bedeutet zum einen, dass sehr unterschiedliche Signale damit abgetastet werden können und zum anderen, dass die Wavelets auf Null gehen, wenn sie mit Signalen der tieferen Ordnung verrechnet werden.
+Das bedeutet zum einen, dass sehr unterschiedliche Signale damit abgetastet werden können und zum anderen, dass die Wavelettransformationen genau Null geben, wenn sie auf Signale der tieferen Ordnung angewendet werden.
 Wenn man die Wahrnehmbarkeitsschwelle von \autoref{fig:Wahrnehmbarkeitsschwelle} betrachtet, liegt es nahe, dass eine Folge von Nullwerten oder auch Werte in der Nähe von Null nicht gespeichert werden müssen.
 Somit bilden die Daubechies-Wavelets eine gute Grundlage für diese Anwendung.
 Für diese Arbeit wurden hauptsächlich die beiden Wavelets `db4' sowie `db20' verwendet.
@@ -92,26 +92,27 @@ Experimentell hat sich gezeigt, dass diese sehr gut auf unterschiedlichste Audio
 \section{Anwendung}
 \rhead{Anwendung}
 Für die Analyse von Audiodaten wird eine Multiskalenanalyse, wie in \autoref{chapter:msa} beschrieben, durchgeführt.
-Die Anzahl der Levels (\textit{n}) dieser Analyse wird anhand der Länge (\textit{l}) des Signals berechnet. 
+Die Anzahl der Levels (\textit{n}) dieser Analyse wird anhand der Länge (\textit{l}) des Signals mit
 \begin{equation}
 \textit{n} = \log_2{\textit{l}}
 \end{equation}
+berechnet.
 
-Als Beispiel an einer gewöhnlichen Sägezahnschwingung.
+Als Beispiel wird die Analyse einer gewöhnlichen Sägezahnschwingung in \autoref{fig:sawtooth}) dargestellt.
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{papers/compress/Bilder/sawtooth}
 	\caption{Multiskalenanalyse einer Sägezahnschwingung}
 	\label{fig:sawtooth}
 \end{figure}
-
 Während dem linearen Anstieg des Sägezahns ist erkennbar, wie die Multiskalenanalyse über alle Skalierungslevels gleich Null ist.
+In diesem Beispiel wurde ein db4 verwendet.
 Sobald diese unterschiedlich skalierten Wavelets in den transienten Bereich gelangen, ist ein Wert ungleich Null erkennbar.
 Für die sehr klein skalierten Wavelets ist das nur in unmittelbarer Umgebung von diesem Sprung der Fall.
 Alle anderen Koeffizienten können also komprimiert werden.
 
 Doch wenn nun auch Rauschen gelöscht wird, weil es nicht stark ins Gewicht fällt, können negative Auswirkungen auf das Hörerlebnis entstehen. 
-Koeffizienten, welche nicht stark ins Gewicht Fallen, können mit wenigen Bits gespeichert werden, wodurch sie grössere Quantisierungsstufen bilden. 
+Koeffizienten, welche nicht stark ins Gewicht fallen, können mit wenigen Bits gespeichert werden, wodurch sie grössere Quantisierungsstufen bilden. 
 Dann fehlen sie nicht komplett aber brauchen auch nicht den vollen Speicherplatz.
 Nun stellt sich die Frage, ab wann eine solche Quantisierung sinnvoll ist und wann ein Koeffizient ganz weggelassen werden kann. 
 
@@ -122,14 +123,59 @@ Nun stellt sich die Frage, ab wann eine solche Quantisierung sinnvoll ist und wa
 	\label{fig:coefficients}
 \end{figure} 
 
-Wenn anschliessend alle Levels wieder miteinander addiert werden kann das exakte Signal rekonstruiert werden.
-Das Ziel ist jedoch nur das nötige zu speichern.
+Wenn anschliessend alle Levels überlagert werden kann das exakte Signal rekonstruiert werden.
+Das Ziel ist jedoch, nur das nötige zu speichern.
 Um das zu erreichen muss entschieden werden, ab wann es Sinn macht die Werte zu speichern oder gegebenenfalls einzusparen.
 
-In einem ersten Versuch wurde der prozentuale Anteil der einzelnen Levels über das ganze Signal berechnet (\autoref{fig:coefficients}).
-Anschliessend wurden zwei Grenzen gesetzt, eine bei  $10\,\text{\%}$ und eine bei $1\,\text{\%}$, welche eine Art Schranke bilden.
-Oberhalb dieser Schranke sollen die exakten Werte übernommen werden und unterhalb sollen die Werte ganz weggelassen werden.
-Innerhalb der Schranke soll die quantisierung zur Anwendung kommen.
+Für einen ersten Versuch wird der Anteil der einzelnen Levels über das ganze Signal berechnet.
+In \autoref{fig:coefficients} ist graphisch dargestellt, welchen Anteil vom originalen Signal die unterschiedlichen Diletationen beinhalten.
+Eine ungefähre Grössenanordnung lässt sich für einfache Signale wie in \autoref{fig:sawtooth} auch rein optisch einschätzen.
+Signale mit breiten Bereichen einer hohen Magnitude resultieren auch in einem hohen Anteil. 
+Hingegen haben Signale, welche hauptsächlich Magnituden um den Nullpunkt herum besitzen einen eher geringen Einfluss auf das Signal.
+Allerdings spielen die Anteile mit kleiner Skalierung insbesondere für Rauscheffekte noch eine Rolle.
+
+Im nächsten Schritt werden zwei Grenzen gesetzt.
+Eine obere bei  $10\,\text{\%}$ und eine untere bei $1\,\text{\%}$ der Gesamtsignalstärke.
+Diese `Schranke' unterteilt den Graphen nun in drei Bereiche. 
+Oberhalb der Schranke sollen die exakten Werte übernommen werden, was beispielsweise einem double-precision floating-point Format mit 64 Bit entspricht.
+Unterhalb der Schranke können die Werte jedoch ganz weggelassen werden.
+Der Bereich innerhalb der Schranke bildet einen Übergangsbereich.
+Die Werte sollen erhalten bleiben aber die Genauigkeit ist nicht Vordergründig.
+Für diesen Versuch werden die Nachkommastellen auf 2 Dezimalzahlen gekürzt. 
+
+Beim Beispiel des Sägezahnes ist in \autoref{fig:coefficients} ersichtlich, dass die Levels 10, 11 und 12 exakt übernommen werden.
+Hingegen werden die Levels 1 bis 6 weggelassen und die übrigen quantisiert.
+Mit `Total Portion used' wird angegeben welcher Anteil des Originalen Signals damit noch wiederhergestellt werden kann.
+
+\subsection{Harmonische Signale}
+Es stellt sich die Frage, ob diese Analyse auch für harmonische Signale brauchbar ist.
+Die Fouriertheorie (\autoref{chapter:fourier}) ermöglicht es einem, harmonische Signale mit relativ wenigen harmonischen Schwingungen zu rekonstruieren.
+Doch wie gut funktioniert es mit den hier verwendeten Daubechies-Wavelets?
+
+Als Beispiel wird ein Horn-Ton untersucht.
+Auch hier kann das harmonisches Signal mit wenigen Koeffizienten recht exakt beschrieben werden. 
+Zum Vergleich ist in \autoref{} der Anteil der Levels mit einem db4 und einem db20 abgebildet.
+Das interessante ist nun, dass das harmonische Signal sehr gut mit dem db20 erfasst wird und über $99\,\text{\%}$ mit nur 3 Koeffizienten rekonstruiert werden kann.
+Wird das Signal jedoch rekonstruiert zeigt sich bereits ein grosses Problem der Quantisierung. 
+Das Signal wird teilweise stark verzerrt.
+Obwohl diese Verzerrungen anteilsmässig keinen grossen Unterschied zum Originalsignal machen, sind diese hochfrequenten Störungen sehr gut wahrnehmbar.
+Bei der Analyse mit dem db4 wird das Signal zwar weniger exakt rekonstruiert, jedoch werden keine Levels quantisiert.
+Somit entstehen keine Verzerrungen und akustisch ist kaum ein Unterschied erkennbar.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/frenchHorn_normal.pdf}
+	\caption{Analyse eines Horntons mit dem Daubechies Wavelet db20.}
+	\label{fig:horn}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/frenchHorn_db20.pdf}
+	\caption{Anteil der verschiedenen Levels einer MSA, mit einem db20, an einem Hornton.}
+	\label{fig:db20horn}
+\end{figure}
+\subsection{Transiente Signale}
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
