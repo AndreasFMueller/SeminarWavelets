@@ -11,15 +11,15 @@
 \section{Audio-Komprimierung}
 \rhead{Vorwort}
 Die Menge an produzierten Daten nimmt jährlich rasant zu.
-Immer höher auflösende Bild-/ Video und Audiodaten spielen dabei eine zentrale Rolle.
-Um den Berg an Daten im Griff zu behalten, muss der Datenkomprimierung (lat.~comprimere, `zusammendrücken') eine grosse Bedeutung beigemessen werden. 
+Immer höher aufgelöste Bild-, Video- und Audiodaten spielen dabei eine zentrale Rolle.
+Um den Berg an Daten im Griff zu behalten, ist Datenkomprimierung (lat.~comprimere, `zusammendrücken') unerlässlich. 
 
 Das Ziel der Datenkomprimierung ist es, die vorhandenen Daten so zu verdichten, dass der Speicherbedarf möglichst reduziert werden kann.
 Es sollen für die Speicherung, wie auch für die Übertragung der Daten möglichst wenig Ressourcen benötigt werden.
-Grundsätzlich unterscheidet man dabei zwischen verlustbehafteter und verlustfreier Kompression.
 
 Diese Arbeit wird auf Audiodaten beschränkt.
 Dabei ist das Ziel nicht etwa die Entwicklung eines Kompressionsalgorithmus sondern das Aufzeigen von Möglichkeiten der Komprimierung mit Hilfe von Wavelets.
+Des Weiteren steht eine exakte Rekonstruktion nicht im Vordergrund, jedoch soll für den Hörer möglichst keinen Unterschied zum Original wahrnehmbar sein.
 
 \subsection{Verlustfreie Komprimierung}
 Bei der verlustfreien Komprimierung wird gewährleistet, dass die Originaldaten exakt aus den komprimierten Daten wiederhergestellt werden können.
@@ -29,17 +29,18 @@ Deshalb spricht man auch von Redundanzreduktion.
 Verlustfreie Komprimierung findet breite Anwendung.
 Insbesondere bei Datenarchivierung sollen die Originaldaten exakt erhalten bleiben und darum wird häufig eine solche Kompressionstechnik verwendet.
 Namhafte Beispiele von verlustfreier Komprimierung sind beispielsweise das ZIP-Dateiformat, die Portable Network Graphics (PNG) oder im Bezug auf Audiodaten der Free Lossless Audio Codec (FLAC).
-Mit heutigen Verfahren können Kompressionsraten von 25 bis 70 Prozent erreicht werden.
+Beispielsweise kann mit dem FLAC-8 der Speicherplatzbedarf auf unter 66 Prozent der Originaldatei reduziert werden, ohne dabei Informationen zu verlieren.\cite{wikipedia:flac}
 
 \subsection{Verlustbehaftete Komprimierung}
 Bei der verlustbehafteten Komprimierung soll nur der nötige Teil der Originaldaten erhalten bleiben.
-Das hat zur Folge, dass die Originaldaten nicht mehr exakt wiederhergestellt werden können. 
+Somit ist es möglich, den benötigten Speicherplatz auf ein Minimum zu reduzieren.
+Das hat jedoch zur Folge, dass die Originaldaten nicht mehr exakt wiederhergestellt werden können. 
 Somit ist sie nicht mehr umkehrbar.
 Man kann unnötige Daten entfernen und somit die Datenmenge reduzieren.
 Deshalb spricht man auch von Irrelevanzreduktion.
 Um zu entscheiden, welche Teile wichtig und welche entbehrlich sind, wird auf die menschliche Wahrnehmung geachtet.
 Die verlustbehaftete Komprimierung wird insbesondere für Multimedia-Daten häufig verwendent.
-Weil die menschliche Sinneswahrnemung nicht alle Frequenzen und Töne gleich gut aufnimmt, können gewisse Bereiche weggelassen werden.
+Weil die menschliche Sinneswahrnehmung nicht alle Frequenzen und Töne gleich gut aufnimmt, können gewisse Bereiche weggelassen werden.
 Mehr dazu im nächsten Kapitel.
 
 Mit der verlustbehafteten Kompression können sehr hohe Kompressionsraten erreicht werden, welche aber stets mit einer Qualitätseinbusse kommen.
@@ -48,28 +49,92 @@ Diesen Abtausch von hoher Kompression mit schlechter Qualität gilt es abzuschä
 \section{Psychoakustik}
 \rhead{Psychoakustik}
 Das menschliche Gehör verarbeitet Schallwellen nicht einfach wie ein Mikrofon.
-Ein Schallereignis kann nach diversen psychoakustischen Grössen beurteilt werden.
-Lautheit, Schärfe, Tonheit, Rauhigkeit und Schwankungsstärke sind dabei wichtige Parameter.
-Ausserdem spielen Tonhaltigkeit und Impulshaltigkeit eine weitere Rolle.
-Auf die erwähnten Parameter wird hier nicht weiter eingegangen.
+Um ein Schallereignis zu beurteilen haben Psychoakustiker eine Vielzahl an Parametern identifiziert, beispielsweise Lautheit und Schärfe, auf welche in dieser Arbeit aber nicht weiter eingegangen wird.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.6\linewidth]{papers/compress/Bilder/Akustik_Mithoerschwelle2}
 	\caption{Wahrnehmbarkeit von Schallsignalen bei Anwesenheit von Störsignalen \cite{skript:Akustik2}}
+<<<<<<< HEAD
 	\label{fig: Wahrnehmbarkeitsschwelle}
+=======
+	\label{fig:Wahrnehmbarkeitsschwelle}
+>>>>>>> 04eed21aa78d278613c25cf6940210b1fe4b7b5a
 \end{figure}
 
-In \autoref{fig: Wahrnehmbarkeitsschwelle} Dargestellt ist ein Modell der Wahrnehmbarkeitsschwelle eines menschlichen Gehörs.
+In \autoref{fig:Wahrnehmbarkeitsschwelle} dargestellt ist ein Modell der Wahrnehmbarkeitsschwelle des menschlichen Gehörs.
 Bei einem vorhandenen Störsignal, hier $1\,\text{kHz}$, wird diese Schwelle merklich angehoben.
-Auch zeitlich werden leise Töne kurz vor und nach einem lauten Ton verdeckt.
+Auch zeitlich werden leise Töne kurz vor und nach einem lauten Ton verdeckt.\cite{wikipedia:Psychoakustik}
 
 Nun folgt die Überlegung, dass jene Daten die nicht wahrnehmbar sind (unter der Schwelle) redundant sind und weggelassen werden können.
 Dies suggeriert grosses Potential für die verlustbehaftete Komprimierung.
 
-\section{Multiskalenanalyse}
+\section{Warum Daubechies-Wavelets?}
+\rhead{Warum Daubechies-Wavelets?}
+Um ein Signal möglichst gut zu analysieren, muss zuerst ein geeignetes Wavelet gewählt werden.
+Die in \autoref{chapter:kompakt} vorgestellten Daubechies-Wavelets besitzen sehr nützliche Eigenschaften.
+Um die folgenden Abschnitte etwas übersichtlicher zu gestalten wird der Term `Daubechies-Wavelet N-ter Ordnung' nun mit `dbN' abgekürzt.
+Das Haar-Wavelet (db1) hat die Eigenschaft, dass es verschwindet, solange nicht mindestens ein lineares Signal analysiert wird.
+Für das db2 gilt dasselbe mit quadratischen Funktionen. 
+Die Ordnung des Wavelets nimmt also zusammen mit der Ordnung des analysierten Signals zu.
+\begin{figure}[h]
+	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db1}
+	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db2}
+	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db4}
+	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db20}
+	\label{fig:dbN}
+	\caption{Daubechies-Wavelets unterschiedlicher Ordnungen.}
+\end{figure}
 
-\rhead{}
+Da im Audiobereich sehr transiente Signale möglich sind, können Daubechies-Wavelets einer hohen Ordnung sehr gute Werte liefern.
+Das bedeutet zum einen, dass sehr unterschiedliche Signale damit abgetastet werden können und zum anderen, dass die Wavelets auf Null gehen, wenn sie mit Signalen der tieferen Ordnung verrechnet werden.
+Wenn man die Wahrnehmbarkeitsschwelle von \autoref{fig:Wahrnehmbarkeitsschwelle} betrachtet, liegt es nahe, dass eine Folge von Nullwerten oder auch Werte in der Nähe von Null nicht gespeichert werden müssen.
+Somit bilden die Daubechies-Wavelets eine gute Grundlage für diese Anwendung.
+Für diese Arbeit wurden hauptsächlich die beiden Wavelets `db4' sowie `db20' verwendet.
+Experimentell hat sich gezeigt, dass diese sehr gut auf unterschiedlichste Audiodaten passen.
+
+\section{Anwendung}
+\rhead{Anwendung}
+Für die Analyse von Audiodaten wird eine Multiskalenanalyse, wie in \autoref{chapter:msa} beschrieben, durchgeführt.
+Die Anzahl der Levels (\textit{n}) dieser Analyse wird anhand der Länge (\textit{l}) des Signals berechnet. 
+\begin{equation}
+\textit{n} = \log_2{\textit{l}}
+\end{equation}
+
+Als Beispiel an einer gewöhnlichen Sägezahnschwingung.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/sawtooth}
+	\caption{Multiskalenanalyse einer Sägezahnschwingung}
+	\label{fig:sawtooth}
+\end{figure}
+
+Während dem linearen Anstieg des Sägezahns ist erkennbar, wie die Multiskalenanalyse über alle Skalierungslevels gleich Null ist.
+Sobald diese unterschiedlich skalierten Wavelets in den transienten Bereich gelangen, ist ein Wert ungleich Null erkennbar.
+Für die sehr klein skalierten Wavelets ist das nur in unmittelbarer Umgebung von diesem Sprung der Fall.
+Alle anderen Koeffizienten können also komprimiert werden.
+
+Doch wenn nun auch Rauschen gelöscht wird, weil es nicht stark ins Gewicht fällt, können negative Auswirkungen auf das Hörerlebnis entstehen. 
+Koeffizienten, welche nicht stark ins Gewicht Fallen, können mit wenigen Bits gespeichert werden, wodurch sie grössere Quantisierungsstufen bilden. 
+Dann fehlen sie nicht komplett aber brauchen auch nicht den vollen Speicherplatz.
+Nun stellt sich die Frage, ab wann eine solche Quantisierung sinnvoll ist und wann ein Koeffizient ganz weggelassen werden kann. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/recCoefs}
+	\caption{Anteil der einzelnen Levels am gesamten Signal (in Prozent) mit Quantisierungsschranke (rot).}
+	\label{fig:coefficients}
+\end{figure} 
+
+Wenn anschliessend alle Levels wieder miteinander addiert werden kann das exakte Signal rekonstruiert werden.
+Das Ziel ist jedoch nur das nötige zu speichern.
+Um das zu erreichen muss entschieden werden, ab wann es Sinn macht die Werte zu speichern oder gegebenenfalls einzusparen.
+
+In einem ersten Versuch wurde der prozentuale Anteil der einzelnen Levels über das ganze Signal berechnet (\autoref{fig:coefficients}).
+Anschliessend wurden zwei Grenzen gesetzt, eine bei  $10\,\text{\%}$ und eine bei $1\,\text{\%}$, welche eine Art Schranke bilden.
+Oberhalb dieser Schranke soll die exakten Werte übernommen werden und unterhalb soll die Zahl ganz weggelassen werden.
+Innerhalb der Schranke soll die quantisierung zur Anwendung kommen.
+
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
 
