@@ -10,6 +10,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import datetime as dt
+import matplotlib
+
+
+matplotlib.rcParams['font.family'] = 'STIXGeneral'
+
 
 
 raw_2018 = np.loadtxt('raw_2018.txt', delimiter=',')
@@ -22,8 +27,8 @@ for i in range(len(date)):
 
 
 
-fig, [ax1, ax2, ax3, ax4] = plt.subplots(4, 1, num=1, clear=True)
-plt.subplots_adjust(wspace = 0.1)
+fig, [ax1, ax2, ax3, ax4] = plt.subplots(4, 1, num=1, clear=True, sharex = 'col', figsize= (11, 7))
+fig.subplots_adjust(hspace = 0.1, bottom = 0.1, wspace=0.05, left = 0.06, right = 0.99)
 
 fig.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
 fig.gca().xaxis.set_major_locator(mdates.MonthLocator())
@@ -70,6 +75,5 @@ ax4.xaxis.set_major_locator(mdates.MonthLocator())
 for tick in ax4.get_xticklabels():
     tick.set_rotation(15)
 
-plt.subplots_adjust(hspace = 0.1, bottom = 0.1)
 
 plt.show()
