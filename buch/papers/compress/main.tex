@@ -67,13 +67,14 @@ Dies suggeriert grosses Potential für die verlustbehaftete Komprimierung.
 
 \section{Warum Daubechies-Wavelets?}
 \rhead{Warum Daubechies-Wavelets?}
+\label{chapter:daubechies}
 Um ein Signal möglichst gut zu analysieren, muss zuerst ein geeignetes Wavelet gewählt werden.
 Die in \autoref{chapter:kompakt} vorgestellten Daubechies-Wavelets besitzen sehr nützliche Eigenschaften.
 Um die folgenden Abschnitte etwas übersichtlicher zu gestalten wird der Term `Daubechies-Wavelet N-ter Ordnung' nun mit `dbN' abgekürzt.
 Das Haar-Wavelet (db1) hat die Eigenschaft, dass es verschwindet, solange nicht mindestens ein lineares Signal analysiert wird.
 Für das db2 gilt dasselbe mit quadratischen Funktionen. 
 Die Ordnung des Wavelets nimmt also zusammen mit der Ordnung des analysierten Signals zu.
-\begin{figure}[h]
+\begin{figure}
 	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db1}
 	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db2}
 	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/db4}
@@ -83,7 +84,7 @@ Die Ordnung des Wavelets nimmt also zusammen mit der Ordnung des analysierten Si
 \end{figure}
 
 Da im Audiobereich sehr transiente Signale möglich sind, können Daubechies-Wavelets einer hohen Ordnung sehr gute Werte liefern.
-Das bedeutet zum einen, dass sehr unterschiedliche Signale damit abgetastet werden können und zum anderen, dass die Wavelets auf Null gehen, wenn sie mit Signalen der tieferen Ordnung verrechnet werden.
+Das bedeutet zum einen, dass sehr unterschiedliche Signale damit abgetastet werden können und zum anderen, dass die Wavelettransformationen genau Null geben, wenn sie auf Signale der tieferen Ordnung angewendet werden.
 Wenn man die Wahrnehmbarkeitsschwelle von \autoref{fig:Wahrnehmbarkeitsschwelle} betrachtet, liegt es nahe, dass eine Folge von Nullwerten oder auch Werte in der Nähe von Null nicht gespeichert werden müssen.
 Somit bilden die Daubechies-Wavelets eine gute Grundlage für diese Anwendung.
 Für diese Arbeit wurden hauptsächlich die beiden Wavelets `db4' sowie `db20' verwendet.
@@ -92,26 +93,27 @@ Experimentell hat sich gezeigt, dass diese sehr gut auf unterschiedlichste Audio
 \section{Anwendung}
 \rhead{Anwendung}
 Für die Analyse von Audiodaten wird eine Multiskalenanalyse, wie in \autoref{chapter:msa} beschrieben, durchgeführt.
-Die Anzahl der Levels (\textit{n}) dieser Analyse wird anhand der Länge (\textit{l}) des Signals berechnet. 
+Die Anzahl der Levels (\textit{n}) dieser Analyse wird anhand der Länge (\textit{l}) des Signals mit
 \begin{equation}
 \textit{n} = \log_2{\textit{l}}
 \end{equation}
+berechnet.
 
-Als Beispiel an einer gewöhnlichen Sägezahnschwingung.
+Als Beispiel wird die Analyse einer gewöhnlichen Sägezahnschwingung in \autoref{fig:sawtooth}) dargestellt.
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{papers/compress/Bilder/sawtooth}
 	\caption{Multiskalenanalyse einer Sägezahnschwingung}
 	\label{fig:sawtooth}
 \end{figure}
-
 Während dem linearen Anstieg des Sägezahns ist erkennbar, wie die Multiskalenanalyse über alle Skalierungslevels gleich Null ist.
+In diesem Beispiel wurde ein db4 verwendet.
 Sobald diese unterschiedlich skalierten Wavelets in den transienten Bereich gelangen, ist ein Wert ungleich Null erkennbar.
 Für die sehr klein skalierten Wavelets ist das nur in unmittelbarer Umgebung von diesem Sprung der Fall.
 Alle anderen Koeffizienten können also komprimiert werden.
 
-Doch wenn nun auch Rauschen gelöscht wird, weil es nicht stark ins Gewicht fällt, können negative Auswirkungen auf das Hörerlebnis entstehen. 
-Koeffizienten, welche nicht stark ins Gewicht Fallen, können mit wenigen Bits gespeichert werden, wodurch sie grössere Quantisierungsstufen bilden. 
+Doch wenn nun auch Rauscheffekte gelöscht werden, weil sie nicht stark ins Gewicht fallen, können negative Auswirkungen auf das Hörerlebnis entstehen. 
+Koeffizienten, welche nicht stark ins Gewicht fallen, können mit wenigen Bits gespeichert werden, wodurch sie grössere Quantisierungsstufen bilden. 
 Dann fehlen sie nicht komplett aber brauchen auch nicht den vollen Speicherplatz.
 Nun stellt sich die Frage, ab wann eine solche Quantisierung sinnvoll ist und wann ein Koeffizient ganz weggelassen werden kann. 
 
@@ -122,17 +124,111 @@ Nun stellt sich die Frage, ab wann eine solche Quantisierung sinnvoll ist und wa
 	\label{fig:coefficients}
 \end{figure} 
 
-Wenn anschliessend alle Levels wieder miteinander addiert werden kann das exakte Signal rekonstruiert werden.
-Das Ziel ist jedoch nur das nötige zu speichern.
-Um das zu erreichen muss entschieden werden, ab wann es Sinn macht die Werte zu speichern oder gegebenenfalls einzusparen.
+Wenn anschliessend alle Levels überlagert werden, kann das exakte Signal rekonstruiert werden.
+Das Ziel ist jedoch, nur das nötige zu speichern.
+Um das zu erreichen muss entschieden werden, ab wann es Sinn macht, die Werte zu speichern oder gegebenenfalls einzusparen.
 
-In einem ersten Versuch wurde der prozentuale Anteil der einzelnen Levels über das ganze Signal berechnet (\autoref{fig:coefficients}).
-Anschliessend wurden zwei Grenzen gesetzt, eine bei  $10\,\text{\%}$ und eine bei $1\,\text{\%}$, welche eine Art Schranke bilden.
-Oberhalb dieser Schranke sollen die exakten Werte übernommen werden und unterhalb sollen die Werte ganz weggelassen werden.
-Innerhalb der Schranke soll die quantisierung zur Anwendung kommen.
+Für einen ersten Versuch wird der Anteil der einzelnen Levels über das ganze Signal berechnet.
+In \autoref{fig:coefficients} ist graphisch dargestellt, welchen Anteil vom originalen Signal die unterschiedlichen Diletationen beinhalten.
+Eine ungefähre Grössenanordnung lässt sich für einfache Signale wie in \autoref{fig:sawtooth} auch optisch einschätzen.
+Signale mit breiten Bereichen einer hohen Magnitude resultieren auch in einem hohen Anteil. 
+Hingegen haben Signale, welche hauptsächlich Magnituden um den Nullpunkt herum besitzen einen eher geringen Einfluss auf das Signal.
+Allerdings spielen die Anteile mit kleiner Skalierung insbesondere für Rauscheffekte noch eine Rolle.
+
+Im nächsten Schritt werden zwei Grenzen gesetzt.
+Eine obere bei  $10\,\text{\%}$ und eine untere bei $1\,\text{\%}$ der Gesamtsignalstärke.
+Diese `Schranke' unterteilt den Graphen nun in drei Bereiche. 
+Oberhalb der Schranke sollen die exakten Werte übernommen werden, was beispielsweise einem double-precision floating-point Format mit 64 Bit entspricht.
+Unterhalb der Schranke können die Werte jedoch ganz weggelassen werden.
+Der Bereich innerhalb der Schranke bildet einen Übergangsbereich.
+Die Werte sollen erhalten bleiben jedoch ist die Genauigkeit nicht vordergründig.
+
+Beim Beispiel des Sägezahnes ist in \autoref{fig:coefficients} ersichtlich, dass die Levels 11, 12 und 13 exakt übernommen werden.
+Hingegen werden die Levels 1 bis 6 sowie 16 weggelassen und die übrigen quantisiert.
+Mit `Total Portion used' wird angegeben welcher Anteil des originalen Signals damit noch wiederhergestellt werden kann.
+
+Der IEEE-754 Standart \cite{article:IEEE-754} beschreibt, wie double-precision floating-point Zahlen gespeichert werden sollen. 
+Von den vorhandenen 64 Bit werden 52 für die Mantisse gebraucht.
+Für die Quantisierung ist eine solche Genauigkeit überflüssig, da die entsprechende Zahl auf wenigen Nachkommastellen gerundet werden soll.
+Wird diese Mantisse nun beispielsweise auf 5 Bit gekürzt kann viel gespart werden.
+Von den ursprünglichen 64 Bit bleiben 17 Bit übrig, was noch ungefähr $26.6\,\text{\%}$ des Speicherplatzes entspricht.
+Selbstverständlich bedeutet das nicht, dass der gesamte Speicherplatz nur noch knapp einem viertel vom Original entspricht. 
+Die tatsächliche Verminderung ist stark signalabhängig.
+Es kann somit keine exakte Einschätzung für alle Arten von Audiodaten getroffen werden. 
+
+\subsection{Harmonische Signale}
+Als erstes stellt sich die Frage, ob diese Analyse für harmonische Signale interessant ist.
+Die Fouriertheorie (\autoref{chapter:fourier}) ermöglicht es einem, harmonische Signale mit relativ wenigen harmonischen Schwingungen zu rekonstruieren.
+Doch wie gut funktioniert es mit den hier verwendeten Daubechies-Wavelets?
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/frenchHorn_normal.pdf}
+	\caption{Analyse eines Horntons mit dem Daubechies Wavelet db20.}
+	\label{fig:horn}
+\end{figure}
+
+Als zweites Beispiel wird in \autoref{fig:horn} ein Horn-Ton untersucht.
+Auch hier kann das harmonische Signal mit wenigen Koeffizienten recht exakt beschrieben werden. 
+Zum Vergleich sind in \autoref{fig:dbHorn} die Anteile der Levels mit einem db4 und einem db20 abgebildet.
+\begin{figure}
+	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/frenchHorn_db20.pdf}
+	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/frenchHorn_db4.pdf}
+	\caption{Anteil der verschiedenen Levels einer MSA an einem Hornton. Verwendet wurden Daubechies Wavelets der Ordnung vier und zwanzig.}
+	\label{fig:dbHorn}
+\end{figure}
+Das Interessante ist nun, dass das harmonische Signal sehr gut mit dem db20 erfasst wird und über $99\,\text{\%}$ mit nur 3 Koeffizienten rekonstruiert werden kann.
+Wird das Signal jedoch rekonstruiert zeigt sich ein grosses Problem der Quantisierung.
+Das Signal wird teilweise stark verzerrt, was in \autoref{fig:hornRec} gut ersichtlich ist.
+Obwohl diese Verzerrungen anteilsmässig keinen grossen Unterschied zum Originalsignal machen, sind diese hochfrequenten Störungen akustisch sehr gut wahrnehmbar.
+Bei der Analyse mit dem db4 wird das Signal zwar weniger exakt rekonstruiert, jedoch werden keine Levels quantisiert.
+Somit entstehen keine Verzerrungen und akustisch ist kaum ein Unterschied erkennbar.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/frenchHorn_rec.pdf}
+	\caption{Starke Verzerrungen des Horntons nach einer Rekonstruktion mit dem db20.}
+	\label{fig:hornRec}
+\end{figure}
+
+\subsection{Transiente Signale}
+Da im Audiobereich nicht nur harmonische Komponenten vorhanden sind soll diese Analyse auch auf transiente Signale angewendet werden.
+Dabei soll auch wieder die Auswirkungen einer Quantisierung überprüft werden.
+Als Signal wird der Ruf eines Vogels, dem Wendehals (\textit{Jynx torquilla}), verwendet.
+Der Wendehals hat einen sehr charakterischen Ruf mit transienten Übergängen.
+\begin{figure}
+	\includegraphics[width=0.4\linewidth]{papers/compress/Bilder/wendehals.jpg}
+	\includegraphics[width=0.6\linewidth]{papers/compress/Bilder/jynxAll.pdf}
+	\caption{Der Wendehals (\textit{Jynx torquilla}) \cite{wikipedia:wendehals} mit seinem charakteristischen Ruf und der MSA.}
+	\label{fig:jynxAll}
+\end{figure}
+
+Wie auch beim vorangehenden Beispiel ist der grösste Signalanteil in wenigen Koeffizienten der Multiskalenanalyse enthalten.
+Durch die transienten Signale ist jedoch auch in den wichtigen Diletationslevels eine ausgeprägte Magnitude vorhanden.
+In \autoref{chapter:daubechies} wurde erklärt, dass mit den Daubechies-Wavelets Signale von gleicher und auch höherer Ordnung, wie das Wavelet selber erkannt werden können. 
+Experimentell hat sich gezeigt, dass mit höheren Wavelets eine bessere Rekonstruktion erreicht wird als mit den tiefen.
+Das bedeutet aber nicht zwingend, dass die höheren Wavelets besser geeignet sind.
+Jedoch sind bei den tieferen Diletationslevels die Wavelets breiter verteilt als bei den hohen und somit ist die Wahrscheinlichkeit grösser, dass ein Koeffizient quantisiert oder gelöscht wird. 
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/jynxNear.pdf}
+	\caption{Rekonstruktion des Vogelrufs, bei der nur das 6. Diletationslevel verwendet wurde, welches ungefährt $75\,\textbf{\%}$ des Signals enthält.}
+	\label{fig:jynx6}
+\end{figure}
+Es ist besonders erstaunlich, dass mit einem db20 Wavelet fast $75\,\text{\%}$ des gesamten Signals nur im 6. Level vorhanden ist.
+In \autoref{fig:jynx6} ist eine Rekonstruktion zu sehen, bei welcher ausschliesslich dieses Level verwendet wird.
+Akustisch ist der Klang des Wendehals immernoch gut erkennbar, jedoch ist die Energie und somit die Lautstärke des Signals niedriger.
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
+Das Ziel dieser Arbeit war es, Erkenntnisse zur Audiokomprimierung mit Wavelets zu erhalten.
+Wie sich herausstellt, ist es mit relativ geringem Aufwand möglich, eine Multiskalenanalyse mit numerischen Programmen wie MATLAB durchzuführen.
+Die Beispiele haben gezeigt, dass die Gruppierung in wichtige, unwichtige und zu quantisierende Koeffizienten zu grob gemacht wurde. 
+Zum einen kann kaum für all die unterschiedlichen Signaltypen im Audiobereich die selbe Grenze verwendet werden. 
+Zum anderen sollte diese Analyse auch auf der Zeitachse unterteilt werden und somit eine dynamischere Einteilung ermöglichen. 
+Die Arbeit hat jedoch mit einfachen Beispielen gezeigt, dass sich Wavelets gut eignen, um solche Signale zu erfassen.
+Harmonische und auch transiente Signale wurden beide mit wenigen Levels genau dargestellt.
+Besondere Vorsicht soll der Quantisierung der Koeffizienten geboten werden, da sie bei gewissen Signale zu einer erheblichen verschlechterung des Hörerlebnis führen können.
+In einem nächsten Schritt müsste von den erhaltenen Koeffizienten ausgehend ein passendes Audio-Format erstellt werden.
 
 \printbibliography[heading=subbibliography]
 \end{refsection}
