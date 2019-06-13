@@ -1,0 +1,9 @@
+T: matrix([3/5, 4/5], [-12/13, 5/13], [8/17, -13/17]);
+transpose(T);
+G: transpose(T) . T;
+invert(G);
+load("eigen");
+e: eigenvalues(G);
+ev(e, numer);
+tex(invert(G).transpose(T));
+tex(ev(invert(G).transpose(T),numer));
