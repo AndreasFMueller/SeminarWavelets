@@ -13,17 +13,54 @@
 \section{Einf\"urung}
 \rhead{Einf\"urung}
 
-Bisher haben wir uns mit Wavelets auf kontinuierlichen Funktionen 
-besch\"aftigt. Mit der Spectral Graph Wavelet Transform oder kurz SGWT - 
+%TODO: Rework
+Mit der Spectral Graph Wavelet Transform oder kurz SGWT - 
 nicht zu verwechseln mit der Second Generation Wavelet 
-Transform~\cite{noauthor_second-generation_2018} - wollen wir uns nun 
-von der Geometrie, auf der sich unsere Funktion $f$ befindet, l\"osen. Konkret 
-bedeutet das, dass wir die Geometrie nehmen und ein Netz dar\"uber spannen. 
-Dieses Netz ist dann unser Graph den wir analysieren, eventuell manipulieren 
-und wieder synthetisieren wollen.
+Transform~\cite{noauthor_second-generation_2018} - wollen wir die bekannte 
+Wavelet Theorie erweitern, sodass deren Konzepte auf gewichtet und ungerichtete 
+Graphen anwendbar ist.
 
-\section{Grundlagen Graphentheorie\label{sec:sgwt:graphs}}
+Daf\"ur starten in \cref{sec:sgwt:graphs} wir mit einer kleinen \"Ubersicht, 
+was genau unter einem 
+solchen Graphen verstanden wird. F\"ur die Graphen Wavelets spielt die 
+Laplacematrix \laplaceL{} eine bedeutende Rolle und wird in 
+\cref{subsec:sgwt:laplaceop} behandelt.
 
+\section{Graphen\label{sec:sgwt:graphs}}
+\rhead{Graphen}
+
+Ein Graph $G$ setzt sich aus Kanten $E$ und Knoten $V$ zusammen.
+
+\begin{equation}
+G = \{V, E\}
+\end{equation}
+
+Eine Kannte verbindet dabei jeweils zwei Knoten miteinander.
+
+\begin{equation}
+E = (V_1, V_2)
+\end{equation}
+
+
+\section{Laplace\label{sec:sgwt:laplace}}
+\rhead{Laplace}
+
+\subsection{Laplace Operator\label{subsec:sgwt:laplaceop}}
+\rhead{Laplace Operator}
+
+Der Laplace operator $\Delta$ in $\mathbb{R}^n$ beschreibt die zweite Ableitung.
+
+\begin{equation}
+\Delta = \frac{\partial^2}{\partial x_1^2}
++ \frac{\partial^2}{\partial x_2^2}
++ \dots
++ \frac{\partial^2}{\partial x_n^2}
+\end{equation}
+
+\subsection{Laplace Matrix\label{subsec:sgwt:laplacm}}
+\rhead{Laplace Matrix}
+
+%TODO: Rework
 Die Laplace Matrix 
 \laplaceL~\cite{noauthor_laplace-matrix_2017}, welche wir aus der 
 Gradmatrix \degreeM~\cite{noauthor_degree_2018} und der Adjazenzmatrix 
@@ -32,11 +69,6 @@ SGWT eine entscheidende Rolle. Dabei gibt es
 die Unterscheidung zwischen der Laplace Matrix aus \cref{eq:sgwt:laplace} und 
 \cref{eq:sgwt:laplace:norm}, bei der \laplaceLnorm{} Matrix handelt es sich um 
 die normalisierte \laplaceL{} Matrix.
-
-% TODO Example Degree matrix
-% TODO Example Adjacency matrix
-% TODO Example Laplace
-% TODO Example normalized Laplace
 
 \begin{equation}
 \laplaceL = \degreeM - \adjacencyM
@@ -49,17 +81,6 @@ die normalisierte \laplaceL{} Matrix.
 = I - \degreeM^{-1/2}\adjacencyM\degreeM^{-1/2}
 \label{eq:sgwt:laplace:norm}
 \end{equation}
-
-
-
-\section{Eigenfunktionen von Graphen\label{sec:sgwt:eigenfunction}}
-\rhead{Eigenfunktionen von Graphen}
-
-\section{Kugelgraphen\label{sec:sgwt:spheregraph}}
-\rhead{Kugelgraphen}
-
-\section{Schlussfolgerung}
-\rhead{Schlussfolgerung}
 
 \begin{equation}
 \chi = 
@@ -76,21 +97,38 @@ die normalisierte \laplaceL{} Matrix.
 0 = \lambda_0 < \lambda_1 \le \lambda_2 \le \cdots \le \lambda_{N-1}
 \end{equation}
 
-\begin{equation}
-    F_{i,j}(f) = \begin{cases}
-    f, & \text{if } i == j \\
-    0, & \text{sonst}
-    \end{cases}
-\end{equation}
+\section{Spektralanalyse}
+\rhead{Spektralanalyse}
+
+\subsection{Graph Fourier Transformation\label{subsec:sgwt:gft}}
+
+\subsection{Graph Wavelet Transformation\label{subsec:sgwt:gwt}}
 
 \begin{equation}
-\psi_j = \chi F(g(\lambda)) \chi'
+\psi_j = \chi \diag{g(\lambda)} \chi'
 \end{equation}
 
-Spektral Graph Wavelets Transformationen 
+\subsection{Kernel-Functionen}
+
+\subsubsection{Bandpassfilter \texorpdfstring{$g$}{g}}
+
+\subsubsection{Tiefpassfilter \texorpdfstring{$h$}{h}}
+
+\subsection{Frames}
+
+\subsection{Analyse}
+
+\subsection{Synthese}
+
+\section{Zusammenfassung\label{sec:sgwt:summary}}
 
 
 % TODO: Remove in final version. replaces \nocite{*}.
+Literatur:
+\cite{noauthor_second-generation_2018}
+\cite{noauthor_laplace-matrix_2017}
+\cite{noauthor_degree_2018}
+\cite{noauthor_adjacency_2019}
 \cite{hammond_wavelets_2011}
 \cite{hammond_image_nodate}
 \cite{shuman_emerging_2013}
