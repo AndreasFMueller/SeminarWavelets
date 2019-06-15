@@ -17,11 +17,11 @@ scale only axis,
 xmin=0,
 xmax=0.1,
 xlabel style={font=\color{white!15!black}},
-xlabel={x},
+xlabel={$x$},
 ymin=0,
 ymax=1,
 ylabel style={font=\color{white!15!black}},
-ylabel={y(x)},
+ylabel={$y(x)$},
 axis background/.style={fill=white},
 legend style={legend cell align=left, align=left, draw=white!15!black}
 ]
