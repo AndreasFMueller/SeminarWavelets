@@ -142,7 +142,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 0.0823125	0\\
 0.0999895833333333	0\\
 };
-\addlegendentry{f(x)}
+\addlegendentry{$f(x)$}
 
 \addplot [color=mycolor2]
   table[row sep=crcr]{%
@@ -197,7 +197,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 0.06928125	0\\
 0.0999895833333333	0\\
 };
-\addlegendentry{g(x)}
+\addlegendentry{$g(x)$}
 
 \end{axis}
 \end{tikzpicture}%
