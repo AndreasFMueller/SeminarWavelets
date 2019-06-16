@@ -1,20 +1,25 @@
 Betrachtet werden die beiden Kurven, welche 9600 Samples lang und in Abbildung \ref{deconvolve:1d} dargestellt sind.
 Beide Funktionen wurden mit einer diskreten Wavelet-Transformation mit Haar-Wavelet und 13 Level analysiert.
+Die Transformation gibt also 13 verschiedene Sets an Koeffizienten zurück.
+Auf Level 1 befinden sich die Koeffizienten, welche mit dem am höchsten Aufgelösten Wavelet erhalten wurde.
+Auf Level 13 sind demnach die Koeffizienten welche von dem Wavelet mit der gröbsten Auflösung, bwz. grössten \glqq Wellenlänge \grqq{} herrühren.
 
-
-Kann nun eine Beziehung zwischen den Wavelet-Koeffizienten erkannt werden?
-Die Hoffnung ist es, diesen Zusammenhang in als Funktion zu formulieren um dann die Koeffizienten von $f(x)$ hier $cf_k$ genannt, soweit zu manipulieren, bis sie den Koeffizienten von $g(x)$, analog $cg_k$, genug ähnlich sind.
+Koeffizienten welche die Transformation von $f(x)$ (Abbildung \ref{deconvolve:1d}) liefern, werden in dieser Arbeit $cf_k$ genannt.
 Der Index $k$ soll dabei das entsprechende Level der Koeffizienten sein.
+Gleichermassen bezeichnet $cg_k$ die Koeffizienten der Funktion $g(x)$ auf Level $k\in[1:13]$.
+
+Kann nun eine Beziehung zwischen den Wavelet-Koeffizienten von $f(x)$ und $g(x)$ erkannt werden?
+Die Hoffnung ist es, diesen Zusammenhang als Funktion zu formulieren welche $cf_k$ als Input nimmt und ein Set an Koeffizienten zurück gibt, welche den $cg_k$ ähnlich ist.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/1d.pdf}
 \caption{Funktion\label{deconvolve:1d}}
 \end{figure}
-Die Rücktransformation mit den manipulierten $cf_k$ sollte dann eine Funktion liefern, welche $g(x)$ nahe kommt.
+
+Die Rücktransformation mit den manipulierten $cf_k$ sollte dann eine Kurve liefern, welche derjenigen von $g(x)$ nahe kommt.
 Bei Erfolg hätte man also eine Funktion erarbeitet, welche aus der \glqq unscharfen\grqq{} $f(x)$ eine etwas \glqq schärfere\grqq{} Funktion $g(x)$ macht. 
 
 \subsection{Koeffizienten manipulieren}
-Auf Level 1 ist das Haar-Wavelet mit der höchsten, Level 13 demnach dasjenige mit der gröbsten Auflösung.
 Abbildung \ref{deconvolve:level1} zeigt die Koeffizienten des ersten Levels der Funktionen $f(x)$ und $g(x)$.
 \begin{figure}[h]
 \centering
