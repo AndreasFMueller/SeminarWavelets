@@ -16,7 +16,18 @@ all:	sinsin.pdf	\
 	hexagon1.pdf	\
 	hexagon2.pdf	\
 	hexagon3.pdf	\
-	tri.pdf
+	tri.pdf		\
+	beispiel2.pdf	\
+	b3-01.pdf	\
+	b3-02.pdf	\
+	b3-03.pdf	\
+	b3-04.pdf	\
+	b3-05.pdf	\
+	b3-06.pdf	\
+	b3-07.pdf	\
+	b3-08.pdf	\
+	b3-09.pdf	\
+	b3-10.pdf
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
@@ -75,3 +86,40 @@ tri.jpg:	tri.png Makefile
 
 tri.pdf:	tri.tex tri.jpg
 	pdflatex tri.tex
+
+beispiel2.pdf:	beispiel2.tex
+	pdflatex beispiel2.tex
+
+b3curves.tex:	beispiel3.m
+	octave beispiel3.m
+
+b3-01.pdf:	b3-01.tex b3curves.tex axes.tex
+	pdflatex b3-01.tex
+
+b3-02.pdf:	b3-02.tex b3curves.tex axes.tex
+	pdflatex b3-02.tex
+
+b3-03.pdf:	b3-03.tex b3curves.tex axes.tex
+	pdflatex b3-03.tex
+
+b3-04.pdf:	b3-04.tex b3curves.tex axes.tex
+	pdflatex b3-04.tex
+
+b3-05.pdf:	b3-05.tex b3curves.tex axes.tex
+	pdflatex b3-05.tex
+
+b3-06.pdf:	b3-06.tex b3curves.tex axes.tex
+	pdflatex b3-06.tex
+
+b3-07.pdf:	b3-07.tex b3curves.tex axes.tex
+	pdflatex b3-07.tex
+
+b3-08.pdf:	b3-08.tex b3curves.tex axes.tex
+	pdflatex b3-08.tex
+
+b3-09.pdf:	b3-09.tex b3curves.tex axes.tex
+	pdflatex b3-09.tex
+
+b3-10.pdf:	b3-10.tex b3curves.tex axes.tex
+	pdflatex b3-10.tex
+
