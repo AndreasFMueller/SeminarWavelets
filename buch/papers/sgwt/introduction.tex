@@ -1,0 +1,36 @@
+% TODO: Which concepts to generalise
+% TODO: Frame -> idea to approx functions on graph with different strictness
+% TODO: Explain that functions are on Vertices of the graph -> Create images
+
+%TODO: Rework
+
+F\"ur viele Probleme lassen sich nur schwer kontinuierliche Funktionen finden, 
+die den vorhanden Sachverhalt korrekt wiedergeben. Meistens liegen Daten 
+nur in diskreter Form vor und m\"ussen so weiterverarbeitet werden. Besonders 
+die Fourier- und Wavelettheorie hat sich in der Praxis als zur 
+Weiterverarbeitung geeignet herausgestellt. Daf\"ur werden aber jeweils 
+passende Basisfunktionen ben\"otigt. Diese zu finden, ist aber meist keine 
+triviale Angelegenheit.
+
+F\"ur eindimensionale Funktionen $f: \mathbb{R} \rightarrow \mathbb{R}$ stellen 
+die Exponentialfunktion $e^{i2\pi\omega x}$ eine m\"ogliche Basis dar, diese 
+wird meist in der klassischen Fouriertheorie verwendet. Im 
+zweidimensionalen Fall $f: \mathbb{R}^2 \rightarrow \mathbb{R}$ wie 
+beispielsweise einem Bild, wird oft einfach jeweils eine eindimensionale 
+Transformation f\"ur jeweils eine Dimension vorgenommen, man erh\"alt dann 
+Basisfunktionen der Form $e^{i2\pi(ux+uy)}$. In drei Dimensionen $f: 
+\mathbb{R}^3 \rightarrow \mathbb{R}$ wie zum Beispiel Kugeloberfl\"achen, gibt 
+es die Kugelfunktionen $Y^m_l$, welche eine Basis darstellen.
+
+Was ist nun aber mit Funktionen die nicht auf einfachen K\"orperoberfl\"achen 
+liegen, zum Beispiel Funktionen auf Osterhasen, oder bei solchen f\"ur die der 
+darunter liegende K\"orper keine wesentliche Rolle spielt, wie bei einem 
+Routernetzerwerk, einem Strassennetz oder generell einem Graphen? In diesem 
+Abschnitt wollen wir deshalb eine Theorie entwickeln, wie wir die bereits 
+bekannte Fourier- und Wavelettheorie auch auf Graphen anwenden k\"onnen, bei 
+dem die Funktion auf seine Knoten abgebildet wird. Diese Theorie ist bekannt 
+als Spectral Graph Wavelet Transform oder kurz SGWT - nicht zu verwechseln mit 
+der Second Generation Wavelet Transform~\cite{noauthor_second-generation_2018} 
+- die erstmals 2009 in ``Wavelets on Graphs via Spectral Graph 
+Theory''~\cite{hammond_wavelets_2009} 
+vorgestellt wurde.
