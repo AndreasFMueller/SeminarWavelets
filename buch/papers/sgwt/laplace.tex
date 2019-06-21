@@ -1,0 +1,119 @@
+% !TeX spellcheck = de_CH_frami
+
+\section{Laplace\label{sec:sgwt:laplace}}
+\rhead{Laplace}
+
+\subsection{Laplace Operator\label{subsec:sgwt:laplaceop}}
+\rhead{Laplace Operator}
+
+Der Laplace operator $\Delta$ in $\mathbb{R}^n$ beschreibt die zweite Ableitung.
+
+\begin{equation}
+\Delta = \frac{\partial^2}{\partial x_1^2}
++ \frac{\partial^2}{\partial x_2^2}
++ \dots
++ \frac{\partial^2}{\partial x_n^2}
+\end{equation}
+
+\subsection{Laplace Matrix\label{subsec:sgwt:laplacm}}
+\rhead{Laplace Matrix}
+
+%TODO: Why could norm be usefull?
+
+%TODO: Rework
+Die Laplace Matrix 
+\laplaceL~\cite{noauthor_laplace-matrix_2017}, welche wir aus der 
+Gradmatrix \degreeM~\cite{noauthor_degree_2018} und der Adjazenzmatrix 
+\adjacencyM~\cite{noauthor_adjacency_2019} berechnen k\"onnen, spielt bei der 
+SGWT eine entscheidende Rolle. Dabei gibt es 
+die Unterscheidung zwischen der Laplace Matrix aus \cref{eq:sgwt:laplace} und 
+\cref{eq:sgwt:laplace:norm}, bei der \laplaceLnorm{} Matrix handelt es sich um 
+die normalisierte \laplaceL{} Matrix.
+
+\begin{equation}
+\laplaceL = \degreeM - \adjacencyM
+\label{eq:sgwt:laplace}
+\end{equation}
+
+\begin{equation}
+\laplaceLnorm
+= \degreeM^{-1/2}\laplaceL\degreeM^{-1/2}
+= I - \degreeM^{-1/2}\adjacencyM\degreeM^{-1/2}
+\label{eq:sgwt:laplace:norm}
+\end{equation}
+
+\begin{equation}
+\chi = 
+\left[
+\begin{pmatrix}\\\chi_0\\\\\end{pmatrix}
+\begin{pmatrix}\\\chi_1\\\\\end{pmatrix}
+\begin{pmatrix}\\\chi_2\\\\\end{pmatrix}
+\cdots
+\begin{pmatrix}\\\chi_{N-1}\\\\\end{pmatrix}
+\right]
+\end{equation}
+
+\begin{equation}
+0 = \lambda_0 < \lambda_1 \le \lambda_2 \le \cdots \le \lambda_{N-1}
+\end{equation}
+
+\subsection{Beispiele}
+
+Nehmen wir nun den Graphen aus \cref{fig:sgwt:sphere:graph}.
+
+\begin{equation}
+\laplaceL =
+\begin{bmatrix}
+3 & -1 & -1 & -1 & 0 & 0 & 0 & 0 \\
+-1 &  4 & -1 & -1 & -1 & 0 & 0 & 0 \\
+-1 & -1 &  4 & -1 & 0 & -1 & 0 & 0 \\
+-1 & -1 & -1 &  4 & 0 & 0 & -1 & 0 \\
+0 & -1 & 0 & 0 &  4 & -1 & -1 & -1 \\
+0 & 0 & -1 & 0 & -1 &  4 & -1 & -1 \\
+0 & 0 & 0 & -1 & -1 & -1 &  4 & -1 \\
+0 & 0 & 0 & 0 & -1 & -1 & -1 &  3
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\degreeM =
+\begin{bmatrix}
+3 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 4 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 4 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 4 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 4 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 4 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 3
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\adjacencyM =
+\begin{bmatrix}
+0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 \\
+1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 & 0 & 1 & 1 & 1 \\
+0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 1 & 1 & 1 & 0
+\end{bmatrix}
+\end{equation}
+
+\begin{align}
+\laplaceL&^{norm} = \nonumber\\
+%&\qquad \laplaceLnorm =\nonumber\\
+&\begin{bmatrix}
+1 & -0.28868 & -0.28868 & -0.28868 & 0 & 0 & 0 & 0 \\
+-0.28868 &  1 & -0.25000 & -0.25000 & -0.25000 & 0 & 0 & 0 \\
+-0.28868 & -0.25000 &  1 & -0.25000 & 0 & -0.25000 & 0 & 0 \\
+-0.28868 & -0.25000 & -0.25000 &  1 & 0 & 0 & -0.25000 & 0 \\
+0 & -0.25000 & 0 & 0 &  1 & -0.25000 & -0.25000 & -0.28868 \\
+0 & 0 & -0.25000 & 0 & -0.25000 &  1 & -0.25000 & -0.28868 \\
+0 & 0 & 0 & -0.25000 & -0.25000 & -0.25000 &  1 & -0.28868 \\
+0 & 0 & 0 & 0 & -0.28868 & -0.28868 & -0.28868 &  1
+\end{bmatrix}
+\end{align}
