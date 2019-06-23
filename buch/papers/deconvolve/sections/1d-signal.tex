@@ -1,26 +1,32 @@
-Betrachtet werden die beiden Kurven, welche 9600 Samples lang und in Abbildung \ref{deconvolve:1d} dargestellt sind.
-Beide Funktionen wurden mit einer diskreten Wavelet-Transformation mit Haar-Wavelet und 13 Level analysiert.
-Die Transformation gibt also 13 verschiedene Sets an Koeffizienten zurück.
-Auf Level 1 befinden sich die Koeffizienten, welche mit dem am höchsten aufgelösten Wavelet erhalten wurde.
-Auf Level 13 sind demnach die Koeffizienten die von dem Wavelet mit der gröbsten Auflösung, bwz. grössten \glqq Wellenlänge \grqq{} herrühren.
-
-Koeffizienten, welche die Transformation von $f(x)$ (Abbildung \ref{deconvolve:1d}) liefert, werden in dieser Arbeit $cf_k$ genannt.
-Der Index $k\in[1:13]$ soll dabei das entsprechende Level der Koeffizienten sein.
-Gleichermassen bezeichnet $cg_k$ die Koeffizienten der Funktion $g(x)$ auf Level $k$.
-
-Kann nun eine Beziehung zwischen den Wavelet-Koeffizienten von $f(x)$ und $g(x)$ erkannt werden?
-Die Hoffnung ist es, diesen Zusammenhang als Funktion zu formulieren welche $cf_k$ als Input nimmt und ein Set an Koeffizienten zurück gibt, welche den $cg_k$ ähnlich ist.
+Betrachtet werden die beiden Funktionen, welche in Abbildung \ref{deconvolve:1d} dargestellt sind.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/1d.pdf}
 \caption{Funktion\label{deconvolve:1d}}
 \end{figure}
+Eine stetige Wavelet-Transformation von $f(x)$ ist in \ref{deconvolve:y1_cwt} abgebildet.
+Lässt man nur einzelne Dilatationen $a$ bzw. die orangen \glqq Zeilen\grqq{} der stetigen Transformation zu, werden die Level der diskreten Transformation sichtbar.
+Jedes Level tiefer wird das Wavelet \glqq halbiert \grqq{} und somit die Auflösung höher.
+Hier sind der Übersicht halber nur die Level 8-13 eingezeichnet. 
+Die stetige Transformation dient auch nur zur Visualisierung, im weiteren wird nur noch mit der diskreten Transformation auf den Level 1-13 gearbeitet.
 
-Die Rücktransformation mit den manipulierten $cf_k$ sollte dann eine Kurve liefern, welche derjenigen von $g(x)$ nahe kommt.
+Hier werden die Koeffizienten der diskreten Transformation von $f(x)$ als $cf_k$ bezeichnet wobei der Index $k\in[1;13]$ für das jeweilige Level steht.
+Analog dazu werden die Koeffizienten von $g(x)$ $cg_k$ genannt.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/y1_cwt.pdf}
+\caption{CWT von $f(x)$\label{deconvolve:y1_cwt}}
+\end{figure}
+
+Kann nun eine Beziehung zwischen den Wavelet-Koeffizienten von $f(x)$ und $g(x)$ erkannt werden?
+Die Hoffnung ist es, diesen Zusammenhang als Funktion zu formulieren welche $cf_k$ als Input nimmt und eine Menge an Koeffizienten zurück gibt, welche den $cg_k$ ähnlich ist.
+
+Die Rücktransformation mit den manipulierten $cf_k$ sollte dann eine Funktion liefern, welche $g(x)$ nahe kommt.
 Bei Erfolg hätte man also eine Methode erarbeitet, welche aus der \glqq unscharfen\grqq{} $f(x)$ eine etwas \glqq schärfere\grqq{} Funktion $g(x)$ macht. 
 
 \subsection{Koeffizienten manipulieren}
 Abbildung \ref{deconvolve:level1} zeigt die Koeffizienten des ersten Levels der Funktionen $f(x)$ und $g(x)$ aus dem vorherigen Abschnitt.
+Beide sind 9600 Samples lang.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/level/level1.pdf}
@@ -45,8 +51,10 @@ s(cf_k)=m\cdot \left(\frac{|cf_k|}{m}\right)^{\alpha}\cdot \text{sign}(cf_k), \q
 \end{align}
 als Beziehung zwischen dem \glqq unscharfen\grqq{} und \glqq scharfen\grqq{} Set an Koeffizienten.
 
-Abbildung \ref{deconvolve:function} zeigt unsere Funktion aus \eqref{deconvolve:funktion} mit $m=0.2$, verschiedenen $\alpha$ und der Variable $cf_k\in[-1;1]$.
+Abbildung \ref{deconvolve:function} zeigt unsere Funktion aus \eqref{deconvolve:funktion} mit $m=0.75$, verschiedenen $\alpha$ und der Variable $cf_k\in[-1;1]$.
 Gut erkennbar ist darin, wie mit dem Parameter $\alpha$ die Verstärkung justiert werden kann.
+Auch die Wirkung von $m$ wird klar.
+Bei $-0.75$ und $0.75$ werden die Kurven festgehalten.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/function.pdf}
@@ -63,11 +71,11 @@ $\alpha$ wird dann so bestimmt, dass die Spitze der blauen Kurve nach der Manipu
 \end{figure}
 
 Abbildung \ref{deconvolve:level1_n} zeigt die Funktion \eqref{deconvolve:funktion} wiederum auf das erste Level angewendet.
-Der unterschied zwischen den beiden Kurven ist nur noch schwach erkennbar.
+Der unterschied zwischen den beiden Kurven ist nur noch schwach erkennbar, die Manipulation scheint auf diesem Level also erfolgreich verlaufen zu sein.
 
 \subsection{Koeffizienten auf höheren Level}
 
-Mit entsprechenden $m$ und $\alpha$ kann nun gleich auf den anderen Level vorgegangen werden.
+Mit entsprechenden $m$ und $\alpha$ soll nun gleich auf den anderen Level vorgegangen werden.
 Abbildung \ref{deconvolve:level5} zeigt Level 5 vor und nach der Koeffizientenmanipulation.
 \begin{figure}[h]
 \centering
@@ -83,7 +91,7 @@ Deswegen wird es immer schwerer, die beiden Freiheitsgrade $m$ und $\alpha$ so z
 Mit dieser Beispielfunktion $f(x)$ war es möglich mit der Beziehung \eqref{deconvolve:funktion} bis auf das Level 12 eine Verbesserung zu erreichen.
 
 \subsection{Ergebnis}
-Abbildung \ref{deconvolve:result_1d} zeigt unsere ursprüngliche Kurve $f_1(x)$.
+Abbildung \ref{deconvolve:result_1d} zeigt unsere ursprüngliche Funktion $f_1(x)$.
 Dessen Wavelet-Koeffizienten $cf_k$ wurden dann mit der oben beschriebenen Methode bearbeitet, was nach der Rücktransformation zu $f_2(x)$ führt.
 Verglichen mit $f_1(x)$, ist $f_2(x)$ deutlich näher an $g(x)$ gerückt.
 \begin{figure}[h]
@@ -93,4 +101,15 @@ Verglichen mit $f_1(x)$, ist $f_2(x)$ deutlich näher an $g(x)$ gerückt.
 \end{figure}
 
 In der Nähe des Randes hat sich die Steilheit tatsächlich vergrössert, allerdings sind weiter weg von diesem Rand zusätzliche Artefakte hinzugekommen.
-Diese kommen von den Wavelets mit grösserer \glqq Wellenlänge \grqq{} bzw. höheren Level, welche schwerer zielführend zu manipulieren sind. Sie scheinen zu viel Einfluss zu haben.
+Um dies besser zu verstehen wird wiederum die stetige Wavelet-Transformation zur Hilfe genommen.
+
+In Abbildung \ref{deconvolve:cwt} sind diese ersichtlich.
+Die Differenz unten links zeigt dass bei $f_1(x)$\glqq Masse \grqq{} in die beiden Spitzen verschoben werden muss.
+Dies ist mit der angewandten Methode natürlich nur beschränkt möglich, da ja jedes Level einzeln behandelt wird.
+Die so erzeugten Artefakte sind unten rechts als kleine Striche erkennbar.
+Sie werden also von den tieferen Level bzw. Wavelets mit grosser \glqq Wellenlänge \grqq{} verursacht, welche schwer zu Manipulieren sind.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/cwt.pdf}
+\caption{stetige Transformationen\label{deconvolve:cwt}}
+\end{figure}
