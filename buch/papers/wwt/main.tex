@@ -203,7 +203,7 @@ Damit kann die Frequenz im Rückgabewert der Matlab-Funktion als sehr genau betr
 Dabei darf nicht vergessen werden, dass nur alle 5 Minuten einen Datenpunkt aufgenommen wurde, und somit die Abweichung zu 24 Stunden kleiner ist als die Auflösung.
 Weiter kommt hinzu, dass jeder Tag zu der Jahreszeit im Frühling ca. 2 Minuten kürzer ist als der jeweils Vorgehende\cite{online:sunset_time}.
 
-\begin{figure}[h]
+\begin{figure}[b]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/data_spring.pdf}
 	\caption{Temperaturverlauf und entsp. cwt}
@@ -228,7 +228,7 @@ Dies funktionierte besonders gut, da die Werte rasch gegen null divergieren fall
 Bereits bekannt war, dass in der Sturmsaison im Jahre 2018 einige Winterstürme aufgetreten sind.
 So wurde bei der Analyse nur auf diese Periode das Augenmerk gelegt. In Abbildung \ref{fig:cwt_storm} \space sieht man die Wavelet-Transfomrmation des Luftdruckes und Windes miteinander multipliziert. Dies über die Monate Januar und Februar 2018. Auch sieht man den Luftdruck- und Windverlauf.
  
-\begin{figure}[h]
+\begin{figure}[]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind.pdf}
 	\caption{cwt und Rohdaten Sturmsaison 2018}
@@ -239,7 +239,7 @@ in \ref{fig:cwt_storm} \space sieht man um den 3. sowie zwischen dem 16. und 23.
 
 \subsubsection{Wintersturm Burglind}
 Hineingezoomt in dieses Zeitintervall (Abbildung \ref{fig:cwt_storm_zoom}) sieht man im Rohdatenverlauf die Aktivitäten des Windes und Luftdruckes. 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom.pdf}
 	\caption{cwt und Rohdaten Strum 2018}
@@ -249,10 +249,10 @@ Aus einem Fachbericht von Meteoschweiz war bekannt, dass am Vormittag des 3. Jan
 Dabei zeigt sich eindrücklich wie der Sturmdurchgang in der multiplizierten Wavelet-Transformation hervorgehoben wird.
 
 \subsubsection{Sturmtief Evi und Friedericke }
-Beim zweiten Ereignis zwischen dem 16. und 23. Januar, trat die Aktivität nicht mehr so deutlich auf.
+Beim zweiten Ereignis zwischen dem 16. und 23. Januar, trat die Aktivität nicht mehr so deutlich auf.s
 Nach dem Sturmarchiv\cite{online:sturmarchiv} traf am 16. Januar das Sturmtief Evi und am 18. Januar das Sturmtief Friedericke auf Europa. Dabei zeigt sich nach der Amplitude, dass das Sturmtief nicht direkt auf die Schweiz traf, sonder nur streifte. 
 
-\begin{figure}[h]
+\begin{figure}[b]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom2.pdf}
 	\caption{cwt und Rohdaten Strum 2018}
@@ -264,12 +264,14 @@ Nach dem Sturmarchiv\cite{online:sturmarchiv} traf am 16. Januar das Sturmtief E
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
 
-In diesem Versuch die Wavelet-Transformation im Bereich der Wetteranalyse nützlich zu machen, hat sich gezeigt, dass dies durchaus möglich ist.
-In der Anwendung der Winterstürme wurde die Wavelet-Transfomration oder genauer die stetige Wavelet-Transformation erfolgreich eingesetzt.
-Die Untersuchten Ereignisse konnten detektiert werden.
-Dabei ist selbstverständlich noch nichts abschliessend Bewiesen doch es ist ein Anfang.
-Weiterführend müssten mehrere Ereignisse Untersucht werden, um die Analysemethode zu verifizieren.
-Auch sollte die Methode weiterführend auf andere metreologische Ereignisse angewandt werden. Zum Beispiel könnte man versuchen Gewitter zu lokalisieren. Falls sich die Methode für mehrere Phänomene beweist, wären die Möglichkeiten zur Anwendung fast Grenzenlos. 
+In diesem Versuch die Wavelet-Transformation im Bereich der Wetteranalyse nützlich zu machen, hat sich gezeigt, dass dies ansatzweise durchaus möglich ist.
+In der Anwendung mit dem Phänomen der Winterstürme wurde die Wavelet-Transfomration oder genauer die stetige Wavelet-Transformation erfolgreich eingesetzt.
+Die Untersuchten Ereignisse konnten wie gewünscht detektiert werden.
+Dabei ist selbstverständlich noch nichts abschliessend Bewiesen.
+Weiterführend müssten weitere Ereignisse Untersucht werden, um die Analysemethode zu verifizieren.
+Auch sollte die Methode weiterführend auf andere metreologische Ereignisse angewandt werden.
+Zum Beispiel könnte man versuchen Gewitter zu lokalisieren.
+Falls sich diese Methode für mehrere Phänomene beweist, wären die Möglichkeiten zur praktische Anwendung durchaus Vorstellbar. 
  
 
 \printbibliography[heading=subbibliography]
