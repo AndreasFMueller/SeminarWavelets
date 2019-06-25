@@ -31,9 +31,21 @@ Wir werden als erstes die Signale in~\ref{polynomials:signals} mittels des db1
 (Haar) Wavelets analysieren.
 
 \begin{figure}
-	\centering
-	\input{papers/polynomials/images/polynomials_signals.pgf}
-	\caption{Die verschiedenen zu analysierenden polynomialen Signale\label{polynomials:signals}}
+    \centering
+    \input{papers/polynomials/images/polynomials_signals.pgf}
+    \caption{Die verschiedenen zu analysierenden polynomialen Signale\label{polynomials:signals}}
+\end{figure}
+
+In~\ref{polynomials:haar} sind die Approximations und die Detail Koeffizienten
+der Transformation zu sehen. Wir sehen, dass die Approximations Koeffizienten
+uns das grobe Signal und im Fall von $x^0$ sogar das exakte Signal liefern. Die
+Detail Koeffizienten scheinen uns etwas zu liefern was äquivalent zur ersten
+Ableitung des Signals ist.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_signals_db1.pgf}
+    \caption{Analyse mit db1 (Haar) Wavelet\label{polynomials:haar}}
 \end{figure}
 
 \section{Anwendung zur rauscharmen Ableitung}
