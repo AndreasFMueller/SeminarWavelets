@@ -96,7 +96,7 @@ ytick={0,2048,4096,6144,8192},
 %ylabel={Dilatation a (Scale)},
 axis background/.style={fill=white},
 title style={font=\bfseries},
-title={CWT von $f_1(x)-g(x)$},
+title={CWT von $g(x)-f_1(x)$},
 legend style={legend cell align=left, align=left, draw=white!15!black}
 ]
 \addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {cwt-4.png};

@@ -1,5 +1,5 @@
 Innerhalb dieser Seminararbeit konnte keine fertige Funktion zur Bildschärfung erarbeitet werden.
-Der bestehende Ansatz mit der Beziehung \eqref{deconvolve:funktion}, welche die zwei Freiheitsgrade beinhaltet, könnte aber noch verfeinert werden.
+Der bestehende Ansatz mit der Beziehung \eqref{deconvolve:funktion}, welche zwei Freiheitsgrade beinhaltet, könnte aber noch verfeinert werden.
 Die beiden Parameter $m$ und $\alpha$ wurden hier mithilfe einer eindimensionalen Funktion $g(x)$ (Abbildung \ref{deconvolve:1d}) festgelegt.
 Es wäre daher vielleicht möglich, durch geschickteres wählen dieser Parameter auf ein besseres Ergebnis zu kommen.
 Auch ist die Anwendung auf das Bild noch nicht ausgereift.
@@ -10,7 +10,10 @@ Allerdings bleiben folgende zwei Schwierigkeiten unabhängig von dem verwendeten
 	\item Das Bild ist mit $9600\times9600$ Pixel eher gross. Kleinere Bilder liefern bei der Wavelet-Transformation noch weniger Daten, wobei man dann auf das selbe Problem wie beim vorangehenden Punkt stösst.
 \end{itemize}
 
-Die Hauptursache für das unbefriedigende Resultat liegt aber woanders.
+Es wurden auch nur das Haar- bzw. db1-Wavelet verwendet.
+Ein ähnlicher Ansatz, z.B. mit höheren Debauchies-Wavelets wäre sicher auch ein Versuch Wert.
+
+Die Hauptursache für das unbefriedigende Resultat liegt im allgemeinen aber woanders.
 Es wurde nur versucht, die Koeffizienten auf den einzelnen Level zu verändern, bzw jede Zeile in Abbildung \ref{deconvolve:y1_cwt} wurde unabhängig von der benachbarten verstärkt oder geschwächt.
-Ein besserer Ansatz würde berücksichtigen, dass die Wavelet-Transformation ja zwei Dimensionen hat (Dilatation $a$ und Translation $b$) und somit \glqq Masse \grqq{} in der Ebene verschieben.
+Eine bessere Methode würde berücksichtigen, dass die Wavelet-Transformation ja zwei Dimensionen hat (Dilatation $a$ und Translation $b$) und somit \glqq Masse \grqq{} in der Ebene, also zwischen Level und nicht nur auf einer Zeile nach links oder rechts verschoben werden muss.
 

@@ -37,17 +37,19 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 \draw[line width=0.35mm, lc] (2.04,5.75)--(13.415,5.75);
 %\draw[line width=0.35mm, lc] (2.04,10.28)--(13.415,10.28);
 
-\draw[line width=0.35mm, lc] (2.04,8.015)--(13.415,8.015);
-\draw[line width=0.35mm, lc] (2.04,9.15)--(13.415,9.15);
-\draw[line width=0.35mm, lc] (2.04,9.715)--(13.415,9.715);
-\draw[line width=0.35mm, lc] (2.04,10)--(13.415,10);
-\draw[line width=0.35mm, lc] (2.04,10.14)--(13.415,10.14);
+\draw[line width=0.37mm, lc] (2.04,8.015)--(13.415,8.015);
+\draw[line width=0.37mm, lc] (2.04,9.15)--(13.415,9.15);
+\draw[line width=0.37mm, lc] (2.04,9.715)--(13.415,9.715);
+\draw[line width=0.37mm, lc] (2.04,10)--(13.415,10);
+\draw[line width=0.37mm, lc] (2.04,10.14)--(13.415,10.14);
 %\draw[line width=0.35mm, lc] (2.04,10.22)--(13.415,10.22);
 %\draw[line width=0.35mm, lc] (2.04,10.245)--(13.415,10.245);
 
+\draw[line width=0.37mm, lc] (2.04,1.22)--(13.415,1.22);
 
-\node at (12,5.95) [lc] {Level 13};
-\node at (12,8.215) [lc] {Level 12};
-\node at (12,9.35) [lc] {Level 11};
+\node at (12,1.44) [lc] {Level 13};
+\node at (12,5.95) [lc] {Level 12};
+\node at (12,8.215) [lc] {Level 11};
+\node at (12,9.35) [lc] {Level 10};
 %\node at (12,9.915) [lc] {Level 10};
 \end{tikzpicture}%
