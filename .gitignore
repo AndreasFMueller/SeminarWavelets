@@ -1,3 +1,15 @@
+*.aux
+*.log
+*.nav
+*.out
+*.pdf
+*.toc
+*.snm
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
 
 buch/buch-blx.bib
 buch/buch.aux
