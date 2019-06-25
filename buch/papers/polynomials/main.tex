@@ -30,7 +30,7 @@ db$A$ bezeichnen.
 \section{Analyse von polynomialen Signalen}
 \rhead{Polynomiale Signale}
 
-Wir werden als erstes die Signale in~\ref{polynomials:signals} mittels des db1
+Wir werden als erstes die Signale in \autoref{polynomials:signals} mittels des db1
 (Haar) Wavelets analysieren.
 
 \begin{figure}
@@ -39,7 +39,7 @@ Wir werden als erstes die Signale in~\ref{polynomials:signals} mittels des db1
     \caption{Die verschiedenen zu analysierenden polynomialen Signale\label{polynomials:signals}}
 \end{figure}
 
-In~\ref{polynomials:haar} sind die Approximations und die Detail Koeffizienten
+In~\autoref{polynomials:haar} sind die Approximations und die Detail Koeffizienten
 der Transformation zu sehen. Wir sehen, dass die Approximations Koeffizienten
 uns das grobe Signal und im Fall von $x^0$ sogar das exakte Signal liefern. Die
 Detail Koeffizienten scheinen uns etwas zu liefern was äquivalent zur ersten
@@ -50,6 +50,35 @@ Ableitung des Signals ist.
     \input{papers/polynomials/images/polynomials_signals_db1.pgf}
     \caption{Analyse mit db1 (Haar) Wavelet\label{polynomials:haar}}
 \end{figure}
+
+In \autoref{polynomials:diff} sind zum Vergleich die Differenzierungen der
+verschiedenen Signale geben.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_signals_diff.pgf}
+    \caption{Ableitungen der Polynome\label{polynomials:diff}}
+\end{figure}
+
+Dieses Verhalten ist zu erwarten wenn man bedenkt, dass das Haar Wavelet
+jeweils die Summe und die Differenz zweier benachbarter Sample analysiert.
+Siehe dazu auch \autoref{haar:allwavelets:image} im Kapitel zum Haar Wavelet.
+
+Nun stellt sich die Frage was passiert wenn wir Daubechies Wavelets mit mehr
+verschwindenden Momenten zur Analyse einsetzen. In \autoref{polynomials:db2_3}
+sind jeweils die Detail Koeffizienten der Analyse mit db1 und db2 Wavelet zu
+sehen.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_signals_db2_3.pgf}
+    \caption{Analyse mit db2/3 Wavelet\label{polynomials:db2_3}}
+\end{figure}
+
+Wie sich herausstellt liefern diese Wavelets jeweils die zweite und dritte
+Ableitung unserer Signale. Daubechies Wavelets mit $A$ verschwindenden Momenten
+können uns also direkt die $A$te Ableitung liefern. Dies im Gegensatz zum
+Differenzieren welches mehrfach angewendet werden muss.
 
 \section{Anwendung zur rauscharmen Ableitung}
 \rhead{Rauscharme Ableitung}
