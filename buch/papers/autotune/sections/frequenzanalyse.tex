@@ -1,0 +1,27 @@
+
+\subsection{Stetige Wavelet-Transformation}
+Die Theoretischen Grundlagen rund um die Stetige Wavelet-Transformation wurde im Kapitel \ref{chapter:cwt} genaustens erläutert. 
+In diesem Abschnitt der Seminararbeit wird öfters auf die Theorie des angesprochene Kapitel \ref{chapter:cwt} referenziert ohne diese weiter zu erläutern. 
+
+\begin{equation}
+\mathcal{W}f (a,b)
+=
+\langle f,\psi_{a,b}\rangle
+=
+\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty f(t)\,\overline{
+	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt
+\label{eq:cwt}
+\end{equation}
+
+Mit der Stetigen Wavelet-Transformation können die Frequenzen einen 
+\subsection{Diskrete Wavelet-Transformation}
+
+\newpage
+Folgend der essenzielle Ausschnitt aus dem Python Code:
+\begin{figure}[h]
+	\centering
+	\lstinputlisting[language=Python,firstline=1,lastline=49,numbers=left,style = mystyle]{papers/autotune/code/mdwt.py}
+	\caption{Python Codeausschnitt}
+	\label{fig:python-code}
+\end{figure}
+\newpage

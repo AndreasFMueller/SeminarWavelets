@@ -1,0 +1,115 @@
+"""
+Created on Tue May  7 14:28:53 2019
+
+@author: Cedric
+
+
+Plot the  set of 1D demo signals available in `pywt.data.demo_signal`.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pywt
+from scipy.signal import chirp
+from scipy.interpolate import interp1d
+from testsignal import testsig
+t = []
+
+sig = []
+wlen = []
+coff = []
+coff2 = []
+coffap = []
+
+nr = 24
+fs = []
+for x in range(nr):
+    fs.append(4096*np.power(np.power(2, 1/24), x))
+    t.append(np.linspace(0, 1, fs[x]))
+    #Testsignale
+
+    #Stetiger Sinus 220Hz
+    #sig.append(np.sin(220*2*np.pi*t[x]))
+
+    #Sinus * arctan
+    #sig.append(np.arctan(t[x])*np.sin(220*np.pi*t[x]))
+
+    #Cos anstieg mit
+
+    #sig.append((-0.5*np.cos(6*np.pi*t[x])+0.5)*np.sin(220*np.pi*t[x]))
+
+    #testsig
+    #sig.append(testsig(fs[x]))
+    # Stetiger Frequenzsweep 100-200Hz
+    #sig.append(chirp(t[x], 100, 2, 200, 'linear'))
+    sig.append((-0.5*np.cos(6*np.pi*t[x])+0.5)*chirp(t[x], 100, 2, 400, 'linear'))
+    plt.plot(t[x], sig[x])
+
+    wlen.append(pywt.dwt_max_level(len(sig[x]), 'db8'))
+    coff.append(pywt.wavedec(sig[x], 'db8', level=min(wlen)))
+plt.figure()
+
+sampling_period = 1 / fs[0]
+coef, freqs = pywt.cwt(sig[0], np.arange(1, 254), 'cgau8',
+                       sampling_period=sampling_period)
+plt.contourf(t[0], freqs, coef, 100, cmap=plt.cm.hot)
+plt.ylim([0, 1000])
+plt.figure()
+print(min(wlen))
+#for m in range(len(t)):
+#    print(len(t[m]))
+
+for r in range(len(coff)):
+    coff2.append([])
+    tp = np.linspace(0, 1, len(coff[r][-1]))
+    for k in range(len(coff[r])-1):
+        tp = np.linspace(0, 1, len(coff[r][k]))
+        co = interp1d(tp, coff[r][k], kind='next')
+        coff2[r].append(co(t[-1]))
+
+#for r in range(len(coff2)):
+#    for k in range(len(coff2[r])):
+#        plt.plot(t[-1], coff2[r][k])
+
+arr = np.asarray(coff2)
+print(arr.shape)
+for k in range(min(wlen)):
+    for r in range(len(coff2)):
+        coffap.append(coff2[r][k])
+plt.figure()
+plt.pcolor(coffap)
+
+
+#t1 = np.linspace(0, 1, len(coff[0][0]))
+#plt.plot(t1, coff[0][0], 'o')
+#cof1 = interp1d(t1, coff[0][0])
+#plt.plot(t[0], cof1(t[0]), '.-')
+#
+#t2 = np.linspace(0, 1, len(coff[0][1]))
+#plt.plot(t2, coff[0][1], 'o')
+#coft = interp1d(t2, coff[0][1], kind='next')
+#plt.plot(t[0], coft(t[0]), '.-')
+
+
+
+
+#ylin = interp1d(t, sig[0])
+#ycub = interp1d(t, sig[0], kind='cubic')
+
+
+
+#plt.plot(tv,ylin(tv),'.-')
+#plt.plot(tv,ycub(tv),'.-')
+
+
+#wlen = pywt.dwt_max_level(len(sig[0]), 'db8')
+#print('Analyse level = {}'.format(wlen))
+#plt.figure()
+#coeffs = pywt.wavedec(sig[0], 'db8', level=wlen)
+#tc = np.linspace(0, 1, len(coeffs[0]))
+#cu = interp1d(tc, coeffs[0], kind='cubic')
+#plt.figure()
+#plt.plot(coeffs[0])
+#plt.plot(cu(tv))
+
+

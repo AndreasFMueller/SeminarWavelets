@@ -1,0 +1,20 @@
+
+Die Grundlegende Idee bestand darin eine Frequenzanalyse mit Wavelets zu machen. Diese kann dann gebraucht werden um die Signale nach belieben zu manipulieren und nach wünschen anzupassen. Die Multiskalenanalyse bietet einen schnellen Rechenalgorhytmus jedoch ist er darauf konzipiert keine redundate Daten zu erzeugen. Dies erschwert die Frequenzanalyse sehr. Durch das prinzip der Frequenzhalbierung die auf jedem Level einer Multiskalenanalyse passiert sieht man nur alle Oktaven eines Signales. Die zwischen Frequenzen werden jedoch so auf die verschiednen werte verschmiert das sie unerkenntlich werden. Das Eingangsignal lässt sich zwar aus so einer msa wieder verlustfrei rekonstruieren zur analyse ist es jedoch ungeeignet.
+
+
+\subsection{Framing}
+Die normale msa besitzt nur Orthonormierte Basen weshalb sie auch keine redundante Daten besitzt. Zur analyse zwecken würde es sich lohnen mehr von diesen Basen zu erzeugen und die enstehung der zusätzlichen Informationen zu verwenden. 
+
+
+
+
+
+
+
+Folgend der essenzielle Ausschnitt aus dem Python Code:
+\begin{figure}[!ht]
+	\centering
+	\lstinputlisting[language=Python,firstline=1,lastline=49,numbers=left,style = mystyle]{papers/autotune/code/mdwt.py}
+	\caption{Python Codeausschnitt}
+	\label{fig:python-code}
+\end{figure}
