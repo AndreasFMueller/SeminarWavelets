@@ -15,14 +15,3 @@ buch/buch-blx.bib
 buch/buch.pdf
 buch/buch.run.xml
 buch/buch.synctex.gz
-*.aux
-*.log
-*.nav
-*.out
-*.snm
-*.toc
-*.bbl
-*.blg
-*.idx
-*.ilg
-*.ind
