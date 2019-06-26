@@ -1,5 +1,0 @@
-\beamer@endinputifotherversion {3.36pt}
-\beamer@sectionintoc {1}{Skalarprodukt}{6}{0}{1}
-\beamer@sectionintoc {2}{Transformationen}{10}{0}{2}
-\beamer@sectionintoc {3}{Fourier}{147}{0}{3}
-\beamer@sectionintoc {4}{CWT}{163}{0}{4}
