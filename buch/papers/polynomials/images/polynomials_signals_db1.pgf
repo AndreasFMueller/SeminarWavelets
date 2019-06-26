@@ -446,7 +446,7 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.800486in,y=2.910000in,,base]{\color{textcolor}\sffamily\fontsize{12.000000}{14.400000}\selectfont Approximation Koeffizienten}%
+\pgftext[x=2.800486in,y=2.910000in,,base]{\color{textcolor}\sffamily\fontsize{12.000000}{14.400000}\selectfont Approximationskoeffizienten}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -880,7 +880,7 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.800486in,y=1.486111in,,base]{\color{textcolor}\sffamily\fontsize{12.000000}{14.400000}\selectfont Detail Koeffizienten}%
+\pgftext[x=2.800486in,y=1.486111in,,base]{\color{textcolor}\sffamily\fontsize{12.000000}{14.400000}\selectfont Detailkoeffizienten}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
