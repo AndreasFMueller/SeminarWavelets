@@ -92,6 +92,93 @@ Differenzieren welches mehrfach angewendet werden muss.
 \section{Anwendung zur rauscharmen Ableitung}
 \rhead{Rauscharme Ableitung}
 
+Beim diskreten Ableiten (Differenzen) von Signalen stellt sich oftmals das
+Problem, das Rauschen in dem Signal verstärkt wird. Anstelle der Ableitung des
+interessanten Signals sehen wir also nur die zufällige Ableitung des Rauschens.
+Dies wird nochmals verstärkt wenn ein Signal mehrfach abgeleitet werden soll.
+
+\autoref{polynomials:noise:signals} zeigt unsere ursprünglichen polynomialen
+Signale mit leichtem Rauschen versehen und die Ableitung davon. Wie erwartet
+ist die Ableitung vom Rauschen dominiert und die Steigung des ursprünglichen
+Polynoms ist kaum noch erkennbar.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_noise_signals.pgf}
+    \caption{Verrauschte Signale und deren Ableitung\label{polynomials:noise:signals}}
+\end{figure}
+
+Was passiert nun wenn wir das verrauschte Signale mit einem Haar Wavelet
+analysieren?  Wie in \autoref{polynomials:noise:db1} zu sehen bringt das so
+noch keine wesentliche Verbesserung zum direkten Ableiten.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_noise_db1.pgf}
+    \caption{Analyse verrauschter Signale mit Haar Wavelet\label{polynomials:noise:db1}}
+\end{figure}
+
+Nun können wir aber mit dem Wavelet eine Multiskalenanalyse durchführen. Im
+Fall vom Haar Wavelet ist dies vergleichbar wie wenn zuerst der Mittelwert
+gebildet und dann abgeleitet wird. 
+
+In \autoref{polynomials:noise:db1_multi} ist das Signal $x^2 + r$, die
+Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem
+Haar Wavelet und dann noch die Approximationskoeffizienten der letzten Stufe
+abgebildet. Es ist zu sehen, dass die Detailkoeffizienten mit höherer Stufe
+eher der Ableitung des originalen Polynoms entsprechen und weniger vom Rauschen
+betroffen sind. Jedoch nimmt die zeitliche Auflösung ab.
+Die Stufenbreite macht jeweils den zeitlichen Bereich, also die Anzahl Samples,
+welcher für die Berechnung des jeweiligen Koeffizienten relevant ist sichtbar.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_noise_db1_multi.pgf}
+    \caption{Multiskalenanalyse von $x^2 + r$ mit Haar Wavelet\label{polynomials:noise:db1_multi}}
+\end{figure}
+
+Im Vergleich dazu sind in \autoref{polynomials:noise:average} die direkte
+Ableitung und die Ableitungen nach der Mittelwertbildung über 2, 4 und 8 Werte
+zu sehen.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_noise_moving_average.pgf}
+    \caption{Ableitung nach Mittelwertbildung\label{polynomials:noise:average}}
+\end{figure}
+
+Nun haben wir aber mit dem Verfahren mit den Wavelets den Vorteil, dass wir bei
+entsprechender Wahl des Wavelets direkt die $A$te Ableitung berechnen können.
+
+In \autoref{polynomials:noise:db2_multi} ist das Signal $x^3 + r$, die
+Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem db2
+Wavelet und die Approximationskoeffizienten der letzten Stufe abgebildet.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_noise_db2_multi.pgf}
+    \caption{Multiskalenanalyse von $x^3 + r$ mit db2 Wavelet\label{polynomials:noise:db2_multi}}
+\end{figure}
+
+Im Vergleich dazu sind in \autoref{polynomials:noise:average} die direkt
+berechnete zweite Ableitung und die zweite Ableitungen nach der
+Mittelwertbildung über 2, 4 und 8 Werte zu sehen.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_noise_moving_average_2nd.pgf}
+    \caption{Zweite Ableitung nach Mittelwertbildung\label{polynomials:noise:average2nd}}
+\end{figure}
+
+Daubechies Wavelets bieten also eine komfortable Methode um verrauschte Signale
+abzuleiten. Die Multiskalenanalyse kann dabei einen Kompromiss zwischen
+Empfindlichkeit gegenüber Rauschen und zeitlicher Auflösung bieten.
+
+Die Anwendung zur Ableitung kann auf der Binder Plattform im
+\texttt{Ableitungen.ipynb} Notebook%
+\footnote{\url{https://mybinder.org/v2/gh/rnestler/mathsem-FS2019/paper?filepath=Ableitungen.ipynb}}
+nachvollzogen werden.
+
 \section{Hochfrequente Anteile in Polynomen}
 \rhead{Hochfrequente Anteile in Polynomen}
 
