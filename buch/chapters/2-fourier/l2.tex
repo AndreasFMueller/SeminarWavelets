@@ -148,12 +148,12 @@ zeigt.
 =
 \langle g,f\rangle.
 \end{align*}
-Weniger klar ist jedoch, dieses Produkt auch tatsächlich definit ist.
+Weniger klar ist jedoch, ob dieses Produkt auch tatsächlich definit ist.
 Die aus dem Skalarprodukt abgeleitete Norm ist
 \[
 \|f\|^2 = \int_I |f(t)|^2\,dt \ge 0.
 \]
-Für eine stetige Funktion folgt tatsächlich für dass die Norm nur
+Für eine stetige Funktion folgt tatsächlich, dass die Norm nur
 verschwinden kann, wenn die Funktion überall verschwindet.
 Eine Funktion, die nur an endlich vielen Stellen nicht verschwindet,
 ist immer noch integrierbar und ihr Integral ist $0$.
@@ -262,7 +262,7 @@ Die Menge $L^p(I)$ erbt von $\mathcal{L}^p(I)$ die Struktur eines
 Vektorraums mit der Norm $\|\mathstrut\cdot\mathstrut\|_p$.
 Der Raum $L^2(I)$ wird dank der oben formulierten Grenzwertsätze zu
 einem Hilbertraum.
-Damit ist Raum $L^2(I)$ als die Bühne für die nachfolgend zu diskutierende
+Damit ist der Raum $L^2(I)$ als die Bühne für die nachfolgend zu diskutierende
 Approximationstheorie bereitgestellt.
 
 Die Definition von $L^p(I)$ als Menge von Äquivalenzklassen von Funktionen
@@ -313,7 +313,7 @@ von $f$ existiert, das von $f^2$ aber nicht\footnote{In der Rechnung in
 diesem und im nächsten Beispiel wurde der Fall $\alpha=1$ nicht sorgfältig
 nachgerechnet.
 In diesem Fall ist die Stammfunktion nämlich $\log|t|$, der jedoch
-auch für $t\to 0$ und $t\infty$ divergiert.
+auch für $t\to 0$ und $t\to\infty$ divergiert.
 Die Behauptungen sind daher auch in diesem Fall richtig.}.
 \end{beispiel}
 
@@ -321,7 +321,7 @@ Die umgekehrte Situation kann für Funktionen auf $\mathbb R$ eintreten,
 die zu langsam abfallen, um integrierbar zu sein. 
 Da das Quadrieren kleine Werte noch kleiner macht, kann das Quadrat
 der Funktion schnell genug abfallen, so dass es integrierbar ist.
-Eine solche Funktion ist in $L^2(\mathbb R)$, aber nicht in $L^2(\mathbb R)$.
+Eine solche Funktion ist in $L^2(\mathbb R)$, aber nicht in $L^1(\mathbb R)$.
 
 \begin{beispiel}
 Auf dem Interval $J=[1,\infty)$ ist die Funktion
@@ -376,7 +376,7 @@ f(t)&\qquad |f(t)| > 1\\
 \end{cases}
 &&\text{und}
 &
-f_(t)
+f_-(t)
 &=
 \begin{cases}
 0   &\qquad |f(t)| > 1\\

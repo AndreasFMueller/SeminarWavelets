@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+%scientific unterdrücken
+\pgfplotsset{ticklabel style={/pgf/number format/fixed, /pgf/number format/precision=5}, scaled ticks=false}
+
+\begin{document}
+\centering\input{level1_n.tikz}
+\end{document}

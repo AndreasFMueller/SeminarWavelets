@@ -1,0 +1,33 @@
+/*
+ * ikosaeder.maxima
+ *
+ * (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+ */
+
+/* golden ratio */
+phi: (sqrt(5) + 1)/2;
+
+B: matrix(
+[   0,   0,    0,    0,   1,  -1,    1,   -1, phi, phi, -phi, -phi ],
+[   1,  -1,    1,   -1, phi, phi, -phi, -phi,   0,   0,    0,    0 ],
+[ phi, phi, -phi, -phi,   0,   0,    0,    0,   1,  -1,    1,   -1  ]
+);
+
+G: B . transpose(B);
+
+simplify(expand(G));
+
+B: matrix(
+[   0,    0,    1, phi ],
+[   1,   -1, -phi,   0 ],
+[ phi, -phi,    0,  -1 ]
+);
+
+G: B . transpose(B);
+simplify(expand(G));
+
+load("eigen");
+
+e: eigenvalues(G);
+
+float(e);

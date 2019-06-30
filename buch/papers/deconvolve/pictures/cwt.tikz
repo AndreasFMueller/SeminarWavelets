@@ -1,0 +1,104 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=1.766in,
+height=1.478in,
+at={(0.945in,2.569in)},
+scale only axis,
+axis on top,
+xmin=0.5,
+xmax=9600.5,
+xtick={0,2400,4800,7400,9600},
+%xlabel style={font=\color{white!15!black}},
+%xlabel={Translation b (Sample)},
+ymin=0.5,
+ymax=8192.5,
+ytick={0,2048,4096,6144,8192},
+%ylabel style={font=\color{white!15!black}},
+%ylabel={Dilatation a (Scale)},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={CWT von $g(x)$ (scharf)},
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {cwt-1.png};
+\end{axis}
+
+\begin{axis}[%
+width=1.766in,
+height=1.478in,
+at={(3.513in,2.569in)},
+scale only axis,
+axis on top,
+xmin=0.5,
+xmax=9600.5,
+xtick={0,2400,4800,7400,9600},
+%xlabel style={font=\color{white!15!black}},
+%xlabel={Translation b (Sample)},
+ymin=0.5,
+ymax=8192.5,
+ytick={0,2048,4096,6144,8192},
+%ylabel style={font=\color{white!15!black}},
+%ylabel={Dilatation a (Scale)},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={CWT von $f_1(x)$ (unscharf)},
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {cwt-2.png};
+\end{axis}
+
+\begin{axis}[%
+width=1.766in,
+height=1.478in,
+at={(0.945in,0.496in)},
+scale only axis,
+axis on top,
+xmin=0.5,
+xmax=9600.5,
+xtick={0,2400,4800,7400,9600},
+%xlabel style={font=\color{white!15!black}},
+%xlabel={Translation b (Sample)},
+ymin=0.5,
+ymax=8192.5,
+ytick={0,2048,4096,6144,8192},
+%ylabel style={font=\color{white!15!black}},
+%ylabel={Dilatation a (Scale)},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={CWT von $f_2(x)$ (geschärft)},
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {cwt-3.png};
+\end{axis}
+
+\begin{axis}[%
+width=1.766in,
+height=1.478in,
+at={(3.513in,0.496in)},
+scale only axis,
+axis on top,
+xmin=0.5,
+xmax=9600.5,
+xtick={0,2400,4800,7400,9600},
+%xlabel style={font=\color{white!15!black}},
+%xlabel={Translation b (Sample)},
+ymin=0.5,
+ymax=8192.5,
+ytick={0,2048,4096,6144,8192},
+%ylabel style={font=\color{white!15!black}},
+%ylabel={Dilatation a (Scale)},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={CWT von $g(x)-f_1(x)$},
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {cwt-4.png};
+\end{axis}
+\end{tikzpicture}%

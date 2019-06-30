@@ -1,0 +1,130 @@
+Die zwölf Vektoren, die man aus 
+\[
+b_1=\begin{pmatrix} 0\\  1\\  \varphi \end{pmatrix},\quad
+b_2=\begin{pmatrix} 0\\ -1\\  \varphi \end{pmatrix},\quad
+b_3=\begin{pmatrix} 0\\  1\\ -\varphi \end{pmatrix}
+\quad\text{und}\quad
+b_4=\begin{pmatrix} 0\\ -1\\ -\varphi
+\end{pmatrix},\quad
+\]
+durch zyklische Vertauschung der Komponenten erhalten kann, sind
+die Ecken eines regulären Ikosaeders.
+Dabei ist $\varphi=(1+\sqrt{5})/2$ das Verhältnis des goldenen
+Schnittes.
+Diese sind zum Beispiel
+\[
+\begin{aligned}
+b_5&=\begin{pmatrix} 1\\\varphi\\0\end{pmatrix},&
+b_6&=\begin{pmatrix}-1\\\varphi\\0\end{pmatrix},&
+b_7&=\begin{pmatrix} 1\\-\varphi\\0\end{pmatrix},&
+b_8&=\begin{pmatrix}-1\\-\varphi\\0\end{pmatrix},
+\\
+b_9   &=\begin{pmatrix} \varphi\\0\\ 1\end{pmatrix},&
+b_{10}&=\begin{pmatrix} \varphi\\0\\-1\end{pmatrix},&
+b_{11}&=\begin{pmatrix}-\varphi\\0\\ 1\end{pmatrix},&
+b_{12}&=\begin{pmatrix}-\varphi\\0\\-1\end{pmatrix}.
+\end{aligned}
+\]
+\begin{teilaufgaben}
+\item
+Bilden die Vektoren $\mathcal{B}=\{b_1,b_4,b_7,b_{10}\}$ ein Frame?
+Wenn ja, berechnen Sie die Framekonstanten
+\item
+Die Vektoren $\mathcal{I}=\{b_1,\dots,b_{12}\}$ bilden ein straffes
+Frame.
+Berechnen Sie die Frame-Konstante.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Wir berechnen den Gram-Operator aus der Matrix
+\[
+B=\begin{pmatrix}
+      0&       0&       1& \varphi\\
+      1&-      1&-\varphi&       0\\
+\varphi&-\varphi&       0&-      1
+\end{pmatrix}
+\]
+Der Gram-Operator hat die Matrix
+\[
+G
+=
+BB^t
+=
+\begin{pmatrix}
+   3.618034& -1.618034&-1.618034\\
+  -1.618034&  4.618034& 3.236068\\
+  -1.618034&  3.236068& 6.236068
+\end{pmatrix}
+\]
+Die Matrix hat Rang $3$, also ist $\mathcal{B}$ ein Frame, aber
+weil $G$ nicht diagonal ist, ist das Frame nicht straff.
+Die Frame-Konstanten sind die Werte des grössten und kleinsten Eigenwertes,
+die man numerisch als
+\[
+A=2,\quad B=9.623122
+\]
+findet.
+Man kann den Gram-Operator aber auch exakt finden.
+Die Matrixmultiplikation mit Maxima ergibt den Gram-Operator in der
+Form
+\[
+G=\begin{pmatrix}
+\frac{\sqrt{5}+5}2 & -\varphi           & -\varphi    \\
+-\varphi           & \frac{\sqrt{5}+7}2 & \sqrt{5} + 1\\
+-\varphi           & \sqrt{5}+1         & \sqrt{5} + 4
+\end{pmatrix}.
+\]
+Die Funktion \texttt{eigenvalues} von Maxima kann auch die Eigenwerte
+in geschlossener Form finden:
+\[
+\lambda_1
+=
+2
+<
+\lambda_2
+=
+4+\sqrt{5} - \sqrt{2\sqrt{5}+7}
+<
+\lambda_3
+=
+4+\sqrt{5} + \sqrt{2\sqrt{5}+7}
+\]
+\item
+Die Berechnung von $BB^t$ für die Matrix
+\[
+\setcounter{MaxMatrixCols}{12}
+B=\begin{pmatrix}
+      0&      0&       0&      0&
+      1&     -1&       1&     -1&
+\varphi&\varphi&-\varphi&\varphi
+\\
+      1&     -1&       1&     -1&
+\varphi&\varphi&-\varphi&\varphi&
+      0&      0&       0&      0
+\\
+\varphi&\varphi&-\varphi&\varphi&
+      0&      0&       0&      0&
+      1&     -1&       1&     -1
+\end{pmatrix}
+\]
+mit Hilfe eines Computeralgebra-Systems wie zum Beispiel Maxima liefert
+\[
+G
+=
+(2\sqrt{5}+10)
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}.
+\]
+Daraus kann man ablesen, dass $\mathcal{I}$ ein straffes Frame mit 
+Framekonstante $2\sqrt{5}+10$ ist.
+\end{teilaufgaben}
+\end{loesung}
+
+
+
+

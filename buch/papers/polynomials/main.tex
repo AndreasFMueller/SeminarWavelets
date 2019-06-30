@@ -1,0 +1,93 @@
+%
+% main.tex -- Paper zum Thema Polynome
+%
+% (c) 2019 Hochschule Rapperswil
+%
+\chapter{Wavelets und polynomiale Signale\label{chapter:thema}}
+\lhead{Wavelets und polynomiale Signale}
+\begin{refsection}
+\chapterauthor{Raphael Nestler}
+
+In der Literatur zu Wavelets findet man die folgende Aussage zu Daubechies
+Wavelets:
+\begin{displayquote}[\cite{wikipedia:daubechies}]
+For example, $D2$, with one vanishing moment, easily encodes polynomials of one
+coefficient, or constant signal components. $D4$ encodes polynomials with two
+coefficients, i.e.\ constant and linear signal components; and $D6$ encodes
+3-polynomials, i.e.\ constant, linear and quadratic signal components.
+\end{displayquote}
+Ein Daubechies Wavelet mit $A$ verschwindender Momente und Filterlänge $N=2A$
+soll also ein Polynom der Ordnung $A-1$ einfach darstellen können. Wir wollen
+erörtern, was das nun in der Praxis genau bedeutet und welche Anwendungen es
+ermöglicht.
+
+Die Analysen und Simulationen wurden jeweils mittels Python\cite{python} und im
+speziellem dem PyWavelets\cite{gregory_r_lee_2019_2634243} Paket durchgeführt.
+
+Wir werden im folgenden Daubechies Wavelets mit $A$ verschwindender Momente mit
+db$A$ bezeichnen.
+
+\section{Analyse von polynomialen Signalen}
+\rhead{Polynomiale Signale}
+
+Wir werden als erstes die Signale in \autoref{polynomials:signals} mittels des db1
+(Haar) Wavelets analysieren.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_signals.pgf}
+    \caption{Die verschiedenen zu analysierenden polynomialen Signale\label{polynomials:signals}}
+\end{figure}
+
+In~\autoref{polynomials:haar} sind die Approximations und die Detail Koeffizienten
+der Transformation zu sehen. Wir sehen, dass die Approximations Koeffizienten
+uns das grobe Signal und im Fall von $x^0$ sogar das exakte Signal liefern. Die
+Detail Koeffizienten scheinen uns etwas zu liefern was äquivalent zur ersten
+Ableitung des Signals ist.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_signals_db1.pgf}
+    \caption{Analyse mit db1 (Haar) Wavelet\label{polynomials:haar}}
+\end{figure}
+
+In \autoref{polynomials:diff} sind zum Vergleich die Differenzierungen der
+verschiedenen Signale geben.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_signals_diff.pgf}
+    \caption{Ableitungen der Polynome\label{polynomials:diff}}
+\end{figure}
+
+Dieses Verhalten ist zu erwarten wenn man bedenkt, dass das Haar Wavelet
+jeweils die Summe und die Differenz zweier benachbarter Sample analysiert.
+Siehe dazu auch \autoref{haar:allwavelets:image} im Kapitel zum Haar Wavelet.
+
+Nun stellt sich die Frage was passiert wenn wir Daubechies Wavelets mit mehr
+verschwindenden Momenten zur Analyse einsetzen. In \autoref{polynomials:db2_3}
+sind jeweils die Detail Koeffizienten der Analyse mit db1 und db2 Wavelet zu
+sehen.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_signals_db2_3.pgf}
+    \caption{Analyse mit db2/3 Wavelet\label{polynomials:db2_3}}
+\end{figure}
+
+Wie sich herausstellt liefern diese Wavelets jeweils die zweite und dritte
+Ableitung unserer Signale. Daubechies Wavelets mit $A$ verschwindenden Momenten
+können uns also direkt die $A$te Ableitung liefern. Dies im Gegensatz zum
+Differenzieren welches mehrfach angewendet werden muss.
+
+\section{Anwendung zur rauscharmen Ableitung}
+\rhead{Rauscharme Ableitung}
+
+\section{Hochfrequente Anteile in Polynomen}
+\rhead{Hochfrequente Anteile in Polynomen}
+
+\section{Schlussfolgerung}
+\rhead{Schlussfolgerung}
+
+\printbibliography[heading=subbibliography]
+\end{refsection}

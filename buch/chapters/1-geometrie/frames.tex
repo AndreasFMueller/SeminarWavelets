@@ -26,6 +26,9 @@ Wir suchen daher nach einer Verallgemeinerung des Basis-Begriffs, welche
 auf kontrollierte Weise Redundanz in die Koeffizienten $\hat{v}_k$
 bringt und damit eine robustere Konstruktion ermöglicht.
 
+%
+% Geometrisches Beispiel für ein Frame
+%
 \subsection{Ein geometrisches Beispiel
 \label{subsection:hexagon}}
 \begin{figure}
@@ -94,8 +97,8 @@ In dieser Situation lässt es sich also mit einer Basis gar nicht erreichen,
 dass alle Eckpunkte sich auf einfache Art darstellen lassen.
 
 Verzichten wir jedoch daruf, dass die Vektoren linear unabhängig sein müssen,
-können wir also ``Basis'' die drei Vektoren (in kartesischen Koordinaten)
-\begin{align*}
+können wir als ``Basis'' die drei Vektoren (in kartesischen Koordinaten)
+\begin{align}
 b_1
 &=
 \begin{pmatrix}1\\0\end{pmatrix}
@@ -107,7 +110,8 @@ b_2
 b_3
 &=
 \begin{pmatrix}-\frac12\\-\frac12\sqrt{3}\end{pmatrix}
-\end{align*}
+\label{hexagonbasis}
+\end{align}
 verwenden.
 Die drei Vektoren haben alle die Länge $1$, aber sie sind nicht
 orthogonal, sondern haben das Skalarprodukt
@@ -116,7 +120,7 @@ orthogonal, sondern haben das Skalarprodukt
 =
 \begin{cases}
 -\frac12&\qquad j\ne k\\
-0&\qquad j=k.
+1&\qquad j=k.
 \end{cases}
 \]
 Zu jedem Vektor $v\in\mathbb R^2$ können wir wieder eie Koeffizienten
@@ -154,6 +158,8 @@ Die Synthese liefert also nicht den ursprünglichen Vektor, sondern
 zurück, das $\frac32$-fache davon.
 Dies ist bereits ein Ausdruck der Tatsache, dass die Information in den
 Koeffizienten $\hat{v}_k$ redundant ist.
+Andererseits zeigt dies auch, dass alle Richtungen gleichermassen
+verzerrt werden.
 
 Diese Vektoren sind natürlich nicht mehr linear unabhängig, Vektoren
 der Ebene können also auf verschieden Art linear aus den $b_k$ kombiniert
@@ -184,41 +190,93 @@ Für die Norm des synthetisierten Vektors gilt natürlich
 -
 \frac12\sum_{k\ne l} \hat{v}_k\hat{v}_l.
 \]
-Die modifizierten Koeffizienten ergeben natürlich dieselbe Norm, also
-\begin{align*}
-\|v'\|^2
-&=
-\sum_{k=1}^3 (\hat{v}_k+\alpha)^2 
--
-\frac12\sum_{k\ne l} (\hat{v}_k+\alpha)(\hat{v}_l+\alpha).
-\\
-&=
-\sum_{k=1}^3 \hat{v}_k^2
-+2\alpha \sum_{k=1}^3 \hat{v}_k
-+3\alpha^2
--
-\frac12\sum_{k\ne l} \hat{v}_k\hat{v}_l
--
-\sum_{k\ne l} \hat{v}_k \alpha
--
-3\alpha^2
-\end{align*}
+%Die modifizierten Koeffizienten ergeben natürlich dieselbe Norm, also
+%\begin{align*}
+%\|v'\|^2
+%&=
+%\sum_{k=1}^3 (\hat{v}_k+\alpha)^2 
+%-
+%\frac12\sum_{k\ne l} (\hat{v}_k+\alpha)(\hat{v}_l+\alpha).
+%\\
+%&=
+%\sum_{k=1}^3 \hat{v}_k^2
+%+2\alpha \sum_{k=1}^3 \hat{v}_k
+%+3\alpha^2
+%-
+%\frac12\sum_{k\ne l} \hat{v}_k\hat{v}_l
+%-
+%\sum_{k\ne l} \hat{v}_k \alpha
+%-
+%3\alpha^2
+%\end{align*}
 
 
 Was zeichnet die Koeffizienten $\hat{v}_k$ gegenüber den modifizierten
 Koeffiziente $\hat{v}_k$ aus?
+In Abbildung~\ref{3dbasisbild} sind die Koeffizienten $\hat{v}_k$ als
+dreidimensionaler Vektor $v'$ dargestellt.
+Punkte in der Ebene werden durch die Analyse mit Hilfe der Vektoren $b_k$
+auf Vektoren in der hellblau hervorgehobenen Ebene abgebildet.
+Die alternativen Linearkombinationen entstehen, indem man zu $v$
+ein Vielfaches des grünen Normalenvektors $n$ hinzuaddiert.
+Die gelb gezeichneten Punkte $w$ bilden eine Gerade senkrecht
+auf der hellblauen Ebene.
+Alle Punkte auf dieser Geraden führen auf die gleiche
+Linearkombination $\frac32v$.
+Die mit Hilfe der Skalarprodukte gefundene Linearkombination
+$\hat{v}_k=\langle v,b_k\rangle$ hat daher die Eigenschaft, 
+$v'$ unter all den Punkte auf der Geraden die kürzeste Länge hat.
+Oder: die Koeffizienten $\hat{v}_k$ zeichnen sich unter allen
+Koeffizienten $v_k$ mit der gleichen Linearkombination dadurch aus, 
+dass
+\begin{equation}
+\|v'\|^2
+=
+\sum_{k=1}^n |\hat{v}_k|^2
+\le
+\sum_{k=1}^n |v_k|^2
+\qquad
+\text{für Koeffizienten $v_k$ mit}
+\quad
+\sum_{k=1}^3 \hat{v}_kb_k
+=
+\sum_{k=1}^3 v_kb_k
+\label{hexagonbasiseigenschaft}
+\end{equation}
+ist.
+Die durch $\hat{v}_k$ gefundenen Koeffizienten zeichnen sich durch
+die minimale ``Koeffizientenenergie'' aus.
+
 Im Falle einer Orthonormalbasis konnte man dank der Plancherel-Formel
 die Norm eines Vektors mit Hilfe der Quadratsumme der Koeffizienten
 berechnen.
-Wir berechnen daher
-\[
-f(\alpha)
-=
-\sum_{k=1}^n (\hat{v}_k+\alpha)^2
-=
-\sum_{k=1}^n \hat{v}_k^2 + 2\alpha \sum_{k=1}^3 \hat{v}_k + 3\alpha^2
-\]
+Die Eigenschaft \eqref{hexagonbasiseigenschaft} kann also als erweiterte
+Form der Plancherel-Formel angesehen werden.
 
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/tri.pdf}
+\caption{Darstellung der Koeffizienten $\hat{v}_k$ bezüglich Vektoren $b_i$
+aus \eqref{hexagonbasis}.
+Die drei Vektoren $b_i$ haben als $\hat{v}_k$-Koeffizienten-Vektoren
+die Vektoren $b_i'$.
+Die $x$- und $y$-Achsrichtung werden auf die beiden blauen Vektoren
+abgebildet.
+Ein Vektor $v$ wird auf den Vektor $v'$ mit den Komponenten
+$\hat{v}_k$ abgebildet.
+Die Darstellung eines Vektors als Linearkombination der $b_i$ ist
+jedoch nicht eindeutig.
+Ändert man die Koeffizienten um den gleichen Wert, was gleichbedeutend damit
+ist, dass man dem Vektor $v'$ ein Vielfaches von $n$ hinzufügt, entsteht
+bei der Synthese $\sum \hat{v}_k b_k$ der gleiche Punkt.
+Alle gelben Punkte $w$ sind daher Koeffizienten, die den gleichen Punkt $v$
+ergeben, wenn man damit die Vektoren $b_i$ linear kombiniert.
+\label{3dbasisbild}}
+\end{figure}
+
+%
+% Definition eines Frames
+%
 \subsection{Definition eines Frames}
 Nach dem motivierenden Beispiel im vorangegangenen Abschnitt sind wir nun
 bereit, eine allgemeine Definition aufzubauen.
@@ -230,21 +288,20 @@ nicht mehr eindeutig sein wird.
 
 Nicht jede Menge von Vektoren $\{e_k\,|\,1\le k\le n\}$ ist geeignet.
 Es muss ja immer noch jeder Vektor dargestellt werden können, das
-Erzeugnis der Vektoren muss also der ganze Vektorraum sein:
+Erzeugnis $U := \langle e_k\,|\,1\le k\le n\rangle$
+der Vektoren muss also der ganze Vektorraum sein:
 \[
 U
-:=
-\langle e_k\,|\,1\le k\le n\rangle
 =
 V.
 \]
 Wäre das Erzeugnis nur ein echter Unterraum $U\subset V$, dann gäbe es
-einen Vektor $b\in V$, der senkrecht steht auf allen $b\perp V$.
+einen Vektor $b\in V$, der senkrecht steht auf allen $b\perp U$.
 Wir fordern daher, dass es keinen Vektor gibt, der auf allen Vektoren $e_k$
 senkrecht steht.
 
 Damit die Berechnung effizient bleibt, möchten wir weiterhin nur mit den
-Koeffizienten $\hat{v}_k = \langle v,e_k\rangle$ arbeiten müssen.
+Koeffizienten $\hat{v}_k = \langle v,e_k\rangle$ arbeiten können.
 Für eine Orthonormalbasis hat die Plancherel-Formel gezeigt, dass
 \[
 \sum_{k=1}^n |\hat{v}_k|^2 = \| v \|.
@@ -290,7 +347,7 @@ die auch für unendlichdimensionale Hilberträume funktioniert.
 \begin{definition}
 \label{definition:frame}
 Eine Teilmenge $\{ e_k\,|\, k\in K\}\subset V$ heisst ein {\em Frame},
-wenn es zwei von $0$ verschiedene Konstanten $A$ und $B$ gibt, so dass
+wenn es zwei positive Konstanten $A>0$ und $B>0$ gibt, so dass
 \[
 A\|v\|^2 \le \sum_{k\in K} |\langle v, e_k\rangle|^2 \le B \| v\|^2
 \]
@@ -365,6 +422,585 @@ Vektoren die Summe.
 \label{geometrie:hexagon:rekonstruktion}}
 \end{figure}
 
+%
+% Frames in R^n
+%
+\subsection{Frames in $\mathbb R^n$
+\label{subsetion:skript:frames:framesinrn}}
+Wir betrachten jetzt den Spezialfall $H=\mathbb{R}^n$ mit dem
+Standardskalarprodukt.
+Jeder endlichdimensionale Hilbertraum lässt sich durch Wahl einer
+Orthonormalbasis in dieser Form beschreiben.
+Das Beispiel von Abschnitt~\ref{subsection:hexagon} ist ein Beispiel für
+den Fall $\mathbb R^2$.
+
+Ein Frame in $\mathbb R^n$ ist nach Definition~\ref{definition:frame}
+eine Menge 
+\[
+\mathcal{B}
+=
+\{b_1,\dots,b_m\}
+\subset
+\mathbb R^n
+\]
+von Vektoren in $\mathbb R^n$ mit zwei positiven Konstanten $A$ und $B$
+derart, dass
+\[
+A\|v\|^2
+\le
+\sum_{k=1}^m |\langle v,b_k\rangle|^2
+\le
+B\|v\|^2
+\]
+gilt für jeden Vektor $v\in\mathbb R^n$.
+Da alle beteiligten Vektorräume endlichdimensional sind, können
+die Abbildungen als Matrizen beschrieben werden.
+Ziel dieses Abschnitts ist, neben einer Matrizenbeschreibung
+der Frame-Abbildung $\mathcal{T}$ auch eine Formel für die
+Umkehrabbildung zu finden.
+
+In einem endlichdimensionalen Raum ist die Frame-Bedingung $A>0$ 
+gleichbedeutend damit, dass die Frame-Vektoren den ganzen Raum erzeugen.
+
+\subsubsection{Der Frame-Operator}
+Der Frame-Operator berechnet die Analysekoeffizienten
+$\hat{v}_k=\langle v,b_k\rangle$ eines Signals
+$v\in \mathbb R^n$ bezüglich des Frames $\mathcal{B}$:
+\[
+\mathcal{T}\colon \mathbb R^n \to \mathbb R^m
+:
+v \mapsto
+\begin{pmatrix}
+\hat{v}_1\\\hat{v}_2\\\vdots\\\hat{v}_m
+\end{pmatrix}
+=
+(\hat{v}_k=\langle v,b_k\rangle)_{1\le k\le m}.
+\]
+Zur Berechnung der Skalarprodukte kann man das Matrizenproukt
+\[
+\langle v,b_k\rangle
+=
+b_k^t v
+\]
+verwenden.
+Die Zeilenvektoren $b_k^t$ kann man zeilenweise in einer grossen Matrix $T$
+\[
+T 
+=
+\begin{pmatrix}
+\dots&b_1^t &\dots\\
+\dots&b_2^t &\dots\\
+     &\vdots&     \\
+\dots&b_m^t &\dots
+\end{pmatrix}
+\]
+zusammenführen.
+Das Matrixprodukt $Tv$ liefert dann genau das Resultat des Frame-Operators
+\[
+\mathcal{T} v
+=
+\begin{pmatrix}
+\langle v, b_1\rangle\\
+\langle v, b_2\rangle\\
+\vdots\\
+\langle v, b_m\rangle\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+b_1^tv\\
+b_2^tv\\
+\vdots\\
+b_m^tv\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+\dots&b_1^t &\dots\\
+\dots&b_2^t &\dots\\
+     &\vdots&     \\
+\dots&b_m^t &\dots
+\end{pmatrix}
+v
+=
+Tv.
+\]
+Die Matrix $T$ ist die Matrix des Frame-Operator $\mathcal T$ bezüglich der
+Standardbasis von $\mathbb R^n$.
+
+\begin{beispiel}
+Im Beispiel von Abschnitt~\ref{subsection:hexagon} besteht das Frame
+aus den Vektoren
+\[
+\mathcal{B}
+=
+\biggl\{
+\begin{pmatrix}1\\[2pt] 0\end{pmatrix},
+\begin{pmatrix}-\frac12\\[2pt] \frac{\sqrt{3}}2\end{pmatrix},
+\begin{pmatrix}-\frac12\\[2pt] -\frac{\sqrt{3}}2\end{pmatrix}
+\biggr\}.
+\]
+Der zugehörige Frameoperator $\mathcal{T}$ hat daher die Matrix
+\begin{equation}
+T
+=
+\begin{pmatrix}
+1&0\\[2pt]
+-\frac12&\frac{\sqrt{3}}2\\[2pt]
+-\frac12&-\frac{\sqrt{3}}2
+\end{pmatrix}.
+\label{beispielTmatrix}
+\end{equation}
+\end{beispiel}
+
+\subsubsection{Die Gram-Matrix}
+Das Frame $\mathcal{B}$ mit den Frame-Konstanten $A$ und $B$ erfüllt
+\[
+A\|v\|^2 \le \sum_{k=1}^m |\langle v,b_k\rangle|^2 \le B\|v\|^2
+\qquad\forall v\in \mathbb R^n.
+\]
+Die Quadratsumme in der Mitte ist genau die Norm des Vektors
+$\mathcal{V}$ in $\mathbb R^m$.
+Unterscheiden wir für den Moment die verschiedenen Skalarprodukte
+und Normen dadurch, dass wir die Vektorräume als Indizes hinzufügen,
+können wir die Frame-Ungleichung schreiben als
+\[
+A \| v\|_{\mathbb R^n}^2
+\le
+\| Tv\|_{\mathbb R^m}^2
+\le
+B \| v\|_{\mathbb R^n}^2.
+\]
+Die Norm von $Tv$ in $\mathbb R^m$ ist
+\[
+\| Tv\|_{\mathbb R^m}^2
+=
+\langle Tv,Tv\rangle_{\mathbb R^m}
+=
+(Tv)^tTv
+=
+v^t(T^tT)v
+=
+\langle T^tTv,v\rangle_{\mathbb R^n}.
+\]
+Man beachte, dass $T^tT$ eine symmetrische $n\times n$-Matrix ist,
+die codiert, wie stark die einzelnen Vektoren $v\in\mathbb R^n$ durch
+den Frame-Operator $\mathcal{T}$ verzerrt werden.
+Dies rechtfertigt eine eigene Definition.
+
+\begin{definition}
+Ist $T$ die Matrix des Frame-Operators $\mathcal{T}$ eines Frames
+$\mathcal{B}$, dann heisst $G=T^tT$ der Gram-Operator des Frames
+$\mathcal{B}$.
+\end{definition}
+
+Die Frame-Bedingung lässt sich mit dem Gram-Operator $T^tT$ als
+\begin{equation}
+A \|v\|^2
+\le
+\langle T^t T v,v\rangle
+\le
+B \|v\|^2
+\label{framebedingung:ttt}
+\end{equation}
+schreiben.
+Man kann daraus schliessen, dass der Gram-Operator $T^tT$ regulär ist.
+
+Die symmetrische Matrix $T^tT$ kann durch Wahl einer geeigneten Basis
+in $\mathbb R^n$ diagonalisiert werden.
+Die Eigenvektoren können sogar orthonormiert gewählt werden.
+Seien daher $u_1,\dots,u_n$ Eigenvektoren von $T^tT$ mit Eigenwerten
+$\lambda_1\le\dots\le\lambda_n$.
+Die Framebedingung~\eqref{framebedingung:ttt}
+für den Vektore $v=u_k$ sagt dann
+\[
+A \| u_k\|^2
+=
+A
+\le
+\langle T^tTu_k,u_k\rangle
+=
+\lambda_k\langle u_k,u_k\rangle
+=
+\lambda_k
+=
+B \| u_k\|^2
+=
+B.
+\]
+Die Eigenwerte von $T^tT$ sind also alle zwischen $A$ und $B$.
+Man kann sogar noch mehr sagen:
+
+\begin{satz}
+Sei $\mathcal{B}\subset\mathbb R^n$ eine Menge von Vektoren derart,
+dass die zugehörige Matrix $T^tT$ regulär ist.
+Seien weiter $\lambda_1\le\dots\le \lambda_n$ die Eigenwerte
+(mit Vielfachheiten) von $T^tT$.
+Dann ist $\mathcal{B}$ ein Frame mit Framekonstanten
+$A=\lambda_1$ und $B=\lambda_n$.
+\end{satz}
+
+\begin{beispiel}
+Im Beispiel von Abschnitt~\ref{subsection:hexagon} ist die Matrix $T$
+gegeben in \eqref{beispielTmatrix}.
+Der zugehörige Gram-Operator ist
+\[
+T^tT
+=
+\begin{pmatrix}
+1& -\frac12        &-\frac12          \\[2pt]
+0& \frac{\sqrt{3}}2& -\frac{\sqrt{3}}2
+\end{pmatrix}
+\begin{pmatrix}
+1&0\\
+-\frac12&\frac{\sqrt{3}}2\\[2pt]
+-\frac12&-\frac{\sqrt{3}}2
+\end{pmatrix}
+=
+\begin{pmatrix}
+1+\frac14+\frac14 & 0-\frac{\sqrt{3}}4+\frac{\sqrt{3}}4\\[2pt]
+0-\frac{\sqrt{3}}4+\frac{\sqrt{3}}4&0+\frac{3}{4}+\frac{3}{4}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac32&0\\
+0&\frac32
+\end{pmatrix}
+=
+\frac{3}{2}E
+\]
+Da die Matrix $T^tT$ bereits diagonal ist, können die Eigenwerte
+$\lambda_1=\lambda_2=\frac32$ direkt abgelesen werden.
+\end{beispiel}
+
+Das Frame des Beispiels ist straff und der Gram-Operator ist ein
+Vielfaches der Einheitsmatrix.
+Dies ist kein Zufall, wie das folgende Korollar zeigt.
+
+\begin{korollar}
+Das Frame $\mathcal{B}$ ist genau dann straff, wenn der zugehörige
+Gram-Operator $T^tT$ ein Vielfaches der Einheitsmatrix ist.
+\end{korollar}
+
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/beispiel2.pdf}
+\caption{Beispiel eines nicht straffen Frames mit rationalen Framevektoren
+$b_k$ (rot).
+Die Vektoren $\tilde{b}_k$ des dualen Frames
+(siehe Definition~\ref{definition:dualesframe}) sind blau eingezeichnet.
+\label{frame:beispiel2}}
+\end{figure}
+
+\begin{beispiel}
+Die Vektoren
+\[
+\mathcal{B} 
+=
+\biggl\{
+\frac15
+\begin{pmatrix} 3\\4\end{pmatrix},
+\frac1{13}
+\begin{pmatrix} -12\\5\end{pmatrix},
+\frac1{17}
+\begin{pmatrix} 8\\-15\end{pmatrix}
+\biggr\}
+\subset \mathbb R^2
+\]
+erzeugen den ganzen Raum $\mathbb R^2$, sie bilden daher ein
+Frame (Abbildung~\ref{frame:beispiel2}).
+Wir berechnen den Frame-Operator, den Gram-Operator und seine Eigenwerte
+um die Frame-Konstanten zu ermiteln.
+
+Der Frame-Operator ist die Matrix
+\[
+T
+=
+\begin{pmatrix}
+ \frac{ 3}{ 5}& \frac{ 4}{ 5}\\[2pt]
+-\frac{12}{13}& \frac{ 5}{13}\\[2pt]
+ \frac{ 8}{17}&-\frac{15}{17}
+\end{pmatrix}.
+\]
+Der Gram-Operator wird daher
+\[
+G=T^tT
+=
+\begin{pmatrix}
+ \frac{ 3}{ 5}&-\frac{12}{13}&  \frac{ 8}{17}\\[2pt]
+ \frac{ 4}{ 5}& \frac{ 5}{13}& -\frac{15}{17}
+\end{pmatrix}
+\begin{pmatrix}
+ \frac{ 3}{ 5}& \frac{ 4}{ 5}\\[2pt]
+-\frac{12}{13}& \frac{ 5}{13}\\[2pt]
+ \frac{ 8}{17}&-\frac{15}{17}
+\end{pmatrix}
+=
+\frac{1}{1221025}
+\begin{pmatrix}
+1750369&  286808 \\
+ 286808& 1676106
+\end{pmatrix}
+\]
+Die Eigenwerte dieser $2\times 2$-Matrix können als Nullstellen des
+charakteristischen Polynoms mit der Lösungsformel für quadratische
+Gleichungen berechnet werden.
+Man findet zum Beispiel mit Hilfe eines Computer-Algebra-Systems
+\[
+\lambda_{\pm}
+=
+\frac{52715\pm 41\sqrt{47105}}{37570}
+\quad\Rightarrow\quad
+\left\{
+\begin{aligned}
+A&=
+1.166262672548251
+\\
+B&=
+1.639965701154171.
+\end{aligned}
+\right.
+\]
+Da die beiden Konstanten nicht übereinstimmen, ist dieses Frame
+nicht straff.
+\end{beispiel}
+
+\begin{proof}[Beweis]
+Ein straffes Frame hat $A=B$, was gleichbedeutend damit ist, dass
+die Eigenwerte des Frame-Operators $T^tT$ mit 
+$A=B=\lambda_1=\dots=\lambda_n$ übereinstimmen.
+Dies wiederum ist gleichbedeutend damit, dass alle Vektoren Eigenvektoren
+zum gleichen Eigenwert sind und $T^tT=AE=BE$.
+\end{proof}
+
+\subsubsection{Die inverse Abbildung des Frame-Operators}
+Für ein straffes Frame gilt $T^tT  = AE$.
+Bis auf den Faktor $A$ ist daher $T^t$ bereits eine Linksinverse von $T$.
+Genauer, mit
+\[
+S=\frac1{A} T^t
+\qquad\text{folgt}\qquad
+ST
+=
+\frac1{A} T^tT
+=
+\frac1{A} AE
+=
+E.
+\]
+Eine Linksinverse von $\mathcal{T}$ ist also für ein straffes Frame
+leicht zu finden.
+
+Für ein beliebiges Frame lässt sich ebenfalls eine Linksinverse angeben.
+Mit $G=T^tT$ ist
+\[
+v
+=
+\underbrace{G^{-1}T^t}_{\displaystyle=S}Tv
+=
+STv,
+\]
+die Matrix $S=G^{-1}T^t$ ist also die gesuchte Linksinverse von $T$.
+
+\subsubsection{Das duale Frame}
+Um den Frame-Operator umzukehren, muss man $G^{-1}T^t$ berechnen
+können.
+Auf einen Vektor $\hat{v} = (\hat{v}_k)_{1\le k\le m} = Tv$ angewendet
+bedeutet dies, dass man $G^{-1}$ auf
+\[
+T^t \hat{v} = \sum_{k=1}^m \hat{v}_k  b_k,
+\]
+anwenden muss, dabei wurde verwendet, dass $T^t$ als Spalten die
+Vektoren $b_k$ enthält.
+Anwendung von $G^{-1}$ liefert
+\[
+v
+=
+G^{-1} T^t \hat{v}
+=
+\sum_{k=1}^m \hat{v}_k G^{-1}b_k.
+\]
+Den Vektor $v$ erhält man also als Linearkombination der Vektoren
+\[
+\tilde{\mathcal{B}}
+=
+\{ G^{-1}b_1,\dots,G^{-1}b_n\}
+=
+\{ \tilde{b}_k = G^{-1}b_k\,|\, 1\le k\le m\}.
+\]
+
+\begin{definition}
+\label{definition:dualesframe}
+Ist $\mathcal{B}=\{b_1,\dots,b_m\}$, dann heisst
+$\tilde{\mathcal{B}} = \{\tilde{b}_1,\dots,\tilde{b}_m\}$ 
+mit
+$\tilde{b}_k=G^{-1} b_k$
+das zu $\mathcal{B}$ duale Frame.
+\end{definition}
+
+\begin{beispiel}
+Das duale Frame zum Beispiel zu Abbildung~\ref{frame:beispiel2} kann
+ebenfalls mit Hilfe eines Computer-Algebra-Systems berechnet werden aus
+der bereits früher berechneten Matrix bestimmt werden.
+Aus 
+\[
+G^{-1}T^t
+=
+\begin{pmatrix}
+\frac{4259}{8053}
+	&-\frac{718432}{1167685}
+		&\frac{284716}{1167685}\\[2pt]
+\frac{5422}{8053}
+	&\frac{408473}{2335370}
+		&-\frac{1203549}{2335370}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0.52887&-0.61526&\phantom{-} 0.24383\\
+0.67329&\phantom{-} 0.17490&-0.51536
+\end{pmatrix}
+\]
+findet man das duale Frame
+\[
+\tilde{\mathcal{B}}
+=
+\left\{
+\begin{pmatrix}
+\frac{4259}{8053}\\[2pt]
+\frac{5422}{8053}
+\end{pmatrix},
+\begin{pmatrix}
+-\frac{718432}{1167685}\\[2pt]
+\frac{408473}{2335370}
+\end{pmatrix},
+\begin{pmatrix}
+\frac{284716}{1167685}\\[2pt]
+-\frac{1203549}{2335370}
+\end{pmatrix}
+\right\}
+=
+\left\{
+\begin{pmatrix} 0.52887\\ 0.67329 \end{pmatrix},
+\begin{pmatrix}-0.61526\\ \phantom{-}0.17490 \end{pmatrix},
+\begin{pmatrix}\phantom{-}0.24383\\ -0.51536 \end{pmatrix}
+\right\}.
+\]
+Die Vektoren des dualen Frames sind in Abbildung~\ref{frame:beispiel2}
+blau eingezeichnet.
+\end{beispiel}
+
+\begin{korollar}
+Ist $\mathcal{B}=\{b_1,\dots,b_m\}$ ein straffes Frame mit Framekonstanten
+$A=B$, dann ist
+\[
+\tilde{\mathcal{B}}
+=
+\biggl\{\tilde{b}_k = \frac1Ab_k\,\bigg|\,1\le k\le m\biggr\}
+\]
+das dazu duale Frame.
+\end{korollar}
+
+\begin{proof}[Beweis]
+Für ein straffes Frame ist $T^tT=AE$, also ist $G^{-1}=\frac1A E$.
+Die Vektoren des dualen Frames sind daher
+$\tilde{b}_k = \frac1AEb_k=\frac1Ab_k$.
+\end{proof}
+
+Die Linksinverse $S$ von $\mathcal{T}$ kann mit Hilfe des dualen Frames
+sehr leicht formuliert werden.
+
+\begin{satz}
+Ist $\mathcal{B}$ ein Frame und $\tilde{\mathcal{B}}$ das dazu duale
+Frame und ist $\hat{v} = Tv$, dann ist die Linksinverse $S$ von $T$
+gegeben durch
+\[
+v
+=
+S\hat{v}
+=
+\sum_{k=1}^m \hat{v}_k \tilde{b}_k.
+\]
+Linearkombination der Vektoren des dualen Frames mit den Analysekoeffizienten
+$\hat{v}_k$ liefert also das ursprüngliche Signal zurück.
+\end{satz}
+
+\begin{beispiel}
+\label{beispiel3}
+In diesem Beispiel betrachten wir das Frame bestehend aus den
+Signalen, die auf einem von maximal zehn Samles konstant sind
+und sonst verschwinden.
+Das Signal $b_k$ verschwindet für Samples $i>k$ und $i<k-10$
+und ist so normiert, dass $\|b_k\|=1$.
+Die zugehörigen dualen Signale können direkt berechnet werden,
+zwei Beispiele sind in den Abbildungen \ref{b3-01} und \ref{b3-05}
+dargestellt.
+\def\beispieldrei#1#2{
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/b3-#1.pdf}
+\caption{Signal $b_{#2}$ aus dem Beispiel von Seite~\pageref{beispiel3}
+und zugehöriges duales Signal $\tilde{b}_{#2}$.
+\label{b3-#1}}
+\end{figure}
+}
+\beispieldrei{01}{1}
+%\beispieldrei{02}{3}
+%\beispieldrei{03}{6}
+%\beispieldrei{04}{10}
+\beispieldrei{05}{20}
+%\beispieldrei{06}{30}
+%\beispieldrei{07}{40}
+%\beispieldrei{08}{50}
+%\beispieldrei{09}{60}
+%\beispieldrei{10}{70}
+\end{beispiel}
+
+In der Definition~\ref{definition:dualesframe} wird das duale Frame
+definiert ohne zu rechtfertigen, dass die Vektoren $\tilde{b}_k$ 
+tatsächlich ein Frame bilden.
+Wegen $b_k=G\tilde{b}_k$ ist aber klar, dass die Vektoren $\tilde{b}_k$
+den ganzen Vektorraum $\mathbb R^n$ erzeugen.
+Insbesondere bilden sie ein Frame.
+Damit sind die Framekonstanten noch nicht bestimmt.
+Dies wird im folgenden Satz nachgeholt.
+
+\begin{satz}
+Ist $\mathcal{B}=\{b_1,\dots,b_m\}$ ein Frame mit Framekonstanten
+$A$ und $B$, dann hat das duale Frame die Framekonstanten $1/B$ und $1/A$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Um die Frame-Konstanten des dualen Frames zu bestimmen,
+müssen der Frame-Operator $\tilde{T}$ und Gram-Operator $\tilde{G}$
+des dualen Frames bestimmt werden.
+Das duale Frame besteht aus den Spaltenvektoren von $S=G^{-1}T^t$,
+also ist der Frameoperator $\tilde{T}=S^t$ und damit ist der Gram-Operator
+\[
+\tilde{G}
+=
+\tilde{T}^t\tilde{T}
+=
+(S^t)^tS^t
+=
+SS^t
+=
+G^{-1}T^tTG^{-1}
+=
+G^{-1}.
+\]
+Der Gram-Operator des dualen Frames ist daher die Inverse des
+Gram-Operators des ursprünglichen Frames.
+Sind $A=\lambda_1\le \dots\le \lambda_n=B$ die Eigenwerte  von $G$,
+dann sind
+$1/B\le \lambda_n^{-1} \le \dots \le \lambda_1^{-1}\le 1/A$ 
+die Eigenwerte von $\tilde{G}=G^{-1}$.
+Daraus folgen die behaupteten Framekonstanten.
+\end{proof}
+
+\subsection{Iterative Berechung von $G^{-1}$
+\label{subsection:graminverse}}
+
+%
+% Allgemeine Frames
+%
 \subsection{Allgemeine Frames}
 Die Wahl der Indexmenge $K$ in der Definition~\ref{definition:frame}
 war einigermassen willkürlich.

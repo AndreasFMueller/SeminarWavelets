@@ -102,7 +102,7 @@ In diesem Fall kann $c_j$ geschrieben werden als
 \[
 c_j = \frac{s+s^{-1}}2
 \quad
-\text{mit $s=\operatorname{sign}(c_j)\cdot \operatorname{arsinh}|c_j|$.}
+\text{mit $s=\operatorname{sign}(c_j)\cdot \operatorname{arcosh}|c_j|$.}
 \]
 Dann wird
 \[
@@ -127,7 +127,7 @@ $A_{j'}(\omega)\le 0$ ist für alle $\omega$ und der daher ebenfalls
 mit dem ``falschen'' Vorzeichen in das Produkt eingeht, wodurch das
 Vorzeichen wieder korrigiert wird.
 \item
-Fall $|c_j|\ge 1$ und $c_j\in\mathbb R$:
+Fall $|c_j| < 1$ und $c_j\in\mathbb R$:
 In diesem Fall hat $A_j(\omega)$ und damit $A(\omega)$ eine Nullstelle
 für jedes $\omega$ mit $\cos\omega=c_j$.
 Wegen $A(\omega)\ge 0$ müssen alle solchen Nullstellen in gerader
@@ -273,7 +273,7 @@ A(\omega) = \prod_j (\cos\omega - c_j)
 \]
 \item Für jede Nullstelle $c_j$ mit $|c_j|>1$ füge einen Faktor 
 \[
-B_j(z)=\frac{1}{\sqrt{-2s}}(z-s),\qquad s = \operatorname{sign}c_j\cdot \operatorname{arsinh}|c_j|
+B_j(z)=\frac{1}{\sqrt{-2s}}(z-s),\qquad s = \operatorname{sign}c_j\cdot \operatorname{arcosh}|c_j|
 \]
 zu $B(z)$ hinzu.
 \item
