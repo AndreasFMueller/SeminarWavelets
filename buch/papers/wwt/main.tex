@@ -43,14 +43,14 @@
 \rhead{Einführung}
 
 
-Seit langen konsultiere ich meine aktuellen Wetterdaten von einer eher unüblichen Internetseite.
+Seit Langem konsultiere ich meine aktuellen Wetterdaten über eine eher unübliche Internetseite.
 Dabei handelt es sich um eine privat geführte Wetterstation, welche die gemessenen Daten im Internet grafisch darstellt.
-Weiter werden die Daten auch tabellarisch zur Verfügung gestellt.
-Das Feature, welches ich bis anhin am regelmässigsten nutze, war die grafische Darstellung der aktuellen Wetterdaten über den Zeitraum der letzten 24 Stunden.
-Bei speziellen Ereignissen des Wetters fielen mir besondere und wiederkehrende Charakteristiken auf.
+Die Daten werden auch tabellarisch zur Verfügung gestellt.
+Das Feature, welches ich bis anhin am regelmässigsten nutzte, war die grafische Darstellung der aktuellen Wetterdaten über den Zeitraum der letzten 24 Stunden.
+Bei speziellen Ereignissen im Wetterverlauf fielen mir besondere und wiederkehrende Charakteristiken auf.
 \\
 \\
-Nach der Einführung in die Theorie der Wavelets kam mir die Idee, solche Wetterphänomene mittels einer geeigneten Wavelet Transformation zu detektieren.
+Nach der Einführung in die Theorie der Wavelets kam mir die Idee, solche Wetterphänomene mit einer geeigneten Wavelet Transformation zu detektieren.
 In diesem Paper wird einerseits auf die theoretischen Grundlagen der angewandten Methoden zurückgegriffen sowie die besprochenen meteorologischen Phänomene kurz erläutert. 
 Weiterführend wird auf den eigentlichen Prozess des Papers vertieft eingegangen.
 Ein besonderes Augenmerk wird auf die allgemeine Vorgehensweise sowie deren Schwierigkeiten gelegt.
@@ -63,7 +63,7 @@ Ein besonderes Augenmerk wird auf die allgemeine Vorgehensweise sowie deren Schw
 \rhead{Wetterstation Seegräben}
 
 Die angesprochene Wetterstation in der Gemeinde Seegräben im Kanton Zürich ist mit einer DAVIS Vantage Pro2 6153 \cite{online:davisinstruments} realisiert worden.
-Sie verfügt über Sensoren für Die Temperautr, Feuchtigkeit, Geschwindigkeit und Richtung des Windes sowie für den Niederschlag. 
+Sie verfügt über Sensoren für die Temperatur, Feuchtigkeit, Geschwindigkeit und Richtung des Windes sowie für den Niederschlag. 
 Durch diese Sensoren werden folgende Daten aufgezeichnet:
 \\
 \\
@@ -81,35 +81,35 @@ Durch diese Sensoren werden folgende Daten aufgezeichnet:
 \end{itemize}	
 
 
-Der Thermo- / Feuchtigkeitssensor liegt zusammen mit dem Regenmengenmesser auf 2 Meter über dem Boden.
-Mit einem Abstand von rund 10 Meter zum nächsten Gebäude werden optimale Messbedingungen geschaffen.
+Der Thermo- / Feuchtigkeitssensor liegt zusammen mit dem Regenmengenmesser auf 2 Meter über Boden.
+Mit einem Abstand von rund 10 Meter zum nächsten Gebäude sind optimale Messbedingungen geschaffen.
 Der Windmesser wurde am First des Gebäudes montiert.
-Mit einem Mast werden die Daten 1.5 Meter über dem First gemessen \space \cite{online:wss}.
+Mit einem Mast werden die Daten 1.5 Meter über dem First erfasst \space \cite{online:wss}.
 Die Daten werden anschliessend mit einer Software von PC-Wetterstation.de weiterverarbeitet und auf der Website veröffentlicht.
 Mehr zur Verwendung der Wetterdaten im n\"achsten Abschnitt.
 
 \section{Datenaufarbeitung}
 \rhead{Datenaufarbeitung}
-Als n\"achster Schritt der Vorbereitung zur Wavelet Transformation war die Aufbereitung der zur Verf\"ugung gestellten Daten der Wetterstation Seegr\"aben. Dazu musste erst analysiert werden wie die Daten auf der Website dargestellt werden.
+Als n\"achster Vorbereitungsschritt zur Wavelet Transformation war die Aufbereitung der zur Verf\"ugung gestellten Daten der Wetterstation Seegr\"aben. Dazu musste erst analysiert werden wie die Daten auf der Website dargestellt werden.
 \subsection{Wetter-Archiv}
-Auf der Webseite gibt es mehrere Möglichkeiten sich Wetterdaten aus der Vergangenheit darstellen zu lassen.
+Auf der Webseite gibt es mehrere Möglichkeiten, sich Wetterdaten aus der Vergangenheit darstellen zu lassen.
 In der Kategorie des Archivs auf der Webseite kann man die Wetterdaten eines gew\"unschten Zeitraums tabellarisch oder grafisch darstellen lassen.
-Vom Betreiber der Website steht keine Funktion zur Verfügung, welche einem erlaubt, die Daten offiziell und automatisch herunterzuladen.
+Vom Betreiber der Website steht keine Funktion zur Verfügung, welche es erlaubt, die Daten offiziell und automatisch herunterzuladen.
 \subsection{Datenerfassung}
 Da f\"ur die angestrebte Anwendung eine m\"oglichst hohe Aufl\"osung der jeweiligen Daten erforderlich ist, mussten die Daten im Zeitraum von einem Tag dargestellt werden.
-Dies hatte zur Folge, dass man f\"ur jeden Tag ein Tabelle auf dem Archiv der Website \"offnen musste. Man hätte anschliessend die Daten mit "copy and paste" in eine Excel-Tabelle einf\"ugen können. Daher wurde  entschieden, ein Programm zu schreiben welches diese Aufgabe automatisieren sollte.
+Dies hatte zur Folge, dass man f\"ur jeden Tag ein Tabelle auf dem Archiv der Website \"offnen musste. Man hätte anschliessend die Daten mit copy and paste in eine Excel-Tabelle einf\"ugen können. Daher wurde  entschieden, ein Programm zu schreiben, welches diese Aufgabe automatisieren sollte.
 Als Programmiersprache wurde hierf\"ur Python gewählt.
 
 
 Mit der Pandas Library und der Funktion "read\_html"\space konnten die Daten direkt aus dem Python Programm von der Webseite heruntergeladen werden.
-Entscheidend für das Gelingen dieser Teilaufgabe war, dass die URL-Links der einzelnen Tage jeweils regelmässig aufgebaut sind:\\
+Entscheidend für das Gelingen dieser Teilaufgabe war, dass die URL-Links der einzelnen Tage stets regelmässig aufgebaut sind:\\
 \\
 \textit{https://www.wetter-seegraeben.ch/uploads/insert.php?insert=\textbf{20190701}.htm}
 \\
 
-Wie zu sehen ist, wird der Link mit dem Datum regelmässig aufgebaut, somit konnten die entsprechenden Links mittels einer einfachen While-Schleife zusammengesetzt werden.
+Wie zu sehen ist, wird der Link mit dem Datum regelmässig aufgebaut. Somit konnten die entsprechenden Links mit mehreren While-Schleife zusammengesetzt werden.
 
-In \ref{fig:python-code}  wird der wesentliche Ausschnitt aus dem Python Code dargestellt.
+In der Abbildung \ref{fig:python-code} ist der wesentliche Ausschnitt aus dem Python Code dargestellt.
 \begin{figure}
 	\centering
 	\lstinputlisting[language=Python,firstline=1,lastline=16,numbers=left,style = mystyle]{papers/wwt/code/get_data.py}
@@ -118,15 +118,15 @@ In \ref{fig:python-code}  wird der wesentliche Ausschnitt aus dem Python Code da
 \end{figure}
 
 Die Daten konnten im nächsten Schritt in einer Excel-Tabelle abgespeichert werden.
-Dort folgte der letzte Feinschliff, dabei wurden alle überflüssigen Kopfzeilen und Statistiken entfernt.
+Dort folgte der letzte Feinschliff; d.h. alle überflüssigen Kopfzeilen und Statistiken wurden entfernt.
 
 \subsubsection{Unregelmässigkeiten der Wetterstation}
-Bei der Datenerfassung durch das eben beschriebene Python Programm wurden einige Unregelmässigkeiten er Wetterstation Seegräben beobachtet.
-Das Programm wird jeweils durch einen Fehler abgebrochen, wenn der angegebene Link nicht abrufbar ist. 
-So fiel auf, dass unregelmässig auf das Jahr verteilt, Daten von gewissen Tagen fehlen. Es stellte sich heraus, dass hinter dem theoretisch korrektem Link die entsprechende Internetseite nicht zur Verfügung steht.
-Wenn man manuell auf der Website nach diesem Tag sucht, wird man auch nicht fündig.
+Bei der Datenerfassung durch das eben beschriebene Python Programm wurden einige Unregelmässigkeiten der Wetterstation beobachtet.
+Das Programm wird jeweils durch eine Fehlermeldung abgebrochen, wenn der angegebene Link nicht abrufbar ist. 
+So fiel auf, dass unregelmässig auf das Jahr verteilt, Daten von gewissen Tagen fehlten. Es stellte sich heraus, dass hinter dem theoretisch korrektem Link die entsprechende Internetseite nicht zur Verfügung steht.
+Wird manuell auf der Website nach diesem Tag gesucht, kann nichts gefunden werden.
 Dies trat teilweise sogar in Abschnitten von mehreren Tagen auf.
-Wie sich später herausstellte traten die fehlenden Tagen nicht zu den Zeitpunkten auf welche mich interessierten.
+Wie sich später herausstellte,traten die fehlenden Tagen nicht zu den Zeitpunkten auf, die mich interessierten.
 
 
 \subsection{Datendarstellung}
@@ -144,11 +144,10 @@ Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen.
 \section{Stetige Wavelet-Transformation}
 \rhead{Stetige Wavelet-Transformation}
 Die theoretischen Grundlagen rund um die stetige Wavelet-Transformation wurde im Kapitel \ref{chapter:cwt} genaustens erläutert. 
-In diesem Abschnitt der Seminararbeit wird öfters auf die Theorie des angesprochene Kapitel \ref{chapter:cwt} referenziert ohne diese weiter zu erläutern. 
+In diesem Abschnitt der Seminararbeit wird öfters auf die Theorie des angesprochenen Kapitels \ref{chapter:cwt} referenziert ohne diese genauer zu erläutern. 
 
-Für eine m"oglichst genaue Untersuchung der Signalen, in welcher so viele Information gewonnen werden sollten wie m"oglich, eignet sich die stetige Wavelet-Transformation (folgend noch kurz \textit{cwt} aus dem Englischen "continuous wavelet transform")
-ideal. 
-Regelmässig auftretende Frequenzen können dank der \textit{cwt} gefunden und zusätzlich auch einem Zeitraum zugeordnet werden.
+Für eine m"oglichst aussagekräftige Untersuchung der Signale, in welcher so viele Information gewonnen werden sollten wie m"oglich, eignet sich die stetige Wavelet-Transformation (folgend noch kurz \textit{cwt} aus dem Englischen "continuous wavelet transform"). 
+Regelmässig auftretende Frequenzen können dank der \textit{cwt} gefunden und zusätzlich einem Zeitraum zugeordnet werden.
 \subsection{Das verwendete Wavelet}
 In
 \begin{equation}
@@ -170,7 +169,7 @@ Als Mutter-Wavelet wurde
 \end{equation} \cite{online:Morlet}
 verwendet, welches auch als das analytische Gabor-Wavelet bekannt ist.
 Dabei gibt $\sigma$ an wie hoch die Frequenz ist und dementsprechend auch, wie viele lokale Maxima und Minima das Mutter-Wavelet besitzt.
-Weiter ist $c_{\sigma}$ eine reelle Konstante und dient zur Korrektur der Zulässigkeitsbedingungen \ref{cwt:zulaessig}.
+Weiter ist $c_{\sigma}$ eine reelle Konstante und dient zur Korrektur der Zulässigkeitsbedingungen in \ref{cwt:zulaessig}.
 Das Morlet-Wavelet wird in der Abbildung \ref{fig:gabor_plot} \space dargestellt und $\sigma$ wurde auf 5 gesetzt.
 
 \begin{figure}
@@ -180,24 +179,24 @@ Das Morlet-Wavelet wird in der Abbildung \ref{fig:gabor_plot} \space dargestellt
 \label{fig:gabor_plot}
 \end{figure}
 
-Weiter ist zu erwähnen, dass das eben gezeigte Morlet Wavelet, so der angegebenen Theorie entnommen wurde. Ob Matlab die selbe Form verwendet konnte nicht abschliessend geklärt werden.
+Weiter ist zu erwähnen, dass das eben gezeigte Morlet Wavelet der referenzierten Quelle entnommen wurde. Ob Matlab die selbe Form verwendet, konnte nicht abschliessend geklärt werden.
 
 \subsection{Berechung mit Matlab}
 Die Berechnung der \textit{cwt} wurde mit der numerischen Berechnungs-Software Matlab durchgeführt.
-Die dafür verwendete Funktion dabei war die cwt()-Funktion.
-Die Funktion arbeitete bei korrekter Parametrisierung auch wie gewünscht.
-Falls man jedoch genauer verstehen möchte wie die Funktion genau rechnet, muss man sich mit einer eher dürftigen Dokumentation herumschlagen.
-Glücklicherweise funktionierte die Funktion für meine Anwendung einwandfrei.
+Die dafür verwendete Funktion war die cwt()-Funktion.
+Die Funktion arbeitete bei korrekter Parametrisierung wie gewünscht.
+Falls man verstehen möchte wie die Funktion genau rechnet, muss man sich mit einer eher dürftigen Dokumentation herumschlagen.
 Folgende Parameter wurden verwendet
 \lstinputlisting[language=Matlab,firstline=1,lastline=1,  numbers=left, style = mystyle]{papers/wwt/code/matlab.m}
 \label{fig:matlab_code_cwt}
 wobei Matlab das Gabor-Wavelet als 'amor' bezeichnet, mit 'VoicesPerOctave' konnte die Genauigkeit erhöht werden und die Variabel 'fs' beschreibt die Abtastfrequenz der Messsignale.
 Bei den Rückgabewerte werden die Wavelet-Werten in 'wt' als komplexe Matrix und die approximierten Frequenzen in 'F' abgespeichert.
 
-An stelle des Skalierungsfaktor $a$ in der Gleichung \ref{eq:cwt}, wird durch matlab eine approximierte Frequenz berechnet und zurückgegeben.
-Für jeden verwendeten Skalierungsfaktor $a$ wird eine Sinuskurve gesucht, welche am ehesten der Frequenz des entsprechenden Wavelet übereinstimmt.
-Siehe in der Abbildung \ref{fig:centerf} ein Beispiel zur Veranschaulichung, dabei mit einem Daubechies Wavelet der Nummer 7.
-Dies dient dazu den Wavelet-Koeffizienten eine Frequenz zuzuordnen. Aus dem verwendetem Skalierungsfaktor a könnte in der Schnelle keine Information entnommen werden.
+Anstelle des Skalierungsfaktors $a$ in der Gleichung \ref{eq:cwt} berechnet Matlab eine approximierte Frequenz und gibt diese zurück.
+Für jeden verwendeten Skalierungsfaktor $a$ wird eine Sinuskurve gesucht, die am ehesten der Frequenz des entsprechenden Wavelets übereinstimmt.
+Siehe das Beispiel mit einem Daubechies Wavelet der Nummer 7 in der Abbildung \ref{fig:centerf}.
+Dies dient dazu den Wavelet-Koeffizienten eine Frequenz zuzuordnen. 
+Aus dem verwendetem Skalierungsfaktor a konnte auf die Schnelle keine Information entnommen werden.
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth, height=2in]{papers/wwt/images/centerf.pdf}
@@ -212,10 +211,10 @@ Dies dient dazu den Wavelet-Koeffizienten eine Frequenz zuzuordnen. Aus dem verw
 Diese approximierte Frequenz konnte man mit den geeigneten Daten aus der aktuellen Anwendung der Wetterdaten sehr gut verifizieren.
 Der Temperaturverlauf während einer Hochdruckphase ist sehr regelmässig und man sollte den 24 Stunden Tagesverlauf exakt erkennen.
 
-Dank der Regelm"assigkeit des Temperaturverlaufs sieht man im \textit{cwt}-Plot eine erh"ohung des Wertes bei einer gewissen Frequenz.
-Die Ausgelesene Frequenz beträgt $f = 1.16\cdot10^{-5} \,\text{Hz}$, welches umgerechnet einer Periodendauer von $T = 86206.897\,\text{s}\approx 23\,\text{h }56\,\text{min } 47\,\text{s}$ entspricht.
-Damit kann die Frequenz im Rückgabewert der Matlab-Funktion als sehr genau betrachtet werden.
-Dabei darf nicht vergessen werden, dass nur alle 5 Minuten einen Datenpunkt aufgenommen wurde, und somit die Abweichung zu 24 Stunden kleiner ist als die Auflösung.
+Dank der Regelm"assigkeit des Temperaturverlaufs sieht man im \textit{cwt}-Plot eine Erh"ohung des Wertes bei einer gewissen Frequenz.
+Die ausgelesene Frequenz beträgt $f = 1.16\cdot10^{-5} \,\text{Hz}$, die umgerechnet einer Periodendauer von $T = 86206.897\,\text{s}\approx 23\,\text{h }56\,\text{min } 47\,\text{s}$ entspricht.
+Damit kann die Frequenz im Rückgabewert der Matlab-Funktion als sehr genau bezeichnet werden.
+Dabei kommt weiter dazu, dass nur alle 5 Minuten einen Datenpunkt aufgenommen wurde, und somit die Abweichung zu 24 Stunden kleiner ist als die eigentliche Auflösung.
 
 \begin{figure}[b]
 	\centering
@@ -229,21 +228,23 @@ Dabei darf nicht vergessen werden, dass nur alle 5 Minuten einen Datenpunkt aufg
 
 \section{Analyse von Wettereignissen}
 \rhead{Analyse von Wetterereignissen}
-Aufgrund der Kenntnissen rund um die \textit{cwt} kann angenommen werden, dass ein wechsel in der Frequenz gut detektiert werden können.
-Bei einer typischen Sturmfront, welche öfters als Wintersturm in den Monaten Dezember und Januar auftreten, zeigten sich bei der Konsultation der Wetterdaten, rapide Temperatur- und Luftdruckwechsel, sowie ein erhöhtes Windaufkommen.
+Aufgrund der Kenntnisse rund um die \textit{cwt} kann angenommen werden, dass ein Wechsel in der Frequenz gut detektiert werden kann.
+Bei einer typischen Sturmfront, welche öfters als Wintersturm in den Monaten Dezember und Januar auftreten, zeigten sich bei der Konsultation der Wetterdaten, rapide Temperatur- und Luftdruckwechsel sowie ein erhöhtes Windaufkommen.
 Das Ziel der Analyse war, solche Ereignisse mittels einer geeigneten \textit{cwt} zu detektieren.
 Bei Frontdurchgängen erkennt man rapide Wechsel im Wind, der Temperatur sowie dem Luftdruck.
 Diese gemeinsam auftretenden Frequenzen sollten in der \textit{cwt} sichtbar sein.
-Um dies zu verdeutlichen wurden jeweils zwei Messresultate miteinander multipliziert. Dabei werden die Stellen hervorgehoben wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren.  
+Um dies zu verdeutlichen, wurden jeweils zwei Messresultate miteinander multipliziert. Dabei werden die Stellen hervorgehoben, wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren.  
 Dies funktioniert besonders gut, da die Werte rasch gegen null gehen falls nur schon eine der beiden Datenverläufe nicht mit dem aktuellen Mutter-Wavelet übereinstimmt.
-Genauer betrachten zeigt dieses Verfahren Ähnlichkeiten mit der Formel
+Genauer betrachtet, zeigt dieses Verfahren Ähnlichkeiten mit der Formel
 \begin{equation}
 COV(X,Y) = \frac{\sum_{i=1}^{N} (x_i- \bar{x})(y_i- \bar{y})}{N-1},
 \end{equation}
-der Kovarianz aus der Statistik. Bei dieser Anwendung wird einfach nicht die ganze Zufallsvariable benutzt sondern nur jeweils die beiden zeitlich übereinstimmenden Werte.
+der Kovarianz aus der Statistik. Bei dieser Anwendung wird einfach nicht die ganze Zufallsvariable benutzt, sondern nur jeweils die beiden zeitlich übereinstimmenden Werte.
 
-Die Kovarianz zeigt sich nicht nur in dieser Anwendung, auch schon bei der grundlegenden Formel der \textit{cwt} kann man gewisse parallelen sehen. 
-In \ref{eq:cwt1} ist die Motivation die jeweiligen Parameter a und b zu finden, wobei das Mutter-Wavelet und das Signal gemeinsam variieren. Auch hierfür werden die Produkte der Signale berechnet und gemittelt.
+Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grundlegenden Formel der \textit{cwt}, kann man gewisse Parallelen sehen. 
+In \ref{eq:cwt1} ist die Motivation, die jeweiligen Parameter a und b zu finden, wobei das Mutter-Wavelet und das Signal gemeinsam variieren.
+Auch hierfür werden die Produkte der Signale berechnet und gemittelt.
+Oder auf eine etwas spezielle Art der Kovaraianz berechnet werden
  
 \subsection{Sturmsaison 2018}
 \rhead{Sturmsaison 2018}
