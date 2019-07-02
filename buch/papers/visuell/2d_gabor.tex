@@ -18,10 +18,9 @@ Ein solches Gabor-Wavelet besteht aus einer komplexen Schwingung, welche mit ein
 G(x)= e^{-\frac{(x-x_{0})^{2}}{\sigma^{2}}} e^{i\xi_{0}x}
 \end{equation}
 
-%TODO insert description of equation
-
+Der Parameter $\sigma$ beschreibt die Standardabweichung der Gaussfunktion und $\xi$ die Frequenz der komplexen Schwingung. 
 Die komplexe Schwingung besteht aus einem Sinus und einem  Kosinus Anteil. 
-Ein solches Sinus-Gabor-Wavelet wird in Abbildung \ref{fig:gabor1d} gezeigt.
+Ein Beispiel eines Sinus-Gabor-Wavelet wird in Abbildung \ref{fig:gabor1d} gezeigt.
 
 \begin{figure}
 	\centering
@@ -62,11 +61,20 @@ e^{i(2\pi\frac{x'}{\lambda} + \phi)},
 \end{equation} 
 wobei $x'=x\cos(\theta)+y\sin(\theta)$ und $y'=-x\sin(\theta)+y\cos(\theta)$.
 Der Parameter $\gamma$ beschreibt das Verhältnis der Streckung in $x$- und $y$-Richtung.
-Diese Streckung der Gaussfunktion ermöglicht es ellipsenförmige Wavelets zu erhalten.
+Diese Streckung der elliptischen Gaussfunktion bestimmt ob das Wavelet eher rund oder länglich ist.
 Die Standardabweichung der Gausskurve welche mit der Schwingung multipliziert wird ist als Parameter $\sigma$ definiert.
 Grösseres $\sigma$ bewirkt ein breiteres Wavelet.
 Die komplexe Schwingung wird durch die Wellenlänge $\lambda$ und die Phase $\phi$ definiert.
 Der Parameter $\theta$ definiert nun die Ausrichtung der komplexen Schwingung.
 Eine Änderung von $\theta$  bewirkt somit eine Drehung der Wellenfronten.
 
-Wie sich Gabor-Wavelets in Abhängigkeit dieser Parameter Verhalten zeigt Abbildung TODO. %TODO insert ref and image
+Wie sich Gabor-Wavelets in Abhängigkeit dieser Parameter Verhalten zeigt Abbildung \ref{fig:kernels}.
+
+\begin{figure}
+	\centering
+	\subfigure[Parameter der Gaussfunktion $\gamma$ und $\sigma$ werden verändert]{\label{fig:kernels_a}\includegraphics[width=0.45\linewidth]{./papers/visuell/images/kernels_sigma_gamma.pdf}}
+	
+	\subfigure[Wellenlänge der Schwingung $\lambda$ und Ausrichtung $\theta$ werden verändert]{\label{fig:kernels_b}\includegraphics[width=0.45\linewidth]{./papers/visuell/images/kernels_theta_lambda.pdf}}
+	\caption{Abhängigkeit des Gabor-Wavelets von den Parametern}
+	\label{fig:kernels}
+\end{figure}
