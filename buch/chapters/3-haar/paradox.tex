@@ -43,7 +43,7 @@ Dies bedeutet, dass die Änderungen zwischen den Abtastpunkten so klein
 sind, dass sie für die Rekonstruktion keine Rolle spielen.
 \end{enumerate}
 
-\subsection{Filter}
+\subsection{Filter}\label{haar:approximation:filter}
 Eine stückweise konstante Funktion $f\in V_n$ lässt sich als Linearkombination
 von Wavelets $\psi_{l,j}$ mit $0\le j \le n$ und den Indikatorfunktionen
 auf den Einheitsintervallen $\varphi_k(x)$. 
@@ -140,7 +140,7 @@ Das Skalarprodukt mit dieser Funktion ist
 \int_0^{\frac12} f(x)\,dx - \int_{\frac12}^1 f(x)\,dx
 \]
 Die beiden Integrale sind aber nichts anderes als die Mittelwerte
-der Funktion $f$ über das jeweils halbe Interval.
+der Funktion $f$ über das jeweils halbe Intervall.
 
 Für die $j=n$ bedeutet dies, dass die Koeffizienten $a_{kn}$ im Wesentlichen
 die Differenzen sind zwischen benachbarten Sample-Werten.
@@ -160,11 +160,11 @@ Der Hochpassfilter $P_n$ ermittel aus benachbarten Abtastwerten die
 Differenz.
 Der Tiefpassfilter $I-P_n$ ermittelt den Mittelwert.
 Um den Rest der Funktion weiter zu analysieren, ist die Projektion $P_{n-1}$
-auf den Output von $I-P_n$ anzwenden.
+auf den Output von $I-P_n$ anzuwenden.
 Die Koeffizienten $a_{k,n-1}$ sind daher Differenzen aufeinanderfolgender
 Tiefpass-Werte.
 Um die weiteren Koeffizienten zu ermitteln müssen also Schrittweise
-immer wieder die Filter $P_j$ und $I-P_j$ oder Differenz und Mitelwert
+immer wieder die Filter $P_j$ und $I-P_j$ oder Differenz und Mittelwert
 angewendet werden.
 
 Mit diesem Algorithmus ist es möglich, die Koeffizienten laufend zu ermitteln.
@@ -189,7 +189,7 @@ $O(N\log N)$ Rechenoperationen, bis die ersten Fourier-Koeffizienten zur
 Verfügung stehen.
 Die Wavelet Transformation mit gleicher Auflösung liefert den ersten Koeffizienten nach 2 Abtastwerten und nach dem letzten Abtastwert können die letzten 10
 Koeffizienten mit 10 Operationen ermittelt werden.
-Die Anzahl der Operationen ist zwar von ungefähr änlicher Grösse, aber
+Die Anzahl der Operationen ist zwar von ungefähr ähnlicher Grösse, aber
 die Wavelet-Transformation beginnt bereits viel früher, Resultate zu
 liefern.
 
