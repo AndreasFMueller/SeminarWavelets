@@ -250,7 +250,9 @@ Oder auf eine etwas spezielle Art der Kovaraianz berechnet werden
 \rhead{Sturmsaison 2018}
 Bereits bekannt war, dass in der Sturmsaison im Jahre 2018 einige Winterstürme aufgetreten sind.
 So wurde bei der Analyse der Daten nur auf diese Periode das Augenmerk gelegt. 
-In Abbildung \ref{fig:cwt_storm} \space sieht man die Wavelet-Transfomrmation des Luftdruckes und Windes miteinander multipliziert. Dies über die Monate Januar und Februar im Jahre 2018. Weiter sieht man den Luftdruck- und Windverlauf.
+In Abbildung \ref{fig:cwt_storm} \space sieht man die Wavelet-Transfomrmation des Luftdruckes und Windes miteinander multipliziert.
+Dies über die Monate Januar und Februar hinweg im Jahre 2018.
+Weiter wird der Luftdruck- und Windverlauf dargestellt.
  
 \begin{figure}[]
 	\centering
@@ -259,10 +261,11 @@ In Abbildung \ref{fig:cwt_storm} \space sieht man die Wavelet-Transfomrmation de
 	\label{fig:cwt_storm}
 \end{figure}
 
-In Abbildung \ref{fig:cwt_storm} \space sieht man um den 3. sowie zwischen dem 16. und 23. Januar jeweils gewisse Frequenzen des Windes und dem Luftdruck welche gemeinsam auf die Wavelet-Transformation angesprochen haben.
+In Abbildung \ref{fig:cwt_storm} \space zeigen sich um den 3. sowie zwischen dem 16. und 23. Januar jeweils gewisse Frequenzen des Windes und dem Luftdruck, die gemeinsam auf die Wavelet-Transformation angesprochen haben.
 
 \subsubsection{Wintersturm Burglind}
-Hineingezoomt um den 3. Januar (Abbildung \ref{fig:cwt_storm_zoom}) sieht man im Rohdatenverlauf die Aktivitäten des Windes und Luftdruckes. 
+\label{burglind}
+Hineingezoomt um den 3. Januar (Abbildung \ref{fig:cwt_storm_zoom}) sind im Rohdatenverlauf die Aktivitäten des Windes und Luftdruckes erkennbar. 
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom.pdf}
@@ -273,8 +276,9 @@ Aus dem Fachbericht \space \cite{Fachbericht:Burglind} von Meteoschweiz war beka
 Dabei zeigt sich eindrücklich wie der Sturmdurchgang in der multiplizierten Wavelet-Transformation hervorgehoben wird.
 
 \subsubsection{Sturmtief Evi und Friedericke }
-Beim zweiten Ereignis zwischen dem 16. und 23. Januar, trat die Aktivität nicht mehr so deutlich auf.
-Nach dem Sturmarchiv \space \cite{online:sturmarchiv} traf am 16. Januar das Sturmtief Evi und am 18. Januar das Sturmtief Friedericke auf Europa. Dabei zeigt sich nach der Amplitude, dass das Sturmtief nicht direkt auf die Schweiz traf, sonder diese nur streifte. 
+\label{evi}
+Beim zweiten Ereignis zwischen dem 16. und 23. Januar trat die Aktivität nicht mehr so deutlich auf.
+Nach dem Sturmarchiv \space \cite{online:sturmarchiv} traf am 16. Januar das Sturmtief Evi und am 18. Januar das Sturmtief Friedericke auf Europa. Dabei zeigt sich nach der Amplitude, dass das Sturmtief nicht direkt auf die Schweiz traf, sonder diese lediglich streifte. 
 
 \begin{figure}[b]
 	\centering
@@ -288,20 +292,20 @@ Nach dem Sturmarchiv \space \cite{online:sturmarchiv} traf am 16. Januar das Stu
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
 
-In diesem Versuch die Wavelet-Transformation im Bereich der Wetteranalyse nützlich zu machen, hat sich gezeigt, dass dies ansatzweise durchaus möglich ist.
+Mit dem Versuch, die Wavelet-Transformation im Bereich der Wetteranalyse nützlich anzuwenden, zeigt sich, dass dies durchaus möglich ist.
 In der Anwendung mit dem Phänomen der Winterstürme wurde die Wavelet-Transformation oder genauer die stetige Wavelet-Transformation erfolgreich eingesetzt.
-Dabei können zwei Hypothesen aufgestellt werden.
+Es können zwei Hypothesen aufgestellt werden:
 \begin{itemize}
-	\item Die periodischen Tagesverläufe bei konstanten Wetterverhältnissen führt dazu, dass die Wavelet-Koeffizienten der \textit{cwt} bei dieser Frequenz deutlich ansteigen \ref{Freq}
+	\item Die periodischen Tagesverläufe bei konstanten Wetterverhältnissen führt dazu, dass die Wavelet-Koeffizienten der \textit{cwt} bei dieser Frequenz deutlich ansteigen (\ref{Freq}).
 	
-	\item Nicht Periodische Ereignisse äussern sich durch das korrelierte Auftreten bei der Betrachtung mehrerer Datenkanäle. Dies kann mit dem Produkt der Wavelet-Koeffizienten oder eben der Kovarianz analysiert werden.
+	\item Nicht periodische Ereignisse äussern sich durch das korrelierte Auftreten bei der Betrachtung mehrerer Datenkanäle. Dies kann mit dem Produkt der Wavelet-Koeffizienten oder eben der Kovarianz analysiert werden (\ref{burglind}).
 \end{itemize}
 
 
-Dabei ist selbstverständlich noch nichts abschliessend bewiesen, die Hypothesen müssten weiter Analysiert werden.
+Damit ist selbstverständlich noch nichts abschliessend bewiesen. Die Hypothesen müssten detaillierter analysiert werden.
 Auch sollte die Methode weiterführend auf andere meteorologische Ereignisse angewandt werden.
-Zum Beispiel könnte man versuchen Gewitter zu detektieren.
-Falls sich diese Methode für mehrere Phänomene beweist, wären die Möglichkeiten zur praktische Anwendung durchaus vorstellbar. 
+Zum Beispiel könnte man versuchen, Gewitter zu detektieren.
+Falls sich diese Methode für mehrere Phänomene beweisen lässt, ist eine praktische Anwendung möglich beziehungsweise und durchaus vorstellbar. 
  
 
 \printbibliography[heading=subbibliography]
