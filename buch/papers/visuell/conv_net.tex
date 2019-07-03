@@ -1,0 +1,33 @@
+\section{Künstliches Neuronales Netz}
+\rhead{Künstliches Neuronales Netz}
+
+Künstliche neuronale Netze (KNN) stellen eine Möglichkeit des maschinellen Lernens dar, welche vom Hirn inspiriert wurde.
+Ein KNN besteht aus verschiedenen Neuronen, welche Hierarchisch (in sogenannten Layern) angeordnet werden (vgl. Abbildung). %TODO Abbildung KNN
+Jeder Eingangswert $x_i$ zu einem Neuron wird mit einem Faktor $w_i$ multipliziert.
+Alle gewichteten Eingänge werden zusammen mit einem Schwellenwert $b$ addiert.
+Diese Summe wird danach durch eine nichtlineare Aktivierungsfunktion $H$ aktiviert und bildet so den Ausgang $y$
+\begin{equation}
+y=H((\sum_{i} x_i w_i)+b).
+\end{equation}
+Die Nichtlinearität ist entscheidend um nichtlineare Probleme lösen zu können.
+der Aufbau eines Neuron ist in Abbildung gezeigt. %TODO Abbildung Neuron
+
+\subsection{Convolutional Neural Nets}
+
+Eine Unterkategorie der KNNs stellen die Convolutional Neural Nets (CNN) dar.
+Wie der Name schon sagt spielen dabei Faltungen eine wichtige Rolle.
+Bevor die normalen KNN Layer kommen, werden Bilddaten üblicherweise zuerst von einigen Faltungslayern vorverarbeitet.
+Die Idee dazu kommt von der klassischen Bildverarbeitung, wo häufig Faltungskernel verwendet werden um ein Bild zu filtern oder Features zu erkennen.
+Bei einem CNN werden diese Kernel nicht vom Ingenieur bestimmt, sondern während Trainings durch den Algorithmus gelernt.  %TODO insert 2D-Conv image?
+Solche CNNs zeigen extrem gute Resultate in der Bildverarbeitung, speziell im Bereich der Klassifizierung von Bildern (z.B. Erkennen von Katzen).
+
+Die zweidimensionale Wavelet-Transformation kann auch als Faltung des Bildes mit dem Kernel (Wavelet) interpretiert werden.
+Dabei werden allerdings nicht mehr alle kontinuierlichen Grössen des Wavelets berücksichtigt, sondern nur noch eine diskrete Anzahl.
+Da KNNs (und CNNs) vom Hirn inspirierte Algorithmen darstellen und die Bildvorverarbeitung im Hirn als Gabor-Wavelet-Transformation modelliert werden kann, drängt sich daher eine Kombination dieser beiden Konzepte auf.
+
+Eine offensichtliche Idee ist dabei das Vorverabeiten der Bilder mithilfe von Gabor-Wavelets.
+Diese vorverarbeiteten Bilder können dann als Input in das CNN verwendet werden und sollten gute Resultate zeigen, analog zum menschlichen Hirn.
+Ein Versuch dieses Konzept auszuführen wird in den nächsten Abschnitten erläutert. %TODO insert image of concept?
+
+\subsection{Versuch}
+

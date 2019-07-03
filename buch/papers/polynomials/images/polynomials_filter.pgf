@@ -1,0 +1,48 @@
+﻿% Filter mit 2 Ebenen
+
+\usetikzlibrary{shapes,arrows}
+
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
+\draw
+	% Ebene 1
+	node at (0,0)[name=in]{$f[n]$}
+    node [input, right of=in](input1){}
+	node [block, right of=input1] (h1) {$h[n]$}
+	node [block, above of=h1] (g1) {$g[n]$}
+
+	% Ebene 2
+    node [input, right of=g1](input2){}
+	node [block, right of=input2] (h2) {$h[n]$}
+	node [block, above of=h2] (g2) {$g[n]$}
+
+	% Ausgänge
+    node [right of=g2](outg) {$cA2$}
+    node [below of=outg](out2) {$cD2$}
+    node [below of=out2](out1) {$cD1$}
+;
+
+    % Ebene 1
+	\draw[->](in) -- node {}(h1);
+	\draw[->](in) -- (input1) |- node {}(g1);
+	\draw[->](h1) -- node {}(out1);
+
+    % Ebene 2
+	\draw[->](g1) -- node {}(h2);
+	\draw[->](g1) -- (input2) |- node {}(g2);
+	\draw[->](h2) -- node {}(out2);
+
+	\draw[->](g2) -- node {}(outg);
+
+
+\end{tikzpicture}
