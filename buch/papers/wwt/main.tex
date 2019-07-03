@@ -49,7 +49,7 @@ Die Daten werden auch tabellarisch zur Verfügung gestellt.
 Das Feature, welches ich bis anhin am regelmässigsten nutzte, war die grafische Darstellung der aktuellen Wetterdaten über den Zeitraum der letzten 24 Stunden.
 Bei speziellen Ereignissen im Wetterverlauf fielen mir besondere und wiederkehrende Charakteristiken auf.
 \\
-\\
+
 Nach der Einführung in die Theorie der Wavelets kam mir die Idee, solche Wetterphänomene mit einer geeigneten Wavelet Transformation zu detektieren.
 In diesem Paper wird einerseits auf die theoretischen Grundlagen der angewandten Methoden zurückgegriffen sowie die besprochenen meteorologischen Phänomene kurz erläutert. 
 Weiterführend wird auf den eigentlichen Prozess des Papers vertieft eingegangen.
@@ -65,9 +65,6 @@ Ein besonderes Augenmerk wird auf die allgemeine Vorgehensweise sowie deren Schw
 Die angesprochene Wetterstation in der Gemeinde Seegräben im Kanton Zürich ist mit einer DAVIS Vantage Pro2 6153 \cite{online:davisinstruments} realisiert worden.
 Sie verfügt über Sensoren für die Temperatur, Feuchtigkeit, Geschwindigkeit und Richtung des Windes sowie für den Niederschlag. 
 Durch diese Sensoren werden folgende Daten aufgezeichnet:
-\\
-\\
-\\
 
 
 \begin{itemize}
@@ -83,17 +80,16 @@ Durch diese Sensoren werden folgende Daten aufgezeichnet:
 
 Der Thermo- / Feuchtigkeitssensor liegt zusammen mit dem Regenmengenmesser auf 2 Meter über Boden.
 Mit einem Abstand von rund 10 Meter zum nächsten Gebäude sind optimale Messbedingungen geschaffen.
-Der Windmesser wurde am First des Gebäudes montiert.
-Mit einem Mast werden die Daten 1.5 Meter über dem First erfasst \space \cite{online:wss}.
+Mit einem Mast werden die Daten 1.5 Meter über dem First des Gebäudes erfasst \space \cite{online:wss}.
 Die Daten werden anschliessend mit einer Software von PC-Wetterstation.de weiterverarbeitet und auf der Website veröffentlicht.
 Mehr zur Verwendung der Wetterdaten im n\"achsten Abschnitt.
 
 \section{Datenaufarbeitung}
 \rhead{Datenaufarbeitung}
-Als n\"achster Vorbereitungsschritt zur Wavelet Transformation war die Aufbereitung der zur Verf\"ugung gestellten Daten der Wetterstation Seegr\"aben. Dazu musste erst analysiert werden wie die Daten auf der Website dargestellt werden.
+Als n\"achster Vorbereitungsschritt zur Wavelet Transformation war die Aufbereitung der zur Verf\"ugung gestellten Daten der Wetterstation. Dazu musste erst analysiert werden wie die Daten auf der Website dargestellt werden.
 \subsection{Wetter-Archiv}
-Auf der Webseite gibt es mehrere Möglichkeiten, sich Wetterdaten aus der Vergangenheit darstellen zu lassen.
-In der Kategorie des Archivs auf der Webseite kann man die Wetterdaten eines gew\"unschten Zeitraums tabellarisch oder grafisch darstellen lassen.
+Auf der Website gibt es mehrere Möglichkeiten, sich Wetterdaten aus der Vergangenheit darstellen zu lassen.
+In der Kategorie des Archivs auf der Website kann man die Wetterdaten eines gew\"unschten Zeitraums tabellarisch oder grafisch darstellen lassen.
 Vom Betreiber der Website steht keine Funktion zur Verfügung, welche es erlaubt, die Daten offiziell und automatisch herunterzuladen.
 \subsection{Datenerfassung}
 Da f\"ur die angestrebte Anwendung eine m\"oglichst hohe Aufl\"osung der jeweiligen Daten erforderlich ist, mussten die Daten im Zeitraum von einem Tag dargestellt werden.
@@ -101,14 +97,13 @@ Dies hatte zur Folge, dass man f\"ur jeden Tag ein Tabelle auf dem Archiv der We
 Als Programmiersprache wurde hierf\"ur Python gewählt.
 
 
-Mit der Pandas Library und der Funktion "read\_html"\space konnten die Daten direkt aus dem Python Programm von der Webseite heruntergeladen werden.
+Mit der Pandas Library und der Funktion "read\_html"\space konnten die Daten direkt aus dem Python Programm von der Website heruntergeladen werden.
 Entscheidend für das Gelingen dieser Teilaufgabe war, dass die URL-Links der einzelnen Tage stets regelmässig aufgebaut sind:\\
 \\
 \textit{https://www.wetter-seegraeben.ch/uploads/insert.php?insert=\textbf{20190701}.htm}
 \\
 
 Wie zu sehen ist, wird der Link mit dem Datum regelmässig aufgebaut. Somit konnten die entsprechenden Links mit mehreren While-Schleife zusammengesetzt werden.
-
 In der Abbildung \ref{fig:python-code} ist der wesentliche Ausschnitt aus dem Python Code dargestellt.
 \begin{figure}
 	\centering
@@ -116,7 +111,6 @@ In der Abbildung \ref{fig:python-code} ist der wesentliche Ausschnitt aus dem Py
 	\caption{Python Codeausschnitt}
 	\label{fig:python-code}
 \end{figure}
-
 Die Daten konnten im nächsten Schritt in einer Excel-Tabelle abgespeichert werden.
 Dort folgte der letzte Feinschliff; d.h. alle überflüssigen Kopfzeilen und Statistiken wurden entfernt.
 
@@ -126,11 +120,11 @@ Das Programm wird jeweils durch eine Fehlermeldung abgebrochen, wenn der angegeb
 So fiel auf, dass unregelmässig auf das Jahr verteilt, Daten von gewissen Tagen fehlten. Es stellte sich heraus, dass hinter dem theoretisch korrektem Link die entsprechende Internetseite nicht zur Verfügung steht.
 Wird manuell auf der Website nach diesem Tag gesucht, kann nichts gefunden werden.
 Dies trat teilweise sogar in Abschnitten von mehreren Tagen auf.
-Wie sich später herausstellte,traten die fehlenden Tagen nicht zu den Zeitpunkten auf, die mich interessierten.
+Wie sich später herausstellte, traten die fehlenden Tagen nicht zu den Zeitpunkten auf, die mich interessierten.
 
 
 \subsection{Datendarstellung}
-Die Darstellung der gewonnen Daten konnten einfach mittels Matlab gemacht werden.
+Die Darstellung der gewonnenen Daten konnten einfach mittels Python gemacht werden.
 Anbei in Abbildung \ref{fig:rawdata} \space die Plot der Rohdaten aus dem Jahre 2018, wobei nur jeder 10 Messpunkt verwendet wurde.
 Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen. 
 \begin{figure}
@@ -164,11 +158,11 @@ Wobei das $\psi_{a,b}$ für das Mutter-Wavelet steht, welches mit dem Koeffizien
 
 Als Mutter-Wavelet wurde 
 \begin{equation}
-\psi_{Morlet}(t) =  c_{\sigma} e^{-\frac{1}{2}t^2} \biggl(e^{i \sigma t}- e^{-\frac{1}{2} \sigma^2} \biggr)
+\psi_{Gabor}(t) =  c_{\sigma} e^{-\frac{1}{2}t^2} \biggl(e^{i \sigma t}- e^{-\frac{1}{2} \sigma^2} \biggr)
 \label{eq:morlet}
 \end{equation} \cite{online:Morlet}
 verwendet, welches auch als das analytische Gabor-Wavelet bekannt ist.
-Dabei gibt $\sigma$ an wie hoch die Frequenz ist und dementsprechend auch, wie viele lokale Maxima und Minima das Mutter-Wavelet besitzt.
+Dabei gibt $\sigma$ an wie hoch die Frequenz ist und dementsprechend auch, wie viele lokale Maxima und Minima innerhalb des Gausschen Fensters das Mutter-Wavelet existieren.
 Weiter ist $c_{\sigma}$ eine reelle Konstante und dient zur Korrektur der Zulässigkeitsbedingungen in \ref{cwt:zulaessig}.
 Das Morlet-Wavelet wird in der Abbildung \ref{fig:gabor_plot} \space dargestellt und $\sigma$ wurde auf 5 gesetzt.
 
@@ -179,7 +173,7 @@ Das Morlet-Wavelet wird in der Abbildung \ref{fig:gabor_plot} \space dargestellt
 \label{fig:gabor_plot}
 \end{figure}
 
-Weiter ist zu erwähnen, dass das eben gezeigte Morlet Wavelet der referenzierten Quelle entnommen wurde. Ob Matlab die selbe Form verwendet, konnte nicht abschliessend geklärt werden.
+Weiter ist zu erwähnen, dass das eben gezeigte Gabor Wavelet der referenzierten Quelle entnommen wurde. Ob Matlab die selbe Form verwendet, konnte nicht abschliessend geklärt werden.
 
 \subsection{Berechung mit Matlab}
 Die Berechnung der \textit{cwt} wurde mit der numerischen Berechnungs-Software Matlab durchgeführt.
@@ -195,8 +189,8 @@ Bei den Rückgabewerte werden die Wavelet-Werten in 'wt' als komplexe Matrix und
 Anstelle des Skalierungsfaktors $a$ in der Gleichung \ref{eq:cwt} berechnet Matlab eine approximierte Frequenz und gibt diese zurück.
 Für jeden verwendeten Skalierungsfaktor $a$ wird eine Sinuskurve gesucht, die am ehesten der Frequenz des entsprechenden Wavelets übereinstimmt.
 Siehe das Beispiel mit einem Daubechies Wavelet der Nummer 7 in der Abbildung \ref{fig:centerf}.
-Dies dient dazu den Wavelet-Koeffizienten eine Frequenz zuzuordnen. 
-Aus dem verwendetem Skalierungsfaktor a konnte auf die Schnelle keine Information entnommen werden.
+Dies dient dazu den Wavelet-Koeffizienten einer Frequenz zuzuordnen. 
+Aus dem verwendetem Skalierungsfaktor a könnte auf die Schnelle keine Information entnommen werden.
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth, height=2in]{papers/wwt/images/centerf.pdf}
@@ -219,10 +213,9 @@ Dabei kommt weiter dazu, dass nur alle 5 Minuten einen Datenpunkt aufgenommen wu
 \begin{figure}[b]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/data_spring.pdf}
-	\caption{Temperaturverlauf und entsp. cwt}
+	\caption{Temperaturverlauf und entsprechende cwt}
 	\label{fig:cwt_zoom}
 \end{figure}
-
 
 
 
@@ -231,9 +224,11 @@ Dabei kommt weiter dazu, dass nur alle 5 Minuten einen Datenpunkt aufgenommen wu
 Aufgrund der Kenntnisse rund um die \textit{cwt} kann angenommen werden, dass ein Wechsel in der Frequenz gut detektiert werden kann.
 Bei einer typischen Sturmfront, welche öfters als Wintersturm in den Monaten Dezember und Januar auftreten, zeigten sich bei der Konsultation der Wetterdaten, rapide Temperatur- und Luftdruckwechsel sowie ein erhöhtes Windaufkommen.
 Das Ziel der Analyse war, solche Ereignisse mittels einer geeigneten \textit{cwt} zu detektieren.
-Bei Frontdurchgängen erkennt man rapide Wechsel im Wind, der Temperatur sowie dem Luftdruck.
-Diese gemeinsam auftretenden Frequenzen sollten in der \textit{cwt} sichtbar sein.
-Um dies zu verdeutlichen, wurden jeweils zwei Messresultate miteinander multipliziert. Dabei werden die Stellen hervorgehoben, wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren.  
+Bei Frontdurchgängen erkennt man gemeinsame Wechsel im Wind, der Temperatur sowie dem Luftdruck.
+Diese korrelierenden auftretenden Frequenzen sollten in der \textit{cwt} sichtbar sein.
+
+Um dies zu verdeutlichen, wurden jeweils zwei Messresultate miteinander multipliziert. 
+Dabei werden die Stellen hervorgehoben, wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren.  
 Dies funktioniert besonders gut, da die Werte rasch gegen null gehen falls nur schon eine der beiden Datenverläufe nicht mit dem aktuellen Mutter-Wavelet übereinstimmt.
 Genauer betrachtet, zeigt dieses Verfahren Ähnlichkeiten mit der Formel
 \begin{equation}
@@ -243,21 +238,21 @@ der Kovarianz aus der Statistik. Bei dieser Anwendung wird einfach nicht die gan
 
 Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grundlegenden Formel der \textit{cwt}, kann man gewisse Parallelen sehen. 
 In \ref{eq:cwt1} ist die Motivation, die jeweiligen Parameter a und b zu finden, wobei das Mutter-Wavelet und das Signal gemeinsam variieren.
-Auch hierfür werden die Produkte der Signale berechnet und gemittelt.
-Oder auf eine etwas spezielle Art der Kovaraianz berechnet werden
+Auch hierfür werden die Produkte der Signale berechnet, auf integriert und gemittelt.
+Auch dies ist eine etwas abgewandte Art der Kovarianz zwischen dem Datensignal und dem Mutter-Wavelet.
  
 \subsection{Sturmsaison 2018}
 \rhead{Sturmsaison 2018}
 Bereits bekannt war, dass in der Sturmsaison im Jahre 2018 einige Winterstürme aufgetreten sind.
 So wurde bei der Analyse der Daten nur auf diese Periode das Augenmerk gelegt. 
 In Abbildung \ref{fig:cwt_storm} \space sieht man die Wavelet-Transfomrmation des Luftdruckes und Windes miteinander multipliziert.
-Dies über die Monate Januar und Februar hinweg im Jahre 2018.
+Dies über die Monate Januar und Februar im Jahre 2018 hinweg.
 Weiter wird der Luftdruck- und Windverlauf dargestellt.
  
-\begin{figure}[]
+\begin{figure}[b]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind.pdf}
-	\caption{cwt und Rohdaten Sturmsaison 2018}
+	\caption{Cwt und Rohdaten Sturmsaison 2018}
 	\label{fig:cwt_storm}
 \end{figure}
 
@@ -269,7 +264,7 @@ Hineingezoomt um den 3. Januar (Abbildung \ref{fig:cwt_storm_zoom}) sind im Rohd
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom.pdf}
-	\caption{cwt und Rohdaten Strum 2018}
+	\caption{Cwt und Rohdaten Wintersturm Burglind 2018}
 	\label{fig:cwt_storm_zoom}
 \end{figure}
 Aus dem Fachbericht \space \cite{Fachbericht:Burglind} von Meteoschweiz war bekannt, dass am Vormittag des 3. Januars 2018 die stärkste Sturmfront seit dem verehrenden Sturm Lothar aus dem Jahre 1999 über die Schweiz zog.
@@ -278,13 +273,13 @@ Dabei zeigt sich eindrücklich wie der Sturmdurchgang in der multiplizierten Wav
 \subsubsection{Sturmtief Evi und Friedericke }
 \label{evi}
 Beim zweiten Ereignis zwischen dem 16. und 23. Januar trat die Aktivität nicht mehr so deutlich auf.
-Nach dem Sturmarchiv \space \cite{online:sturmarchiv} traf am 16. Januar das Sturmtief Evi und am 18. Januar das Sturmtief Friedericke auf Europa. Dabei zeigt sich nach der Amplitude, dass das Sturmtief nicht direkt auf die Schweiz traf, sonder diese lediglich streifte. 
+Nach dem Sturmarchiv  \cite{online:sturmarchiv} traf am 16. Januar das Sturmtief Evi und am 18. Januar das Sturmtief Friedericke auf Europa. Dabei zeigt sich nach der Amplitude, dass das Sturmtief nicht direkt auf die Schweiz traf, sonder diese lediglich streifte. 
 
 \begin{figure}[b]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom2.pdf}
-	\caption{cwt und Rohdaten Strum 2018}
-	\label{fig:cwt_storm_zoom}
+	\caption{Cwt und Rohdaten Strumtief Evi und Friedricke 2018}
+	\label{fig:cwt_storm_zoom2}
 \end{figure}
 
 
@@ -306,6 +301,22 @@ Damit ist selbstverständlich noch nichts abschliessend bewiesen. Die Hypothesen
 Auch sollte die Methode weiterführend auf andere meteorologische Ereignisse angewandt werden.
 Zum Beispiel könnte man versuchen, Gewitter zu detektieren.
 Falls sich diese Methode für mehrere Phänomene beweisen lässt, ist eine praktische Anwendung möglich beziehungsweise und durchaus vorstellbar. 
+
+\section{Anhang}
+Anbei in Abbildung \ref{fig:python-plot-code} und \ref{fig:python-plot-code2} der verwendete Code zum Ploten der Abbildung \ref{fig:cwt_storm}.
+
+\begin{figure}[h]
+	\centering
+	\lstinputlisting[language=Python,firstline = 1, lastline = 45, numbers=left,style = mystyle]{papers/wwt/code/plot_burglind.py}
+	\caption{Python Codeausschnitt}
+	\label{fig:python-plot-code}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\lstinputlisting[language=Python,firstline = 46, lastline = 91, numbers=left,style = mystyle]{papers/wwt/code/plot_burglind.py}
+	\caption{Python Codeausschnitt}
+	\label{fig:python-plot-code2}
+\end{figure}
  
 
 \printbibliography[heading=subbibliography]
