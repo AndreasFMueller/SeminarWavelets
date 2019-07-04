@@ -2,12 +2,12 @@
 \rhead{Künstliches Neuronales Netz}
 
 Künstliche neuronale Netze (KNN) stellen eine Möglichkeit des maschinellen Lernens dar, welche vom Hirn inspiriert wurde.
-Ein KNN besteht aus verschiedenen Neuronen, welche Hierarchisch (in sogenannten Layern) angeordnet werden (vgl. Abbildung). %TODO Abbildung KNN
+Ein KNN besteht aus verschiedenen Neuronen, welche hierarchisch in sogenannten Layern angeordnet werden (vgl. Abbildung). %TODO Abbildung KNN
 Jeder Eingangswert $x_i$ zu einem Neuron wird mit einem Faktor $w_i$ multipliziert.
 Alle gewichteten Eingänge werden zusammen mit einem Schwellenwert $b$ addiert.
 Diese Summe wird danach durch eine nichtlineare Aktivierungsfunktion $H$ aktiviert und bildet so den Ausgang $y$
 \begin{equation}
-y=H((\sum_{i} x_i w_i)+b).
+y=H\left(\sum_{i} x_i w_i+b\right).
 \end{equation}
 Die Nichtlinearität ist entscheidend um nichtlineare Probleme lösen zu können.
 der Aufbau eines Neuron ist in Abbildung gezeigt. %TODO Abbildung Neuron
@@ -15,11 +15,20 @@ der Aufbau eines Neuron ist in Abbildung gezeigt. %TODO Abbildung Neuron
 \subsection{Convolutional Neural Nets}
 
 Eine Unterkategorie der KNNs stellen die Convolutional Neural Nets (CNN) dar.
-Wie der Name schon sagt spielen dabei Faltungen eine wichtige Rolle.
+Wie der Name schon sagt, spielen dabei Faltungen eine wichtige Rolle.
 Bevor die normalen KNN Layer kommen, werden Bilddaten üblicherweise zuerst von einigen Faltungslayern vorverarbeitet.
 Die Idee dazu kommt von der klassischen Bildverarbeitung, wo häufig Faltungskernel verwendet werden um ein Bild zu filtern oder Features zu erkennen.
 Bei einem CNN werden diese Kernel nicht vom Ingenieur bestimmt, sondern während Trainings durch den Algorithmus gelernt.  %TODO insert 2D-Conv image?
+Die gelernten Gewichte (Kernels) haben an jeder Position der Faltung die selben Werte, sind also Translationsinvariant.
+Diese Eigenschaft ist entscheidend, da sie einerseits die Anzahl zu lernender Gewichte extrem reduziert und andererseits die Generalisierung fördert.
 Solche CNNs zeigen extrem gute Resultate in der Bildverarbeitung, speziell im Bereich der Klassifizierung von Bildern (z.B. Erkennen von Katzen).
+
+Anhand von der Bildverarbeitung kann man den Unterschied von KNNs und CNNs gut erklären.
+Bei einem KNN wird jedes Pixel mit jedem Neuron verbunden und für jede dieser Verbindungen wird ein eigenes Gewicht gelernt.
+Beim CNN hingegen wird ein einzelner Kernel gelernt, welcher dann translationsinvariant auf das ganze Bild angewendet wird.
+Als Beispiel nehmen wir einen ersten Layer von $256$ Neuronen, ein Eingangsbild der Grösse $128\times128$ und eine Kernelgrösse von $3\times3$.
+Damit erhalten wir beim KNN	$256 \cdot 128 \cdot 128 = 4'227'072$ Gewichte welche gelernt werden müssen.
+Beim CNN hingegen genügen $256 \cdot 3 \cdot 3 = 2'304$ Gewichte.
 
 Die zweidimensionale Wavelet-Transformation kann auch als Faltung des Bildes mit dem Kernel (Wavelet) interpretiert werden.
 Dabei werden allerdings nicht mehr alle kontinuierlichen Grössen des Wavelets berücksichtigt, sondern nur noch eine diskrete Anzahl.

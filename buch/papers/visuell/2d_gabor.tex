@@ -9,16 +9,16 @@ Daraus wird dann das zweidimensionale Wavelet abgeleitet und die entstehenden Fr
 Bei der Wavelet-Transformation besteht eine Zeit-Frequenz-Unschärfe.
 Diese Unschärfe bewirkt, dass die Auflösung im Zeitbereich umgekehrt proportional zur Auflösung im Frequenzbereich ist.
 Das Gabor-Wavelet stellt einen optimalen Kompromiss aus Zeit-und Frequenzauflösung dar.
-Die Anwendung des Wavelets minimiert dabei das Produkt der Standardabweichungen im Zeit- und Frequenzbereich. \cite{paper:communication}
+Die Anwendung des Wavelets minimiert dabei das Produkt der Standardabweichungen im Zeit- und Frequenzbereich \cite{paper:communication}.
 %TODO more details?
 
 Ein solches Gabor-Wavelet besteht aus einer komplexen Schwingung, welche mit einer Gaussfunktion gefenstert ist und somit exponentiell abfällt.
-
+Dies ergibt die folgende Formel
 \begin{equation}
-G(x)= e^{-\frac{(x-x_{0})^{2}}{\sigma^{2}}} e^{i\xi_{0}x}
+G(x)= e^{-\frac{(x-x_{0})^{2}}{\sigma^{2}}} e^{i\xi_{0}x}.
 \end{equation}
 
-Der Parameter $\sigma$ beschreibt die Standardabweichung der Gaussfunktion und $\xi$ die Frequenz der komplexen Schwingung. 
+Der Parameter $\sigma$ beschreibt die Standardabweichung der Gaussfunktion und $\xi_{0}$ die Frequenz der komplexen Schwingung. 
 Die komplexe Schwingung besteht aus einem Sinus und einem  Kosinus Anteil. 
 Ein Beispiel eines Sinus-Gabor-Wavelet wird in Abbildung \ref{fig:gabor1d} gezeigt.
 
@@ -41,7 +41,8 @@ e^{i(\xi_{0}x+\nu_{0}y)}.
 \end{equation}
 
 Das zweidimensionale Wavelet besteht immer noch aus einer komplexen Schwingung multipliziert mit einer elliptischen Gaussfunktion. 
-Diese Schwingung kann man sich als ebene Welle vorstellen, welche abhängig von $\xi$ und $\nu$ in eine bestimmte Richtung zeigt (vgl. Abbildung \ref{fig:planarwave}).
+Eine elliptische Gaussfunktion erzeugt Niveaulinien, welche die Form einer Ellipse haben.
+Diese Schwingung kann man sich als ebene Schwingung vorstellen, welche abhängig von $\xi$ und $\nu$ in eine bestimmte Richtung zeigt (vgl. Abbildung \ref{fig:planarwave}).
 
 \begin{figure}
 	\centering
@@ -70,15 +71,18 @@ Eine Änderung von $\theta$  bewirkt somit eine Drehung der Wellenfronten.
 Der letzte Parameter $\phi$ bewirkt eine Phasenverschiebung der Schwingung. 
 Da eine solche Phasenverschiebung keinen klaren Nutzen zu haben scheint, wird $\phi=0$ gesetzt.
 
-Wie sich Gabor-Wavelets in Abhängigkeit dieser Parameter Verhalten zeigt Abbildung \ref{fig:kernels}.
-Vier unabhängige Freiheitsgrade (Parameter) sind zu viel um als Mensch einen guten Überblick zu behalten.
+Wie sich Gabor-Wavelets in Abhängigkeit dieser Parameter verhalten zeigt Abbildung \ref{fig:kernels}.
+Vier unabhängige Freiheitsgrade (Parameter) sind zu viel um einen guten Überblick zu behalten.
 Aus diesem Grund werden im weiteren Verlauf dieses Papers die Gausskurven-Parameter $\sigma$ und $\gamma$ fixiert und nur noch die anderen beiden Parameter verändert.
 
 \begin{figure}
 	\centering
-	\subfigure[Parameter der Gaussfunktion $\gamma$ und $\sigma$ werden verändert]{\label{fig:kernels_a}\includegraphics[width=0.45\linewidth]{./papers/visuell/images/kernels_sigma_gamma.pdf}}
+	\subfigure[Parameter der Gaussfunktion $\gamma$ und $\sigma$ werden verändert]
+	{\label{fig:kernels_a}\includegraphics[width=0.8\linewidth, trim=0 60 0 60, clip ]{./papers/visuell/images/kernels_sigma_gamma.pdf}}
 	
-	\subfigure[Wellenlänge der Schwingung $\lambda$ und Ausrichtung $\theta$ werden verändert]{\label{fig:kernels_b}\includegraphics[width=0.45\linewidth]{./papers/visuell/images/kernels_theta_lambda.pdf}}
+	\subfigure[Wellenlänge der Schwingung $\lambda$ und Ausrichtung $\theta$ werden verändert]
+	{\label{fig:kernels_b}\includegraphics[width=0.8\linewidth, trim=0 60 0 60, clip ]{./papers/visuell/images/kernels_theta_lambda.pdf}}
+	
 	\caption{Abhängigkeit des Gabor-Wavelets von den Parametern}
 	\label{fig:kernels}
 \end{figure}
