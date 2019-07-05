@@ -16,4 +16,5 @@ PAPERFILES = \
 	papers/gis/main.tex \
 	papers/meteor/main.tex \
 	papers/wwt/main.tex \
+	papers/sgwt/main.tex \
 	
