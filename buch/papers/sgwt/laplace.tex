@@ -3,117 +3,210 @@
 \section{Laplace\label{sec:sgwt:laplace}}
 \rhead{Laplace}
 
+F\"ur die Analyse und Synthese von Graphen und deren Spektren spielen der 
+Laplace Operator und besonders die Laplace Matrix eine wichtige Rolle, wie 
+bereits Graphen in~\cref{sec:sgwt:graphs}, wollen wir daher zuerst 
+die Grundlagen des Laplace Operators in~\cref{subsec:sgwt:laplaceop} und der 
+Laplace Matrix \laplaceL{} in~\cref{subsec:sgwt:laplacem} eingehen, bevor wir 
+dann in~\cref{sec:sgwt:spectralanalysis} mit der Analyse des Spektrums und 
+Konstruktion der SGWT beginnen.
+
 \subsection{Laplace Operator\label{subsec:sgwt:laplaceop}}
 \rhead{Laplace Operator}
 
-Der Laplace Operator $\Delta$ in $\mathbb{R}^n$ beschreibt die zweite Ableitung.
-
-\begin{equation}
-\Delta = \frac{\partial^2}{\partial x_1^2}
+Der Laplace Operator $\Delta$ in $\mathbb{R}^n$ wird im kartesischen 
+Koordinatensystem durch die Summe der $n$ zweiten Ableitungen
+\begin{equation*}
+\Delta = 
+\sum_{i = 1}^{n}\frac{\partial^2}{\partial x_i^2}
+=
+\frac{\partial^2}{\partial x_1^2}
 + \frac{\partial^2}{\partial x_2^2}
 + \dots
 + \frac{\partial^2}{\partial x_n^2}
+\end{equation*}
+beschrieben. H\"aufig trifft man erstmals auf den Laplace Operator wenn man 
+versucht die Poisson-Gleichung $-\Delta u = f$ zu l\"osen, die im Falle von $f 
+= 0$ zur homogenen Laplace-Gleichung $\Delta \phi = 0$ wird.
+
+Wie Anfangs bereits geschrieben, sind unsere Daten meist nur in Diskreter Form 
+vorhanden. Daher w\"are se gut auch eine diskretisierte oder zumindest 
+approximierte Form des Laplace Operators zu haben. Eine M\"oglichkeit ist dabei 
+die Finite-Differenzen-Methode.
+
+\subsection{Finite-Differenzen-Methode}
+\rhead{Finite-Differenzen-Methode}
+
+Bei der Finite-Differenzen-Methode oder kurz FDM ist eine diskrete 
+Approximation des Laplace Operators deren Idee es ist es, eine 
+Differentialgleichung mittels Differenzenquotienten zu approximieren.
+
+Als Ausgangslage nehmen wir die Funktion $u(x)$ mit dem eindimensionalen 
+Definitionsbereich $u: \mathbb{R} \rightarrow \mathbb{R}$. Beginnen wir zuerst 
+mit der Approximation der ersten Ableitung an der Stelle $x_i$, mit dem Abstand 
+$h = \Delta x_i$,
+\begin{equation*}
+\frac{\partial u}{\partial x_i}
+= \frac{u(x_i+h)-u(x_i)}{h}.
+\end{equation*}
+Indem wir diese Gleichung nochmals Ableiten erhalten wir die f\"ur den Laplace 
+Operator relevante zweite Ableitung
+\begin{equation*}
+\frac{\partial}{\partial x_i}\frac{\partial}{\partial x_i}u
+= \frac{\partial u}{\partial x_i^2}
+= \frac{\frac{u(x_i+h)-u(x_i)}{h}-\frac{u(x_i)-u(x_i+h)}{h}}{h}
+= \frac{u(x_i+h)-2u(x_i)+u(x_i-h)}{h^2}.
+\end{equation*}
+
+Wenn wir nun Funktionen $u(x, y)$ des zweidimensionalen Definitionsbereichs $u: 
+\mathbb{R}^2 \rightarrow \mathbb{R}$ in einem kartesischen Koordinatensystem 
+zusammen mit dem Laplace Operator $\Delta$ anschauen, erhalten wir
+\begin{equation*}
+\Delta u(x, y) = u_{xx}(x, y) + u_{yy}(x, y).
+\end{equation*}
+Dies k\"onnen wir wiederum mittels Finiten-Differenzen approximieren, mit $h = 
+\Delta x = \Delta y$ liefert uns das
+\begin{align}
+\Delta u(x,y)
+&=
+\frac{u(x+h,y)-2u(x, y)+u(x-h,y)}{h^2}
++\frac{u(x,y+h)-2u(x, y)+u(x,y-h)}{h^2} \nonumber \\
+&=
+\frac{u(x+h,y)+u(x-h,y)+u(x,y+h)+u(x,y-h)-4u(x, y)}{h^2}.
+\label{eq:sgwt:fivepointstencil}
+\end{align}
+Dieser Operator ist auch bekannt als der F\"unfpunkte-Stern-Operator 
+oder five-point stencil im Englischen, siehe~\cref{fig:sgwt:graph:star}.
+\begin{figure}
+\centering
+\includegraphics[
+angle=-90,
+origin=c,
+scale=0.6
+]{papers/sgwt/images/star.pdf}
+\vspace{0pt}
+\caption{F\"unfpunkte-Stern-Operator mit $\text{P} = u(x,y), \text{P}_1 = 
+u(x-h,y), \text{P}_2 = u(x,y+h), \text{P}_3 = u(x+h,y) \text{und P}_4 = 
+u(x,y-h)$.
+\label{fig:sgwt:graph:star}}
+\end{figure}
+
+Es folgt daraus, dass bei der zweiten Ableitung die ``aufeinanderfolgenden 
+Differenzen'' immer den Knoten in der MItte gemeinsam haben. Daraus k\"onnen 
+wir nun wieder zur\"uck auf unsere Graphen 
+in~\cref{fig:sgwt:graph:simple} aus aus~\cref{sec:sgwt:graphs} kommen. Wenn wir 
+diesen n\"amlich mit dem den F\"unfpunkte-Stern-Operator 
+aus~\cref{fig:sgwt:graph:star} vergleichen wird klar, dass der Graph, obwohl er 
+auf den ersten Blick anders aussieht, der Gleiche ist. Wenn wir also den 
+Laplace Operator auf den jeweiligen Graph anwenden, werden wir das gleiche 
+Resultat erhalten.
+
+Wir k\"onnen somit noch einen Schritt weitergehen und uns von den Achsen 
+l\"osen. Nehmen wir als Beispiel den Graphen aus~\cref{fig:sgwt:laplace:nstar}. 
+F\"ur die zweite Ableitung beim Punkt P brauchen wir also nach dem Schema 
+aus~\cref{eq:sgwt:fivepointstencil} die Summe aller Knoten P1 bis P8 
+abz\"uglich Anzahl Nachbarn von P, also dem Grad $d(\text{P})$, multipliziert 
+mit dem 
+Knoten P, was uns folgende Gleichung
+\begin{equation*}
+\Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{8}\text{P}_i - 8P\right)
+\end{equation*}
+liefert. Generell erhalten wir f\"ur den Laplace Operator an einem Knoten P mit 
+$n$ Nachbarn die folgende~\cref{eq:sgwt:generallaplace}.
+\begin{equation}
+\Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{n}\text{P}_i - nP\right)
+\label{eq:sgwt:generallaplace}
 \end{equation}
 
-\subsection{Laplace Matrix\label{subsec:sgwt:laplacm}}
+\begin{figure}
+\centering
+\includegraphics[
+angle=-90,
+origin=c,
+scale=0.7
+]{papers/sgwt/images/nstar.pdf}
+\vspace{0pt}
+\caption{Ein Graph mit neun Knoten und acht Kanten. Der Knote P mit Grad 
+$d(\text{P}) = 8$ stich hier klar gegen\"uber den anderen Knoten mit jeweils 
+Grad $d(\text{P}_i) = 1$ hervor.
+    \label{fig:sgwt:laplace:nstar}}
+\end{figure}
+
+\subsection{Laplace Matrix\label{subsec:sgwt:laplacem}}
 \rhead{Laplace Matrix}
 
-%TODO: Why could norm be usefull?
-
-%TODO: Rework
-Die Laplace Matrix 
-\laplaceL~\cite{noauthor_laplace-matrix_2017}, welche wir aus der 
-Gradmatrix \degreeM~\cite{noauthor_degree_2018} und der Adjazenzmatrix 
-\adjacencyM~\cite{noauthor_adjacency_2019} berechnen k\"onnen, spielt bei der 
-SGWT eine entscheidende Rolle. Dabei gibt es 
-die Unterscheidung zwischen der Laplace Matrix aus \cref{eq:sgwt:laplace} und 
-\cref{eq:sgwt:laplace:norm}, bei der \laplaceLnorm{} Matrix handelt es sich um 
-die normalisierte \laplaceL{} Matrix.
-
+Die Laplace Matrix \laplaceL{}~\cite{noauthor_laplace-matrix_2017} beschreibt 
+einen Graphen anhand seiner Grad- \degreeM{}~\cite{noauthor_degree_2018} 
+und Adjazenzmatrix \adjacencyM{}~\cite{noauthor_adjacency_2019} wie folgt
 \begin{equation}
-\laplaceL = \degreeM - \adjacencyM
+\laplaceL = \degreeM - \adjacencyM.
 \label{eq:sgwt:laplace}
 \end{equation}
-
-\begin{equation}
-\laplaceLnorm
-= \degreeM^{-1/2}\laplaceL\degreeM^{-1/2}
-= I - \degreeM^{-1/2}\adjacencyM\degreeM^{-1/2}
-\label{eq:sgwt:laplace:norm}
-\end{equation}
-
-\begin{equation}
-\chi = 
-\left[
-\begin{pmatrix}\\\chi_0\\\\\end{pmatrix}
-\begin{pmatrix}\\\chi_1\\\\\end{pmatrix}
-\begin{pmatrix}\\\chi_2\\\\\end{pmatrix}
-\cdots
-\begin{pmatrix}\\\chi_{N-1}\\\\\end{pmatrix}
-\right]
-\end{equation}
-
-\begin{equation}
-0 = \lambda_0 < \lambda_1 \le \lambda_2 \le \cdots \le \lambda_{N-1}
-\end{equation}
-
-\subsection{Beispiele}
-
-Nehmen wir nun den Graphen aus \cref{fig:sgwt:sphere:graph}.
-
-\begin{equation}
-\laplaceL =
-\begin{bmatrix}
-3 & -1 & -1 & -1 & 0 & 0 & 0 & 0 \\
--1 &  4 & -1 & -1 & -1 & 0 & 0 & 0 \\
--1 & -1 &  4 & -1 & 0 & -1 & 0 & 0 \\
--1 & -1 & -1 &  4 & 0 & 0 & -1 & 0 \\
-0 & -1 & 0 & 0 &  4 & -1 & -1 & -1 \\
-0 & 0 & -1 & 0 & -1 &  4 & -1 & -1 \\
-0 & 0 & 0 & -1 & -1 & -1 &  4 & -1 \\
-0 & 0 & 0 & 0 & -1 & -1 & -1 &  3
-\end{bmatrix}
-\end{equation}
-
-\begin{equation}
+Die Gradmatrix \degreeM{} ist dabei eine Diagonalmatrix, die den Grad der 
+einzelnen Knoten beinhaltet. Die Adjazenzmatrix hingegen zeigt die Kanten und 
+deren Gewichte des Graphen auf. Als Beispiel dient uns 
+wieder der Graph aus~\cref{fig:sgwt:graph:simple}, dessen Grad- und 
+Adjazenzmatrix wie folgt
+\begin{equation*}
 \degreeM =
 \begin{bmatrix}
-3 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 \\
-0 & 0 & 4 & 0 & 0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 4 & 0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 4 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 & 4 & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 & 0 & 4 & 0 \\
-0 & 0 & 0 & 0 & 0 & 0 & 0 & 3
+1 & 0 & 0 & 0 & 0 \\
+0 & 4 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1
 \end{bmatrix}
-\end{equation}
-
-\begin{equation}
+\end{equation*}
+sowie
+\begin{equation*}
 \adjacencyM =
 \begin{bmatrix}
-0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
-1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
-1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 \\
-1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\
-0 & 1 & 0 & 0 & 0 & 1 & 1 & 1 \\
-0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
-0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 \\
-0 & 0 & 0 & 0 & 1 & 1 & 1 & 0
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 1 & 1 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0
 \end{bmatrix}
-\end{equation}
-
-\begin{align}
-\laplaceL&^{\text{norm}} = \nonumber\\
-%&\qquad \laplaceLnorm =\nonumber\\
-&\begin{bmatrix}
-1 & -0.28868 & -0.28868 & -0.28868 & 0 & 0 & 0 & 0 \\
--0.28868 &  1 & -0.25000 & -0.25000 & -0.25000 & 0 & 0 & 0 \\
--0.28868 & -0.25000 &  1 & -0.25000 & 0 & -0.25000 & 0 & 0 \\
--0.28868 & -0.25000 & -0.25000 &  1 & 0 & 0 & -0.25000 & 0 \\
-0 & -0.25000 & 0 & 0 &  1 & -0.25000 & -0.25000 & -0.28868 \\
-0 & 0 & -0.25000 & 0 & -0.25000 &  1 & -0.25000 & -0.28868 \\
-0 & 0 & 0 & -0.25000 & -0.25000 & -0.25000 &  1 & -0.28868 \\
-0 & 0 & 0 & 0 & -0.28868 & -0.28868 & -0.28868 &  1
+\end{equation*}
+aussehen. Die Differenz der beiden ergibt dann die Laplace Matrix
+\begin{equation*}
+\laplaceL =
+\begin{bmatrix}
+1 & -1 & 0 & 0 & 0 \\
+-1 & 4 & -1 & -1 & -1 \\
+0 & -1 & 1 & 0 & 0 \\
+0 & -1 & 0 & 1 & 0 \\
+0 & -1 & 0 & 0 & 1
+\end{bmatrix}.
+\end{equation*}
+Wenden wir nun die Funktion $u$ auf diese Matrix an, erhalten wir
+\begin{equation*}
+\laplaceL u =
+\begin{bmatrix}
+1 & -1 & 0 & 0 & 0 \\
+-1 & 4 & -1 & -1 & -1 \\
+0 & -1 & 1 & 0 & 0 \\
+0 & -1 & 0 & 1 & 0 \\
+0 & -1 & 0 & 0 & 1
 \end{bmatrix}
-\end{align}
+\begin{pmatrix}
+u_0 \\
+u_1 \\
+u_2 \\
+u_3 \\
+u_4
+\end{pmatrix}
+=
+\begin{pmatrix}
+u_0 - u_1 \\
+4 u_1 - u_0 - u_2 - u_3 - u_4 \\
+u_2 - u_1 \\
+u_3 - u_1 \\
+u_4 - u_1
+\end{pmatrix}
+\end{equation*}
+oder generell ausgedr\"uckt, mit $h = 1$
+\begin{equation*}
+\laplaceL u = \frac{1}{h^2}n\left(\frac{1}{n}\sum_{i\text{ Nachbarn}}^{n}u_i - 
+u_0\right) = \Delta u.
+\end{equation*}
