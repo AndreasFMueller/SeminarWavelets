@@ -2,15 +2,17 @@ Innerhalb dieser Seminararbeit konnte keine fertige Funktion zur Bildschärfung 
 Der bestehende Ansatz mit der Beziehung \eqref{deconvolve:funktion}, welche zwei Freiheitsgrade beinhaltet, könnte aber noch verfeinert werden.
 Die beiden Parameter $m$ und $\alpha$ wurden hier mithilfe einer eindimensionalen Funktion $g(x)$ (Abbildung \ref{deconvolve:1d}) festgelegt.
 Es wäre daher vielleicht möglich, durch geschickteres wählen dieser Parameter auf ein besseres Ergebnis zu kommen.
-Auch ist die Anwendung auf das Bild noch nicht ausgereift.
+Ausserdem ist die Anwendung auf das Bild noch nicht ausgereift.
 
 Es wurden auch nur das Haar- bzw. db1-Wavelet verwendet.
-Ein ähnlicher Ansatz, z.B. mit höheren Debauchies-Wavelets wäre sicher auch ein Versuch Wert.
+Ein ähnlicher Ansatz, z.B. mit höheren Debauchies-Wavelets wäre sicher ein Versuch Wert.
 
 Die Hauptursache für das unbefriedigende Resultat liegt im allgemeinen aber woanders.
 Es wurde nur versucht, die Koeffizienten auf den einzelnen Level zu verändern, bzw jede Zeile in Abbildung \ref{deconvolve:y1_cwt} wurde unabhängig von der benachbarten verstärkt oder geschwächt.
 
 Eine bessere Methode würde berücksichtigen, dass die Wavelet-Transformation ja zwei Dimensionen hat (Dilatation $a$ und Translation $b$) und somit \glqq Masse \grqq{} in der Ebene, also zwischen Level und nicht nur auf einer Zeile nach links oder rechts verschoben werden muss.
+Ändert man auf einem Level etwas, so muss die Auswirkung auf die anderen Level unbedingt berücksichtigt werden.
+
 
 Es ist somit problematisch, die Wavelet-Transformation ähnlich wie die Fourier-Transformation zu behandeln.
 Ein verändern eines Koeffizienten an einer bestimmten Stelle bewirkt nicht nur dort, sondern auch bei anderen Frequenzen oder genauer Dilatationen etwas.
