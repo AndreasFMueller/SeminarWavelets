@@ -14,42 +14,42 @@ scale only axis,
 axis on top,
 xmin=0.5,
 xmax=9600.5,
-xtick={0,2400,4800,7200,9600},
 xlabel style={font=\color{white!15!black}},
-xlabel={Translation b (Sample)},
+xlabel={Sample},
+xtick={0, 2400, 4800, 7200, 9600},
 ymin=0.5,
-ymax=8192.5,
-%ytick={1,821,1641,2461,3281,4101,4921,5741,6561,7381},
-ytick={0,2048,4096,6144,8192},
+ymax=4096.5,
+ytick={256, 512, 1024, 2048, 4096},
 ylabel style={font=\color{white!15!black}},
-ylabel={Dilatation a (Scale)},
+ylabel={Scale},
 axis background/.style={fill=white},
 %title style={font=\bfseries},
 %title={Absolute Values for a =  1 2 3...},
 legend style={legend cell align=left, align=left, draw=white!15!black}
 ]
-\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {y1_cwt-1.png};
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=4096.5] {y1_cwt-1.png};
 \end{axis}
 
 %Levels
 \definecolor{lc}{RGB}{217,83,25}
 
+%Level 13
+\draw[line width=0.35mm, lc] (2.04,10.28)--(13.415,10.28);
+\node at (12,10.48) [lc] {Level 13};
+%Level 12
 \draw[line width=0.35mm, lc] (2.04,5.75)--(13.415,5.75);
-%\draw[line width=0.35mm, lc] (2.04,10.28)--(13.415,10.28);
-
-\draw[line width=0.37mm, lc] (2.04,8.015)--(13.415,8.015);
-\draw[line width=0.37mm, lc] (2.04,9.15)--(13.415,9.15);
-\draw[line width=0.37mm, lc] (2.04,9.715)--(13.415,9.715);
-\draw[line width=0.37mm, lc] (2.04,10)--(13.415,10);
-\draw[line width=0.37mm, lc] (2.04,10.14)--(13.415,10.14);
-%\draw[line width=0.35mm, lc] (2.04,10.22)--(13.415,10.22);
-%\draw[line width=0.35mm, lc] (2.04,10.245)--(13.415,10.245);
-
-\draw[line width=0.37mm, lc] (2.04,1.22)--(13.415,1.22);
-
-\node at (12,1.44) [lc] {Level 13};
 \node at (12,5.95) [lc] {Level 12};
-\node at (12,8.215) [lc] {Level 11};
-\node at (12,9.35) [lc] {Level 10};
-%\node at (12,9.915) [lc] {Level 10};
+%Level 11
+\draw[line width=0.37mm, lc] (2.04,3.485)--(13.415,3.485);
+\node at (12,3.685) [lc] {Level 11};
+%Level 10
+\draw[line width=0.37mm, lc] (2.04,2.35)--(13.415,2.35);
+\node at (12,2.55) [lc] {Level 10};
+%level 9
+\draw[line width=0.37mm, lc] (2.04,1.785)--(13.415,1.785);
+%Level 8
+\draw[line width=0.37mm, lc] (2.04,1.5)--(13.415,1.5);
+%Level 7
+\draw[line width=0.37mm, lc] (2.04,1.36)--(13.415,1.36);
+
 \end{tikzpicture}%
