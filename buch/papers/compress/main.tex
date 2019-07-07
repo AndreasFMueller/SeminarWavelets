@@ -35,13 +35,13 @@ Beispielsweise kann mit dem FLAC-8 der Speicherplatzbedarf auf unter 66 Prozent 
 Bei der verlustbehafteten Komprimierung soll nur der nötige Teil der Originaldaten erhalten bleiben.
 Somit ist es möglich, den benötigten Speicherplatz auf ein Minimum zu reduzieren.
 Das hat jedoch zur Folge, dass die Originaldaten nicht mehr exakt wiederhergestellt werden können. 
-Somit ist sie nicht mehr umkehrbar.
+Somit ist diese Form der Komprimierung nicht wieder umkehrbar.
 Man kann unnötige Daten entfernen und somit die Datenmenge reduzieren.
 Deshalb spricht man auch von Irrelevanzreduktion.
+Die verlustbehaftete Komprimierung wird insbesondere für Audio- und Video-Daten häufig verwendent.
 Um zu entscheiden, welche Teile wichtig und welche entbehrlich sind, wird auf die menschliche Wahrnehmung geachtet.
-Die verlustbehaftete Komprimierung wird insbesondere für Multimedia-Daten häufig verwendent.
 Weil die menschliche Sinneswahrnehmung nicht alle Frequenzen und Töne gleich gut aufnimmt, können gewisse Bereiche weggelassen werden.
-Mehr dazu im nächsten Kapitel.
+Mehr dazu im folgenden Kapitel.
 
 Mit der verlustbehafteten Kompression können sehr hohe Kompressionsraten erreicht werden, welche aber stets mit einer Qualitätseinbusse kommen.
 Diesen Abtausch von hoher Kompression mit schlechter Qualität gilt es abzuschätzen.
@@ -60,7 +60,7 @@ Um ein Schallereignis zu beurteilen haben Psychoakustiker eine Vielzahl an Param
 
 In \autoref{fig:Wahrnehmbarkeitsschwelle} dargestellt ist ein Modell der Wahrnehmbarkeitsschwelle des menschlichen Gehörs.
 Bei einem vorhandenen Störsignal, hier $1\,\text{kHz}$, wird diese Schwelle merklich angehoben.
-Auch zeitlich werden leise Töne kurz vor und nach einem lauten Ton verdeckt.\cite{wikipedia:Psychoakustik}
+Auch zeitlich werden leise Töne kurz vor und nach einem lauten Ton verdeckt \cite{wikipedia:Psychoakustik}.
 
 Nun folgt die Überlegung, dass jene Daten die nicht wahrnehmbar sind (unter der Schwelle) redundant sind und weggelassen werden können.
 Dies suggeriert grosses Potential für die verlustbehaftete Komprimierung.
@@ -99,7 +99,8 @@ Die Anzahl \textit{n} der Levels dieser Analyse wird anhand der Länge \textit{l
 \end{equation}
 berechnet.
 
-Als Beispiel wird die Analyse einer gewöhnlichen Sägezahnschwingung in \autoref{fig:sawtooth}) dargestellt.
+\subsection{Das Prinzip}
+Als Beispiel wird die Analyse einer gewöhnlichen Sägezahnschwingung in \autoref{fig:sawtooth} dargestellt.
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{papers/compress/Bilder/sawtooth}
@@ -108,9 +109,14 @@ Als Beispiel wird die Analyse einer gewöhnlichen Sägezahnschwingung in \autore
 \end{figure}
 Während dem linearen Anstieg des Sägezahns ist erkennbar, wie die Multiskalenanalyse über alle Skalierungslevels gleich Null ist.
 In diesem Beispiel wurde ein db4 verwendet.
-Sobald diese unterschiedlich skalierten Wavelets in den transienten Bereich gelangen, ist ein Wert ungleich Null erkennbar.
-Für die sehr klein skalierten Wavelets ist das nur in unmittelbarer Umgebung von diesem Sprung der Fall.
-Alle anderen Koeffizienten können also komprimiert werden.
+Sobald diese unterschiedlich skalierten Wavelets in einen Bereich gelangen, bei dem sich die Amplitude stark ändert, ist ein Wert ungleich Null erkennbar.
+Für die sehr klein skalierten Wavelets ist das nur in unmittelbarer Umgebung von diesem Übergang der Fall.
+Alle Koeffizienten weiter entfernt vom Übergang können also komprimiert werden.
+
+\newtheorem{Prinzip}{Prinzip}
+\begin{Prinzip}
+	Datenkompression wird erreicht durch Weglassen unwichtiger Koeffizienten oder Codierung mit grober Quantisierung.
+\end{Prinzip}
 
 Doch wenn nun auch Rauscheffekte gelöscht werden, weil sie nicht stark ins Gewicht fallen, können negative Auswirkungen auf das Hörerlebnis entstehen. 
 Koeffizienten, welche nicht stark ins Gewicht fallen, können mit wenigen Bits gespeichert werden, wodurch sie grössere Quantisierungsstufen bilden. 
@@ -120,20 +126,21 @@ Nun stellt sich die Frage, ab wann eine solche Quantisierung sinnvoll ist und wa
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{papers/compress/Bilder/recCoefs}
-	\caption{Anteil der einzelnen Levels am gesamten Signal (in Prozent) mit Quantisierungsschranke (rot).}
+	\caption{Anteil der einzelnen Dilatationslevels am gesamten Signal (in Prozent) mit Quantisierungsschranke (rot).}
 	\label{fig:coefficients}
 \end{figure} 
 
-Wenn anschliessend alle Levels überlagert werden, kann das exakte Signal rekonstruiert werden.
+Wenn anschliessend alle Dilatationslevels per Addition zusammengerechnet werden, kann das exakte Signal rekonstruiert werden.
 Das Ziel ist jedoch, nur das nötige zu speichern.
 Um das zu erreichen muss entschieden werden, ab wann es Sinn macht, die Werte zu speichern oder gegebenenfalls einzusparen.
 
+\subsection{Erster Versuch}
 Für einen ersten Versuch wird der Anteil der einzelnen Levels über das ganze Signal berechnet.
 In \autoref{fig:coefficients} ist graphisch dargestellt, welchen Anteil vom originalen Signal die unterschiedlichen Dilatationen beinhalten.
 Eine ungefähre Grössenanordnung lässt sich für einfache Signale wie in \autoref{fig:sawtooth} auch optisch einschätzen.
 Signale mit breiten Bereichen einer hohen Amplitude resultieren auch in einem hohen Anteil. 
 Hingegen haben Signale, welche hauptsächlich Amplituden um den Nullpunkt herum besitzen einen eher geringen Einfluss auf das Signal.
-Allerdings spielen die Anteile mit kleiner Skalierung insbesondere für Rauscheffekte noch eine Rolle.
+Allerdings spielen die Anteile bei geringerer Dilatation insbesondere für Rauscheffekte noch eine Rolle.
 
 Im nächsten Schritt werden zwei Grenzen gesetzt.
 Eine obere bei  $10\,\text{\%}$ und eine untere bei $1\,\text{\%}$ der Gesamtsignalstärke.
@@ -147,13 +154,11 @@ Beim Beispiel des Sägezahnes ist in \autoref{fig:coefficients} ersichtlich, das
 Hingegen werden die Levels 1 bis 6 sowie 16 weggelassen und die übrigen quantisiert.
 Mit `Total Portion used' wird angegeben welcher Anteil des originalen Signals damit noch wiederhergestellt werden kann.
 
-Der IEEE-754 Standart \cite{article:IEEE-754} beschreibt, wie double-precision floating-point Zahlen gespeichert werden sollen. 
-Von den vorhandenen 64 Bit werden 52 für die Mantisse gebraucht.
-Für die Quantisierung ist eine solche Genauigkeit überflüssig, da die entsprechende Zahl auf wenigen Nachkommastellen gerundet werden soll.
-Wird diese Mantisse nun beispielsweise auf 5 Bit gekürzt kann viel gespart werden.
-Von den ursprünglichen 64 Bit bleiben 17 Bit übrig, was noch ungefähr $26.6\,\text{\%}$ des Speicherplatzes entspricht.
-Selbstverständlich bedeutet das nicht, dass der gesamte Speicherplatz nur noch knapp einem viertel vom Original entspricht. 
-Die tatsächliche Verminderung ist stark signalabhängig.
+Audiodaten werden je nach Technologie üblicherweise mit einer Auflösung von 16 Bit (CD) oder mit 24 Bit (DVD) abgespeichert. 
+Für unsere quantisierten Koeffizienten ist eine solche Genauigkeit überflüssig, da die entsprechende Zahl auf wenigen Nachkommastellen genau gerundet werden soll.
+Wird diese Zahl also mit 8 oder sogar nur mit 4 Bit gespeichert kann viel gespart werden.
+Dies bedeutet allerdings nicht, dass der effektiv verwendete Speicherplatz nur noch einem Viertel oder einem Fünftel entspricht.
+Die tatsächliche Verminderung ist schlussendlich abhängig vom Signal und vom Speicherungsalgorithmus.
 Es kann somit keine exakte Einschätzung für alle Arten von Audiodaten getroffen werden. 
 
 \subsection{Periodische Signale}
@@ -179,16 +184,44 @@ Zum Vergleich sind in \autoref{fig:dbHorn} die Anteile der Levels mit einem db4 
 \end{figure}
 Das Interessante ist nun, dass das harmonische Signal sehr gut mit dem db20 erfasst wird und über $99\,\text{\%}$ mit nur 3 Koeffizienten rekonstruiert werden kann.
 Wird das Signal jedoch rekonstruiert zeigt sich ein grosses Problem der Quantisierung.
-Das Signal wird teilweise stark verzerrt, was in \autoref{fig:hornRec} gut ersichtlich ist.
+Das Signal wird teilweise stark verzerrt, was in \autoref{fig:hornBoth} gut ersichtlich ist.
 Obwohl diese Verzerrungen anteilsmässig keinen grossen Unterschied zum Originalsignal machen, sind diese hochfrequenten Störungen akustisch sehr gut wahrnehmbar.
-Bei der Analyse mit dem db4 wird das Signal zwar weniger exakt rekonstruiert, jedoch werden keine Levels quantisiert.
-Somit entstehen keine Verzerrungen und akustisch ist kaum ein Unterschied erkennbar.
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{papers/compress/Bilder/frenchHorn_rec.pdf}
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/hornBoth.pdf}
 	\caption{Starke Verzerrungen des Horntons nach einer Rekonstruktion mit dem db20.}
-	\label{fig:hornRec}
+	\label{fig:hornBoth}
 \end{figure}
+Um zu verstehen woher diese Störung kommt, wird die Rekonstruktion aufgeteilt.
+In  \autoref{fig:hornOnlyLevs} werden alle Koeffizienten unterhalb der gesetzten Schranke verwendet. 
+Das bedeutet, dass noch keine Quantisierung vorgenommen, sondern lediglich einen Teil der Koeffizienten weggelassen wird.
+Dieses Signal weicht nur geringfügig vom Orignal ab.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/hornOnlyLevs.pdf}
+	\caption{Das weglassen einiger Dilatationslevels resultiert nur in geringfügiger Änderung des Origiansignals.}
+	\label{fig:hornOnlyLevs}
+\end{figure}
+Daraus lässt sich vermuten, dass das Problem an der Quantisierung liegt.
+Wird die vollständige Rekonstruktion quantisiert, wird aus dem Originalsignal je nach gewählter Auflösung eine Treppenstufe wie sie in \autoref{fig:hornOnlyQuant} zu sehen ist.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/hornOnlyQuant.pdf}
+	\caption{Eine Quantisierung über alle Dilatationslevels hat eine grosse Änderung des Ergebnisses zur Folge.}
+	\label{fig:hornOnlyQuant}
+\end{figure}
+Bei der Analyse mit dem db4 wird das Signal zwar weniger exakt rekonstruiert, jedoch werden keine Levels quantisiert(\autoref{fig:dbHorn}).
+Somit entstehen keine Verzerrungen und akustisch ist kaum ein Unterschied erkennbar.
+Das zeigt die Problematik der Eingliederung von den Koeffizienten.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{papers/compress/Bilder/sigAnalysisFreq.pdf}
+	\caption{Die Frequenzanalyse des Originaltons (orange), der Rekonstruktion (grün) sowie deren Differenz (blau).}
+	\label{fig:hornFrequenzen}
+\end{figure}
+Für eine bessere Aussage wurde in \autoref{fig:hornFrequenzen} die Differenz des Originalsignals und der Rekonstruktion berechnet und im Frequenzraum dargestellt.
+Auffallend ist, dass in der Differenz und somit auch in der Rekonstruktion über dem gesamten abgebildeten Frequenzbereich eine höhere Amplitude als beim Originalen vorhanden ist.
+Unter Berücksichtigung des psychoakustischen Modells in \autoref{fig:Wahrnehmbarkeitsschwelle} ist es nicht möglich Auszusagen, welche Frequenzen ohne Probleme weggelassen werden könnten, weil hier über den gesamten Frequenzbereich eine Störung vorhanden ist.
 
 \subsection{Transiente Signale}
 Da im Audiobereich nicht nur harmonische Komponenten vorhanden sind soll diese Analyse auch auf transiente Signale angewendet werden.
