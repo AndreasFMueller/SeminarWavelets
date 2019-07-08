@@ -2,15 +2,29 @@
 \rhead{Künstliches Neuronales Netz}
 
 Künstliche neuronale Netze (KNN) stellen eine Möglichkeit des maschinellen Lernens dar, welche vom Hirn inspiriert wurde.
-Ein KNN besteht aus verschiedenen Neuronen, welche hierarchisch in sogenannten Layern angeordnet werden (vgl. Abbildung). %TODO Abbildung KNN
+Ein KNN besteht aus verschiedenen Neuronen, welche hierarchisch in sogenannten Layern angeordnet werden (vgl. Abbildung \ref{fig:neuralnet}).
 Jeder Eingangswert $x_i$ zu einem Neuron wird mit einem Faktor $w_i$ multipliziert.
 Alle gewichteten Eingänge werden zusammen mit einem Schwellenwert $b$ addiert.
 Diese Summe wird danach durch eine nichtlineare Aktivierungsfunktion $H$ aktiviert und bildet so den Ausgang $y$
-\begin{equation}
+\begin{equation} \label{eq:neuron}
 y=H\left(\sum_{i} x_i w_i+b\right).
 \end{equation}
 Die Nichtlinearität ist entscheidend um nichtlineare Probleme lösen zu können.
-der Aufbau eines Neuron ist in Abbildung gezeigt. %TODO Abbildung Neuron
+Der Aufbau eines Neuron ist in Abbildung \ref{fig:neuron} gezeigt. 
+
+\begin{figure}
+	\centering
+	\input{./papers/visuell/images/neural_net.tikz}
+	\caption{Aufbau eines neuronalen Netzes mit zwei hidden Layern (blau) und einem output Layer (rot). Die blauen und roten Kreise stellen also die Neuronen dar, die Grünen sind der Input.}
+	\label{fig:neuralnet}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\input{./papers/visuell/images/neuron.tikz}
+	\caption{Aufbau eines Neurons äquivalent zur Gleichung \ref{eq:neuron}.}
+	\label{fig:neuron}
+\end{figure}
 
 \subsection{Convolutional Neural Nets}
 
@@ -18,10 +32,18 @@ Eine Unterkategorie der KNNs stellen die Convolutional Neural Nets (CNN) dar.
 Wie der Name schon sagt, spielen dabei Faltungen eine wichtige Rolle.
 Bevor die normalen KNN Layer kommen, werden Bilddaten üblicherweise zuerst von einigen Faltungslayern vorverarbeitet.
 Die Idee dazu kommt von der klassischen Bildverarbeitung, wo häufig Faltungskernel verwendet werden um ein Bild zu filtern oder Features zu erkennen.
-Bei einem CNN werden diese Kernel nicht vom Ingenieur bestimmt, sondern während Trainings durch den Algorithmus gelernt.  %TODO insert 2D-Conv image?
+Bei einem CNN werden diese Kernel nicht vom Ingenieur bestimmt, sondern während Trainings durch den Algorithmus gelernt.  
 Die gelernten Gewichte (Kernels) haben an jeder Position der Faltung die selben Werte, sind also Translationsinvariant.
 Diese Eigenschaft ist entscheidend, da sie einerseits die Anzahl zu lernender Gewichte extrem reduziert und andererseits die Generalisierung fördert.
 Solche CNNs zeigen extrem gute Resultate in der Bildverarbeitung, speziell im Bereich der Klassifizierung von Bildern (z.B. Erkennen von Katzen).
+Wie eine zweidimensionale Faltung funktioniert ist in Abbildung \ref{fig:2dconv} gezeigt.
+
+\begin{figure}
+	\centering
+	\input{./papers/visuell/images/2dconv.tikz}
+	\caption{Darstellung einer zweidimensionalen Faltung des Bildes $I$ mit dem Kernel $K$.}
+	\label{fig:2dconv}
+\end{figure}
 
 Anhand von der Bildverarbeitung kann man den Unterschied von KNNs und CNNs gut erklären.
 Bei einem KNN wird jedes Pixel mit jedem Neuron verbunden und für jede dieser Verbindungen wird ein eigenes Gewicht gelernt.
@@ -30,13 +52,39 @@ Als Beispiel nehmen wir einen ersten Layer von $256$ Neuronen, ein Eingangsbild 
 Damit erhalten wir beim KNN	$256 \cdot 128 \cdot 128 = 4'227'072$ Gewichte welche gelernt werden müssen.
 Beim CNN hingegen genügen $256 \cdot 3 \cdot 3 = 2'304$ Gewichte.
 
-Die zweidimensionale Wavelet-Transformation kann auch als Faltung des Bildes mit dem Kernel (Wavelet) interpretiert werden.
+Die zweidimensionale Wavelet-Transformation kann auch als Faltung des Bildes mit dem Wavelet (Kernel) interpretiert werden.
 Dabei werden allerdings nicht mehr alle kontinuierlichen Grössen des Wavelets berücksichtigt, sondern nur noch eine diskrete Anzahl.
 Da KNNs (und CNNs) vom Hirn inspirierte Algorithmen darstellen und die Bildvorverarbeitung im Hirn als Gabor-Wavelet-Transformation modelliert werden kann, drängt sich daher eine Kombination dieser beiden Konzepte auf.
 
 Eine offensichtliche Idee ist dabei das Vorverabeiten der Bilder mithilfe von Gabor-Wavelets.
 Diese vorverarbeiteten Bilder können dann als Input in das CNN verwendet werden und sollten gute Resultate zeigen, analog zum menschlichen Hirn.
-Ein Versuch dieses Konzept auszuführen wird in den nächsten Abschnitten erläutert. %TODO insert image of concept?
+Ein Versuch dieses Konzept auszuführen wird in den nächsten Abschnitten erläutert.
 
 \subsection{Versuch}
+
+Das Ziel des Versuches ist es, zu zeigen ob Gabor-Wavelets wirklich eine Berechtigung im Zusammenhang mit CNNs haben.
+Zwei verschiedene Dinge sollen überprüft werden:
+\begin{enumerate}
+	\item Ist eine vorverarbeitung mittels Gabor-Kerneln sinnvoll?
+	\item Lernt ein CNN Kernels welche Ähnlichkeiten zu den Gabor-Kerneln besitzen?
+\end{enumerate}
+Um diese Ziele zu erreichen wurde ein Versuch durchgeführt, bei welchem der CIFAR-10 \cite{paper:cifar10} Datensatz klassifiziert werden soll.
+Beim CIFAR-10 Datensatz handelt es sich um $32 \times 32$ Pixel grosse farbige Bilder,welche zu zehn verschiedenen Klassen gehören (z.B. Flugzeug, Vogel, etc.).
+Beispiele von solchen Bildern sind in Abbildung \ref{fig:cifar10} gezeigt.
+Der CIFAR-10 Datensatz wurde gewählt da er ziemlich bekannt ist, Beispielarchitekturen verfügbar sind und relativ schwierig zu lösen ist.
+Die Schwierigkeit ist wichtig um überhaupt einen Unterschied in der Genauigkeit feststellen zu können (bei 99\% Genauigkeit sieht man keine grossen Verbesserungen mehr).
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth, trim=0 60 0 40, clip]{./papers/visuell/images/cifar10}
+	\caption{Die zehn verschiedenen Klassen des CIFAR-10 Datensatzes.}
+	\label{fig:cifar10}
+\end{figure}
+
+Die Architektur des CNNs ist inspiriert von einem Artikel über CIFAR-10 \cite{online:cifar10}.
+Implementiert wurde das gesamte Projekt mit Python und Tensorflow.
+
+Der erste Convolutional-Layer besteht aus $64$ verschiedenen $9 \times 9$ Kerneln, welche entweder gelernt werden oder als Gabor-Kernels gesetzt werden.
+Danach folgen drei weitere Convolutional-Layer, bevor am Ende fünf Fully-Connected-Layer das Resultat ausgeben.
+Die genaue Architektur wird in Abbildung TODO gezeigt. %TODO Abbildung Architektur
 

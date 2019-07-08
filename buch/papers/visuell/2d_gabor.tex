@@ -47,7 +47,7 @@ P_2(x,y)=e^{-(\frac{(x-x_{0})^{2}}{\sigma^{2}}+\frac{(y-y_{0})^{2}}{\beta^{2}})}
 \end{equation}
 Eine elliptische Gaussfunktion erzeugt Niveaulinien, welche die Form einer Ellipse haben.
 Die Standardabweichungen in $x$-, bzw. $y$-Richtung $\sigma$ resp. $\beta$ bestimmen die Ausrichtung und Grösse der Ellipse.
-Ein Beispiel einer elliptischen Gaussfunktion ist in Abbildung \ref{2d_gauss} dargestellt.
+Ein Beispiel einer elliptischen Gaussfunktion ist in Abbildung \ref{fig:2d_gauss} dargestellt.
 
 Aus den Gleichungen \ref{eq:2d_schwingung} und \ref{eq:2d_gauss} lässt sich die Formel für das zweidimensionale Gabor-Wavelet bilden:
 \begin{equation}
@@ -71,7 +71,7 @@ e^{i(\xi_{0}x+\nu_{0}y)}.
 
 
 
-Diese Parameter ($\sigma$, $\beta$, $\xi$, $\nu$) dieser Formel sind unhandlich und es ist nicht offensichtlich was eine Änderung dieser bewirkt.
+Die Parameter ($\sigma$, $\beta$, $\xi$, $\nu$) dieser Formel sind unhandlich und es ist nicht offensichtlich was eine Änderung dieser bewirkt.
 Also ersetzen wir diese durch neue Parameter und erhalten 
 
 \begin{equation}
@@ -81,13 +81,12 @@ e^{i(2\pi\frac{x'}{\lambda} + \phi)},
 wobei $x'=x\cos(\theta)+y\sin(\theta)$ und $y'=-x\sin(\theta)+y\cos(\theta)$.
 Der Parameter $\gamma$ beschreibt das Verhältnis der Streckung in $x$- und $y$-Richtung.
 Diese Streckung der elliptischen Gaussfunktion bestimmt ob das Wavelet eher rund oder länglich ist.
-Die Standardabweichung der Gausskurve welche mit der Schwingung multipliziert wird ist als Parameter $\sigma$ definiert.
+Die Standardabweichung der Gausskurve, welche mit der Schwingung multipliziert wird, ist als Parameter $\sigma$ definiert.
 Grösseres $\sigma$ bewirkt ein breiteres Wavelet.
 Die komplexe Schwingung wird durch die Wellenlänge $\lambda$ und die Phase $\phi$ definiert.
+Eine Phasenverschiebung scheint keinen klaren Nutzen zu haben und deshalb  wird für den weiteren Verlauf dieses Papers $\phi=0$ gesetzt.
 Der Parameter $\theta$ definiert nun die Ausrichtung der komplexen Schwingung.
 Eine Änderung von $\theta$  bewirkt somit eine Drehung der Wellenfronten.
-Der letzte Parameter $\phi$ bewirkt eine Phasenverschiebung der Schwingung. 
-Da eine solche Phasenverschiebung keinen klaren Nutzen zu haben scheint, wird $\phi=0$ gesetzt.
 
 Wie sich Gabor-Wavelets in Abhängigkeit dieser Parameter verhalten zeigt Abbildung \ref{fig:kernels}.
 Vier unabhängige Freiheitsgrade (Parameter) sind zu viel um einen guten Überblick zu behalten.
