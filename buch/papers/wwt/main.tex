@@ -134,6 +134,11 @@ Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen.
 	\label{fig:rawdata}
 \end{figure}
 
+
+Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen. 
+
+
+
 \newpage
 \section{Stetige Wavelet-Transformation}
 \rhead{Stetige Wavelet-Transformation}
@@ -224,10 +229,12 @@ Dabei kommt weiter dazu, dass nur alle f"unf Minuten ein Datenpunkt aufgenommen 
 Aufgrund der Kenntnisse rund um die \textit{cwt} kann angenommen werden, dass ein Wechsel in der Frequenz gut detektiert werden kann.
 Bei einer typischen Sturmfront, welche öfters als Wintersturm in den Monaten Dezember und Januar auftreten, zeigten sich bei der Konsultation der Wetterdaten, rapide Temperatur- und Luftdruckwechsel sowie ein erhöhtes Windaufkommen.
 Das Ziel der Analyse war, solche Ereignisse mittels einer geeigneten \textit{cwt} zu detektieren.
-Bei Frontdurchgängen erkennt man gemeinsame Wechsel im Wind, der Temperatur sowie dem Luftdruck.
+Bei den Rohdaten der Frontdurchgängen erkennt man gemeinsame Wechsel im Wind, der Temperatur sowie dem Luftdruck, daher kann in der Wavelet-Transformation ein erkennbare Antwort erwarten werden. 
 Diese korrelierenden auftretenden Frequenzen sollten in der \textit{cwt} sichtbar sein.
 
-Um dies zu verdeutlichen, wurden jeweils zwei Messresultate miteinander multipliziert. 
+\subsection{Parallelen zur Kovarianz}
+
+sUm das korrelierende Auftreten der einzelnen Datenkanäle zu verdeutlichen, wurden bei diesen jeweils die zwei zusammengehörenden Messresultate miteinander multipliziert. 
 Dabei werden die Stellen hervorgehoben, wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren.  
 Dies funktioniert besonders gut, da die Werte rasch gegen null gehen falls nur schon eine der beiden Datenverläufe nicht mit dem aktuellen Mutter-Wavelet übereinstimmt.
 Genauer betrachtet zeigt dieses Verfahren Ähnlichkeiten mit der Formel
@@ -236,7 +243,7 @@ COV(X,Y) = \frac{\sum_{i=1}^{N} (x_i- \bar{x})(y_i- \bar{y})}{N-1},
 \end{equation}
 der Kovarianz aus der Statistik. Bei dieser Anwendung wird einfach nicht die ganze Zufallsvariable benutzt, sondern nur jeweils die beiden zeitlich übereinstimmenden Werte.
 
-Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grundlegenden Formel der \textit{cwt}, kann man gewisse Parallelen sehen. 
+Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grundlegenden Formel \ref{eq:cwt1} der \textit{cwt}, kann man gewisse Parallelen sehen. 
 In \ref{eq:cwt1} ist die Motivation, die jeweiligen Parameter $a$ und $b$ zu finden, wobei das Mutter-Wavelet und das Signal gemeinsam variieren.
 Auch hierfür werden die Produkte der Signale berechnet, auf integriert und gemittelt.
 Auch dies ist eine etwas abgewandelte Art der Kovarianz zwischen dem Datensignal und dem Mutter-Wavelet.
@@ -249,7 +256,7 @@ In Abbildung \ref{fig:cwt_storm} \space sieht man die Wavelet-Transfomrmation de
 Dies über die Monate Januar und Februar im Jahre 2018 hinweg.
 Weiter wird der Luftdruck- und Windverlauf dargestellt.
  
-\begin{figure}[b]
+\begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind.pdf}
 	\caption{Cwt und Rohdaten Sturmsaison 2018}
@@ -258,27 +265,27 @@ Weiter wird der Luftdruck- und Windverlauf dargestellt.
 
 In Abbildung \ref{fig:cwt_storm} \space zeigen sich um den 3. sowie zwischen dem 16. und 23. Januar jeweils gewisse Frequenzen des Windes und dem Luftdruck, die gemeinsam auf die Wavelet-Transformation angesprochen haben.
 
-\subsubsection{Wintersturm Burglind}
+\subsubsection{Wintersturm {\em Burglind} }
 \label{burglind}
 Hineingezoomt um den 3. Januar (Abbildung \ref{fig:cwt_storm_zoom}) sind im Rohdatenverlauf die Aktivitäten des Windes und Luftdruckes erkennbar. 
-\begin{figure}
+\begin{figure}[b]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom.pdf}
-	\caption{Cwt und Rohdaten Wintersturm Burglind 2018}
+	\caption{Cwt und Rohdaten Wintersturm {\em Burglind}  2018}
 	\label{fig:cwt_storm_zoom}
 \end{figure}
 Aus dem Fachbericht \space \cite{Fachbericht:Burglind} von Meteoschweiz war bekannt, dass am Vormittag des 3. Januars 2018 die stärkste Sturmfront seit dem verehrenden Sturm Lothar aus dem Jahre 1999 über die Schweiz zog.
 Dabei zeigt sich eindrücklich, wie der Sturmdurchgang in der multiplizierten Wavelet-Transformation hervorgehoben wird.
 
-\subsubsection{Sturmtief Evi und Friedericke }
+\subsubsection{Sturmtief {\em Evi}  und {\em Friedricke} }
 \label{evi}
 Beim zweiten Ereignis zwischen dem 16. und 23. Januar trat die Aktivität nicht mehr so deutlich auf.
-Nach dem Sturmarchiv  \cite{online:sturmarchiv} traf am 16. Januar das Sturmtief Evi und am 18. Januar das Sturmtief Friedericke auf Europa. Dabei zeigt sich nach der Amplitude, dass das Sturmtief nicht direkt auf die Schweiz traf, sonder diese lediglich streifte. 
+Nach dem Sturmarchiv  \cite{online:sturmarchiv} traf am 16. Januar das Sturmtief {\em Evi}  und am 18. Januar das Sturmtief {\em Friedricke} auf Europa. Dabei zeigt sich nach der Amplitude, dass das Sturmtief nicht direkt auf die Schweiz traf, sonder diese lediglich streifte. 
 
-\begin{figure}[b]
+\begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom2.pdf}
-	\caption{Cwt und Rohdaten Strumtief Evi und Friedricke 2018}
+	\caption{Cwt und Rohdaten Strumtief {\em Evi}  und {\em Friedricke} 2018}
 	\label{fig:cwt_storm_zoom2}
 \end{figure}
 
@@ -305,13 +312,13 @@ Falls sich diese Methode für mehrere Phänomene beweisen lässt, ist eine prakt
 \section{Anhang}
 Anbei in Abbildung \ref{fig:python-plot-code} und \ref{fig:python-plot-code2} der verwendete Code zum Ploten der Abbildung \ref{fig:cwt_storm}.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\lstinputlisting[language=Python,firstline = 1, lastline = 45, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
 	\caption{Python Codeausschnitt}
 	\label{fig:python-plot-code}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\lstinputlisting[language=Python,firstline = 46, lastline = 91, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
 	\caption{Python Codeausschnitt}
