@@ -58,7 +58,7 @@ Da KNNs (und CNNs) vom Hirn inspirierte Algorithmen darstellen und die Bildvorve
 
 Eine offensichtliche Idee ist dabei das Vorverabeiten der Bilder mithilfe von Gabor-Wavelets.
 Diese vorverarbeiteten Bilder können dann als Input in das CNN verwendet werden und sollten gute Resultate zeigen, analog zum menschlichen Hirn.
-Ein Versuch dieses Konzept auszuführen wird in den nächsten Abschnitten erläutert.
+Ob diese theoretischen Ideen auch praktisch anwendbar sind, soll ein Versuch zeigen.
 
 \subsection{Versuch}
 
@@ -70,7 +70,8 @@ Zwei verschiedene Dinge sollen überprüft werden:
 \end{enumerate}
 Um diese Ziele zu erreichen wurde ein Versuch durchgeführt, bei welchem der CIFAR-10 \cite{paper:cifar10} Datensatz klassifiziert werden soll.
 Beim CIFAR-10 Datensatz handelt es sich um $32 \times 32$ Pixel grosse farbige Bilder,welche zu zehn verschiedenen Klassen gehören (z.B. Flugzeug, Vogel, etc.).
-Beispiele von solchen Bildern sind in Abbildung \ref{fig:cifar10} gezeigt.
+Der Datensatz umfasst dabei 50'000 Trainings- und 10'000 Testbilder.
+Ein Beispiel jeder Klasse ist in Abbildung \ref{fig:cifar10} gezeigt.
 Der CIFAR-10 Datensatz wurde gewählt da er ziemlich bekannt ist, Beispielarchitekturen verfügbar sind und relativ schwierig zu lösen ist.
 Die Schwierigkeit ist wichtig um überhaupt einen Unterschied in der Genauigkeit feststellen zu können (bei 99\% Genauigkeit sieht man keine grossen Verbesserungen mehr).
 
@@ -85,6 +86,11 @@ Die Architektur des CNNs ist inspiriert von einem Artikel über CIFAR-10 \cite{o
 Implementiert wurde das gesamte Projekt mit Python und Tensorflow.
 
 Der erste Convolutional-Layer besteht aus $64$ verschiedenen $9 \times 9$ Kerneln, welche entweder gelernt werden oder als Gabor-Kernels gesetzt werden.
-Danach folgen drei weitere Convolutional-Layer, bevor am Ende fünf Fully-Connected-Layer das Resultat ausgeben.
+Also wird das Netzwerk zwei mal trainiert, einmal mit einem fixen ersten Layer (Gabor-Layer) und einmal mit einem lernbaren ersten Layer.
+Die Variante mit Gabor-Layer stellt dem Netzwerk weniger Freiheitsgrade zur Verfügung und sollte theoretisch ein schlechteres Resultat zeigen.
+Da wir aber vermuten das ein Gabor-Layer eine optimale Vorverarbeitung darstellt, sollten die Gabor-Kernels besser Resultate als die selbst gelernten zeigen.
+
+Nach dem ersten Layer folgen drei weitere Convolutional-Layer, bevor am Ende fünf Fully-Connected-Layer das Resultat ausgeben.
 Die genaue Architektur wird in Abbildung TODO gezeigt. %TODO Abbildung Architektur
+
 
