@@ -19,9 +19,10 @@ scale only axis,
 xmin=-1.5,
 xmax=1.5,
 %
-xtick = {-1.5, -1,-0.5, 0, 0.5, 1, 1.5},
+xtick = {-1.5, -1,-0.75,-0.5, 0, 0.5,0.75, 1, 1.5},
 ymin=-1.5,
 ymax=1.5,
+ytick = {-1.5, -1,-0.75,-0.5, 0, 0.5,0.75, 1, 1.5},
 axis background/.style={fill=white},
 legend style={at={(0.03,0.97)}, anchor=north west, legend cell align=left, align=left, draw=white!15!black}
 ]
@@ -246,5 +247,14 @@ legend style={at={(0.03,0.97)}, anchor=north west, legend cell align=left, align
 \end{axis}
 
 \node at (3.35,5.6) {$m = 0.75$};
+
+\draw[dashed] (1.93, 2.97) -- (5.7,2.97);
+
+\draw[dashed] (1.93, 6.47) -- (2.32,6.47);
+
+\draw[dashed] (4.4, 6.47) -- (11.55,6.47);
+
+\draw[dashed] (4.927,1.23)--(4.927,3.7);
+\draw[dashed] (10.927,1.23)--(10.927,7.1);
 
 \end{tikzpicture}%
