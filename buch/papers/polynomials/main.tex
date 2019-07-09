@@ -137,7 +137,7 @@ Nun können wir aber mit dem Wavelet eine Multiskalenanalyse durchführen. Im
 Fall vom Haar Wavelet ist dies vergleichbar wie wenn zuerst der Mittelwert
 gebildet und dann abgeleitet wird.
 
-In \autoref{polynomials:noise:db1_multi} ist das Signal $x^2 + r$, die
+In \autoref{polynomials:noise:db1_multi} ist das Signal $x^2 + r(x)$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem
 Haar Wavelet und dann noch die Approximationskoeffizienten der letzten Stufe
 abgebildet. Es ist zu sehen, dass die Detailkoeffizienten mit höherer Stufe
@@ -149,7 +149,7 @@ welcher für die Berechnung des jeweiligen Koeffizienten relevant ist sichtbar.
 \begin{figure}
     \centering
     \input{papers/polynomials/images/polynomials_noise_db1_multi.pgf}
-    \caption{Multiskalenanalyse von $x^2 + r$ mit Haar Wavelet\label{polynomials:noise:db1_multi}}
+    \caption{Multiskalenanalyse von $x^2 + r(x)$ mit Haar Wavelet\label{polynomials:noise:db1_multi}}
 \end{figure}
 
 Im Vergleich dazu sind in \autoref{polynomials:noise:average} die direkte
@@ -166,14 +166,14 @@ Nun haben wir aber mit dem Verfahren mit den Wavelets den Vorteil, dass wir bei
 entsprechender Wahl des Wavelets mit $A$ verschwindenden Momenten direkt die
 $A$-te Ableitung berechnen können.
 
-In \autoref{polynomials:noise:db2_multi} ist das Signal $x^3 + r$, die
+In \autoref{polynomials:noise:db2_multi} ist das Signal $x^3 + r(x)$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem db2
 Wavelet und die Approximationskoeffizienten der letzten Stufe abgebildet.
 
 \begin{figure}
     \centering
 %    \input{papers/polynomials/images/polynomials_noise_db2_multi.pgf}
-    \caption{Multiskalenanalyse von $x^3 + r$ mit db2 Wavelet\label{polynomials:noise:db2_multi}}
+    \caption{Multiskalenanalyse von $x^3 + r(x)$ mit db2 Wavelet\label{polynomials:noise:db2_multi}}
 \end{figure}
 
 Im Vergleich dazu sind in \autoref{polynomials:noise:average} die direkt
