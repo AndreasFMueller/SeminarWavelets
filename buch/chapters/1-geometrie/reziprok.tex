@@ -1,0 +1,227 @@
+%
+% reziprok.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\subsection{Iterative Berechnung eines reziproken Wertes}
+Zu einer beliebigen Zahl $y$ mit $A < y < B$ muss der reziproke Wert $1/y$
+bestimmt werden.
+Um die Berechnung der inversen Matrix zu vermeiden, suchen wir nach einem
+iterativen Verfahren der Form $x_{n+1}=f(x_n)$, welches für einen beliebigen
+Startwert $x_0$ gegen $y^{-1}$ konvergiert.
+Der Wert $y^{-1}$ muss also der einzige Fixpunkt der Funktion $f(x)$ sein:
+$f(y^{-1}=y^{-1}$.
+
+Die Funktion $f(x) = x + g(x)$ hat als einzigen Fixpunkt die Stelle $x=y^{-1}$
+genau dann, wenn $(x)$ als einzige Nullstelle die Stelle $x=y^{-1}$ hat.
+Ausserdem muss die Funktion $g(x)$ berechenbar sein ausschliesslich mit
+Addition und Multiplikation von Konstanten und der Variablen $x$, Division
+darf nicht verwendet werden.
+Die einfachste Funktion dieser Art ist eine lineare Funktion, zum 
+Beispiel $g(x) = 1- xy$.
+
+Damit das Iterationsverfahren konvergiert, sind aber noch weitere
+Bedingungen zu erfüllen.
+% XXX für das nachfolgende ist möglicherweise eine Graphik nötig
+Die Folge $x_{n+1} = f(x_n)$ konvergiert nämlich nur, wenn die Steigung
+der Funktion $f(x)$ in der Nähe des Fixpunktes Betrag $<1$ hat, 
+also $|f'(x)|<1$..
+Für die eben konstruierte Funktion trifft dies im Allgemeinen nicht zu,
+es ist nämlich
+\[
+f'(x) = 1 + g'(x) = 1 - y
+\]
+Für $y>2$ wird nämlich $|f'(x)|'=|1-y| = y-1 >1$, so dass keine Konvergenz
+mehr möglich ist.
+Allerdings ist Konvergenz auch nicht für alle Werte von $y$ nötig, sondern
+nur für Werte zwischen $A$ und $B$.
+Das kann man mit Hilfe eines Skalierungsfaktors $c$ in der Iteration
+\[
+f(x) = x + c(1-yx)
+\]
+erreichen.
+Die Ableitung wird damit
+\[
+f'(x) = 1-cy.
+\]
+$c$  muss also so gewählt werden, dass $|f'(x)|<1$ gilt für alle $y$
+zwischen $A$ und $B$.
+Dies bedeutet, dass
+\begin{align*}
+-1 &< 1-cy < 1 \\
+-2 &< -cy < 0 \\
+2 &> cy > 0 \\
+\frac1c &> \frac{y}2 \\
+\end{align*}
+Diese Ungleichung muss für alle möglichen Werte für $y$ erfüllt sein,
+also sowohl für $y=A$ also auch für $y=B$.
+Man kann dies zum Beispiel dadurch erreichen, dass man
+\[
+\frac1c = \frac{A}2 + \frac{B}2
+\qquad\Rightarrow\qquad
+c = \frac{2}{A+B}
+\]
+setzt.
+
+Damit haben wir jetzt ein Iterationsverfahren zur Berechnung des 
+reziproken Wertes, welches wir im folgenden Satz zusammenfassen.
+
+\begin{satz}
+\label{iteration:reziprok}
+Ist $y$ eine reelle Zahl zwischen $A$ und $B$, $A\le y\le B$ dann
+konvergiert die Folge
+\[
+x_{n+1} = x_n + \frac{2}{A+B}(1-yx_n), \quad x_0 = 0
+\]
+gegen den reziproken Wert $y^{-1}$ von $y$.
+Die Differenz zwischen aufeinanderfolgenden Approximationen nimmt
+in jedem Schritt um mindestens den Faktor $(B-A)/(B+A)<1$ ab.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir müssen uns nur noch mit der Aussage über die Konvergenz befassen.
+Dazu berechnen wir die Differenz zweier aufeinanderfolgender
+Approximationen 
+\begin{equation}
+\left.
+\begin{aligned}
+x_{n+1} &= x_n + \frac{2}{A+B}(1-yx_n) \\
+x_n &= x_{n-1} + \frac{2}{A+B}(1-yx_{n-1}) 
+\end{aligned}
+\right\}
+\quad\Rightarrow\quad
+x_{n+1}-x_n
+=
+x_n - x_{n-1} -\frac{2y}{A+B}(x_n-x_{n-+})
+=
+\underbrace{
+\biggl(1-\frac{2y}{A+B}\biggr)
+}_{\displaystyle=\vartheta}
+(x_n - x_{n-1})
+\end{equation}
+Die Differenz wird also tatsächlich um den $\vartheta$ ab.
+Wir schätzen diesen Faktor ab
+\[
+\vartheta
+=
+1-\frac{2y}{A+B} = \frac{A+B-2y}{A+B}
+\qquad
+\Rightarrow
+\qquad
+|\vartheta|
+<
+\biggl|\frac{A+B-2B}{A+B}\biggr|
+=
+\biggl|\frac{A-B}{A+B}\biggr|
+=
+\frac{B-A}{B+A}.
+\]
+Da $A>0$ folgt auch $\vartheta<1$.
+\end{proof}
+
+Aus der Abschätzung von $|x_{n+1}-x_n|$ kann auch der Fehler
+abgeschätzt werden.
+Es gilt nämlich
+\[
+\frac1y
+-
+x_n
+=
+\frac1y - x_{n+1} + (x_{n+1} - x_n)
+=
+\frac1y - x_{n+1} + (x_{n+1} - x_n)
+=
+\sum_{k=n}^\infty(x_{k+1}-x_k).
+\]
+Wegen
+\[
+|x_{k+1} - x_k|
+\le
+\vartheta | x_{k}-x_{k-1}|
+\le
+\vartheta^2 | x_{k-1}-x_{k-2}|
+\le \dots
+\le
+\vartheta^{k-n} |x_{n+1}-x_{n}|
+\]
+wird der Fehler der Approximation
+\begin{align*}
+\biggl|
+\frac1y
+-
+x_n
+\biggr|
+=
+\biggl|
+\sum_{k=n}^\infty(x_{k+1}-x_k).
+\biggr|
+&\le
+\sum_{k=n}^\infty|x_{k+1}-x_k|
+\\
+&\le
+\sum_{k=n}^\infty \vartheta^{k-n} \cdot |x_{n+1}-x_n|
+\\
+&=
+\sum_{k=0}^\infty \vartheta^k \cdot |x_{n+1}-x_n|
+\\
+&=
+\frac1{1-\vartheta}\cdot |x_{n+1}-x_n|
+\le
+\frac{\vartheta^n}{1-\vartheta} |x_1-x_0|.
+\end{align*}
+Daraus kann man auch ablesen, dass der Fehler wie $\vartheta^n$ gegen $0$
+geht.
+
+\begin{beispiel}
+Wir verwenden das Verfahren, um den Wert von $1/3$ zu berechnen, also
+für $y=3$.
+Das Verfahren soll beliebige Werte zwischen $A=2$ und $B=5$ berechnen können.
+Mit dem Startwert $x_0=0$ bekommen wir
+\begin{center}
+\begin{tabular}{>{$}r<{$}|>{$}l<{$}}
+n&x_n\\
+\hline
+ 0&0.000000000000000\\
+ 1&0.285714285714286\\
+ 2&0.\underline{3}26530612244898\\
+ 3&0.\underline{33}2361516034985\\
+ 4&0.\underline{333}194502290712\\
+ 5&0.\underline{3333}13500327245\\
+ 6&0.\underline{33333}0500046749\\
+ 7&0.\underline{33333}2928578107\\
+ 8&0.\underline{333333}275511158\\
+ 9&0.\underline{3333333}25073023\\
+10&0.\underline{33333333}2153289\\
+11&0.\underline{333333333}164756\\
+12&0.\underline{3333333333}09251\\
+13&0.\underline{3333333333}29893\\
+14&0.\underline{33333333333}2842\\
+15&0.\underline{333333333333}263\\
+16&0.\underline{3333333333333}23\\
+17&0.\underline{33333333333333}2\\
+18&0.\underline{333333333333333}\\
+\end{tabular}
+\end{center}
+In jeder Iteration gewinnt man die gleiche Anzahl korrekter Stellen
+(unterstrichen).
+Aus dem Beweis von Satz~\ref{iteration:reziprok} kann man ablesen,
+dass die Konvergenzgeschwindigkeit
+\[
+\frac{A+B-2y}{A+B}
+=
+\frac{7-6}{7} = \frac17
+\]
+ist, man gewinnt also
+$\log 7=0.84510$
+Stellen in jeder Iteration, in Übereinstimmung mit den obigen numerischen
+Resultaten.
+
+Für jeden beliebigen Wert von $y$ im gegebenen Interval ist die
+Konvergenzgeschwindigkeit besser als
+$\vartheta=3/7 = 0.42857142\dots$.
+Die Anzahl Stellen, die man pro Iteration gewinnt ist daher 
+$-\log\vartheta = 0.36798$.
+Diese Konvergenzgeschwindigkeit erreicht man an den Enden des Intervals.
+Dazwischen kann man, wie oben gezeigt, deutlich schnellere Konvergenz haben.
+\end{beispiel}
+
