@@ -20,3 +20,8 @@ Falls über eine längere Zeit trainiert wird (z.B. 20 Epochen), verändern sich
 	\caption{Test-Genauigkeit (Accuracy) der beiden Varianten im Laufe des Trainings.}
 	\label{fig:acc}
 \end{figure}
+
+Ein weiterer wichtiger Punkt bei neuronalen Netzen sind die Geschwindigkeiten
+Bei der Variante mit Gabor dauerte das Training in etwa 3 Minuten und 10 Sekunden (kann abhängig vom Computer und Grafikkarte stark variieren).
+Bei der zweiten Variante, wo erste Layer ebenfalls gelernt wird, dauert das Training ca. 15\% länger (also etwa 3 Minuten und 38 Sekunden).
+Das Klassifizieren von neuen Bildern dauert danach bei beiden Varianten gleich lange, da in beiden Fällen die identische Tensorflow-Struktur implementiert wurde.

@@ -90,7 +90,48 @@ Also wird das Netzwerk zwei mal trainiert, einmal mit einem fixen ersten Layer (
 Die Variante mit Gabor-Layer stellt dem Netzwerk weniger Freiheitsgrade zur Verfügung und sollte theoretisch ein schlechteres Resultat zeigen.
 Da wir aber vermuten das ein Gabor-Layer eine optimale Vorverarbeitung darstellt, sollten die Gabor-Kernels besser Resultate als die selbst gelernten zeigen.
 
-Nach dem ersten Layer folgen drei weitere Convolutional-Layer, bevor am Ende fünf Fully-Connected-Layer das Resultat ausgeben.
-Die genaue Architektur wird in Abbildung TODO gezeigt. %TODO Abbildung Architektur
+Nach dem ersten Layer folgen drei weitere Convolutional-Layer, bevor am Ende fünf Fully-Connected-Layer (normale KNN-Layer) das Resultat ausgeben.
+Die genaue Architektur ist in Tabelle \ref{table:architecture} gezeigt.
+Die Bilder werden zuerst in schwarzweiss Bilder umgewandelt, damit die Gabor-Variante keinen Nachteil bekommt.
+Der Nachteil würde entstehen, da das Netzwerk für jede Farbe andere Features lernen könnte, wohingegen die Gabor-Variante auf allen Farben die gleichen Kernels benutzen würde. 
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Layer & Kernelgrösse & Ausgangsgrösse \\ 
+		\hline \hline
+		Input & - & $32 \times 32 \times 1$ \\ 
+		\hline 
+		Conv1 & $9 \times 9$ &  $32 \times 32 \times 64$\\ 
+		\hline 
+		Conv2 & $3 \times 3$ &  $32 \times 32 \times 128$\\  
+		\hline 
+		Pool2 & - &  $16 \times 16 \times 128$\\ 
+		\hline 
+		Conv3 & $3 \times 3$ & $16 \times 16 \times 256$\\ 
+		\hline 
+		Pool3 & - &  $8 \times 8 \times 256$\\ 
+		\hline 
+		Conv4 & $3 \times 3$ & $8 \times 8 \times 512$\\ 
+		\hline 
+		Pool4 & - &  $4 \times 4 \times 512$\\ 
+		\hline 
+		Flatten & - & $ 8192 $ \\ 
+		\hline 
+		FC1 & - & $ 128 $ \\ 
+		\hline 
+		FC2 & - & $ 256 $ \\
+		\hline 
+		FC3 & - & $ 512 $ \\  
+		\hline 
+		FC4 & - & $ 1024 $ \\ 
+		\hline 
+		Softmax & - & $ 10 $ \\ 
+		\hline
+	\end{tabular} 
+	\caption{Unsere Netzwerk-Architektur. Der erste Layer (Conv1) wird bei der Gabor-Variante fix gesetzt und nicht gelernt. Nach jedem Convolutional- und Fully-Connected-Layer wird eine Batch-Normalization durchgeführt. Die Aktivierungsfunktion ist immer ReLu, ausser beim Softmax-Output.}
+	\label{table:architecture}
+\end{table}
 
 
