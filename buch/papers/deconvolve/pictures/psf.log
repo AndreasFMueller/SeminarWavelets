@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.4.25)  22 JUN 2019 11:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.4.25)  5 JUL 2019 15:15
 entering extended mode
 **./psf.tex
 (psf.tex
@@ -553,30 +553,29 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 10.
-<pix_ges.png, id=4, 889.82437pt x 286.82156pt>
+<pix_ges.png, id=4, 8.1906pt x 2.6499pt>
 File: pix_ges.png Graphic file (type png)
 <use pix_ges.png>
 Package pdftex.def Info: pix_ges.png  used on input line 11.
-(pdftex.def)             Requested size: 327.20668pt x 105.4702pt.
-(pix_row.tikz)
+(pdftex.def)             Requested size: 284.52756pt x 92.08688pt.
 <pic.png, id=6, 415.5525pt x 182.18062pt>
 File: pic.png Graphic file (type png)
 <use pic.png>
-Package pdftex.def Info: pic.png  used on input line 15.
+Package pdftex.def Info: pic.png  used on input line 12.
 (pdftex.def)             Requested size: 284.52756pt x 124.74292pt.
- [1
+(pix_row.tikz) [1
 
  <./pix_ges.png> <./pic.png>] (psf.aux) ) 
 Here is how much of TeX's memory you used:
- 22158 strings out of 492945
- 586936 string characters out of 3135516
+ 22157 strings out of 492945
+ 586928 string characters out of 3135516
  769951 words of memory out of 3000000
- 25700 multiletter control sequences out of 15000+200000
+ 25699 multiletter control sequences out of 15000+200000
  3640 words of font info for 14 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  78i,11n,136p,729b,1988s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on psf.pdf (1 page, 104140 bytes).
+Output written on psf.pdf (1 page, 83056 bytes).
 PDF statistics:
  14 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

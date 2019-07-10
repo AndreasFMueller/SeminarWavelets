@@ -14,12 +14,12 @@ scale only axis,
 axis on top,
 xmin=0.5,
 xmax=9600.5,
-xtick={0,2400,4800,7400,9600},
+xtick={0, 2400, 4800, 7200, 9600},
 %xlabel style={font=\color{white!15!black}},
 %xlabel={Translation b (Sample)},
 ymin=0.5,
-ymax=8192.5,
-ytick={0,2048,4096,6144,8192},
+ymax=4096.5,
+ytick={512, 1024, 2048, 4096},
 %ylabel style={font=\color{white!15!black}},
 %ylabel={Dilatation a (Scale)},
 axis background/.style={fill=white},
@@ -27,7 +27,7 @@ title style={font=\bfseries},
 title={CWT von $g(x)$ (scharf)},
 legend style={legend cell align=left, align=left, draw=white!15!black}
 ]
-\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {cwt-1.png};
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=4096.5] {cwt-1.png};
 \end{axis}
 
 \begin{axis}[%
@@ -38,12 +38,12 @@ scale only axis,
 axis on top,
 xmin=0.5,
 xmax=9600.5,
-xtick={0,2400,4800,7400,9600},
 %xlabel style={font=\color{white!15!black}},
 %xlabel={Translation b (Sample)},
+xtick={0, 2400, 4800, 7200, 9600},
 ymin=0.5,
-ymax=8192.5,
-ytick={0,2048,4096,6144,8192},
+ymax=4096.5,
+ytick={512, 1024, 2048, 4096},
 %ylabel style={font=\color{white!15!black}},
 %ylabel={Dilatation a (Scale)},
 axis background/.style={fill=white},
@@ -51,7 +51,7 @@ title style={font=\bfseries},
 title={CWT von $f_1(x)$ (unscharf)},
 legend style={legend cell align=left, align=left, draw=white!15!black}
 ]
-\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {cwt-2.png};
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=4096.5] {cwt-2.png};
 \end{axis}
 
 \begin{axis}[%
@@ -62,12 +62,12 @@ scale only axis,
 axis on top,
 xmin=0.5,
 xmax=9600.5,
-xtick={0,2400,4800,7400,9600},
+xtick={0, 2400, 4800, 7200, 9600},
 %xlabel style={font=\color{white!15!black}},
 %xlabel={Translation b (Sample)},
 ymin=0.5,
-ymax=8192.5,
-ytick={0,2048,4096,6144,8192},
+ymax=4096.5,
+ytick={512, 1024, 2048, 4096},
 %ylabel style={font=\color{white!15!black}},
 %ylabel={Dilatation a (Scale)},
 axis background/.style={fill=white},
@@ -75,7 +75,7 @@ title style={font=\bfseries},
 title={CWT von $f_2(x)$ (geschärft)},
 legend style={legend cell align=left, align=left, draw=white!15!black}
 ]
-\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {cwt-3.png};
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=4096.5] {cwt-3.png};
 \end{axis}
 
 \begin{axis}[%
@@ -86,19 +86,19 @@ scale only axis,
 axis on top,
 xmin=0.5,
 xmax=9600.5,
-xtick={0,2400,4800,7400,9600},
+xtick={0, 2400, 4800, 7200, 9600},
 %xlabel style={font=\color{white!15!black}},
 %xlabel={Translation b (Sample)},
 ymin=0.5,
-ymax=8192.5,
-ytick={0,2048,4096,6144,8192},
+ymax=4096.5,
+ytick={512, 1024, 2048, 4096},
 %ylabel style={font=\color{white!15!black}},
 %ylabel={Dilatation a (Scale)},
 axis background/.style={fill=white},
 title style={font=\bfseries},
-title={CWT von $g(x)-f_1(x)$},
+title={CWT von $g(x)-f_2(x)$},
 legend style={legend cell align=left, align=left, draw=white!15!black}
 ]
-\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=8192.5] {cwt-4.png};
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=4096.5] {cwt-4.png};
 \end{axis}
 \end{tikzpicture}%

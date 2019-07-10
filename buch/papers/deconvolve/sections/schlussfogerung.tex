@@ -2,18 +2,19 @@ Innerhalb dieser Seminararbeit konnte keine fertige Funktion zur Bildschärfung 
 Der bestehende Ansatz mit der Beziehung \eqref{deconvolve:funktion}, welche zwei Freiheitsgrade beinhaltet, könnte aber noch verfeinert werden.
 Die beiden Parameter $m$ und $\alpha$ wurden hier mithilfe einer eindimensionalen Funktion $g(x)$ (Abbildung \ref{deconvolve:1d}) festgelegt.
 Es wäre daher vielleicht möglich, durch geschickteres wählen dieser Parameter auf ein besseres Ergebnis zu kommen.
-Auch ist die Anwendung auf das Bild noch nicht ausgereift.
-
-Allerdings bleiben folgende zwei Schwierigkeiten unabhängig von dem verwendeten Ansatz bestehen:
-\begin{itemize}
-	\item Höhere, relevante Level liefern zu wenige Koeffizienten, um einen geeigneten Zusammenhang zwischen einer unscharfen und einer scharfen Kurve zu erkennen.
-	\item Das Bild ist mit $9600\times9600$ Pixel eher gross. Kleinere Bilder liefern bei der Wavelet-Transformation noch weniger Daten, wobei man dann auf das selbe Problem wie beim vorangehenden Punkt stösst.
-\end{itemize}
+Ausserdem ist die Anwendung auf das Bild noch nicht ausgereift.
 
 Es wurden auch nur das Haar- bzw. db1-Wavelet verwendet.
-Ein ähnlicher Ansatz, z.B. mit höheren Debauchies-Wavelets wäre sicher auch ein Versuch Wert.
+Ein ähnlicher Ansatz, z.B. mit höheren Debauchies-Wavelets wäre sicher ein Versuch Wert.
 
 Die Hauptursache für das unbefriedigende Resultat liegt im allgemeinen aber woanders.
 Es wurde nur versucht, die Koeffizienten auf den einzelnen Level zu verändern, bzw jede Zeile in Abbildung \ref{deconvolve:y1_cwt} wurde unabhängig von der benachbarten verstärkt oder geschwächt.
+
 Eine bessere Methode würde berücksichtigen, dass die Wavelet-Transformation ja zwei Dimensionen hat (Dilatation $a$ und Translation $b$) und somit \glqq Masse \grqq{} in der Ebene, also zwischen Level und nicht nur auf einer Zeile nach links oder rechts verschoben werden muss.
+Ändert man auf einem Level etwas, so muss die Auswirkung auf die anderen Level unbedingt berücksichtigt werden.
+
+
+Es ist somit problematisch, die Wavelet-Transformation ähnlich wie die Fourier-Transformation zu behandeln.
+Ein verändern eines Koeffizienten an einer bestimmten Stelle bewirkt nicht nur dort, sondern auch bei anderen Frequenzen oder genauer Dilatationen etwas.
+Genau dies konnte ja beim Versuch mit der eindimensionalen Funktion beobachtet werden.
 
