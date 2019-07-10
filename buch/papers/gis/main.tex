@@ -15,20 +15,20 @@ Gasisolierte Schaltanlagen (GIS) dienen der elektrischen Energieverteilung, dem 
 Als Isoliergas wird Schwefelhexafluorid (SF\textsubscript{6}) eingesetzt. SF\textsubscript{6} hat bei Atmosphärendruck eine etwa drei mal so grosse dielektrische Festigkeit (Spannungs-Isolationsvermögen) wie Luft. 
 Es besitzt auch um den Faktor 3 bis 4 mal bessere Lichtbogenlöscheingeschaft als Luft. 
 Diese Eigenschaften führen zu einer erheblichen Platzeinsparung gegenüber einer luftisolierten Schaltanlage (AIS) \cite{buch:ABB}.
-Deshalb und wegen einigen anderen Gründen, aufgezeigt in \cite{buch:GIS/AIS}, hat sich der Einsatz von GIS überall dort durchgesetzt wo Boden teuer ist. Zum Beispiel in urbanen Gebieten. 
+Deshalb und wegen einigen anderen Gründen, aufgezeigt in \cite{buch:GIS/AIS}, hat sich der Einsatz von GIS überall dort durchgesetzt wo Boden teuer ist wie zum Beispiel in urbanen Gebieten. 
 Bei Leistungsschaltern hat SF\textsubscript{6} nicht ausschliesslich die Aufgabe eines Isoliermediums sondern dient auch als Löschgas des Lichtbogens.
-Dieser trägt bis zu mehreren tausend Ampere, wenn ein Teil des Übertragungsnetzes von der Last freigeschaltet  wird \cite{buch:ABB}.
+Dieser trägt bis zu mehrere tausend Ampere, wenn grosse Verbraucher vom Übertragungsnetz getrennt werden \cite{buch:ABB}..  
 
 Bei der Quantifizierung der Qualität einer GIS spielt der Begriff Teilentladung (TE) eine wichtige Rolle. 
-Wenn das elektrische Feld örtlich über die dielektrische Festigkeit steigt entstehen Entladungen, welche nur ein Teil der Isolationsstrecke überbrücken und nicht zu einem kompletten Durchschlag führen, daher die Namensgebung Teilentladung \cite{buch:Kuchler}.
-Teilentladung im Isolierstoff lässt das Isoliermedium  schneller altern. Dies kann zum dielektrischen Durchschlag führen welcher einen Totalausfall der Anlage zur folge hat.
+Wenn das elektrische Feld örtlich über die dielektrische Festigkeit steigt, entstehen Entladungen, welche nur einen Teil der Isolationsstrecke überbrücken und nicht zu einem kompletten Durchschlag führen, daher die Namensgebung Teilentladung \cite{buch:Kuchler}.
+Teilentladung im Isolierstoff lässt das Isoliermedium  schneller altern. Dies kann zum dielektrischen Durchschlag führen welcher einen Totalausfall der Anlage zur Folge hat.
 Aufgrund dessen ist TE ein wichtiges Qualitätsmerkmal bei Hochspannungskomponenten. 
 
-Tritt Teilentladung auf werden verschiedene  physikalische Prozesse initiiert. 
+Tritt Teilentladung auf, werden verschiedene  physikalische Prozesse initiiert. 
 Die Entladung hat einen Strompuls zur Folge.
 Wegen dem Lichtbogen wird eine ultrahochfrequente (UHF) elektromagnetische Welle emittiert.
 Die schnellste gemessene Anstiegszeit des Strompulses in SF\textsubscript{6} liegt bei 24ps.
-Dies entspricht einem Frequenzband hoch bis zu 14 GHz \cite{skript:Judd24ps} . 
+Dies entspricht einem Frequenzband hoch bis zu 14 GHz \cite{skript:Judd24ps}. 
 Aufgrund der schnellen Erhitzung des Gases rund um den Lichtbogen wird eine Schallwelle abgestrahlt. 
 Ebenfalls durch die grosse Erhitzung wird das Isoliergas SF\textsubscript{6} zersetzt. 
 Somit kann TE chemisch, akustisch oder elektromagnetisch gemessen und lokalisiert werden \cite{skript:StatusReviewPDMeasurement}.
@@ -39,16 +39,20 @@ Es wird versucht, mittels dem Signalanalyseverfahren kontinuierliche Wavelettran
 \rhead{Abschnitt}
 
 TE wird in zwei Grundkategorien unterteilt \cite{buch:Kuchler}, die Innere- und Äussere-TE. 
-Die Erstere ist dadurch charakterisiert das sich die TE-Quelle im Innern eines festen oder flüssigen Isolierstoffes befindet. 
-Spezifiziert auf GIS gehören zu Kategorie der Inneren-TE Hohlräume, Risse/Spalten in Isolierstoffe und Delamination zwischen Isolierschichten.
+Die erstere ist dadurch charakterisiert, dass sich die TE-Quelle im Innern eines festen oder flüssigen Isolierstoffes befindet. 
+Bei GIS gehören zur Kategorie der Inneren-TE folgende Fehlerarten, Hohlräume, Risse/Spalten in Isolierstoffe und Delamination zwischen Isolierschichten.
  
 Entladungen an äusseren Leiterstrukturen werden als Äussere-TE oder Korona bezeichnet. 
-In GIS kommen folgende Fehler aus dieser Kategorie vor, Oberflächenentladung und Koronaentladung. 
+In GIS kommen die zwei Fehler Oberflächenentladung und Koronaentladung aus dieser Kategorie vor.
 Oberflächenentladungen treten bei nicht Einhalten der Herstellungstoleranzen zwischen leitendem und isolierendem Material auf.
 Eine weitere Quelle sind potenzialfrei leitende Partikel auf festen Isolierstoffen.
-Spitzen und scharfe Kanten an spannungsführenden- und an leitfähigen-Teilen auf Erdpotenzial führen zu Koronaentladung \cite{buch:Kuchler, skript:AeussreTE, skript:InnereTE}. 
+Spitzen und scharfe Kanten an spannungsführenden- und an leitfähigen-Teilen auf Erdpotenzial führen zu Koronaentladung. \begin{itemize}
+	\item buch:Kuchle
+	\item skript:AeussreTE
+\end{itemize}
+%\cite{buch:Kuchler, skript:AeussreTE, skript:InnereTE}
 In dieser Arbeit werden UHF TE-Signale von Oberflächenentladung und Hohlraumentladungen analysiert. 
-Im weiteren Abschnitt werfen wir einen genaueren physikalischen Blick, auf die zwei Entladungsarten und die herkömmliche Fehleranalyse.
+In dem folgenden Abschnitten werfen wir einen genaueren physikalischen Blick, auf die zwei Entladungsarten und die herkömmliche Fehleranalyse.
 
 \subsection{Oberflächenentladung}
 
