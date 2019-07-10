@@ -9,16 +9,17 @@ Daraus wird dann das zweidimensionale Wavelet abgeleitet und die entstehenden Fr
 Bei der Wavelet-Transformation besteht eine Zeit-Frequenz-Unschärfe.
 Diese Unschärfe bewirkt, dass die Auflösung im Zeitbereich umgekehrt proportional zur Auflösung im Frequenzbereich ist.
 Das Gabor-Wavelet stellt einen optimalen Kompromiss aus Zeit-und Frequenzauflösung dar.
-Die Anwendung des Wavelets minimiert dabei das Produkt der Standardabweichungen im Zeit- und Frequenzbereich. \cite{paper:communication}
+Die Anwendung des Wavelets minimiert dabei das Produkt der Standardabweichungen im Zeit- und Frequenzbereich \cite{paper:communication}.
 %TODO more details?
 
 Ein solches Gabor-Wavelet besteht aus einer komplexen Schwingung, welche mit einer Gaussfunktion gefenstert ist und somit exponentiell abfällt.
-
-\begin{equation}
-G(x)= e^{-\frac{(x-x_{0})^{2}}{\sigma^{2}}} e^{i\xi_{0}x}
+Dies ergibt die folgende Formel
+\begin{equation}\label{eq:1d_gabor}
+G(x)= e^{-\frac{(x-x_{0})^{2}}{\sigma^{2}}} e^{i\xi_{0}x}.
 \end{equation}
 
-Der Parameter $\sigma$ beschreibt die Standardabweichung der Gaussfunktion und $\xi$ die Frequenz der komplexen Schwingung. 
+Der Parameter $\sigma$ beschreibt die Standardabweichung der Gaussfunktion und $\xi_{0}$ die Frequenz der komplexen Schwingung. 
+Die konstante $x_0$ bestimmt die Position des Wavelets.
 Die komplexe Schwingung besteht aus einem Sinus und einem  Kosinus Anteil. 
 Ein Beispiel eines Sinus-Gabor-Wavelet wird in Abbildung \ref{fig:gabor1d} gezeigt.
 
@@ -33,26 +34,44 @@ Ein Beispiel eines Sinus-Gabor-Wavelet wird in Abbildung \ref{fig:gabor1d} gezei
 \subsection{Erweiterung auf zwei Dimensionen}
 
 Um ein solches Wavelet auf ein Bild anwenden zu können, ist es sinnvoll dieses auf zwei Dimensionen zu erweitern.
-Diese Erweiterung ergibt die folgende Formel:
+Als erstes erweitern wir wir die komplexe Schwingung aus \ref{eq:1d_gabor} auf eine zweidimensionale, ebene Schwingung.
+Wir erhalten
+\begin{equation}\label{eq:2d_schwingung}
+P_1(x,y)= e^{i(\xi_{0}x+\nu_{0}y)}.
+\end{equation}
+Diese Schwingung kann man sich als ebene Schwingung vorstellen, welche abhängig von $\xi_0$ und $\nu_0$ in eine bestimmte Richtung zeigt (vgl. Abbildung \ref{fig:planarwave}).
 
+Als nächsten Schritt erweitern wir die Gaussfunkion auf eine elliptische, zweidimensionale Gaussfunktion der Form
+\begin{equation}\label{eq:2d_gauss}
+P_2(x,y)=e^{-(\frac{(x-x_{0})^{2}}{\sigma^{2}}+\frac{(y-y_{0})^{2}}{\beta^{2}})}.
+\end{equation}
+Eine elliptische Gaussfunktion erzeugt Niveaulinien, welche die Form einer Ellipse haben.
+Die Standardabweichungen in $x$-, bzw. $y$-Richtung $\sigma$ resp. $\beta$ bestimmen die Ausrichtung und Grösse der Ellipse.
+Ein Beispiel einer elliptischen Gaussfunktion ist in Abbildung \ref{fig:2d_gauss} dargestellt.
+
+Aus den Gleichungen \ref{eq:2d_schwingung} und \ref{eq:2d_gauss} lässt sich die Formel für das zweidimensionale Gabor-Wavelet bilden:
 \begin{equation}
 G(x,y)= e^{-(\frac{(x-x_{0})^{2}}{\sigma^{2}}+\frac{(y-y_{0})^{2}}{\beta^{2}})}
 e^{i(\xi_{0}x+\nu_{0}y)}.
 \end{equation}
 
-Das zweidimensionale Wavelet besteht immer noch aus einer komplexen Schwingung multipliziert mit einer elliptischen Gaussfunktion. 
-Diese Schwingung kann man sich als ebene Welle vorstellen, welche abhängig von $\xi$ und $\nu$ in eine bestimmte Richtung zeigt (vgl. Abbildung \ref{fig:planarwave}).
-
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{./papers/visuell/images/planarwave.eps}
+	\includegraphics[width=0.7\linewidth]{./papers/visuell/images/planarwave.pdf}
 	\caption{Beispiel einer ebenen Welle}
 	\label{fig:planarwave}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{./papers/visuell/images/2d_gauss.pdf}
+	\caption{Beispiel einer elliptischen Gaussfunktion, links eine dreidimensionale Ansicht, rechts ein Plot der Niveaulinien.}
+	\label{fig:2d_gauss}
+\end{figure}
 
 
-Diese Parameter ($\sigma$, $\beta$, $\xi$, $\nu$) dieser Formel sind unhandlich und es ist nicht offensichtlich was eine Änderung dieser bewirkt.
+
+Die Parameter ($\sigma$, $\beta$, $\xi$, $\nu$) dieser Formel sind unhandlich und es ist nicht offensichtlich was eine Änderung dieser bewirkt.
 Also ersetzen wir diese durch neue Parameter und erhalten 
 
 \begin{equation}
@@ -62,23 +81,25 @@ e^{i(2\pi\frac{x'}{\lambda} + \phi)},
 wobei $x'=x\cos(\theta)+y\sin(\theta)$ und $y'=-x\sin(\theta)+y\cos(\theta)$.
 Der Parameter $\gamma$ beschreibt das Verhältnis der Streckung in $x$- und $y$-Richtung.
 Diese Streckung der elliptischen Gaussfunktion bestimmt ob das Wavelet eher rund oder länglich ist.
-Die Standardabweichung der Gausskurve welche mit der Schwingung multipliziert wird ist als Parameter $\sigma$ definiert.
+Die Standardabweichung der Gausskurve, welche mit der Schwingung multipliziert wird, ist als Parameter $\sigma$ definiert.
 Grösseres $\sigma$ bewirkt ein breiteres Wavelet.
 Die komplexe Schwingung wird durch die Wellenlänge $\lambda$ und die Phase $\phi$ definiert.
+Eine Phasenverschiebung scheint keinen klaren Nutzen zu haben und deshalb  wird für den weiteren Verlauf dieses Papers $\phi=0$ gesetzt.
 Der Parameter $\theta$ definiert nun die Ausrichtung der komplexen Schwingung.
 Eine Änderung von $\theta$  bewirkt somit eine Drehung der Wellenfronten.
-Der letzte Parameter $\phi$ bewirkt eine Phasenverschiebung der Schwingung. 
-Da eine solche Phasenverschiebung keinen klaren Nutzen zu haben scheint, wird $\phi=0$ gesetzt.
 
-Wie sich Gabor-Wavelets in Abhängigkeit dieser Parameter Verhalten zeigt Abbildung \ref{fig:kernels}.
-Vier unabhängige Freiheitsgrade (Parameter) sind zu viel um als Mensch einen guten Überblick zu behalten.
+Wie sich Gabor-Wavelets in Abhängigkeit dieser Parameter verhalten zeigt Abbildung \ref{fig:kernels}.
+Vier unabhängige Freiheitsgrade (Parameter) sind zu viel um einen guten Überblick zu behalten.
 Aus diesem Grund werden im weiteren Verlauf dieses Papers die Gausskurven-Parameter $\sigma$ und $\gamma$ fixiert und nur noch die anderen beiden Parameter verändert.
 
 \begin{figure}
 	\centering
-	\subfigure[Parameter der Gaussfunktion $\gamma$ und $\sigma$ werden verändert]{\label{fig:kernels_a}\includegraphics[width=0.45\linewidth]{./papers/visuell/images/kernels_sigma_gamma.pdf}}
+	\subfigure[Parameter der Gaussfunktion $\gamma$ und $\sigma$ werden verändert]
+	{\label{fig:kernels_a}\includegraphics[width=0.8\linewidth, trim=0 60 0 60, clip ]{./papers/visuell/images/kernels_sigma_gamma.pdf}}
 	
-	\subfigure[Wellenlänge der Schwingung $\lambda$ und Ausrichtung $\theta$ werden verändert]{\label{fig:kernels_b}\includegraphics[width=0.45\linewidth]{./papers/visuell/images/kernels_theta_lambda.pdf}}
+	\subfigure[Wellenlänge der Schwingung $\lambda$ und Ausrichtung $\theta$ werden verändert]
+	{\label{fig:kernels_b}\includegraphics[width=0.8\linewidth, trim=0 60 0 60, clip ]{./papers/visuell/images/kernels_theta_lambda.pdf}}
+	
 	\caption{Abhängigkeit des Gabor-Wavelets von den Parametern}
 	\label{fig:kernels}
 \end{figure}
