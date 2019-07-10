@@ -227,7 +227,7 @@ Diese korrelierenden auftretenden Frequenzen sollten in der \textit{cwt} sichtba
 
 \subsection{Parallelen zur Kovarianz}
 
-Um das korrelierende Auftreten der einzelnen Datenkanäle zu verdeutlichen, wurden bei diesen jeweils die zwei zusammengehörenden Messresultate miteinander multipliziert. 
+Um das korrelierende Auftreten der einzelnen Datenkanäle zu verdeutlichen, wurden bei diesen jeweils die zwei zusammengehörenden Koeffizienten der \textit{cwt} miteinander multipliziert. 
 Dabei werden die Stellen hervorgehoben, wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren.  
 Dies funktioniert besonders gut, da die Werte rasch gegen null gehen falls nur schon einer der beiden Datenverläufe nicht mit dem aktuellen Mutter-Wavelet übereinstimmt.
 Genauer betrachtet zeigt dieses Verfahren Ähnlichkeiten mit der Formel
@@ -235,6 +235,49 @@ Genauer betrachtet zeigt dieses Verfahren Ähnlichkeiten mit der Formel
 COV(X,Y) = \frac{\sum_{i=1}^{N} (x_i- \bar{x})(y_i- \bar{y})}{N-1},
 \end{equation}
 der Kovarianz aus der Statistik. Bei dieser Anwendung wird einfach nicht die ganze Zufallsvariable benutzt, sondern nur jeweils die beiden zeitlich übereinstimmenden Werte.
+Meine Wavelet-Transformation mit der Idee des Produktes der beiden Datenkanäle,
+\begin{equation}
+\mathcal{W}f (a,b)
+=
+\langle Luftdruck,\psi_{a,b}\rangle\cdot\langle Wind,\psi_{a,b}\rangle
+=
+\end{equation}
+\begin{equation}
+\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty Luftdruck(t)\,\overline{
+	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt
+\cdot
+\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty Wind(t)\,\overline{
+	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt
+\label{eq:cwt_wwt}
+\end{equation}
+kann für den erstmals für den Luftdruck auf die Kovarianz angewandt Werden:
+
+\begin{equation}
+COV(Luftdruck, \psi_{a,b})f(a,b) = \frac{\sum_{i=1}^{N} (Luftdruck_i - \overline{Luftdruck})(\psi_{a,b}-  \overline{\psi_{a,b}})}{N-1}
+\end{equation}
+umgeschrieben in Skalarprodukte und da nach den Zulässigkeitsbedingungen eines Mutterwavelets $\overline{\psi_{a,b}} = 0$ sein muss, folgt 
+\begin{equation}
+ \frac{\sum_{i=1}^{N} 
+ \langle Luftdruck_i- \overline{Luftdruck},\psi_{a,b}\rangle}{N-1},
+\end{equation}
+Weiter Ausmultipliziert
+\begin{equation}
+\frac{\sum_{i=1}^{N} 
+\langle Luftdruck_i,\psi_{a,b}\rangle - \langle \overline{Luftdruck},\psi_{a,b}\rangle}{N-1}
+\end{equation}
+Schlussendlich ergibt sich mit $\langle \overline{Luftdruck},\psi_{a,b} \rangle = 0$
+\begin{equation}
+\frac{\sum_{i=1}^{N} 
+	\langle Luftdruck_i,\psi_{a,b}\rangle}{N-1}.
+\end{equation}
+ Wird noch das Produkt mit dem Wind hinzugenommen
+ \begin{equation}
+ \frac{\sum_{i=1}^{N} 
+ 	(\langle Luftdruck_i,\psi_{a,b}\rangle)(\langle Wind,\psi_{a,b}\rangle)}{N-1},
+ \label{eq:cov_wwt}
+ \end{equation}
+ haben wir die Schritte von der Wavelet-Transformation in der Formel \ref{eq:cwt_wwt} zum einem äquivalenten Resultat mit der Kovarianz in der Formel \ref{eq:cov_wwt} gebracht.
+
 
 Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grundlegenden Formel \ref{eq:cwt1} der \textit{cwt}, kann man gewisse Parallelen sehen. 
 In \ref{eq:cwt1} ist die Motivation, die jeweiligen Parameter $a$ und $b$ zu finden, wobei das Mutter-Wavelet und das Signal gemeinsam variieren.
