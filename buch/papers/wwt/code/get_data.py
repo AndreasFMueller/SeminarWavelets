@@ -2,30 +2,30 @@ import pandas as pd
 
 tables = []
 j = 1
-while(j<10):
-    link = 'http://www.wetter-seegraeben.ch/uploads/insert.php?insert=2017010'+str(j) +'.htm'
+while(j < 10):
+    link = 'http://www.wetter-seegraeben.ch/uploads/insert.php?insert=2017010' + str(j) + '.htm'
     print(link)
     tables += pd.read_html(link)
-    j+=1
+    j += 1 
             
-while(j<32): #nur bis 30. im Monat, ohne 31.
-    link = 'http://www.wetter-seegraeben.ch/uploads/insert.php?insert=201701'+str(j) +'.htm'
+while(j < 32): #nur bis 30. im Monat, ohne 31.
+    link = 'http://www.wetter-seegraeben.ch/uploads/insert.php?insert=201701'+ str(j) + '.htm'
     print(link)
     tables += pd.read_html(link)
-    j+=1
+    j += 1
 
 j = 1
-while(j<10):
-    link = 'http://www.wetter-seegraeben.ch/uploads/insert.php?insert=2017020'+str(j) +'.htm'
+while(j < 10):
+    link = 'http://www.wetter-seegraeben.ch/uploads/insert.php?insert=2017020'+ str(j) + '.htm'
     print(link)
     tables += pd.read_html(link)
-    j+=1
+    j += 1
             
-while(j<29): #nur bis 30. im Monat, ohne 31.
-    link = 'http://www.wetter-seegraeben.ch/uploads/insert.php?insert=201702'+str(j) +'.htm'
+while(j < 29): #nur bis 30. im Monat, ohne 31.
+    link = 'http://www.wetter-seegraeben.ch/uploads/insert.php?insert=201702'+ str(j) + '.htm'
     print(link)
     tables += pd.read_html(link)
-    j+=1
+    j += 1
 
 j = 1
 while(j<10):
