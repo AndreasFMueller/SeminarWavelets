@@ -10,10 +10,9 @@ Bei der Wavelet-Transformation besteht eine Zeit-Frequenz-Unschärfe.
 Diese Unschärfe bewirkt, dass die Auflösung im Zeitbereich umgekehrt proportional zur Auflösung im Frequenzbereich ist.
 Das Gabor-Wavelet stellt einen optimalen Kompromiss aus Zeit-und Frequenzauflösung dar.
 Die Anwendung des Wavelets minimiert dabei das Produkt der Standardabweichungen im Zeit- und Frequenzbereich \cite{paper:communication}.
-%TODO more details?
 
 Ein solches Gabor-Wavelet besteht aus einer komplexen Schwingung, welche mit einer Gaussfunktion gefenstert ist und somit exponentiell abfällt.
-Dies ergibt die folgende Formel
+Dies ergibt die Formel
 \begin{equation}\label{eq:1d_gabor}
 G(x)= e^{-\frac{(x-x_{0})^{2}}{\sigma^{2}}} e^{i\xi_{0}x}.
 \end{equation}
@@ -31,7 +30,7 @@ Ein Beispiel eines Sinus-Gabor-Wavelet wird in Abbildung \ref{fig:gabor1d} gezei
 \end{figure}
 
 
-\subsection{Erweiterung auf zwei Dimensionen}
+\subsection{Erweiterung auf zwei Dimensionen}\label{subsec:2D}
 
 Um ein solches Wavelet auf ein Bild anwenden zu können, ist es sinnvoll dieses auf zwei Dimensionen zu erweitern.
 Als erstes erweitern wir wir die komplexe Schwingung aus \ref{eq:1d_gabor} auf eine zweidimensionale, ebene Schwingung.
@@ -79,6 +78,25 @@ G(x,y)=e^{-\frac{x'^{2}+\gamma^{2}y'^{2}}{2\sigma^{2}}}
 e^{i(2\pi\frac{x'}{\lambda} + \phi)},
 \end{equation} 
 wobei $x'=x\cos(\theta)+y\sin(\theta)$ und $y'=-x\sin(\theta)+y\cos(\theta)$.
+Diese Formulierung stellt eine Drehmatrize der Art
+\begin{equation}
+	\begin{pmatrix}
+		x' \\
+		y'
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	\cos(\theta) & \sin(\theta) \\
+	-\sin(\theta) & \cos(\theta)
+	\end{pmatrix}
+	\begin{pmatrix}
+	x \\
+	y
+	\end{pmatrix}
+	\end{equation}
+dar.
+Eine Veränderung des Parameters $\theta$ bewirkt dabei eine Drehung der Wellenfront und der elliptischen Gaussfunktion.
+Dies bedeutet, dass die Ellipsenachsen (vgl. Abbildung \ref{fig:2d_gauss}) nicht mit den Koordinatenachsen übereinstimmen müssen.
 Der Parameter $\gamma$ beschreibt das Verhältnis der Streckung in $x$- und $y$-Richtung.
 Diese Streckung der elliptischen Gaussfunktion bestimmt ob das Wavelet eher rund oder länglich ist.
 Die Standardabweichung der Gausskurve, welche mit der Schwingung multipliziert wird, ist als Parameter $\sigma$ definiert.

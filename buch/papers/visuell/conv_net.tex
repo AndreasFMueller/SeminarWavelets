@@ -3,7 +3,7 @@
 
 Künstliche neuronale Netze (KNN) stellen eine Möglichkeit des maschinellen Lernens dar, welche vom Hirn inspiriert wurde.
 Ein KNN besteht aus verschiedenen Neuronen, welche hierarchisch in sogenannten Layern angeordnet werden (vgl. Abbildung \ref{fig:neuralnet}).
-Jeder Eingangswert $x_i$ zu einem Neuron wird mit einem Faktor $w_i$ multipliziert.
+Jeder Eingangswert $x_i$ zu einem Neuron wird mit einem Gewicht $w_i$ multipliziert.
 Alle gewichteten Eingänge werden zusammen mit einem Schwellenwert $b$ addiert.
 Diese Summe wird danach durch eine nichtlineare Aktivierungsfunktion $H$ aktiviert und bildet so den Ausgang $y$
 \begin{equation} \label{eq:neuron}
@@ -65,14 +65,14 @@ Ob diese theoretischen Ideen auch praktisch anwendbar sind, soll ein Versuch zei
 Das Ziel des Versuches ist es, zu zeigen ob Gabor-Wavelets wirklich eine Berechtigung im Zusammenhang mit CNNs haben.
 Zwei verschiedene Dinge sollen überprüft werden:
 \begin{enumerate}
-	\item Ist eine vorverarbeitung mittels Gabor-Kerneln sinnvoll?
+	\item Ist eine Vorverarbeitung mittels Gabor-Kerneln sinnvoll?
 	\item Lernt ein CNN Kernels welche Ähnlichkeiten zu den Gabor-Kerneln besitzen?
 \end{enumerate}
 Um diese Ziele zu erreichen wurde ein Versuch durchgeführt, bei welchem der CIFAR-10 \cite{paper:cifar10} Datensatz klassifiziert werden soll.
 Beim CIFAR-10 Datensatz handelt es sich um $32 \times 32$ Pixel grosse farbige Bilder,welche zu zehn verschiedenen Klassen gehören (z.B. Flugzeug, Vogel, etc.).
 Der Datensatz umfasst dabei 50'000 Trainings- und 10'000 Testbilder.
 Ein Beispiel jeder Klasse ist in Abbildung \ref{fig:cifar10} gezeigt.
-Der CIFAR-10 Datensatz wurde gewählt da er ziemlich bekannt ist, Beispielarchitekturen verfügbar sind und relativ schwierig zu lösen ist.
+Der CIFAR-10 Datensatz wurde gewählt, da er ziemlich bekannt ist, Beispielarchitekturen verfügbar sind und relativ schwierig zu lösen ist.
 Die Schwierigkeit ist wichtig um überhaupt einen Unterschied in der Genauigkeit feststellen zu können (bei 99\% Genauigkeit sieht man keine grossen Verbesserungen mehr).
 
 \begin{figure}
@@ -85,10 +85,18 @@ Die Schwierigkeit ist wichtig um überhaupt einen Unterschied in der Genauigkeit
 Die Architektur des CNNs ist inspiriert von einem Artikel über CIFAR-10 \cite{online:cifar10}.
 Implementiert wurde das gesamte Projekt mit Python und Tensorflow.
 
-Der erste Convolutional-Layer besteht aus $64$ verschiedenen $9 \times 9$ Kerneln, welche entweder gelernt werden oder als Gabor-Kernels gesetzt werden.
+Der erste Convolutional-Layer besteht aus $64$ verschiedenen $9 \times 9$ Kerneln, welche entweder gelernt oder als Gabor-Kernels gesetzt werden.
 Also wird das Netzwerk zwei mal trainiert, einmal mit einem fixen ersten Layer (Gabor-Layer) und einmal mit einem lernbaren ersten Layer.
+Die Parametrisierung (vgl. \ref{subsec:2D}) der Gabor-Wavelets für den ersten Layer wird vor dem Trainingsbeginn festgelegt.
+Dabei wurden je acht verschiedene Werte für $\theta$ und $\lambda$ eingesetzt, die anderen Parameter sind für alle Kernels identisch.
 Die Variante mit Gabor-Layer stellt dem Netzwerk weniger Freiheitsgrade zur Verfügung und sollte theoretisch ein schlechteres Resultat zeigen.
-Da wir aber vermuten das ein Gabor-Layer eine optimale Vorverarbeitung darstellt, sollten die Gabor-Kernels besser Resultate als die selbst gelernten zeigen.
+Da wir aber vermuten das ein Gabor-Layer eine optimale Vorverarbeitung darstellt, können wir die folgende Hypothese formulieren:
+\newtheorem{hypothese}{Hypothese}
+\begin{hypothese}\label{hyp:1}
+	 Ein Gabor-Layer stellt eine optimale Vorverarbeitung dar.
+	 Aus diesem Grund sollten die Gabor-Kernels bessere Resultate als die selbst gelernten zeigen.
+	 Dies obwohl bei der klassischen Variante mehr Freiheitsgrade zu Verfügung stehen.
+\end{hypothese}
 
 Nach dem ersten Layer folgen drei weitere Convolutional-Layer, bevor am Ende fünf Fully-Connected-Layer (normale KNN-Layer) das Resultat ausgeben.
 Die genaue Architektur ist in Tabelle \ref{table:architecture} gezeigt.
