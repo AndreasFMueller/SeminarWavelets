@@ -233,57 +233,65 @@ Dies funktioniert besonders gut, da die Werte rasch gegen null gehen falls nur s
 Genauer betrachtet zeigt dieses Verfahren Ähnlichkeiten mit der Formel
 \begin{equation}
 COV(X,Y) = \frac{\sum_{i=1}^{N} (x_i- \bar{x})(y_i- \bar{y})}{N-1},
+\label{eq:kovarianz}
 \end{equation}
 der Kovarianz aus der Statistik. Bei dieser Anwendung wird einfach nicht die ganze Zufallsvariable benutzt, sondern nur jeweils die beiden zeitlich übereinstimmenden Werte.
-Meine Wavelet-Transformation mit der Idee des Produktes der beiden Datenkanäle,
-\begin{equation}
-\mathcal{W}f (a,b)
-=
-\langle Luftdruck,\psi_{a,b}\rangle\cdot\langle Wind,\psi_{a,b}\rangle
-=
-\end{equation}
-\begin{equation}
-\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty Luftdruck(t)\,\overline{
-	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt
-\cdot
-\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty Wind(t)\,\overline{
-	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt
-\label{eq:cwt_wwt}
-\end{equation}
-kann für den erstmals für den Luftdruck auf die Kovarianz angewandt Werden:
-
-\begin{equation}
-COV(Luftdruck, \psi_{a,b})f(a,b) = \frac{\sum_{i=1}^{N} (Luftdruck_i - \overline{Luftdruck})(\psi_{a,b}-  \overline{\psi_{a,b}})}{N-1}
-\end{equation}
-umgeschrieben in Skalarprodukte und da nach den Zulässigkeitsbedingungen eines Mutterwavelets $\overline{\psi_{a,b}} = 0$ sein muss, folgt 
-\begin{equation}
- \frac{\sum_{i=1}^{N} 
- \langle Luftdruck_i- \overline{Luftdruck},\psi_{a,b}\rangle}{N-1},
-\end{equation}
-Weiter Ausmultipliziert
-\begin{equation}
-\frac{\sum_{i=1}^{N} 
-\langle Luftdruck_i,\psi_{a,b}\rangle - \langle \overline{Luftdruck},\psi_{a,b}\rangle}{N-1}
-\end{equation}
-Schlussendlich ergibt sich mit $\langle \overline{Luftdruck},\psi_{a,b} \rangle = 0$
-\begin{equation}
-\frac{\sum_{i=1}^{N} 
-	\langle Luftdruck_i,\psi_{a,b}\rangle}{N-1}.
-\end{equation}
- Wird noch das Produkt mit dem Wind hinzugenommen
- \begin{equation}
- \frac{\sum_{i=1}^{N} 
- 	(\langle Luftdruck_i,\psi_{a,b}\rangle)(\langle Wind,\psi_{a,b}\rangle)}{N-1},
- \label{eq:cov_wwt}
- \end{equation}
- haben wir die Schritte von der Wavelet-Transformation in der Formel \ref{eq:cwt_wwt} zum einem äquivalenten Resultat mit der Kovarianz in der Formel \ref{eq:cov_wwt} gebracht.
-
 
 Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grundlegenden Formel \ref{eq:cwt1} der \textit{cwt}, kann man gewisse Parallelen sehen. 
 In \ref{eq:cwt1} ist die Motivation, die jeweiligen Parameter $a$ und $b$ zu finden, wobei das Mutter-Wavelet und das Signal gemeinsam variieren.
 Auch hierfür werden die Produkte der Signale berechnet, auf integriert und gemittelt.
 Auch dies ist eine etwas abgewandelte Art der Kovarianz zwischen dem Datensignal und dem Mutter-Wavelet.
- 
+
+
+Die im Paper angewendete Wavelet-Transformation mit der Idee des Produktes der beiden Datenkanäle,
+\begin{equation}
+\begin{split}
+\mathcal{W}f (a,b)
+& =
+\biggl<\langle Luftdruck,\psi_{a,b}\rangle, \langle Wind,\psi_{a,b} \rangle \biggr > \\
+& = \biggl< \frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty Luftdruck(t)\,\overline{
+	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt
+,
+\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty Wind(t)\,\overline{
+	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt \biggr>
+\label{eq:cwt_wwt}
+\end{split}
+\end{equation}
+kann, vorerst nur für den Luftdruck, auf die Kovarianz (Formel \ref{eq:kovarianz}) umgeschrieben werden,
+
+\begin{equation}
+COV(Luftdruck, \psi_{a,b})f(a,b) = \frac{\sum_{i=1}^{N} (Luftdruck_i - \overline{Luftdruck})(\psi_{a,b}-  \overline{\psi_{a,b}})}{N-1}.
+\end{equation}
+Gemäss den Zulässigkeitsbedingungen eines Mutter-Wavelets ist $\overline{\psi_{a,b}} = 0$ (Definition \ref{cwt:zulaessig}). Weiter werden Multiplikationen in Skalarprodukte umgewandelt, somit folgt;
+\begin{equation}
+COV(Luftdruck, \psi_{a,b})f(a,b) =  \frac{\sum_{i=1}^{N} 
+ \langle Luftdruck_i- \overline{Luftdruck},\psi_{a,b}\rangle}{N-1}.
+\end{equation}
+Weiter Ausmultipliziert
+\begin{equation}
+COV(Luftdruck, \psi_{a,b})f(a,b) = \frac{\sum_{i=1}^{N} 
+\langle Luftdruck_i,\psi_{a,b}\rangle - \langle \overline{Luftdruck},\psi_{a,b}\rangle}{N-1},
+\end{equation}
+schlussendlich ergibt sich mit $\langle \overline{Luftdruck},\psi_{a,b} \rangle = 0$,
+\begin{equation}
+COV(Luftdruck, \psi_{a,b})f(a,b) = \frac{\sum_{i=1}^{N} 
+	\langle Luftdruck_i,\psi_{a,b}\rangle}{N-1}.
+\end{equation}
+ Wird noch das Produkt mit dem Wind hinzugenommen
+ \begin{equation}
+ \begin{split}
+\biggl< COV(Luftdruck, \psi_{a,b})f(a,b), COV(Wind), \psi_{a,b})f(a,b) \biggr > \\
+=
+ \biggl< \frac{\sum_{i=1}^{N} 
+ 	\langle Luftdruck_i,\psi_{a,b}\rangle}{N-1},\frac{\sum_{i=1}^{N} 
+ 	\langle Wind_i,\psi_{a,b}\rangle}{N-1} \biggr >,
+ \label{eq:cov_wwt}
+ \end{split}
+ \end{equation}
+ wurde die Herleitung von der Wavelet-Transformation in der Formel \ref{eq:cwt_wwt} zum einem äquivalenten Resultat, ohne die Korrekturfaktoren, mit der Kovarianz in der Formel \ref{eq:cov_wwt} gezeigt.
+
+
+
 \subsection{Sturmsaison 2018}
 \rhead{Sturmsaison 2018}
 Bereits bekannt war, dass in der Sturmsaison im Jahre 2018 einige heftige Winterstürme aufgetreten sind.
@@ -304,7 +312,7 @@ In Abbildung \ref{fig:cwt_storm} \space zeigen sich um den 3. sowie zwischen dem
 \subsubsection{Wintersturm {\em Burglind} }
 \label{burglind}
 Hineingezoomt um den 3. Januar (Abbildung \ref{fig:cwt_storm_zoom}) sind im Rohdatenverlauf die Aktivitäten des Windes und Luftdruckes erkennbar. 
-\begin{figure}[h]
+\begin{figure}[b]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom.pdf}
 	\caption{Cwt und Rohdaten Wintersturm {\em Burglind}  2018}
@@ -350,17 +358,18 @@ Anbei in Abbildung \ref{fig:python-plot-code} und \ref{fig:python-plot-code2} de
 
 \begin{figure}[h]
 	\centering
-	\lstinputlisting[language=Python,firstline = 1, lastline = 34, numbers=left, firstnumber=1, style = Python]{papers/wwt/code/plot_burglind.py}
+	\lstinputlisting[language=Python,firstline = 1, lastline = 39, numbers=left, firstnumber=1, style = Python]{papers/wwt/code/plot_burglind.py}
 	\caption{Python Codeausschnitt}
 	\label{fig:python-plot-code}
 \end{figure}
 \begin{figure}[h]
 	\centering
-	\lstinputlisting[language=Python,firstline = 35, lastline = 91, firstnumber=35, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
+	\lstinputlisting[language=Python,firstline = 40, lastline = 91, firstnumber=40, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
 	\caption{Python Codeausschnitt}
 	\label{fig:python-plot-code2}
 \end{figure}
  
+ \newpage
 
 \printbibliography[heading=subbibliography]
 \end{refsection}
