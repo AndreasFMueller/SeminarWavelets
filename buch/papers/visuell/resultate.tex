@@ -26,3 +26,9 @@ Entscheidend bei neuronalen Netzen sind neben der Genauigkeit die Geschwindigkei
 Bei der Variante mit Gabor dauerte das Training etwa 3 Minuten und 10 Sekunden (kann abhängig vom Computer und Grafikkarte stark variieren).
 Bei der zweiten Variante, wo erste Layer ebenfalls gelernt wird, dauert das Training ca. 15\% länger (also etwa 3 Minuten und 38 Sekunden).
 Das Klassifizieren von neuen Bildern dauert danach bei beiden Varianten gleich lange, da in beiden Fällen die identische Tensorflow-Struktur implementiert wurde.
+
+Lernt das klassische CNN Kernels welche Ähnlichkeiten zu Gabor-Wavelets aufweisen?
+In unserem Versuch ist dies nicht der Fall.
+Die Kernel welche gelernt wurden sehen zufällig aus, es sind keine Regelmässigkeiten zu erkennen (vgl. Abbildung \ref{fig:cnnkernels}). %TODO
+Durch die zufällige Initialisierung ist es aber nicht ausgeschlossen dass solche Gabor-Ähnlichen Kernels gelernt werden könnten.
+Es gibt genügend Beispiele wo CNNs solche Kernels gelernt haben (z.B. im Paper \cite{paper:kernel}). %TODO
