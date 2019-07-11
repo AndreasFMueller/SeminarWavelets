@@ -135,7 +135,7 @@ noch keine wesentliche Verbesserung zum direkten Ableiten.
 
 Nun können wir aber mit dem Wavelet eine Multiskalenanalyse durchführen. Im
 Fall vom Haar Wavelet ist dies vergleichbar wie wenn zuerst der Mittelwert
-gebildet und dann abgeleitet wird. 
+gebildet und dann abgeleitet wird.
 
 In \autoref{polynomials:noise:db1_multi} ist das Signal $x^2 + r$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem
@@ -172,7 +172,7 @@ Wavelet und die Approximationskoeffizienten der letzten Stufe abgebildet.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_noise_db2_multi.pgf}
+%    \input{papers/polynomials/images/polynomials_noise_db2_multi.pgf}
     \caption{Multiskalenanalyse von $x^3 + r$ mit db2 Wavelet\label{polynomials:noise:db2_multi}}
 \end{figure}
 
@@ -197,6 +197,70 @@ nachvollzogen werden.
 
 \section{Hochfrequente Anteile in Polynomen}
 \rhead{Hochfrequente Anteile in Polynomen}
+
+Im vorherigen Abschnitt waren wir vor allem an der Analyse des Polynoms und
+dessen Ableitung interessiert. Die hochfrequenten Teile, also das Rauschen,
+wollten wir dabei möglichst loswerden. Was nun aber wenn wir ein hochfrequentes
+Signal aus einem sonst polynomialen Signal extrahieren wollen? Solche Signale
+könnten zum Beispiel so wie in \autoref{polynomials:sin:signals} aussehen. Da
+die Daubechies Wavelets polynomiale Signale schon komplett in den
+Approximationskoeffizienten darstellen können, sollten wir das interessante
+Signal direkt in den Detailkoeffizienten sehen können.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_sin_signals.pgf}
+    \caption{Polynomiale Signale mit Sinus\label{polynomials:sin:signals}}
+\end{figure}
+
+In \autoref{polynomials:sin:db2} ist die Analyse mit dem db2 Wavelet zu sehen.
+Die Detailkoeffizienten werden von dem enthaltenen Sinussignal dominiert. Das
+Sinussignal lässt sich also so bestens extrahieren.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_sin_db2.pgf}
+    \caption{Analyse mit db2 Wavelet\label{polynomials:sin:db2}}
+\end{figure}
+
+Wenn man an sinusförmigen Signalen interessiert ist liegt es auch nahe die
+diskrete Fourier Transformation zu verwenden. In \autoref{polynomials:sin:fft}
+sind die Resultate der DFT zu sehen.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_sin_fft.pgf}
+    \caption{Analyse mit Fouriertransformation\label{polynomials:sin:fft}}
+\end{figure}
+
+Zu sehen ist, dass die Fourier Koeffizienten des Polynoms dominieren und dass
+der Peak bei 20, welcher durch den Sinus entsteht, unter geht. Dies ist
+verständlich, wenn man bedenkt wie die Fourierreihen von Polynomen aussehen.
+Nehmen wir als Beispiel das Polynom $f(x) = x$. Im Bereich $[0, 1]$ entspricht
+es einer Sägezahnfunktion. Die Fourier Reihe eines Sägezahns ist $f(x) =
+\frac{1}{2} - \frac{1}{\pi} \sum{\frac{1}{n} \sin(2 n \pi x)}$. Nun ist
+ersichtlich, dass die Fouriertransformierte jede Frequenz $n$ mit $\frac{1}{n}$
+skaliert enhalten wird.
+
+Die Analyse mittels Fourier Transformation kann natürlich durch die Wahl einer
+passenden Fensterfunktion (z.B. Hamming) zu besseren Resultaten führen. Dies
+hat jedoch den Nachteil das zeitlich kurz auftretende Signale je nach
+Fenstergrösse und Position unterschiedlich gedämpft werden.
+
+Die Wavelettransformation liefert uns hingegen auch den Zeitpunkt bei dem das
+Signal aufgetreten ist.  \autoref{polynomials:sin:padded} zeigt Die Resultate
+einer Waveletanalyse mit einem zeitlich lokalisierten Sinussignal.
+
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_sin_padded_db2.pgf}
+    \caption{Analyse mit db2 Wavelet eines zeitlich lokalisierten Sinuassignals\label{polynomials:sin:padded}}
+\end{figure}
+
+Die Analyse dieser Signale mit Daubechies Wavelets und DFT kann im
+\texttt{Analyse von Sinus Signalen.ipynb} Notebook%
+\footnote{\url{https://mybinder.org/v2/gh/rnestler/mathsem-FS2019/paper?filepath=Analyse\%20von\%20Sinus\%20Signalen.ipynb}}
+nachvollzogen werden.
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
