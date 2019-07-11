@@ -33,6 +33,9 @@ fig.subplots_adjust(hspace = 0.1, bottom = 0.1, wspace=0.05, left = 0.06, right 
 fig.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
 fig.gca().xaxis.set_major_locator(mdates.MonthLocator())
 
+fig2.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
+fig2.gca().xaxis.set_major_locator(mdates.MonthLocator())
+
 
 
 
@@ -46,14 +49,21 @@ ax1.set_xlim(date_2018[0], date_2018[-1])
 
 
 cs2 = ax2.plot(date_2018[0::5], raw_2018[0::5,1], linewidth =.4)
-ax2.set_ylabel('Airpressure (hpa)',fontname="cmr10", fontsize = 10)
+ax2.set_ylabel('Airpressure (hPa)',fontname="cmr10", fontsize = 10)
 ax2.tick_params(axis='y',labelsize=10)
 ax2.grid(True)
 ax2.set_xlim(date_2018[0], date_2018[-1])
+ax2.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
+ax2.xaxis.set_major_locator(mdates.MonthLocator())
 ax2.tick_params(axis='x',labelbottom=False)
 
 
 
+for tick in ax2.get_xticklabels():
+    tick.set_rotation(15)
+
+plt.show()
+#
 cs3 = ax3.plot(date_2018[0::5], raw_2018[0::5,2], linewidth = .1)
 ax3.set_ylabel('Wind (km/h)',fontname="cmr10", fontsize = 10)
 ax3.tick_params(axis='y', labelsize=10)
@@ -65,7 +75,7 @@ ax3.tick_params(axis='x',labelbottom=False)
 
 
 cs4 = ax4.plot(date_2018[0::5], raw_2018[0::5,3], linewidth = .8)
-ax4.set_ylabel(r'rain (l/mm${^2}$)',fontname="cmr10", fontsize = 10)
+ax4.set_ylabel(r'Rain (l/mm${^2}$)',fontname="cmr10", fontsize = 10)
 ax4.tick_params(axis='y',labelsize=10)
 ax4.set_xlim(date_2018[0], date_2018[-1])
 ax4.grid(True)
