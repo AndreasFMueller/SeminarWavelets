@@ -48,6 +48,7 @@ Diesen Abtausch von hoher Kompression mit schlechter Qualität gilt es abzuschä
 
 \section{Psychoakustik}
 \rhead{Psychoakustik}
+\label{chapter:Psychoakustik}
 Das menschliche Gehör verarbeitet Schallwellen nicht einfach wie ein Mikrofon.
 Um ein Schallereignis zu beurteilen haben Psychoakustiker eine Vielzahl an Parametern identifiziert, beispielsweise Lautheit und Schärfe, auf welche in dieser Arbeit aber nicht weiter eingegangen wird.
 
@@ -59,6 +60,8 @@ Um ein Schallereignis zu beurteilen haben Psychoakustiker eine Vielzahl an Param
 \end{figure}
 
 In \autoref{fig:Wahrnehmbarkeitsschwelle} dargestellt ist ein Modell der Wahrnehmbarkeitsschwelle des menschlichen Gehörs.
+Dabei wurde die Lautstärke von $0\,\text{dB}$ gerade an dem Ort festgelegt, an dem ein $2\,\text{kHz}$ Ton gerade hörbar wird.
+Ausserdem entspricht eine Signalverdoppelung gerade einer Erhöhung um $6\,\text{dB}$. 
 Bei einem vorhandenen Störsignal, hier $1\,\text{kHz}$, wird diese Schwelle merklich angehoben.
 Auch zeitlich werden leise Töne kurz vor und nach einem lauten Ton verdeckt \cite{wikipedia:Psychoakustik}.
 
@@ -83,12 +86,11 @@ Die Ordnung des Wavelets nimmt also zusammen mit der Ordnung des analysierten Si
 	\caption{Daubechies-Wavelets unterschiedlicher Ordnungen.}
 \end{figure}
 
-Da im Audiobereich sehr transiente Signale möglich sind, können Daubechies-Wavelets einer hohen Ordnung sehr gute Werte liefern.
+Da im Audiobereich sehr steile Signale möglich sind, können Daubechies-Wavelets einer hohen Ordnung sehr gute Werte liefern.
 Das bedeutet zum einen, dass sehr unterschiedliche Signale damit abgetastet werden können und zum anderen, dass die Wavelettransformationen genau Null geben, wenn sie auf Signale der tieferen Ordnung angewendet werden.
 Wenn man die Wahrnehmbarkeitsschwelle von \autoref{fig:Wahrnehmbarkeitsschwelle} betrachtet, liegt es nahe, dass eine Folge von Nullwerten oder auch Werte in der Nähe von Null nicht gespeichert werden müssen.
 Somit bilden die Daubechies-Wavelets eine gute Grundlage für diese Anwendung.
 Für diese Arbeit wurden hauptsächlich die beiden Wavelets `db4' sowie `db20' verwendet.
-Experimentell hat sich gezeigt, dass diese sehr gut auf unterschiedlichste Audiodaten passen.
 
 \section{Anwendung}
 \rhead{Anwendung}
@@ -121,7 +123,8 @@ Alle Koeffizienten weiter entfernt vom Übergang können also komprimiert werden
 Doch wenn nun auch Rauscheffekte gelöscht werden, weil sie nicht stark ins Gewicht fallen, können negative Auswirkungen auf das Hörerlebnis entstehen. 
 Koeffizienten, welche nicht stark ins Gewicht fallen, können mit wenigen Bits gespeichert werden, wodurch sie grössere Quantisierungsstufen bilden. 
 Dann fehlen sie nicht komplett aber brauchen auch nicht den vollen Speicherplatz.
-Nun stellt sich die Frage, ab wann eine solche Quantisierung sinnvoll ist und wann ein Koeffizient ganz weggelassen werden kann. 
+Es wird an den Koeffizienten Speicherplatz gespart, wo sie keinen grossen Einfluss auf das Gesamtsignal haben.
+Nun stellt sich die Frage, ab wann eine solche Quantisierung sinnvoll ist und wann ein Koeffizient ganz weggelassen werden kann.
 
 \begin{figure}
 	\centering
@@ -138,28 +141,21 @@ Um das zu erreichen muss entschieden werden, ab wann es Sinn macht, die Werte zu
 Für einen ersten Versuch wird der Anteil der einzelnen Levels über das ganze Signal berechnet.
 In \autoref{fig:coefficients} ist graphisch dargestellt, welchen Anteil vom originalen Signal die unterschiedlichen Dilatationen beinhalten.
 Eine ungefähre Grössenanordnung lässt sich für einfache Signale wie in \autoref{fig:sawtooth} auch optisch einschätzen.
-Signale mit breiten Bereichen einer hohen Amplitude resultieren auch in einem hohen Anteil. 
+Signale mit breiten Bereichen einer hohen Amplitude resultieren auch in einem hohen Anteil am Gesamtsignal. 
 Hingegen haben Signale, welche hauptsächlich Amplituden um den Nullpunkt herum besitzen einen eher geringen Einfluss auf das Signal.
-Allerdings spielen die Anteile bei geringerer Dilatation insbesondere für Rauscheffekte noch eine Rolle.
+Allerdings spielen die Anteile bei geringerer Dilatation insbesondere für Rauscheffekte trotzdem eine Rolle.
 
 Im nächsten Schritt werden zwei Grenzen gesetzt.
 Eine obere bei  $10\,\text{\%}$ und eine untere bei $1\,\text{\%}$ der Gesamtsignalstärke.
 Diese `Schranke' unterteilt den Graphen nun in drei Bereiche. 
-Oberhalb der Schranke sollen die exakten Werte übernommen werden, was beispielsweise einem double-precision floating-point Format mit 64 Bit entspricht.
+Oberhalb der Schranke sollen die exakten Werte übernommen werden, was beispielsweise bei CD-Qualität einer Genauigkeit von 16 Bit entspricht.
 Unterhalb der Schranke können die Werte jedoch ganz weggelassen werden.
 Der Bereich innerhalb der Schranke bildet einen Übergangsbereich.
-Die Werte sollen erhalten bleiben jedoch ist die Genauigkeit nicht vordergründig.
+Diese Werte sollen erhalten bleiben jedoch ist die Genauigkeit nicht vordergründig.
 
 Beim Beispiel des Sägezahnes ist in \autoref{fig:coefficients} ersichtlich, dass die Levels 11, 12 und 13 exakt übernommen werden.
 Hingegen werden die Levels 1 bis 6 sowie 16 weggelassen und die übrigen quantisiert.
 Mit `Total Portion used' wird angegeben welcher Anteil des originalen Signals damit noch wiederhergestellt werden kann.
-
-Audiodaten werden je nach Technologie üblicherweise mit einer Auflösung von 16 Bit (CD) oder mit 24 Bit (DVD) abgespeichert. 
-Für unsere quantisierten Koeffizienten ist eine solche Genauigkeit überflüssig, da die entsprechende Zahl auf wenigen Nachkommastellen genau gerundet werden soll.
-Wird diese Zahl also mit 8 oder sogar nur mit 4 Bit gespeichert kann viel gespart werden.
-Dies bedeutet allerdings nicht, dass der effektiv verwendete Speicherplatz nur noch einem Viertel oder einem Fünftel entspricht.
-Die tatsächliche Verminderung ist schlussendlich abhängig vom Signal und vom Speicherungsalgorithmus.
-Es kann somit keine exakte Einschätzung für alle Arten von Audiodaten getroffen werden. 
 
 \subsection{Periodische Signale}
 Als erstes stellt sich die Frage, ob diese Analyse für periodische Signale interessant ist.
@@ -182,52 +178,81 @@ Zum Vergleich sind in \autoref{fig:dbHorn} die Anteile der Levels mit einem db4 
 	\caption{Anteil der verschiedenen Levels einer MSA an einem Hornton. Verwendet wurden Daubechies Wavelets der Ordnung vier und zwanzig.}
 	\label{fig:dbHorn}
 \end{figure}
+
 Das Interessante ist nun, dass das harmonische Signal sehr gut mit dem db20 erfasst wird und über $99\,\text{\%}$ mit nur 3 Koeffizienten rekonstruiert werden kann.
 Wird das Signal jedoch rekonstruiert zeigt sich ein grosses Problem der Quantisierung.
 Das Signal wird teilweise stark verzerrt, was in \autoref{fig:hornBoth} gut ersichtlich ist.
 Obwohl diese Verzerrungen anteilsmässig keinen grossen Unterschied zum Originalsignal machen, sind diese hochfrequenten Störungen akustisch sehr gut wahrnehmbar.
+
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{papers/compress/Bilder/hornBoth.pdf}
 	\caption{Starke Verzerrungen des Horntons nach einer Rekonstruktion mit dem db20.}
 	\label{fig:hornBoth}
 \end{figure}
+
+\begin{figure}
+	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/hornOnlyLevs.pdf}
+	\includegraphics[width=0.5\linewidth]{papers/compress/Bilder/hornOnlyQuant.pdf}
+	\caption{Das weglassen einiger Dilatationslevels resultiert nur in geringfügiger Änderung des Origiansignals(links).
+		Eine Quantisierung über alle Dilatationslevels hat eine grosse Änderung des Ergebnisses zur Folge (rechts).}
+	\label{fig:hornOnly}
+\end{figure}
 Um zu verstehen woher diese Störung kommt, wird die Rekonstruktion aufgeteilt.
-In  \autoref{fig:hornOnlyLevs} werden alle Koeffizienten unterhalb der gesetzten Schranke verwendet. 
+In \autoref{fig:hornOnly} links werden alle Koeffizienten unterhalb der gesetzten Schranke verwendet. 
 Das bedeutet, dass noch keine Quantisierung vorgenommen, sondern lediglich einen Teil der Koeffizienten weggelassen wird.
 Dieses Signal weicht nur geringfügig vom Orignal ab.
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{papers/compress/Bilder/hornOnlyLevs.pdf}
-	\caption{Das weglassen einiger Dilatationslevels resultiert nur in geringfügiger Änderung des Origiansignals.}
-	\label{fig:hornOnlyLevs}
-\end{figure}
 Daraus lässt sich vermuten, dass das Problem an der Quantisierung liegt.
-Wird die vollständige Rekonstruktion quantisiert, wird aus dem Originalsignal je nach gewählter Auflösung eine Treppenstufe wie sie in \autoref{fig:hornOnlyQuant} zu sehen ist.
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{papers/compress/Bilder/hornOnlyQuant.pdf}
-	\caption{Eine Quantisierung über alle Dilatationslevels hat eine grosse Änderung des Ergebnisses zur Folge.}
-	\label{fig:hornOnlyQuant}
-\end{figure}
+Wird die vollständige Rekonstruktion quantisiert, wird aus dem Originalsignal je nach gewählter Auflösung eine Treppenstufe wie sie in \autoref{fig:hornOnly} rechts zu sehen ist.
 Bei der Analyse mit dem db4 wird das Signal zwar weniger exakt rekonstruiert, jedoch werden keine Levels quantisiert(\autoref{fig:dbHorn}).
 Somit entstehen keine Verzerrungen und akustisch ist kaum ein Unterschied erkennbar.
-Das zeigt die Problematik der Eingliederung von den Koeffizienten.
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{papers/compress/Bilder/sigAnalysisFreq.pdf}
-	\caption{Die Frequenzanalyse des Originaltons (orange), der Rekonstruktion (grün) sowie deren Differenz (blau).}
-	\label{fig:hornFrequenzen}
-\end{figure}
-Für eine bessere Aussage wurde in \autoref{fig:hornFrequenzen} die Differenz des Originalsignals und der Rekonstruktion berechnet und im Frequenzraum dargestellt.
-Auffallend ist, dass in der Differenz und somit auch in der Rekonstruktion über dem gesamten abgebildeten Frequenzbereich eine höhere Amplitude als beim Originalen vorhanden ist.
-Unter Berücksichtigung des psychoakustischen Modells in \autoref{fig:Wahrnehmbarkeitsschwelle} ist es nicht möglich Auszusagen, welche Frequenzen ohne Probleme weggelassen werden könnten, weil hier über den gesamten Frequenzbereich eine Störung vorhanden ist.
+
+Das zeigt zwei wesentliche Probleme.
+Zum einen scheint es zu grob zu sein, über ein gesamtes Level zu entscheiden ob es quantisiert werden soll oder nicht.
+Diese Einteilung soll deshalb auch innerhalb der einzelnen Levels gemacht werden, damit die Koeffizienten einzeln eingestuft werden können.
+Zum anderen kann auch die Quantisierung nicht absolut gemacht werden.
+Die Grösse des Anteils der Quantisierungsstufe wächst proportional mit der Grösse des Signals.
+Es ist deshalb nötig, der Quantisierung besondere beachtung zu schenken.
+
+\subsection{Quantisierung}
+Audiodaten werden bei der CD-Qualität mit einer Auflösung von $16\,\text{Bit/Sample}$ abgespeichert. 
+Bei einer Abtastfrequenz \textit{fs} von $44.1\,\text{kHz}$ heisst das, dass eine Datenrate \textit{d} von 
+\begin{equation}
+\textit{d} = \frac{\textit{n} \cdot \textit{fs}}{8\,\text{Bit/Byte}} = \frac{16\,\text{Bit/Sample} \cdot 44.1\,\text{kHz}}{8\,\text{Bit/Byte}} = 88.2\,\text{kB/s}
+\end{equation}
+resultiert.
+
+Doch warum genau $16\,\text{Bit}$?
+Nach \autoref{chapter:Psychoakustik} entspricht eine Verdoppelung des Signals gerade einer Erhöhung um $6\,\text{dB}$.
+Bei einem Wertebereich von 16 Bit - wobei jedes zusätzliche Bit einer Verdoppelung des Wertebereichs entspricht - können Töne mit einer Lautstärke bis zu
+$16\,\text{Bit}$ $\cdot$ $6\,\text{dB}$ = $96\,\text{dB}$
+abgespeichert werden.
+Je nach Tonspur ist aber so ein grosser Bereich nicht zwingend nötig.
+Angenommen der Hornton erreicht maximal $80\,\text{dB}$, würden auch bereits ungefähr
+$80\,\text{dB}$ / $6\,\text{dB}$ =  $13.3\,\text{Bit}$
+genügen. 
+Somit kann der Wertebereich der obersten $3\,\text{Bit}$ Bit weggelassen werden.
+
+Zusätzlich wird wegen der Lautstärke von $80\,\text{dB}$ die Wahrnehmbarkeitsschwelle der orangen Kurve in \autoref{fig:Wahrnehmbarkeitsschwelle} um ungefähr $18\,\text{dB}$ angehoben.
+Somit können auch die untersten $3\,\text{Bit}$ weggelassen werden.
+Der Speicherbedarf hat sich also bereits von $16\,\text{Bit}$ auf $10\,\text{Bit}$ gekürzt, ohne dass ein markanter Unterschied hörbar ist.
+
+Zusätzlich wird durch die Multiskalenanalyse das Sparpotential weiter vergrössert.
+An Stellen mit hoher Amplitude (stark blau/gelb) sind genaue Werte wichtig.
+Hingegen bei den Stellen mit tiefen Amplituden (türkis) wird diese Genauigkeit nicht gefordert und es genügt, die Koeffizienten quantisiert zu speichern.
+Der Speicherbedarf der bereits reduzierten $10\,\text{Bit}$ kann noch um 2 weitere auf $8\,\text{Bit}$ verringert werden.
+Die Datenrate entspricht demnach noch der Hälfte, $44.1\,\text{kB/s}$.
+Es kann also für jeden Koeffizient bei dem ein Byte Genauigkeit ausreichend ist ein weiteres Byte gespart werden.
+
+Wie häufig eine solche Einsparung möglich ist, hängt offensichtlich vom Signal ab.
+Dieses Ergebnis weist aber erstaunliche Ersparnisse auf.
+Können beispielsweise bei einem Drittel der Koeffizienten jeweils die Hälfte (1 Byte) gespart werden, benötigt es lediglich noch 5/6 vom Speicherplatz.
 
 \subsection{Transiente Signale}
 Da im Audiobereich nicht nur harmonische Komponenten vorhanden sind soll diese Analyse auch auf transiente Signale angewendet werden.
 Dabei soll auch wieder die Auswirkungen einer Quantisierung überprüft werden.
 Als Signal wird der Ruf eines Vogels, dem Wendehals (\textit{Jynx torquilla}), verwendet.
-Der Wendehals hat einen sehr charakterischen Ruf mit transienten Übergängen.
+Der Wendehals hat einen sehr charakterischen Ruf mit steilen Übergängen.
 \begin{figure}
 	\includegraphics[width=0.4\linewidth]{papers/compress/Bilder/wendehals.jpg}
 	\includegraphics[width=0.6\linewidth]{papers/compress/Bilder/jynxAll.pdf}
@@ -260,7 +285,7 @@ Zum einen kann kaum für all die unterschiedlichen Signaltypen im Audiobereich d
 Zum anderen sollte diese Analyse auch auf der Zeitachse unterteilt werden und somit eine dynamischere Einteilung ermöglichen. 
 Die Arbeit hat jedoch mit einfachen Beispielen gezeigt, dass sich Wavelets gut eignen, um solche Signale zu erfassen.
 Harmonische und auch transiente Signale wurden beide mit wenigen Levels genau dargestellt.
-Besondere Vorsicht soll der Quantisierung der Koeffizienten geboten werden, da sie bei gewissen Signale zu einer erheblichen verschlechterung des Hörerlebnis führen können.
+Besondere Vorsicht soll der Quantisierung der Koeffizienten geboten werden, da sie bei gewissen Signalen zu einer erheblichen verschlechterung des Hörerlebnis führen können.
 In einem nächsten Schritt müsste von den erhaltenen Koeffizienten ausgehend ein passendes Audio-Format erstellt werden.
 
 \printbibliography[heading=subbibliography]
