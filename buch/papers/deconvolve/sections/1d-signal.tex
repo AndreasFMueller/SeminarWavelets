@@ -11,41 +11,58 @@ Jedes Level tiefer wird das Wavelet \glqq halbiert\grqq{} und somit die Auflösu
 Zu beachten ist, dass die Beschriftung der $y$-Achse (Scale) nicht direkt der Dilatation $a$ entspricht.
 Je tiefer der Wert, desto mehr ist das Wavelet gestaucht oder anders gesagt, tiefe Frequenzen befinden sich oben, hohe unten.
 
+Die Funktion $f(x)$ wird mit dem Haar-Wavelet $\psi_{a,n}(x)$ analysiert.
+Mit $a$ wird dabei natürlich die Dilatation und mit $n$ die diskrete (sampleweise) Translation bezeichnet.
+Für jede Verschiebung $n$ erhalten wir einen Koeffizienten $cf_k(n)$, wobei der Index $k\in[1,2,...,13]$ für das jeweilige Level steht. 
 
-Die Koeffizienten der diskreten Transformation von $f(x)$ werden hier als $cf_k$ bezeichnet wobei der Index $k\in[1,2,...,13]$ für das jeweilige Level steht.
-Die Koeffizienten von $g(x)$ werden analog dazu $cg_k$ genannt.
-
-Mathematisch ausgedrückt:
+Mathematisch ausgedrückt beutetet das
 \begin{align*}
-	cf_{13} =& \frac{1}{\sqrt{2^0}}\sum_{n}f(x)\cdot\psi_{2^0, n}\\
-	cf_{12} =& \frac{1}{\sqrt{2^1}}\sum_{n}f(x)\cdot\psi_{2^1, n}\\
+	cf_{13}(n) =& \frac{1}{\sqrt{2^0}}\int_{-\infty}^{\infty}f(x)\cdot\psi_{2^0, n}(x)\,dx\\
+	cf_{12}(n) =& \frac{1}{\sqrt{2^1}}\int_{-\infty}^{\infty}f(x)\cdot\psi_{2^1, n}(x)\,dx\\
 	\vdots\\
-	cf_{1} =& \frac{1}{\sqrt{2^{12}}}\sum_{n}f(x)\cdot\psi_{2^{12}, n}.
+	cf_{1}(n) =& \frac{1}{\sqrt{2^{12}}}\int_{-\infty}^{\infty}f(x)\cdot\psi_{2^{12}, n}(x)\,dx.
 \end{align*}
-$\psi_{a,n}$ ist dabei das  um $a$ skalierte Haar-Wavelet und $n$ die diskrete Translation (sampleweise Verschiebung).
+
+Nun kann aus all den erhaltenen Koeffizienten $cf_k(n)$ ein Vektor $cf_k$ gebildete werden
+$$cf_k = \left(\begin{array}{c}
+	cf_k(0)\\
+	cf_k(1)\\
+	\vdots\\
+	cf_k(n)\\
+\end{array}\right).$$
+Der Vektor aus der Koeffizienten $cg_k(n)$ von $g(x)$ wird analog dazu $cg_k$ genannt.
 
 In \ref{deconvolve:y1_cwt} sind der Übersicht halber nur die Level 7-13 eingezeichnet. 
 Die Abbildung der stetigen Transformation dient hier nur zur Visualisierung, für die eigentliche Umsetzung wird nur noch mit der diskreten Transformation auf den Level 1-13 gearbeitet.
 
-
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/y1_cwt.pdf}
-\caption{CWT von $f(x)$\label{deconvolve:y1_cwt}}
+\caption{CWT von $f(x)$ (Abbildung \ref{deconvolve:1d})\label{deconvolve:y1_cwt}}
 \end{figure}
 
 Kann nun eine Beziehung zwischen den Wavelet-Koeffizienten von $f(x)$ und $g(x)$ erkannt werden?
-Die Hoffnung ist, diesen Zusammenhang als Funktion zu formulieren die $cf_k$ als Input nimmt und eine Menge an Koeffizienten zurück gibt, welche den $cg_k$ ähnlich ist.
-Im Idealfall kann man also eine Funktion $s(cf_k)$ so konstruieren dass
-$$cg_k = s(cf_k)$$
+Die Hoffnung ist, diesen Zusammenhang als Funktion zu formulieren die $cf_k(n)$ als Input nimmt und einen Koeffizienten zurück gibt, welcher $cg_k(n)$ ähnlich ist.
+Im Idealfall kann man also eine Funktion $s(cf_k(n))$ so konstruieren dass
+$$cg_k = \left(\begin{array}{c}
+	s(cf_k(0))\\
+	s(cf_k(1))\\
+	\vdots\\
+	s(cf_k(n))\\
+\end{array} \right)$$
 oder zumindest
-$$cg_k \approx s(cf_k).$$
+$$cg_k \approx \left(\begin{array}{c}
+	s(cf_k(0))\\
+	s(cf_k(1))\\
+	\vdots\\
+	s(cf_k(n))\\
+\end{array} \right).$$
 
-Die Rücktransformation mit den manipulierten $cf_k$ sollte dann eine Funktion liefern, welche $g(x)$ nahe kommt.
+Die Rücktransformation mit $cf_k$ sollte dann eine Funktion liefern, welche $g(x)$ nahe kommt.
 Bei Erfolg hätte man also eine Methode erarbeitet, welche aus der \glqq unscharfen\grqq{} $f(x)$ eine etwas \glqq schärfere\grqq{} Funktion $g(x)$ macht. 
 
 \subsection{Koeffizienten manipulieren}
-Abbildung \ref{deconvolve:level1} zeigt die Koeffizienten des ersten Levels (höchste Auflösung) der Funktionen $f(x)$ und $g(x)$ aus dem vorherigen Abschnitt, welche beide 9600 Samples lang sind.
+Abbildung \ref{deconvolve:level1} zeigt den Plot der Koeffizienten-Vektoren des ersten Levels (höchste Auflösung) der Funktionen $f(x)$ und $g(x)$ aus dem vorherigen Abschnitt, welche beide 9600 Samples lang sind.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/level/level1.pdf}
@@ -60,7 +77,7 @@ $$s(cf_k) = \left( \frac{cf_k}{m}\right)^\alpha$$
 ist dafür ein vielversprechender Ansatz.
 Der Parameter $m$ ist hierbei ebendiese Schwelle und mit $\alpha$ kann die Verstärkung bestimmt werden.
 Wird $\alpha = 1$ gewählt soll sich der Koeffizient aber nicht verändern, weshalb man nochmals mit $m$ multiplizieren muss.
-$$s(cf_k) = m\cdot \left( \frac{cf_k}{m}\right)^\alpha.$$
+$$s(cf_k(n)) = m\cdot \left( \frac{cf_k}{m}\right)^\alpha.$$
 Ein Problem stellen hier aber noch negative $cf_k$ dar. In diesem Fall kann nur mit ganzzahligen Potenzen gearbeitet werden, da man sonst komplexe Lösungen erhält, welche für diese Anwendung nicht brauchbar sind.
 Um dies zu Umgehen muss nur der Betrag von $cf_k$ gebildet, und deren Vorzeichen aber noch mit der Signumfunktion mitgenommen werden.
 Somit erhalten wir eine Funktion
@@ -78,7 +95,7 @@ Bei $-0.75$ und $0.75$ werden die Kurven fixiert.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/function.pdf}
-\caption{Funktion $s(cf_k)$\label{deconvolve:function}}
+\caption{Funktion $s(cf_k(n))$\label{deconvolve:function}}
 \end{figure}
 
 Nun soll diese Funktion auf wenn möglich alle verschiedenen Level unserer Wavelet-Koeffizienten angewendet werden.
@@ -112,7 +129,7 @@ Mit dieser Beispielfunktion $f(x)$ war es möglich mit der Funktion aus \eqref{d
 
 \subsection{Ergebnis}
 Abbildung \ref{deconvolve:result_1d} zeigt unsere ursprüngliche Funktion $f_1(x)$.
-Dessen Wavelet-Koeffizienten $cf_k$ wurden dann mit der oben beschriebenen Methode bearbeitet, was nach der Rücktransformation zu $f_2(x)$ führt.
+Deren Wavelet-Koeffizienten $cf_k$ wurden dann mit der oben beschriebenen Methode bearbeitet, was nach der Rücktransformation zu $f_2(x)$ führt.
 Verglichen mit $f_1(x)$, ist $f_2(x)$ deutlich näher an $g(x)$ gerückt.
 \begin{figure}[h]
 \centering
