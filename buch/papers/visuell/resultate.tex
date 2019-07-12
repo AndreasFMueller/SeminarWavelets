@@ -29,9 +29,10 @@ Das Klassifizieren von neuen Bildern dauert danach bei beiden Varianten gleich l
 
 Lernt das klassische CNN Kernels welche Ähnlichkeiten zu Gabor-Wavelets aufweisen?
 In unserem Versuch ist dies nicht der Fall.
-Die Kernel welche gelernt wurden sehen zufällig aus, es sind keine Regelmässigkeiten zu erkennen (vgl. Abbildung \ref{fig:cnnkernels}).
+Die Kernel welche gelernt wurden sehen zufällig aus, es sind keine Regelmässigkeiten zu erkennen.
+Abbildung \ref{fig:cnnkernels} zeigt diese gelernten Kernels, welche mit den Gabor-Kernels in Abbildung \ref{fig:cnngkernels} verglichen werden sollten.
 Durch die zufällige Initialisierung ist es aber nicht ausgeschlossen dass solche Gabor-Ähnlichen Kernels gelernt werden könnten.
-Es gibt genügend Beispiele wo Kernels gelernt wurden, welche gewisse Ähnlichkeiten zu Gabor-Kerneln aufweisen (z.B. im Paper \cite{paper:cifar10}).
+Es gibt Beispiele von CNN-Kernels, welche Ähnlichkeiten zu Gabor-Kerneln aufweisen (z.B. im Paper \cite{paper:cifar10}).
 
 \begin{figure}
 	\centering
@@ -40,5 +41,14 @@ Es gibt genügend Beispiele wo Kernels gelernt wurden, welche gewisse Ähnlichke
 	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernel3}}
 	\caption{Drei verschiedene Kernels des ersten Layers welche vom Netzwerk gelernt wurden. Es sind keine Regelmässigkeiten erkennbar.}
 	\label{fig:cnnkernels}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernelG1}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernelG2}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernelG3}}
+	\caption{Drei verschiedene Gabor-Kernels des ersten Layers.}
+	\label{fig:cnngkernels}
 \end{figure}
 
