@@ -95,9 +95,9 @@ Die beiden anderen Hohlräume haben Elektrodenkontakt und die Nummer 3 stellt ei
 
 Elektrisch wird die Fehlerart mit dem Ersatzschaltbild gemäss \ref{fig:M2} modelliert. 
 Die Kapazität $C\textsubscript{0}$ stellt dabei die Gesamtkapazität über der Isolierstrecke dar und $C\textsubscript{h}$ ist die Hohlraumkapazität welche die Fehlerstelle abbildet.
-Die Spannung $u_h(t)$ folgt der äusseren Spannung $u(t)$ bis die Zündspannung erreicht ist. 
+Die Spannung $u\textsubscript{h}(t)$ folgt der äusseren Spannung $u(t)$ bis die Zündspannung erreicht ist. 
 Bei dieser Spannung hat die Feldstärke über der Hohlraumkapazität einen kritischen Wert überschritten und die Energie, bei vorhanden sein eines Startelektrons, entlädt sich über die Funkenstrecke $F$.
-Die Spannung über $u_h(t)$ sinkt bis zur Löschspannung, danach kann sich der selbe Vorgang mehrere Male pro Halbwelle wiederholen. 
+Die Spannung über $u\textsubscript{h}(t)$ sinkt bis zur Löschspannung, danach kann sich der selbe Vorgang mehrere Male pro Halbwelle wiederholen. 
 Über die Serienkapazität $C\textsubscript{s}$ wird die Hohlraumkapazität $C\textsubscript{h}$ via einem kapazitiven Verbschiebestrom nachgeladen \cite{buch:Kuchler}. 
 
 \begin{figure}
@@ -105,13 +105,13 @@ Die Spannung über $u_h(t)$ sinkt bis zur Löschspannung, danach kann sich der s
 	\begin{circuitikz} [european, scale=0.5] 
 		\draw
 		(-3,0)node[vcc]{Hochspannung} (-3,0)--(-3,-1)
-		to[C=$C_0$] (-3,-3) -- (-3,-4)
+		to[C=$C\textsubscript{0}$] (-3,-3) -- (-3,-4)
 		node[rground] {}
 		(-3.5, 0) to[open, v=$u(t)$] (-3.5, -4)
 		
 		(0,0)
-		to[C=$C_s$] (0,-2) 
-		to[C=$C_h$, v=$u_h(t)$] (0,-4)
+		to[C=$C\textsubscript{s}$] (0,-2) 
+		to[C=$C\textsubscript{h}$, v=$u\textsubscript{h}(t)$] (0,-4)
 		node[rground]{}
 		
 		(-3,0) --(0, 0)
@@ -133,7 +133,7 @@ Die Spannung über $u_h(t)$ sinkt bis zur Löschspannung, danach kann sich der s
   
 \subsection{Herkömmliche Fehleranalyse}
 
-Um die fehlerspezifischen physikalisch und elektrotechnischen Phänomene bildlich darstellen zu können muss ein Bezug hergestellt werden zwischen dem Entladungszeitpunkt und dem Phasenwinkel der Hochspannung, welche am Prüfling anliegt. 
+Um die fehlerspezifischen physikalisch und elektrotechnischen Phänomene bildlich darstellen zu können, muss ein Bezug hergestellt werden zwischen dem Entladungszeitpunkt und dem Phasenwinkel der Hochspannung, welche am Prüfling anliegt. 
 Mit diesen Daten wird ein phasenaufgelöstes Teilentladungsmuster (PRPD: Phase-resolved partial discharge) erstellt. 
 In dem Bild wird die Korrelation zwischen der Phasenlage $\phi$, Amplitudenhöhe $Q$ und der Anzahl Entladungen $N$ dargestellt \cite{buch:UHFSignale}. 
 In Abbildung \ref{fig:PRPDAlg} sind diese Zusammenhänge aufgezeigt und in Abbildung \ref{fig:PRPDHohl} 
@@ -145,7 +145,7 @@ Die Muster werden über den Zeitraum von einer bis mehreren Minuten aufgezeichne
 	\begin{minipage}{.5\textwidth}
 		\centering
 		\includegraphics[width=.9\linewidth]{papers/gis/Bilder/PERP}
-		\captionof{figure}{PRPD Algorithums \cite{report:ABBOnSite}}
+		\captionof{figure}{PRPD Algorithmus \cite{report:ABBOnSite}}
 		\label{fig:PRPDAlg}
 	\end{minipage}%
 	\begin{minipage}{.5\textwidth}
@@ -157,40 +157,40 @@ Die Muster werden über den Zeitraum von einer bis mehreren Minuten aufgezeichne
 \end{figure}
 
 
-\section{Messpfad}
+\section{Messkette}
 \rhead{Abschnitt}
 In diesem Bericht wird untersucht, ob mit der kontinuierlichen Wavelet Transformation fehlerspezifische Merkmale im Zeitsignal auszumachen sind. 
-Dafür ist es wichtig das wir den Messpfad von der Fehlerursache bis zum Oszilloskop kennen. 
+Dafür ist es wichtig, dass wir den Messpfad von der Fehlerursache bis zum Oszilloskop kennen. 
 Die untersuchten Signale wurden bei einer Vor-Ort Abklärung, an einer Anlage die im Betrieb war, aufgezeichnet.  
 Im ersten Abschnitt wird auf den Signalpfad innerhalb der GIS eingegangen und in einem zweiten auf die Messkette ausserhalb.
-
-Bei der Fehlstelle [0] (siehe Abbildung \ref{fig:Teilentaldungspuls}) wird Aufgrund der schnellen Entladung des Strompulses eine elektromagnetische Welle abgestrahlt. 
-Die Welle besitzt Frequenzanteile bis in den zweistelligen GHz Bereich. 
-In erster Annäherung wird die GIS oft als Koaxialkabel modelliert. 
-Diese Vereinfachung ist jedoch nicht ausreichend da Reflexionsphänomene auftreten. 
-Aufgrund von diversen Unstetigkeitsstellen in einer GIS, wie z.B Stützisolatoren [1], Verzweigungen [2],  Änderung der Leiterdurchmesser [3], schaltende Elemente und die Enden der Anordnung, ändert der Wellenwiderstand und es kommt zu Reflexionen der Welle.
-Eine weitere Signalverzerrung entsteht auf Grund von Disperssionsphänomenen die sich besonders in den Isolatoren aus Epoxidharz [1] bemerkbar machen. 
+\subsection{Messkette innerhalb GIS}
+Bei der Fehlstelle am Punkt 0 in Abbildung \ref{fig:Teilentaldungspuls} wird wegen der schnellen Entladung des Strompulses eine elektromagnetische Welle abgestrahlt. 
+Das Signal besitzt Frequenzanteile bis in den zweistelligen GHz Bereich. 
+In erster Näherung wird die GIS oft als Koaxialkabel modelliert. 
+Diese Vereinfachung ist jedoch nicht ausreichend, da Reflexionsphänomene auftreten. 
+An diverser Unstetigkeitsstellen in einer GIS, wie Epoxidisolatoren Punkt 1, Verzweigungen Punkt 2,  Änderung der Leiterdurchmesser Punkt 3, schaltenden Elementen und den Enden der Anordnung, ändert der Wellenwiderstand und es kommt zu Reflexionen der Welle.
+Eine weitere Signalverzerrung entsteht auf Grund von Dispersionsphänomenen, die sich besonders in bei den Epoxidisolatoren am Punkt 1 bemerkbar machen. 
 Aufgrund von all den Oben erwähnten Effekten erfährt die Signalleistung auf dem Signalpfad eine hohe Dämpfung.
-In Abbildung \ref{fig:messketteingis} sind einige approximative Dämpfungswerte für GIS Komponenten angezeigt \cite{report:PDBasicABB}.
-Eine GIS hat an diversen Stellen breitbandige Koppelantennen [4] damit die UHF Teilentladungssignale für Fehleranalysen ausgekoppelt werden können \cite{buch:UHFSignale, skript:Judd24ps, buch:Kuchler}.
+In Abbildung \ref{fig:messketteingis} sind einige approximative Dämpfungswerte für GIS Komponenten angezeigt  \cite{report:PDBasicABB}.
+Eine GIS hat an diversen Stellen breitbandige Koppelantennen wei bei Punkt 4, damit die UHF Teilentladungssignale für Fehleranalysen ausgekoppelt werden können \cite{buch:UHFSignale, skript:Judd24ps, buch:Kuchler}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{papers/gis/Bilder/MessketteInGIS}
 	\caption{Unstetigkeitsstellen GIS \cite{report:PDBasicABB}}
 	\label{fig:messketteingis}
 \end{figure}
-
-Nach dem Sensor ist ein Hochpassfilter mit der Eckfrequenz 83MHz vorgeschaltet.
+\subsection{Messkette ausserhalb GIS}
+Nach der Koppelantenne ist ein Hochpassfilter mit der Eckfrequenz 83MHz geschaltet.
 Dieser dient zum Schutz der dahinterliegenden Messgeräte.
-Falls es zu einem dielektrischen Durchschlag kommt werden die hochenergetischen Signalanteile gegen Erde abgeleitet.
+Falls es zu einem dielektrischen Durchschlag kommt, werden die hochenergetischen Signalanteile gegen Erde abgeleitet.
 Danach wird das Signal mit 50dB verstärkt.
 Die 50$\Omega$ Signalkabel werden an einen Multiplexer angeschlossen. 
-Mit dem kann das Signal auf einem Frequenzanalysator oder Oszilloskop angezeigt werden. 
+Der Multiplexer ermöglicht eine schnelle Auswahl zwischen vielen verschiedenen Koppelantennen damit das erwünschte Signal auf einem Frequenzanalysator oder Oszilloskop angezeigt werden kann. 
 Für die untersuchten Daten sind die Zeitsignale mit einem 10GS/s Oszilloskop mit 2GHz Bandbreite aufgezeichnet worden.
 Die Abtastzeit wurde für alle Signale gleich gewählt und liegt bei 100ps. 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{papers/gis/Bilder/MessketteAusGIS}
+	\includegraphics[width=0.9\linewidth]{papers/gis/Bilder/MessketteAusGIS}
 	\caption{Messkette \cite{report:ABBOnSite}}
 	\label{fig:messketteausgis}
 \end{figure}
@@ -255,8 +255,9 @@ Damit die Messungen sinnvoll miteinander vergleichbar sind, wurden einige Datena
 Dies dient zur Harmonisierung der zu untersuchenden Signale (siehe Abbildung \ref{fig:Zeitsig}). 
 Auf diese wird im Folgenden kurz eingegangen.
 
+\subsection{Thresholding}
 Durch Transformieren von vielen Signalen hat sich gezeigt, dass der interessante Bereich, wo die CWT relevante Muster hervorbringt, in den ersten 300ns ist.
-Bei einer Abtastzeit von 100ps entspricht dies 3000 Datenpunkte.
+Bei einer Abtastzeit von 100ps entspricht dies 3000 Datenpunkte welche den Datenvektor $v_d$ bilden.
 Um den Startpunkt des Signals zu extrahieren wurde ein Thresholdlevel (Schwellenwert) mit folgendem Algorithmus implementiert.
 Aus den ersten 300 Datenwerte wird der Vektorindex $v_\text{max}$ mit dem grössten absoluten Wert ermittelt.
 Der Thresholdlevel
@@ -264,10 +265,15 @@ Der Thresholdlevel
 \text{Tresholdlevel} = 3\cdot v_\text{max}^2
 \end{equation}
 wird durch Quadrieren von Wert in $v_{max}$ und Multiplikation mit 3 festgelegt.
-Der Startpunkt wird ermittelt in dem das erste Vektorelement im Datenvektor $abs(v_d)^2$ gesucht wird welches diesen überschreitet.
-Dazu wird auch der gesamte Datenvektor quadriert.
-Mit dem Quadrieren wird ein grösserer Signal-Rausch Abstand (SNR) erzielt.
+Der Startpunkt wird ermittelt, indem das erste Vektorelement im Datenvektor $v_d$ gesucht wird, welches diesen überschreitet.
+Dazu wird der gesamte Datenvektor 
+\begin{equation}
+\text{$v_d^2$}
+\end{equation}
+quadriert.
+Mit dem Quadrieren wird ein grösserer Signal-Rausch Abstand (SNR) erzielt und das negative Werte mit einbezogen werden.
 
+\subsection{Frequenzinterpretation}
 Um die CWT Muster aussagekräftiger darzustellen wird auf der $y$-Achse nicht die Dilatationsskalierungen angezeigt. Stattdessen wird ein Rückschluss auf die Frequenz abgeleitet. Diese darf jedoch nur als Approximation betrachtet werden, aufgrund der Unschärferelation entspricht in einer CWT die Frequenzauflösung nicht der Auflösung einer Fourier-Transformation. 
 Die Frequenzapproximation 
 \begin{equation}
@@ -296,9 +302,23 @@ Die Abtastfrequenz ist 1Hz und die Center Frequency korrespondiert mit dem Wavel
 
 \section{Auswertung kontinuierliche Wavelettransformation}
 \rhead{Abschnitt}
-In diesem Abschnitt wird behandelt, wie die Auswertung der vier Fehlsignalen von den zwei verschiedenen Fehlerarten angegangen wurde. 
-Ein Thema hier ist die Wahl des Wavelet und die Vorgehensweise während der Analyse. 
+In diesem Abschnitt wird behandelt, wie die Auswertung der vier Fehlsignalen von den zwei verschiedenen Fehlerarten angegangen wurde. Auf die Resultate und Erkenntnisse aus diesen wird ebenfalls eingegangen. 
+\subsection{Auswertung und Resultat}
+Da bei dem zu untersuchenden Problem nicht klar war nach was genau gesucht werden sollte wurden Wavelets für verschiedene Signalcharakteristiken verwendet.
+\begin{itemize}
+	\item Haar
+	\item Daubechies 
+	\item Symlets
+	\item komplex Gaussian
+	\item real und komplex Morlet
+\end{itemize}
+Es sind von jeder Familie mit verschiedene Exponate jeweils zwei CWT Plots erstellt worden. 
+Die Zeitsignale von den Zweien gehörten je zu einer der beiden Fehlerarten Oberflächenentladung oder Hohlraumentladung.
+Visuell sind die zwei Plots miteinander verglichen worden.
+Bei Auffälligkeiten wurden zwei weitere Zeitsignale transformiert um diese zu bestätigen.
+Es konnte jedoch keine typische Bildcharakteristik gefunden werden welche nur bei einer Fehlerart auftritt.
 
+\subsection{Erkenntnisse Waveleteigenschaften}
 Mit der Wahl des Wavelet kann bestimmt werden ob mehr Zeit $\Delta t$ oder Frequenzauflösung $\Delta f$ gewünscht ist. 
 Der Grund dafür ist die küpfmüllersche Unbestimmtheitsrelation (Unschärferelation der Nachrichtentechnik)
 \begin{equation}
@@ -307,7 +327,7 @@ Der Grund dafür ist die küpfmüllersche Unbestimmtheitsrelation (Unschärferel
 k = 1
 \end{equation}
 welche besagt das nicht gleichzeitig beide Auflösungen beliebig genau sein können.
-Noch klarer wird der Zusammenhang bei der Grenzfallbetrachtung wenn auf ein Diracstoss mit unendlich kurzer Zeitdauers die Fouriertransformation angewendet wird.
+Noch klarer wird der Zusammenhang bei der Grenzfallbetrachtung wenn auf ein Diracstoss mit unendlich kurzer Zeitdauer die Fouriertransformation angewendet wird.
 Es resultiert ein gerades Frequenzspektrum über den kompletten Frequenzbereich.
 
 \begin{figure}
@@ -332,7 +352,7 @@ Es resultiert ein gerades Frequenzspektrum über den kompletten Frequenzbereich.
 
 Mit einem Haar-Wavelet erhält man eine sehr hohe Zeitauflösung wann ein Event stattgefunden hat und mit einem Morlet-Wavelet wird die Frequenzauflösung erhöht dafür wird der Preis von einer ungenaueren Zeitauflösung bezahlt.
 Veranschaulicht, mit zwei Graphen, ist die Unschärferelation in den Abbildungen \ref{fig:UnschRelMorl} und \ref{fig:UnschRelHaar}. 
-Der CWT Plot vom Haar-Wavelet weist scharfe Kanten auf welche gut mit den Minimums und Maximums des Zeitsignals korrelieren.
+Der CWT Plot vom Haar-Wavelet weist scharfe Kanten auf, welche gut mit den Minimas und Maximas des Zeitsignals korrelieren.
 Die Frequenzen sind jedoch über den Frequenzbereich verschmiert, diese Auflösung ist beim Morlet-Wavelet höher.
 
 Bei den reellwertigen Wavelets ist immer auch eine 'Perlenketten' ähnliche Struktur erkennbar (siehe Plots in Abbildung \ref{fig:UnschRelMorl} und \ref{fig:UnschRelHaar}).
@@ -342,20 +362,6 @@ Die Perlenkettenbildung zwischen den Nullstellen kann umgangen werden wenn die C
 Interessant dabei ist, dass nun Schwebungen im Zeitsignal zu einer quasi abgeschlossenen Kontur im CWT Plot führen.
 Dies ist gut erkennbar in der Abbildung \ref{fig:cgau5} im Zeitintervall von 28ns bis 33ns.
 
-Da bei dem zu untersuchenden Problem nicht klar war nach was genau gesucht werden sollte wurden Wavelets für verschiedene Signalcharakteristiken verwendet.
-\begin{itemize}
-	\item Haar
-	\item Daubechies 
-	\item Symlets
-	\item komplex Gaussian
-	\item real und komplex Morlet
-\end{itemize}
-Es sind von jeder Familie mit verschiedene Exponate jeweils zwei CWT Plots erstellt worden. 
-Die Zeitsignale von den Zweien gehörten je zu einer der beiden Fehlerarten Oberflächenentladung oder Hohlraumentladung.
-Visuell sind die zwei Plots miteinander verglichen worden.
-Bei Auffälligkeiten wurden zwei weitere Zeitsignale transformiert um diese zu bestätigen.
-Es konnte jedoch keine typische Bildcharakteristik gefunden werden welche nur bei einer Fehlerart auftritt.
-
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
 In dieser Arbeit wurde versucht aus Zeitsignalen fehlerspezifische Charakteristiken zu extrahieren mit Hilfe der CWT Analyse.
@@ -363,16 +369,18 @@ Die verwendeten Signale stammen von TOF-Aufzeichnungen welche Vor Ort bei einer 
 Es wurde auf die physikalischen wie elektrotechnischen fehlerspezifische Phänomene eingegangen in der Hoffnung das aus diesen Erkenntnissen Rückschlüsse auf die CWT Plots gemacht werden können.
 
 In der Analyse des Messpfades wurde der Ausbreitungsweg elektromagnetischer Wellen innerhalb und ausserhalb einer GIS aufgezeigt.
-Hier wird klar das, dass finden von fehlerspezifische Charakteristiken im CWT Plot schwierig sein könnte.
+Hier wird klar dass das Finden von fehlerspezifische Charakteristiken im CWT Plot schwierig sein könnte.
 Dies aufgrund der Tatsache das die GIS nicht als Koaxialkabel mit konstantem Wellenwiderstand betrachtet werden kann und sich die Fehlstelle mehrere Meter weit weg von der Koppelantenne befinden.
-Dadurch werden die Signale von der Fehlerquelle bis zur Koppelantenne extrem verzerrt und die ursprüngliche Form geht verloren.
-Ein Beispiel wie der Signalpuls an der Fehlstelle und danach bei der Koppelantenne aussieht ist in den Abbildungen \ref{fig:Teilentaldungspuls} und \ref{fig:Zeitsig} ersichtlich.
+Die Signale werden von der Fehlerquelle bis zur Koppelantenne aufgrund von Refelxions- und Dispersionsphänomenen (frequenzabhängige Laufzeiten) extrem verzerrt und die ursprüngliche Form geht verloren.
+Die Verzerrung des Signals ist ersichtlich wenn die Bilder vom Signalpuls an der Fehlstelle \ref{fig:Teilentaldungspuls} und dem Signal der Koppelantenne \ref{fig:Zeitsig} verglichen werden.
+
 Bei der optischen Analyse beider Fehlerarten wurden keine Auffälligkeiten in den CWT Plots entdeckt. 
 Der Autor geht davon aus das dieses Resultat auf die erwähnte Signalverzerrung zurückzuschliessen ist und der Signalpfad innerhalb der GIS zu viele Unstetigkeitsstellen aufweist.
 
 Bei der Beurteilung des Resultates der vorliegenden Arbeit sollte jedoch in Betracht gezogen werden das eventuell mit einer breiteren Datenbasis und Machine Learning fehlerspezifische Charakteristiken herausgefiltert werden könnten. 
 Da zu diesem Thema das Wissen des Autors nicht genug fundiert ist wird nicht weiter auf diese Möglichkeit eingegangen.
 
+\section{Danksagung}
 Ein grosser Dank geht an Glenn Behrmann von der Firma ABB Schweiz AG. 
 Er hat mir die Aufzeichnungen zur Verfügung gestellt und wir hatten beim Projektstart interessante Diskussionen. An dieser Stelle möchte ich erwähnen das Herr Behrmann mich von Beginn an auf das Problem der Signalverzerrung aufmerksam gemacht hat.
 
