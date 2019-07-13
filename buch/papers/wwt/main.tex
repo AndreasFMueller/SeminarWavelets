@@ -176,6 +176,7 @@ Das Morlet-Wavelet wird in der Abbildung \ref{fig:gabor_plot} \space dargestellt
 Weiter ist zu erwähnen, dass das eben gezeigte Gabor Wavelet der referenzierten Quelle entnommen wurde. Ob Matlab die selbe Form verwendet, konnte nicht abschliessend geklärt werden.
 
 \subsection{Berechung mit Matlab}
+\label{matlab}
 Die Berechnung der \textit{cwt} wurde mit der numerischen Berechnungs-Software Matlab durchgeführt.
 Die dafür verwendete Funktion war die cwt()-Funktion.
 Die Funktion arbeitete bei korrekter Parametrisierung wie gewünscht.
@@ -226,13 +227,21 @@ Bei den Rohdaten der Frontdurchgängen erkennt man gemeinsame Wechsel im Wind, d
 Diese korrelierenden auftretenden Frequenzen sollten in der \textit{cwt} sichtbar sein.
 
 \subsection{Parallelen zur Kovarianz}
-
-Um das korrelierende Auftreten der einzelnen Datenkanäle zu verdeutlichen, wurden bei diesen jeweils die zwei zusammengehörenden Messresultate miteinander multipliziert. 
-Dabei werden die Stellen hervorgehoben, wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren.  
+Um das korrelierende Auftreten der einzelnen Datenkanäle zu verdeutlichen, wurden bei diesen jeweils die zwei zusammengehörenden Koeffizienten der \textit{cwt} miteinander multipliziert. 
+Dabei werden die Stellen hervorgehoben, wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren. 
+Sprich die Resultate der \textit{cwt} gemeinsam und zum selben Zeitpunkt für den Luftruck und Wind gross sind.
 Dies funktioniert besonders gut, da die Werte rasch gegen null gehen falls nur schon einer der beiden Datenverläufe nicht mit dem aktuellen Mutter-Wavelet übereinstimmt.
-Genauer betrachtet zeigt dieses Verfahren Ähnlichkeiten mit der Formel
+
+
+Genauer betrachtet zeigt das Verfahren mit der Multiplikation Ähnlichkeiten mit der Formel
 \begin{equation}
-COV(X,Y) = \frac{\sum_{i=1}^{N} (x_i- \bar{x})(y_i- \bar{y})}{N-1},
+COV(X,Y) = \frac{\sum_{i=1}^{N} (x_i- \bar{x})(y_i- \bar{y})}{N-1}
+\label{eq:kovarianz}
+\end{equation}
+oder bei stetigen Werten
+\begin{equation}
+COV(X,Y) = \int{(x(t)- \bar{x})(y(t)- \bar{y}) \text{\space}dt},
+\label{eq:kovarianz_int}
 \end{equation}
 der Kovarianz aus der Statistik. Bei dieser Anwendung wird einfach nicht die ganze Zufallsvariable benutzt, sondern nur jeweils die beiden zeitlich übereinstimmenden Werte.
 
@@ -240,7 +249,86 @@ Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grund
 In \ref{eq:cwt1} ist die Motivation, die jeweiligen Parameter $a$ und $b$ zu finden, wobei das Mutter-Wavelet und das Signal gemeinsam variieren.
 Auch hierfür werden die Produkte der Signale berechnet, auf integriert und gemittelt.
 Auch dies ist eine etwas abgewandelte Art der Kovarianz zwischen dem Datensignal und dem Mutter-Wavelet.
- 
+
+Setzt man den \textit{Luftdruck} und das Mutter-Wavelet $\psi_{a,b}$ in die Formel \ref{eq:kovarianz_int} ein, kann sie wie folgt umgeformt werden,
+
+\begin{equation}
+COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b) = \int{(\text{\textit{Luftdruck}}(t)- \overline{\text{\textit{Luftdruck}}})(\psi_{a,b}(t)- \overline{\psi_{a,b}}) \text{\space}dt}.
+\end{equation}
+Gemäss den Zulässigkeitsbedingungen eines Mutter-Wavelets ist $\overline{\psi_{a,b}} = 0$ (Definition \ref{cwt:zulaessig}). Weiter werden Multiplikationen in Skalarprodukte umgewandelt, somit folgt
+\begin{equation}
+COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b) =  \int{\langle \text{\textit{Luftdruck}}(t)- \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t) \rangle \text{\space}dt}.
+\end{equation}
+Weiter Ausmultipliziert
+\begin{equation}
+COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b) = \int	\langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle - \langle \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t)\rangle \text{\space}dt,
+\end{equation}
+schlussendlich ergibt sich mit $\langle \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t) \rangle = 0$,
+\begin{equation}
+\begin{split}
+COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b) &= \int \langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle \text{\space}dt \\
+\end{split}
+\end{equation}
+Wird noch das Produkt mit dem Wind hinzugenommen
+\begin{equation}
+\begin{split}
+COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b)\cdot COV(\text{\textit{Wind}}, \psi_{a,b})(a,b) \\ =  \int \langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle \text{\space}dt \cdot \int \langle \text{\textit{Wind}}(t),\psi_{a,b}(t)\rangle \text{\space}dt 
+\label{eq:cov_wwt}
+\end{split}
+\end{equation}
+ist die Vereinfachung komplett.
+
+
+\subsection{Multiplikation der Resultate zweier Wavelet-Transformationen}
+
+
+Die angewendete Wavelet-Transformation mit der Idee des Produktes der beiden Datenkanäle: \newline
+Wobei zuerst separat die \textit{cwt}, 
+\begin{equation}
+\mathcal{W}\text{\textit{Luftdruck}}(a,b) = \langle \text{\textit{Luftdruck}},\psi_{a,b}\rangle
+\end{equation}
+\begin{equation}
+\mathcal{W}\text{\textit{Wind}}(a,b) = \langle \text{\textit{Wind}},\psi_{a,b}\rangle,
+\end{equation}
+des Luftdruckes und des Windes gemacht wurde.
+Als nächster Schritt wurde das Produkt der beiden Funktionen berechnet.
+
+\begin{equation}
+\mathcal{P}(\text{\textit{Luftdruck}},\text{\textit{Wind}})(a,b) = \mathcal{W}\text{\textit{Luftdruck}}(a,b) \cdot \mathcal{W}\text{\textit{Wind}}(a,b)
+\label{eq:produkt-wwt}
+\end{equation}
+
+Ausgeschrieben auf die Vollstädnige Formel der \textit{cwt} (\ref{eq:cwt1})
+
+\begin{equation}
+\begin{split}
+\mathcal{P}(\text{\textit{Luftdruck}},\text{\textit{Wind}})(a,b)
+& =
+\langle \text{\textit{Luftdruck}},\psi_{a,b}\rangle \cdot \langle \text{\textit{Wind}},\psi_{a,b} \rangle \\
+& = \frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty \text{\textit{Luftdruck}}(t)\,\overline{
+	\psi\biggl(\frac{t-b}{a})}\biggr)dt
+\cdot
+\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty Wind(t)\,\overline{
+	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt 
+\label{eq:cwt_wwt}
+\end{split}
+\end{equation}
+
+Dabei kommt die Analogie, ohne die Korrekturfaktoren, zu der Formel \ref{eq:cov_wwt} eindrücklich zur Geltung.
+
+
+
+Wie im Abschnitt \ref{matlab} beschrieben wurde, berechnet Matlab mit der \textit{cwt} die Werte und gibt diese als Matrix zurück.
+Um die Formel \ref{eq:produkt-wwt} anzuwenden wurden die beiden gleichgrossen Matrizen des Resultates der \textit{cwt}, des Luftdruckes und des Windes, miteinander elementweise,
+
+\begin{equation}
+	A\circ B=(a_{{ij}}\cdot b_{{ij}})={\begin{pmatrix}a_{{11}}\cdot b_{{11}}&\cdots &a_{{1n}}\cdot b_{{1n}}\\\vdots &\ddots &\vdots \\a_{{m1}}\cdot b_{{m1}}&\cdots &a_{{mn}}\cdot b_{{mn}}\end{pmatrix}},
+\end{equation}
+multipliziert \cite{online:schur}.
+
+
+
+
 \subsection{Sturmsaison 2018}
 \rhead{Sturmsaison 2018}
 Bereits bekannt war, dass in der Sturmsaison im Jahre 2018 einige heftige Winterstürme aufgetreten sind.
@@ -307,17 +395,19 @@ Anbei in Abbildung \ref{fig:python-plot-code} und \ref{fig:python-plot-code2} de
 
 \begin{figure}[h]
 	\centering
-	\lstinputlisting[language=Python,firstline = 1, lastline = 34, numbers=left, firstnumber=1, style = Python]{papers/wwt/code/plot_burglind.py}
+	\lstinputlisting[language=Python,firstline = 1, lastline = 18, numbers=left, firstnumber=1, style = Python]{papers/wwt/code/plot_burglind.py}
 	\caption{Python Codeausschnitt}
 	\label{fig:python-plot-code}
 \end{figure}
 \begin{figure}[h]
 	\centering
-	\lstinputlisting[language=Python,firstline = 35, lastline = 91, firstnumber=35, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
+	\lstinputlisting[language=Python,firstline = 19, lastline = 70, firstnumber=19, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
 	\caption{Python Codeausschnitt}
 	\label{fig:python-plot-code2}
 \end{figure}
  
+ \pagebreak
+ \newpage
 
 \printbibliography[heading=subbibliography]
 \end{refsection}
