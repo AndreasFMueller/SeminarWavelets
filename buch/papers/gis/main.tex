@@ -46,11 +46,7 @@ Entladungen an äusseren Leiterstrukturen werden als Äussere-TE oder Korona bez
 In GIS kommen die zwei Fehler Oberflächenentladung und Koronaentladung aus dieser Kategorie vor.
 Oberflächenentladungen treten bei nicht Einhalten der Herstellungstoleranzen zwischen leitendem und isolierendem Material auf.
 Eine weitere Quelle sind potenzialfrei leitende Partikel auf festen Isolierstoffen.
-Spitzen und scharfe Kanten an spannungsführenden- und an leitfähigen-Teilen auf Erdpotenzial führen zu Koronaentladung. \begin{itemize}
-	\item buch:Kuchle
-	\item skript:AeussreTE
-\end{itemize}
-%\cite{buch:Kuchler, skript:AeussreTE, skript:InnereTE}
+Spitzen und scharfe Kanten an spannungsführenden- und leitfähigen-Teilen auf Erdpotenzial führen zu Koronaentladung \cite{buch:Kuchler, skript:AeussreTE, skript:InnereTE}.
 In dieser Arbeit werden UHF TE-Signale von Oberflächenentladung und Hohlraumentladungen analysiert. 
 In dem folgenden Abschnitten werfen wir einen genaueren physikalischen Blick, auf die zwei Entladungsarten und die herkömmliche Fehleranalyse.
 
@@ -58,8 +54,8 @@ In dem folgenden Abschnitten werfen wir einen genaueren physikalischen Blick, au
 
 Diese Entladungsart entsteht, wenn an Oberflächen von Festisolierstoffen hohe elektrische Feldstärken auftreten. 
 Dies kann konstruktionsbedingt oder Aufgrund von unsauberer Montage entstehen.
-Wenn sich ein Braue oberhalb eines Festisolierstoffes befindet oder ein loser metallischer Partikel auf einem Isolierstoff ist, dann entladen sich die Stromimpulse über das Isoliermaterial. 
-In Abbildung \ref{fig:oberflaechenentladung} ist schön ersichtlich das die Art der TE einer Koronaentladung entspricht. Jedoch verteilen sich die Elektronen nicht im Gasraum sondern sie gleiten über die Isolierfläche (helle Fläche).
+Wenn sich ein Spitze oder scharfe Kante oberhalb eines Festisolierstoffes befindet oder ein loser metallischer Partikel auf einem Isolierstoff ist, dann entladen sich die Stromimpulse über das Isoliermaterial. 
+In Abbildung \ref{fig:oberflaechenentladung} ist schön ersichtlich, dass die Art der TE einer Koronaentladung entspricht. Jedoch verteilen sich die Elektronen nicht im Gasraum sondern sie gleiten über die Isolierfläche (helle Fläche).
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{papers/gis/Bilder/Oberflaechenentladung}
@@ -83,13 +79,13 @@ to[american gas filled surge arrester=$F$] (3, -2) -- (3, -3) -- (0,-3)
 			(-2, 0) to[open, v=$u(t)$] (-2, -4)
 	;
 \end{circuitikz}
-\caption{ESB: Koronaentladung} \label{fig:M1}
+\caption{Ersatzschaltbild Koronaentladung} \label{fig:M1}
 \end{figure}
 
 
 \subsection{Hohlraumentladung}
 
-Die häufigste Form von Hohlraumentladungen in GIS ist aufgrund von Hohlräumen im Isolierstoff. 
+Hohlraumentladungen in GIS kommen am häufigsten wegen Hohlräumen im Isolierstoff vor. 
 Hohlräume entstehen beim Herstellungsprozess der Isolatoren. Während dem Abkühlprozess kann es zu Diffusionsvorgänge in der
 Isoliermasse kommen, dadurch können sich gasgefüllte Hohlräume im Isolierstoff ausbilden. 
 Oft geht man im Model von runden, luftgefüllten Hohlräumen mit niedriger elektrischer Festigkeit aus. 
@@ -124,7 +120,7 @@ Die Spannung über $u_h(t)$ sinkt bis zur Löschspannung, danach kann sich der s
 		node[rground]{} 
 		;
 	\end{circuitikz}
-	\caption{ESB: Hohlraumentladung} 
+	\caption{Ersatzschaltbild Hohlraumentladung} 
 	\label{fig:M2}
 	\end{figure}
 
