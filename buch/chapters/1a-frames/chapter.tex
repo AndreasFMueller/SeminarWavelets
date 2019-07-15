@@ -1,0 +1,65 @@
+%
+% chapter.tex -- Kapitel über Frames
+%
+% (c) 2019 Prof Dr Andreas Müller
+%
+\chapter{Frames
+\label{chapter:geometrie}}
+\lhead{Frames}
+Analyse von Vektoren mit einer orthonormierten Basis führt auf eindeutige
+Darstellungen. 
+Ausserdem sind die Vektoren, die für Analyse und Synthese verwendet
+werden, im Wesentlichen gleich.
+Die Analyse erfolgt mit Hilfe einfacher Skalarprodukte mit den Basisvektoren.
+Die zugehörige Transformationsmatrix ist orthogonal, so dass die
+Matrix der Rücktransformation durch Transponieren gefunden werden kann.
+Eine orthonormierte Basis ist daher sehr starr und oft gibt es für ein
+Problem keine angemessene orthonormierte Basis.
+
+In vielen Anwendungen muss daher der Begriff der Basis etwas aufgeweicht
+werden:
+\begin{enumerate}
+\item
+Es muss zugelassen werden, dass mehr Vektoren für die Analyse verwendet
+werden, als strikt notwendig wäre.
+Die Menge der Analyse-Vektoren ist daher nicht mehr eine Basis, man
+verzichtet darauf, dass die Analyse-Vektoren {\em linear unabhängig} sein
+müssen.
+Man muss aber immer noch fordern, dass Vektoren nicht zu stark gestaucht
+werden, damit Umkehrbarkeit der Transformation stetig möglich ist.
+Auf diesem Weg gelangt man zum Begriff des {\em Frames}.
+\item
+Wenn die Vektoren nicht mehr linear unabhängig sind, ist es erst
+recht nicht mehr möglich, dass sie orthonormiert sind.
+Es muss daher auch zugelassen werden, dass einzelne Skalarprodukte 
+$\langle v_i,v_j\rangle\ne 0$ sind für $i\ne j$.
+Dies bedeutet aber dass die Transformationsmatrix nicht mehr so einfach
+invertiert werden kann.
+Analyse- und Synthese-Vektoren sind verschieden.
+\end{enumerate}
+In den folgenden Abschnitten wird erst in Abschnitt~\ref{section:frame}
+der Begriff des motiviert und definiert.
+In Abschnitt~\ref{section:dual} wird der Begriff des dualen Frames
+eingeführt, die für die Synthese benötigt wird.
+Die numerische Bestimmung des dualen Frames wird in
+Abschnitt~\ref{section:ginv}.
+
+\input{chapters/1a-frames/frame.tex}
+\input{chapters/1a-frames/dual.tex}
+\input{chapters/1a-frames/ginv.tex}
+
+
+
+\section*{Übungsaufgaben}
+\rhead{Übungsaufgaben}
+\uebungsaufgabe{01001}
+\uebungsaufgabe{01002}
+\uebungsaufgabe{01003}
+\uebungsaufgabe{01004}
+\uebungsaufgabe{01005}
+
+
+
+
+
+
