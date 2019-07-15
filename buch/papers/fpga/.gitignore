@@ -18,4 +18,4 @@ vhdl/data/xVector.hex
 *.lot
 !/images/*.pdf
 !/Anhang/*.pdf
-../../local_build**
+local_build**
