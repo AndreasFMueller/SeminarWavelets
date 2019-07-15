@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+%scientific unterdrücken
+\pgfplotsset{ticklabel style={/pgf/number format/fixed, /pgf/number format/precision=5}, scaled ticks=false}
+%1000 sep unterdrücken
+\pgfkeys{/pgf/number format/.cd,1000 sep={\,}}
+
+
+\begin{document}
+	\begin{minipage}{7.35cm}
+	\input{level5.tikz}
+	\end{minipage}
+	\begin{minipage}{0.7cm}
+		\centering
+		$\Rightarrow$
+	\end{minipage}
+	\begin{minipage}{7.35cm}
+	\input{level5_n.tikz}.
+	\end{minipage}
+\end{document}

@@ -1,0 +1,129 @@
+%
+% comparison.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\begin{frame}
+\frametitle{Zwei Extreme: CWT und DWT}
+
+\begin{block}{Funktionen}
+
+\vspace{-20pt}
+
+\begin{columns}[T,totalwidth=\linewidth]
+\begin{column}{0.48\textwidth}
+\uncover<2->{
+\vspace{-10pt}
+\[
+D_bT_a \psi(t)
+=
+\psi_{a,b}(t)
+=
+\frac{1}{\sqrt{a}}
+\psi\biggl(\frac{t-b}{a}\biggr)
+\]}
+\end{column}
+\begin{column}{0.48\textwidth}
+\vspace{-15pt}
+\uncover<3->{
+\begin{align*}
+\psi_{j,k} &= 2^{j/2}\psi(2^jt-k)
+\\
+\varphi_{j,k} &= 2^{j/2}\varphi(2^jt-k)
+\end{align*}}
+\end{column}
+\end{columns}
+\end{block}
+
+\vspace{-15pt}
+
+\uncover<4->{
+\begin{block}{Analyse}
+\vspace{-15pt}
+
+\begin{columns}[T,totalwidth=\linewidth]
+\begin{column}{0.48\textwidth}
+\vspace{-5pt}
+\uncover<5->{
+\[
+\mathcal{W}f(a,b)
+=
+\frac{1}{\sqrt{a}}
+\int_{\mathbb R} f(t)
+\bar{\psi}\biggl(\frac{t-b}{a}\biggr)
+\,dt
+\]}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<6->{
+\vspace{-15pt}
+\begin{align*}
+b_{j,k}
+&=
+\langle f,\psi_{j,k}\rangle
+=
+2^{j/2}
+\int_{\mathbb R} f(t)\overline{\psi(2^jt-k)}\,dt
+\\
+a_{j,k}
+&=
+\langle f,\varphi_{j,k}\rangle
+\end{align*}}
+\end{column}
+\end{columns}
+\end{block}}
+
+\vspace{-10pt}
+
+\uncover<7->{
+\begin{block}{Umkehrformel}
+\begin{columns}[T,totalwidth=\linewidth]
+\begin{column}{0.48\textwidth}
+\uncover<8->{
+\[
+f(t)
+=
+\frac{1}{C_\psi}
+\int_{\mathbb R^*}^{\mathstrut}
+\int_{\mathbb R}
+\mathcal{W}f(a,b)\psi_{a,b}(t)
+\,db\,\frac{da}{|a|^2}
+\]}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<9->{
+\[
+f(t)
+=
+\sum_{j=1}^{N}
+\sum_{k\in\mathbb Z} b_{j,k} \psi_{j,k}(t)
++
+\sum_{k\in\mathbb Z} a_{0,k} \varphi_{0,k}(t)
+\]}
+\end{column}
+\end{columns}
+\end{block}}
+
+%\begin{columns}[T,totalwidth=\linewidth]
+%\begin{column}{0.48\textwidth}
+%\end{column}
+%\begin{column}{0.48\textwidth}
+%\end{column}
+%\end{columns}
+
+
+%Plancherel-Formel:
+%\[
+%\langle f,g\rangle
+%=
+%\frac{1}{C_\psi}
+%\int_{\mathbb R}
+%\int_{\mathbb R^*}
+%\mathcal{W}f(a,b)
+%\overline{\mathcal{W}g(a,b)}
+%\,db
+%\,\frac{da}{|a|^2}
+%\]
+
+\end{frame}

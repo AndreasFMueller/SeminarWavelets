@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+%scientific unterdrücken
+\pgfplotsset{ticklabel style={/pgf/number format/fixed}, scaled ticks=false}
+%1000 sep unterdrücken
+\pgfkeys{/pgf/number format/.cd,1000 sep={\,}}
+
+\begin{document}
+\input{y1_cwt.tikz}
+\end{document}

@@ -6,7 +6,8 @@
 all:	buch.pdf
 
 #SUBDIRECTORIES = chapters uebungsaufgaben 
-SUBDIRECTORIES = chapters
+SUBDIRECTORIES = chapters papers/complex
+SUBDIRECTORIES = chapters papers/wwt
 
 .PHONY:	images
 
@@ -36,17 +37,17 @@ TEXFILES = $(BUCHFILES) $(THEMA_FILES)
 BLXFILES = \
 	buch.bbl \
 	buch1-blx.bbl \
-# 	buch2-blx.bbl \
-#	buch3-blx.bbl \
-#	buch4-blx.bbl \
-#	buch5-blx.bbl \
-#	buch6-blx.bbl \
-#	buch7-blx.bbl \
-#	buch8-blx.bbl \
-#	buch9-blx.bbl \
-#	buch10-blx.bbl \
-#	buch11-blx.bbl \
-#	buch12-blx.bbl
+ 	buch2-blx.bbl \
+	buch3-blx.bbl \
+	buch4-blx.bbl \
+	buch5-blx.bbl \
+	buch6-blx.bbl \
+	buch7-blx.bbl \
+	buch8-blx.bbl \
+	buch9-blx.bbl \
+	buch10-blx.bbl \
+	buch11-blx.bbl \
+	buch12-blx.bbl \
 
 buch.pdf:	buch.tex $(TEXFILES) buch.ind $(BLXFILES)
 	pdflatex buch.tex

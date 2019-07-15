@@ -1,0 +1,37 @@
+Bildet die Menge aller binären Vektoren in $\mathbb R^4$ (Vektoren mit
+Einträgen $0$ oder $1$) ein Frame?
+
+\begin{loesung}
+Die Vektoren geschrieben als $4\times 16$-Matrix sind
+\[
+\setcounter{MaxMatrixCols}{16}
+B
+=
+\begin{pmatrix}
+0&1&0&1&0&1&0&1&0&1&0&1&0&1&0&1\\
+0&0&1&1&0&0&1&1&0&0&1&1&0&0&1&1\\
+0&0&0&0&1&1&1&1&0&0&0&0&1&1&1&1\\
+0&0&0&0&0&0&0&0&1&1&1&1&1&1&1&1
+\end{pmatrix}.
+\]
+Der Gram-Operator ist
+\[
+G=
+\begin{pmatrix}
+8&4&4&4\\
+4&8&4&4\\
+4&4&8&4\\
+4&4&4&8
+\end{pmatrix}
+\]
+mit charakteristischem Polynom
+\[
+\chi_{G}(\lambda)
+=
+(\lambda-20)(\lambda-4)^3
+\]
+Somit ist $B$ zwar ein Frame, aber es ist nicht straff und die
+Frame-Konstanten sind $A=4$ und $B=20$.
+\end{loesung}
+
+

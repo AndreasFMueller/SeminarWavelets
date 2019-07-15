@@ -1,0 +1,327 @@
+% !TeX spellcheck = de_CH_frami
+
+\section{Spectral Graph Wavelet Transformation\label{sec:sgwt:wavelets}}
+\rhead{SGWT}
+
+Hier wollen wir nun das bisher in diesem Kapitel gelernte vereinen zur Spectral 
+Graph Wavelet Transformation.
+
+\subsection{Graph Fourier Transformation\label{subsec:sgwt:gft}}
+
+Die in~\cref{sec:sgwt:spectralanalysis} kennengelernten Eigenfunktionen 
+k\"onnen wir direkt nutzen um eine Graph Fourier Transformation zu definieren. 
+Wir ersetzen bei der Fourier Transformation einfach die Exponentialfunktion 
+oder Kugelfunktionen durch die Eigenvektoren der Laplace Matrix
+\begin{equation*}
+\hat{f} = \langle \chi, f \rangle = \sum_{n = 1}^{N} \chi^*(n)f(n).
+\end{equation*}
+Wenn wir, wie zum Beispiel in \texttt{octave} \"ublich, die Eigenvektoren als 
+Spalten einer Matrix
+\begin{equation}
+\chi = 
+\left[
+\begin{pmatrix}\\\chi_0\\\\\end{pmatrix}
+\begin{pmatrix}\\\chi_1\\\\\end{pmatrix}
+\begin{pmatrix}\\\chi_2\\\\\end{pmatrix}
+\cdots
+\begin{pmatrix}\\\chi_{N-1}\\\\\end{pmatrix}
+\right]
+\end{equation}
+zur Verf\"ugung haben, k\"onnen wir die Transformation 
+einfach durch eine Matrix-Vektor Multiplikation ersetzen
+\begin{equation*}
+\hat{f} = \chi^* f.
+\end{equation*}
+Die R\"ucktransformation ist dann auch wieder analog der Fouriertheorie
+\begin{equation*}
+f = \chi \hat{f}.
+\end{equation*}
+
+\subsection{Graph Wavelet Transformation\label{subsec:sgwt:gwt}}
+
+Mit der Graph Fourier Transformation k\"onnen wir nun Funktionen auf Graphen 
+analysieren und dann auch wieder synthetisieren. Mit Hilfe von Wavelets haben 
+wir aber bereits gesehen, dass damit auch eine Lokalisierung m\"oglich ist. 
+Graphen haben da den Nachteil, dass die Knoten keine inh\"arente Reihenfolge 
+haben. Es ist also nicht klar was mit $f(x - h)$ gemeint ist. Wir haben 
+allerdings in~\cref{eq:sgwt:lambda:series} eine Reihenfolge f\"ur die 
+Eigenwerte der Laplace Matrix eines Graphen definiert. Die Eigenwerte sind 
+allerdings komplett lokalisiert, sie kommen also einem Dirac-Stoss an 
+einem Knoten gleich.
+
+\subsection{Kernelfunktionen}
+
+Um dieses Problem zu l\"osen nehmen wir eine Kernelfunktion $g(\lambda)$, 
+welche die Eigenschaften $g(0) = 0$ und $\lim_{\lambda\to\infty} g(x) = 0$ 
+erf\"ullt. Mit Hilfe dieses Bandpasses k\"onnen wir die Eigenwerte bewusst 
+delokalisieren. Wenn wir nun zus\"atzlich die Eigenwerte mit einem 
+Skalierungsfaktor $t$ multiplizieren, erhalten wir auch eine 
+M\"oglichkeit, das Spektrum zu verschieben. Obwohl $t$ ein kontinuierlicher 
+Faktor ist, werden wir uns in der Praxis auf $J$ Faktoren, also eine endliche 
+Anzahl $\{t_j\}^J_{j=1}$, beschr\"anken m\"ussen.
+
+Wir haben jetzt nur noch das Problem, dass $\lambda_0 = 0$ gilt. Wir verlieren 
+also den konstanten Anteil der zu analysieren und synthetisierenden Funktion. 
+Um das zu umgehen nehmen brauchen wir eine zus\"atzliche Kernelfunktion 
+$h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und $\lim_{\lambda\to\infty} = 0$.
+
+\subsection{Frames}
+
+Mit $h(\lambda)$ und den $J$ skalierten $g(t\lambda)$ haben wir also $J + 1$ 
+Kernelfunktionen f\"ur die Analyse und Synthese zur Verf\"ugung. Wir arbeiten 
+also mit einem Frame. Die Grenzen sind dabei gegeben als
+\begin{align*}
+A &= \min_{\lambda \in \left[0, \lambda_{N-1}\right]} G(\lambda) \\
+B &= \max_{\lambda \in \left[0, \lambda_{N-1}\right]} G(\lambda) \\
+\text{mit } G(\lambda) &= h(\lambda)^2 + \sum_{j = 1}^{J} g(t_j\lambda)^2.
+\end{align*}
+
+\subsection{\texorpdfstring{$\psi_j$}{psi} und \texorpdfstring{$\phi$}{phi}}
+Damit lassen sich nun unsere Wavelets $\psi_j$ und $\phi$ wie folgt konstruieren
+\begin{align}
+\psi_j = \chi \diag{g(t_j\lambda)} \chi' 
+\label{eq:sgwt:psi}
+\\
+\phi = \chi \diag{h(\lambda)} \chi'.
+\label{eq:sgwt:phi}
+\end{align}
+Zur Veranschaulichung sehen wir hier die Wavelets eines Ringgraphen 
+in~\cref{fig:sgwt:wavelets:ring0,fig:sgwt:wavelets:ring1,fig:sgwt:wavelets:ring2,fig:sgwt:wavelets:ring3,fig:sgwt:wavelets:ring4,fig:sgwt:wavelets:ring5},
+ eines Liniengraphen 
+in~\cref{fig:sgwt:wavelets:line0,fig:sgwt:wavelets:line1,fig:sgwt:wavelets:line2,fig:sgwt:wavelets:line3,fig:sgwt:wavelets:line4,fig:sgwt:wavelets:line5}
+ und eines Kugelgraphen 
+in~\cref{fig:sgwt:wavelets:sphere0,fig:sgwt:wavelets:sphere1,fig:sgwt:wavelets:sphere2,fig:sgwt:wavelets:sphere3,fig:sgwt:wavelets:sphere4,fig:sgwt:wavelets:sphere5}.
+Gut zu erkennen ist dabei, dass der Ringgraph die wohl beste Approximation der 
+bisherigen Wavelettheorie ist. Beim Liniengraph fehlt die Periodisierung, die 
+wir durch die Verbindungskante des Start- und Endknoten beim Ringgraphen 
+erreicht haben. Auch beim Kugelgraphen wird klar, dass die Pole, aufgrund ihres 
+viel gr\"osseren Grades, deutlich st\"arker gewichtet werden und es daher zu 
+einer Verzerrung der Wavelets in Richtung der Pole kommt.
+
+\begin{figure}
+    \centering
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-1-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_1(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:ring0}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-2-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_2(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:ring1}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-3-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_3(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:ring2}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-4-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_4(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:ring3}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-5-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_5(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:ring4}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-phi-10.pdf}
+        \vspace{-45pt}
+        \caption{$\phi(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:ring5}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-line-1-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_1(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:line0}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-line-2-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_2(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:line1}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-line-3-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_3(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:line2}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-line-4-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_4(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:line3}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-line-5-10.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_5(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:line4}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-phi-line-10.pdf}
+        \vspace{-45pt}
+        \caption{$\phi(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \label{fig:sgwt:wavelets:line5}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-1-sphere-334.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_1(v_{334})$ eines ungewichteten Kugelgraphen mit 
+        1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere0}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-2-sphere-334.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_2(v_{334})$ eines ungewichteten Kugelgraphen mit 
+        1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere1}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-3-sphere-334.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_3(v_{334})$ eines ungewichteten Kugelgraphen mit 
+        1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere2}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-4-sphere-334.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_4(v_{334})$ eines nicht gewichteten Kugelgraphen mit 
+        1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere3}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-psi-5-sphere-334.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_4(v_{334})$ eines ungewichteten Kugelgraphen mit 
+        1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere4}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets-phi-sphere-334.pdf}
+        \vspace{-45pt}
+        \caption{$\phi(v_{334})$ eines ungewichteten Kugelgraphen mit 1252 
+        Knoten.}
+        \label{fig:sgwt:wavelets:sphere5}
+    \end{minipage}
+\end{figure}
+
+Die Wavelets k\"onnen wir dann wieder ein die $N(J+1)\text{x}N$-Matrix $T$ 
+packen um dann die Wavelet Koeffizienten wie folgt zu berechnen
+\begin{equation}
+\hat{f} = T f.
+\label{eq:sgwt:hatf}
+\end{equation}
+
+\subsection{SGWT Analyse und Synthese}
+
+Um nun eine Funktion $f(v)$ auf einem Graphen $G$ zu analysieren gehen wir 
+also wie folgt vor:
+\begin{itemize}
+    \item[1.] Generierung der \laplaceL{} Matrix aus $G$.
+    \item[2.] Berechnung der Eigenwerte $\lambda$ und Eigenvektoren $\chi$.
+    \item[3.] Berechnung der $\psi_j$ und $\phi$ Wavelets 
+    mit~\cref{eq:sgwt:psi,eq:sgwt:phi}.
+    \item[4.] Berechnung der Wavelet Koeffizienten $\hat{f}$ 
+    mit~\cref{eq:sgwt:hatf}.
+\end{itemize}
+
+F\"ur die Synthese nehmen wir als Eingabe die bei der Analyse berechnet und 
+danach m\"oglicherweise bearbeiteten $\hat{f}$. Zus\"atzlich brauchen wir die 
+$T$ Matrix, mit deren Inversen wir wieder die Funktion
+\begin{equation}
+f = T^{-1} \hat{f}
+\end{equation}
+synthetisieren. Da diese Matrix aber nicht mehr quadratisch ist, kann sie nicht 
+mehr so einfach invertiert werden. Wir nehmen uns daher das Pseudoinverse $L = 
+(T^*T)^{-1}T^*$ zur Hilfe und erhalten
+\begin{equation}
+f = L \hat{f} = (T^*T)^{-1}T^* \hat{f}.
+\end{equation}

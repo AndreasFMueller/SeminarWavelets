@@ -1,0 +1,177 @@
+%
+% H.tex -- Skalierungsrelation
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+%
+% Erzeugende Funktion
+%
+\begin{frame}
+\frametitle{Erzeugende Funktion einer MSA}
+\begin{block}{Skalierungsrelation für $\varphi$}
+\vspace{-20pt}
+\begin{align*}
+\varphi(t)
+&=
+\sqrt{2}
+\sum_{k\in\mathbb Z} h_k\varphi(2t-k)
+\\[-10pt]
+\intertext{\vspace{-10pt} \uncover<2->{Fourier-Transformierte:}}
+\uncover<3->{
+\hat{\varphi}(\omega)}
+&\uncover<3->{=
+\sqrt{2}
+\sum_{k\in\mathbb Z} h_k e^{-ik\omega/2}
+\frac12\hat{\varphi}\biggl(\frac{\omega}2\biggr)}
+\uncover<4->{=
+\biggl(
+\frac1{\sqrt{2}}
+\sum_{k\in\mathbb Z} h_k e^{-ik\omega/2}
+\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)}
+\end{align*}
+\end{block}
+\vspace{-10pt}
+
+\begin{columns}[T,totalwidth=\textwidth]
+\begin{column}{0.62\linewidth}
+\uncover<5->{
+\begin{block}{Erzeugende Funktion}
+Die $2\pi$-periodische Funktion
+\[
+H(s)
+=
+\frac1{\sqrt{2}}
+\sum_{k\in\mathbb Z} h_k e^{-iks}
+\]
+heisst {\em erzeugende Funktion} der Multiskalenanalyse
+\end{block}
+}
+\end{column}
+\begin{column}{0.35\linewidth}
+\uncover<6->{
+\begin{block}{Funktionalgleichung für $\varphi$}
+Für fast alle $\omega$ gilt
+\[
+\hat{\varphi}(\omega)
+=
+H\biggl(\frac{\omega}{2}\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\]
+\end{block}
+}
+\end{column}
+\end{columns}
+\end{frame}
+
+%
+% Orthonormalitätsbedingung für H
+%
+\begin{frame}
+\frametitle{Orthogonalitätsbedingung für $H(s)$}
+\begin{block}{Orthogonalität für $\varphi$ auf Funktionalgleichung anwenden}
+\vspace{-20pt}
+
+\begin{align*}
+\frac{1}{2\pi}
+&=
+\sum_{k\in\mathbb Z}
+|\hat{\varphi}(\omega+2\pi k)|^2
+=
+\sum_{k\in\mathbb Z}
+\biggl|
+H\biggl(\frac{\omega + 2\pi k}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega + 2\pi k}2\biggr)
+\biggr|^2
+\\
+&\uncover<2->{=
+\sum_{l\in\mathbb Z}
+\biggl|
+H\biggl(\frac{\omega + 4\pi l}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega + 4\pi l}2\biggr)
+\biggr|^2
++
+\sum_{l\in\mathbb Z}
+\biggl|
+H\biggl(\frac{\omega + 2\pi(2l+1)}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega + 2\pi(2l+1)}2\biggr)
+\biggr|^2}
+\\
+&
+\ifthenelse{\boolean{presentation}}{
+\only<3>{=
+\sum_{l\in\mathbb Z}
+\biggl|
+H\biggl(\frac{\omega}2\biggr)
+\biggr|^2
+\biggl|
+\hat{\varphi}\biggl(\frac{\omega}2 + 2\pi l\biggr)
+\biggr|^2
++
+\sum_{l\in\mathbb Z}
+\biggl|
+H\biggl(\frac{\omega}2+\pi\biggr)
+\biggr|^2
+\biggl|
+\hat{\varphi}\biggl(\frac{\omega}2 + \pi+ 2\pi l\biggr)
+\biggr|^2
+}
+\only<4>{=
+\biggl|
+H\biggl(\frac{\omega}2\biggr)
+\biggr|^2
+\sum_{l\in\mathbb Z}
+\biggl|
+\hat{\varphi}\biggl(\frac{\omega}2 + 2\pi l\biggr)
+\biggr|^2
++
+\biggl|
+H\biggl(\frac{\omega}2+\pi\biggr)
+\biggr|^2
+\sum_{l\in\mathbb Z}
+\biggl|
+\hat{\varphi}\biggl(\frac{\omega}2 + \pi+ 2\pi l\biggr)
+\biggr|^2
+}
+\only<5>{=
+\biggl|
+H\biggl(\frac{\omega}2\biggr)
+\biggr|^2
+\mathcal{P}|\hat{\varphi}|^2
+\biggl(\frac{\omega}2\biggr)
++
+\biggl|
+H\biggl(\frac{\omega}2+\pi\biggr)
+\biggr|^2
+\mathcal{P}|\hat{\varphi}|^2
+\biggl(\frac{\omega}2 + \pi\biggr)
+}
+}{=\dots}
+\only<6->{=
+\biggl|
+H\biggl(\frac{\omega}2\biggr)
+\biggr|^2
+\cdot
+\frac{1}{2\pi}
++
+\biggl|
+H\biggl(\frac{\omega}2+\pi\biggr)
+\biggr|^2
+\cdot
+\frac{1}{2\pi}
+}
+\end{align*}
+\vspace{-15pt}
+\end{block}
+\uncover<7->{
+\begin{block}{Orthogonalitätsbedingung für $H(s)$}
+Die ganzzahligen Translate von $\varphi$ sind genau dann orthonormiert, wenn
+\[
+|H(\omega)|^2 + |H(\omega+\pi)|^2 = 1
+\]
+für fast alle $\omega$.
+\end{block}
+}
+
+\end{frame}

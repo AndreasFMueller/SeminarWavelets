@@ -1,0 +1,55 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.474in,
+height=3.566in,
+at={(0.806in,0.481in)},
+scale only axis,
+axis on top,
+xmin=0.5,
+xmax=9600.5,
+xlabel style={font=\color{white!15!black}},
+xlabel={Sample},
+xtick={0, 2400, 4800, 7200, 9600},
+ymin=0.5,
+ymax=4096.5,
+ytick={256, 512, 1024, 2048, 4096},
+ylabel style={font=\color{white!15!black}},
+ylabel={Scale},
+axis background/.style={fill=white},
+%title style={font=\bfseries},
+%title={Absolute Values for a =  1 2 3...},
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [forget plot] graphics [xmin=0.5, xmax=9600.5, ymin=0.5, ymax=4096.5] {y1_cwt-1.png};
+\end{axis}
+
+%Levels
+\definecolor{lc}{RGB}{217,83,25}
+
+%Level 13
+\draw[line width=0.35mm, lc] (2.04,10.28)--(13.415,10.28);
+\node at (12,10.48) [lc] {Level 13};
+%Level 12
+\draw[line width=0.35mm, lc] (2.04,5.75)--(13.415,5.75);
+\node at (12,5.95) [lc] {Level 12};
+%Level 11
+\draw[line width=0.37mm, lc] (2.04,3.485)--(13.415,3.485);
+\node at (12,3.685) [lc] {Level 11};
+%Level 10
+\draw[line width=0.37mm, lc] (2.04,2.35)--(13.415,2.35);
+\node at (12,2.55) [lc] {Level 10};
+%level 9
+\draw[line width=0.37mm, lc] (2.04,1.785)--(13.415,1.785);
+%Level 8
+\draw[line width=0.37mm, lc] (2.04,1.5)--(13.415,1.5);
+%Level 7
+\draw[line width=0.37mm, lc] (2.04,1.36)--(13.415,1.36);
+
+\end{tikzpicture}%

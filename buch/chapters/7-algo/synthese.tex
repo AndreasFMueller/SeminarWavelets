@@ -1,0 +1,322 @@
+%
+% synthese.tex -- synthese 
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Schnelle Synthese\label{section:schnelle-synthese}}
+\rhead{Schnelle Synthese}
+Im vorangegangenen Abschnitt wurde dargestellt, wie die Waveletkoeffizienten
+$a_{j,k}$ mit einem schnellen Algorithmus aus den Waveletkoeffizienten
+$a_{j+1,k}$ gewonnen werden können.
+Dabei spielte die Skalierungsrelation für das Vater-Wavelet $\varphi$ und die
+Darstellung des Mutter-Wavelet $\psi$ als Linearkombination von $\varphi_{1,k}$
+die entscheidende Rolle.
+Die Orthogonalität der Basisvektoren war bisher nicht von Bedeutung.
+
+Die Umkehrung einer linearen Transformation erfordert die
+Invertierung einer Matrix, ein im Allgmeinen aufwendiger Prozess.
+Doch für orthonormierte Basen ist die Umkehrung einfach.
+In diesem Falle ist die Koordinationentransformationsmatrix
+orthogonal und die inverse Matrix ist die Transponierte.
+Da die aus einer Multiskalen-Analyse hervorgegangenen Wavelet-Basen
+orthonormiert sind, erwarten wir daher eine ebenfalls leicht zu
+berechnende schnelle Umkehrtransformation.
+Sie soll im Folgenden dargestellt werden.
+
+%
+% Basiswechsel zwischen orthonormierten Basen
+%
+\subsection{Basiswechsel}
+Seien in einem Vektorraum $V$ zwei Basen
+$\mathcal{B}=\{b_i\in V\}$ und $\mathcal{C}=\{c_i\in V\}$ gegeben.
+
+Da $\mathcal{C}$ eine Basis ist, lassen sich die Vektoren $b_i$ als
+Linearkombinationen
+\begin{equation}
+b_i = \sum_{j}  t_{ji}c_j
+\label{algo:basiswechsel}
+\end{equation}
+der $c_j$ schreiben.
+Ein beliebiger Vektor $v\in V$ habe in der Basis $\mathcal{B}$ die
+Koordinaten $\xi_i$, er lässt sich also als Linearkombination
+\[
+v=\sum_{i} \xi_i b_i
+\]
+schreiben.
+Unter Verwendung der Koeffizienten $t_{ji}$ für den Basiswechsel
+gemäss~\eqref{algo:basiswechsel} lassen
+sich die Koordinaten von $v$ in der Basis $\mathcal{C}$ finden:
+\[
+\sum_{i} \xi_i b_i
+=
+\sum_{i,j} \underbrace{t_{ji}\xi_i}_{\displaystyle=\eta_j} c_j.
+\qquad\Rightarrow\qquad
+\eta_j = \sum_{i} t_{ji} \xi _i.
+\]
+Die Notation ist so gewählt, dass die Matrix $T$ mit Einträgen $t_{ji}$ 
+den Vektor $\xi$ der Koordinaten $\xi_i$ mittels eines Produktes $T\xi$
+in den Vektor $\eta$ der Koordinaten $\eta_j$ der Koordinaten bezüglich
+der Basis $\mathcal{C}$ transformiert.
+
+Im Wavelet-Kontext liefert die Skalierungs-Relation den Zusammenhang
+zwischen den verschiedenen Basen.
+Die Multiskalen-Analyse verspricht, dass sich jeder der Vektorräume
+$V_{j+1}$ auf zwei Arten mit einer Basis ausstatten lässt.
+Einerseits bilden die Vektoren $D_{j+1}T_k\varphi$ eine orthonormierte
+Basis von $V_{j+1}$.
+Andererseits lässt sich $V_{j+1}$ schreiben als orthogonale Summe
+$V_j\oplus W_j$, in der jeder Summand eine orthonormierte Basis hat.
+In $V_j$ ist des die Basis der Vektoren $D_jT_k\varphi$, in $W_j$
+sind es die $D_jT_k\psi$.
+
+Die Skalierungsrelation für das Vater-Wavelet und die Darstellung des
+Mutter-Wavelets liefern die Beziehungen
+\begin{align*}
+\varphi_{j,k} &= \sum_{l} h_{l}\varphi_{j+1,l+2k}
+\\
+\psi_{j,k} &= \sum_{l} g_{l} \varphi_{j+1,l+2k}
+\end{align*}
+
+Im Abschnitt~\ref{section:fast} haben wir daraus die Formeln für
+die schnelle Wavelet-Transformation abgeleitet:
+\begin{align*}
+a_{j,k} &= \sum_{l} \bar{h}_l a_{j+1,l+2k}
+\\
+b_{j,k} &= \sum_{l} \bar{g}_l a_{j+1,l+2k}
+\end{align*}
+abgeleitet.
+Die Koeffizienten $a_{\cdot,\cdot}$ und $b_{\cdot,\cdot}$ entsprechen
+den Koordinaten $\xi_{\cdot}$ und $\eta_{\cdot}$ weiter oben.
+
+An der Verschiebungsposition $k$ sind in der Basis von $V_{j+1}$ 
+primär die Koffizienten um $a_{j+1,2k}$ herum massgebend.
+In $V_j$ und $W_j$ sind es dagegeben die Koeffizienten $a_{j,k}$ und
+$b_{j,k}$.
+Es liegt daher nahe, die Basisvektoren in $V_j$ und $W_j$ zu mischen
+und die Reihenfolge
+\[
+\dots    
+\varphi_{j,k-1},\psi_{j,k-1},
+\varphi_{j,k},\psi_{j,k},
+\varphi_{j,k+1},\psi_{j,k+1},
+\varphi_{j,k+2},\psi_{j,k+2},
+\dots
+\]
+zu verwenden.
+Für die Umrechnung der Koeffzienten $a_{j+1,k}$ in $a_{j,k}$ und $b_{j,k}$
+ist dann die folgende Matrix anzuwenden:
+\begin{equation}
+\bgroup
+\def\arraystretch{1.5}
+\begin{tabular}{>{$}c<{$}|
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}|}
+        &\dots &a_{j+1,-2}  &a_{j+1,-1}  &a_{j+1,0}   &a_{j+1,1}   &a_{j+1,2}   &a_{j+1,3}   &a_{j+1,4}&a_{j+1,5}&\dots \\
+\hline
+\vdots  &\ddots&\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots   &\vdots   &\ddots\\
+a_{j,-2}&\dots &\bar{h}_2   &\bar{h}_3   &\bar{h}_4   &\bar{h}_5   &\bar{h}_6   &\bar{h}_7   &\bar{h}_8&\bar{h}_9&\dots \\
+b_{j,-2}&\dots &\bar{g}_2   &\bar{g}_3   &\bar{g}_4   &\bar{g}_5   &\bar{g}_6   &\bar{g}_7   &\bar{g}_8&\bar{g}_9&\dots \\
+a_{j,-1}&\dots &\bar{h}_0   &\bar{h}_1   &\bar{h}_2   &\bar{h}_3   &\bar{h}_4   &\bar{h}_5   &\bar{h}_6&\bar{h}_7&\dots \\
+b_{j,-1}&\dots &\bar{g}_0   &\bar{g}_1   &\bar{g}_2   &\bar{g}_3   &\bar{g}_4   &\bar{g}_5   &\bar{g}_6&\bar{g}_7&\dots \\
+a_{j, 0}&\dots &\bar{h}_{-2}&\bar{h}_{-1}&\bar{h}_0   &\bar{h}_1   &\bar{h}_2   &\bar{h}_3   &\bar{h}_4&\bar{h}_5&\dots \\
+b_{j, 0}&\dots &\bar{g}_{-2}&\bar{g}_{-1}&\bar{g}_0   &\bar{g}_1   &\bar{g}_2   &\bar{g}_3   &\bar{g}_4&\bar{g}_5&\dots \\
+a_{j, 1}&\dots &\bar{h}_{-4}&\bar{h}_{-3}&\bar{h}_{-2}&\bar{h}_{-1}&\bar{h}_0   &\bar{h}_1   &\bar{h}_2&\bar{h}_3&\dots \\
+b_{j, 1}&\dots &\bar{g}_{-4}&\bar{g}_{-3}&\bar{g}_{-2}&\bar{g}_{-1}&\bar{g}_0   &\bar{g}_1   &\bar{g}_2&\bar{g}_3&\dots \\
+a_{j, 2}&\dots &\bar{h}_{-6}&\bar{h}_{-5}&\bar{h}_{-4}&\bar{h}_{-3}&\bar{h}_{-2}&\bar{h}_{-1}&\bar{h}_0&\bar{h}_1&\dots \\
+b_{j, 2}&\dots &\bar{g}_{-6}&\bar{g}_{-5}&\bar{g}_{-4}&\bar{g}_{-3}&\bar{g}_{-2}&\bar{g}_{-1}&\bar{g}_0&\bar{g}_1&\dots \\
+\vdots  &\ddots&\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots   &\vdots   &\ddots\\
+\hline
+\end{tabular}
+\egroup
+\label{fast:transmatrix}
+\end{equation}
+%
+% invertierung der Transformation
+%
+\subsection{Invertierung}
+Wir nehmen jetzt zusätzlich an, dass die Basen $\mathcal{B}$ und $\mathcal{C}$ orthonormiert sind.
+Es gilt also
+\[
+\begin{aligned}
+\langle b_i,b_j\rangle &=\delta_{ij}\;\forall i,j
+&&\text{und}
+&
+\langle c_i,c_j\rangle &=\delta_{ij}\;\forall i,j.
+\end{aligned}
+\]
+Auch diese Bedingung ist für die Basen, die aus einer Multiskalen-Analyse hervorgehen, erfüllt.
+Die Koeffizienten $t_{ji}$ waren definiert durch die
+Formel~\eqref{algo:basiswechsel}.
+Die Orthogonalitätsbedingungen für die Vektoren $b_i$ werden damit
+\[
+\langle b_i,b_k\rangle
+=
+\biggl\langle
+\sum_{j}t_{ji}c_j,\sum_{l}t_{lk}c_l
+\biggr\rangle
+=
+\sum_{j,l} t_{ji}\bar{t}_{lk}
+\underbrace{\langle c_j,c_l\rangle}_{\displaystyle=\delta_{jl}}
+=
+\sum_{j} t_{ji}\bar{t}_{jk}
+\]
+In Matrix-Schreibweise ist dies
+\[
+E
+=
+\overline{T}^tT
+\]
+oder mit der Abkürzung $T^*$ für die Matrix mit dem $k$-$j$-Eintrag
+$\bar{t}_{jk}$ (konjugiert und transponierte Matrix) 
+\[
+T^*T=E.
+\]
+Daraus kann man ablesen, dass $T^*$ die inverse Matrix zu $T$ ist.
+Wie erwartet ist die Bestimmung der inversen Matrix für die Transformation 
+zwischen orthonormierten Basen einfach.
+
+\subsection{Schnelle Wavelet-Synthese}
+Für die schnelle Wavelet-Transformation kann mit Hilfe der Matrix~\eqref{fast:transmatrix}
+geschrieben werden.
+Die Umkehrtransformation muss daher die transponierte und konjugierte Matrix verwenden:
+\begin{equation}
+\bgroup
+\def\arraystretch{1.5}
+\begin{tabular}{>{$}c<{$}|
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}|}
+          &\dots &a_{j,-2}&b_{j,-2}&a_{j,-1}&b_{j,-1}&a_{j,0}&b_{j,0}&a_{j,1}&b_{j,1}&a_{j,2}&b_{j,2}&\dots \\
+\hline
+\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
+a_{j+1,-2}&\dots &h_{ 2}  &g_{ 2}  &h_{ 0}  &g_{ 0}  &h_{-2} &g_{-2} &h_{-4} &g_{-4} &h_{-6} &g_{-6} &\dots \\
+a_{j+1,-1}&\dots &h_{ 3}  &g_{ 3}  &h_{ 1}  &g_{ 1}  &h_{-1} &g_{-1} &h_{-3} &g_{-3} &h_{-5} &g_{-5} &\dots \\
+a_{j+1, 0}&\dots &h_{ 4}  &g_{ 4}  &h_{ 2}  &g_{ 2}  &h_{ 0} &g_{ 0} &h_{-2} &g_{-2} &h_{-4} &g_{-4} &\dots \\
+a_{j+1, 1}&\dots &h_{ 5}  &g_{ 5}  &h_{ 3}  &g_{ 3}  &h_{ 1} &g_{ 1} &h_{-1} &g_{-1} &h_{-3} &g_{-3} &\dots \\
+a_{j+1, 2}&\dots &h_{ 6}  &g_{ 6}  &h_{ 4}  &g_{ 4}  &h_{ 2} &g_{ 2} &h_{ 0} &g_{ 0} &h_{-2} &g_{-2} &\dots \\
+a_{j+1, 3}&\dots &h_{ 7}  &g_{ 7}  &h_{ 5}  &g_{ 5}  &h_{ 3} &g_{ 3} &h_{ 1} &g_{ 1} &h_{-1} &g_{-1} &\dots \\
+a_{j+1, 4}&\dots &h_{ 8}  &g_{ 8}  &h_{ 6}  &g_{ 6}  &h_{ 4} &g_{ 4} &h_{ 2} &g_{ 2} &h_{ 0} &g_{ 0} &\dots \\
+a_{j+1, 5}&\dots &h_{ 9}  &g_{ 9}  &h_{ 7}  &g_{ 7}  &h_{ 5} &g_{ 5} &h_{ 3} &g_{ 3} &h_{ 1} &g_{ 1} &\dots \\
+\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
+\hline
+\end{tabular}
+\egroup
+\end{equation}
+Daraus kann man ablesen, wie die Koeffizienten $a_{j+1,k}$ aus $a_{j,k}$ und $b_{j,k}$
+berechnet werden können.
+
+\begin{satz}
+Die Umkehrtransformation der schnellen Wavelet-Transformation berechnet die hochfrequenten
+Wavelet-Koeffizienten $a_{j+1,k}$ aus den Koeffizienten
+$a_{j,k}$ und $b_{j,k}$ gemäss
+\begin{equation}
+\begin{aligned}
+a_{j+1,k}
+&=
+\dots
++
+h_{k+4}
+a_{j,-2}
++
+g_{k+4}
+b_{j,-2}
++
+h_{k+2}
+a_{j,-1}
++
+g_{k+2}
+b_{j,-1}
++
+h_{k}
+a_{j,0}
++
+g_{k}
+b_{j,0}
++
+h_{k-2}
+a_{j,1}
++
+g_{k-2}
+b_{j,1}
++
+\dots
+\\
+&=
+\sum_{l\in\mathbb Z}
+h_{k-2l}
+a_{j,l}
++
+\sum_{l\in\mathbb Z}
+g_{k-2l}
+b_{j,l}.
+\end{aligned}
+\end{equation}
+\end{satz}
+
+\begin{beispiel}
+Die Koeffizienten $h_{\cdot}$ und $g_{\cdot}$ für das Haar-Wavelet sind wohl bekannt.
+Sie sind $h_0=h_1=1$, $g_0=0$ and $g_1=-1$.
+Die Transformations-Matrix wird damit zu
+\begin{equation}
+\bgroup
+\def\arraystretch{1.5}
+\begin{tabular}{>{$}c<{$}|
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}|}
+          &\dots &a_{j,-2}&b_{j,-2}&a_{j,-1}&b_{j,-1}&a_{j,0}&b_{j,0}&a_{j,1}&b_{j,1}&a_{j,2}&b_{j,2}&\dots \\
+\hline
+\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
+a_{j+1,-2}&\dots &    0   &    0   &    1   &    1   &    0  &    0  &    0  &    0  &    0  &    0  &\dots \\
+a_{j+1,-1}&\dots &    0   &    0   &    1   &   -1   &    0  &    0  &    0  &    0  &    0  &    0  &\dots \\
+a_{j+1, 0}&\dots &    0   &    0   &    0   &    0   &    1  &    1  &    0  &    0  &    0  &    0  &\dots \\
+a_{j+1, 1}&\dots &    0   &    0   &    0   &    0   &    1  &   -1  &    0  &    0  &    0  &    0  &\dots \\
+a_{j+1, 2}&\dots &    0   &    0   &    0   &    0   &    0  &    0  &    1  &    1  &    0  &    0  &\dots \\
+a_{j+1, 3}&\dots &    0   &    0   &    0   &    0   &    0  &    0  &    1  &   -1  &    0  &    0  &\dots \\
+a_{j+1, 4}&\dots &    0   &    0   &    0   &    0   &    0  &    0  &    0  &    0  &    1  &    1  &\dots \\
+a_{j+1, 5}&\dots &    0   &    0   &    0   &    0   &    0  &    0  &    0  &    0  &    1  &   -1  &\dots \\
+\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
+\hline
+\end{tabular}
+\egroup
+\end{equation}
+Damit werden die Umkehrformeln für das Haar-Wavelet zu
+\begin{align*}
+a_{j+1,2k\phantom{+1}}
+&= 
+a_{j,k} + b_{j,k}
+\\
+a_{j+1,2k         +1 }
+&= 
+a_{j,k} - b_{j,k}
+\end{align*}
+In diesem Fall sind die Umkehrformeln also ähnlich einfach wie die Formeln
+für die schnelle Vorwärts-Transformation.
+\end{beispiel}
+

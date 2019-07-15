@@ -1,0 +1,47 @@
+\def\layersep{2.5cm}
+
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+\tikzstyle{every pin edge}=[<-,shorten <=1pt]
+\tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+\tikzstyle{input neuron}=[neuron, fill=green!50];
+\tikzstyle{output neuron}=[neuron, fill=red!50];
+\tikzstyle{hidden neuron}=[neuron, fill=blue!50];
+\tikzstyle{hidden neuron 2}=[neuron, fill=blue!50];
+\tikzstyle{annot} = [text width=4em, text centered]
+
+% Draw the input layer nodes
+\foreach \name / \y in {1,...,4}
+	\node[input neuron, pin=left:Input $x_{\y}$] (I-\name) at (0,-\y) {};
+
+% Draw the hidden layer 1 nodes
+\foreach \name / \y in {1,...,5}
+	\path[yshift=0.5cm]
+		node[hidden neuron] (H-\name) at (\layersep,-\y cm) {};
+
+% Draw the hidden layer 2 nodes
+\foreach \name / \y in {1,...,5}
+	\path[yshift=0.5cm]
+		node[hidden neuron 2] (H2-\name) at (2*\layersep,-\y cm) {};
+
+% Draw the output layer node
+\node[output neuron,pin={[pin edge={->}]right:Output}, right of=H2-3] (O) {};
+
+% Connect every node in the input layer with every node in the
+% hidden layer.
+\foreach \source in {1,...,4}
+	\foreach \dest in {1,...,5}
+		\path (I-\source) edge (H-\dest);
+\foreach \source in {1,...,5}
+	\foreach \dest in {1,...,5}
+		\path (H-\source) edge (H2-\dest);
+
+% Connect every node in the hidden layer with the output layer
+\foreach \source in {1,...,5}
+	\path (H2-\source) edge (O);
+
+% Annotate the layers
+\node[annot,above of=H-1, node distance=1cm] (hl) {Hidden layer 1};
+\node[annot,left of=hl] {Input layer};
+\node[annot,right of=hl] (hl2) {Hidden layer 2};
+\node[annot,right of=hl2] {Output layer};
+\end{tikzpicture}

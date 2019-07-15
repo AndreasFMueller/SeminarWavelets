@@ -13,6 +13,7 @@ CHAPTERFILES =								\
 	chapters/1-geometrie/funktionen.tex				\
 	chapters/1-geometrie/hilbertraum.tex				\
 	chapters/1-geometrie/rekonstruktion.tex				\
+	chapters/1-geometrie/reziprok.tex				\
 	chapters/1-geometrie/frames.tex					\
 	chapters/2-fourier/chapter.tex					\
 	chapters/2-fourier/l2.tex					\
@@ -39,6 +40,12 @@ CHAPTERFILES =								\
 	chapters/7-algo/fast.tex					\
 	chapters/7-algo/rekonstruktion.tex				\
 	chapters/8-kompakt/chapter.tex					\
+	chapters/8-kompakt/algebra.tex					\
+	chapters/8-kompakt/riesz.tex					\
+	chapters/8-kompakt/partial.tex					\
+	chapters/8-kompakt/ordnung.tex					\
+	chapters/8-kompakt/betrag.tex					\
+	chapters/8-kompakt/bedingungen.tex				\
 	chapters/9-spline/chapter.tex					\
 	chapters/a-komplex/komplexezahlen.tex				\
 	uebungsaufgaben/15001.tex					\

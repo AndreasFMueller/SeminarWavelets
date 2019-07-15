@@ -1,0 +1,77 @@
+%
+% slides.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+
+\ifthenelse{\boolean{presentation}}{
+\begin{frame}
+\titlepage
+\end{frame}
+}{}
+
+\begin{frame}
+\ifthenelse{\boolean{presentation}}{
+\frametitle{Waveleteigenschaften $\rightarrow$ Frequenzbereich}
+}{
+\frametitle{Übersetzung der Waveleteigenschaften in den Frequenzbereich}
+}
+\begin{columns}[T]
+\begin{column}{0.45\hsize}
+\begin{block}{Periodisierungstrick}
+\vspace{-10pt}
+\[
+\mathcal{P}f(\omega) = \sum_{k\in\mathbb Z} f(\omega + 2\pi k)
+\]
+\end{block}
+\vspace{-10pt}
+\begin{block}{Orthogonalität}
+$T_b\varphi$ sind alle orthonormiert genau dann, wenn
+\[
+\mathcal{P}|\hat{\varphi}|^2(\omega)
+=
+\sum_{k\in\mathbb Z} |\hat{\varphi}(\omega+2\pi k)|^2 = \frac{1}{2\pi}
+\]
+\end{block}
+\vspace{-20pt}
+\begin{block}{Allgemein}
+$T_b \psi\perp \varphi\forall b\in\mathbb Z$:
+\[
+\mathcal{P}\hat{\varphi}\bar{\hat{\psi}}(\omega)
+=
+\sum_{k\in\mathbb Z} \hat{\varphi}(\omega + 2\pi k)\bar{\hat{\psi}}(\omega+2\pi k) = 0
+\]
+\end{block}
+\end{column}
+\begin{column}{0.45\hsize}
+\begin{block}{Erzeugende Funktion}
+\vspace{-15pt}
+\begin{gather*}
+\varphi(t) = \sqrt{2}\sum_{k\in\mathbb Z} h_k\varphi(2t-k)\\
+\Rightarrow
+H(\omega) = \frac1{\sqrt{2}} \sum_{b\in\mathbb Z}h_be^{-ib\omega}
+\end{gather*}
+\end{block}
+\vspace{-10pt}
+\begin{block}{Skalierungsrelation für $\varphi$}
+\vspace{-10pt}
+\[
+\hat{\varphi}(\omega)
+=
+H\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\]
+\end{block}
+\begin{block}{Orthogonalität der $T_b\varphi$}
+\[
+|H(\omega)|^2
++
+|H(\omega+\pi)|^2
+=
+1
+\]
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+

@@ -1,0 +1,182 @@
+%
+% vortragsbeurteilung.tex -- Vortragsbeurteilungsformular fuer MathSem
+%
+% (c) 2009 Prof. Dr. Andreas Mueller, HSR
+%
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{german}
+\usepackage{times}
+\usepackage{alltt}
+\usepackage{verbatim}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{multirow}
+\usepackage{txfonts}
+\usepackage{german}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{paralist}
+\usepackage{fontenc}
+\usepackage{color}
+\usepackage{environ}
+\usepackage{geometry}
+\geometry{papersize={210mm,297mm},total={165mm,240mm}}
+
+\begin{document}
+\pagestyle{fancy}
+\pagenumbering{gobble}
+
+\lhead{Mathematisches Seminar 2019}
+\rhead{Vortragsbeurteilung}
+\vspace{1cm}
+
+\begin{center}
+{\LARGE Vortragsbeurteilung}
+\end{center}
+
+\vspace{0.8cm}
+
+{\parindent0pt\hbox to\hsize{%
+{\large Referenten:} \dotfill}}
+
+
+\begin{center}
+\begin{tabular}{|c|l|c|c|c|c|c|}
+\hline
+\raisebox{0pt}[13pt][6pt]{A}&Vortragstechnik&sehr gut&gut&gen"ugend&ungen"ugend&kinb\\
+\hline
+\raisebox{0pt}[13pt][6pt]{1}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Die Ziele des Vortrags waren klar, auf die Erreichung
+von Zwischenzielen wurde hingewiesen
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+\raisebox{0pt}[13pt][6pt]{2}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Der Vortrag war strukturiert, der ``rote Faden''
+war jederzeit erkennbar
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+\raisebox{0pt}[13pt][6pt]{3}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Die Zeiteinteilung war zweckm"assig
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+\raisebox{0pt}[13pt][6pt]{4}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Die gew"ahlten Pr"asentations\-mittel waren der Problemstellung
+angemessen
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+\raisebox{0pt}[13pt][6pt]{5}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Die Vortragenden waren engagiert
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+\hline
+\raisebox{0pt}[13pt][6pt]{B}&Inhaltliche Beurteilung&sehr gut&gut&gen"ugend&ungen"ugend&kinb\\
+\hline
+\raisebox{0pt}[13pt][6pt]{1}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Die mathematische Problemstellung wurde erkl"art
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+\raisebox{0pt}[13pt][6pt]{2}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Der L"osungsansatz war verst"andlich
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+\raisebox{0pt}[13pt][6pt]{3}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Der Detailierungsgrad war ausreichend, um die
+Lösung zu verstehen
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+\raisebox{0pt}[13pt][6pt]{4}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Verwendete Notation und graphischen Darstellungen waren
+zweckm"assig und verst"andlich
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+\raisebox{0pt}[13pt][6pt]{5}&
+\begin{minipage}{6.6cm}\raggedright\strut
+Der Vortrag war interessant
+\strut\end{minipage}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+\hline
+%\hline
+%\raisebox{0pt}[13pt][6pt]{C}&
+%\begin{minipage}{6.6cm}\raggedright\strut
+%Auswertung
+%\strut\end{minipage}&
+%\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+%\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+%\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+%\raisebox{0pt}[24pt][15pt]{\phantom{XX}}&
+%\raisebox{0pt}[24pt][15pt]{\phantom{XX}}\\
+%\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.8mm}
+{\parindent0pt\hbox to\hsize{%
+{\large Bemerkungen:}}}
+
+
+\end{document}
