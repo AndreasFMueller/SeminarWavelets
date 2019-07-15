@@ -13,6 +13,7 @@ Es zeigt sich das die Variante mit dem fixen Gabor-Layer in allen 10 Fällen ein
 Die kleinste Genauigkeit der Gabor-Variante nach 5 Epochen beträgt 67.32\% und die höchste Genauigkeit der klassischen Variante 66.42\%.
 Somit haben wir eine Lücke zwischen den beiden Varianten von ca. 1\%.
 Falls über eine längere Zeit trainiert wird (z.B. 20 Epochen), verändern sich die Resultate nur minimal und der Unterschied der beiden Varianten bleibt bestehen.
+Unsere Resultate bestätigen also die Hypothese \ref{hyp:1}.
 
 \begin{figure}
 	\centering
@@ -21,7 +22,33 @@ Falls über eine längere Zeit trainiert wird (z.B. 20 Epochen), verändern sich
 	\label{fig:acc}
 \end{figure}
 
-Ein weiterer wichtiger Punkt bei neuronalen Netzen sind die Geschwindigkeiten
-Bei der Variante mit Gabor dauerte das Training in etwa 3 Minuten und 10 Sekunden (kann abhängig vom Computer und Grafikkarte stark variieren).
+Entscheidend bei neuronalen Netzen sind neben der Genauigkeit die Geschwindigkeiten für das Trainieren und das Klassifizieren.
+Bei der Variante mit Gabor dauerte das Training etwa 3 Minuten und 10 Sekunden (kann abhängig vom Computer und Grafikkarte stark variieren).
 Bei der zweiten Variante, wo erste Layer ebenfalls gelernt wird, dauert das Training ca. 15\% länger (also etwa 3 Minuten und 38 Sekunden).
 Das Klassifizieren von neuen Bildern dauert danach bei beiden Varianten gleich lange, da in beiden Fällen die identische Tensorflow-Struktur implementiert wurde.
+
+Lernt das klassische CNN Kernels welche Ähnlichkeiten zu Gabor-Wavelets aufweisen?
+In unserem Versuch ist dies nicht der Fall.
+Die Kernel welche gelernt wurden sehen zufällig aus, es sind keine Regelmässigkeiten zu erkennen.
+Abbildung \ref{fig:cnnkernels} zeigt diese gelernten Kernels, welche mit den Gabor-Kernels in Abbildung \ref{fig:cnngkernels} verglichen werden sollten.
+Durch die zufällige Initialisierung ist es aber nicht ausgeschlossen dass solche Gabor-Ähnlichen Kernels gelernt werden könnten.
+Es gibt Beispiele von CNN-Kernels, welche Ähnlichkeiten zu Gabor-Kerneln aufweisen (z.B. im Paper \cite{paper:cifar10}).
+
+\begin{figure}
+	\centering
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernel1}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernel2}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernel3}}
+	\caption{Drei verschiedene Kernels des ersten Layers welche vom Netzwerk gelernt wurden. Es sind keine Regelmässigkeiten erkennbar.}
+	\label{fig:cnnkernels}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernelG1}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernelG2}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernelG3}}
+	\caption{Drei verschiedene Gabor-Kernels des ersten Layers.}
+	\label{fig:cnngkernels}
+\end{figure}
+
