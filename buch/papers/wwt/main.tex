@@ -232,10 +232,10 @@ Bei den Rohdaten der Frontdurchgängen erkennt man gemeinsame Wechsel im Wind, d
 Diese korrelierenden auftretenden Frequenzen sollten in der \textit{cwt} sichtbar sein.
 
 \subsection{Parallelen zur Kovarianz}
-Um das korrelierende Auftreten der einzelnen Datenkanäle zu verdeutlichen, wurden bei diesen jeweils die zwei zusammengehörenden Koeffizienten der \textit{cwt} miteinander multipliziert. 
+Um das korrelierende Auftreten der einzelnen Datenkanäle zu verdeutlichen, wurden bei diesen jeweils die zwei zusammengehörenden Resultate der \textit{cwt} miteinander multipliziert. 
 Dabei werden die Stellen hervorgehoben, wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren. 
 Sprich die Resultate der \textit{cwt} gemeinsam und zum selben Zeitpunkt für den Luftruck und Wind gross sind.
-Dies funktioniert besonders gut, da die Werte rasch gegen null gehen falls nur schon einer der beiden Datenverläufe nicht mit dem aktuellen Mutter-Wavelet übereinstimmt.
+Dies funktioniert besonders gut, da die Werte rasch gegen null gehen, falls nur schon einer der beiden Datenverläufe nicht mit dem aktuellen Mutter-Wavelet übereinstimmt.
 
 
 Genauer betrachtet zeigt das Verfahren mit der Multiplikation Ähnlichkeiten mit der Formel
@@ -250,11 +250,11 @@ COV(X,Y) = \int{(x(t)- \bar{x})(y(t)- \bar{y}) \text{\space}dt}
 \end{equation}
 der Kovarianz aus der Statistik. 
 Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grundlegenden Formel \eqref{eq:cwt1} der \textit{cwt}, kann man gewisse Parallelen sehen. 
-In \eqref{eq:cwt1} ist die Motivation, die jeweiligen Parameter $a$ und $b$ zu finden, wobei das Mutter-Wavelet und das Signal gemeinsam variieren.
+In \eqref{eq:cwt1} ist die Motivation, die jeweiligen Parameter $a$ und $b$ zu finden, bei welchen das Mutter-Wavelet und das Signal gemeinsam variieren.
 Auch hierfür werden die Produkte der Signale berechnet, auf integriert und gemittelt.
 Auch dies ist eine etwas abgewandelte Art der Kovarianz zwischen dem Datensignal und dem Mutter-Wavelet.
 
-Setzt man den \textit{Luftdruck} und das Mutter-Wavelet $\psi_{a,b}$ in \eqref{eq:kovarianz_int} ein, kann sie wie folgt umgeformt werden,
+Setzt man den \textit{Luftdruck} und das Mutter-Wavelet $\psi_{a,b}$ in \eqref{eq:kovarianz_int} ein, kann wie folgt umgeformt werden,
 
 \begin{equation}
 COV(\text{\textit{Luftdruck}}, \psi_{a,b}) = \int{(\text{\textit{Luftdruck}}(t)- \overline{\text{\textit{Luftdruck}}})(\psi_{a,b}(t)- \overline{\psi_{a,b}}) \text{\space}dt}.
@@ -280,7 +280,7 @@ damit ist die Vereinfachung komplett.
 
 \subsection{Multiplikation der Resultate zweier Wavelet-Transformationen}
 
-Wie schon bei der Kovarianz gezeigt, wird auch bei der direkten Anwendung mit der \textit{cwt}, ein grosses Resultat des Produktes anzeigen, dass beide Datenkanäle mit der selben Frequenz auf ein gewisses $\psi_{a,b}$ ansprechen.  
+Wie schon bei der Kovarianz gezeigt, wird bei der \textit{cwt} ein grosses Resultat des Produktes anzeigen, dass beide Datenkanäle mit der selben Frequenz auf ein gewisses $\psi_{a,b}$ ansprechen.  
 
 Wobei zuerst separat die \textit{cwt}, 
 \begin{equation}
@@ -289,7 +289,7 @@ Wobei zuerst separat die \textit{cwt},
 \begin{equation}
 \mathcal{W}\text{\textit{Wind}}(a,b) = \langle \text{\textit{Wind}},\psi_{a,b}\rangle,
 \end{equation}
-des Luftdruckes und des Windes gemacht wurde.
+des Luftdruckes und des Windes gerechnet wurde.
 Als nächster Schritt wurde das Produkt der beiden Funktionen berechnet.
 
 \begin{equation}
@@ -297,7 +297,7 @@ Als nächster Schritt wurde das Produkt der beiden Funktionen berechnet.
 \label{eq:produkt-wwt}
 \end{equation}
 
-Ausgeschrieben auf die Vollstädnige Formel der \textit{cwt} \eqref{eq:cwt1}
+Ausgeschrieben auf die vollständige Formel der \textit{cwt} \eqref{eq:cwt1}
 
 \begin{equation}
 \begin{split}
@@ -313,7 +313,7 @@ Ausgeschrieben auf die Vollstädnige Formel der \textit{cwt} \eqref{eq:cwt1}
 \end{split}
 \end{equation}
 
-Die Formel \eqref{eq:wwt_kovarianz} kann zur optimalen Vergleich mit dem Produkt des Windes erweitert werden
+Die Formel \eqref{eq:wwt_kovarianz} kann, zum optimalen Vergleich mit \eqref{eq:cwt_wwt}, mit dem Produkt des Windes erweitert werden
 
 \begin{equation}
 \begin{split}
@@ -324,9 +324,9 @@ COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b)\cdot COV(\text{\textit{Wind}}, \
 
 dabei kommt die Analogie, ohne die Korrekturfaktoren, zwischen den Formeln \eqref{eq:cov_wwt} und\eqref{eq:cwt_wwt} eindrücklich zur Geltung.
 
+\subsubsection{Anwendung in Matlab}
 
-
-Wie im Abschnitt \ref{matlab} beschrieben wurde, berechnet Matlab mit der \textit{cwt} die Werte und gibt diese als Matrix zurück.
+Wie im Abschnitt \ref{matlab} beschrieben, berechnet Matlab mit der \textit{cwt} die Werte und gibt diese als Matrix zurück.
 Um \eqref{eq:produkt-wwt} anzuwenden wurden die beiden gleichgrossen Matrizen des Resultates der \textit{cwt} miteinander elementweise,
 
 \begin{equation}
@@ -334,7 +334,7 @@ Um \eqref{eq:produkt-wwt} anzuwenden wurden die beiden gleichgrossen Matrizen de
 \end{equation}
 multipliziert \cite{online:schur}.
 
-\newpage
+
 
 
 \subsection{Sturmsaison 2018}
@@ -345,7 +345,7 @@ In Abbildung \ref{fig:cwt_storm} \space sieht man die Wavelet-Transformation des
 Dies über die Monate Januar und Februar im Jahre 2018 hinweg.
 Weiter wird der Luftdruck- und Windverlauf dargestellt.
  
-\begin{figure}[h]
+\begin{figure}[]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind.pdf}
 	\caption{Cwt und Rohdaten Sturmsaison 2018}
@@ -409,7 +409,7 @@ Anbei in Abbildung \ref{fig:python-plot-code} und \ref{fig:python-plot-code2} de
 \end{figure}
 \begin{figure}[h]
 	\centering
-	\lstinputlisting[language=Python,firstline = 41, lastline = 90, firstnumber=41, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
+	\lstinputlisting[language=Python,firstline = 40, lastline = 90, firstnumber=40, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
 	\caption{Python Codeausschnitt}
 	\label{fig:python-plot-code2}
 \end{figure}
