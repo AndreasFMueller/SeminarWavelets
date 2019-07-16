@@ -107,8 +107,8 @@ Differenzieren welches mehrfach angewendet werden muss.
 \section{Anwendung zur rauscharmen Ableitung}
 \rhead{Rauscharme Ableitung}
 
-Beim diskreten Ableiten (Differenzen) von Signalen stellt sich oftmals das
-Problem, das Rauschen in dem Signal verstärkt wird. Anstelle der Ableitung des
+Beim diskreten Ableiten (Differenzieren) von Signalen stellt sich oftmals das
+Problem, dass Rauschen in dem Signal verstärkt wird. Anstelle der Ableitung des
 interessanten Signals sehen wir also nur die zufällige Ableitung des Rauschens.
 Dies wird nochmals verstärkt wenn ein Signal mehrfach abgeleitet werden soll.
 
@@ -148,7 +148,7 @@ cD_{j+1,k}
 \frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l cA_{j,k+l}
 \end{align}
 
-Im Fall vom Haar-Wavelet enspricht das
+Im Fall vom Haar-Wavelet entspricht das
 \begin{align}
 cA_{j+1,k}
 &=
@@ -266,7 +266,7 @@ Signal direkt in den Detailkoeffizienten sehen können.
 
 In \autoref{polynomials:sin:db2} ist die Analyse mit dem db2 Wavelet zu sehen.
 Die Detailkoeffizienten werden von dem enthaltenen Sinussignal dominiert. Das
-Sinussignal lässt sich also so bestens extrahieren.
+Sinussignal lässt sich so also bestens extrahieren.
 
 \begin{figure}
     \centering
@@ -275,32 +275,32 @@ Sinussignal lässt sich also so bestens extrahieren.
 \end{figure}
 
 Wenn man an sinusförmigen Signalen interessiert ist liegt es auch nahe die
-diskrete Fourier Transformation zu verwenden. In \autoref{polynomials:sin:fft}
+diskrete Fourier-Transformation zu verwenden. In \autoref{polynomials:sin:fft}
 sind die Resultate der DFT zu sehen.
 
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_sin_fft.pdf}
-    \caption{Analyse mit Fouriertransformation\label{polynomials:sin:fft}}
+    \caption{Analyse mit Fourier-Transformation\label{polynomials:sin:fft}}
 \end{figure}
 
-Zu sehen ist, dass die Fourier Koeffizienten des Polynoms dominieren und dass
+Zu sehen ist, dass die Fourier-Koeffizienten des Polynoms dominieren und dass
 der Peak bei 20, welcher durch den Sinus entsteht, unter geht. Dies ist
 verständlich, wenn man bedenkt wie die Fourierreihen von Polynomen aussehen.
 Nehmen wir als Beispiel das Polynom $f(x) = x$. Im Bereich $[0, 1]$ entspricht
-es einer Sägezahnfunktion. Die Fourier Reihe eines Sägezahns ist \[f(x) =
+es einer Sägezahnfunktion. Die Fourierreihe eines Sägezahns ist \[f(x) =
 \frac{1}{2} - \frac{1}{\pi} \sum{\frac{1}{n} \sin(2 n \pi x)}\] Nun ist
-ersichtlich, dass die Fouriertransformierte jede Frequenz $n$ mit $\frac{1}{n}$
-skaliert enhalten wird.
+ersichtlich, dass die Fourier-Transformierte jede Frequenz $n$ mit $\frac{1}{n}$
+skaliert enthalten wird.
 
-Die Analyse mittels Fourier Transformation kann natürlich durch die Wahl einer
+Die Analyse mittels Fourier-Transformation kann natürlich durch die Wahl einer
 passenden Fensterfunktion (z.B. Hamming) zu besseren Resultaten führen. Dies
 hat jedoch den Nachteil das zeitlich kurz auftretende Signale je nach
 Fenstergrösse und Position unterschiedlich gedämpft werden.
 
-Die Wavelettransformation liefert uns hingegen auch den Zeitpunkt bei dem das
-Signal aufgetreten ist.  \autoref{polynomials:sin:padded} zeigt Die Resultate
-einer Waveletanalyse mit einem zeitlich lokalisierten Sinussignal.
+Die Wavelet-Transformation liefert uns hingegen auch den Zeitpunkt bei dem das
+Signal aufgetreten ist. \autoref{polynomials:sin:padded} zeigt die Resultate
+einer Wavelet-Analyse mit einem zeitlich lokalisierten Sinussignal.
 
 \begin{figure}
     \centering
