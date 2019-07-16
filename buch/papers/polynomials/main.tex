@@ -21,6 +21,12 @@ soll also ein Polynom der Ordnung $A-1$ einfach darstellen können. Wir wollen
 erörtern, was das nun in der Praxis genau bedeutet und welche Anwendungen es
 ermöglicht.
 
+\begin{figure}
+    \centering
+    \input{papers/polynomials/images/polynomials_filter.pgf}
+    \caption{Wavelet-Transformation als Filter\label{polynomials:filter}}
+\end{figure}
+
 Wir werden im folgenden Daubechies Wavelets mit $A$ verschwindenden Momenten
 mit db$A$ bezeichnen. Auch werden wir die Wavelet-Transformation als Filter
 betrachten wie in \autoref{haar:approximation:filter} beschrieben. Dabei werden
@@ -28,12 +34,6 @@ wir die Notation von Detail- und Approximationskoeffizienten verwenden. Die
 Detailkoeffizienten auf Ebene $k$ ($cDk$) sind dabei der Ausgang des Hochpasses
 $h$ und die Approximationskoeffizienten auf Ebene $k$ ($cAk$) der Ausgang des
 Tiefpasses $g$.
-
-\begin{figure}
-    \centering
-    \input{papers/polynomials/images/polynomials_filter.pgf}
-    \caption{Wavelet-Transformation als Filter\label{polynomials:filter}}
-\end{figure}
 
 Die Detailkoeffizienten auf Ebene $k$ entsprechen der Analyse mit einem $2^k$
 skaliertem Mutterwavelet $\psi$ und die Approximationskoeffizienten der
