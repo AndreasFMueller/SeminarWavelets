@@ -31,11 +31,8 @@ Der Aufbau eines Neuron ist in Abbildung \ref{fig:neuron} gezeigt.
 Eine Unterkategorie der KNNs stellen die Convolutional Neural Nets (CNN) dar.
 Wie der Name schon sagt, spielen dabei Faltungen eine wichtige Rolle.
 Bevor die normalen KNN Layer kommen, werden Bilddaten üblicherweise zuerst von einigen Faltungslayern vorverarbeitet.
-Die Idee dazu kommt von der klassischen Bildverarbeitung, wo häufig Faltungskernel verwendet werden um ein Bild zu filtern oder Features zu erkennen.
-Bei einem CNN werden diese Kernel nicht vom Ingenieur bestimmt, sondern während Trainings durch den Algorithmus gelernt.  
-Die gelernten Gewichte (Kernels) haben an jeder Position der Faltung die selben Werte, sind also Translationsinvariant.
-Diese Eigenschaft ist entscheidend, da sie einerseits die Anzahl zu lernender Gewichte extrem reduziert und andererseits die Generalisierung fördert.
-Solche CNNs zeigen extrem gute Resultate in der Bildverarbeitung, speziell im Bereich der Klassifizierung von Bildern (z.B. Erkennen von Katzen).
+Ein solcher Faltungslayer besteht aus verschiedenen Kernels, welche mit dem Eingangsbild gefaltet werden.
+Die Funktion der zweidimensionalen Faltung ist analog zur klassischen Bildverarbeitung, wo häufig Faltungskernel verwendet werden um ein Bild zu filtern oder Features zu erkennen.
 Wie eine zweidimensionale Faltung funktioniert ist in Abbildung \ref{fig:2dconv} gezeigt.
 
 \begin{figure}
@@ -45,7 +42,19 @@ Wie eine zweidimensionale Faltung funktioniert ist in Abbildung \ref{fig:2dconv}
 	\label{fig:2dconv}
 \end{figure}
 
-Anhand von der Bildverarbeitung kann man den Unterschied von KNNs und CNNs gut erklären.
+Inspiriert wurden auch die CNNs von der Neurologie, genauer vom V1.
+Die rezeptiven Felder (vgl. \ref{subsec:v1}) bilden die Eingänge der Neuronen.
+Diese Neuronen sind so angeordnet, dass jede Position im Bild abgedeckt ist.
+Es wird also vom Eingangsbild eine abstrakte Abbildung erstellt.
+Ein Neuron kann so als Multiplikation (mit anschliessender Aktivierungsfunktion) des rezeptiven Feldes mit einem Kernel interpretiert werden.
+Diese und weitere Eigenschaften inspirierten die Entwicklung der CNNs (vgl. Kapitel 9.10 im Buch \cite{book:deeplearning}).
+
+Bei einem CNN werden die Kernel nicht mehr vom Ingenieur bestimmt, sondern während Trainings durch den Algorithmus gelernt.  
+Die gelernten Gewichte (Kernels) haben an jeder Position der Faltung die selben Werte, sind also Translationsinvariant.
+Diese Eigenschaft ist entscheidend, da sie einerseits die Anzahl zu lernender Gewichte extrem reduziert und andererseits die Generalisierung fördert.
+Solche CNNs zeigen extrem gute Resultate in der Bildverarbeitung, speziell im Bereich der Klassifizierung von Bildern (z.B. Erkennen von Katzen).
+
+Anhand der Bildverarbeitung kann man den Unterschied von KNNs und CNNs gut erklären.
 Bei einem KNN wird jedes Pixel mit jedem Neuron verbunden und für jede dieser Verbindungen wird ein eigenes Gewicht gelernt.
 Beim CNN hingegen wird ein einzelner Kernel gelernt, welcher dann translationsinvariant auf das ganze Bild angewendet wird.
 Als Beispiel nehmen wir einen ersten Layer von $256$ Neuronen, ein Eingangsbild der Grösse $128\times128$ und eine Kernelgrösse von $3\times3$.
