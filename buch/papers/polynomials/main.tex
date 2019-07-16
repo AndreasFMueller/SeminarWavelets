@@ -135,7 +135,58 @@ noch keine wesentliche Verbesserung zum direkten Ableiten.
 
 Nun können wir aber mit dem Wavelet eine Multiskalenanalyse durchführen. Im
 Fall vom Haar Wavelet ist dies vergleichbar wie wenn zuerst der Mittelwert
-gebildet und dann abgeleitet wird.
+gebildet und dann abgeleitet wird. Aus \autoref{fast:akoefgleichung} von
+\autoref{section:fast} wissen wir, dass die Approximationskoeffizienten $cA_{j,k}$ und die Detailkoeffizienten $dA_{j,k}$
+folgendermassen gebildet werden:
+\begin{align}
+cA_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{h}_l cA_{j,k+l}
+\\
+cD_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l cA_{j,k+l}
+\end{align}
+
+Im Fall vom Haar-Wavelet enspricht das
+\begin{align}
+cA_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} (cA_{j,k} + cA_{j,k+1})
+\\
+cD_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} (cA_{j,k} - cA_{j,k+1})
+\end{align}
+
+Nehmen wir nun das Signal mit den Abtastwerten $\{a_{0,0}, a_{0,1}, a_{0,2}, a_{0,3}\}$ so ergibt
+sich für die erste Ebene:
+\begin{align}
+cA_{1,0}
+&=
+\frac{1}{\sqrt{2}} (a_{0,0} + a_{0,1})
+\\
+cA_{1,1}
+&=
+\frac{1}{\sqrt{2}} (a_{0,2} + a_{0,3})
+\end{align}
+Die zweite Ebene wird dann aus den Approximationskoeffizienten der ersten Ebene berechnet
+\begin{align}
+cA_{2,0}
+&=
+\frac{1}{\sqrt{2}} (cA_{1,0} + cA_{1,1})
+=
+\frac{1}{2} (a_{0,0} + a_{0,1}) + \frac{1}{2} (a_{0,2} + a_{0,3})
+\\
+cD_{2,0}
+&=
+\frac{1}{\sqrt{2}} (cA_{1,0} - cA_{1,1})
+=
+\frac{1}{2} (a_{0,0} + a_{0,1}) - \frac{1}{2} (a_{0,2} + a_{0,3})
+\end{align}
+
+Die Detailkoeffizienten entsprechen somit der Differenz der Mittelwerte zweier
+benachbarter Abtastwerte.
 
 In \autoref{polynomials:noise:db1_multi} ist das Signal $x^2 + r(x)$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem
