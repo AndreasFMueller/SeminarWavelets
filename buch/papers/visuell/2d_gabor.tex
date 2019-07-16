@@ -49,7 +49,7 @@ Die Standardabweichungen in $x$-, bzw. $y$-Richtung $\sigma$ resp. $\beta$ besti
 Ein Beispiel einer elliptischen Gaussfunktion ist in Abbildung \ref{fig:2d_gauss} dargestellt.
 
 Aus den Gleichungen \ref{eq:2d_schwingung} und \ref{eq:2d_gauss} lässt sich die Formel für das zweidimensionale Gabor-Wavelet bilden:
-\begin{equation}
+\begin{equation}\label{eq:2dgabor1}
 G(x,y)= e^{-(\frac{(x-x_{0})^{2}}{\sigma^{2}}+\frac{(y-y_{0})^{2}}{\beta^{2}})}
 e^{i(\xi_{0}x+\nu_{0}y)}.
 \end{equation}
@@ -68,35 +68,34 @@ e^{i(\xi_{0}x+\nu_{0}y)}.
 	\label{fig:2d_gauss}
 \end{figure}
 
-
-
-Die Parameter ($\sigma$, $\beta$, $\xi$, $\nu$) dieser Formel sind unhandlich und es ist nicht offensichtlich was eine Änderung dieser bewirkt.
-Also ersetzen wir diese durch neue Parameter und erhalten 
-
-\begin{equation}
-G(x,y)=e^{-\frac{x'^{2}+\gamma^{2}y'^{2}}{2\sigma^{2}}}
-e^{i(2\pi\frac{x'}{\lambda} + \phi)},
-\end{equation} 
-wobei $x'=x\cos(\theta)+y\sin(\theta)$ und $y'=-x\sin(\theta)+y\cos(\theta)$.
+Dieses zweidimensionale Wavelet wollen wir mithilfe eines neuen Parameters $\theta$ in beliebige Richtungen ausrichten können.
+Eine Veränderung von $\theta$ soll also eine Drehung der Wellenfront und der elliptischen Gaussfunktion bewirken.
+Dies bedeutet, dass die Ellipsenachsen (vgl. Abbildung \ref{fig:2d_gauss}) nicht mit den Koordinatenachsen übereinstimmen müssen. 
+Um dieses Verhalten zu erreichen führen wir die neuen Variablen $x'=x\cos(\theta)+y\sin(\theta)$ und $y'=-x\sin(\theta)+y\cos(\theta)$ ein.
 Diese Formulierung stellt eine Drehmatrize der Art
 \begin{equation}
-	\begin{pmatrix}
-		x' \\
-		y'
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-	\cos(\theta) & \sin(\theta) \\
-	-\sin(\theta) & \cos(\theta)
-	\end{pmatrix}
-	\begin{pmatrix}
-	x \\
-	y
-	\end{pmatrix}
-	\end{equation}
+\begin{pmatrix}
+x' \\
+y'
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos(\theta) & \sin(\theta) \\
+-\sin(\theta) & \cos(\theta)
+\end{pmatrix}
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+\end{equation}
 dar.
-Eine Veränderung des Parameters $\theta$ bewirkt dabei eine Drehung der Wellenfront und der elliptischen Gaussfunktion.
-Dies bedeutet, dass die Ellipsenachsen (vgl. Abbildung \ref{fig:2d_gauss}) nicht mit den Koordinatenachsen übereinstimmen müssen.
+Die Gleichung \ref{eq:2dgabor1} verändern wir so, dass $x'$ und $y'$ eingesetzt werden können.
+Ausserdem sind die Parameter ($\sigma$, $\beta$, $\xi$, $\nu$) dieser Formel unhandlich und es ist nicht offensichtlich was eine Änderung dieser bewirkt.
+Also ersetzen wir diese durch neue Parameter und erhalten 
+\begin{equation}
+G(x,y)=e^{-\frac{x'^{2}+\gamma^{2}y'^{2}}{2\sigma^{2}}}
+e^{i(2\pi\frac{x'}{\lambda} + \phi)}.
+\end{equation} 
 Der Parameter $\gamma$ beschreibt das Verhältnis der Streckung in $x$- und $y$-Richtung.
 Diese Streckung der elliptischen Gaussfunktion bestimmt ob das Wavelet eher rund oder länglich ist.
 Die Standardabweichung der Gausskurve, welche mit der Schwingung multipliziert wird, ist als Parameter $\sigma$ definiert.
