@@ -12,7 +12,7 @@ was wir vorhaben.
 Ein endlichdimensionaler Vektorraum ist sicher ein geeigneter Rahmen zur
 Beschreibung eines Signals, welches an endlich vielen Stellen abgetastet
 wurde.
-Für kontinuirliche Signale reicht er aber nicht.
+Für kontinuierliche Signale reicht er aber nicht.
 Zunächst ist die Menge aller Funktionen zwar ein Vektorraum, aber es ist
 aussichtslos, eine endliche orthonrmierte Basis zu finden.
 Vielmehr werden wir sehen, dass bereits der Raum der stetigen Funktionen
@@ -232,10 +232,67 @@ Zusammengesetzt finden wir die Formel
 für das Skalarprodukt zweier beliebiger Vektoren, ausgedrückt
 ausschliesslich mit der Norm.
 Die Identität \eqref{hilbert:polarisierung} ist auch bekannt unter dem
-Namen Polar-Identität.
+Namen Polar-Identität oder Polarisierung des Skalarprodukts.
+\index{Polar-Identität}
+\index{Polarisierung}
 
 Das Skalarprodukt erlaubt auch in einem komplexen Hilbertraum den Begriff
 der orthonormierten Basis zu definieren.
+\index{orthonormierte Basis}
+Eine Menge von orthonormierten Vektoren ist automatisch linear unabhängig.
+In einem $n$-dimensionalen Vektorraum reicht das um sicherzustellen,
+dass eine Menge von $n$ orthonormierten Vektoren eine Basis ist.
+In einem undendlichdimensionalen Vektorraum reicht Orthonormalität
+jedoch nicht um sicherzustellen, dass sich jeder Vektor beliebig genau
+als Linearkombination approximieren lässt.
+
+\begin{definition}
+Eine Menge von Vektoren $\mathcal{B} = \{v_1,v_2,\dots\}\subset H$ in einem
+Hilbertraum $H$ heisst eine {\em Erzeugendensystem}, wenn es keinen Vektor
+$v\in H$ gibt, der auf allen Vektoren von $\mathcal{B}$ senkrecht steht.
+\end{definition}
+
+\begin{beispiel}
+Wir betrachten den Hilbertraum $l^2$, dessen Vektoren Folgen
+$a=(a_k)_{k\in\mathbb N}$ von komplexen Zahlen sind mit dem Skalarprodukt
+\begin{equation}
+\langle a,b\rangle = \sum_{k\in\mathbb N} a_k\bar{b}_k.
+\label{l2:beispiel:erzeugendensystem}
+\end{equation}
+Die Vektoren $e^{(i)}$ mit den Komponenten
+\[
+e^{(i)}_k = \delta_{ik}
+\]
+sind überall $0$ ausser das Folgenglied mit der Nummer $i$, welches $1$
+ist. 
+Diese Vektoren haben Länge $1$ im Sinne des Skalarproduktes
+\eqref{l2:beispiel:erzeugendensystem} und sie sind orthogonal:
+\[
+\langle e^{(i)}, e^{(j)}\rangle
+=
+\sum_{k\in\mathbb N} e^{(i)}_k\bar{e}^{(j)}_k
+=
+\sum_{k\in\mathbb N} \delta_{ik}\delta_{jk}
+=
+\delta_{ij}.
+\]
+Die Vektoren $e^{(i)}$ sind aber auch ein Erzeugendensystem, wie man sich
+wie folgt überzeugen kann.
+Gäbe es einen Vektor $v\in l^2$, dessen Skalarprodukt mit allen $e^{(i)}$
+verschwindet, dann würde für alle $i$ folgen
+\[
+0
+=
+\langle v,e^{(i)}\rangle
+=
+\sum_{k\in\mathbb N} v_ke^{(i)}_k
+=
+\sum_{k\in\mathbb N} v_k\delta_{ik}
+=
+v_i,
+\]
+d.~h.~der Vektor $v$ ist $0$.
+\end{beispiel}
 
 \begin{satz}
 Wenn die Vektoren $\{e_k\,|\, 1\le k\le n\}$ eine orthonormierte Basis
@@ -253,6 +310,7 @@ Skalarproduktes als
 \]
 gefunden werden.
 Ausserdem gilt für das Skalarprodukt die Plancherel-Identität
+\index{Plancherel-Identität}
 \begin{align*}
 \langle u,v\rangle &= \sum_{k=1}^n \hat{u}_k\bar{\hat{v}}_k
 \\
@@ -412,4 +470,122 @@ mit dem Skalarprodukt
 \end{beispiel}
 
 \subsection{Basis eines Hilbertraumes}
+
+\begin{beispiel}
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/l2orth.pdf}
+\caption{Familie von orthnormierten Funktionen $f_n(x)$, die alle auf der
+Funktion $g(x)$ orthogonal sind.
+Es gilt also $\langle f_n,f_m\rangle = \delta_{nm}$ und
+$\langle f_n,g\rangle=0$.
+\label{l2orth}}
+\end{figure}
+Wir zeigen Anhang eines Beispiels, dass der Vektorraum  der integrierbaren
+Funktionen auf dem Interval $[0,1]$ mit einem Skalarprodukt
+ausgestattet werden kann, welches ihn zu einem Hilbertraum macht.
+Ausserdem konstruieren wir eine unendliche Menge von Funktionen, die alle
+senkrecht aufeinander stehen.
+Trotzdem werden wir einen weiteren Vektor finden, der auf all diesen
+Vektoren senkrecht steht.
+
+Als erstes definieren wir das Skalarprodukt von Funktionen auf dem
+Interval $[0,1]$ als
+\[
+\langle f, g\rangle
+=
+\int_0^1 f(x) \bar{g}(x)\,dx
+\]
+für Funktionen $f,g\colon [0,1]\to\mathbb C$.
+Der Vektorraum der integrierbaren Funktionen mit diesem Skalarprodukt
+heisst $L^2$ und wird in Kapitel~\ref{chapter:fourier} genauer untersucht.
+
+Als nächstes konstruieren wir die Folge $f_i$ von Funktionen, die wie
+folgt definiert sind:
+\begin{align*}
+f_1(x) &= \begin{cases}
+\sqrt{2}&\qquad \frac12x1\\
+0\phantom{000}&\qquad\text{sonst}
+\end{cases}
+\\
+f_2(x) &= \begin{cases}
+2&\qquad \frac14 \le x < \frac12\\
+0\phantom{000}&\qquad\text{sonst}
+\end{cases}
+\\
+f_3(x) &= \begin{cases}
+2^{\frac32}&\qquad \frac18 \le x < \frac14\\
+0\phantom{000}&\qquad\text{sonst}
+\end{cases}
+&\vdots\\
+f_n(x) &= \begin{cases}
+2^{\frac{n}2}&\qquad \frac1{2^n} \le x < \frac2{2^n}\\
+0\phantom{000}&\qquad\text{sonst,}
+\end{cases}
+\end{align*}
+siehe auch Abbildung~\ref{l2orth}.
+Die Funktion $f_n$ ist nur auf dem Interval $[2^{-n},2^{-n+1}]$ von
+$0$ verschieden.
+Zwei verschiedene Funktionen $f_n$ und $f_m$ mit $n\ne m$ sind also
+nirgends gleichzeitig von $0$ verschieden, es folgt
+$\langle f_n,f_m\rangle =0$.
+Aber auch die Norm der Funktionen $f_n$ lässt sich leicht bereichen
+als
+\[
+\|f_n\|^2
+=
+\int_0^1 |f_n(x)|^2\,dx
+=
+\int_{2^{-n}}^{2^{-n+1}} (2^{\frac{n}2})^2 \,dx
+=
+\frac1{2^n}\cdot 2^n = 1.
+\]
+Somit ist gezeigt, dass die Funktionen $f_n$ orthonormiert im Sinne des
+Skalarprodukts $\langle\;,\;\rangle$ sind.
+
+Trotzdem gibt es eine Funktion $g$, die auf allen $f_n$ orthogonal ist.
+Wir wählen
+\[
+g(x) = \begin{cases}
+\sqrt{2}&\qquad \frac12 \le x < \frac34\\
+-\sqrt{2}&\qquad \frac34 \le x < 1\\
+0&\qquad\text{sonst.}
+\end{cases}
+\]
+Diese Funktion ist ebenfalls normiert, denn es gilt
+\[
+\|g\|^2
+=
+\int_0^1 |g(x)|^2 \,dx
+=
+\int_{\frac12}^1 (\sqrt{2})^2\,dx
+=
+\frac12\cdot 2 = 1.
+\]
+
+Die Funktion $g$ ist nur auf dem Interval $[\frac12,1]$ von $0$ verschieden,
+sie ist damit automatisch orthogonal auf allen Funktionen $f_n$ mit $n\ge 2$.
+Für die Funktion $f_1$ ist
+\[
+\langle g,f_1\rangle
+=
+\int_0^1 g(x)\bar{f}_1(x)\,dx
+=
+\int_{\frac12}^1 g(x)\,dx
+=
+\int_{\frac12}^{\frac34}\sqrt{2}\,dx
++
+\int_{\frac34}^1-\sqrt{2}\,dx
+=
+\frac14 \sqrt{2} - \frac14 \sqrt{2} = 0.
+\]
+Die Funktion $g$ ist also orthogonal auf allen Funktionen $f_n$.
+In einem unendlichdimensionalen Hilbertraum kann es also selbst
+neben einer unendlich grossen Menge von orthonormierten Vektoren 
+noch einen weiteren Vektor geben, der senkrecht auf allen steht.
+\end{beispiel}
+
+
+
+
 

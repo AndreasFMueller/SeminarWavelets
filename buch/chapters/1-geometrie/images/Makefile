@@ -16,6 +16,7 @@ all:	sinsin.pdf	\
 	hexagon1.pdf	\
 	hexagon2.pdf	\
 	hexagon3.pdf	\
+	l2orth.pdf	\
 	tri.pdf		\
 	beispiel2.pdf	\
 	b3-01.pdf	\
@@ -123,3 +124,5 @@ b3-09.pdf:	b3-09.tex b3curves.tex axes.tex
 b3-10.pdf:	b3-10.tex b3curves.tex axes.tex
 	pdflatex b3-10.tex
 
+l2orth.pdf:	l2orth.tex
+	pdflatex l2orth.tex
