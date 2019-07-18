@@ -35,6 +35,7 @@ Grössere Werte von $a$ ziehen den Träger des Integranden um den Faktor $a$
 in die Länge.
 
 \begin{definition}
+\label{cwt:definition:plancherel}
 Das Mass auf $H$ ist definiert duch das Integral
 \[
 \int_H F(a,b)\,db \,\frac{da}{a^2}
@@ -249,9 +250,126 @@ ihrer Wavelet-Transformation unterscheiden.
 
 \subsection{Das Haar-Mass auf $\mathbb R^* \ltimes \mathbb R$
 \label{subsection:haar-mass}}
+Das Lebesgue-Mass auf $\mathbb R$ zeichnet sich dadurch aus, dass
+die Translation einer Funktion ein Integral nicht ändert:
+\[
+\int_{\mathbb R} T_bf(t)\,dt
+=
+\int_{\mathbb R} f(t-b)\,dt
+=
+\int_{\mathbb R} f(t)\,dt.
+\]
+Diese Eigenschaft kann man auch in anderen Definitionsbereichen antreffen.
+Zum Beispiel ändert sich das Integral
+\[
+\int_0^\infty f(t)\,\frac{dt}{t}
+\]
+auch nicht, wenn die Funktio $f$ durch $\tilde{D}_af$ ersetzt wird
+für $a>0$.
+Die Substition $\tau = t/a$ im Integral
+\begin{align*}
+\int_0^\infty \tilde{D}_af(t)\,\frac{dt}{t}
+&=
+\int_0^\infty f(t/a)\,\frac{dt}{t}
+=
+\int_0^\infty f(\tau) \frac{a d\tau}{a\tau}
+=
+\int_0^\infty f(\tau) \frac{d\tau}{\tau}
+\end{align*}
+zeigt dies.
+So wie $\mathbb R$ abgeschlossen ist bezüglich der Addition ist die Menge
+$\mathbb R^+=\{x\in\mathbb R\;|\; x > 0\}$ abgeschlossen unter Multiplikation.
 
+Diese Beboachtung lässt sich weitgehend verallgemeinern.
+Eine {\em Gruppe} ist eine Menge mit einer assoziativen Operation, einem
+bezüglich der Operation neutralen Element, und so, dass jedes Element
+invertierbar ist.
+Die Menge $\mathbb R$ ist eine Gruppe bezüglich der Addition mit dem neutralem
+Element $0$ und dem inversen Element $-x$ zu jedem $x\in\mathbb R$.
+Für die Menge $\mathbb R^+$ mit der Multipliation als Operation ist
+$1$ das neutrale Element und das inverse Element von $x\in\mathbb R^+$
+ist $x^{-}$.
+Die beiden Beispiel zeigen, dass es unter gewissen Voraussetzungen
+möglich ist, für Funktionen auf einer Gruppe $G$ ein Integral zu definieren,
+welches unverändert bleibt, wenn man die Funktion $f:G\to \mathbb C$ 
+durch die Funktion $(g\cdot f)(x) = f(g\cdot x)$ ersetzt, also
+\[
+\int_G (g\cdot f)(x)\,d\mu(x)
+=
+\int_G f(x)\,d\mu(x).
+\]
+Die Existenz eines solchen Masses ist nicht trivial und wurde
+von Alfréd Haar 1933 bewiesen. 
+\index{Alfréd Haar}
+Es wird heutzutage {\em Haarsches Mass} genannt.
+\index{Haar Mass}
 
+Die Menge $H=\mathbb R^*\times \mathbb R$ ist eine Gruppe mit der
+Gruppenoperation
+\[
+(a_1,b_1)\cdot (a_2,b_2) = (a_1a_2,a_1b_2+b_1),
+\]
+dem neutralen Element $(1,0)$ und dem inversen Element
+\[
+(a,b)^{-1} = (a^{-1}.-a^{-1}b)
+\qquad\text{denn}\qquad
+\left\{
+\begin{aligned}
+(a,b)\cdot (a^{-1},-a^{-1}b)
+&=
+(aa^{-1},b-aa^{-1}b)=(1,0)
+\\
+(a^{-1},-a^{-1}b)\cdot (a,b)
+&=
+(a^{-1}a,-a^{-1}b-a^{-1}b)=(1,0).
+\end{aligned}
+\right.
+\]
+Die Gruppe $H$ wird auch $H=\mathbb R^*\times \mathbb R$ geschrieben
+und heisst das semidirekte Produkt der Gruppen $\mathbb R^*$ mit der
+Multiplikation als Gruppenoperation und $\mathbb R$ mit der Addition
+als Gruppenoperation.
+Nach Haar müsste es also auch ein Haarsches Mass auf $H$ geben.
 
+$H$ enthält zwei Gruppen, für die wir das Haarsche Mass schon kennen.
+Für $\mathbb R$ ist es das gewöhnliche Lebesgue-Integral, für $\mathbb R^*$
+ist es ein Integral mit einem Faktor $1/x$.
+Man kann daher vermuten, dass das Haar-Integral von der Form
+\[
+\int_H f(a,b) \,\frac{da}{m(a)}\,db
+\]
+sein muss.
+
+Wenden wir die Operation des Gruppen-Elements $(\alpha,\beta)\in H$
+auf die Funktion $f$ an und verwenden die Substitution
+$\tilde{a}=\alpha a$ und $\tilde{b}=\alpha b$
+\begin{align*}
+\int_H f(\alpha a,\beta-\alpha b) \,\frac{da}{m(a)}\,db
+&=
+\int_H f(\tilde{a}, \beta - \tilde b) \,
+d\tilde{b}/\alpha\,\frac{d\tilde{a}/\alpha}{m(a)}
+\\
+&=
+\int_H f(\tilde{a}, \beta - \tilde b) \,
+d\tilde{b}\,\frac{d\tilde{a}}{\alpha^2m(a)}
+\\
+&=
+\int_H f(\tilde{a}, \beta) \,
+d\tilde{b}\,\frac{d\tilde{a}}{\alpha^2m(a)}.
+\end{align*}
+Das Integral ändert sich genau dann nicht, wenn
+\[
+\alpha^2 m(a)
+=
+m(\tilde{a})
+=
+m(\alpha a)
+\qquad\Rightarrow\qquad
+m(a) = a^2.
+\]
+Dies ist genau das in der Definition~\ref{cwt:definition:plancherel}
+des Skalarproduktes für die stetige Wavelettransformation verwendete
+Integral.
 
 
 
