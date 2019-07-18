@@ -1,13 +1,15 @@
-Dieser Teilerfolg soll nun auch auf zwei Dimensionen, also ein Bild übertragen werden.
+Auch wenn keine Verbesserung zu erwarten ist, soll dieser Teilerfolg nun ein Bild übertragen werden.
+Dabei wird immerhin ersichtlich, wie das Vorgehen auf zwei Dimensionen erweitert werden kann.
+
 Ein schwarz-weiss Bild kann man als Matrix betrachten, dessen Einträge zwischen 0 und 1 für die Helligkeit eines Pixels stehen.
-0 enspricht schwarz, 1 entspricht weiss.
+0 entspricht schwarz, 1 entspricht weiss.
 
 Als Versuchsbild wird ein etwas verschwommenes Dreieck, wie abgebildet links in \ref{deconvolve:example} (ohne blauen und orange Linie) verwendet.
-Die Grösse beträgt $9600\times9600$ Pixel, analog den 9600 Samples der Funktion $f(x)$ aus Abbildung \ref{deconvolve:funktion}.
+Die Grösse beträgt $9600\times9600$ Pixel, analog den 9600 Samples der Funktion $f(x)$ aus Abbildung \ref{deconvolve:1d}.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/dreieck.pdf}
-\caption{Beispielbild\label{deconvolve:example}}
+\caption{Beispielbild und eindimensionale Interpretation\label{deconvolve:example}}
 \end{figure}
 
 Man folge in Abbildung \ref{deconvolve:example} beim Dreieck der blau markierten \glqq Zeile\grqq{}.
@@ -16,7 +18,7 @@ Analog kommt man auf die orange Kurve, wenn man der orangen \glqq Spalte\grqq{} 
 Vorteil diese Bildes ist also offensichtlich, dass man dessen zugehörige Matrix Zeilen- und Spaltenweise gleich wie das eindimensionale Signal betrachten kann.
 
 Die Parameter $m$ und $\alpha$, die vorher für jedes Level einzeln bestimmt wurden, bleiben erhalten.
-Die Funktion $s(cf_k)$ aus \eqref{deconvolve:funktion} wird also auf alle Level gleich wie beim eindimensionalen Signal angewendet.
+Die Funktion $s(cf_{k,n})$ aus \eqref{deconvolve:funktion} wird also auf alle Level gleich wie beim eindimensionalen Signal angewendet.
 Dies geschieht einmal Zeilen- und Spaltenweise, es wird also insgesamt 19200 mal eine Analyse mit der diskreten Wavelet-Transformation durchgeführt.
 Sind $f_\text{rows}(x,y)$ und $f_\text{cols}(x,y)$ die Zeilen-, bzw. Spaltenweise \glqq geschärften\grqq{} Varianten des ursprünglichen Bildes, kann davon das arithmetische Mittel genommen werden
 $$f_\text{sharp}(x,y)=\frac{f_\text{rows}(x,y)+f_\text{cols}(x,y)}{2},$$
@@ -27,7 +29,7 @@ Abbildung \ref{deconvolve:ergebnis} zeigt das Ergebnis.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{./papers/deconvolve/pictures/dreieck_sharp.png}
-\caption{Mit $s(cf_k)$ \glqq geschärftes\grqq{} Bild\label{deconvolve:ergebnis}}
+\caption{Mit $s(cf_{k,n})$ \glqq geschärftes\grqq{} Bild\label{deconvolve:ergebnis}}
 \end{figure}
  
 Eine Verbesserung ist wie vorherzusehen nicht zu erkennen. Wo vorher der Rand verschwommen war, sind jetzt einfach starke Schwingungen aufgetaucht.

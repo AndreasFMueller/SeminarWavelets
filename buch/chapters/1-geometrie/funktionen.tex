@@ -112,7 +112,7 @@ Die Norm einer Funktion $f\in C(X,\mathbb R)$ ist
 \end{definition}
 
 
-\subsection{Translation und Dilatation}
+\subsection{Translation und Dilatation\label{subsection:translation-dilatation}}
 Der Definitionsbereich $\mathbb R$ zeichnet sich durch die darin zur
 Verfügung stehenden Rechenoperationen aus.
 Man kann zu einem Argument einen konstanten Wert hinzuaddieren oder mit
@@ -130,8 +130,8 @@ der Graph von $T_b\psi$ ist um $b$ nach rechts verschoben.
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/dilatation.pdf}
-\caption{Wirkung des Operators $D_a$ auf ein im Punkt $c$ zentriertes
-Wavelet $\psi$. Das Wavelet $D_a\psi$ ist zentriert im Punkt $a\cdot c$.
+\caption{Wirkung des Operators $\tilde{D}_a$ auf ein im Punkt $c$ zentriertes
+Wavelet $\psi$. Das Wavelet $\tilde{D}_a\psi$ ist zentriert im Punkt $a\cdot c$.
 \label{geometrie:Da:image}}
 \end{figure}
 
@@ -141,15 +141,21 @@ Dann setzt man
 \begin{align*}
 T_bf&\colon \mathbb R \to Y: t\mapsto f(t-b)&&\text{Translation}
 \\
-D_af&\colon \mathbb R \to Y: t\mapsto f(t/a)&&\text{Dilatation}
+\tilde{D}_af&\colon \mathbb R \to Y: t\mapsto f(t/a)&&\text{Dilatation}
 \end{align*}
 \end{definition}
 
 Die Wirkung der beiden Operatoren ist in den
 Abbildungen~\ref{geometrie:Tb:image} und \ref{geometrie:Da:image} dargestellt.
-Der Operator $D_a$ dehnt den Graphen der Funktion entlang der
+Der Operator $\tilde{D}_a$ dehnt den Graphen der Funktion entlang der
 $t$-Achse um den Faktor $a$ während der Operator $T_b$ den Graphen
 der Funktion um den Betrag $b$ entlant der $t$-Achse verschiebt.
+
+Die gewählte Notation für die Dilatation ist etwas asymmetrisch.
+Der Grund ist, dass Operation $T_b$ die später zu definierende Norm
+erhält, dass aber $\tilde{D}_a$ die Norm verändert.
+Die später formulierte Definition von $D_a$ wird erreichen, dass auch
+die $D_a$ die Norm erhält.
 
 \begin{figure}
 \centering
@@ -169,22 +175,22 @@ von Satz~\ref{satz:kommutator} bestätigt.
 
 \begin{satz}
 \label{satz:kommutator}
-Translation $T_b$ und Dilatation $D_a$ sind lineare Abbildungen.
+Translation $T_b$ und Dilatation $\tilde{D}_a$ sind lineare Abbildungen.
 Die beiden Operatoren vertauschen nicht, vielmehr gilt
-$T_{ab}D_a = D_aT_b$.
+$T_{ab}\tilde{D}_a = \tilde{D}_aT_b$.
 \end{satz}
 
 \begin{proof}[Beweis]
 Die Linearität der Operatoren wird durch Nachrechnen verifiziert.
 Für eine Linearkombination $\lambda f+\mu g$ zweier Funktion $f$ und $g$ gilt:
 \begin{align*}
-D_a(\lambda f+\mu g)(t)
+\tilde{D}_a(\lambda f+\mu g)(t)
 &=
 (\lambda f+\mu g)(t/a)
 =
 \lambda f(t/a)+\mu g(t/a)
 =
-\lambda (D_af)(t)+\mu (D_ag)(t),
+\lambda (\tilde{D}_af)(t)+\mu (\tilde{D}_ag)(t),
 \\
 T_b(\lambda f+ \mu g)(t)
 &=
@@ -196,7 +202,7 @@ T_b(\lambda f+ \mu g)(t)
 \end{align*}
 Ohne Argumente geschrieben heisst dies
 \begin{align*}
-D_a(\lambda f+\mu g) &= \lambda D_af + \mu D_ag
+\tilde{D}_a(\lambda f+\mu g) &= \lambda \tilde{D}_af + \mu \tilde{D}_ag
 \\
 T_b(\lambda f+\mu g) &= \lambda T_bf + \mu T_bg
 \end{align*}
@@ -211,11 +217,11 @@ ist:
 &=
 f(t-b)
 \\
-(D_af)(t)
+(\tilde{D}_af)(t)
 &=
 f(t/a)
 \\
-(D_aT_bf)
+(\tilde{D}_aT_bf)
 &=
 (T_bf)(t/a)
 =
@@ -223,17 +229,17 @@ f(t/a-b)
 =
 f((t-ab)/a)
 \\
-(T_{ab}D_a f)(t)
+(T_{ab}\tilde{D}_a f)(t)
 &=
-(D_af)(t - ab)
+(\tilde{D}_af)(t - ab)
 =
 f((t-ab)/a)
 \end{align*}
-Daraus kann man ablesen, dass $T_{ab}D_a=D_aT_b$.
+Daraus kann man ablesen, dass $T_{ab}\tilde{D}_a=\tilde{D}_aT_b$.
 \end{proof}
 
 Die Abbildung~\ref{geometrie:kommutator:image} illustriert die
-Vertauschungsregel für die Operatoren $T_b$ und $D_a$ und liefert
+Vertauschungsregel für die Operatoren $T_b$ und $\tilde{D}_a$ und liefert
 einen ``graphischen'' Beweis für die Vertauschungsregel von
 Satz~\ref{satz:kommutator}.
 

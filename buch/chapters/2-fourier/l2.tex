@@ -467,8 +467,89 @@ f(\underbrace{t/a}_{\displaystyle=t'})
 \end{align*}
 \end{proof}
 
+\subsection{Translation und Dilatation
+\label{subsection:translation-dilatation2}}
+In Abschnitt~\ref{subsection:translation-dilatation} haben wir die
+Operationen $T_b$ und $\tilde{D}_a$ definiert.
+Es ist ganz offensichtlich, dass die Operation $T_b$ die Norm einer
+Funktion $f(t)$ nicht ändert, denn
+\[
+\|T_bf\|
+=
+\int_{-\infty}^{\infty} |T_bf(t)|^2\,dt
+=
+\int_{-\infty}^{\infty} |f(t-b)|^2\,dt
+=
+\int_{-\infty}^{\infty} |f(t)|^2\,dt
+=
+\|f\|^2.
+\]
+Die Dilatation $\tilde{D}_a$ hingegen ändert die Norm, es gilt nämlich
+\begin{align*}
+\|\tilde{D}_af\|^2
+&=
+\int_{-\infty}^\infty |\tilde{D}_af(t)|^2\,dt
+=
+\int_{-\infty}^\infty |f(t/a)|^2 \,dt
+=
+\int_{-\infty}^\infty |f(\tau)|^2 \, a\,d\tau
+=
+\int_{-\infty}^\infty |\sqrt{a} f(\tau)|^2 \,d\tau
+=
+\| \sqrt{a} f \|^2,
+\end{align*}
+wobei wir die Subsitution $\tau = t/a$ verwendet haben.
+Wir können daraus ablesen, wie wir die Definition von $\tilde{D}_a$
+modifizieren müssen, dass auch die Dilatation die Norm erhält.
 
+\begin{definition}
+Die Dilatation $D_af$ der Funktion $f\colon\mathbb R\to\mathbb C$ ist 
+\[
+(D_af)(t) = \frac{1}{\sqrt{a}} f\biggl(\frac{t}{a}\biggr).
+\]
+\end{definition}
 
+\begin{satz}
+Die Operationen $T_b$ und $D_a$ sind Isometrien, sie erhalten die
+Norm:
+\[
+\begin{aligned}
+\| T_bf \| &= \|f\|
+&&&
+\| D_af \| &= \| f \|.
+\end{aligned}
+\]
+Ausserdem gelten die Rechenregeln
+\begin{align*}
+T_{b_1}T_{b_2}&=T_{b_1+b_2}
+&
+D_{a_1} D_{a_2}&=D_{a_1a_2}
+&
+D_aT_b
+&=
+T_{ab}D_a
+\end{align*}
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Eigenschaften Rechenregeln folgen unmittelbar aus den Definitionen und
+den früher bewiesenen Regeln, insbesondere Satz~\ref{satz:kommutator}.
+\end{proof}
+
+\begin{figure}
+\centering
+\includegraphics{chapters/2-fourier/images/kommutatorD.pdf}
+\caption{Vertauschungsregel für die Operationen $T_b$ und $D_a$
+(vergleiche auch Abbildung~\ref{geometrie:kommutator:image} für
+die Operationen $T_b$ und $\tilde{D}_a$).
+Die Graphen der Bildfunktionen unter $D_a$ sind gegenüber denen der
+Bildfunktionen von $\tilde{D}_a$ vertikal um den Faktor $\sqrt{a}$
+gestaucht.
+\label{geometrie:kommutatorD:image}}
+\end{figure}
+
+Die Vertauschungsregel für $T_b$ und $D_a$ ist in
+Abbildung~\ref{geometrie:kommutatorD:image} visualisiert.
 
 
 
