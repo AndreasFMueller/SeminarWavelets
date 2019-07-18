@@ -7,8 +7,19 @@
 \rhead{Das duale Frame}
 In diesem Abschnitt gehen wird davon aus, dass $\mathcal{B}$ ein
 Frame in $\mathbb{R}^n$ ist mit Framekonstanten $A$ und $B$.
+Die Transformation $\mathcal{T}$, die zu diesem Frame gehört, liefert 
+zu einem Vektor $v$ die Analyse-Koeffizienten $\hat{v} = \mathcal{T}v$.
+Die Konstruktion eines Filters auf der Basis einer solchen Analyse verlangt
+jedoch auch, dass die Abbildung $\mathcal{T}$ umgekehrt werden kann.
+Von vornherein ist aber nicht klar, ob die Abbildung überhaupt umkehrbar ist,
+denn es wurde ja nicht verlangt, dass die Framevektoren linear unabhängig
+sind.
+Im besten Fall kann man also Linksinverse von $\mathcal{T}$ erwarten.
+Eine solche ordnet jedem Koeffizienten $\hat{v}_k$ einen Vektor $v_k'$
+zu, das sogenannte duale Frame, welches in diesem Abschnitt konstruiert
+werden soll.
 
-\subsection{Frame-Operator\label{subsection:frame-operator}}
+\subsection{Der Gram-Operator\label{subsection:gram-operator}}
 Der Frame-Operator berechnet die Analysekoeffizienten
 $\hat{v}_k=\langle v,b_k\rangle$ eines Signals
 $v\in \mathbb R^n$ bezüglich des Frames $\mathcal{B}$:
@@ -97,7 +108,7 @@ T
 \end{equation}
 \end{beispiel}
 
-\subsubsection{Die Gram-Matrix}
+\subsection{Die Gram-Matrix}
 Das Frame $\mathcal{B}$ mit den Frame-Konstanten $A$ und $B$ erfüllt
 \[
 A\|v\|^2 \le \sum_{k=1}^m |\langle v,b_k\rangle|^2 \le B\|v\|^2
@@ -317,7 +328,7 @@ Dies wiederum ist gleichbedeutend damit, dass alle Vektoren Eigenvektoren
 zum gleichen Eigenwert sind und $T^tT=AE=BE$.
 \end{proof}
 
-\subsubsection{Die inverse Abbildung des Frame-Operators}
+\subsection{Die inverse Abbildung des Frame-Operators}
 Für ein straffes Frame gilt $T^tT  = AE$.
 Bis auf den Faktor $A$ ist daher $T^t$ bereits eine Linksinverse von $T$.
 Genauer, mit
@@ -346,7 +357,7 @@ STv,
 \]
 die Matrix $S=G^{-1}T^t$ ist also die gesuchte Linksinverse von $T$.
 
-\subsubsection{Das duale Frame}
+\subsection{Das duale Frame}
 Um den Frame-Operator umzukehren, muss man $G^{-1}T^t$ berechnen
 können.
 Auf einen Vektor $\hat{v} = (\hat{v}_k)_{1\le k\le m} = Tv$ angewendet
