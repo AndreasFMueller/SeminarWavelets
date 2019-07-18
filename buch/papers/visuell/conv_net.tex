@@ -31,11 +31,8 @@ Der Aufbau eines Neuron ist in Abbildung \ref{fig:neuron} gezeigt.
 Eine Unterkategorie der KNNs stellen die Convolutional Neural Nets (CNN) dar.
 Wie der Name schon sagt, spielen dabei Faltungen eine wichtige Rolle.
 Bevor die normalen KNN Layer kommen, werden Bilddaten üblicherweise zuerst von einigen Faltungslayern vorverarbeitet.
-Die Idee dazu kommt von der klassischen Bildverarbeitung, wo häufig Faltungskernel verwendet werden um ein Bild zu filtern oder Features zu erkennen.
-Bei einem CNN werden diese Kernel nicht vom Ingenieur bestimmt, sondern während Trainings durch den Algorithmus gelernt.  
-Die gelernten Gewichte (Kernels) haben an jeder Position der Faltung die selben Werte, sind also Translationsinvariant.
-Diese Eigenschaft ist entscheidend, da sie einerseits die Anzahl zu lernender Gewichte extrem reduziert und andererseits die Generalisierung fördert.
-Solche CNNs zeigen extrem gute Resultate in der Bildverarbeitung, speziell im Bereich der Klassifizierung von Bildern (z.B. Erkennen von Katzen).
+Ein solcher Faltungslayer besteht aus verschiedenen Kernels, welche mit dem Eingangsbild gefaltet werden.
+Die Funktion der zweidimensionalen Faltung ist analog zur klassischen Bildverarbeitung, wo häufig Faltungskernel verwendet werden um ein Bild zu filtern oder Features zu erkennen.
 Wie eine zweidimensionale Faltung funktioniert ist in Abbildung \ref{fig:2dconv} gezeigt.
 
 \begin{figure}
@@ -45,7 +42,19 @@ Wie eine zweidimensionale Faltung funktioniert ist in Abbildung \ref{fig:2dconv}
 	\label{fig:2dconv}
 \end{figure}
 
-Anhand von der Bildverarbeitung kann man den Unterschied von KNNs und CNNs gut erklären.
+Inspiriert wurden auch die CNNs von der Neurologie, genauer vom V1.
+Die rezeptiven Felder (vgl. \ref{subsec:v1}) bilden die Eingänge der Neuronen.
+Diese Neuronen sind so angeordnet, dass jede Position im Bild abgedeckt ist.
+Es wird also vom Eingangsbild eine abstrakte Abbildung erstellt.
+Ein Neuron kann so als Multiplikation (mit anschliessender Aktivierungsfunktion) des rezeptiven Feldes mit einem Kernel interpretiert werden.
+Diese und weitere Eigenschaften inspirierten die Entwicklung der CNNs (vgl. Kapitel 9.10 im Buch \cite{book:deeplearning}).
+
+Bei einem CNN werden die Kernel nicht mehr vom Ingenieur bestimmt, sondern während Trainings durch den Algorithmus gelernt.  
+Die gelernten Gewichte (Kernels) haben an jeder Position der Faltung die selben Werte, sind also Translationsinvariant.
+Diese Eigenschaft ist entscheidend, da sie einerseits die Anzahl zu lernender Gewichte extrem reduziert und andererseits die Generalisierung fördert.
+Solche CNNs zeigen extrem gute Resultate in der Bildverarbeitung, speziell im Bereich der Klassifizierung von Bildern (z.B. Erkennen von Katzen).
+
+Anhand der Bildverarbeitung kann man den Unterschied von KNNs und CNNs gut erklären.
 Bei einem KNN wird jedes Pixel mit jedem Neuron verbunden und für jede dieser Verbindungen wird ein eigenes Gewicht gelernt.
 Beim CNN hingegen wird ein einzelner Kernel gelernt, welcher dann translationsinvariant auf das ganze Bild angewendet wird.
 Als Beispiel nehmen wir einen ersten Layer von $256$ Neuronen, ein Eingangsbild der Grösse $128\times128$ und eine Kernelgrösse von $3\times3$.
@@ -56,13 +65,13 @@ Die zweidimensionale Wavelet-Transformation kann auch als Faltung des Bildes mit
 Dabei werden allerdings nicht mehr alle kontinuierlichen Grössen des Wavelets berücksichtigt, sondern nur noch eine diskrete Anzahl.
 Da KNNs (und CNNs) vom Hirn inspirierte Algorithmen darstellen und die Bildvorverarbeitung im Hirn als Gabor-Wavelet-Transformation modelliert werden kann, drängt sich daher eine Kombination dieser beiden Konzepte auf.
 
-Eine offensichtliche Idee ist dabei das Vorverabeiten der Bilder mithilfe von Gabor-Wavelets.
+Eine offensichtliche Idee ist dabei das Vorverabeiten der Bilder mit Gabor-Wavelets.
 Diese vorverarbeiteten Bilder können dann als Input in das CNN verwendet werden und sollten gute Resultate zeigen, analog zum menschlichen Hirn.
 Ob diese theoretischen Ideen auch praktisch anwendbar sind, soll ein Versuch zeigen.
 
 \subsection{Versuch}
 
-Das Ziel des Versuches ist es, zu zeigen ob Gabor-Wavelets wirklich eine Berechtigung im Zusammenhang mit CNNs haben.
+Das Ziel des Versuches ist es zu zeigen, ob Gabor-Wavelets wirklich eine Berechtigung im Zusammenhang mit CNNs haben.
 Zwei verschiedene Dinge sollen überprüft werden:
 \begin{enumerate}
 	\item Ist eine Vorverarbeitung mittels Gabor-Kerneln sinnvoll?
@@ -72,8 +81,8 @@ Um diese Ziele zu erreichen wurde ein Versuch durchgeführt, bei welchem der CIF
 Beim CIFAR-10 Datensatz handelt es sich um $32 \times 32$ Pixel grosse farbige Bilder,welche zu zehn verschiedenen Klassen gehören (z.B. Flugzeug, Vogel, etc.).
 Der Datensatz umfasst dabei 50'000 Trainings- und 10'000 Testbilder.
 Ein Beispiel jeder Klasse ist in Abbildung \ref{fig:cifar10} gezeigt.
-Der CIFAR-10 Datensatz wurde gewählt, da er ziemlich bekannt ist, Beispielarchitekturen verfügbar sind und relativ schwierig zu lösen ist.
-Die Schwierigkeit ist wichtig um überhaupt einen Unterschied in der Genauigkeit feststellen zu können (bei 99\% Genauigkeit sieht man keine grossen Verbesserungen mehr).
+Der CIFAR-10 Datensatz wurde gewählt, weil er ziemlich bekannt ist, Beispielarchitekturen verfügbar sind und relativ schwierig zu lösen ist.
+Die Schwierigkeit ist wichtig, um überhaupt einen Unterschied in der Genauigkeit feststellen zu können (bei 99\% Genauigkeit sieht man keine grossen Verbesserungen mehr).
 
 \begin{figure}
 	\centering
@@ -93,7 +102,7 @@ Die Variante mit Gabor-Layer stellt dem Netzwerk weniger Freiheitsgrade zur Verf
 Da wir aber vermuten das ein Gabor-Layer eine optimale Vorverarbeitung darstellt, können wir die folgende Hypothese formulieren:
 \newtheorem{hypothese}{Hypothese}
 \begin{hypothese}\label{hyp:1}
-	 Ein Gabor-Layer stellt eine optimale Vorverarbeitung dar.
+	 Ein Gabor-Layer stellt eine vorteilhafte Vorverarbeitung dar.
 	 Aus diesem Grund sollten die Gabor-Kernels bessere Resultate als die selbst gelernten zeigen.
 	 Dies obwohl bei der klassischen Variante mehr Freiheitsgrade zu Verfügung stehen.
 \end{hypothese}
@@ -101,7 +110,7 @@ Da wir aber vermuten das ein Gabor-Layer eine optimale Vorverarbeitung darstellt
 Nach dem ersten Layer folgen drei weitere Convolutional-Layer, bevor am Ende fünf Fully-Connected-Layer (normale KNN-Layer) das Resultat ausgeben.
 Die genaue Architektur ist in Tabelle \ref{table:architecture} gezeigt.
 Die Bilder werden zuerst in schwarzweiss Bilder umgewandelt, damit die Gabor-Variante keinen Nachteil bekommt.
-Der Nachteil würde entstehen, da das Netzwerk für jede Farbe andere Features lernen könnte, wohingegen die Gabor-Variante auf allen Farben die gleichen Kernels benutzen würde. 
+Der Nachteil würde entstehen, da das Netzwerk für jede Farbe eigene Kernels lernen könnte, wohingegen die Gabor-Variante auf allen Farben die gleichen Kernels benutzen würde. 
 
 \begin{table}
 	\centering
