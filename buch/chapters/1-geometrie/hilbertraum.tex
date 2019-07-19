@@ -12,7 +12,7 @@ was wir vorhaben.
 Ein endlichdimensionaler Vektorraum ist sicher ein geeigneter Rahmen zur
 Beschreibung eines Signals, welches an endlich vielen Stellen abgetastet
 wurde.
-Für kontinuierliche Signale reicht er aber nicht.
+Für kontinuierliche Signale, also Funktionen $x(t)$,  reicht er aber nicht.
 Zunächst ist die Menge aller Funktionen zwar ein Vektorraum, aber es ist
 aussichtslos, eine endliche orthonrmierte Basis zu finden.
 Vielmehr werden wir sehen, dass bereits der Raum der stetigen Funktionen
@@ -30,7 +30,44 @@ nicht mehr wahr.
 Der bisher formulierte Begriff des Skalarproduktes funktioniert daher
 nicht für komplexe Signale.
 
-\subsection{Komplexe Vektorräume mit Skalarprodukt}
+Damit die endlichdimensionale Theorie vollständig übertragen werden kann,
+müssen folgende Eigenschaften gerettet werden:
+\begin{itemize}
+\item {\bf Lineare Operationen:}
+Signale können verstärkt (mit reellen Zahlen multipliziert) und überlagert
+(addiert) werden.
+Die Verallgemeinerung muss also die üblichen Rechenregeln bewahren,
+sie muss also wieder ein Vektorraum sein.
+Da es keine endlichdimensionale Basis mehr gibt, muss man unendlichen
+Linearkombinationen einen Sinn geben können, was nur mit Hilfe des
+Begriffs der Konvergenz von Folgen möglich ist.
+Dazu wiederum muss man den Unterschied zwischen Vektoren messen können.
+Vektorraum und Skalarprodukt werden in
+Abschnitt~\ref{subsubsection:komplexevr-mit-skalarprodukt}
+axomiatisch dargestellt.
+\item {\bf Skalarprodukt:}
+Das Skalarprodukt ist das Mass für die Ähnlichkeit zweier Funktionen
+und gleichzeitig die Quelle eines Norm-Begriffs.
+Abschnitt~\ref{subsection:norm-und-grenzwert} behandelt den Grenzwertbegriff.
+\item {\bf Basis:}
+Anstelle einer Basis genügt es orthonormierte Vektormengen zu finden,
+mit denen sich jeder beliebige Vektor im Grenzwert linear kombinieren
+lässt.
+Abschnitt~\ref{subsection:hilbertraum-basis} erklärt den Begriff der
+Hilbertraum-Basis.
+\item {\bf Dualität:}
+In einem endlichdimensionalen Vektorraum ist es so offensichtlich, dass
+jede Linear-Form also Skalarprodukt mit einem geeigneten Vektor 
+dargestellt werden kann.
+Dies ermöglicht, einen Vektor als Linearform zu charakterisieren.
+In einem unendlichdimensionalen Vektorraum ist dies nicht mehr
+selbstverständlich.
+Der Darstellungssatz von Riesz in Abschnitt~\ref{subsection:riesz}
+stellt dies in einem Hilbertraum jedoch sicher.
+\end{itemize}
+
+\subsection{Komplexe Vektorräume mit Skalarprodukt
+\label{subsubsection:komplexevr-mit-skalarprodukt}}
 Es hindert uns nichts daran, in der Definition eines Vektorraums für die
 Menge der Skalare auch komplexe Zahlen zuzulassen.
 Ganz allgemein kann ein Vektorraum sinnvoll definiert werden, wenn die Menge
@@ -236,94 +273,9 @@ Namen Polar-Identität oder Polarisierung des Skalarprodukts.
 \index{Polar-Identität}
 \index{Polarisierung}
 
-Das Skalarprodukt erlaubt auch in einem komplexen Hilbertraum den Begriff
-der orthonormierten Basis zu definieren.
-\index{orthonormierte Basis}
-Eine Menge von orthonormierten Vektoren ist automatisch linear unabhängig.
-In einem $n$-dimensionalen Vektorraum reicht das um sicherzustellen,
-dass eine Menge von $n$ orthonormierten Vektoren eine Basis ist.
-In einem undendlichdimensionalen Vektorraum reicht Orthonormalität
-jedoch nicht um sicherzustellen, dass sich jeder Vektor beliebig genau
-als Linearkombination approximieren lässt.
 
-\begin{definition}
-Eine Menge von Vektoren $\mathcal{B} = \{v_1,v_2,\dots\}\subset H$ in einem
-Hilbertraum $H$ heisst eine {\em Erzeugendensystem}, wenn es keinen Vektor
-$v\in H$ gibt, der auf allen Vektoren von $\mathcal{B}$ senkrecht steht.
-\end{definition}
-
-\begin{beispiel}
-Wir betrachten den Hilbertraum $l^2$, dessen Vektoren Folgen
-$a=(a_k)_{k\in\mathbb N}$ von komplexen Zahlen sind mit dem Skalarprodukt
-\begin{equation}
-\langle a,b\rangle = \sum_{k\in\mathbb N} a_k\bar{b}_k.
-\label{l2:beispiel:erzeugendensystem}
-\end{equation}
-Die Vektoren $e^{(i)}$ mit den Komponenten
-\[
-e^{(i)}_k = \delta_{ik}
-\]
-sind überall $0$ ausser das Folgenglied mit der Nummer $i$, welches $1$
-ist. 
-Diese Vektoren haben Länge $1$ im Sinne des Skalarproduktes
-\eqref{l2:beispiel:erzeugendensystem} und sie sind orthogonal:
-\[
-\langle e^{(i)}, e^{(j)}\rangle
-=
-\sum_{k\in\mathbb N} e^{(i)}_k\bar{e}^{(j)}_k
-=
-\sum_{k\in\mathbb N} \delta_{ik}\delta_{jk}
-=
-\delta_{ij}.
-\]
-Die Vektoren $e^{(i)}$ sind aber auch ein Erzeugendensystem, wie man sich
-wie folgt überzeugen kann.
-Gäbe es einen Vektor $v\in l^2$, dessen Skalarprodukt mit allen $e^{(i)}$
-verschwindet, dann würde für alle $i$ folgen
-\[
-0
-=
-\langle v,e^{(i)}\rangle
-=
-\sum_{k\in\mathbb N} v_ke^{(i)}_k
-=
-\sum_{k\in\mathbb N} v_k\delta_{ik}
-=
-v_i,
-\]
-d.~h.~der Vektor $v$ ist $0$.
-\end{beispiel}
-
-\begin{satz}
-Wenn die Vektoren $\{e_k\,|\, 1\le k\le n\}$ eine orthonormierte Basis
-von $V$ bilden, dann lässt sich jeder Vektor $v\in V$ als Linearkombination
-\[
-v
-=
-\sum_{k=1}^n \hat{v}_k e_k
-\]
-der Vektoren $e_k$ schreiben.
-Die Koeffizienten sind eindeutig bestimmt und können mit Hilfe des
-Skalarproduktes als
-\[
-\hat{v}_k = \langle v,e_k\rangle
-\]
-gefunden werden.
-Ausserdem gilt für das Skalarprodukt die Plancherel-Identität
-\index{Plancherel-Identität}
-\begin{align*}
-\langle u,v\rangle &= \sum_{k=1}^n \hat{u}_k\bar{\hat{v}}_k
-\\
-\| u \|^2 &= \sum_{k=1}^n |\hat{u}_k|^2.
-\end{align*}
-\end{satz}
-
-Die Abbildung $T\colon V\to \mathbb C^n: v\mapsto (\hat{v}_k\,|\,1\le k\le n)$
-ist also wie im reellen Fall eine {\em Isometrie}.
-\index{Isometrie}
-
-
-\subsection{Norm und Grenzwert in einem Hilbertraum}
+\subsection{Norm und Grenzwert in einem Hilbertraum
+\label{subsection:norm-und-grenzwert}}
 Bis jetzt haben wir immer in endlichdimensionalen Vektorräumen gearbeitet.
 Der tiefere Grund dafür war, dass die Arbeit mit unendlich vielen Basisvektoren
 $e_k$, $k\in\mathbb N$, erfordert, dass Ausdrücken der Form
@@ -470,7 +422,32 @@ mit dem Skalarprodukt
 % XXX TODO: Vervollständigung: Summierbarkeit des Grenzwertes...
 \end{beispiel}
 
-\subsection{Basis eines Hilbertraumes}
+\subsection{Basis eines Hilbertraumes
+\label{subsecdtion:hilberraum-basis}}
+Eine Basis eines Vektorraums ist eine Menge von Vektoren, aus der sich
+jeder beliebige Vektor linear kombinieren lässt.
+In einem unendlichdimensionalen Vektorraum ist dieses Konzept nur
+beschränkt nützlich, weil es von endlichen Summen ausgeht.
+
+Das Skalarprodukt erlaubt auch in einem komplexen Hilbertraum den Begriff
+der orthonormierten Basis zu definieren.
+\index{orthonormierte Basis}
+Eine Menge von orthonormierten Vektoren ist automatisch linear unabhängig.
+In einem $n$-dimensionalen Vektorraum reicht das um sicherzustellen,
+dass eine Menge von $n$ orthonormierten Vektoren eine Basis ist.
+In einem undendlichdimensionalen Vektorraum reicht Orthonormalität
+jedoch nicht um sicherzustellen, dass sich jeder Vektor beliebig genau
+als Linearkombination approximieren lässt.
+
+\begin{definition}
+Eine Menge von Vektoren $\mathcal{B} = \{v_1,v_2,\dots\}\subset H$ in einem
+Hilbertraum $H$ heisst eine {\em Erzeugendensystem}, wenn es keinen Vektor
+$v\in H$ gibt, der auf allen Vektoren von $\mathcal{B}$ senkrecht steht.
+\end{definition}
+
+Das folgende Beispiel zeigt, dass es eine einem unendlichdimensionalen
+Vektorraum möglich ist, eine unendliche Folge orthonormierter Vektoren
+und einen weiteren Vektor zu finden, der auf jedem Vektor senkrecht ist.
 
 \begin{beispiel}
 \label{geometrie:l2-beispiel}
@@ -589,3 +566,91 @@ neben einer unendlich grossen Menge von orthonormierten Vektoren
 noch einen weiteren Vektor geben, der senkrecht auf allen steht.
 \end{beispiel}
 
+Das Beispiel lässt sich beliebig erweitern: Jede Skalierung
+$\tilde{D}_{2^n}g$ ist ebenfalls orthogonal auf allen Vektoren $f_k$.
+Offenbar gibt die Folge $f_k$ den Hilbertraum nur sehr lückenhaft wieder.
+
+\begin{beispiel}
+Wir betrachten den Hilbertraum $l^2$, dessen Vektoren Folgen
+$a=(a_k)_{k\in\mathbb N}$ von komplexen Zahlen sind mit dem Skalarprodukt
+\begin{equation}
+\langle a,b\rangle = \sum_{k\in\mathbb N} a_k\bar{b}_k.
+\label{l2:beispiel:erzeugendensystem}
+\end{equation}
+Die Vektoren $e^{(i)}$ mit den Komponenten
+\[
+e^{(i)}_k = \delta_{ik}
+\]
+sind überall $0$ ausser das Folgenglied mit der Nummer $i$, welches $1$
+ist. 
+Diese Vektoren haben Länge $1$ im Sinne des Skalarproduktes
+\eqref{l2:beispiel:erzeugendensystem} und sie sind orthogonal:
+\[
+\langle e^{(i)}, e^{(j)}\rangle
+=
+\sum_{k\in\mathbb N} e^{(i)}_k\bar{e}^{(j)}_k
+=
+\sum_{k\in\mathbb N} \delta_{ik}\delta_{jk}
+=
+\delta_{ij}.
+\]
+Die Vektoren $e^{(i)}$ sind aber auch ein Erzeugendensystem, wie man sich
+wie folgt überzeugen kann.
+Gäbe es einen Vektor $v\in l^2$, dessen Skalarprodukt mit allen $e^{(i)}$
+verschwindet, dann würde für alle $i$ folgen
+\[
+0
+=
+\langle v,e^{(i)}\rangle
+=
+\sum_{k\in\mathbb N} v_ke^{(i)}_k
+=
+\sum_{k\in\mathbb N} v_k\delta_{ik}
+=
+v_i,
+\]
+d.~h.~der Vektor $v$ ist $0$.
+\end{beispiel}
+
+Die naheliegende Erweiterung des Begriffs der orthonormierten Basis
+eines endlichdimensionalen Vektorraums ist jetzt der Begriff der
+Hilberbasis.
+
+\begin{definition}
+Ein aus orthonormierten Vektoren bestehendes Erzeugendensystem
+eines Hilbertraumes heisst {\em Hilberbasis}
+\end{definition}
+\index{Hilbertbasis}
+
+\begin{satz}
+Wenn die Vektoren $\{e_k\,|\, 1\le k\le n\}$ eine Hilbertbasis des
+Hilberraumes $H$ bilden,
+dann lässt sich jeder Vektor $v\in H$ als Linearkombination
+\[
+v
+=
+\sum_{k=1}^\infty \hat{v}_k e_k
+\]
+der Vektoren $e_k$ schreiben.
+Die Koeffizienten sind eindeutig bestimmt und können mit Hilfe des
+Skalarproduktes als
+\[
+\hat{v}_k = \langle v,e_k\rangle
+\]
+gefunden werden.
+Ausserdem gilt für das Skalarprodukt die Plancherel-Identität
+\index{Plancherel-Identität}
+\begin{align*}
+\langle u,v\rangle &= \sum_{k=1}^\infty \hat{u}_k\bar{\hat{v}}_k
+\\
+\| u \|^2 &= \sum_{k=1}^\infty |\hat{u}_k|^2.
+\end{align*}
+\end{satz}
+
+Die Abbildung $T\colon V\to \mathbb l^2: v\mapsto (\hat{v}_k\,|\,1\le k)$
+ist also wie im reellen Fall eine {\em Isometrie} von Hilberträumen.
+\index{Isometrie}
+
+
+\subsection{Darstellungssatz von Riesz
+\label{subsection:riesz}}
