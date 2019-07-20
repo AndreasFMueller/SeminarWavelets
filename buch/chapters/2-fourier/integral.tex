@@ -11,7 +11,7 @@ Für Funktionen $f\in L^2(\mathbb R)$ ist die Fourier-Transformation
 \hat{f}(\omega)
 =
 \frac{1}{\sqrt{2\pi}}
-\int_{-\infty}^\infty f(t) f(t)e^{-i\omega t}\,dt
+\int_{-\infty}^\infty f(t)e^{-i\omega t}\,dt
 \]
 wohldefiniert.
 Wir schreiben die Fourier-Transformation auch
@@ -45,9 +45,13 @@ verträgt:
 &=
 e^{-i\omega b}\hat{f}(\omega).
 \\
-\widehat{D_af}(\omega)
+\widehat{\tilde{D}_af}(\omega)
 &=
 a \hat{f}(a\omega)
+\\
+\widehat{D_af}(\omega)
+&=
+D_{1/a}\hat{f}(\omega)
 \\
 \widehat{e^{ibt}f}(\omega)
 &=
@@ -72,9 +76,9 @@ e^{-i\omega b}
 =
 e^{-i\omega b}\hat{f}(\omega).
 \\
-\widehat{D_af}(\omega)
+\widehat{\tilde{D}_af}(\omega)
 &=
-\int_{-\infty}^\infty (D_af)(t)e^{-i\omega t}\,dt
+\int_{-\infty}^\infty (\tilde{D}_af)(t)e^{-i\omega t}\,dt
 =
 \int_{-\infty}^\infty f(\underbrace{t/a}_{\displaystyle=t'})e^{-i\omega t}\,dt
 =
@@ -121,9 +125,13 @@ oder mit der Schreibweise $\mathcal{F}f$ für die Fourier-Transformation
 &&\Rightarrow &
 \mathcal{F}M_b&=T_b\mathcal{F}T_b
 \\
-\mathcal{F}D_af&=a D_{1/a} \mathcal F f
+\mathcal{F}\tilde{D}_af&=a \tilde{D}_{1/a} \mathcal F f
 &&\Rightarrow &
-\mathcal{F}D_a&=a D_{1/a} \mathcal F 
+\mathcal{F}\tilde{D}_a&=a \tilde{D}_{1/a} \mathcal F 
+\\
+\mathcal{F}D_af&=D_{1/a} \mathcal F f
+&&\Rightarrow &
+\mathcal{F}D_a&= D_{1/a} \mathcal F 
 \end{aligned}
 \]
 
