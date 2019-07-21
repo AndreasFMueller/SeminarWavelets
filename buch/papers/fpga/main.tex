@@ -17,35 +17,42 @@ Hardware implementation of a Wavelet transform and inverse transform using VHDL
 \section{Lifting Scheme}
 \rhead{Lifting Scheme}
 
-The Lifting Scheme is an widely used algorythm which is tho times more efficient in termes of multiplication uses. 
+The Lifting Scheme is an widely used algorythm which is two times more efficient in termes of multiplication uses. The Lifting Scheme factorizes any discrete wavelet transform  with finite filters into a series of elementary covolutions (Lifting Steps). This reduces the number of arithmetic operations nearly by a factor of two.
+This decomposition corresponds to a factorisation of the polyphase matrix of the wavelet filter into elementary matrices. 
+To describe the underlying wavelet Filters the z-transform notation is used. The z-transform of a FIR (finite impulse response) filter \textit{\textbf{h}}  is a laurent polynomial given by
+\begin{equation}\label{equ:impulse}
+	H(z) = \sum h_k z^{-k}
+\end{equation}
 
 %https://en.wikipedia.org/wiki/Lifting_scheme
 %http://wavelets.org/schemes-lifting.php
 
 \subsection{Polyphase Decomposition}
 
-%https://www.dsprelated.com/freebooks/sasp/Polyphase_Decomposition.html
-
-Polyphase definition is
+In our case we subsample the input signal by a factor of two. This corresponds to splitting the signal into two sub channels (even and odd samples). The polyphase decomposition is a algebraical way of describing this process. The following polyphase components are the filter components of the sub channels 
+We can separate equation \ref{equ:impulse} into its even- and odd-indexed terms
+\begin{equation}
+	H(z) = \sum_{n=-\infty}^{\infty} h(2n)z^{-2n} + z^{-1} \sum_{n=-\infty}^{\infty} h(2n+1)z^{-2n}
+\end{equation}
+Following this scheme the polyphase components of the filter are defined as follows
+\begin{equation}
+E_0(z) = \sum_{n=-\infty}^{\infty} h(2n)z^{-n}
+\end{equation}
+\begin{equation}
+E_1(z) = \sum_{n=-\infty}^{\infty} h(2n+1)z^{-n}
+\end{equation}
+which corresponds to the even and odd filter components.
+Now $H(z)$ can be written in terms of the polyphase components
 \begin{equation}
 H(z)=E_{0}(z^2)+z^{-1} E_1(z^2)
 \end{equation}
-
-Polyphase components are
-\begin{equation}
-E_0(z) = \sum_{n=-\inf}^{\inf h(2n)z^{-n}}
-\end{equation}
-\begin{equation}
-E_1(z) = \sum_{n=-\inf}^{\inf h(2n+1)z^{-n}}
-\end{equation}
-
-Haar Wavelet in z notation is
-$g(n)$ are the Father Wavelet coefficients whereas $h(n)$ are the corresponding mother coefficinents. 
+Because of its simplicity we first choose the Haar Wavelet. In z notation
+$g(n)$ are the Father Wavelet coefficients whereas $h(n)$ are the corresponding Mother Wavelet coefficients. 
 \begin{equation}
 {\mathcal {Z}} \{g(n)\} = 1 + z^-1
 \end{equation}
 \begin{equation}
-{\mathcal {Z}} \{(n)\} = 1 - z^-1
+{\mathcal {Z}} \{h(n)\} = 1 - z^-1
 \end{equation}
 
 
