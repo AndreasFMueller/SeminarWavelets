@@ -158,35 +158,24 @@ A hardware block can be optimized for various points, such as high accuracy, low
 Since this work is not based on a defined objective, we must come up with our own design specifications.
 
 In most cases, which do not require low latency and high data rates, a digital signal processor would be a better choice than a custom VHDL-implemented hardware.
-A sequential processor unit is computationally very efficient, and requires almost no area compared to most VHDL solutions, however it features a significantly higher latency.
+A sequential processor unit is computationally very efficient and requires almost no area compared to most VHDL solutions.
+However, it features a significantly higher latency.
 Hence, the implementation should feature low latency and high data rate as its main objectives in order to provide a VHDL solution, that is actually reasonable.
-The application should make use of on of the biggest advantages of custom hardware which is parallelism.
-Performing calculations in parallel leads to higher throughput, and allows data rates which are as fast as the clock speed of the logic.
-The strengths of the aspired implementation are thus high speed and low latency processing suitable for real-time applications.
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{./images/design_considerations.pdf}
-	\caption{Design considerations \label{fpga:designcon}}
-\end{figure}
+The application should make use of on of the biggest advantages of custom hardware, which is parallelism.
+Performing calculations in parallel leads to higher throughput and allows data rates which are as fast as the clock speed of the logic.
+The strengths of the aspired implementation are thus high speed and low latency processing, suitable for real-time applications.
 
-%The question is now, how do we implement the algorithm.
-%There are a few possible ways to code algorithms in VHDL.
-%As you can see in figure \ref{fpga:designcon} there are two major directions one can take.
-%
-%\begin{itemize}
-%	\item \textbf{Slow} The slow approach is also the cheap way to go. In this case the power requirements are lower and also the used chip area is smaller. This results in slower computation and because of the smaller area the parallelization is also limited.
-%	
-%	\item \textbf{Fast} The fast approach is the expensive way to go. You use big, fast and because of this more powerhungry hardware. They need also a bigger area. The benefits are that you are able, beside from higher processing speed, to parallelize your algorithm. This allows you to process high data rates and do this, depending on the application, in realtime.  
-%\end{itemize}
-%The right way needs to be chosen according to the application. In our case we chose the fast and highly parallelized branch. This because our algorithm is comparably simple and can be parallelized even on smaller devices. 
-%
-%
+%TODO \texttt{haar} blocks are independent and can be parallelized
 
 \subsection{Idea}
 
-Two hardware blocks should be implemented for both forward wavelet and inverse wavelet transform.
-The forward algorithm should have a 16-bit signed number as its input and outputs a given number of wavelet coefficients as a stream.
-Th main priority is to implement the Haar wavelet.
+Two hardware blocks need be implemented for both forward wavelet and inverse wavelet transform.
+The forward algorithm has a 16-bit signed number input and outputs a given number of wavelet coefficients as a stream.
+This number can be specified with a generic parameter.
+
+Each multiresolution analysis 
+
+The main priority is to implement the Haar wavelet.
 A optional goal is the implementation of a higher order wavelet, such as the orthogonal Daubechies-4 wavelet.
 Another design element is to realize the structure as generalized as possible.
 This because, if well implemented, it should be later easy to just change the transformation block to do transformations with other wavelets.
@@ -195,7 +184,7 @@ This because, if well implemented, it should be later easy to just change the tr
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{./images/idea.pdf}
-	\caption{Simplified design idea  \label{fpga:idea}}
+	\caption{Outline of the modules \label{fpga:idea}}
 \end{figure}
 
 
