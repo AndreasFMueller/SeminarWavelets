@@ -200,21 +200,22 @@ Obwohl diese Verzerrungen anteilsmässig keinen grossen Unterschied zum Original
 \end{figure}
 Um zu verstehen woher diese Störung kommt, wird die Rekonstruktion aufgeteilt.
 In \autoref{fig:hornOnly} links werden alle Koeffizienten unterhalb der gesetzten Schranke verwendet. 
-Das bedeutet, dass noch keine Quantisierung vorgenommen, sondern lediglich einen Teil der Koeffizienten weggelassen wird.
+Das bedeutet, dass noch keine zusätzliche Quantisierung vorgenommen, sondern lediglich einen Teil der Koeffizienten weggelassen wird.
 Dieses Signal weicht nur geringfügig vom Orignal ab.
 Daraus lässt sich vermuten, dass das Problem an der Quantisierung liegt.
-Wird die vollständige Rekonstruktion quantisiert, wird aus dem Originalsignal je nach gewählter Auflösung eine Treppenstufe wie sie in \autoref{fig:hornOnly} rechts zu sehen ist.
-Bei der Analyse mit dem db4 wird das Signal zwar weniger exakt rekonstruiert, jedoch werden keine Levels quantisiert(\autoref{fig:dbHorn}).
+Werden die Quantisierungsstufen der vollständigen Rekonstruktion vergrössert, wird aus dem Originalsignal je nach gewählter Auflösung eine Treppenstufe wie sie in \autoref{fig:hornOnly} rechts zu sehen ist.
+Bei der Analyse mit dem db4 wird das Signal zwar weniger exakt rekonstruiert, jedoch werden keine Levels stärker quantisiert(\autoref{fig:dbHorn}).
 Somit entstehen keine Verzerrungen und akustisch ist kaum ein Unterschied erkennbar.
 
 Das zeigt zwei wesentliche Probleme.
-Zum einen scheint es zu grob zu sein, über ein gesamtes Level zu entscheiden ob es quantisiert werden soll oder nicht.
+Zum einen scheint es zu grob zu sein, über ein gesamtes Level zu entscheiden ob es zusätzlich quantisiert werden soll oder nicht.
 Diese Einteilung soll deshalb auch innerhalb der einzelnen Levels gemacht werden, damit die Koeffizienten einzeln eingestuft werden können.
 Zum anderen kann auch die Quantisierung nicht absolut gemacht werden.
 Die Grösse des Anteils der Quantisierungsstufe wächst proportional mit der Grösse des Signals.
 Es ist deshalb nötig, der Quantisierung besondere beachtung zu schenken.
 
 \subsection{Quantisierung}
+\label{chapter=quantisierung}
 Audiodaten werden bei der CD-Qualität mit einer Auflösung von $16\,\text{Bit/Sample}$ abgespeichert. 
 Bei einer Abtastfrequenz \textit{fs} von $44.1\,\text{kHz}$ heisst das, dass eine Datenrate \textit{d} von 
 \begin{equation}
@@ -275,6 +276,9 @@ Jedoch sind bei den tieferen Dilatationslevels die Wavelets breiter verteilt als
 Es ist besonders erstaunlich, dass mit einem db20 Wavelet fast $75\,\text{\%}$ des gesamten Signals nur im 6. Level vorhanden ist.
 In \autoref{fig:jynx6} ist eine Rekonstruktion zu sehen, bei welcher ausschliesslich dieses Level verwendet wird.
 Akustisch ist der Klang des Wendehals immernoch gut erkennbar, jedoch ist die Energie und somit die Lautstärke des Signals niedriger.
+Diese Abweichung kann dann noch skaliert werden wodurch der wahrnehmbare Unterschied weiter verringert wird.
+Dank der Quantisierung wie in \autoref{chapter=quantisierung} beschrieben können nun die Quantisierungsstufen vergrössert werden.
+Wegen der Wahrnehmbarkeitsschwelle kann die Auflösung über den Bereichen mit hoher Energie von $16\,\text{Bit}$ auf $10\,\text{Bit}$ reduziert und zusätzlich die umliegenden, unwichtigen Koeffizienten nur mit $8\,\text{Bit}$ aufgelöst werden.
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
@@ -282,7 +286,6 @@ Das Ziel dieser Arbeit war es, Erkenntnisse zur Audiokomprimierung mit Wavelets 
 Wie sich herausstellt, ist es mit relativ geringem Aufwand möglich, eine Multiskalenanalyse mit numerischen Programmen wie MATLAB durchzuführen.
 Die Beispiele haben gezeigt, dass die Gruppierung in wichtige, unwichtige und zu quantisierende Koeffizienten zu grob gemacht wurde. 
 Zum einen kann kaum für all die unterschiedlichen Signaltypen im Audiobereich die selbe Grenze verwendet werden. 
-Zum anderen sollte diese Analyse auch auf der Zeitachse unterteilt werden und somit eine dynamischere Einteilung ermöglichen. 
 Die Arbeit hat jedoch mit einfachen Beispielen gezeigt, dass sich Wavelets gut eignen, um solche Signale zu erfassen.
 Harmonische und auch transiente Signale wurden beide mit wenigen Levels genau dargestellt.
 Besondere Vorsicht soll der Quantisierung der Koeffizienten geboten werden, da sie bei gewissen Signalen zu einer erheblichen verschlechterung des Hörerlebnis führen können.
