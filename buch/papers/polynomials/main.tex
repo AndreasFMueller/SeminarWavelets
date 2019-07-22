@@ -21,21 +21,21 @@ soll also ein Polynom der Ordnung $A-1$ einfach darstellen können. Wir wollen
 erörtern, was das nun in der Praxis genau bedeutet und welche Anwendungen es
 ermöglicht.
 
-Wir werden im folgenden Daubechies Wavelets mit $A$ verschwindenden Momenten
-mit db$A$ bezeichnen. Auch werden wir die Wavelet-Transformation als Filter
-betrachten wie in \autoref{haar:approximation:filter} beschrieben. Dabei werden
-wir die Notation von Detail- und Approximationskoeffizienten verwenden. Die
-Detailkoeffizienten auf Ebene $k$ ($cDk$) sind dabei der Ausgang des Hochpasses
-$h$ und die Approximationskoeffizienten auf Ebene $k$ ($cAk$) der Ausgang des
-Tiefpasses $g$.
-
 \begin{figure}
     \centering
     \input{papers/polynomials/images/polynomials_filter.pgf}
     \caption{Wavelet-Transformation als Filter\label{polynomials:filter}}
 \end{figure}
 
-Die Detailkoeffizienten auf Ebene $k$ entsprechen der Analyse mit einem $2^k$
+Wir werden im folgenden Daubechies Wavelets mit $A$ verschwindenden Momenten
+mit db$A$ bezeichnen. Auch werden wir die Wavelet-Transformation als Filter
+betrachten wie in \autoref{haar:approximation:filter} beschrieben. Dabei werden
+wir die Notation von Detail- und Approximationskoeffizienten verwenden. Die
+Detailkoeffizienten auf Ebene $j$ ($cDj$) sind dabei der Ausgang des Hochpasses
+$h$ und die Approximationskoeffizienten auf Ebene $j$ ($cAj$) der Ausgang des
+Tiefpasses $g$.
+
+Die Detailkoeffizienten auf Ebene $j$ entsprechen der Analyse mit einem $2^j$
 skaliertem Mutterwavelet $\psi$ und die Approximationskoeffizienten der
 entsprechenden Analyse mit einem Vaterwavelet $\varphi$.
 
@@ -59,7 +59,7 @@ Wir werden als erstes die Signale in \autoref{polynomials:signals} mittels des d
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_signals.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_signals.pdf}
     \caption{Die verschiedenen zu analysierenden polynomialen Signale\label{polynomials:signals}}
 \end{figure}
 
@@ -71,7 +71,7 @@ Ableitung des Signals ist.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_signals_db1.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_signals_db1.pdf}
     \caption{Analyse mit db1 (Haar) Wavelet\label{polynomials:haar}}
 \end{figure}
 
@@ -80,7 +80,7 @@ verschiedenen Signale geben.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_signals_diff.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_signals_diff.pdf}
     \caption{Ableitungen der Polynome\label{polynomials:diff}}
 \end{figure}
 
@@ -95,7 +95,7 @@ sehen.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_signals_db2_3.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_signals_db2_3.pdf}
     \caption{Analyse mit db2/3 Wavelet\label{polynomials:db2_3}}
 \end{figure}
 
@@ -119,7 +119,7 @@ Polynoms ist kaum noch erkennbar.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_noise_signals.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_noise_signals.pdf}
     \caption{Verrauschte Signale und deren Ableitung\label{polynomials:noise:signals}}
 \end{figure}
 
@@ -129,15 +129,66 @@ noch keine wesentliche Verbesserung zum direkten Ableiten.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_noise_db1.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_noise_db1.pdf}
     \caption{Analyse verrauschter Signale mit Haar Wavelet\label{polynomials:noise:db1}}
 \end{figure}
 
 Nun können wir aber mit dem Wavelet eine Multiskalenanalyse durchführen. Im
 Fall vom Haar Wavelet ist dies vergleichbar wie wenn zuerst der Mittelwert
-gebildet und dann abgeleitet wird.
+gebildet und dann abgeleitet wird. Aus \autoref{fast:akoefgleichung} von
+\autoref{section:fast} wissen wir, dass die Approximationskoeffizienten $cA_{j,k}$ und die Detailkoeffizienten $dA_{j,k}$
+folgendermassen gebildet werden:
+\begin{align}
+cA_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{h}_l cA_{j,k+l}
+\\
+cD_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l cA_{j,k+l}
+\end{align}
 
-In \autoref{polynomials:noise:db1_multi} ist das Signal $x^2 + r$, die
+Im Fall vom Haar-Wavelet enspricht das
+\begin{align}
+cA_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} (cA_{j,k} + cA_{j,k+1})
+\\
+cD_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} (cA_{j,k} - cA_{j,k+1})
+\end{align}
+
+Nehmen wir nun das Signal mit den Abtastwerten $\{a_{0,0}, a_{0,1}, a_{0,2}, a_{0,3}\}$ so ergibt
+sich für die erste Ebene:
+\begin{align}
+cA_{1,0}
+&=
+\frac{1}{\sqrt{2}} (a_{0,0} + a_{0,1})
+\\
+cA_{1,1}
+&=
+\frac{1}{\sqrt{2}} (a_{0,2} + a_{0,3})
+\end{align}
+Die zweite Ebene wird dann aus den Approximationskoeffizienten der ersten Ebene berechnet
+\begin{align}
+cA_{2,0}
+&=
+\frac{1}{\sqrt{2}} (cA_{1,0} + cA_{1,1})
+=
+\frac{1}{2} (a_{0,0} + a_{0,1}) + \frac{1}{2} (a_{0,2} + a_{0,3})
+\\
+cD_{2,0}
+&=
+\frac{1}{\sqrt{2}} (cA_{1,0} - cA_{1,1})
+=
+\frac{1}{2} (a_{0,0} + a_{0,1}) - \frac{1}{2} (a_{0,2} + a_{0,3})
+\end{align}
+
+Die Detailkoeffizienten entsprechen somit der Differenz der Mittelwerte zweier
+benachbarter Abtastwerte.
+
+In \autoref{polynomials:noise:db1_multi} ist das Signal $x^2 + r(x)$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem
 Haar Wavelet und dann noch die Approximationskoeffizienten der letzten Stufe
 abgebildet. Es ist zu sehen, dass die Detailkoeffizienten mit höherer Stufe
@@ -148,8 +199,8 @@ welcher für die Berechnung des jeweiligen Koeffizienten relevant ist sichtbar.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_noise_db1_multi.pgf}
-    \caption{Multiskalenanalyse von $x^2 + r$ mit Haar Wavelet\label{polynomials:noise:db1_multi}}
+    \includegraphics{papers/polynomials/images/polynomials_noise_db1_multi.pdf}
+    \caption{Multiskalenanalyse von $x^2 + r(x)$ mit Haar Wavelet\label{polynomials:noise:db1_multi}}
 \end{figure}
 
 Im Vergleich dazu sind in \autoref{polynomials:noise:average} die direkte
@@ -158,7 +209,7 @@ zu sehen.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_noise_moving_average.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_noise_moving_average.pdf}
     \caption{Ableitung nach Mittelwertbildung\label{polynomials:noise:average}}
 \end{figure}
 
@@ -166,14 +217,14 @@ Nun haben wir aber mit dem Verfahren mit den Wavelets den Vorteil, dass wir bei
 entsprechender Wahl des Wavelets mit $A$ verschwindenden Momenten direkt die
 $A$-te Ableitung berechnen können.
 
-In \autoref{polynomials:noise:db2_multi} ist das Signal $x^3 + r$, die
+In \autoref{polynomials:noise:db2_multi} ist das Signal $x^3 + r(x)$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem db2
 Wavelet und die Approximationskoeffizienten der letzten Stufe abgebildet.
 
 \begin{figure}
     \centering
-%    \input{papers/polynomials/images/polynomials_noise_db2_multi.pgf}
-    \caption{Multiskalenanalyse von $x^3 + r$ mit db2 Wavelet\label{polynomials:noise:db2_multi}}
+    \includegraphics{papers/polynomials/images/polynomials_noise_db2_multi.pdf}
+    \caption{Multiskalenanalyse von $x^3 + r(x)$ mit db2 Wavelet\label{polynomials:noise:db2_multi}}
 \end{figure}
 
 Im Vergleich dazu sind in \autoref{polynomials:noise:average} die direkt
@@ -182,7 +233,7 @@ Mittelwertbildung über 2, 4 und 8 Werte zu sehen.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_noise_moving_average_2nd.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_noise_moving_average_2nd.pdf}
     \caption{Zweite Ableitung nach Mittelwertbildung\label{polynomials:noise:average2nd}}
 \end{figure}
 
@@ -209,7 +260,7 @@ Signal direkt in den Detailkoeffizienten sehen können.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_sin_signals.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_sin_signals.pdf}
     \caption{Polynomiale Signale mit Sinus\label{polynomials:sin:signals}}
 \end{figure}
 
@@ -219,7 +270,7 @@ Sinussignal lässt sich also so bestens extrahieren.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_sin_db2.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_sin_db2.pdf}
     \caption{Analyse mit db2 Wavelet\label{polynomials:sin:db2}}
 \end{figure}
 
@@ -229,7 +280,7 @@ sind die Resultate der DFT zu sehen.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_sin_fft.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_sin_fft.pdf}
     \caption{Analyse mit Fouriertransformation\label{polynomials:sin:fft}}
 \end{figure}
 
@@ -237,8 +288,8 @@ Zu sehen ist, dass die Fourier Koeffizienten des Polynoms dominieren und dass
 der Peak bei 20, welcher durch den Sinus entsteht, unter geht. Dies ist
 verständlich, wenn man bedenkt wie die Fourierreihen von Polynomen aussehen.
 Nehmen wir als Beispiel das Polynom $f(x) = x$. Im Bereich $[0, 1]$ entspricht
-es einer Sägezahnfunktion. Die Fourier Reihe eines Sägezahns ist $f(x) =
-\frac{1}{2} - \frac{1}{\pi} \sum{\frac{1}{n} \sin(2 n \pi x)}$. Nun ist
+es einer Sägezahnfunktion. Die Fourier Reihe eines Sägezahns ist \[f(x) =
+\frac{1}{2} - \frac{1}{\pi} \sum{\frac{1}{n} \sin(2 n \pi x)}\] Nun ist
 ersichtlich, dass die Fouriertransformierte jede Frequenz $n$ mit $\frac{1}{n}$
 skaliert enhalten wird.
 
@@ -253,7 +304,7 @@ einer Waveletanalyse mit einem zeitlich lokalisierten Sinussignal.
 
 \begin{figure}
     \centering
-    \input{papers/polynomials/images/polynomials_sin_padded_db2.pgf}
+    \includegraphics{papers/polynomials/images/polynomials_sin_padded_db2.pdf}
     \caption{Analyse mit db2 Wavelet eines zeitlich lokalisierten Sinuassignals\label{polynomials:sin:padded}}
 \end{figure}
 
