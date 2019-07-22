@@ -200,15 +200,15 @@ Obwohl diese Verzerrungen anteilsmässig keinen grossen Unterschied zum Original
 \end{figure}
 Um zu verstehen woher diese Störung kommt, wird die Rekonstruktion aufgeteilt.
 In \autoref{fig:hornOnly} links werden alle Koeffizienten unterhalb der gesetzten Schranke verwendet. 
-Das bedeutet, dass noch keine Quantisierung vorgenommen, sondern lediglich einen Teil der Koeffizienten weggelassen wird.
+Das bedeutet, dass noch keine zusätzliche Quantisierung vorgenommen, sondern lediglich einen Teil der Koeffizienten weggelassen wird.
 Dieses Signal weicht nur geringfügig vom Orignal ab.
 Daraus lässt sich vermuten, dass das Problem an der Quantisierung liegt.
-Wird die vollständige Rekonstruktion quantisiert, wird aus dem Originalsignal je nach gewählter Auflösung eine Treppenstufe wie sie in \autoref{fig:hornOnly} rechts zu sehen ist.
-Bei der Analyse mit dem db4 wird das Signal zwar weniger exakt rekonstruiert, jedoch werden keine Levels quantisiert(\autoref{fig:dbHorn}).
+Werden die Quantisierungsstufen der vollständigen Rekonstruktion vergrössert, wird aus dem Originalsignal je nach gewählter Auflösung eine Treppenstufe wie sie in \autoref{fig:hornOnly} rechts zu sehen ist.
+Bei der Analyse mit dem db4 wird das Signal zwar weniger exakt rekonstruiert, jedoch werden keine Levels stärker quantisiert(\autoref{fig:dbHorn}).
 Somit entstehen keine Verzerrungen und akustisch ist kaum ein Unterschied erkennbar.
 
 Das zeigt zwei wesentliche Probleme.
-Zum einen scheint es zu grob zu sein, über ein gesamtes Level zu entscheiden ob es quantisiert werden soll oder nicht.
+Zum einen scheint es zu grob zu sein, über ein gesamtes Level zu entscheiden ob es zusätzlich quantisiert werden soll oder nicht.
 Diese Einteilung soll deshalb auch innerhalb der einzelnen Levels gemacht werden, damit die Koeffizienten einzeln eingestuft werden können.
 Zum anderen kann auch die Quantisierung nicht absolut gemacht werden.
 Die Grösse des Anteils der Quantisierungsstufe wächst proportional mit der Grösse des Signals.
