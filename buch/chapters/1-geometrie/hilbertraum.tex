@@ -654,3 +654,83 @@ ist also wie im reellen Fall eine {\em Isometrie} von Hilberträumen.
 
 \subsection{Darstellungssatz von Riesz
 \label{subsection:riesz}}
+Zu einem gegeben Vektor $v\in H$ eines Hilbertraums ist die Abbildung
+\begin{equation}
+H\to\mathbb C
+:
+u\mapsto \langle u,v\rangle
+\label{hilbertraum:skalarproduktform}
+\end{equation}
+eine Linearform auf dem Vektorraum.
+Linearformen auf einem endlichdimensionalen Vektorraum werden durch
+einen Zeilenvektor beschrieben, es ist daher klar, dass es auch einen
+Spaltenvektor gibt, mit dem sich die Linearform als Skalarprodukt
+darstellen lässt.
+In einem beliebigen unendlichdimensionalen Vektorraum ist der Vektorraum
+der Linearformen typischerweise viel grösser.
+Das besondere an Hilberträumen ist, dass sich jede stetige Linearform
+als Skalarprodukt wie in \eqref{hilbertraum:skalarproduktform}
+darstellen lässt.
+Dies ist der Inhalt des Satzes von Riesz, der in diesem Abschnitt
+bewiesen werden soll.
+
+Bevor wir soweit kommen können, brauchen wir jedoch ein noch elementareres
+Resultat, welches in jedem beliebigen Hilbertsatz zutrifft.
+Es besagt, dass sich zu einem eabschlossener Unterraum eines Hilbertraum 
+immer ein Orthogonalkomplement finden lässt, also ein darauf orthogonaler
+Unterraum, der zusammen mit dem gegebenen Unterraum jeden Vektor von $H$
+erzeugen kann.
+Dies entspricht der Intuition für Orthogonalität, die man aus der
+endlichdimensionalen Vektorgeometrie hat.
+
+\begin{satz}
+\label{satz:orthogonalkomplement}
+Ist $V\subset H$ ein abgeschlossener Unterraum eines Hilbertraumes $H$,
+lässt sich jeder Vektor $v\in H$ auf genau eine Art in $v = v_1+v_2$
+zerlegen derart, dass $v_1 \in V$ und $v_1\in V^{\perp}$,
+d.~h.~$\langle v_2,v\rangle$ für alle $v\in V$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $u\in H\setminus V$.
+Die Funktion $v\mapsto \| u-v\|$ ist $\ge 0$, man kann also eine
+Folge von Vektoren $v_k\in V$ finden derart, dass
+\[
+\lim_{k\to\infty} \|u-v_k\| = \inf_{v\in V} \|u-v\|
+\]
+ist.
+\end{proof}
+
+\begin{satz}[Riesz]
+Ist $\varphi\colon H\to \mathbb C$ eine stetige Lineaform auf $H$, dann 
+gibt es einen Vektor $v\in H$ derart, dass
+\[
+\varphi(u) = \langle u,v\rangle
+\qquad
+\forall u\in H
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Man betrachte den Raum
+\[
+V_1 = \{ u \in H \;|\;\varphi(u)=0\}.
+\]
+Da $\varphi$ eine stetige Linearform ist, ist $V_1$ ein abgeschlossener Raum.
+Falls $V_1=H$ bedeutet dies, dass $\varphi(u)=0$ für alle $u\in H$ ist,
+also kann man $\varphi$ als Skalarprodukt mit dem Nullvektor schreiben:
+$\varphi(u) = \langle u,0\rangle$.
+
+Falls $V_1 \ne H$ ist, betrachtet man das orthogonale Komplement
+\[
+V_1^{\perp} = \{ v\in H\;|\; \langle v,u\rangle = 0 \forall u\in V_1\}.
+\]
+welches nach Satz~\ref{satz:orthogonalkomplement} existiert.
+Jeder Vektor $v\in H$ lässt sich auf eindeutige Weise zerlegen in
+$v_1+v_2$ mit $v_1\in V_1$ und $v_2\in V_1^{\perp}$.
+Es ist $\varphi(v)=\varphi(v_1)+\varphi(v_2)=\varphi(v_2)$.
+
+\end{proof}
+
+
+
