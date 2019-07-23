@@ -87,6 +87,34 @@ verschiedenen Signale geben.
 Dieses Verhalten ist zu erwarten wenn man bedenkt, dass das Haar Wavelet
 jeweils die Summe und die Differenz zweier benachbarter Samples analysiert.
 Siehe dazu auch \autoref{haar:allwavelets:image} im Kapitel zum Haar Wavelet.
+Aus \autoref{fast:akoefgleichung} von \autoref{section:fast} wissen wir, dass
+die Approximationskoeffizienten $cA_{j,k}$ und die Detailkoeffizienten
+$dA_{j,k}$ folgendermassen gebildet werden:
+
+\begin{align}
+cA_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{h}_l cA_{j,k+l}
+\\
+cD_{j+1,k}
+&=
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l cA_{j,k+l}
+\label{polynomials:cD_haar}
+\end{align}
+
+Setzen wir nun in \autoref{polynomials:cD_haar} die $g$ Koeffizienten $g_0 = 1,
+g_1 = -1$ des Haarwavelet und die Samples $f(x_k)$ und $f(x_{k + 1})$ erhalten
+wir
+\begin{align}
+    cD_{1,k} & = \frac{1}{\sqrt{2}}\left(f(x_k) - f(x_{k + 1})\right)
+\end{align}
+Vergleichen wir das mit der Ableitung stellt sich heraus dass sie der mit
+$-\frac{\sqrt{2}}{\Delta x}$ skalierten Detailkoeffizienten entspricht.
+\begin{align}
+\frac{\Delta y}{\Delta x} &= \frac{f(x_0+\Delta x) - f(x_0)}{\Delta x}
+                           = \frac{f(x_{k+1}) - f(x_k)}{x_{k+1} - x_k} \\
+                          &= cD_{1,k} \frac{-\sqrt{2}}{x_{k+1} - x_k}
+\end{align}
 
 Nun stellt sich die Frage was passiert wenn wir Daubechies Wavelets mit mehr
 verschwindenden Momenten zur Analyse einsetzen. In \autoref{polynomials:db2_3}
@@ -100,7 +128,103 @@ sehen.
 \end{figure}
 
 Wie sich herausstellt liefern diese Wavelets jeweils die zweite und dritte
-Ableitung unserer Signale. Daubechies Wavelets mit $A$ verschwindenden Momenten
+Ableitung unserer Signale. Warum ist das so?
+Betrachten wir zuerst einmal algebraisch wie sich konstante und lineare
+Funktionen mit den Daubechies Wavelets verhalten.
+
+\subsection{Konstante Funktionen}
+Die Detailkoeffizienten konstanter Funktionen $f(x) = a$ ergeben sich direkt
+aus \autoref{polynomials:cD_haar}
+\begin{align*}
+    cD &= \frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l a \\
+       &= \frac{a}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l
+\end{align*}
+
+Da die Summe der $\bar{g}_l$ immer 0 ist, werden die Detailkoeffizienten für
+konstante Funktionen also immer 0 sein für beliebige Wavelets.
+
+\subsection{Lineare Funktionen}
+
+Für lineare Funktionen der Form $f(x) = a + b x$ ergeben sich folgende Detailkoeffizienten für das Haar Wavelet.
+
+\begin{align}
+    cD = \frac{1}{\sqrt{2}} [ (a + b x) - (a + b (x + \Delta x)) ]
+    = \frac{- b \Delta x}{\sqrt{2}}
+\end{align}
+
+Mit dem db2 Wavelet ergeben sich folgende Detailkoeffizienten
+\begin{align*}
+    cD &= \sum_{l=0}^{3} g_l (a + b (x + l\Delta x)) \\
+       &= g_0 (a + b x) + g_1 (a + b (x + \Delta x)) + g_2 (a + b (x + 2 \Delta x)) + g_3 (a + b (x + 3 \Delta x)) \\
+       &= (g_0 + g_1 + g_2 + g_3) (a + bx) + b \Delta x (g_1 + 2 g_2 + 3 g_3)
+\end{align*}
+
+Da $(g_0 + g_1 + g_2 + g_3) = 0$ bleibt noch $(g_1 + 2 g_2 + 3 g_3)$. Wir
+setzen also die Koeffizienten des db2 Wavelet aus \autoref{section:daubechies}
+ein.
+
+\begin{align*}
+    g_1 + 2 g_2 + 3 g_3 &= \frac{3 + \sqrt{3}}{4\sqrt{2}} + 2 \frac{-3 + \sqrt{3}}{4\sqrt{2}} + 3 \frac{1 - \sqrt{3}}{4\sqrt{2}} = 0
+\end{align*}
+
+Die Detailkoeffizienten verschwinden also komplett bei der Analyse von linearen
+Funktionen mit dem db2 Wavelet.
+
+Für quadratische Funktionen der Form $a + bx + cx^2$ ergibt sich analog \[cD =
+-\sqrt{\frac{3}{2}} c \Delta x^2 \] bei der Analyse mit dem db2 Wavelet, was
+proportional zur zweiten Ableitung ist.
+
+Dieses Verhalten ist ein Resultat davon wie die Daubechies-Wavelets erzeugt
+werden. Wenn wir Definition \autoref{definition:ordnung} aus
+\autoref{section:ordnung} in Betracht ziehen welche als Bedingung für die
+Daubechies-Wavelets gilt ist klar warum alle Terme niedriger Ordnung
+verschwinden.
+\begin{align*}
+    \int_{\mathbb R} t^k\psi(t)\,dt=0\quad \text{für $k<N$.}
+\end{align*}
+
+\subsection{Beliebige analytische Funktionen}
+
+Eine analytische Funktion lässt sich als Taylorreihe darstellen.
+
+\begin{align}
+    f(x) = T f(x; a) & = \sum_{n=0}^\infty  \frac{f^{(n)}(a)}{n!} (x-a)^n = f(a) + f'(a) (x-a) + \frac{f''(a)}{2}(x-a)^2 + \frac{f'''(a)}{6} (x-a)^3 + \ldots
+\end{align}
+
+Der Einfachheit halber setzen wir die Entwicklungsstelle $a=0$.
+
+\begin{align*}
+    f(x) = T f(x; 0) & = \sum_{n=0}^\infty  \frac{f^{(n)}(0)}{n!} x^n = f(0) + f'(0) x + \frac{f''(0)}{2}x^2 + \frac{f'''(0)}{6} x^3 + \ldots
+\end{align*}
+
+Analysieren wir nun ein solches Polynom mit einem db$A$ so werden die Terme der
+Ordnung $A-1$ verschwinden und nur der Beitrag des Term der Ordnung $A$ welcher
+die A-te Ableitung liefert und die Terme höhere Ordnung einen Einfluss auf die
+Detailkoeffizienten haben.
+\begin{align*}
+    cD &= W^T\sum_{n=A}^\infty \frac{f^{(n)}(0)}{n!} x^n \\
+       &= W^T \frac{f^{A}(0)}{A!}x^A + W^T\sum_{n=A+1}^\infty \frac{f^{(n)}(0)}{n!} x^n
+\end{align*}
+Wenn der Restterm \[R_A = \sum_{n=A+1}^\infty \frac{f^{(n)}(0)}{n!} x^n\] nun
+vernachlässigbar klein ist, liefern uns die Detailkoeffizienten eine
+zuverlässige Approximation für die Ableitung beliebiger analytischer
+Funktionen.
+
+Wir wollen das am Beispiel der Exponentialfunktion $e(x)$ erläutern. Die Taylorreihe der Exponentialfunktion ist
+\begin{align*}
+    e^{x} = \sum^{\infty}_{n=0} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+\end{align*}
+An der Stelle $x=0.1=10^{-1}$ ausgewertet ergibt sich
+
+\begin{align*}
+    e^{0.1} = \sum^{\infty}_{n=0} \frac{0.1^n}{n!} = 1 + 10^{-1} + \frac{10^{-2}}{2!} + \frac{10^{-3}}{3!} + \cdots
+\end{align*}
+
+Wollen wir nun die dritte Ableitung mit dem db3 Wavelet berechnen, ist der Term
+$\frac{10^{-3}}{3!}$ relevant. Der nächste Term $\frac{10^{-4}}{4!}$ ist schon
+um Faktor 40 kleiner.
+
+Daubechies Wavelets mit $A$ verschwindenden Momenten
 können uns also direkt die $A$-te Ableitung liefern. Dies im Gegensatz zum
 Differenzieren welches mehrfach angewendet werden muss.
 
