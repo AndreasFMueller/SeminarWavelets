@@ -10,16 +10,26 @@
 
 \section{Introduction}
 \rhead{Introduction}
-In this paper we study the implementation of a discrete Wavelet Transform and inverse transforming using VHDL. But why VHDL? VHDL is a language for programming hardware and we wanted to implement the Wavelet Transformation in hardware. This beacause first, we wanted to use some of the knowledge obtained in this course and second beacause we wanted to see if it is possible for us to implement this transformation in hardware. Implementing the Wavelet Transformation in hardware has some significant benefits. First of all speed. Implementations of arithmetic operations in hardware are much faster than in software. If you further use your VHDL-Code on a FPGA you can parallelize as much of this operations as possible, which is another speed boost. 
-Secondly, if well implemented and because of the speed, you can run your transformation nearly in real time. If you try to transform and modify audio signals, which are sampled with $44 kHz$ you get, beacause of the speed of the FPGA ($150 MHz$) over 1000 arithmetic operations for every audio sample. In the next few pages we guide through the theory used, some design considerations and at last through our steps of developing a basic but functional Wavelet Transformation in VHDL. 
+In this paper we study the implementation of a discrete Wavelet Transform and inverse transforming using VHDL.
+But why VHDL? VHDL is a language for programming hardware and we wanted to implement the Wavelet Transformation in hardware.
+This beacause first, we wanted to use some of the knowledge obtained in this course and second beacause we wanted to see if it is possible for us to implement this transformation in hardware.
+Implementing the Wavelet Transformation in hardware has some significant benefits.
+First of all speed. Implementations of arithmetic operations in hardware are much faster than in software.
+If you further use your VHDL-Code on a FPGA you can parallelize as much of this operations as possible, which is another speed boost. 
+Secondly, if well implemented and because of the speed, you can run your transformation nearly in real time.
+If you try to transform and modify audio signals, which are sampled with 44 kHz you get, because of the clock speed of the FPGA, which is about 100 MHz, over 1000 arithmetic operations for every audio sample.
+In the next few pages we guide through the theory used, some design considerations and at last through our steps of developing a basic but functional Wavelet Transformation in VHDL. 
 
 \section{Lifting Scheme}
 \rhead{Lifting Scheme}
 
 The Transformation algorithm used is adopted from a paper of Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998} and called Lifting. 
-The Lifting Scheme is an widely used algorythm which is two times more efficient in termes of multiplication uses than normal Wavelet Transformations. The Lifting Scheme factorizes any discrete Wavelet Transform  with finite filters into a series of elementary covolutions (Lifting Steps). This reduces the number of arithmetic operations nearly by a factor of two.
+The Lifting Scheme is an widely used algorythm which is two times more efficient in termes of multiplication uses than normal Wavelet Transformations.
+The Lifting Scheme factorizes any discrete Wavelet Transform  with finite filters into a series of elementary covolutions (Lifting Steps).
+This reduces the number of arithmetic operations nearly by a factor of two.
 This decomposition is equivalent to a factorisation of the polyphase matrix of the wavelet filter into elementary matrices. 
-To describe the underlying wavelet Filters the z-transform notation is used. The z-transform of a FIR (finite impulse response) filter \textit{\textbf{h}}  is a laurent polynomial given by
+To describe the underlying wavelet Filters the z-transform notation is used.
+The z-transform of a FIR (finite impulse response) filter \textit{\textbf{h}} is a laurent polynomial given by
 \begin{equation}\label{equ:impulse}
 	H(z) = \sum h_k z^{-k}
 \end{equation}
@@ -29,7 +39,10 @@ To describe the underlying wavelet Filters the z-transform notation is used. The
 
 \subsection{Polyphase Decomposition \label{fpga:polyphase}}
 
-In our case we subsample the input signal by a factor of two. This corresponds to splitting the signal into two sub channels (even and odd samples). The polyphase decomposition is a algebraic way of describing the filter in matrices. The polyphase components are the filter components of the sub channels. 
+In our case we subsample the input signal by a factor of two.
+This corresponds to splitting the signal into two sub channels (even and odd samples).
+The polyphase decomposition is a algebraic way of describing the filter in matrices.
+The polyphase components are the filter components of the sub channels. 
 We can separate equation \ref{equ:impulse} into its even- and odd-indexed terms
 \begin{equation}
 	H(z) = \sum_{n=-\infty}^{\infty} h(2n)z^{-2n} + z^{-1} \sum_{n=-\infty}^{\infty} h(2n+1)z^{-2n}
@@ -60,9 +73,10 @@ These coefficients are then placed in the so called Polyphase Matrix.
 	\includegraphics[width=\textwidth]{images/lifting_step_wavelet.pdf}
 	\caption{Wavelet transformation with Lifiting Steps \label{fpga:lstp_wavelet}}
 \end{figure}
-Where $h_e(z)$ are the even- and $h_o(z)$ are the odd coefficients of the low pass filter. $g(z)$ is the corresponding high pass filter. 
-Because of its simplicity we first choose the Haar Wavelet. In z notation
-$g(n)$ are the Father Wavelet coefficients whereas $h(n)$ are the corresponding Mother Wavelet coefficients. 
+Where $h_e(z)$ are the even- and $h_o(z)$ are the odd coefficients of the low pass filter.
+$g(z)$ is the corresponding high pass filter. 
+Because of its simplicity we first choose the Haar Wavelet.
+In z notation $g(n)$ are the Father Wavelet coefficients whereas $h(n)$ are the corresponding Mother Wavelet coefficients. 
 \begin{equation}
 {\mathcal {Z}} \{h(n)\} = 1 + z^{-1}
 \end{equation}
@@ -82,14 +96,16 @@ P(z) =
  1 & 0 \\
  1 & 1
  \end{bmatrix}
- *
+ \cdot
  \begin{bmatrix}
  1 & -\frac{1}{2} \\
  0 & 1
  \end{bmatrix}
 \end{equation*}
-The term on the right side is a possible factorization which results in lifting steps. This factorizations produces diagonal matrices which are easy to compute and are the lifting steps.
-This corresponds to the following implementation of the forward transform \cite{fpga:Daubechies1998}
+
+The term on the right side is a possible factorization which results in lifting steps.
+This factorizations produces diagonal matrices which are easy to compute and are the lifting steps.
+This corresponds to the following implementation of the forward transform \cite{fpga:Daubechies1998}.
 \begin{equation}
 	\begin{aligned}
 	s_l^{(0)} &= x_{2l} \\
@@ -111,7 +127,7 @@ P(z^{-1})^ =
 1 & \frac{1}{2} \\
 0 & 1
 \end{bmatrix}
-*
+\cdot
 \begin{bmatrix}
 1 & 0 \\
 -1 & 1
@@ -133,10 +149,25 @@ In the next section we try to implement this algorithm in VHDL.
 
 \subsection{Design Considerations}
 
-The question is now, how do we implement the algorithm. There are a few possible ways to code algorithms in VHDL. As you can see in figure \ref{fpga:designcon} there are two major directions one can take.
+When implementing an algorithm in hardware, a lot of design considerations must be made in advance.
+The hardware architecture is very dependent of application.
+A hardware block can be optimized for various points, such as high accuracy, low latency, high data rate, low area and low power consumption.
+Since this work is not based on a defined objective, we must come up with our own design specifications.
+
+In most cases, that do not require low latency and high data rates, a digital signal processor would be a better choice than a custom VHDL-implemented hardware.
+A sequential processor unit is very efficient, space saving and low cost compared to most VHDL solutions, however it features a significantly higher latency
+Hence, the implementation should feature low latency and high data rate as its main objectives in order to provide a VHDL solution, that is actually reasonable.
+The application should make use of on of the biggest advantages of custom hardware which is parallelism.
+Performing calculations in parallel leads to higher throughput, and allows datarates which are as fast as the clock speed of the logic.
+
+
+
+The question is now, how do we implement the algorithm.
+There are a few possible ways to code algorithms in VHDL.
+As you can see in figure \ref{fpga:designcon} there are two major directions one can take.
 
 \begin{itemize}
-	\item \textbf{Slow} The slow  approach is also the cheap way to go. In this case the power requirements are lower and also the used chip area is smaller. This results in slower computation and because of the smaller area the parallelization is also limited.
+	\item \textbf{Slow} The slow approach is also the cheap way to go. In this case the power requirements are lower and also the used chip area is smaller. This results in slower computation and because of the smaller area the parallelization is also limited.
 	
 	\item \textbf{Fast} The fast approach is the expensive way to go. You use big, fast and because of this more powerhungry hardware. They need also a bigger area. The benefits are that you are able, beside from higher processing speed, to parallelize your algorithm. This allows you to process high data rates and do this, depending on the application, in realtime.  
 \end{itemize}
@@ -149,7 +180,7 @@ The right way needs to be chosen according to the application. In our case we ch
 
 \subsection{Idea}
 
-The idea is to have a data stream ($x$) an a ready ($rdy$) signal. The ready signal indicates when the input from the data stream is valid. The input is only read and processed if the ready signal is high. Then we build a block which contains the signal processing which was presented in section \ref{fpga:polyphase}. The Block then throws out the wavelet coefficients and also the ready signal for further processing. In a next stage a block for inverse transformation is used to recover the input signal.
+The idea is to have a data stream \texttt{x} an a ready \texttt{rdy} signal. The ready signal indicates when the input from the data stream is valid. The input is only read and processed if the ready signal is high. Then we build a block which contains the signal processing which was presented in section \ref{fpga:polyphase}. The Block then throws out the wavelet coefficients and also the ready signal for further processing. In a next stage a block for inverse transformation is used to recover the input signal.
 
 \begin{figure}
 	\centering
@@ -157,11 +188,28 @@ The idea is to have a data stream ($x$) an a ready ($rdy$) signal. The ready sig
 	\caption{Basic idea and important building blocks \label{fpga:idea}}
 \end{figure}
 In this block we then implement the Wavelet Transformation with, in our case, the Haar Wavelet. Another goal was to create a structure to implement different wavelet transformations later. In this way of implementation  it should be possible to implement transformations with different wavelets in the same block (Picture \ref{fpga:haar_inv_haar}). 
+
 \begin{figure}[h]
 	\includegraphics[width=0.49\textwidth]{images/haar.pdf}
 	\includegraphics[width=0.49\textwidth]{images/inv_haar.pdf}
 	\caption{Haar und inverse Haar transformation \label{fpga:haar_inv_haar}}
 \end{figure}
+
+%\begin{figure}[h!]
+%	\centering
+%	\begin{subfigure}[b]{\linewidth}
+%		\centering
+%		\includegraphics[width=0.49\textwidth]{images/haar.pdf}
+%		\caption{Haar}
+%	\end{subfigure}
+%	\begin{subfigure}[b]{\linewidth}
+%		\centering
+%		\includegraphics[width=0.49\textwidth]{images/inv_haar.pdf}
+%		\caption{Inverse haar}
+%	\end{subfigure}
+%	\caption{Haar and inverse Haar transformation \label{fpga:haar_inv_haar}}
+%\end{figure}
+
 In this picture it is also visible that for every two input samples we get two wavelet coefficients. This corresponds to the sub sampling into two streams. The ready signal gets also delayed to match the speed of the output coefficients. In the inverse Haar block the coefficients get reconstructed to the original input stream.
 
 \subsection{Branching}
