@@ -1,9 +1,9 @@
 
-Die üblichste Methode um eine Frequenzanalyse über ein längeres Signal anzuwenden ist die  Kurzzeit-Fourier-Transformation oder auch short-time Fourier transform, kurz STFT. Bei dieser Methode wird ein Signal, beschrieben durch $x(t)$, in kleine Zeitabschnitte zerhackt und bei jedem dieser Signalstücke eine Fourier-Transformation angwendet. Dabei wird üblicherweise die Fourier-Transformation in Anwendungen mit dem schnellen Fourier-Transformations Algorhytmus berechnet.\\
+Die üblichste Methode um eine Frequenzanalyse über ein längeres Signal anzuwenden ist die  Kurzzeit-Fourier-Transformation oder auch short-time fourier transform, kurz STFT. Bei dieser Methode wird ein Signal, beschrieben durch $x(t)$, in kleine Zeitabschnitte zerhackt und bei jedem dieser Signalstücke eine Fourier-Transformation angwendet. Dabei wird üblicherweise die Fourier-Transformation in Anwendungen mit dem schnellen Fourier-Transformations Algorithmus berechnet.\\
 
-Wird nun ein Element der zerhackten Funktion $x(t)$ betrachtet kann der Start- und Endwert beliebig sein. Diese Sprünge haben bekanntlich Folgen, die im Frequenzbereich ersichtlich werden können durch eine Verschmierung über die Frequenzen auch Unschärfe genannt. \\
+Wird nun ein Element der zerhackten Funktion $x(t)$ betrachtet, kann der Start- und Endwert beliebig sein. Diese Sprünge haben bekanntlich Folgen, die im Frequenzbereich ersichtlich werden. Eine Verschmierung über die Frequenzen, auch Unschärfe genannt, ist die Folge. \\
 
-Um dies zu verdeutlichen wird in der Abbildung \ref{fig:Spectral} ein unendlich langes Signal $x(t)=sin(t)$ untersucht. 
+Um dies zu verdeutlichen, wird in der Abbildung \ref{fig:Spectral} ein unendlich langes Signal $x(t)=sin(t)$(in Grau dargestellt) untersucht. 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[scale=0.8]{papers/autotune/sections/fft/images/windows/Spectral.pdf}
@@ -11,7 +11,7 @@ Um dies zu verdeutlichen wird in der Abbildung \ref{fig:Spectral} ein unendlich 
 	\label{fig:Spectral}
 \end{figure}%
 
-Zuerst werden die Signale Zeitkontinuierlich berachtet. Im ersten Beispiel in \ref{fig:Spectral} wird das unendliche kontinuierliche Signal $x(t)$ schwarz im Frequenzbereich abgebildet. Dieses Resultat ist scharf und zeigt und genau eine Frequenz.\\
+Zuerst werden die Signale zeitkontinuierlich berachtet. Im ersten Beispiel in \ref{fig:Spectral} wird das unendliche, kontinuierliche Signal $x(t)$ schwarz im Frequenzbereich abgebildet. Als Resultat erhält man nur eine Frequenz. Diese ist durch einen schwarzen Pfeil dargestellt.\\
 
 Beim zweiten Beispiel in \ref{fig:Spectral} (in Blau) wird das Signal $x(t)$ mit der Fensterfunktion $w_{1}(t)$ multipliziert.\\
 Wobei gilt: 
@@ -22,7 +22,7 @@ Wobei gilt:
 	\hat{f_{1}}(\omega)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} w_{1}(t)\cdot f(t) \cdot e^{-\mathrm{i} \omega t} \mathrm{d} t
 \end{equation}
 
-$\alpha$ und $\beta_{1}$ decken ein Zeitintervall von $13$ Perioden ab. Im Frequenzbereich ist nun in Blau ersichtlich das die Fourier-Transformation im eine deutliche Unschärfe zur Folge hat welche im Kontinuierlichen Spektrum ersichtlich wird. Das Maxima der Amplitude korreliert mit dem Frequenzvektor des Originalen Signales $x(t)$\\
+$\alpha$ und $\beta_{1}$ decken ein Zeitintervall von $13$ Perioden ab. Im Frequenzbereich ist nun in Blau ersichtlich, dass die Fourier-Transformation eine deutliche Unschärfe zur Folge hat. Diese Unschärfe ist im Kontinuierlichen Spektrum ersichtlich. Das Maxima der Fouriertransformierten korreliert jedoch mit dem einen Resultat des Originalen Signales $x(t)$\\
 
 
 
@@ -36,9 +36,10 @@ Wobei gilt:
 	\hat{f_{2}}(\omega)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} w_{2}(t)\cdot f(t) \cdot e^{-\mathrm{i} \omega t} \mathrm{d} t
 \end{equation}
 
-Wobei $\alpha$ und $\beta_{2}$ ein Zeitintervall von $13\frac{1}{2}$ Perioden abdecken. Nun sieht man nicht nur eine Unschärfe sondern auch eine fehlende Korrelation zwischen dem Maxima und der eigentlichen Frequenz des Signales $x(t)$.\\
-Betrachtet man nun die Diskreten Punkte der beiden mit einem Fenster belegten Signalen entdeckt man erstaundliches. Ist das Signal genau über über ein vielfaches der Periode gefenstert ist im diskreten Fall keine Frequenzunschärfe erkennbar. Trifft es jedoch auf eine zufällige Stelle im Signal und deckt nicht gerade eine Periode ab zeigen die Diskreten ein nur schwer zu interpretierbares Ergebnis an. Man spricht von einer Unschärfe die da nicht die eigentliche Frequenz des Signales $x(t)$ abgebildet wird sondern ein ganzes Band.\\
-Versucht man nun ein reales Signal zu Analysieren die meistens nicht periodisch auftreten und mit diskreten Werten beschrieben ist diese Unschärfe meistens gegeben. Nun gibt es verschiedenste Methoden um diese Frequenzanalyse zu realisieren. In diesem Paper wird jedoch nur auf die Short Fourrier-Transformation und die Wavelet-Transformation eingegangen. 
+Wobei $\alpha$ und $\beta_{2}$ ein Zeitintervall von $13\frac{1}{2}$ Perioden abdecken. Nun sieht man nicht nur eine Unschärfe sondern auch eine fehlende Korrelation zwischen dem Maxima der Fouriertansformierten und der eigentlichen Frequenz des Signales $x(t)$.\\
+
+Betrachtet man nun die diskrete Fouriertransformierte der beiden gefensterten Signalen kann man folgendes erkenne. Ist das Signal genau über über ein vielfaches der Periode gefenstert, kann man im diskreten Fall keine Frequenzunschärfe erkennen. Trifft die Fensterung jedoch auf eine zufällige Stelle im Signal und deckt nicht gerade eine Periode ab, zeigen die diskrete Werte ein nur schwer zu interpretierbares Ergebnis an. Man spricht von einer Unschärfe. Welche nicht die eigentliche Frequenz des Signales $x(t)$ abgebildet, sondern ein ganzes Band.\\
+Möchte man nun ein reales Signal Analysieren kommt es zu einem ähndlichen verhalten. Reale Signale, die meistens nicht periodisch auftreten und mit diskreten Werten beschrieben sind, werden solche Unschärfen aufzeigen. Nun gibt es verschiedenste Methoden um eine Frequenzanalyse zu realisieren. In diesem Paper wird jedoch nur auf die STFT und die Wavelet-Transformation eingegangen. 
 
 
 \subsection{Zeitkontinuierliche STFT}
