@@ -150,35 +150,103 @@ In the next section we try to implement this algorithm in VHDL.
 \subsection{Design Considerations}
 
 When implementing an algorithm in hardware, a lot of design considerations must be made in advance.
-The hardware architecture is very dependent of application.
+The hardware architecture is very dependent of the application.
 A hardware block can be optimized for various points, such as high accuracy, low latency, high data rate, low area and low power consumption.
 Since this work is not based on a defined objective, we must come up with our own design specifications.
 
-In most cases, that do not require low latency and high data rates, a digital signal processor would be a better choice than a custom VHDL-implemented hardware.
-A sequential processor unit is very efficient, space saving and low cost compared to most VHDL solutions, however it features a significantly higher latency
+In most cases, which do not require low latency and high data rates, a digital signal processor would be a better choice than a custom VHDL-implemented hardware.
+A sequential processor unit is computationally very efficient, and requires almost no area compared to most VHDL solutions, however it features a significantly higher latency.
 Hence, the implementation should feature low latency and high data rate as its main objectives in order to provide a VHDL solution, that is actually reasonable.
 The application should make use of on of the biggest advantages of custom hardware which is parallelism.
-Performing calculations in parallel leads to higher throughput, and allows datarates which are as fast as the clock speed of the logic.
+Performing calculations in parallel leads to higher throughput, and allows data rates which are as fast as the clock speed of the logic.
+The strengths of the aspired implementation are thus high speed and low latency processing suitable for real-time applications.
+
+Two hardware blocks should be implemented for both forward wavelet and inverse wavelet transform.
+The forward algorithm should have a 16-bit signed number as its input and outputs a given number of wavelet coefficients as a stream.
+Th main priority is to implement the Haar wavelet.
+A optional goal is the implementation of a higher order wavelet, such as the orthogonal Daubechies-4 wavlelet.
 
 
-
-The question is now, how do we implement the algorithm.
-There are a few possible ways to code algorithms in VHDL.
-As you can see in figure \ref{fpga:designcon} there are two major directions one can take.
-
-\begin{itemize}
-	\item \textbf{Slow} The slow approach is also the cheap way to go. In this case the power requirements are lower and also the used chip area is smaller. This results in slower computation and because of the smaller area the parallelization is also limited.
-	
-	\item \textbf{Fast} The fast approach is the expensive way to go. You use big, fast and because of this more powerhungry hardware. They need also a bigger area. The benefits are that you are able, beside from higher processing speed, to parallelize your algorithm. This allows you to process high data rates and do this, depending on the application, in realtime.  
-\end{itemize}
-The right way needs to be chosen according to the application. In our case we chose the fast and highly parallelized branch. This because our algorithm is comparably simple and can be parallelized even on smaller devices. 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{images/design_considerations.pdf}
-	\caption{Design considerations \label{fpga:designcon}}
-\end{figure}
+%The question is now, how do we implement the algorithm.
+%There are a few possible ways to code algorithms in VHDL.
+%As you can see in figure \ref{fpga:designcon} there are two major directions one can take.
+%
+%\begin{itemize}
+%	\item \textbf{Slow} The slow approach is also the cheap way to go. In this case the power requirements are lower and also the used chip area is smaller. This results in slower computation and because of the smaller area the parallelization is also limited.
+%	
+%	\item \textbf{Fast} The fast approach is the expensive way to go. You use big, fast and because of this more powerhungry hardware. They need also a bigger area. The benefits are that you are able, beside from higher processing speed, to parallelize your algorithm. This allows you to process high data rates and do this, depending on the application, in realtime.  
+%\end{itemize}
+%The right way needs to be chosen according to the application. In our case we chose the fast and highly parallelized branch. This because our algorithm is comparably simple and can be parallelized even on smaller devices. 
+%
+%\b
+%egin{figure}
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{images/design_considerations.pdf}
+%	\caption{Design considerations \label{fpga:designcon}}
+%\end{figure}
 
 \subsection{Idea}
+
+
+The mathematical description of the forward transform, as described in section ???, % provide reference to a formula
+is noncausal and thus not implementable in a stream based fashion.
+The noncausality is apparent from the positive z-exponent. %TODO z-exponent better word??
+
+
+In order to make the forward transform implenetable, it has to be delayed to be fully causal again.
+
+
+\subsection{Architecture}
+
+The VHDL hardware consists of three main blocks, as depicted in figure \ref{fpga:fig:architecture.pdf}
+The forward transform block contains multiple wavlet-blocks which together perform a multiresolution analysis.
+Since each layer splits a input data stream in half, this block is called \texttt{braching}.
+It takes a 16-bit number as its input which is processed when the associated ready signal is driven high.
+If this ready signal is always driven high, the input value is sampled each clock cycle.
+The outputs consist of an array of wavelet coefficients, each of 16 bits, which are accompanied with a vector of ready signals. 
+
+\begin{figure}
+	\includegraphics[width=0.49\textwidth]{images/branching.pdf}
+	\includegraphics[width=0.49\textwidth]{images/inv_branching.pdf}
+	\caption{Branching and inverse branching \label{fpga:fig:architecture}}
+\end{figure}
+
+The inverse wavelet transform has an analogous outline.
+The input coefficients are reconstructed to a 16-bit signed output number in the \texttt{inv\_branching} block, which holds several blocks of inverse wavelet transforms.
+
+Finally a third block is needed to delay the coefficients.
+The wavelet transform is very expensive to calculate in one single clock cycle.
+In order to provide low-latency regardless, a compromize has been made, which tolerates a delay of one cyle in each layer of the muliresolution analysis.
+
+The coefficients except the one with the lowest frequency must be delayed for the inverse algorithm.
+
+%TODO make figure of delay
+
+\subsubsection{Branching}
+
+The before mentioned transform is not very interesting. On the other hand, what would be challenging to implement is a recursive use of these blocks to get further coefficients of different frequencies.
+We called this Branching. The Lowpass output ($s$) samples of a Haar block are connected to another Haar block which does another transformation to get more detail. Because of this we need the also delayed ready signal from the last block because these coefficients are changing with half of the speed now. 
+
+The inverse branching  is then used to reconstruct the original signal from all the different transformations and coefficients.
+
+
+
+
+
+\subsection{Testing}
+
+The test structure contains the forward transform, followed by the inverse transform, which should recover the original signal from the processed coefficients.
+The test setup is shown in figure \ref{fpga:fig:testing}
+The output should resemble the input, delayed by the latency of the whole pipeline.
+
+Vivado Toolchain from Xilix has been used to simulate the VHDL modules.
+The wavelet transforms have also been implemented numerically identical in MATLAB in order to provide a direct comparison. 
+A set of helper modules have been implemented in VHDL 2008, which are able to read and write test vectors and results from or to a file.
+These modules provide an an easy way to inject test data from the MATLAB enviroment.
+After the VHDL simulation finishes, the results are again fed into MATLAB for validation.
+
+
+
 
 The idea is to have a data stream \texttt{x} an a ready \texttt{rdy} signal. The ready signal indicates when the input from the data stream is valid. The input is only read and processed if the ready signal is high. Then we build a block which contains the signal processing which was presented in section \ref{fpga:polyphase}. The Block then throws out the wavelet coefficients and also the ready signal for further processing. In a next stage a block for inverse transformation is used to recover the input signal.
 
@@ -212,26 +280,14 @@ In this block we then implement the Wavelet Transformation with, in our case, th
 
 In this picture it is also visible that for every two input samples we get two wavelet coefficients. This corresponds to the sub sampling into two streams. The ready signal gets also delayed to match the speed of the output coefficients. In the inverse Haar block the coefficients get reconstructed to the original input stream.
 
-\subsection{Branching}
-
-The before mentioned transform isn't very interesting. On the other hand what would be challenging to implement is a recursive use of these blocks to get further coefficients of different frequencies.
-We called this Branching. The Lowpass output ($s$) samples of a Haar block are connected to another Haar block which does another transformation to get more detail. Because of this we need the also delayed ready signal from the last block because these coefficients are changing with half of the speed now. 
-The inverse branching  is then used to reconstruct the original signal from all the different transformations and coefficients.
-\begin{figure}
-	\includegraphics[width=0.49\textwidth]{images/branching.pdf}
-	\includegraphics[width=0.49\textwidth]{images/inv_branching.pdf}
-	\caption{Branching and inverse branching \label{fpga:branching}}
-\end{figure}
 
 
 
-Helper libraries use VHDL 2008 functions
-Files have to be complied using a VHDL 2008 compatible tool. In Vivado, the corresponding files can be set to VHDL 2008 in the Source File Propperties under Type 
 
 
 
-\section{Conclusions}
-\rhead{Schlussfolgerung}
+\section{Conclusion}
+\rhead{Conclusion}
 
 \printbibliography[heading=subbibliography]
 \end{refsection}
