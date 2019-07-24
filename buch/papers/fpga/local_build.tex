@@ -14,6 +14,7 @@
 %
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
+\usepackage{listing}
 \usepackage{subfigure}
 \usepackage{etex}
 \usepackage{geometry}
@@ -96,10 +97,10 @@
 \makeatletter
 \def\blx@maxline{77}
 \makeatother
-\addbibresource{chapters/references.bib}
+\addbibresource{references.bib}
 
 % Bibresources for each article
-\input{../../papers/addbibresources.tex}
+%\input{../../papers/addbibresources.tex}
 
 % make sure the last index starts on an odd page
 \AtEndDocument{\clearpage\ifodd\value{page}\else\null\clearpage\fi}
@@ -124,12 +125,19 @@
 
 \input{../../papers/fpga/main.tex}
 
+
 \vfill
 \pagebreak
 \ifodd\value{page}\else\null\clearpage\fi
 \lhead{Index}
 \rhead{}
 \addcontentsline{toc}{chapter}{\indexname}
+
 %\input{../../buch.ind}
+
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\renewcommand{\bibname}{Literatur}
+\renewcommand{\refname}{Literaturverzeichnis}
+\printbibliography
 
 \end{document}
