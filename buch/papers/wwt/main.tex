@@ -93,11 +93,11 @@ In der Kategorie des Archivs auf der Website kann man die Wetterdaten eines gew\
 Vom Betreiber der Website steht keine Funktion zur Verfügung, welche es erlaubt, die Daten offiziell und automatisch herunterzuladen.
 \subsection{Datenerfassung}
 Da f\"ur die angestrebte Anwendung eine m\"oglichst hohe Aufl\"osung der jeweiligen Daten erforderlich ist, mussten die Daten im Zeitraum von einem Tag dargestellt werden.
-Dies hatte zur Folge, dass man f\"ur jeden Tag eine Tabelle auf dem Archiv der Website \"offnen musste. Man hätte anschliessend die Daten mit copy and paste in eine Excel-Tabelle einf\"ugen können. Daher wurde  entschieden, ein Programm zu schreiben, welches diese Aufgabe automatisieren sollte.
+Dies hatte zur Folge, dass man f\"ur jeden Tag eine Tabelle auf dem Archiv der Website \"offnen musste. Man hätte anschliessend die Daten mit \textit{copy and paste} in eine Excel-Tabelle einf\"ugen können. Daher wurde  entschieden, ein Programm zu schreiben, welches diese Aufgabe automatisieren sollte.
 Als Programmiersprache wurde hierf\"ur Python gewählt.
 
 
-Mit der Pandas Library und der Funktion \texttt{'read\_html'} \space konnten die Daten direkt aus dem Python Programm von der Website heruntergeladen werden.
+Mit der \textit{Pandas Library} und der Funktion \texttt{'read\_html'} \space konnten die Daten direkt aus dem Python Programm von der Website heruntergeladen werden.
 Entscheidend für das Gelingen dieser Teilaufgabe war, dass die URL-Links der einzelnen Tage stets regelmässig aufgebaut sind:
 \\
 \\
@@ -137,7 +137,7 @@ Diese Rohdaten dienten als Grundlage für alle weiteren Berechnungen.
 
 \section{Stetige Wavelet-Transformation}
 \rhead{Stetige Wavelet-Transformation}
-Die theoretischen Grundlagen rund um die stetige Wavelet-Transformation wurden im Kapitel \ref{chapter:cwt} genaustens erläutert. 
+Die theoretischen Grundlagen rund um die stetige Wavelet-Transformation wurden im Kapitel \ref{chapter:cwt} genauestens erläutert. 
 In diesem Abschnitt der Seminararbeit wird öfters auf die Theorie des angesprochenen Kapitels \ref{chapter:cwt} referenziert ohne diese genauer zu erläutern. 
 
 Für eine m"oglichst aussagekräftige Untersuchung der Signale, in welcher so viele Informationen gewonnen werden sollten wie m"oglich, eignet sich die stetige Wavelet-Transformation (folgend noch kurz \textit{cwt} aus dem Englischen "continuous wavelet transform"). 
@@ -164,9 +164,9 @@ Als Mutter-Wavelet wurde
 verwendet, welches auch als das analytische Gabor-Wavelet bekannt ist.
 Dabei gibt $\sigma$ an, wie hoch die Frequenz ist und dementsprechend auch, wie viele lokale Maxima und Minima innerhalb des Gauss'schen Fensters das Mutter-Wavelet existieren.
 Weiter ist $c_{\sigma}$ eine reelle Konstante und dient zur Erf"ullung der Zulässigkeitsbedingungen in der Definition \ref{cwt:zulaessig}.
-Das Morlet-Wavelet wird in der Abbildung \ref{fig:gabor_plot} \space dargestellt und $\sigma$ wurde auf 5 gesetzt.
+Das Gabor-Wavelet wird in der Abbildung \ref{fig:gabor_plot} \space dargestellt und $\sigma$ wurde auf 5 gesetzt.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=1\textwidth]{papers/wwt/images/gabor.pdf}
 \caption{Analytisches Gabor Mutter-Wavelet}
@@ -187,17 +187,22 @@ Folgende Parameter wurden verwendet
 wobei Matlab das Gabor-Wavelet als \texttt{'amor'} bezeichnet, mit \texttt{'VoicesPerOctave'} konnte die Genauigkeit erhöht werden und die Variable \texttt{'fs'} beschreibt die Abtastfrequenz der Messsignale.
 Bei den Rückgabewerten werden die Wavelet-Werte in \texttt{'wt'} als komplexe Matrix und die approximierten Frequenzen in \texttt{'F'} abgespeichert.
 
-Anstelle des Skalierungsfaktors $a$ in der Gleichung \ref{eq:cwt} berechnet Matlab eine approximierte Frequenz und gibt diese zurück.
-Für jeden verwendeten Skalierungsfaktor $a$ wird eine Sinuskurve gesucht, die am ehesten mit der Frequenz des entsprechenden Wavelets übereinstimmt.
-Siehe das Beispiel mit einem Daubechies Wavelet der Nummer 7 in der Abbildung \ref{fig:centerf}.
-Dies dient dazu den Wavelet-Koeffizienten einer Frequenz zuzuordnen. 
-Aus dem verwendeten Skalierungsfaktor $a$ könnte auf die Schnelle keine Information entnommen werden.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/centerf.pdf}
 	\caption{Approximierte Frequenz eines db7-Wavelet}
 	\label{fig:centerf}
 \end{figure}
+
+
+Anstelle des Skalierungsfaktors $a$ in der Gleichung \eqref{eq:cwt} berechnet Matlab eine approximierte Frequenz und gibt diese zurück.
+Für jeden verwendeten Skalierungsfaktor $a$ wird eine Sinuskurve gesucht, die am ehesten mit der Frequenz des entsprechenden Wavelets übereinstimmt.
+Siehe das Beispiel mit einem Daubechies Wavelet der Nummer 7 in der Abbildung \ref{fig:centerf}.
+
+
+Dies dient dazu den Wavelet-Koeffizienten einer Frequenz zuzuordnen. 
+Aus dem verwendeten Skalierungsfaktor $a$ könnte auf die Schnelle keine Information entnommen werden.
+
 
 \subsection{Verifikation der approximierten Frequenz}
 \label{Freq}
@@ -227,10 +232,10 @@ Bei den Rohdaten der Frontdurchgängen erkennt man gemeinsame Wechsel im Wind, d
 Diese korrelierenden auftretenden Frequenzen sollten in der \textit{cwt} sichtbar sein.
 
 \subsection{Parallelen zur Kovarianz}
-Um das korrelierende Auftreten der einzelnen Datenkanäle zu verdeutlichen, wurden bei diesen jeweils die zwei zusammengehörenden Koeffizienten der \textit{cwt} miteinander multipliziert. 
+Um das korrelierende Auftreten der einzelnen Datenkanäle zu verdeutlichen, wurden bei diesen jeweils die zwei zusammengehörenden Resultate der \textit{cwt} miteinander multipliziert. 
 Dabei werden die Stellen hervorgehoben, wo beispielsweise der Luftdruck und die Windgeschwindigkeit abhängig voneinander variieren. 
 Sprich die Resultate der \textit{cwt} gemeinsam und zum selben Zeitpunkt für den Luftruck und Wind gross sind.
-Dies funktioniert besonders gut, da die Werte rasch gegen null gehen falls nur schon einer der beiden Datenverläufe nicht mit dem aktuellen Mutter-Wavelet übereinstimmt.
+Dies funktioniert besonders gut, da die Werte rasch gegen null gehen, falls nur schon einer der beiden Datenverläufe nicht mit dem aktuellen Mutter-Wavelet übereinstimmt.
 
 
 Genauer betrachtet zeigt das Verfahren mit der Multiplikation Ähnlichkeiten mit der Formel
@@ -240,49 +245,44 @@ COV(X,Y) = \frac{\sum_{i=1}^{N} (x_i- \bar{x})(y_i- \bar{y})}{N-1}
 \end{equation}
 oder bei stetigen Werten
 \begin{equation}
-COV(X,Y) = \int{(x(t)- \bar{x})(y(t)- \bar{y}) \text{\space}dt},
+COV(X,Y) = \int_{-\infty}^\infty (x(t)- \bar{x})(y(t)- \bar{y}) \text{\space}dt
 \label{eq:kovarianz_int}
 \end{equation}
-der Kovarianz aus der Statistik. Bei dieser Anwendung wird einfach nicht die ganze Zufallsvariable benutzt, sondern nur jeweils die beiden zeitlich übereinstimmenden Werte.
-
-Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grundlegenden Formel \ref{eq:cwt1} der \textit{cwt}, kann man gewisse Parallelen sehen. 
-In \ref{eq:cwt1} ist die Motivation, die jeweiligen Parameter $a$ und $b$ zu finden, wobei das Mutter-Wavelet und das Signal gemeinsam variieren.
+der Kovarianz aus der Statistik. 
+Die Kovarianz zeigt sich nicht nur in dieser Anwendung. Auch schon bei der grundlegenden Formel \eqref{eq:cwt1} der \textit{cwt}, kann man gewisse Parallelen sehen. 
+In \eqref{eq:cwt1} ist die Motivation, die jeweiligen Parameter $a$ und $b$ zu finden, bei welchen das Mutter-Wavelet und das Signal gemeinsam variieren.
 Auch hierfür werden die Produkte der Signale berechnet, auf integriert und gemittelt.
 Auch dies ist eine etwas abgewandelte Art der Kovarianz zwischen dem Datensignal und dem Mutter-Wavelet.
 
-Setzt man den \textit{Luftdruck} und das Mutter-Wavelet $\psi_{a,b}$ in die Formel \ref{eq:kovarianz_int} ein, kann sie wie folgt umgeformt werden,
+Setzt man den \textit{Luftdruck} und das Mutter-Wavelet $\psi_{a,b}$ in \eqref{eq:kovarianz_int} ein,
 
 \begin{equation}
-COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b) = \int{(\text{\textit{Luftdruck}}(t)- \overline{\text{\textit{Luftdruck}}})(\psi_{a,b}(t)- \overline{\psi_{a,b}}) \text{\space}dt}.
+COV(\text{\textit{Luftdruck}}, \psi_{a,b}) = \int_{-\infty}^\infty (\text{\textit{Luftdruck}}(t)- \overline{\text{\textit{Luftdruck}}})(\psi_{a,b}(t)- \overline{\psi_{a,b}}) \text{\space}dt,
 \end{equation}
+kann wie folgt umgeformt werden.
 Gemäss den Zulässigkeitsbedingungen eines Mutter-Wavelets ist $\overline{\psi_{a,b}} = 0$ (Definition \ref{cwt:zulaessig}). Weiter werden Multiplikationen in Skalarprodukte umgewandelt, somit folgt
 \begin{equation}
-COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b) =  \int{\langle \text{\textit{Luftdruck}}(t)- \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t) \rangle \text{\space}dt}.
+COV(\text{\textit{Luftdruck}}, \psi_{a,b}) =  \int_{-\infty}^\infty\langle \text{\textit{Luftdruck}}(t)- \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t) \rangle \text{\space}dt.
 \end{equation}
-Weiter Ausmultipliziert
+Weiter ausmultipliziert
 \begin{equation}
-COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b) = \int	\langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle - \langle \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t)\rangle \text{\space}dt,
+COV(\text{\textit{Luftdruck}}, \psi_{a,b}) = \int_{-\infty}^\infty	\langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle - \langle \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t)\rangle \text{\space}dt,
 \end{equation}
 schlussendlich ergibt sich mit $\langle \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t) \rangle = 0$,
 \begin{equation}
 \begin{split}
-COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b) &= \int \langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle \text{\space}dt \\
+COV(\text{\textit{Luftdruck}}, \psi_{a,b}) &= \int_{-\infty}^\infty \langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle \text{\space}dt \\
+\label{eq:wwt_kovarianz}
 \end{split}
 \end{equation}
-Wird noch das Produkt mit dem Wind hinzugenommen
-\begin{equation}
-\begin{split}
-COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b)\cdot COV(\text{\textit{Wind}}, \psi_{a,b})(a,b) \\ =  \int \langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle \text{\space}dt \cdot \int \langle \text{\textit{Wind}}(t),\psi_{a,b}(t)\rangle \text{\space}dt 
-\label{eq:cov_wwt}
-\end{split}
-\end{equation}
-ist die Vereinfachung komplett.
+
+damit ist die Vereinfachung komplett.
 
 
 \subsection{Multiplikation der Resultate zweier Wavelet-Transformationen}
 
+Wie schon bei der Kovarianz gezeigt, wird bei der \textit{cwt} ein grosses Resultat des Produktes anzeigen, dass beide Datenkanäle mit der selben Frequenz auf ein gewisses $\psi_{a,b}$ ansprechen.  
 
-Die angewendete Wavelet-Transformation mit der Idee des Produktes der beiden Datenkanäle: \newline
 Wobei zuerst separat die \textit{cwt}, 
 \begin{equation}
 \mathcal{W}\text{\textit{Luftdruck}}(a,b) = \langle \text{\textit{Luftdruck}},\psi_{a,b}\rangle
@@ -290,7 +290,7 @@ Wobei zuerst separat die \textit{cwt},
 \begin{equation}
 \mathcal{W}\text{\textit{Wind}}(a,b) = \langle \text{\textit{Wind}},\psi_{a,b}\rangle,
 \end{equation}
-des Luftdruckes und des Windes gemacht wurde.
+des Luftdruckes und des Windes berechnet wurde.
 Als nächster Schritt wurde das Produkt der beiden Funktionen berechnet.
 
 \begin{equation}
@@ -298,7 +298,7 @@ Als nächster Schritt wurde das Produkt der beiden Funktionen berechnet.
 \label{eq:produkt-wwt}
 \end{equation}
 
-Ausgeschrieben auf die Vollstädnige Formel der \textit{cwt} (\ref{eq:cwt1})
+Ausgeschrieben auf die vollständige Formel der \textit{cwt} \eqref{eq:cwt1}
 
 \begin{equation}
 \begin{split}
@@ -306,20 +306,29 @@ Ausgeschrieben auf die Vollstädnige Formel der \textit{cwt} (\ref{eq:cwt1})
 & =
 \langle \text{\textit{Luftdruck}},\psi_{a,b}\rangle \cdot \langle \text{\textit{Wind}},\psi_{a,b} \rangle \\
 & = \frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty \text{\textit{Luftdruck}}(t)\,\overline{
-	\psi\biggl(\frac{t-b}{a})}\biggr)dt
+	\psi\biggl(\frac{t-b}{a}}\biggr)\,dt
 \cdot
 \frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty Wind(t)\,\overline{
-	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt 
+	\psi\biggl(\frac{t-b}{a}\biggr)}\,dt .
 \label{eq:cwt_wwt}
 \end{split}
 \end{equation}
 
-Dabei kommt die Analogie, ohne die Korrekturfaktoren, zu der Formel \ref{eq:cov_wwt} eindrücklich zur Geltung.
+Die Formel \eqref{eq:wwt_kovarianz} kann, zum optimalen Vergleich mit \eqref{eq:cwt_wwt}, mit dem Produkt des Windes erweitert werden
 
+\begin{equation}
+\begin{split}
+COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b)\cdot COV(\text{\textit{Wind}}, \psi_{a,b})(a,b) \\ =  \int _{-\infty}^\infty \langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle \text{\space}dt \cdot \int _{-\infty}^\infty \langle \text{\textit{Wind}}(t),\psi_{a,b}(t)\rangle \text{\space}dt,
+\label{eq:cov_wwt}
+\end{split}
+\end{equation}
 
+dabei kommt die Analogie, ohne die Korrekturfaktoren, zwischen den Formeln \eqref{eq:cov_wwt} und\eqref{eq:cwt_wwt} eindrücklich zur Geltung.
 
-Wie im Abschnitt \ref{matlab} beschrieben wurde, berechnet Matlab mit der \textit{cwt} die Werte und gibt diese als Matrix zurück.
-Um die Formel \ref{eq:produkt-wwt} anzuwenden wurden die beiden gleichgrossen Matrizen des Resultates der \textit{cwt}, des Luftdruckes und des Windes, miteinander elementweise,
+\subsubsection{Anwendung in Matlab}
+
+Wie im Abschnitt \ref{matlab} beschrieben, berechnet Matlab mit der Funktion der \textit{cwt}, den Rückgabewert und gibt diesen als Matrix zurück.
+Um \eqref{eq:produkt-wwt} anzuwenden werden die beiden gleichgrossen Matrizen des Resultates der \textit{cwt} miteinander elementweise,
 
 \begin{equation}
 	A\circ B=(a_{{ij}}\cdot b_{{ij}})={\begin{pmatrix}a_{{11}}\cdot b_{{11}}&\cdots &a_{{1n}}\cdot b_{{1n}}\\\vdots &\ddots &\vdots \\a_{{m1}}\cdot b_{{m1}}&\cdots &a_{{mn}}\cdot b_{{mn}}\end{pmatrix}},
@@ -349,24 +358,24 @@ In Abbildung \ref{fig:cwt_storm} \space zeigen sich um den 3. sowie zwischen dem
 \subsubsection{Wintersturm {\em Burglind} }
 \label{burglind}
 Hineingezoomt um den 3. Januar (Abbildung \ref{fig:cwt_storm_zoom}) sind im Rohdatenverlauf die Aktivitäten des Windes und Luftdruckes erkennbar. 
-\begin{figure}[h]
+\begin{figure}[b]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom.pdf}
 	\caption{Cwt und Rohdaten Wintersturm {\em Burglind}  2018}
 	\label{fig:cwt_storm_zoom}
 \end{figure}
-Aus dem Fachbericht \space \cite{Fachbericht:Burglind} von Meteoschweiz war bekannt, dass am Vormittag des 3. Januars 2018 die stärkste Sturmfront seit dem verheerenden Sturm Lothar aus dem Jahre 1999 über die Schweiz zog.
+Aus dem Fachbericht \space \cite{Fachbericht:Burglind} von MeteoSchweiz war bekannt, dass am Vormittag des 3. Januars 2018 die stärkste Sturmfront seit dem verheerenden Sturm Lothar aus dem Jahre 1999 über die Schweiz zog.
 Dabei zeigt sich eindrücklich, wie der Sturmdurchgang in der multiplizierten Wavelet-Transformation hervorgehoben wird.
 
-\subsubsection{Sturmtief {\em Evi}  und {\em Friedricke} }
+\subsubsection{Sturmtief {\em Evi}  und {\em Friederike} }
 \label{evi}
 Beim zweiten Ereignis zwischen dem 16. und 23. Januar trat die Aktivität nicht mehr so deutlich auf.
-Nach dem Sturmarchiv  \cite{online:sturmarchiv} traf am 16. Januar das Sturmtief {\em Evi}  und am 18. Januar das Sturmtief {\em Friedricke} auf Europa. Dabei zeigt sich nach der Amplitude, dass das Sturmtief nicht direkt auf die Schweiz traf, sonder diese lediglich streifte. 
+Nach dem Sturmarchiv  \cite{online:sturmarchiv} traf am 16. Januar das Sturmtief {\em Evi}  und am 18. Januar das Sturmtief {\em Friederike} auf Europa. Dabei zeigt sich nach der Amplitude, dass das Sturmtief nicht direkt auf die Schweiz traf, sonder diese lediglich streifte. 
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{papers/wwt/images/storm_airp_wind_zoom2.pdf}
-	\caption{Cwt und Rohdaten Strumtief {\em Evi}  und {\em Friedricke} 2018}
+	\caption{Cwt und Rohdaten Strumtief {\em Evi}  und {\em Friederike} 2018}
 	\label{fig:cwt_storm_zoom2}
 \end{figure}
 
@@ -395,18 +404,17 @@ Anbei in Abbildung \ref{fig:python-plot-code} und \ref{fig:python-plot-code2} de
 
 \begin{figure}[h]
 	\centering
-	\lstinputlisting[language=Python,firstline = 1, lastline = 18, numbers=left, firstnumber=1, style = Python]{papers/wwt/code/plot_burglind.py}
+	\lstinputlisting[language=Python,firstline = 0, lastline = 39, numbers=left, firstnumber=0, style = Python]{papers/wwt/code/plot_burglind.py}
 	\caption{Python Codeausschnitt}
 	\label{fig:python-plot-code}
 \end{figure}
 \begin{figure}[h]
 	\centering
-	\lstinputlisting[language=Python,firstline = 19, lastline = 70, firstnumber=19, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
+	\lstinputlisting[language=Python,firstline = 40, lastline = 90, firstnumber=39, numbers=left,style = Python]{papers/wwt/code/plot_burglind.py}
 	\caption{Python Codeausschnitt}
 	\label{fig:python-plot-code2}
 \end{figure}
  
- \pagebreak
  \newpage
 
 \printbibliography[heading=subbibliography]

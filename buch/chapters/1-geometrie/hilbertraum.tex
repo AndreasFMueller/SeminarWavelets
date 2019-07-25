@@ -12,7 +12,7 @@ was wir vorhaben.
 Ein endlichdimensionaler Vektorraum ist sicher ein geeigneter Rahmen zur
 Beschreibung eines Signals, welches an endlich vielen Stellen abgetastet
 wurde.
-Für kontinuirliche Signale reicht er aber nicht.
+Für kontinuierliche Signale, also Funktionen $x(t)$,  reicht er aber nicht.
 Zunächst ist die Menge aller Funktionen zwar ein Vektorraum, aber es ist
 aussichtslos, eine endliche orthonrmierte Basis zu finden.
 Vielmehr werden wir sehen, dass bereits der Raum der stetigen Funktionen
@@ -30,7 +30,44 @@ nicht mehr wahr.
 Der bisher formulierte Begriff des Skalarproduktes funktioniert daher
 nicht für komplexe Signale.
 
-\subsection{Komplexe Vektorräume mit Skalarprodukt}
+Damit die endlichdimensionale Theorie vollständig übertragen werden kann,
+müssen folgende Eigenschaften gerettet werden:
+\begin{itemize}
+\item {\bf Lineare Operationen:}
+Signale können verstärkt (mit reellen Zahlen multipliziert) und überlagert
+(addiert) werden.
+Die Verallgemeinerung muss also die üblichen Rechenregeln bewahren,
+sie muss also wieder ein Vektorraum sein.
+Da es keine endlichdimensionale Basis mehr gibt, muss man unendlichen
+Linearkombinationen einen Sinn geben können, was nur mit Hilfe des
+Begriffs der Konvergenz von Folgen möglich ist.
+Dazu wiederum muss man den Unterschied zwischen Vektoren messen können.
+Vektorraum und Skalarprodukt werden in
+Abschnitt~\ref{subsubsection:komplexevr-mit-skalarprodukt}
+axomiatisch dargestellt.
+\item {\bf Skalarprodukt:}
+Das Skalarprodukt ist das Mass für die Ähnlichkeit zweier Funktionen
+und gleichzeitig die Quelle eines Norm-Begriffs.
+Abschnitt~\ref{subsection:norm-und-grenzwert} behandelt den Grenzwertbegriff.
+\item {\bf Basis:}
+Anstelle einer Basis genügt es orthonormierte Vektormengen zu finden,
+mit denen sich jeder beliebige Vektor im Grenzwert linear kombinieren
+lässt.
+Abschnitt~\ref{subsection:hilbertraum-basis} erklärt den Begriff der
+Hilbertraum-Basis.
+\item {\bf Dualität:}
+In einem endlichdimensionalen Vektorraum ist es so offensichtlich, dass
+jede Linear-Form also Skalarprodukt mit einem geeigneten Vektor 
+dargestellt werden kann.
+Dies ermöglicht, einen Vektor als Linearform zu charakterisieren.
+In einem unendlichdimensionalen Vektorraum ist dies nicht mehr
+selbstverständlich.
+Der Darstellungssatz von Riesz in Abschnitt~\ref{subsection:riesz}
+stellt dies in einem Hilbertraum jedoch sicher.
+\end{itemize}
+
+\subsection{Komplexe Vektorräume mit Skalarprodukt
+\label{subsubsection:komplexevr-mit-skalarprodukt}}
 Es hindert uns nichts daran, in der Definition eines Vektorraums für die
 Menge der Skalare auch komplexe Zahlen zuzulassen.
 Ganz allgemein kann ein Vektorraum sinnvoll definiert werden, wenn die Menge
@@ -232,39 +269,13 @@ Zusammengesetzt finden wir die Formel
 für das Skalarprodukt zweier beliebiger Vektoren, ausgedrückt
 ausschliesslich mit der Norm.
 Die Identität \eqref{hilbert:polarisierung} ist auch bekannt unter dem
-Namen Polar-Identität.
-
-Das Skalarprodukt erlaubt auch in einem komplexen Hilbertraum den Begriff
-der orthonormierten Basis zu definieren.
-
-\begin{satz}
-Wenn die Vektoren $\{e_k\,|\, 1\le k\le n\}$ eine orthonormierte Basis
-von $V$ bilden, dann lässt sich jeder Vektor $v\in V$ als Linearkombination
-\[
-v
-=
-\sum_{k=1}^n \hat{v}_k e_k
-\]
-der Vektoren $e_k$ schreiben.
-Die Koeffizienten sind eindeutig bestimmt und können mit Hilfe des
-Skalarproduktes als
-\[
-\hat{v}_k = \langle v,e_k\rangle
-\]
-gefunden werden.
-Ausserdem gilt für das Skalarprodukt die Plancherel-Identität
-\begin{align*}
-\langle u,v\rangle &= \sum_{k=1}^n \hat{u}_k\bar{\hat{v}}_k
-\\
-\| u \|^2 &= \sum_{k=1}^n |\hat{u}_k|^2.
-\end{align*}
-\end{satz}
-
-Die Abbildung $T\colon V\to \mathbb C^n: v\mapsto (\hat{v}_k\,|\,1\le k\le n)$
-ist also wie im reellen Fall eine Isometrie.
+Namen Polar-Identität oder Polarisierung des Skalarprodukts.
+\index{Polar-Identität}
+\index{Polarisierung}
 
 
-\subsection{Norm und Grenzwert in einem Hilbertraum}
+\subsection{Norm und Grenzwert in einem Hilbertraum
+\label{subsection:norm-und-grenzwert}}
 Bis jetzt haben wir immer in endlichdimensionalen Vektorräumen gearbeitet.
 Der tiefere Grund dafür war, dass die Arbeit mit unendlich vielen Basisvektoren
 $e_k$, $k\in\mathbb N$, erfordert, dass Ausdrücken der Form
@@ -411,5 +422,315 @@ mit dem Skalarprodukt
 % XXX TODO: Vervollständigung: Summierbarkeit des Grenzwertes...
 \end{beispiel}
 
-\subsection{Basis eines Hilbertraumes}
+\subsection{Basis eines Hilbertraumes
+\label{subsecdtion:hilberraum-basis}}
+Eine Basis eines Vektorraums ist eine Menge von Vektoren, aus der sich
+jeder beliebige Vektor linear kombinieren lässt.
+In einem unendlichdimensionalen Vektorraum ist dieses Konzept nur
+beschränkt nützlich, weil es von endlichen Summen ausgeht.
+
+Das Skalarprodukt erlaubt auch in einem komplexen Hilbertraum den Begriff
+der orthonormierten Basis zu definieren.
+\index{orthonormierte Basis}
+Eine Menge von orthonormierten Vektoren ist automatisch linear unabhängig.
+In einem $n$-dimensionalen Vektorraum reicht das um sicherzustellen,
+dass eine Menge von $n$ orthonormierten Vektoren eine Basis ist.
+In einem undendlichdimensionalen Vektorraum reicht Orthonormalität
+jedoch nicht um sicherzustellen, dass sich jeder Vektor beliebig genau
+als Linearkombination approximieren lässt.
+
+\begin{definition}
+Eine Menge von Vektoren $\mathcal{B} = \{v_1,v_2,\dots\}\subset H$ in einem
+Hilbertraum $H$ heisst eine {\em Erzeugendensystem}, wenn es keinen Vektor
+$v\in H$ gibt, der auf allen Vektoren von $\mathcal{B}$ senkrecht steht.
+\end{definition}
+
+Das folgende Beispiel zeigt, dass es eine einem unendlichdimensionalen
+Vektorraum möglich ist, eine unendliche Folge orthonormierter Vektoren
+und einen weiteren Vektor zu finden, der auf jedem Vektor senkrecht ist.
+
+\begin{beispiel}
+\label{geometrie:l2-beispiel}
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/l2orth.pdf}
+\caption{Familie von orthnormierten Funktionen $f_n(x)$, die alle auf der
+Funktion $g(x)$ orthogonal sind.
+Es gilt also $\langle f_n,f_m\rangle = \delta_{nm}$ und
+$\langle f_n,g\rangle=0$.
+\label{l2orth}}
+\end{figure}
+Wir zeigen Anhang eines Beispiels, dass der Vektorraum  der integrierbaren
+Funktionen auf dem Interval $[0,1]$ mit einem Skalarprodukt
+ausgestattet werden kann, welches ihn zu einem Hilbertraum macht.
+Ausserdem konstruieren wir eine unendliche Menge von Funktionen, die alle
+senkrecht aufeinander stehen.
+Trotzdem werden wir einen weiteren Vektor finden, der auf all diesen
+Vektoren senkrecht steht.
+
+Als erstes definieren wir das Skalarprodukt von Funktionen auf dem
+Interval $[0,1]$ als
+\[
+\langle f, g\rangle
+=
+\int_0^1 f(x) \bar{g}(x)\,dx
+\]
+für Funktionen $f,g\colon [0,1]\to\mathbb C$.
+Der Vektorraum der integrierbaren Funktionen mit diesem Skalarprodukt
+heisst $L^2$ und wird in Kapitel~\ref{chapter:fourier} genauer untersucht.
+
+Als nächstes konstruieren wir die Folge $f_i$ von Funktionen, die wie
+folgt definiert sind:
+\begin{align*}
+f_1(x) &= \begin{cases}
+\sqrt{2}&\qquad \frac12x1\\
+0\phantom{000}&\qquad\text{sonst}
+\end{cases}
+\\
+f_2(x) &= \begin{cases}
+2&\qquad \frac14 \le x < \frac12\\
+0\phantom{000}&\qquad\text{sonst}
+\end{cases}
+\\
+f_3(x) &= \begin{cases}
+2^{\frac32}&\qquad \frac18 \le x < \frac14\\
+0\phantom{000}&\qquad\text{sonst}
+\end{cases}
+\\
+&\vdots
+\\
+f_n(x) &= \begin{cases}
+2^{\frac{n}2}&\qquad \frac1{2^n} \le x < \frac2{2^n}\\
+0\phantom{000}&\qquad\text{sonst,}
+\end{cases}
+\end{align*}
+siehe auch Abbildung~\ref{l2orth}.
+Die Funktion $f_n$ ist nur auf dem Interval $[2^{-n},2^{-n+1}]$ von
+$0$ verschieden.
+Zwei verschiedene Funktionen $f_n$ und $f_m$ mit $n\ne m$ sind also
+nirgends gleichzeitig von $0$ verschieden, es folgt
+$\langle f_n,f_m\rangle =0$.
+Aber auch die Norm der Funktionen $f_n$ lässt sich leicht bereichen
+als
+\[
+\|f_n\|^2
+=
+\int_0^1 |f_n(x)|^2\,dx
+=
+\int_{2^{-n}}^{2^{-n+1}} (2^{\frac{n}2})^2 \,dx
+=
+\frac1{2^n}\cdot 2^n = 1.
+\]
+Somit ist gezeigt, dass die Funktionen $f_n$ orthonormiert im Sinne des
+Skalarprodukts $\langle\;,\;\rangle$ sind.
+
+Trotzdem gibt es eine Funktion $g$, die auf allen $f_n$ orthogonal ist.
+Wir wählen
+\[
+g(x) = \begin{cases}
+\sqrt{2}&\qquad \frac12 \le x < \frac34\\
+-\sqrt{2}&\qquad \frac34 \le x < 1\\
+0&\qquad\text{sonst.}
+\end{cases}
+\]
+Diese Funktion ist ebenfalls normiert, denn es gilt
+\[
+\|g\|^2
+=
+\int_0^1 |g(x)|^2 \,dx
+=
+\int_{\frac12}^1 (\sqrt{2})^2\,dx
+=
+\frac12\cdot 2 = 1.
+\]
+
+Die Funktion $g$ ist nur auf dem Interval $[\frac12,1]$ von $0$ verschieden,
+sie ist damit automatisch orthogonal auf allen Funktionen $f_n$ mit $n\ge 2$.
+Für die Funktion $f_1$ ist
+\[
+\langle g,f_1\rangle
+=
+\int_0^1 g(x)\bar{f}_1(x)\,dx
+=
+\int_{\frac12}^1 g(x)\,dx
+=
+\int_{\frac12}^{\frac34}\sqrt{2}\,dx
++
+\int_{\frac34}^1-\sqrt{2}\,dx
+=
+\frac14 \sqrt{2} - \frac14 \sqrt{2} = 0.
+\]
+Die Funktion $g$ ist also orthogonal auf allen Funktionen $f_n$.
+In einem unendlichdimensionalen Hilbertraum kann es also selbst
+neben einer unendlich grossen Menge von orthonormierten Vektoren 
+noch einen weiteren Vektor geben, der senkrecht auf allen steht.
+\end{beispiel}
+
+Das Beispiel lässt sich beliebig erweitern: Jede Skalierung
+$\tilde{D}_{2^n}g$ ist ebenfalls orthogonal auf allen Vektoren $f_k$.
+Offenbar gibt die Folge $f_k$ den Hilbertraum nur sehr lückenhaft wieder.
+
+\begin{beispiel}
+Wir betrachten den Hilbertraum $l^2$, dessen Vektoren Folgen
+$a=(a_k)_{k\in\mathbb N}$ von komplexen Zahlen sind mit dem Skalarprodukt
+\begin{equation}
+\langle a,b\rangle = \sum_{k\in\mathbb N} a_k\bar{b}_k.
+\label{l2:beispiel:erzeugendensystem}
+\end{equation}
+Die Vektoren $e^{(i)}$ mit den Komponenten
+\[
+e^{(i)}_k = \delta_{ik}
+\]
+sind überall $0$ ausser das Folgenglied mit der Nummer $i$, welches $1$
+ist. 
+Diese Vektoren haben Länge $1$ im Sinne des Skalarproduktes
+\eqref{l2:beispiel:erzeugendensystem} und sie sind orthogonal:
+\[
+\langle e^{(i)}, e^{(j)}\rangle
+=
+\sum_{k\in\mathbb N} e^{(i)}_k\bar{e}^{(j)}_k
+=
+\sum_{k\in\mathbb N} \delta_{ik}\delta_{jk}
+=
+\delta_{ij}.
+\]
+Die Vektoren $e^{(i)}$ sind aber auch ein Erzeugendensystem, wie man sich
+wie folgt überzeugen kann.
+Gäbe es einen Vektor $v\in l^2$, dessen Skalarprodukt mit allen $e^{(i)}$
+verschwindet, dann würde für alle $i$ folgen
+\[
+0
+=
+\langle v,e^{(i)}\rangle
+=
+\sum_{k\in\mathbb N} v_ke^{(i)}_k
+=
+\sum_{k\in\mathbb N} v_k\delta_{ik}
+=
+v_i,
+\]
+d.~h.~der Vektor $v$ ist $0$.
+\end{beispiel}
+
+Die naheliegende Erweiterung des Begriffs der orthonormierten Basis
+eines endlichdimensionalen Vektorraums ist jetzt der Begriff der
+Hilberbasis.
+
+\begin{definition}
+Ein aus orthonormierten Vektoren bestehendes Erzeugendensystem
+eines Hilbertraumes heisst {\em Hilberbasis}
+\end{definition}
+\index{Hilbertbasis}
+
+\begin{satz}
+Wenn die Vektoren $\{e_k\,|\, 1\le k\le n\}$ eine Hilbertbasis des
+Hilberraumes $H$ bilden,
+dann lässt sich jeder Vektor $v\in H$ als Linearkombination
+\[
+v
+=
+\sum_{k=1}^\infty \hat{v}_k e_k
+\]
+der Vektoren $e_k$ schreiben.
+Die Koeffizienten sind eindeutig bestimmt und können mit Hilfe des
+Skalarproduktes als
+\[
+\hat{v}_k = \langle v,e_k\rangle
+\]
+gefunden werden.
+Ausserdem gilt für das Skalarprodukt die Plancherel-Identität
+\index{Plancherel-Identität}
+\begin{align*}
+\langle u,v\rangle &= \sum_{k=1}^\infty \hat{u}_k\bar{\hat{v}}_k
+\\
+\| u \|^2 &= \sum_{k=1}^\infty |\hat{u}_k|^2.
+\end{align*}
+\end{satz}
+
+Die Abbildung $T\colon V\to \mathbb l^2: v\mapsto (\hat{v}_k\,|\,1\le k)$
+ist also wie im reellen Fall eine {\em Isometrie} von Hilberträumen.
+\index{Isometrie}
+
+
+\subsection{Darstellungssatz von Riesz
+\label{subsection:riesz}}
+Zu einem gegeben Vektor $v\in H$ eines Hilbertraums ist die Abbildung
+\begin{equation}
+H\to\mathbb C
+:
+u\mapsto \langle u,v\rangle
+\label{hilbertraum:skalarproduktform}
+\end{equation}
+eine Linearform auf dem Vektorraum.
+Linearformen auf einem endlichdimensionalen Vektorraum werden durch
+einen Zeilenvektor beschrieben, es ist daher klar, dass es auch einen
+Spaltenvektor gibt, mit dem sich die Linearform als Skalarprodukt
+darstellen lässt.
+In einem beliebigen unendlichdimensionalen Vektorraum ist der Vektorraum
+der Linearformen typischerweise viel grösser.
+Das besondere an Hilberträumen ist, dass sich jede stetige Linearform
+als Skalarprodukt wie in \eqref{hilbertraum:skalarproduktform}
+darstellen lässt.
+Dies ist der Inhalt des Satzes von Riesz, der in diesem Abschnitt
+bewiesen werden soll.
+
+Bevor wir soweit kommen können, brauchen wir jedoch ein noch elementareres
+Resultat, welches in jedem beliebigen Hilbertsatz zutrifft.
+Es besagt, dass sich zu einem eabschlossener Unterraum eines Hilbertraum 
+immer ein Orthogonalkomplement finden lässt, also ein darauf orthogonaler
+Unterraum, der zusammen mit dem gegebenen Unterraum jeden Vektor von $H$
+erzeugen kann.
+Dies entspricht der Intuition für Orthogonalität, die man aus der
+endlichdimensionalen Vektorgeometrie hat.
+
+\begin{satz}
+\label{satz:orthogonalkomplement}
+Ist $V\subset H$ ein abgeschlossener Unterraum eines Hilbertraumes $H$,
+lässt sich jeder Vektor $v\in H$ auf genau eine Art in $v = v_1+v_2$
+zerlegen derart, dass $v_1 \in V$ und $v_1\in V^{\perp}$,
+d.~h.~$\langle v_2,v\rangle$ für alle $v\in V$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $u\in H\setminus V$.
+Die Funktion $v\mapsto \| u-v\|$ ist $\ge 0$, man kann also eine
+Folge von Vektoren $v_k\in V$ finden derart, dass
+\[
+\lim_{k\to\infty} \|u-v_k\| = \inf_{v\in V} \|u-v\|
+\]
+ist.
+\end{proof}
+
+\begin{satz}[Riesz]
+Ist $\varphi\colon H\to \mathbb C$ eine stetige Lineaform auf $H$, dann 
+gibt es einen Vektor $v\in H$ derart, dass
+\[
+\varphi(u) = \langle u,v\rangle
+\qquad
+\forall u\in H
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Man betrachte den Raum
+\[
+V_1 = \{ u \in H \;|\;\varphi(u)=0\}.
+\]
+Da $\varphi$ eine stetige Linearform ist, ist $V_1$ ein abgeschlossener Raum.
+Falls $V_1=H$ bedeutet dies, dass $\varphi(u)=0$ für alle $u\in H$ ist,
+also kann man $\varphi$ als Skalarprodukt mit dem Nullvektor schreiben:
+$\varphi(u) = \langle u,0\rangle$.
+
+Falls $V_1 \ne H$ ist, betrachtet man das orthogonale Komplement
+\[
+V_1^{\perp} = \{ v\in H\;|\; \langle v,u\rangle = 0 \forall u\in V_1\}.
+\]
+welches nach Satz~\ref{satz:orthogonalkomplement} existiert.
+Jeder Vektor $v\in H$ lässt sich auf eindeutige Weise zerlegen in
+$v_1+v_2$ mit $v_1\in V_1$ und $v_2\in V_1^{\perp}$.
+Es ist $\varphi(v)=\varphi(v_1)+\varphi(v_2)=\varphi(v_2)$.
+
+\end{proof}
+
+
 

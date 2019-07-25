@@ -3,18 +3,20 @@ Der bestehende Ansatz mit der Beziehung \eqref{deconvolve:funktion}, welche zwei
 Die beiden Parameter $m$ und $\alpha$ wurden hier mithilfe einer eindimensionalen Funktion $g(x)$ (Abbildung \ref{deconvolve:1d}) festgelegt.
 Es wäre daher vielleicht möglich, durch geschickteres wählen dieser Parameter auf ein besseres Ergebnis zu kommen.
 Ausserdem ist die Anwendung auf das Bild noch nicht ausgereift.
-
 Es wurden auch nur das Haar- bzw. db1-Wavelet verwendet.
-Ein ähnlicher Ansatz, z.B. mit höheren Debauchies-Wavelets wäre sicher ein Versuch Wert.
+Ein ähnliches Vorgehen, z.B. mit höheren Debauchies-Wavelets wäre sicher ein Versuch Wert.
 
-Die Hauptursache für das unbefriedigende Resultat liegt im allgemeinen aber woanders.
-Es wurde nur versucht, die Koeffizienten auf den einzelnen Level zu verändern, bzw jede Zeile in Abbildung \ref{deconvolve:y1_cwt} wurde unabhängig von der benachbarten verstärkt oder geschwächt.
+Folgende Punkte scheinen aber die Hauptgründe zu sein, den bestehenden Ansatz zu verwerfen:
+\begin{itemize}
+	\item Es stellte sich als problematisch heraus, die Koeffizienten auf den einzelnen Level zu verändern, bzw jede Zeile in Abbildung \ref{deconvolve:y1_cwt} unabhängig von den anderen zu verstärken oder abzuschwächen.
+	
+	Die Wavelet-Transformation hat ja zwei Dimensionen (Dilatation $a$ und Translation $b$) und somit muss \glqq Masse \grqq{} in der Ebene, also zwischen Level und nicht nur auf einer Zeile nach links oder rechts verschoben werden.
+	Ändert man auf einem Level etwas, so muss die Auswirkung auf die anderen Level unbedingt berücksichtigt werden.
+	\item Wie beim eindimensionalen Versuch beobachtet, darf nicht davon ausgegangen werden, dass eine lokale Änderung auf einem Level nur diese Stelle beeinflusst.
+	Folglich könnte sich eine Manipulation an einem anderen Ort, der sich weiter weg von der zu schärfenden Stelle befindet, umgekehrt eben auf diese Stelle auswirken. 
+\end{itemize}
 
-Eine bessere Methode würde berücksichtigen, dass die Wavelet-Transformation ja zwei Dimensionen hat (Dilatation $a$ und Translation $b$) und somit \glqq Masse \grqq{} in der Ebene, also zwischen Level und nicht nur auf einer Zeile nach links oder rechts verschoben werden muss.
-Ändert man auf einem Level etwas, so muss die Auswirkung auf die anderen Level unbedingt berücksichtigt werden.
+Diese zwei Erkenntnisse sollte man immer im Hinterkopf behalten, wenn man die Wavelet-Transformation vergleichbar einsetzten will.
 
 
-Es ist somit problematisch, die Wavelet-Transformation ähnlich wie die Fourier-Transformation zu behandeln.
-Ein verändern eines Koeffizienten an einer bestimmten Stelle bewirkt nicht nur dort, sondern auch bei anderen Frequenzen oder genauer Dilatationen etwas.
-Genau dies konnte ja beim Versuch mit der eindimensionalen Funktion beobachtet werden.
 
