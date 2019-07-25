@@ -27,7 +27,11 @@ all:	sinsin.pdf	\
 	b3-07.pdf	\
 	b3-08.pdf	\
 	b3-09.pdf	\
-	b3-10.pdf
+	b3-10.pdf	\
+	parallelogramm.pdf
+
+parallelogramm.pdf:	parallelogramm.tex
+	pdflatex parallelogramm.tex
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex

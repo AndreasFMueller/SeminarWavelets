@@ -651,9 +651,46 @@ Die Abbildung $T\colon V\to \mathbb l^2: v\mapsto (\hat{v}_k\,|\,1\le k)$
 ist also wie im reellen Fall eine {\em Isometrie} von Hilberträumen.
 \index{Isometrie}
 
+\subsection{Geometrie des Hilbertraumes
+\label{subsection:geometrie-hilbertraum}}
+Das Skalarprodukt 
 
-\subsection{Darstellungssatz von Riesz
-\label{subsection:riesz}}
+\subsubsection{Parallelogrammregel}
+\begin{satz}
+\label{satz:parallelogrammregel}
+Seien $x,y\in H$ Vektoren in einem Hilbertraum, dann gilt
+\begin{equation}
+2\|x\|^2 + 2\|y\|^2
+=
+\| x+y\|^2 + \|x-y\|^2.
+\label{formel:parallelogramm}
+\end{equation}
+Die Formel~\eqef{formel:parallelogramm} heisst die {\em Parallelogrammregel}.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir berechnen die Normquadrate auf der rechten Seite von 
+\eqref{formel:parallelogrammregel} mit Hilfe des Skalarproduktes:
+\begin{align*}
+\|x+y\|^2 + \|x-y\|^2
+&=
+\langle x+y,x+y\rangle + \langle x-y,x-y\rangle
+\\
+&=
+\|x\|^2 + \langle x,y\rangle + \langle y,x\rangle + \|y\|^2
++
+\|x\|^2 - \langle x,y\rangle - \langle y,x\rangle + \|y\|^2
+\\
+&=
+2\|x\|^2 + 2\|y\|^2.
+\end{align*}
+Dies ist linke Seite der Parallelogrammregel~\eqref{formel:parallelogrammregel}.
+\end{proof}
+
+\subsubsection{Orthogonalkomlement}
+
+\subsubsection{Darstellungssatz von Riesz
+\label{subsubsection:riesz}}
 Zu einem gegeben Vektor $v\in H$ eines Hilbertraums ist die Abbildung
 \begin{equation}
 H\to\mathbb C
