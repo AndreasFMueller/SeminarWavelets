@@ -6,6 +6,8 @@
 
 %TODO IMPORTANT! CHange picture path to match buch.tex!!!!
 
+\graphicspath{papers/fpga/}
+
 \chapter{FPGA Implementation der schnellen Wavelet-Transformation\label{chapter:fpga}}
 \lhead{FPGA Implementation der schnellen Wavelet-Transformation}
 \begin{refsection}
@@ -13,34 +15,65 @@
 
 \section{Introduction}
 \rhead{Introduction}
-In this paper we study the implementation of a discrete Wavelet Transform and inverse transforming using VHDL.
-But why VHDL? VHDL is a language for programming hardware and we wanted to implement the Wavelet Transformation in hardware.
-This beacause first, we wanted to use some of the knowledge obtained in this course and second beacause we wanted to see if it is possible for us to implement this transformation in hardware.
-Implementing the Wavelet Transformation in hardware has some significant benefits.
-First of all speed. Implementations of arithmetic operations in hardware are much faster than in software.
-If you further use your VHDL-Code on a FPGA you can parallelize as much of this operations as possible, which is another speed boost. 
-Secondly, if well implemented and because of the speed, you can run your transformation nearly in real time.
-If you try to transform and modify audio signals, which are sampled with 44 kHz you get, because of the clock speed of the FPGA, which is about 100 MHz, over 1000 arithmetic operations for every audio sample.
-In the next few pages we guide through the theory used, some design considerations and at last through our steps of developing a basic but functional Wavelet Transformation in VHDL. 
 
-\section{Lifting Scheme}
+VHDL, an acronym for Very High Speed Integrated Circuit Hardware Description Language is commonly used to implement fast, aplication-specific logic for an FPGA or custom silicon chip.
+As every other programming language VHDL relies heavily on reuse of code.
+Blocks of contained code can be stored as a semiconductor intellectual property core (IP core) and reused for further applications.
+A often used IP core is the Fast Fourier Transform (FFT), which is available online for free.
+Discrete wavelet transforms, however are not that common.
+Therefore, we have committed ourselfs to implement a wavelet transform as a hardware block in VHDL
+
+A hardware implemented wavelet algorithm has many advantages over a software implementation.
+First, arithmetic operations in hardware are much faster than in software.
+While a CPU is bond to its limited instruction set.
+A custom hardware can execute multiple operations of choice in one clock cycle.
+Some of operations can be executed in parallel in order to gain even more spped.
+Secondly, if stream based processing is implemented, which continuously processes incoming data, the latency is significantly lower.
+This property makes hardware superior for real time applications.
+
+In the first part, this work covers the theory of an efficient algorithm for the discrete wavelet transform.
+Then, the implementation of this algorithm in VHDL is described.
+
+%Ready for deletion
+%If you try to transform and modify audio signals, which are sampled with 44 kHz you get, because of the clock speed of the FPGA, which is about 100 MHz, over 1000 arithmetic operations for every audio sample.
+%In the next few pages we guide through the theory used, some design considerations and at last through our steps of developing a basic but functional Wavelet Transformation in VHDL. 
+
+
+\section{Dicrete Wavelet Transform}
 \rhead{Lifting Scheme}
 
-The Transformation algorithm used is adopted from a paper of Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998} and called Lifting. 
-The Lifting Scheme is an widely used algorythm which is two times more efficient in termes of multiplication uses than normal Wavelet Transformations.
-The Lifting Scheme factorizes any discrete Wavelet Transform  with finite filters into a series of elementary covolutions (Lifting Steps).
-This reduces the number of arithmetic operations nearly by a factor of two.
-This decomposition is equivalent to a factorisation of the polyphase matrix of the wavelet filter into elementary matrices. 
-To describe the underlying wavelet Filters the z-transform notation is used.
-The z-transform of a FIR (finite impulse response) filter \textit{\textbf{h}} is a laurent polynomial given by
+The discrete wavelet transform is covered in detail in chapter \ref{} of the script.
+This section provides a short summary, as well as some additions, notably the Lifting Scheme.
+
+%makes use of the multiresolution analysis %TODO add ref to script
+
+
+\begin{figure}
+	\centering
+	\input{papers/fpga/tikz/dwt.tikz}
+	\caption{Discrete Wavelet transform and inverse transform}
+\end{figure}
+
+
+\subsection{Lifting Scheme}
+\rhead{Lifting Scheme}
+
+The lifting scheme is a technique to perform a discrete wavelet transform.
+It is an widely used algorythm, which is more efficient in termes of multiplication uses than normal Wavelet Transformations.
+It reduces the number of arithmetic operations nearly by a factor of two compared to a ordinary, convolutional algorithm. %TODO check convolutional
+The lifting scheme was introduced in a paper from Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998}. 
+
+The Lifting Scheme factorizes any discrete wavelet transform with finite filters into a series of elementary covolutions (Lifting Steps).
+
+This decomposition is equivalent to a factorization of the polyphase matrix of the wavelet filter into elementary matrices. 
+In order to describe the underlying wavelet filters, the z-transform notation is used.
+The z-transform of a FIR (finite impulse response) filter \textit{\textbf{h}} is a Laurent polynomial given by
 \begin{equation}\label{equ:impulse}
 	H(z) = \sum h_k z^{-k}
 \end{equation}
 
-%https://en.wikipedia.org/wiki/Lifting_scheme
-%http://wavelets.org/schemes-lifting.php
 
-\subsection{Polyphase Decomposition \label{fpga:polyphase}}
+\subsubsection{Polyphase Decomposition \label{fpga:polyphase}}
 
 In our case we subsample the input signal by a factor of two.
 This corresponds to splitting the signal into two sub channels (even and odd samples).
@@ -73,7 +106,8 @@ These coefficients are then placed in the so called Polyphase Matrix.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{./images/lifting_step_wavelet.pdf}
+	%\includegraphics[width=\textwidth]{./images/lifting_step_wavelet.pdf}
+	\input{papers/fpga/tikz/liftingStep.tikz}
 	\caption{Wavelet transformation with Lifiting Steps \label{fpga:lstp_wavelet}}
 \end{figure}
 Where $h_e(z)$ are the even- and $h_o(z)$ are the odd coefficients of the low pass filter.
@@ -183,7 +217,7 @@ This because, if well implemented, it should be later easy to just change the tr
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{./images/idea.pdf}
+	\includegraphics[width=0.8\textwidth]{papers/fpga/images/idea.pdf}
 	\caption{Outline of the modules \label{fpga:idea}}
 \end{figure}
 
@@ -194,7 +228,7 @@ These blocks do the forward transformation, branching, delaying and finaly the i
 The following sections cover the different building blocks in detail. 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{./images/main_delay.pdf}
+	\includegraphics[width=\textwidth]{papers/fpga/images/main_delay.pdf}
 	\caption{Complete architecture \label{fpga:fig:architecture}}
 \end{figure}
 \subsubsection{Forward and backward transformation}
@@ -247,7 +281,7 @@ If done right, the output should resemble the input, delayed by the latency of t
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{./images/vhdl_sim.pdf}
+	\includegraphics[width=\textwidth]{papers/fpga/images/vhdl_sim.pdf}
 	\caption{Testing Workflow \label{fpga:fig:testing}}
 \end{figure}
 
@@ -268,7 +302,7 @@ The faster changing signals correspond to the higher frequencies and the slow ch
 The higher frequencies also react faster to changes at the input.
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{./images/coefs.pdf}
+	\includegraphics[width=\textwidth]{papers/fpga/images/coefs.pdf}
 	\caption{Coefficients and ready signals after transformation \label{fpga:fig:coeff}}
 \end{figure}
 
@@ -282,14 +316,14 @@ And also the information from the high frequencies is also needed at the moment 
 So after the delaying the slow ready signal arrives first and then with every clock cycle the faster readys arrive. 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{./images/output.pdf}
+	\includegraphics[width=0.9\textwidth]{papers/fpga/images/output.pdf}
 	\caption{Output \label{fpga:fig:output}}
 \end{figure}
 
 Figure \ref{fpga:fig:output} shows the final result of the whole pipeline, As expected the signal is the same but delayed by the time the processing needed. 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{./images/coefs_delayed.pdf}
+	\includegraphics[width=0.9\textwidth]{papers/fpga/images/coefs_delayed.pdf}
 	\caption{Coefficients and ready signals after delaying \label{fpga:fig:coeff_delayed}}
 \end{figure}
 
@@ -300,7 +334,7 @@ This is because every step the detail information (higher frequencies) get subtr
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{./images/inv_branching_screenshot.png}
+	\includegraphics[width=0.9\textwidth]{papers/fpga/images/inv_branching_screenshot.png}
 	\caption{Coefficients in simulation \label{fpga:fig:sim}}
 \end{figure}
 
