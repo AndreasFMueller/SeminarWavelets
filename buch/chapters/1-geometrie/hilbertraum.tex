@@ -653,7 +653,16 @@ ist also wie im reellen Fall eine {\em Isometrie} von Hilberträumen.
 
 \subsection{Geometrie des Hilbertraumes
 \label{subsection:geometrie-hilbertraum}}
-Das Skalarprodukt 
+Das Skalarprodukt in einem endlichdimensionalen Vektorraum formalisiert
+den Begriff der Orthogonalität, der die Grundlage für viele Aspekte
+der geometrischen Anschauung ist.
+Und tatsächlich zeigen die Entwicklungen dieses Abschnitts, dass Aussagen
+wie die Existenz eines Orthogonalkomplements tatsächlich auch in einem
+Hilbertraum Gültigkeit haben.
+Dies bedeutet, dass wir uns bei Argumenten in einem Hilbertraum von 
+der geometrischen Intuition leiten lassen können, solange wir nicht
+von Eigenschaften Gebrauch machen, die von der endlichen Dimensionalität
+des Anschauungsraumes abhängen.
 
 \subsubsection{Parallelogrammregel}
 \begin{satz}
@@ -663,9 +672,10 @@ Seien $x,y\in H$ Vektoren in einem Hilbertraum, dann gilt
 2\|x\|^2 + 2\|y\|^2
 =
 \| x+y\|^2 + \|x-y\|^2.
-\label{formel:parallelogramm}
+\label{formel:parallelogrammregel}
 \end{equation}
-Die Formel~\eqef{formel:parallelogramm} heisst die {\em Parallelogrammregel}.
+Die Formel~\eqref{formel:parallelogrammregel} heisst die
+{\em Parallelogrammregel}.
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -687,7 +697,55 @@ Wir berechnen die Normquadrate auf der rechten Seite von
 Dies ist linke Seite der Parallelogrammregel~\eqref{formel:parallelogrammregel}.
 \end{proof}
 
-\subsubsection{Orthogonalkomlement}
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/parallelogramm.pdf}
+\caption{Parallelogramm-Regel (Satz~\ref{satz:parallelogrammregel})
+\label{figure:parallelogrammregel}}
+\end{figure}
+
+
+Die Parallelogramm-Regel besagt, dass die Summe der Quadrate über den
+Seiten eines Parallelgramms gleich der Summe der Quadrate über den
+Diagonalen ist.
+Dies ist in Abbildung~\ref{figure:parallelogrammregel} illustriert.
+
+\subsubsection{Orthogonalkomplement}
+In einem endlichdimensionalen Vektorraum mit Skalarprodukt gibt es zu
+einem abgeschlossenen Unterraum immer ein orthogonales Komplement,
+selbst dann, wenn der Vektorraum nicht abgeschlossen ist.
+Wenn man nämlich für den Unterraum eine endliche Basis wählt ist das
+Orthogonalkomplement charakterisiert durch endlich viele lineare 
+Gleichungen, für die sich immer eine Lösungsmenge angeben lässt.
+In einem unendlichdimensionalen Raum funktioniert dies nur noch, wenn
+man Grenzwerte bestimmen kann, also zum Beispiel in einem Hilbertraum.
+
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/orthogonalkomplement.pdf}
+\caption{Beweis der Existenz des Orthogonalkomplements in einem Hilbertraum
+in Satz~\ref{satz:orthogonalkomplement}
+\label{figure:orthogonalkomplement}}
+\end{figure}
+
+\begin{satz}
+\label{satz:orthogonalkomplement}
+Ist $V\subset H$ ein abgeschlossener Unterraum eines Hilbertraumes $H$,
+lässt sich jeder Vektor $v\in H$ auf genau eine Art in $v = v_1+v_2$
+zerlegen derart, dass $v_1 \in V$ und $v_1\in V^{\perp}$,
+d.~h.~$\langle v_2,v\rangle$ für alle $v\in V$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $u\in H\setminus V$.
+Die Funktion $v\mapsto \| u-v\|$ ist $\ge 0$, man kann also eine
+Folge von Vektoren $v_k\in V$ finden derart, dass
+\[
+\lim_{k\to\infty} \|u-v_k\| = \inf_{v\in V} \|u-v\|
+\]
+ist.
+\end{proof}
+
 
 \subsubsection{Darstellungssatz von Riesz
 \label{subsubsection:riesz}}
@@ -719,24 +777,6 @@ Unterraum, der zusammen mit dem gegebenen Unterraum jeden Vektor von $H$
 erzeugen kann.
 Dies entspricht der Intuition für Orthogonalität, die man aus der
 endlichdimensionalen Vektorgeometrie hat.
-
-\begin{satz}
-\label{satz:orthogonalkomplement}
-Ist $V\subset H$ ein abgeschlossener Unterraum eines Hilbertraumes $H$,
-lässt sich jeder Vektor $v\in H$ auf genau eine Art in $v = v_1+v_2$
-zerlegen derart, dass $v_1 \in V$ und $v_1\in V^{\perp}$,
-d.~h.~$\langle v_2,v\rangle$ für alle $v\in V$.
-\end{satz}
-
-\begin{proof}[Beweis]
-Sei $u\in H\setminus V$.
-Die Funktion $v\mapsto \| u-v\|$ ist $\ge 0$, man kann also eine
-Folge von Vektoren $v_k\in V$ finden derart, dass
-\[
-\lim_{k\to\infty} \|u-v_k\| = \inf_{v\in V} \|u-v\|
-\]
-ist.
-\end{proof}
 
 \begin{satz}[Riesz]
 Ist $\varphi\colon H\to \mathbb C$ eine stetige Lineaform auf $H$, dann 

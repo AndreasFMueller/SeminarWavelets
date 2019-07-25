@@ -28,10 +28,14 @@ all:	sinsin.pdf	\
 	b3-08.pdf	\
 	b3-09.pdf	\
 	b3-10.pdf	\
-	parallelogramm.pdf
+	parallelogramm.pdf	\
+	orthogonalkomplement.pdf
 
 parallelogramm.pdf:	parallelogramm.tex
 	pdflatex parallelogramm.tex
+
+orthogonalkomplement.pdf:	orthogonalkomplement.tex
+	pdflatex orthogonalkomplement.tex
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
