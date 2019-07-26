@@ -92,10 +92,10 @@ Figure \ref{fpga:fig:dwt} depicts a graphical representation of the DWT followed
 	\label{fpga:fig:dwt}
 \end{figure}
 
-An input signal $bm x$, where $x_k$ is its value at time step $k$, can be recursively transformed into a tower of wavelet coefficients.
-$x_t$ is set equal to $a{0,k}$ and represents the first layer of the tower.
+An input signal $\bm x$, where $x_k$ is its value at time step $k$, can be recursively transformed into a tower of wavelet coefficients.
+$x_t$ is set equal to $a_{0,k}$ and represents the first layer of the tower.
 This layer can be split into an arbitrarily long number of coefficients.
-From all generated coefficients only the $\bm b$ and the last layer of $\bm a$ coefficients are required, since they hold all information.
+From all generated coefficients, only the $\bm b$ and the last layer of $\bm a$ coefficients are required, since they hold all information. %Dont like that sentence
 Figure \ref{fpga:fig:dwtTower} shows a decomposition of 3 levels using DWTs and a subsequent unification using inverse DWTs.
 \begin{figure}
 	\centering
@@ -109,9 +109,9 @@ Figure \ref{fpga:fig:dwtTower} shows a decomposition of 3 levels using DWTs and 
 \subsection{Lifting Scheme}
 \rhead{Lifting Scheme}
 
-The lifting scheme is a technique to perform a discrete wavelet transform.
+The lifting scheme is a technique to perform a DWT efficiently.
 It was introduced in a paper from Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998}. 
-The lifting scheme is an widely used algorithm, which is more efficient in terms of multiplication uses than normal Wavelet Transformations.
+The lifting scheme is an widely used algorithm, which is more efficient in terms of multiplication uses than normal wavelet transformations.
 The number of arithmetic operations is reduced nearly by a factor of two compared to a ordinary, convolutional calculation.
 
 The Lifting Scheme factorizes any discrete wavelet transform with finite filters into a series of elementary covolutions which are refered to as Lifting Steps.
@@ -126,26 +126,25 @@ In order to be consistent with the paper, we use the semantics of Daubechies et 
 \subsubsection{Polyphase Decomposition \label{fpga:polyphase}}
 
 The lifting scheme takes advantage of the polyphase decomposition.
-
-The scaling relation leads to a downsampling factor of tho.
+The scaling relation leads to a downsampling factor of two.
 This corresponds to splitting the signal into a channel for even samples $e$ and a channel for odd samples $o$.
-The polyphase decomposition splits an algebraic expression into one part for each channel (polyphase compo).
-The polyphase components are the filter components of the sub channels.
+The polyphase decomposition splits an algebraic expression into one part for each channel (polyphase components).
+%The polyphase components are the filter components of the sub channels.
 In order to continue in a polyphase implementation, all data, including the filter coefficients must be split as well.
-This process is demonstrated with the $h$ filter coefficients.
+This process is demonstrated with the $\bm h$ filter coefficients.
 Its polyphase decomposition is
 \begin{equation}
-	h(z) = \sum_{n=-\infty}^{\infty} h(2n)z^{-2n} + z^{-1} \sum_{n=-\infty}^{\infty} h(2n+1)z^{-2n},
+	h(z) = \sum_{n=-\infty}^{\infty} h_{2n} z^{-2n} + z^{-1} \sum_{n=-\infty}^{\infty} h_{2n+1} z^{-2n},
 \end{equation}
 or in the z-domain:
 \begin{equation}
-	h(z)=h_{e}(z^2)+z^{-1} h_o(z^2).
+	h(z)=h_{e}(z^2) + z^{-1} h_o(z^2).
 \end{equation}
 This yields the even and odd components:
 \begin{align}
-	h_e(z) &= \sum_{n=-\infty}^{\infty} h(2n)z^{-n}
+	h_e(z) &= \sum_{n=-\infty}^{\infty} h_{2n}z^{-n}
 	\\
-	h_o(z) &= \sum_{n=-\infty}^{\infty} h(2n+1)z^{-n}.
+	h_o(z) &= \sum_{n=-\infty}^{\infty} h_{2n+1}z^{-n}.
 \end{align}
 
 These coefficients are then placed together with the $g(z)$ components in the polyphase Matrix.
@@ -296,24 +295,23 @@ The application should make use of on of the biggest advantages of custom hardwa
 Performing calculations in parallel leads to higher throughput and allows data rates which are as fast as the clock speed of the logic.
 The strengths of the aspired implementation are thus high speed and low latency processing, suitable for real-time applications.
 
+The main priority is to implement the Haar wavelet.
+A optional goal is the implementation of a higher order wavelet, such as the orthogonal Daubechies-4 wavelet.
+The implementation should be as generic as possible, in order to allow customization.
+
 \subsection{Idea}
 
 Two hardware blocks need be implemented for both forward wavelet and inverse wavelet transform.
-The forward algorithm has a 16-bit signed number input and outputs a given number of wavelet coefficients as a stream.
-This number can be specified with a generic parameter.
-
-Each multiresolution analysis 
-
-The main priority is to implement the Haar wavelet.
-A optional goal is the implementation of a higher order wavelet, such as the orthogonal Daubechies-4 wavelet.
-Another design element is to realize the structure as generalized as possible.
-This because, if well implemented, it should be later easy to just change the transformation block to do transformations with other wavelets.
-
-
+The forward algorithm has a 16-bit signed number input \texttt{x} and outputs a given number \texttt{N} of wavelet coefficients as a stream.
+\texttt{N} can be specified as a generic parameter.
+The output coefficients contain N detail \texttt{d\_s} and one smooth coefficient \texttt{s}.
+Each coefficient, is accompanied by a ready signal which is driven \texttt{1} if the coefficient has been newly calculated.
+The inverse block has the coefficients and ready signals as input and yields a output signal \texttt{y}, accompanied by its ready signal.
+Figure \ref{fpga:fig:idea} shows the outline of the two blocks.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{papers/fpga/images/idea.pdf}
-	\caption{Outline of the modules \label{fpga:idea}}
+	\caption{Outline of the modules \label{fpga:fig:idea}}
 \end{figure}
 
 
