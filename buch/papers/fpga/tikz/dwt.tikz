@@ -2,30 +2,30 @@
 
 \begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=2cm, scale = 0.8]
 
-%\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-3) grid (10,3);
+%\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-1,-3) grid (15,3);
 
 %\useasboundingbox (0,-0.5) rectangle (12.5,1.5);
 
 %\tikzset{every node/.style={scale=0.7}}
 
-\tikzstyle{every state}=[fill=white,draw=black,thick,text=black]
-\tikzstyle{block}=[rectangle, inner sep=10pt, fill=white,draw=black,thick,text=black]
-\tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm]
-\tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black]
-\tikzstyle{dots}=[circle, fill=white,thick,text=black,scale=1, minimum size=1.3cm]
+\tikzstyle{every state}=[fill=white,draw=black,thick,text=black, scale = 0.8]
+\tikzstyle{block}=[rectangle, inner sep=10pt, fill=white,draw=black,thick,text=black, scale = 0.8]
+\tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm, scale = 0.8]
+\tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black, scale = 0.8]
+\tikzstyle{dots}=[fill=white,thick,text=black,scale=0.8]
 
-\coordinate      (start) at (0,0) ;
+\node[dots] (start) at (0,0) {$a_{j+1,k}$};
 
 \coordinate     (split) at (1,0);
 
-\node[block] (h1) at (3,1) {$\tilde h(z^{-1})$};
-\node[block] (h2) at (3,-1) {$\tilde g(z^{-1})$};
+\node[block] (h1) at (3,1) {$\bar h(z^{-1})$};
+\node[block] (h2) at (3,-1) {$\bar g(z^{-1})$};
 
 \node[round] (d1) [right of=h1] {$\downarrow 2$};
 \node[round] (d2) [right of=h2] {$\downarrow 2$};
 
-\node[dots] (dots1) [right of=d1] {\text{LP}};
-\node[dots] (dots2) [right of=d2] {\text{HP}};
+\node[dots] (dots1) [right of=d1] {$a_{j,k} \- \text{(LP)}$};
+\node[dots] (dots2) [right of=d2] {$b_{j,k} \- \text{(HP)}$};
 
 \node[round] (u1) [right of=dots1] {$\uparrow 2$};
 \node[round] (u2) [right of=dots2] {$\uparrow 2$};
@@ -33,9 +33,9 @@
 \node[block] (hh1) [right of=u1] {$ h(z)$};
 \node[block] (hh2) [right of=u2] {$ g(z)$};
 
-\node[round] (combine) at (15,0) {$+$};
+\node[round] (combine) at (12.5,0) {$+$};
 
-\coordinate[right of=combine, node distance=1cm] (end) ;
+\node[dots, right of=combine, node distance=2cm] (end) {$a_{j+1,k}$} ;
 
 %\node[state]  (w1)          {$\omega_1$};
 %

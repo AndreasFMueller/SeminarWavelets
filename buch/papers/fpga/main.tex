@@ -39,101 +39,183 @@ Then, the implementation of this algorithm in VHDL is described.
 %In the next few pages we guide through the theory used, some design considerations and at last through our steps of developing a basic but functional Wavelet Transformation in VHDL. 
 
 
-\section{Dicrete Wavelet Transform}
+\section{Discrete Wavelet Transform}
 \rhead{Lifting Scheme}
 
-The discrete wavelet transform is covered in detail in chapter \ref{section:schnelle-synthese} of the script.
+The discrete wavelet transform (DTW) is covered in detail in chapter \ref{section:schnelle-synthese} of the script.
 This section provides a short summary, as well as some additions, notably the Lifting Scheme.
 
-%makes use of the multiresolution analysis %TODO add ref to script
-
-the wavelet transform calculates the coefficients $a_{j,k}$ and $b_{k,k}$ from an input signal or coefficient $a_{j+1,k}$.
-
-this operation can be cascaded
-
-%TODO Nic stopped here
-
-
+The discrete wavelet transform is defined by a pair of formulas to calculate the wavelet coefficients $\bm a$ and $\bm b$.
+$a_{j,k}$ and $b_{j,k}$ represent the coefficients in layer $j$ at the discrete time step $k$.
+%The wavelet transform calculates $a_{j,k}$ and $b_{j,k}$ of layer $j$ from an input signal or coefficient $a_{j+1,k}$.
+The formula to calculate the forward DTF is
+\begin{align}
+a_{j,k} = \sum_{l} \bar{h}_l a_{j+1,l+2k}
+\\
+b_{j,k} = \sum_{l} \bar{g}_l a_{j+1,l+2k} .
+\end{align}
+This calculation uses the Father and Mother wavelet coefficients $\bm{\bar h}$ and $\bm{\bar g}$, which are given from the chosen wavelet.
+The inverse transform has been derived in the script as well: 
+\begin{align}
+a_{j+1,k} =
+\sum_{l\in\mathbb Z}
+h_{k-2l}
+a_{j,l}
++
+\sum_{l\in\mathbb Z}
+g_{k-2l}
+b_{j,l} .
+\end{align}
+%These formulas state the connection between two layers of a tower of wavelet transforms.
+In order to create a connection between the theory covered in the script and additional theory, the z transform is used.
+The z-transform of a FIR (finite impulse response) filter $h$ is a Laurent polynomial given by
 \begin{equation}
-	x_t = a_{0,t}
+h(z) = \sum_{k} h_k z^{-k}
 \end{equation}
-
+A convolution is equal to a multiplication in the z-domain.
+The formulas from the script can be rewritten in the z-transform notation.
+The forward transform becomes
+\begin{align}
+\quad a_{j,k}(z) &= \bar h(z^{-1}) a_{j+1,2k}(z) 
+\\
+\quad b_{j,k}(z) &= \bar g(z^{-1}) a_{j+1,2k}(z),
+\end{align}
+and the backward transform is
+\begin{equation}
+a_{j+1,k}(z) = h(z) a_{j,k}(z) + g(z) b_{j,k}(z).
+\end{equation}
+Figure \ref{fpga:fig:dwt} depicts a graphical representation of the DWT followed by an inverse DWT.
 \begin{figure}
 	\centering
 	\input{papers/fpga/tikz/dwt.tikz}
 	\caption{Discrete Wavelet transform and inverse transform}
+	\label{fpga:fig:dwt}
 \end{figure}
 
+An input signal $bm x$, where $x_k$ is its value at time step $k$, can be recursively transformed into a tower of wavelet coefficients.
+$x_t$ is set equal to $a{0,k}$ and represents the first layer of the tower.
+This layer can be split into an arbitrarily long number of coefficients.
+From all generated coefficients only the $\bm b$ and the last layer of $\bm a$ coefficients are required, since they hold all information.
+Figure \ref{fpga:fig:dwtTower} shows a decomposition of 3 levels using DWTs and a subsequent unification using inverse DWTs.
+\begin{figure}
+	\centering
+	\input{papers/fpga/tikz/dwtTower.tikz}
+	\caption{Tower of DWTs with 3 layers followed by a subsequent inverse transform tower.}
+	\label{fpga:fig:dwtTower}
+\end{figure}
+
+%TODO Nic stopped here
 
 \subsection{Lifting Scheme}
 \rhead{Lifting Scheme}
 
 The lifting scheme is a technique to perform a discrete wavelet transform.
-It is an widely used algorythm, which is more efficient in termes of multiplication uses than normal Wavelet Transformations.
-It reduces the number of arithmetic operations nearly by a factor of two compared to a ordinary, convolutional algorithm. %TODO check convolutional
-The lifting scheme was introduced in a paper from Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998}. 
+It was introduced in a paper from Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998}. 
+The lifting scheme is an widely used algorithm, which is more efficient in terms of multiplication uses than normal Wavelet Transformations.
+The number of arithmetic operations is reduced nearly by a factor of two compared to a ordinary, convolutional calculation.
 
-The Lifting Scheme factorizes any discrete wavelet transform with finite filters into a series of elementary covolutions (Lifting Steps).
-
+The Lifting Scheme factorizes any discrete wavelet transform with finite filters into a series of elementary covolutions which are refered to as Lifting Steps.
 This decomposition is equivalent to a factorization of the polyphase matrix of the wavelet filter into elementary matrices. 
-In order to describe the underlying wavelet filters, the z-transform notation is used.
-The z-transform of a FIR (finite impulse response) filter \textit{\textbf{h}} is a Laurent polynomial given by
-\begin{equation}\label{equ:impulse}
-	H(z) = \sum h_k z^{-k}
-\end{equation}
-
+In this paper, we want to focus only on orthogonal wavelets, where $\bm h = \bm{\bar h}$ and $\bm g = \bm{\bar g}$.
+In order to be consistent with the paper, we use the semantics of Daubechies et al. which refer to the coefficients
+\begin{align}
+\bm a & \iff \bm s \quad \text{(smooth)} \quad \text{and} \\
+\bm b & \iff \bm d \quad \text{(detail)} .
+\end{align}
 
 \subsubsection{Polyphase Decomposition \label{fpga:polyphase}}
 
-In our case we subsample the input signal by a factor of two.
-This corresponds to splitting the signal into two sub channels (even and odd samples).
-The polyphase decomposition is a algebraic way of describing the filter in matrices.
-The polyphase components are the filter components of the sub channels. 
-We can separate equation \ref{equ:impulse} into its even- and odd-indexed terms
+The lifting scheme takes advantage of the polyphase decomposition.
+
+The scaling relation leads to a downsampling factor of tho.
+This corresponds to splitting the signal into a channel for even samples $e$ and a channel for odd samples $o$.
+The polyphase decomposition splits an algebraic expression into one part for each channel (polyphase compo).
+The polyphase components are the filter components of the sub channels.
+In order to continue in a polyphase implementation, all data, including the filter coefficients must be split as well.
+This process is demonstrated with the $h$ filter coefficients.
+Its polyphase decomposition is
 \begin{equation}
-	H(z) = \sum_{n=-\infty}^{\infty} h(2n)z^{-2n} + z^{-1} \sum_{n=-\infty}^{\infty} h(2n+1)z^{-2n}
+	h(z) = \sum_{n=-\infty}^{\infty} h(2n)z^{-2n} + z^{-1} \sum_{n=-\infty}^{\infty} h(2n+1)z^{-2n},
 \end{equation}
-Following this scheme the polyphase components of the filter are defined as follows
+or in the z-domain:
 \begin{equation}
-E_0(z) = \sum_{n=-\infty}^{\infty} h(2n)z^{-n}
+	h(z)=h_{e}(z^2)+z^{-1} h_o(z^2).
 \end{equation}
+This yields the even and odd components:
+\begin{align}
+	h_e(z) &= \sum_{n=-\infty}^{\infty} h(2n)z^{-n}
+	\\
+	h_o(z) &= \sum_{n=-\infty}^{\infty} h(2n+1)z^{-n}.
+\end{align}
+
+These coefficients are then placed together with the $g(z)$ components in the polyphase Matrix.
 \begin{equation}
-E_1(z) = \sum_{n=-\infty}^{\infty} h(2n+1)z^{-n}
-\end{equation}
-which corresponds to the even and odd filter components.
-Now $H(z)$ can be written in terms of the polyphase components
-\begin{equation}
-H(z)=E_{0}(z^2)+z^{-1} E_1(z^2)
-\end{equation}
-These coefficients are then placed in the so called Polyphase Matrix.
-\begin{equation}
-	P(z) = 
+	\bm P(z) = 
 	\begin{bmatrix}
 	h_e(z) & g_e(z) \\
 	h_o(z) & g_o(z)
 	\end{bmatrix}
 \end{equation}
-
+The DFT using polyphase implementation is depicted graphically in figure \ref{fpga:fig:liftingSteps}.
 \begin{figure}
 	\centering
 	%\includegraphics[width=\textwidth]{./images/lifting_step_wavelet.pdf}
 	\input{papers/fpga/tikz/liftingStep.tikz}
-	\caption{Wavelet transformation with Lifiting Steps \label{fpga:lstp_wavelet}}
+	\caption{Wavelet transformation with Lifiting Steps}
+	\label{fpga:fig:liftingSteps}
 \end{figure}
-Where $h_e(z)$ are the even- and $h_o(z)$ are the odd coefficients of the low pass filter.
-$g(z)$ is the corresponding high pass filter. 
-Because of its simplicity we first choose the Haar Wavelet.
-In z notation $g(n)$ are the Father Wavelet coefficients whereas $h(n)$ are the corresponding Mother Wavelet coefficients. 
-\begin{equation}
-{\mathcal {Z}} \{h(n)\} = 1 + z^{-1}
-\end{equation}
-\begin{equation}
-{\mathcal {Z}} \{g(n)\} = 1 - z^{-1}
-\end{equation}
-If we split these coefficients into even and odd components and fill them into the Polyphase Matrix we get 
+
+\section{Lifting}
+
+The core idea of the polyphase decomposition is the possibility of factorization of the $\bm P$ matrix.
+Daubechies et al. proof, that this is possible for an arbitrary complementary matrix $\bm P$ if composed only of Laurent polynomials.
+The factorization algorithm is of substantial length and is not explained in this work.
+However, it results in the form
+\begin{align}
+	\bm{\bar P}(z^{-1}) &=
+	\prod_{i=1}^{m}
+	\begin{bmatrix}
+		1 & 0 \\
+		-s_i(z^{-1}) & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & -t_i(z^{-1}) \\
+		0 & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		\frac{1}{K} & 0 \\
+		0 & K
+	\end{bmatrix}
+	\\
+	\bm P(z) &=
+	\prod_{i=1}^{m}
+	\begin{bmatrix}
+		1 & s_i(z) \\
+		0 & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & 0 \\
+		t_i(z) & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		K & 0 \\
+		0 & \frac{1}{K}
+	\end{bmatrix}
+	.
+\end{align}
+
+%Where $h_e(z)$ are the even- and $h_o(z)$ are the odd coefficients of the low pass filter.
+%$g(z)$ is the corresponding high pass filter. 
+For the sake of simplicity we initially chose the Haar Wavelet for the VHDL implementation, which constists of the following coefficients:
+\begin{align}
+h(z) = 1 + z^{-1} \quad & \Rightarrow \quad \bar h(z) = \frac{1}{2} + \frac{1}{2} z^{-1}
+\\
+g(z) = - \frac{1}{2} + \frac{1}{2} z^{-1} \quad & \Rightarrow \quad \bar g(z) = -1 + z^{-1}
+\end{align}
+If we split these coefficients into even and odd components and fill them into the polyphase matrix we get 
 
 \begin{equation*}
-P(z) =
+\bm P(z) =
 \begin{bmatrix}
 1 & -\frac{1}{2} \\
 1 & \frac{1}{2}
@@ -164,7 +246,7 @@ This corresponds to the following implementation of the forward transform \cite{
 where $x_{n}$ is the incoming sample stream.
 The analysis side is in the following form:
 \begin{equation*}
-P(z^{-1})^ =
+\bm P(z^{-1})^ =
 \begin{bmatrix}
 \frac{1}{2} & \frac{1}{2} \\
 -1 & 1
@@ -190,9 +272,14 @@ x_{2l} &= s_l^{(0)}
 \end{aligned}
 \end{equation}
 and the original stream can be fully recovered.
-In the next section we try to implement this algorithm in VHDL.
 
 \section{Implementation}
+
+The VHDL implementation adds some complexity to the mathematical representation of the algorithm.
+A physical implementation allows only causal filters.
+These are recognizable by containing solely negative exponentials of $z$.
+All non-causal filters must be delayed, in order to get causal.
+Notably, the polyface decomposition of the forward wavelet transform is non-causal and must be delayed by one sample.
 
 \subsection{Design Considerations}
 
@@ -203,13 +290,11 @@ Since this work is not based on a defined objective, we must come up with our ow
 
 In most cases, which do not require low latency and high data rates, a digital signal processor would be a better choice than a custom VHDL-implemented hardware.
 A sequential processor unit is computationally very efficient and requires almost no area compared to most VHDL solutions.
-However, it features a significantly higher latency.
-Hence, the implementation should feature low latency and high data rate as its main objectives in order to provide a VHDL solution, that is actually reasonable.
+However, it features a significantly higher latency, which is a major drawback.
+Hence, the VHDL implementation should feature low latency and high data rate as its main objectives in order to provide solution, that is reasonable as a hardware implementation.
 The application should make use of on of the biggest advantages of custom hardware, which is parallelism.
 Performing calculations in parallel leads to higher throughput and allows data rates which are as fast as the clock speed of the logic.
 The strengths of the aspired implementation are thus high speed and low latency processing, suitable for real-time applications.
-
-%TODO \texttt{haar} blocks are independent and can be parallelized
 
 \subsection{Idea}
 
@@ -388,6 +473,9 @@ This is because every step the detail information (higher frequencies) get subtr
 In our view this project was a success. We were able to use some of the knowledge gained in this course to implement a hardware version of a wavelet transformation.
 
 All Codes (VHDL, MATLAB) are stored in the github repository belonging to this book. \cite{fpga:gitrepo-wavelets}
+
+The frequency selectivity of the Haar wavelet is low and not suitalbe for audio applications.
+An change of gain of a coefficient would result in various distortions to the output signal.
 
 \printbibliography[heading=subbibliography]
 \end{refsection}
