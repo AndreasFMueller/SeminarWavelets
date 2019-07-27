@@ -203,6 +203,9 @@ However, it results in the form
 	.
 \end{align}
 
+\subsection{Haar wavelet}
+\label{fpga:sec:haar}
+
 %Where $h_e(z)$ are the even- and $h_o(z)$ are the odd coefficients of the low pass filter.
 %$g(z)$ is the corresponding high pass filter. 
 For the sake of simplicity we initially chose the Haar Wavelet for the VHDL implementation, which constists of the following coefficients:
@@ -342,16 +345,41 @@ Because of the generalized structure and of VHDL in general this blocks can be a
 
 %TODO make figure of delay
 
-\subsubsection{Branching}
+\subsection{Wavelet transform}
 
-The before mentioned transform is not very interesting. On the other hand, what would be challenging to implement is a recursive use of these blocks to get further coefficients of different frequencies.
+The \texttt{haar} block contains the actual DTW.
+So far, only the Haar wavelets has been implemented.
+However, the outline stays the same for every other discrete wavelet.
+Figure \ref{fpga:fig:haar} shows the outlihne of the \texttt{haar} and \texttt{inv\_haar} block.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{papers/fpga/images/haar.pdf} %TODO fix rdy signal
+	\includegraphics[width=0.49\textwidth]{papers/fpga/images/inv_haar.pdf}
+	\caption{Complete architecture \label{fpga:fig:haar}}
+\end{figure}
+The output of the \texttt{haar} block features the half samplerate due to the downsampling operator.
+The forward transform, which is in mathematical notation non-causal, has been delayed in order to be causal.
+In order to contain the propagation delay, a flip-flop is inserted at the end of the block.
+This leads to another delay of one clock cycle.
+The arithmetic inside the blocks are implemented as derived in section \ref{fpga:sec:haar}.
+Multiplications and divisions with the numer 2 can efficiently be implemented wiwth a bitshift.
+
+\subsubsection{Multiresolution analysis}
+
+The multiresolution analysis is achieved by chaining the wavelet transform blocks.
+The block which holds the multiresolution analysis is called \texttt{branching}.
+Hereby, the lowpass output (\texttt{s}) of each DFT block (\texttt{haar}) is connected to the input of annother DFT block, which performes another transformation to increase detail. 
+
+%Insert graph of vhdl simulation 
+
 So the upper mentioned process contains multiple wavelet-blocks which together perform a multiresolution analysis.
 Since each layer splits a input data stream in half, this block is called \texttt{braching}.
-The Lowpass output ($s$) samples of a Haar block are connected to another Haar block which does another transformation to get more detail. 
+The Lowpass output ($s$) samples of a Haar block are connected to another Haar block 
 Because of this we need the also delayed ready signal from the last block because these coefficients are changing with half of the speed now. 
 The inverse branching is then used to reconstruct the original signal from all the different transformations and coefficients.
 
-\subsubsection{Delay}
+
+\subsection{Delay}
 
 Finally a third block is needed to delay the coefficients.
 The wavelet transform is very expensive to calculate in one single clock cycle.
