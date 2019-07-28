@@ -56,13 +56,11 @@ kann eine Online-Umgebung gestartet werden um diese Beispiele auszuführen.
 
 Wir werden als erstes die Signale in \cref{polynomials:signals} mittels des db1
 (Haar) Wavelets analysieren.
-
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_signals.pdf}
     \caption{Die verschiedenen zu analysierenden polynomialen Signale\label{polynomials:signals}}
 \end{figure}
-
 In~\cref{polynomials:haar} sind die Approximations- und die Detailkoeffizienten
 der Transformation zu sehen. Wir sehen, dass die Approximationskoeffizienten
 uns das grobe Signal und im Fall von $x^0 = 1$ sogar das exakte Signal liefern.
@@ -73,7 +71,9 @@ die Ableitungen der verschiedenen Signale geben.
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_signals_db1.pdf}
-    \caption{Analyse mit db1 (Haar) Wavelet\label{polynomials:haar}}
+    \caption{Analyse der Polynome mit db1 (Haar) Wavelet. Die
+             Detailkoeffizienten sind proportional zur
+             Ableitung\label{polynomials:haar}}
 \end{figure}
 
 \begin{figure}
@@ -91,14 +91,13 @@ folgendermassen gebildet werden:
 \begin{align}
 cA_{j+1,k}
 &=
-\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{h}_l cA_{j,k+l} \nonumber
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{h}_l cA_{j,k+l}, \nonumber
 \\
 cD_{j+1,k}
 &=
-\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l cA_{j,k+l}
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l cA_{j,k+l}.
 \label{polynomials:cD_haar}
 \end{align}
-
 Setzen wir nun in \cref{polynomials:cD_haar} die $g$ Koeffizienten $g_0 = 1,
 g_1 = -1$ des Haarwavelet und die Samples $f(x_k)$ und $f(x_{k + 1})$ erhalten
 wir die Detailkoeffizienten
@@ -122,21 +121,23 @@ sehen.
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_signals_db2_3.pdf}
-    \caption{Analyse mit db2/3 Wavelet\label{polynomials:db2_3}}
+    \caption{Detailkoeffizienten der Analyse mit db2/3 Wavelet. Sie sind
+             proportional zur zweiten und dritten Ableitung der
+             Polynome.\label{polynomials:db2_3}}
 \end{figure}
 
 Wie sich herausstellt liefern diese Wavelets jeweils Detailkoeffizienten,
-welche proportional zur zweiten und dritten Ableitung unserer Signale ist.
+welche proportional zur zweiten und dritten Ableitung der Polynome ist.
 Warum ist das so?
 Betrachten wir zuerst einmal algebraisch wie sich konstante und lineare
 Funktionen mit den Daubechies Wavelets verhalten.
 
 \subsection{Konstante Funktionen}
 Die Detailkoeffizienten konstanter Funktionen $f(x) = a$ ergeben sich direkt
-aus \cref{polynomials:cD_haar}
+aus \cref{polynomials:cD_haar}:
 \begin{align*}
     cD &= \frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l a \\
-       &= \frac{a}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l
+       &= \frac{a}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l.
 \end{align*}
 
 Da die Summe der $\bar{g}_l$ immer 0 ist, werden die Detailkoeffizienten für
@@ -159,9 +160,9 @@ Bei der Analyse mit dem db2 Wavelet ergeben sich die Detailkoeffizienten
        &= g_0 (a + b x) + g_1 (a + b (x + \Delta x)) + g_2 (a + b (x + 2 \Delta x)) + g_3 (a + b (x + 3 \Delta x)) \\
        &= (g_0 + g_1 + g_2 + g_3) (a + bx) + b \Delta x (g_1 + 2 g_2 + 3 g_3).
 \end{align*}
-Da $(g_0 + g_1 + g_2 + g_3) = 0$ bleibt noch $(g_1 + 2 g_2 + 3 g_3)$. Wir
-setzen also die Koeffizienten des db2 Wavelet aus \cref{section:daubechies}
-ein erhalten wir
+Da $(g_0 + g_1 + g_2 + g_3) = 0$ bleibt noch $(g_1 + 2 g_2 + 3 g_3)$. Wenn wir
+nun die Koeffizienten des db2 Wavelet aus \cref{section:daubechies} einsetzen
+erhalten wir
 \begin{align*}
     g_1 + 2 g_2 + 3 g_3 &= \frac{3 + \sqrt{3}}{4\sqrt{2}} + 2 \frac{-3 + \sqrt{3}}{4\sqrt{2}} + 3 \frac{1 - \sqrt{3}}{4\sqrt{2}} = 0.
 \end{align*}
@@ -171,7 +172,7 @@ linearen Funktionen mit dem db2 Wavelet.
 Für quadratische Funktionen der Form $a + bx + cx^2$ ergeben sich bei der
 Analyse mit dem db2 Wavelet analog die Detailkoeffizienten \[cD =
 -\sqrt{\frac{3}{2}} c \Delta x^2.\] Diese sind somit proportional zur zweiten
-Ableitung der Funktion.
+Ableitung $\frac{2c x}{\Delta x^2}$ der Funktion.
 
 Wir könnten dies weiterführen für Polynome und Daubechie Wavelets höherer
 Ordnung $A$. Wir würden sehen, dass immer die Terme niedriger Ordnung
@@ -188,16 +189,16 @@ dem Mutterwavelet $\psi$ verschwinden.
 
 \subsection{Beliebige analytische Funktionen}
 
-Hier wollen wir zeigen, dass die Daubechies-Wavelets eine Approximation der
+Hier wollen wir zeigen, dass die Daubechies Wavelets eine Approximation der
 Ableitung beliebiger analytischer Funktionen liefern können. Eine analytische
 Funktion lässt sich nämlich als Taylorreihe darstellen:
 \begin{align}
-    f(x) = T f(x; a) & = \sum_{n=0}^\infty  \frac{f^{(n)}(a)}{n!} (x-a)^n = f(a) + f'(a) (x-a) + \frac{f''(a)}{2}(x-a)^2 + \frac{f'''(a)}{6} (x-a)^3 + \ldots
+    f(x) = T f(x; a) & = \sum_{n=0}^\infty  \frac{f^{(n)}(a)}{n!} (x-a)^n = f(a) + f'(a) (x-a) + \frac{f''(a)}{2}(x-a)^2 + \frac{f'''(a)}{6} (x-a)^3 + \cdots.
 \end{align}
 Der Einfachheit halber werden wir im folgenden die Entwicklungsstelle $a=0$
 verwenden. Für die Taylorreihe ergibt sich somit
 \begin{align*}
-    f(x) = T f(x; 0) & = \sum_{n=0}^\infty  \frac{f^{(n)}(0)}{n!} x^n = f(0) + f'(0) x + \frac{f''(0)}{2}x^2 + \frac{f'''(0)}{6} x^3 + \ldots.
+    f(x) = T f(x; 0) & = \sum_{n=0}^\infty  \frac{f^{(n)}(0)}{n!} x^n = f(0) + f'(0) x + \frac{f''(0)}{2}x^2 + \frac{f'''(0)}{6} x^3 + \cdots.
 \end{align*}
 
 Analysieren wir nun ein solches Polynom mit einem db$A$ ($\mathcal{W}_{dbA}$)
@@ -236,10 +237,9 @@ entsprechend klein ist.
 \rhead{Rauscharme Ableitung}
 
 Beim diskreten Ableiten (Differenzieren) von Signalen stellt sich oftmals das
-Problem, dass Rauschen in dem Signal verstärkt wird. Anstelle der Ableitung des
+Problem, dass Rauschen im Signal verstärkt wird. Anstelle der Ableitung des
 interessanten Signals sehen wir also nur die zufällige Ableitung des Rauschens.
 Dies wird nochmals verstärkt wenn ein Signal mehrfach abgeleitet werden soll.
-
 \cref{polynomials:noise:signals} zeigt unsere ursprünglichen polynomialen
 Signale mit leichtem Rauschen versehen und die Ableitung davon. Wie erwartet
 ist die Ableitung vom Rauschen dominiert und die Steigung des ursprünglichen
@@ -248,17 +248,24 @@ Polynoms ist kaum noch erkennbar.
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_noise_signals.pdf}
-    \caption{Verrauschte Signale und deren Ableitung\label{polynomials:noise:signals}}
+    \caption{Verrauschte Signale und deren Ableitung. Die Ableitung ist
+             dominiert vom Rauschen und die Steigung der Polynome ist kaum noch
+             zu erkennen.\label{polynomials:noise:signals}}
 \end{figure}
 
 Was passiert nun wenn wir das verrauschte Signale mit einem Haar Wavelet
 analysieren?  Wie in \cref{polynomials:noise:db1} zu sehen bringt das so noch
-keine wesentliche Verbesserung zum direkten Ableiten.
+keine wesentliche Verbesserung zum direkten Ableiten. Die Detailkoeffizienten
+sind vom Rauschen dominiert und der Anteil welcher proportional zur Ableitung
+ist, ist kaum mehr erkennbar.
 
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_noise_db1.pdf}
-    \caption{Analyse verrauschter Signale mit Haar Wavelet\label{polynomials:noise:db1}}
+    \caption{Analyse verrauschter Signale mit Haar Wavelet. Die
+             Detailkoeffizienten sind dominiert vom Rauschen. Der Anteil
+             welcher proportional zur Ableitung der Polynome ist, ist kaum
+             erkennbar.\label{polynomials:noise:db1}}
 \end{figure}
 
 Nun können wir aber mit dem Wavelet eine Multiskalenanalyse durchführen. Im
@@ -269,50 +276,49 @@ und die Detailkoeffizienten $dA_{j,k}$ folgendermassen gebildet werden:
 \begin{align}
 cA_{j+1,k}
 &=
-\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{h}_l cA_{j,k+l}
-\\
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{h}_l cA_{j,k+l},
+\nonumber \\
 cD_{j+1,k}
 &=
-\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l cA_{j,k+l}
+\frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l cA_{j,k+l}.
 \end{align}
-
 Im Fall vom Haar-Wavelet entspricht das
 \begin{align}
 cA_{j+1,k}
 &=
-\frac{1}{\sqrt{2}} (cA_{j,k} + cA_{j,k+1})
-\\
+\frac{1}{\sqrt{2}} (cA_{j,k} + cA_{j,k+1}),
+\nonumber \\
 cD_{j+1,k}
 &=
-\frac{1}{\sqrt{2}} (cA_{j,k} - cA_{j,k+1})
+\frac{1}{\sqrt{2}} (cA_{j,k} - cA_{j,k+1}).
 \end{align}
 
-Nehmen wir nun das Signal mit den Abtastwerten $\{a_{0,0}, a_{0,1}, a_{0,2}, a_{0,3}\}$ so ergibt
-sich für die erste Ebene:
+Nehmen wir nun das Signal mit den Abtastwerten $\{a_{0,0}, a_{0,1}, a_{0,2},
+a_{0,3}\}$ so ergeben sich für die erste Ebene die Approximationskoeffizienten
 \begin{align}
 cA_{1,0}
 &=
-\frac{1}{\sqrt{2}} (a_{0,0} + a_{0,1})
-\\
+\frac{1}{\sqrt{2}} (a_{0,0} + a_{0,1})~\text{und}
+\nonumber \\
 cA_{1,1}
 &=
-\frac{1}{\sqrt{2}} (a_{0,2} + a_{0,3})
+\frac{1}{\sqrt{2}} (a_{0,2} + a_{0,3}).
 \end{align}
-Die zweite Ebene wird dann aus den Approximationskoeffizienten der ersten Ebene berechnet
+Die zweite Ebene wird dann aus den Approximationskoeffizienten der ersten Ebene
+berechnet. Für die Approximations- und Detailkoeffizienten erhalten wir dann
 \begin{align}
 cA_{2,0}
 &=
 \frac{1}{\sqrt{2}} (cA_{1,0} + cA_{1,1})
 =
-\frac{1}{2} (a_{0,0} + a_{0,1}) + \frac{1}{2} (a_{0,2} + a_{0,3})
-\\
+\frac{1}{2} (a_{0,0} + a_{0,1}) + \frac{1}{2} (a_{0,2} + a_{0,3})~\text{und}
+\nonumber \\
 cD_{2,0}
 &=
 \frac{1}{\sqrt{2}} (cA_{1,0} - cA_{1,1})
 =
-\frac{1}{2} (a_{0,0} + a_{0,1}) - \frac{1}{2} (a_{0,2} + a_{0,3})
+\frac{1}{2} (a_{0,0} + a_{0,1}) - \frac{1}{2} (a_{0,2} + a_{0,3}).
 \end{align}
-
 Die Detailkoeffizienten entsprechen somit der Differenz der Mittelwerte zweier
 benachbarter Abtastwerte.
 
@@ -324,16 +330,18 @@ eher der Ableitung des originalen Polynoms entsprechen und weniger vom Rauschen
 betroffen sind. Jedoch nimmt die zeitliche Auflösung ab.
 Die Stufenbreite macht jeweils den zeitlichen Bereich, also die Anzahl Samples,
 welcher für die Berechnung des jeweiligen Koeffizienten relevant ist sichtbar.
-
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_noise_db1_multi.pdf}
-    \caption{Multiskalenanalyse von $x^2 + r(x)$ mit Haar Wavelet\label{polynomials:noise:db1_multi}}
+    \caption{Multiskalenanalyse von $x^2 + r(x)$ mit Haar Wavelet.\\
+        Blau: Signal mit den einzelnen Samples\\
+        Orange: Detailkoeffizienten $cD_{1-4}$ \\
+        Grün: Approximationskoeffizienten $cA_4$\label{polynomials:noise:db1_multi}}
 \end{figure}
-
 Im Vergleich dazu sind in \cref{polynomials:noise:average} die direkte
 Ableitung und die Ableitungen nach der Mittelwertbildung über 2, 4 und 8 Werte
 zu sehen.
+%TODO Vorteil der höheren zeitlichen Auflösung bei direktem Ableitung, da kein Downsampling.
 
 \begin{figure}
     \centering
@@ -348,17 +356,18 @@ $A$-te Ableitung berechnen können.
 In \cref{polynomials:noise:db2_multi} ist das Signal $x^3 + r(x)$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem db2
 Wavelet und die Approximationskoeffizienten der letzten Stufe abgebildet.
-
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_noise_db2_multi.pdf}
-    \caption{Multiskalenanalyse von $x^3 + r(x)$ mit db2 Wavelet\label{polynomials:noise:db2_multi}}
+    \caption{Multiskalenanalyse von $x^3 + r(x)$ mit db2 Wavelet. \\
+             Blau: Signal mit den einzelnen Samples\\
+             Orange: Detailkoeffizienten $cD_{1-4}$ \\
+             Grün: Approximationskoeffizienten $cA_4$\label{polynomials:noise:db2_multi}}
 \end{figure}
-
 Im Vergleich dazu sind in \cref{polynomials:noise:average} die direkt
 berechnete zweite Ableitung und die zweite Ableitungen nach der
 Mittelwertbildung über 2, 4 und 8 Werte zu sehen.
-
+%TODO: zweite Ableitung kann auch direkt mit f(x) - 2f(x+1) + f(x+2) berechnet werden
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_noise_moving_average_2nd.pdf}
@@ -402,39 +411,47 @@ Sinussignal lässt sich so also bestens extrahieren.
     \caption{Analyse mit db2 Wavelet\label{polynomials:sin:db2}}
 \end{figure}
 
-Wenn man an sinusförmigen Signalen interessiert ist liegt es auch nahe die
+Wenn man an sinusförmigen Signalen interessiert ist, liegt es auch nahe die
 diskrete Fourier-Transformation zu verwenden. In \cref{polynomials:sin:fft}
 sind die Resultate der DFT zu sehen.
-
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_sin_fft.pdf}
-    \caption{Analyse mit Fourier-Transformation\label{polynomials:sin:fft}}
+    \caption{Analyse mit Fourier-Transformation. Die Frequenzanteile des
+             Polynoms dominieren die Resultate. Der Peak bei $f=20$ kann leicht
+             übersehen werden.\label{polynomials:sin:fft}}
 \end{figure}
-
-Zu sehen ist, dass die Fourier-Koeffizienten des Polynoms dominieren und dass
-der Peak bei 20, welcher durch den Sinus entsteht, unter geht. Dies ist
+Dabei wird sichtbar, dass die Fourier-Koeffizienten des Polynoms dominieren und
+dass der Peak bei 20, welcher durch den Sinus entsteht, unter geht. Dies ist
 verständlich, wenn man bedenkt wie die Fourierreihen von Polynomen aussehen.
 Nehmen wir als Beispiel das Polynom $f(x) = x$. Im Bereich $[0, 1]$ entspricht
 es einer Sägezahnfunktion. Die Fourierreihe eines Sägezahns ist \[f(x) =
-\frac{1}{2} - \frac{1}{\pi} \sum{\frac{1}{n} \sin(2 n \pi x)}\] Nun ist
-ersichtlich, dass die Fourier-Transformierte jede Frequenz $n$ mit $\frac{1}{n}$
-skaliert enthalten wird.
+\frac{1}{2} - \frac{1}{\pi} \sum{\frac{1}{n} \sin(2 n \pi x)}.\] Nun ist
+ersichtlich, dass die Fourier-Transformierte jede Frequenz $n$ mit
+$\frac{1}{n}$ skaliert enthalten wird.
 
 Die Analyse mittels Fourier-Transformation kann natürlich durch die Wahl einer
 passenden Fensterfunktion (z.B. Hamming) zu besseren Resultaten führen. Dies
 hat jedoch den Nachteil das zeitlich kurz auftretende Signale je nach
 Fenstergrösse und Position unterschiedlich gedämpft werden.
 
-Die Wavelet-Transformation liefert uns hingegen auch den Zeitpunkt bei dem das
-Signal aufgetreten ist. \cref{polynomials:sin:padded} zeigt die Resultate einer
-Wavelet-Analyse mit einem zeitlich lokalisierten Sinussignal.
-
+Ein weiterer Vorteil der Wavelet-Transformation ist, dass sie uns auch den
+Zeitpunkt bei dem das Signal aufgetreten ist liefert.
+\cref{polynomials:sin:padded} zeigt die Resultate einer Wavelet-Analyse mit
+einem zeitlich lokalisierten Sinussignal.
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_sin_padded_db2.pdf}
-    \caption{Analyse mit db2 Wavelet eines zeitlich lokalisierten Sinuassignals\label{polynomials:sin:padded}}
+    \caption{Analyse mit db2 Wavelet eines zeitlich lokalisierten
+             Sinussignals. Die Detailkoeffizienten sind dominiert vom
+             überlagerten Sinussignal welches sich so zuverlässig extrahieren
+             lässt.\label{polynomials:sin:padded}}
 \end{figure}
+Die Anteile der Polynome ist in den Detailkoeffizienten im Vergleich zum
+Sinussignal vernachlässigbar klein. Dies gilt auch bei der Analyse mit
+Daubechies Wavelets mit wenig verschwindenden Momenten von Polynomen höherer
+Ordnung. Zu sehen ist lediglich ein ganz schwacher Anstieg der
+Detailkoeffizienten am Ende des Signals.
 
 Die Analyse dieser Signale mit Daubechies Wavelets und DFT kann im
 \texttt{Analyse von Sinus Signalen.ipynb} Notebook%
@@ -443,6 +460,7 @@ nachvollzogen werden.
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
+% TODO Kurze Zusammenfassung
 
 \printbibliography[heading=subbibliography]
 \end{refsection}
