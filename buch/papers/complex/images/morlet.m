@@ -1,13 +1,12 @@
-# (C) 2019 Roy Seitz
-# Generate data points for a Morlet-Wavelet
+% (C) 2019 Roy Seitz
+% Generate data points for a Morlet-Wavelet
 
 N = 200;
 t = linspace(-4, 4, N)';
 
-h = exp(-1/2*t.^2) .* exp(2i * pi * t);
-h = h ./ sqrt((sum(h'*h)*mean(diff(t)))); % Normalize to ||psi|| = 1
+h = pi^-0.25 * exp(-1/2*t.^2) .* exp(2i * pi * t);
 
-%plot(t, [real(h), imag(h)]); grid on;
+% plot(t, [real(h), imag(h)]); grid on;
 
 fp = fopen('./morlet.data', 'w');
 fprintf(fp, 't re im envp envn\n');
