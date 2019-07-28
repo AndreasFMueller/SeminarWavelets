@@ -32,7 +32,7 @@
 \coordinate (h1bl) at (4.5,-1);
 \coordinate (h1tr) at (6, 1);
 \coordinate (h1br) at (6,-1);
-\node[block] (h1) at (5.25,0) {$\bm{\bar P}(z^{-1})$};
+\node[block] (h1) at (5.25,0) {$\bm{\bar P}(z^{-1})^t$};
 
 
 

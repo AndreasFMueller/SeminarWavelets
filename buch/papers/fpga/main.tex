@@ -171,7 +171,7 @@ Daubechies et al. proof, that this is possible for an arbitrary complementary ma
 The factorization algorithm is of substantial length and is not explained in this work.
 However, it results in the form
 \begin{align}
-	\bm{\bar P}(z^{-1}) &=
+	\bm{\bar P}(z) &=
 	\prod_{i=1}^{m}
 	\begin{bmatrix}
 		1 & 0 \\
@@ -283,6 +283,13 @@ x_{2l} &= s_l^{(0)}
 \end{aligned}
 \end{equation}
 and the original stream can be fully recovered.
+Figure \ref{fpga:fig:liftingStepHaar} shoes both transforms graphically.
+\begin{figure}
+	\centering
+	\input{papers/fpga/tikz/liftingStepHaar.tikz}
+	\caption{Lifting scheme implementation of the Haar wavelet.}
+	\label{fpga:fig:liftingStepHaar}
+\end{figure}
 
 \section{VHDL Implementation}
 
