@@ -155,14 +155,42 @@ These coefficients are then placed together with the $g(z)$ components in the po
 	h_o(z) & g_o(z)
 	\end{bmatrix}
 \end{equation}
+
+Using the polyphase decomposition the DWT algorithm is
+\begin{align}
+\begin{bmatrix}
+	s(z) \\
+	d(z)
+\end{bmatrix}
+&=
+\bm{\bar P}(z^{-1})^t
+\begin{bmatrix}
+	x(z^2) \\
+	x(z^2) z
+\end{bmatrix}
+\\
+\begin{bmatrix}
+	y(z^2) \\
+	y(z^2) z
+\end{bmatrix}
+&=
+\bm P(z)
+\begin{bmatrix}
+	s(z) \\
+	d(z)
+\end{bmatrix}
+,
+\end{align}
+where $x$ is the input of the forward DFT and $y$ is the reconstructed output of the inverse DFT.
 The DFT using polyphase implementation is depicted graphically in figure \ref{fpga:fig:liftingSteps}.
 \begin{figure}
 	\centering
 	%\includegraphics[width=\textwidth]{./images/lifting_step_wavelet.pdf}
 	\input{papers/fpga/tikz/liftingStep.tikz}
-	\caption{Wavelet transformation with Lifiting Steps}
+	\caption{DWT graph using the polyface matrix $\bm P$}
 	\label{fpga:fig:liftingSteps}
 \end{figure}
+
 
 \section{Lifting}
 
@@ -257,7 +285,7 @@ This corresponds to the following implementation of the forward transform \cite{
 where $x_{n}$ is the incoming sample stream.
 The analysis side is in the following form:
 \begin{equation*}
-\bm P(z^{-1})^ =
+\bm {\bar P}(z^{-1})^ =
 \begin{bmatrix}
 \frac{1}{2} & \frac{1}{2} \\
 -1 & 1

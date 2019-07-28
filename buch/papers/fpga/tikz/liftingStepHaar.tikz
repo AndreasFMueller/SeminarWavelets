@@ -2,12 +2,12 @@
 \usetikzlibrary{shapes}
 
 
-\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 1]
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 0.8]
 
 
 %\useasboundingbox (0,-0.5) rectangle (12.5,1.5);
 
-%\tikzset{every node/.style={scale=0.7}}
+
 
 \tikzstyle{block}=[rectangle, inner sep=4pt, fill=white,draw=black,thick,text=black, minimum height = 2.5cm, minimum width = 1.5cm, scale = 1]
 \tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm,  scale = 1]
@@ -15,7 +15,10 @@
 
 \tikzstyle{dots}=[circle, fill=white,thick,text=black,scale=1, minimum size=0.8cm,  scale = 1]
 
-\tikzstyle{amp}= [regular polygon, regular polygon sides=3,	draw, fill=white, text width=1em, inner sep=0.5mm, outer sep=0mm,	shape border rotate=-90, minimum size = 1.7cm, scale = 1]
+\tikzstyle{amp}= [regular polygon, regular polygon sides=3,	draw, fill=white, text width=1em, inner sep=0.5mm, outer sep=0mm, shape border rotate=-90, minimum size = 1.7cm, scale = 1]
+
+\tikzset{every node/.style={scale=0.8}}
+\tikzset{every coordinate/.style={scale=0.8}}
 
 %\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-3) grid (10,3);
 
@@ -72,19 +75,19 @@
 \draw[->] (z2) -- (d2);
 
 
-\draw[->] (d1) -- node[above]{$s^{(0)}$} (sum2);
-\draw[->] (d2) -- node[below]{$d^{(0)}$} (sum1);
+\draw[->] (d1) -- node[above]{$s_l^{(0)}$} (sum2);
+\draw[->] (d2) -- node[below]{$d_l^{(0)}$} (sum1);
 
 \draw[->] (c1) -- (s1);
 \draw[->] (s1) -- (sum1);
 \draw[->] (c2) -- (s2);
 \draw[->] (s2) -- (sum2);
 
-\draw[->] (sum2) -- node[above]{$s$} (hp);
-\draw[->] (sum1) -- node[below]{$d$} (lp);
+\draw[->] (sum2) -- node[above]{$s_l$} (hp);
+\draw[->] (sum1) -- node[below]{$d_l$} (lp);
 
-\draw[->] (hp) -- node[above]{$s$} (sum3);
-\draw[->] (lp) -- node[below]{$d$} (sum4);
+\draw[->] (hp) -- node[above]{$s_l$} (sum3);
+\draw[->] (lp) -- node[below]{$d_l$} (sum4);
 
 
 
@@ -93,8 +96,8 @@
 \draw[->] (c4) -- (s4);
 \draw[->] (s4) -- (sum4);
 
-\draw[->] (sum3) -- node[above]{$s^{(0)}$}(u1);
-\draw[->] (sum4) -- node[below]{$d^{(0)}$}(u2);
+\draw[->] (sum3) -- node[above]{$s_l^{(0)}$}(u1);
+\draw[->] (sum4) -- node[below]{$d_l^{(0)}$}(u2);
 
 
 \draw[->] (u1) -| (combine);
