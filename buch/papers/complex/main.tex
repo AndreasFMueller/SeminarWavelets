@@ -4,26 +4,28 @@
 % (c) 2019 Hochschule Rapperswil
 %
 
-\chapter{Komplexe Morlet Wavelets und CWT\label{chapter:complex}}
+\chapter{Komplexe Wavelets und CWT\label{chapter:complex}}
 \lhead{Komplexe Wavelets und CWT}
 \begin{refsection}
 \chapterauthor{Roy Seitz}
 
 % \section{Einleitung}
 Die diskrete Wavelet-Transformation (DWT) mit reellen Wavelets ist besonders schnell zu berechnen.
-Deshalb ist sie die bevorzugte Wahl bei allen Signalverarbeitungs-Anwendungen.
-Beim Erstellen `schöner' Bilder trifft man jedoch auf folgende drei Probleme:
+Deshalb ist sie die bevorzugte Wahl zur Signalverarbeitung.
+Beim Erstellen `schöner' Bilder trifft man jedoch unter Anderem auf folgende drei Probleme:
 
 Erstens wäre es für Bilder vorteilhaft, die relevanten Frequenzpunkte vorgeben zu können.
-So kann man direkt lineare oder logarithmische Skalen wählen. Die DFT ist an Zweierpotenzen gebunden.
-Zweitens erfordern die gängigsten Methoden zum Erstellen von Bildern ein reguläres Raster, also in jede Zeile dieselbe Anzahl Pixel.
-Möchte man Schwingungen finden, ist es zudem vorteilhaft, wenn das Bild proportional zur Amplitude ist, also Phasen-unabhängig.
+So kann man direkt lineare oder logarithmische Skalen wählen. Die DFT ist an Zweierpotenzen gebunden. %TODO: Referenz zum Frame für a^n statt 2^n
+Zweitens erfordern die meisten Methoden zum Erstellen von Bildern ein reguläres Raster.
+Die DFT liefert aber in jeder zusätzlichen Zeile nur noch halb so viele Punkte.
+Drittens, wenn man Schwingungen finden möchte, ist es vorteilhaft, wenn die Amplitude ersichtlich ist.
+Sie kann beispielsweise als Helligkeit abgebildet werden. 
 Bei reellen Wavelets sind Amplitude und Phase jedoch nicht einfach zu trennen.
 
 Die CWT aus Kapitel~\ref{chapter:cwt} ist die bevorzugte Wahl für analytische Berechnungen.
-Als kontinuierliche Transformation ist sie jedoch sehr rechenintensiv und benötigt etwas Vorarbeit,
+Als kontinuierliche Transformation benötigt sie jedoch etwas Vorarbeit,
 nämlich eine Diskretisierung der $a$- und $b$-Variablen.
-Eine anschliessende direkte Berechnung der diskretisierten Integrale ist ineffizient.
+Eine anschliessende direkte Berechnung der diskretisierten Integrale ist allerdings sehr rechenintensiv.
 Im ersten Abschnitt betrachten wir deshalb, wie man die CWT als Faltung interpretieren kann, welche sich effizient mittels FFT berechnen lässt.
 Zur Illustration verwenden wir ein einfaches Beispielsignal und die CWT mittels Haar-Wavelet.
 
@@ -35,7 +37,7 @@ Im zweiten Abschnitt vergleichen wir deshalb die CWT mittels Haar- und Gabor-Wav
 Im dritten Abschnitt wenden wir uns den komplexen Wavelets zu.
 Via Hilbert-Transformation können wir basierend auf einem beliebigen Wavelet ein neues finden, bei welchem sich Phasen und Amplitude trennen lassen.
 
-Durch die Berechnung der CWT mittels FFT entstehen Artefakte am Bildrand durch die zirkuläre Faltung.
+Durch die Berechnung der CWT mittels FFT entstehen Artefakte durch die zirkuläre Faltung.
 Geschickte Erweiterung des Signals kann diesen Effekt vermeiden.
 Dies beeinflusst jedoch massgeblich die Performance, da durch Erweitern des Signals der Rechenaufwand signifikant steigt.
 Im letzten Abschnitt vergleichen wir deshalb den Rechenaufwand und die erzielten Bilder mit verschiedenen Padding-Optionen anhand eines Matlab-Skripts.
@@ -44,8 +46,8 @@ Zudem vergleichen wir die Performance dieses Skripts mit der Implementation von 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{papers/complex/cwt.tex}
-
-\input{papers/complex/morlet.tex}
+\input{papers/complex/gabor.tex}
+\input{papers/complex/negative.tex}
 
 \section{Analytische Wavelets und Hilbert-Transformation}
 \input{papers/complex/hilbert.tex}
@@ -55,6 +57,7 @@ Zudem vergleichen wir die Performance dieses Skripts mit der Implementation von 
 \section{Zyklische Faltung, Signal-Padding und Performanz}
 \rhead{Zyklische Faltung}
 \label{complex:circ-conv-padding}
+% TODO Padding
 %% Effekt der zyklischen Faltung
 %% Lösen durch padden des Signals
 %%  - zero padding
@@ -63,6 +66,7 @@ Zudem vergleichen wir die Performance dieses Skripts mit der Implementation von 
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
+%TODO Schlusswort
 %% Jedes Wavelet kann in ein analytisches transformiert werden
 %% Die Wavelets aus der FWT sind allerdings für die CWT ungeeignet, 
 %% da sie nich in geschlossener Form im Frequenzbereich berechnet werden können

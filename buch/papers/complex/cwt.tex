@@ -15,11 +15,10 @@ Dieses Integral entspricht der Faltung zwischen $f(t)$ und
     g(t) 
     = \frac{1}{\sqrt{|a|}} \overline{\psi\left(\frac{-t}{a}\right)} \,.
 \end{equation}
-Der Standard-Trick zur effizienten Berechnung der Faltung ist die Multiplikation im Frequenzbereich.
+Der Standard-Trick zur effizienten Berechnung einer Faltung ist die Multiplikation im Frequenzbereich.
 \begin{equation} 
-\mathcal{W}f (a,b) = (f*g)(t) = \mathcal{F}^{-1}\left\lbrace\hat f(\omega) \cdot \hat g (\omega) \right\rbrace
+\mathcal{W}f (a,b) = (f*g)(t) = \mathcal{F}^{-1}\left\lbrace\hat f(\omega) \cdot \hat g (\omega) \right\rbrace.
 \end{equation}
-
 Dafür benötigen wir die Fouriertransformierte $\hat g (\omega)$:
 \begin{align*}
 	\hat g (\omega) = 
@@ -30,16 +29,16 @@ Dafür benötigen wir die Fouriertransformierte $\hat g (\omega)$:
 	&= \frac{1}{\sqrt{|a|}} \overline{\int_{-\infty}^{\infty}\psi\left(t'\right)e^{-ia\omega t'} |a|\,\mathrm{d}t'}\\
 	&= \sqrt{|a|} \, \overline{\hat{\psi}\left(a\omega\right)}.
 \end{align*}
-Gleichung~\eqref{complex:CWT} lässt sich also schreiben als
+Gleichung~\eqref{complex:CWT} lässt sich somit schreiben als
 \begin{equation}
 \mathcal{W}f(a,b)
 = \mathcal{F}^{-1}\left\lbrace\hat{f}(\omega)\cdot\! \sqrt{|a|}\, \overline{\hat{\psi}\left(a\omega\right)}\right\rbrace. \label{complex:fcwt}
 \end{equation}
 
-Mittels Fourier-Transformation lässt sich die Wavelet-Transformation also besonders elegant berechnen.
+Mittels Fourier-Transformation lässt sich die Wavelet-Transformation folglich besonders elegant berechnen.
 Kontinuierliche Funktionen sind für numerische Systeme jedoch ungeeignet.
 Die CWT muss in $a$ und $b$ diskretisiert werden.
-Die Diskretisierung von $b$ entspricht vorteilhaft gerade der jener des Signals selbst.
+Die Diskretisierung von $b$ entspricht vorteilhaft gerade derjenigen des Signals selbst.
 Dann lässt sich die Fourier-Transformation mittels FFT effizient berechnen und Gleichung~\eqref{complex:fcwt} wird zu
 \begin{equation}
 	\mathcal{W}f(a,b) = \text{IFFT}\left(\text{FFT}(f) \cdot \overline{\hat{\psi}\left(a\omega\right)}\right)\footnote{Der Faktor $\sqrt{|a|}$ wurde hierbei weggelassen.
@@ -50,39 +49,68 @@ Dann lässt sich die Fourier-Transformation mittels FFT effizient berechnen und 
 \end{equation}
 
 Diese Gleichung muss für jedes $a$ einzeln gelöst werden.
-Diese Gleichung wird besonders interessant, wenn das Wavelet im Frequenzbereich eine geschlossene, analytische Form besitzt.
+Sie wird besonders interessant, wenn das Wavelet im Frequenzbereich eine geschlossene, analytische Form besitzt.
 Dann benötigt man nur eine FFT für das Signal, so wie für jedes $a$ eine inverse FFT und eine punktweise Multiplikation zwischen Signal und Wavelet.
 
 \subsection{Beispiel -- CWT mit Haar-Wavelet}
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[>=latex]
+	
+		\pgfmathparse{12/4} % scale to tend
+		\xdef\a{\pgfmathresult} 
+		
+		\begin{scope}[yshift=1.4cm]
+			\draw[color=blue,line width=1pt]
+			plot[domain=0:4,samples=4000]
+			({\x*\a},{sin(360*\x*(2 + 6/\a * \x))});
+			\draw[->,line width=0.7pt] (-0.1,0)--(12.3,0) coordinate[label={$t$}];
+			\draw[->,line width=0.7pt] (0,-1.1)--(0,1.3) coordinate[label={right:$x_1(t)$}];
+			
+			\foreach \x in {0,...,4}{
+				\draw[line width=0.7pt] ({\x*\a},-0.1) --({\x*\a},0.1);
+			}
+			\end{scope}
+		
+		\begin{scope}[yshift=-1.4cm]
+			\draw[color=blue,line width=1pt]
+			plot[domain=0:4,samples=4000]
+			({\x*\a},{sin(360*\x*(6 + 2 * sign(sin(180*\x)) ))});
+			\draw[->,line width=0.7pt] (-0.1,0)--(12.3,0) coordinate[label={$t$}];
+			\draw[->,line width=0.7pt] (0,-1.1)--(0,1.3) coordinate[label={right:$x_2(t)$}];
+			
+			\foreach \x in {0,...,4}{
+				\draw[line width=0.7pt]	({\x*\a},-0.1)--({\x*\a},0.1);
+			}
+		\end{scope}
+	
+	\end{tikzpicture}
+	\caption{Die beiden Beispielsignale $x_1(t)$ und $x_2(t)$}
+\end{figure}
 Für ein Beispiel benötigen wir zwei Dinge: ein Wavelet und ein Beispielsignal.
 Nehmen wir für den Anfang das einfachste aller Wavelets, das Haar-Wavelet.
-Als Signal nehmen wir zwei Cosinus-Schwingungen, einmal mit exponentiell ansteigender Frequenz, und einmal mit stückweise konstanter Frequenz.
+Als Signal nehmen wir zwei Cosinus-Schwingungen, eine mit linear ansteigender und eine mit stückweise konstanter Frequenz.
 \begin{align}
-    x_1(t) &= \cos\left( \int_{0}^{t} 2\pi f_1(t')\,\mathrm{d}t'\right) & f_1(t) &= 10^{2 \cdot t/10} \\
+    x_1(t) &= \cos\left( \int_{0}^{t} 2\pi f_1(t')\,\mathrm{d}t'\right) & f_1(t) &= 2 + 6/4 \cdot t \\
     x_2(t) &= \cos\left( \int_{0}^{t} 2\pi x_2(t')\,\mathrm{d}t'\right) & f_2(t) &= \left\lbrace \begin{matrix}
-    2, & &t& < 2.5\\
-    8, & 2.5 \le &t& < 5.0\\
-    2, & 5.0 \le &t& < 7.5\\
-    8, & 7.5 \le &t&\\
+    4, & &t& < 1\\
+    8, & 1.0 \le &t& < 2.0\\
+    4, & 2.0 \le &t& < 3.0\\
+    8, & 3.0 \le &t&\\
     \end{matrix}\right.
 \end{align}
-\begin{figure}
-    \centering
-	\includegraphics{papers/complex/images/signals.pdf}
-    \caption{Die beiden Beispielsignale $f_1(t)$ und $f_2(t)$}
-\end{figure}
 Zudem benötigen wir das Haar-Wavelet und seine Fourier-Transformierte.
 In diesem Abschnitt sei das Wavelet zentriert um $t=0$.
-Dies daraus resultierende Symmetrie wird sich in der Berechnung der Fourier-Transformation als hilfreich erweisen.
+Die daraus resultierende Symmetrie wird sich in der Berechnung der Fourier-Transformation als hilfreich erweisen.
 
 \begin{definition}
 	\label{complex:def-haar-wavelet}
 	Das zentrierte, reelle Haar-Wavelet besitzt folgende Gestalt:
 	\[
-	\psi_{\text{Haar}} = \left\lbrace\begin{matrix*}[r]
+	\psi_{\text{Haar}}(t) = \left\lbrace\begin{matrix*}[r]
 	1 & -\frac{1}{2} \le t < 0  \\
 	-1 & 0 \le t < \frac{1}{2} \\
-	0 & \text{sonst}
+	0 & \text{sonst}.
 	\end{matrix*} \right.\label{complex:def-haar}
 	\]
 \end{definition}
@@ -96,35 +124,85 @@ Die Fourier-Transformierte von $\psi_{\text{Haar}}$ berechnet sich wie folgt:
 \end{align}
 Das Haar-Wavelet ist also nicht nur im Zeitbereich besonder einfach, sondern auch im Frequenzbereich.
 Insbesondere lässt sich die mit $a$ skalierte Version des Wavelets durch Satz~\ref{four-int:trans-dial} direkt im Frequenzbereich berechnen.
+Auffallend ist zudem, dass das im Zeitbereich besonders gut lokalisierte Haar-Wavelet in der Frequenz sehr schlecht lokalisiert ist.
+$\mathcal{F}\psi_\text{Haar}$ ist in Abbildung \ref{complex:haar} dargestellt.
+\begin{figure}
+	\centering
+	\includegraphics{papers/complex/images/haar.pdf}
+	\caption{Das Haar-Wavelet}
+	\label{complex:haar}
+\end{figure}
+\[\hat{\psi}_\text{Haar} = \frac{1i}{2\sqrt{\pi}}\left( \frac{1-\cos(\omega/2)}{\omega/2}\right) \]
+
+An dieser Stelle definieren wir noch die \emph{Dominante Frequenz} eines Wavelets.
+\begin{definition}
+	Die Fourier-Transformierte eines Wavelets erreicht den maximalen Betrag bei der \emph{dominante Frequenz $\omega_\psi$}.
+	\begin{equation}
+		\max_{\omega}\left|\hat\psi(\omega)\right| = \left|\hat\psi(\omega_\psi)\right|
+	\end{equation}
+	
+\end{definition}
+
+Die dominante Frequenz erlaubt es, die $a$-Achse der Wavelet-Transformation als Frequenz-Achse zu interpretieren.
+Für die Momentanfrequenz gilt
+\begin{align}
+	\omega(t) \approx \omega_\psi\,/\,a_\text{max}.
+\end{align}
+Diese Interpretation ist natürlich nur zulässig, wenn das Signal zum betrachteten Zeitpunkt nur eine dominante Frequenz-Komponente beinhaltet.
+Bei unseren Beispielsignalen ist dies der Fall.
+Abbildung~\ref{complex:dom-freq} illustriert die Bedeutung von $\omega_\psi$ für das Haar-Wavelet.
+Es ist die Frequenz, bei welcher das Skalarprodukt mit dem Wavelet maximal wird.
+\begin{figure}
+	\centering
+	\includegraphics{papers/complex/images/haar_dom.pdf}
+	
+	\caption{Blau: $\psi_\text{Haar}$, Rot: $\sin ({\color{red}\omega_\psi}\cdot t)$, Gelb: $\sin ({\color{yellow}1.0}\cdot 2\pi t)$, Grün: $\sin ({\color{green}0.5}\cdot 2\pi t)$}
+	\label{complex:dom-freq}
+\end{figure}
 
 Somit haben wir für unser Beispiel alles zusammen.
-Nach einer Diskretisierung der Variablen $t$, $\omega$ und $a$ überlassen wir die Arbeit dem Computer.
-Das verwendete Skript findet sich auf der CD, welche diesem Buch beiliegt (buch/papers/complex/fcwt/test\_matlab.m, siehe Abschnitt~\ref{complex:circ-conv-padding})
+Nach einer Diskretisierung der Variablen überlassen wir die Arbeit dem Computer.
+Dies liefert die Bilder aus Abbildung~\ref{complex:haar-ex}.
+\begin{figure}
+	\centering
+	\includegraphics{papers/complex/images/chirp_haar.pdf}
+	\includegraphics{papers/complex/images/square_haar.pdf}
+	\caption{Farb-codierte Wavelet-Transformationen der beiden Beispielsignale mit dem Haar-Wavelet.}
+	\label{complex:haar-ex}
+\end{figure}
 
-% TODO: Weitermachen hier!
-\section{Old Stuff -- überarbeiten!}
+Wie erwartet ist die Lokalisierung in der Frequenz zimelich schlecht.
+Das Haar-Wavelet gibt den Zeitpunkt einer Änderungen der Frequenz dafür sehr genau wieder.
+Als Orientierungshilfe sind die Maxima weiss hervorgehoben.
+Sie weichen von $1\,/\,a$ um $\omega_\psi$ von der Signal-Frequenz ab.
+Die Signal-Frequenz ist als Schwingung in der Amplitude gut erkennbar.
+Dies werden wir im Abschnitt~\ref{complex:separate} durch komplexe Wavelets vermeiden.
+Zuerst kümmern wir uns aber um die Lokalisierung in der Frequenz.
 
-Sei \verb|psi_hat| eine Matrix, in deren Spalten die Fourier-Transformierten des Wavelets für jedes $a$ stehen,
-und sei \verb|f| das zu analysierende Signal $f(t)$ als Spaltenvektor,
-dann lässt sich die Wavelet-Transformation in Matlab oder Octave mit folgendem Code einfach berechnen.
-
-\begin{lstlisting}[style=Matlab-editor]
-% Example for Morlet-Wavelet
-function psi_hat = myMorlet(w, a)
-  sigma = 2 * pi; % Sigma for time vs freq. localisation
-  c_sigma = pi^(-1/4) / ... Scaling factor for norm = 1
-            sqrt(1 + exp(-sigma^2) - 2 * exp(-3/4 * sigma^2));
-  k = exp(-sigma^2 / 2 ); % Kappa for DC-free wavelet
-  psi_hat = c_sigma .* (exp(-(sigma - w).^2 ./ (2*a).^2) - k);
-end
-
-% Column freqency vector
-w = linspace(0, fs, length(f))' * 2 * pi; 
-% Interesting a values as row vector
-a = 1:10; 
-psi_hat = myMorlet(w, a); % Wavelet in frequency domain
-yab = ifft(FFT(f) .* psi_hat); % Wavelet-Transform
-\end{lstlisting}
+%% TODO: Weitermachen hier!
+%\section{Old Stuff -- überarbeiten!}
+%
+%Sei \verb|psi_hat| eine Matrix, in deren Spalten die Fourier-Transformierten des Wavelets für jedes $a$ stehen,
+%und sei \verb|f| das zu analysierende Signal $f(t)$ als Spaltenvektor,
+%dann lässt sich die Wavelet-Transformation in Matlab oder Octave mit folgendem Code einfach berechnen.
+%
+%\begin{lstlisting}[style=Matlab-editor]
+%% Example for Morlet-Wavelet
+%function psi_hat = myMorlet(w, a)
+%  sigma = 2 * pi; % Sigma for time vs freq. localisation
+%  c_sigma = pi^(-1/4) / ... Scaling factor for norm = 1
+%            sqrt(1 + exp(-sigma^2) - 2 * exp(-3/4 * sigma^2));
+%  k = exp(-sigma^2 / 2 ); % Kappa for DC-free wavelet
+%  psi_hat = c_sigma .* (exp(-(sigma - w).^2 ./ (2*a).^2) - k);
+%end
+%
+%% Column freqency vector
+%w = linspace(0, fs, length(f))' * 2 * pi; 
+%% Interesting a values as row vector
+%a = 1:10; 
+%psi_hat = myMorlet(w, a); % Wavelet in frequency domain
+%yab = ifft(FFT(f) .* psi_hat); % Wavelet-Transform
+%\end{lstlisting}
 
 %% Wavelet-TraFo als Faltung zwischen Signal und Wavelet
 %% Morlet-Wavelet in Frequenzbereich geschlossen berechenbar
