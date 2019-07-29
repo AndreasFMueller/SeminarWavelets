@@ -1,0 +1,35 @@
+\section{Visuelle Wahrnehmung}
+\rhead{Visuelle Wahrnehmung}
+
+In den vorherigen Abschnitten haben wir das zweidimensionale Gabor-Wavelet genauer betrachtet.
+Dieses Wavelet ist einerseits der optimale Kompromiss zwischen Zeit- und Frequenzauflösung und andererseits kann es in verschiedene Richtungen ausgerichtet werden.
+Diese speziellen Eigenschaften sind sehr nützlich und es zeigte sich, dass die Hirne von Säugetieren ähnliche Eigenschaften besitzen.
+In den folgenden Abschnitten wird versucht zu zeigen, was die visuelle Wahrnehmung und Gabor-Wavelets gemeinsam haben. 
+
+\subsection{Primärer Visueller Kortex}\label{subsec:v1}
+
+Der primäre Visuelle Kortex (V1) verarbeitet die Bildinformationen welche vom Auge aufgenommen werden.
+Als Ausgangsprodukt stellt er abstrakte Features zu Verfügung, welche dann vom Hirn zusammen mit weiteren Informationen (Kontextwissen, andere Sinne)  benützt werden, um Objekte zu erkennen.
+Erste Analysen des V1 wurden von Hubel und Wiesel bereits 1959 veröffentlicht \cite{paper:hubelwiesel}.
+Ihre Erkenntnisse haben sie anhand von Versuchen an Katzenhirnen gewonnen.
+
+Jedes Neuron innerhalb des V1 bekommt Eingangssignale einer bestimmten Region der Netzhaut.
+Eine solche Region wird rezeptives Feld genannt.
+Diese rezeptiven Felder bestimmen also welcher Teil eines Bildes vom Neutron bearbeitet wird.
+Es gibt verschiedene Arten von Neuronen innerhalb des V1.
+Eine wichtige Gruppe davon sind die sogenannten einfachen Zellen.
+Diese zeigen ein orientierungsspezifisches Antwortverhalten auf optische Inputs.
+Ausserdem beinhalten die einfachen Zellen immer abwechselnde ON und OFF Regionen, welche ansprechen bei Licht (ON) oder eben keinem Licht (OFF).
+Die zweite wichtige Gruppe der Neuronen sind die komplexen Zellen.
+Diese können als Kombination von mehreren einfachen Zellen modelliert werden, wobei alle einfachen Zellen in die selbe Richtung orientiert sind.
+Allerdings ist diese Erklärung der komplexen Zellen nicht überall anerkannt \cite{book:neuroscience}.
+
+
+\subsection{Modellierung der Funktion des V1 mithilfe von Gabor-Wavelets}
+
+Die Eigenschaften der einfachen Zellen sind sehr ähnlich derjenigen des Gabor-Wavelets.
+Deshalb haben Forscher begonnen die einfachen Zellen mit Hilfe von Gabor-Wavelets zu modellieren \cite{paper:imgrep}.
+Analog zu den einfachen Zellen können Gabor-Wavelets ebenfalls in beliebige Richtungen ausgerichtet und deren Wellenlänge variiert werden.
+Ausserdem kann die Schwingung des Gabor-Wavelets als ON-OFF-Pattern interpretiert werden.
+Dies ist eine sehr schöne Entdeckung, da es zeigt, dass sich der V1 während der Evolution hin zu einem optimalen Kompromiss aus Zeit- und Frequenzinformationen entwickelt hat.
+Die Eigenschaften des Gabor-Wavelets sollten auch für die künstliche Bilderkennung sinnvoll sein, da es offensichtlich einen evolutionären Vorteil darstellt wenn Bilder in dieser Art vorverarbeitet werden.

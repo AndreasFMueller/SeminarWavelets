@@ -1,0 +1,207 @@
+\documentclass{beamer}
+
+%style
+\mode<presentation>{
+	\usetheme{goettingen}
+}
+%packages
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+%Einstellungen Präsentation
+\title{Gabor Wavelets und Visuelle Wahrnehmung}
+\author{Raphael Unterer}
+\institute{Mathematisches Seminar 2018}
+\date{27.05.2019}
+
+%Bilder
+\graphicspath{{images/}}
+
+%Beginn der Präsentation
+\begin{document}
+
+%Titelseite
+\begin{frame}
+\titlepage
+\end{frame}
+
+%Inhaltsverzeichnis
+%\begin{frame}
+%\frametitle{Inhalt}
+%\tableofcontents
+%\end{frame}
+
+\section{Gabor Wavelets}
+
+\begin{frame}
+	\frametitle{Repetition Gabor-Wavelets}
+	\begin{itemize}
+		\item[] Exponentiell abfallende komplexe Exponenten (Sinus und Kosinus)
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\linewidth]{images/gabor_1d}
+			\caption{Sinus Gabor Wavelet 1D}
+			\label{fig:gabor1d}
+		\end{figure}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{2D Gabor Wavelets}
+	\begin{itemize}
+		\item[]
+		\begin{equation}
+			G(x,y)=\frac{1}{2\pi\sigma\beta}
+			e^{-\pi(\frac{(x-x_{0})^{2}}{\sigma^{2}}+\frac{(y-y_{0})^{2}}{\beta^{2}})}
+			e^{i(\xi_{0}x+\nu_{0}y)}
+		\end{equation}
+		\pause
+		\item[] Praktischer:
+		\begin{equation}
+			G(x,y)=e^{-\frac{x'^{2}+\gamma^{2}y'^{2}}{2\sigma^{2}}}
+			e^{i(2\pi\frac{x'}{\lambda} + \phi)}
+		\end{equation}
+		\pause
+		\item[] mit:
+		\begin{equation}
+		x'=x\cos(\theta)+y\sin(\theta)
+		\end{equation}
+		\item[] und:
+		\begin{equation}
+		y'=-x\sin(\theta)+y\cos(\theta)
+		\end{equation}
+			
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{2D Gabor Wavelets}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/gabor_2d}
+		\caption{Theta $\theta$ und Wellenlänge $\lambda$ ändern}
+		\label{fig:gabor2d}
+	\end{figure}	
+
+\end{frame}
+
+\begin{frame}
+\frametitle{2D Gabor Wavelets}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/gabor_effect_original.pdf}
+	\caption{Beispielbild}
+	\label{fig:gabororiginal}
+\end{figure}	
+\end{frame}
+
+\begin{frame}
+\frametitle{2D Gabor Wavelets}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/gabor_effect_effect.pdf}
+	\caption{Gabor-Filter angewandt auf das Beispielbild}
+	\label{fig:gaboreffect}
+\end{figure}	
+
+\end{frame}
+
+\begin{frame}
+\frametitle{2D Wavelet Transformation als 2D Convolution}
+\input{2dconv.tikz}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Neurologie}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{primary-visual-cortex.jpg}
+		\caption{Primärer Visueller Kortex in rot}
+		\label{fig:primary-visual-cortex}
+	\end{figure}
+	
+\end{frame}
+
+\section{Convolutional Neural Net (CNN)}
+\begin{frame}
+\frametitle{Neuronale Netze}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{neural_net}
+	\caption{Schematische Darstellung eines Neuronalen Netzes}
+	\label{fig:neuralnet}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{CIFAR-10 Dataset}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/cifar10}
+		\label{fig:cifar10}
+	\end{figure}
+	
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Architektur}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{cnn.pdf}
+	\label{fig:cnn}
+\end{figure}
+\begin{itemize}
+	\item[] First convolutional layer: 64 9x9 kernels
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Experiment}
+	\begin{itemize}
+		 \item [] Erste Convolution mit Gabor-Kernels durchgeführt:
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/gabor_kernels}
+		\label{fig:gaborkernels}
+	\end{figure}
+	
+\end{frame}
+
+
+\section{Resultate}
+
+\begin{frame}
+\frametitle{Performance}
+\begin{itemize}
+	\item[] Kleinste Accuracy mit Gabor: 67.32\%
+	\item[] Höchste Accuracy ohne Gabor: 66.42\%
+\end{itemize}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{comparison.png}
+	\label{fig:comparison}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Gelernte Filter}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/native_kernels}
+	\label{fig:nativekernels}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ende}
+\end{frame}
+\end{document}

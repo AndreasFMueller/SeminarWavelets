@@ -12,8 +12,9 @@ PAPERFILES = \
 	papers/compress/main.tex \
 	papers/visuell/main.tex \
 	papers/complex/main.tex \
-	papers/2dwavelets/main.tex \
+	papers/polynomials/main.tex \
 	papers/gis/main.tex \
 	papers/meteor/main.tex \
 	papers/wwt/main.tex \
+	papers/sgwt/main.tex \
 	

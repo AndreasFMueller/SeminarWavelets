@@ -7,6 +7,7 @@ all:	buch.pdf
 
 #SUBDIRECTORIES = chapters uebungsaufgaben 
 SUBDIRECTORIES = chapters papers/complex
+SUBDIRECTORIES = chapters papers/wwt
 
 .PHONY:	images
 
@@ -46,7 +47,7 @@ BLXFILES = \
 	buch9-blx.bbl \
 	buch10-blx.bbl \
 	buch11-blx.bbl \
-#	buch12-blx.bbl
+	buch12-blx.bbl \
 
 buch.pdf:	buch.tex $(TEXFILES) buch.ind $(BLXFILES)
 	pdflatex buch.tex

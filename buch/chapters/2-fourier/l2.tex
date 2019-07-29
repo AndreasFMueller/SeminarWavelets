@@ -6,6 +6,11 @@
 \section{Der Hilbertraum $L^2$
 \label{section:l2}}
 \rhead{Der Hilbertraum $L^2$}
+Bereits im Beispiel auf Seite~\pageref{geometrie:l2-beispiel} wurde
+angedeutet, wie man aus einem Funktionenraum einen Hilbertraum
+machen kann, indem man ein geeignetes Skalarprodukt definiert.
+In diesem Abschnitt soll diese Konstruktion etwas detaillierter 
+durchgeführt und verallgemeinert werden.
 
 \subsection{Funktionenräume}
 Wir bezeichnen mit $\mathbb C^X$ die Menge der Funktionen
@@ -34,6 +39,7 @@ dann wird dazu ein Abstandsbegriff benötigt.
 \begin{definition}
 Eine reellwertige Funktion $\|\mathstrut\cdot\mathstrut\|$ heisst
 eine Norm auf dem Vektorraum $V$, wenn sie folgende Eigenschaften hat:
+\index{Norm}
 \begin{enumerate}
 \item $\|v\|=0\;\Leftrightarrow\; v = 0$
 \item $\| \lambda u \| = |\lambda| \,\|u\|$
@@ -113,7 +119,7 @@ als
 
 Die bekannten Rechenregeln für Integrale stellen sicher, dass dies
 tatsächlich ein sesquilineares Produkt ist, wie die folgende Rechnung
-zeigt.
+zeigt:
 \begin{align*}
 \langle \lambda_1 f_1+\lambda_2 f_2,g\rangle
 &=
@@ -183,6 +189,190 @@ mit zugehöriger Norm
 
 Für $p=2$ ist die Norm $\|f\|_2$ bereits bekannt, es ist die Norm, die
 vom Skalarprodukt herkommt.
+
+Die Beziehung der Vektorräume zueinander ist nicht ganz offensichtlich.
+
+\begin{lemma}
+\label{fourier:l1l2}
+Ist $I$ ein beschränktes Interval, dann ist $\mathcal{L}^2(I)$ eine
+echte Teilmenge von $\mathcal{L}^1(I)$.
+Es gibt also eine integrierbare Funktion auf $I$, die nicht
+quadratintegrierbar ist.
+\end{lemma}
+
+\begin{proof}[Beweis]
+\begin{figure}
+\centering
+\includegraphics{chapters/2-fourier/images/intfun.pdf}
+\caption{Funktionen der Form $f(x)=x^{-\alpha}$ auf dem Interval
+$[0,\frac{10}{3}]$ sind nicht integrierbar für $\alpha > 1$ (grün).
+Für $\alpha <\frac12$ ist $f(x)$ quadratintegrierbar und auch integrierbar.
+Dazwischen, für $\frac12 <\alpha < 1$, ist $f(x)$ zwar integrierbar, aber
+nicht quadratintegrierbar.
+\label{fourier:intfun}}
+\end{figure}
+Sei $f\in\mathcal{L}^2(I)$, es gilt also
+\[
+\int_I |f(x)|^2\,dx < \infty.
+\]
+Wir versuchen jetzt, dass Integral von $|f(x)|$ zu berechnen.
+Dazu verwenden wir, dass wir $|f(x)|$ als das Produkt
+$|f(x)|\cdot 1$ mit der Konstanten Funktion $1$ schreiben
+und die Cauchy-Schwarz-Ungleichung auf das Produkt anwenden können:
+\begin{align*}
+%\|f\|_1
+%&
+=
+\int_I |f(x)|\,dx
+&=
+\int_I |f(x)| \cdot 1 \,dx
+=
+\langle |f|, 1\rangle
+\le
+\|f\|_2 \cdot \| 1 \|_2
+\\
+&=
+\int_I |f(x)|^2\,dx \cdot \int_I 1\,dx
+\end{align*}
+Da das Interval $I$ beschränkt ist, ist das rechte Integral gerade die
+Länge des Intervals.
+Das linke Integral ist die Norm $\|f\|_2$, so dass wir ablesen können,
+dass $\|f\|_1$ beschränkt ist.
+Eine quadratintegrierbare Funktion ist also automatisch integrierbar,
+$\mathcal{L}^2(I)\subset \mathcal{L}^1(I)$.
+
+Um zu zeigen, dass $\mathcal{L}^2(I)$ eine echte Teilmenge von 
+$\mathcal{L}^1(I)$ ist, 
+müssen wir jetzt eine integrierbare Funktion
+finden, die nicht quadratintegrierbar ist.
+Wir nehmen dazu an, dass $I=[a,b]$ und versuchen eine Funktion der Form
+\begin{align*}
+f(x)
+&=
+\begin{cases}
+0&\qquad x=a\\
+(x-a)^\alpha&\qquad x>a.
+\end{cases}
+\\
+\end{align*}
+Die Normen für $p=1$ ist
+\begin{align*}
+\|f\|_1
+&=
+\int_a^b |f(x)|\,dx
+=
+\int_a^b (x-a)^\alpha\,dx 
+=
+\int_0^{b-a} x^\alpha\,dx 
+=
+\biggl[
+\frac{1}{\alpha+1}x^{\alpha+1}
+\biggr]_0^{b-a}.
+\intertext{Für $p=2$ kann man die gleiche Formel mit $2\alpha$ an Stelle
+von $\alpha$ vewenden:}
+\|f\|_2^2
+&=
+\biggl[
+\frac{1}{2\alpha+1}x^{2\alpha+1}
+\biggr]_0^{b-a}.
+\end{align*}
+Das Integral existiert also genau dann, wenn der Exponent von $x$
+positiv ist.
+Wenn $\alpha$ so gewählt wird, dass $\alpha+1>0$ und $2\alpha+1 <0$ ist,
+dann haben wir ein Beispiel der gesuchten Art gefunden.
+Die beiden Ungleichungen bedeuten $\alpha >-1$ und $\alpha < -\frac12$.
+Die Funktionen
+\[
+f_\alpha(x)
+=
+\begin{cases}
+\displaystyle\frac{1}{(x-a)^\alpha}&\qquad x > a\\
+0&\qquad x=a
+\end{cases}
+\qquad
+\text{für}
+\quad
+\frac12 <\alpha < 1
+\]
+sind integrierbar, aber nicht quadratintegrierbar.
+Die Funktionen $f_\alpha(x)$ sind in Abbildung~\ref{fourier:intfun}
+dargestellt.
+\end{proof}
+
+Das nachfolgende Beispiel sollen zeigen, dass die Situation für eine
+unbeschränktes Interval viel komplizierter ist.
+Insbesondere gibt es quadratintegrierbare Funktionen auf $\mathbb R$,
+die nicht integrierbar sind, und integrierbare Funktionen, die nicht
+quadratintegrierbar sind.
+
+\begin{beispiel}
+Den Funktion $f_\alpha$, die in Beweis von Lemma~\ref{fourier:l1l2}
+verwendet wurden, haben ausgenutzt, dass sie für $x\to 0$ verschieden 
+schnell divergiert haben.
+Das Verhalten für $x\to \frac{10}3$ war nicht relevant, weil dort keine
+Divergenz auftrat.
+
+Auf dem unbeschränkten Interval $I=[0,\infty)$ kann eine Funktion 
+für $x\to\infty$ zwar gegen Null gehen, aber das Integral kann trotzdenm
+divergieren.
+Diese Eigenschaft können wir ausnützen, um zu zeigen, dass weder
+$\mathcal{L}^1(I)\subset\mathcal{L}^2(I)$
+noch
+$\mathcal{L}^2(I)\subset\mathcal{L}^1(I)$.
+
+Wir betrachten zunächst die Funktionen
+\[
+f_\alpha(x) = \begin{cases}
+\displaystyle\frac1{x^\alpha}&\qquad0<x\le 1\\
+0&\qquad\text{sonst.}
+\end{cases}
+\]
+Gemäss der früheren Rechnungen ist
+$f_\alpha\in\mathcal{L}^1(I)\setminus\mathcal{L}^2(I)$,
+wenn $\frac12<\alpha<1$.
+
+Andererseits können wir auch die Funktionen
+\[
+g_\beta(x)
+=
+\begin{cases}
+\displaystyle\frac1{x^\beta}&\qquad x>1\\
+0&\qquad\text{sonst}
+\end{cases}
+\]
+betrachten.
+Wir berechnen wieder die Normen
+\begin{align*}
+\| g_\beta\|_1
+&=
+\int_I|g_\beta(x)|\,dx
+=
+\int_1^\infty x^{-\beta}\,dx
+=
+\biggl[
+\frac1{-\beta+1}x^{-\beta+1}
+\biggr]_1^\infty
+\\
+\|g_\beta\|_2^2
+&=
+\biggl[
+\frac1{-2\beta+1}x^{-2\beta+1}
+\biggr]_1^\infty
+\end{align*}
+Die Normen existieren genau dann, wenn die Exponenten negativ sind.
+Die Norm für $p=1$ ist also beschränkt, wenn $-\beta+1<0$ oder $\beta > 1$
+ist.
+Die Norm für $p=2$ ist beschränkt, wenn $-2\beta+1<0$ oder $\beta > \frac12$
+ist.
+Für $\beta$ zwischen $\frac12$ und $1$ ist $g_\beta$ also quadratintegrierbar
+aber nicht integrierbar.
+Somit ist $g_\beta\in\mathcal{L}^2(I)\setminus\mathcal{L}^1(I)$.
+Die beiden Beispiele zeigen, dass weder
+$\mathcal{L}^1(I)\subset\mathcal{L}^2(I)$
+noch
+$\mathcal{L}^2(I)\subset\mathcal{L}^1(I)$.
+\end{beispiel}
+
 
 \subsection{Lebesgue-Integral und Vollständigkeit}
 Das Riemann-Integral, das man im Analysis-Unterricht kennen lernt, 
@@ -467,8 +657,89 @@ f(\underbrace{t/a}_{\displaystyle=t'})
 \end{align*}
 \end{proof}
 
+\subsection{Translation und Dilatation
+\label{subsection:translation-dilatation2}}
+In Abschnitt~\ref{subsection:translation-dilatation} haben wir die
+Operationen $T_b$ und $\tilde{D}_a$ definiert.
+Es ist ganz offensichtlich, dass die Operation $T_b$ die Norm einer
+Funktion $f(t)$ nicht ändert, denn
+\[
+\|T_bf\|
+=
+\int_{-\infty}^{\infty} |T_bf(t)|^2\,dt
+=
+\int_{-\infty}^{\infty} |f(t-b)|^2\,dt
+=
+\int_{-\infty}^{\infty} |f(t)|^2\,dt
+=
+\|f\|^2.
+\]
+Die Dilatation $\tilde{D}_a$ hingegen ändert die Norm, es gilt nämlich
+\begin{align*}
+\|\tilde{D}_af\|^2
+&=
+\int_{-\infty}^\infty |\tilde{D}_af(t)|^2\,dt
+=
+\int_{-\infty}^\infty |f(t/a)|^2 \,dt
+=
+\int_{-\infty}^\infty |f(\tau)|^2 \, a\,d\tau
+=
+\int_{-\infty}^\infty |\sqrt{a} f(\tau)|^2 \,d\tau
+=
+\| \sqrt{a} f \|^2,
+\end{align*}
+wobei wir die Subsitution $\tau = t/a$ verwendet haben.
+Wir können daraus ablesen, wie wir die Definition von $\tilde{D}_a$
+modifizieren müssen, dass auch die Dilatation die Norm erhält.
 
+\begin{definition}
+Die Dilatation $D_af$ der Funktion $f\colon\mathbb R\to\mathbb C$ ist 
+\[
+(D_af)(t) = \frac{1}{\sqrt{a}} f\biggl(\frac{t}{a}\biggr).
+\]
+\end{definition}
 
+\begin{satz}
+Die Operationen $T_b$ und $D_a$ sind Isometrien, sie erhalten die
+Norm:
+\[
+\begin{aligned}
+\| T_bf \| &= \|f\|
+&&&
+\| D_af \| &= \| f \|.
+\end{aligned}
+\]
+Ausserdem gelten die Rechenregeln
+\begin{align*}
+T_{b_1}T_{b_2}&=T_{b_1+b_2}
+&
+D_{a_1} D_{a_2}&=D_{a_1a_2}
+&
+D_aT_b
+&=
+T_{ab}D_a
+\end{align*}
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Eigenschaften Rechenregeln folgen unmittelbar aus den Definitionen und
+den früher bewiesenen Regeln, insbesondere Satz~\ref{satz:kommutator}.
+\end{proof}
+
+\begin{figure}
+\centering
+\includegraphics{chapters/2-fourier/images/kommutatorD.pdf}
+\caption{Vertauschungsregel für die Operationen $T_b$ und $D_a$
+(vergleiche auch Abbildung~\ref{geometrie:kommutator:image} für
+die Operationen $T_b$ und $\tilde{D}_a$).
+Die Graphen der Bildfunktionen unter $D_a$ sind gegenüber denen der
+Bildfunktionen von $\tilde{D}_a$ vertikal um den Faktor $\sqrt{a}$
+gestaucht.
+\label{geometrie:kommutatorD:image}}
+\end{figure}
+
+Die Vertauschungsregel für $T_b$ und $D_a$ ist in
+Abbildung~\ref{geometrie:kommutatorD:image} visualisiert.
 
 
 

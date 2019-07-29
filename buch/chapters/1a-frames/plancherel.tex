@@ -1,0 +1,165 @@
+%
+% plancherel.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Das Plancherel-Prinzip
+\label{section:plancherel}}
+\rhead{Das Plancherel-Prinzip}
+Im Abschnitt~\ref{section:ginv} wurde gezeigt, wie der Gram-Operator
+für ein beliebiges Frame numerisch invertiert werden kann.
+In vielen praktischen Fällen ist dies jedoch gar nicht nötig, denn
+die Frame-Konstanten stimmen überein, wie zum Beispiel im einführenden
+Beispiel dieses Kapitels.
+In diesem Fall ist der Gram-Operator ein Vielfaches der Einheitsmatrix.
+Die Linksinverse $S$ des Frame-Operators $T$ eines Frames mit $A=B$
+ist $A^{-1}T^*$.
+Diese Aussagen folgen aus der bisher entwickelten Theorie sofort
+für endlichdimensionale Vektorräume.
+
+Etwas allgemeiner formuliert erfolgt die Analyse von Vektoren
+mit einer diskreten Menge von Analyse-Vektoren, den Vektoren $(b_k)_{k\in I}$
+des Frames.
+Die Situation, in der die Transformation besonders leicht umgekehrt werden
+kann, war gekennzeichnet dadurch, dass die Norm bei der Transformation
+immer um den gleichen Faktor grösser wird,
+ausgedrückt durch die Formel
+\begin{equation}
+\sum_{k\in I} |\langle v,b_k\rangle|^2
+=
+\sum_{k\in I} |\hat{v}_k|^2
+=
+A\| v\|^2.
+\label{plancherel:equation:diskret}
+\end{equation}
+Die Umkehrtransformation ist dann ganz einfach:
+Gegeben die Transformationskoeffizienten $a_k$ mit $k\in I$ wird der Vektor
+\[
+u = \sum_{k\in I} a_k v_k
+\]
+durch die Transformation wieder auf die gegeben Koeffizienten abgebildet,
+also $\hat{u}_k = a_k\;\forall k\in I$.
+
+Die in KapiteL~\ref{chapter:cwt} definierte stetige Wavelet-Transformation
+verwendet jedoch eine Menge von Vektoren für die Analyse, die sehr viel
+grösser ist.
+Ausgehend von einer Funktion $\psi\colon\mathbb R\to\mathbb R$
+wirt für jedes Paar $(a,b)\in \mathbb{R}^*\times \mathbb R$ mit
+$\psi_{a,b}=T_bD_a\psi$ analysiert.
+Die Menge der Analyse-Vektoren $\psi_{a,b}$ ist also überabzähltbar.
+Trotzdem lässt sich die Rücktransformation verallgemeinern, wenn 
+man die Eigenschaft~\eqref{plancherel:equation:diskret} auf die
+stetige Situation verallgemeinern kann.
+
+Für eine diskrete Menge $I$ ist das Resultat der Transformation des Vektors
+$v$ eine auf $I$ definierte Funktion $k\mapsto \hat{v}_k$.
+Die Funktionen auf $I$ beilden einen Hilbertraum mit dem Skalarprodukt
+\[
+\langle \hat{v},\hat{w}\rangle
+=
+\sum_{k\in I} \hat{v}_k \overline{\hat{w}_k}.
+\]
+Die Bedingung~\eqref{plancherel:equation:diskret} ist also nichts anderes
+als die Aussage, dass die Transformation die Hilbertraum-Norm immer um
+den gleichen Faktor $A$ skaliert:
+\[
+\| Tv \|^2 = A \| v\|^2.
+\]
+Die naheliegende Verallgemeinerung für eine beliebige Menge von
+Analysefunktionen wie im Fall der stetigen Wavelettransformation
+besteht also darin, aus der Menge der Funktionen auf der Indexmenge
+einen Hilbertraum zu machen, so dass wieder eine Bedingung der Form
+\eqref{plancherel:equation:diskret} gilt.
+
+\begin{definition}
+Sei $H$ ein Hilbertraum und
+$v\colon X\to H$ eine Funktion mit Werten in $H$.
+Die Funktion $v$ definiert eine Transformation
+\[
+T\colon  H \to \mathbb C^X : u \mapsto \hat{u}
+\quad\text{mit}\quad
+\hat{u}(x) = \langle u,\hat{v(x)}\rangle.
+\]
+Sei ausserdem $\mu$ ein Mass auf $X$ und $L^2(X)$ der Hilbertraum
+der Funktionen auf $X$ mit dem Skalarprodukt
+\[
+\langle f,g\rangle_{L^2(X)} = \int_X f(x) \bar{g}(x)\,d\mu(x).
+\]
+Man sagt, $T$ erfüllt die {\em Plancherel-Bedingung}, wenn $T$
+eine Transformation $H\to L^2(X)$ ist und es eine Konstante $C$
+gibt mit
+\[
+\| Tv \|_{L^2(X)}
+=
+\biggl(
+\int_{X} |(Tv)(y)|^2 \, d\mu(y)
+\biggr)^{\frac12}
+=
+C \|v\|_H.
+\]
+\end{definition}
+
+Ein Frame mit Framevektoren $v_k, k\in\mathbb N$ mit
+ist der Fall $X=\mathbb N$. Die Plancherel-Bedingung ist erfüllt, wenn
+die Frame-Konstanten $A=B$ gleich sind.
+
+\begin{satz}
+\label{satz:plancherel-prinzip}
+Falls $T$ die Plancherel-Bedingung erfüllt mit der Konstanten $C$, dann ist
+die Abbildung
+\[
+S
+\colon
+L^2(X) \to H
+:
+a \mapsto \frac{1}{C}\int_X v_x a(x) \,d\mu(x)
+\]
+ist eine Inverse der Transformation $T$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Polar-Identität besagt, dass nicht nur die Normen sondern auch die
+Skalarprodukte in den beiden Hilberträumen sich nur um einen Faktor
+unterscheiden:
+\[
+\| Tu \| = C \| u \|
+\qquad\Rightarrow\qquad
+\langle Tu,Tw\rangle = C^2 \langle u,w\rangle.
+\]
+Geschrieben als Integral folgt
+\[
+\langle Tu,Tw\rangle
+=
+\int_X \hat{u}(x) \overline{\hat{w}(x)} \,d\mu(x)
+=
+\int_X \langle u,v_x\rangle \overline{\langle w,v_x\rangle}\,d\mu(x)
+=
+\biggl\langle
+\int_X \langle u,v_x\rangle v_x\,d\mu(x),
+w
+\biggr\rangle
+=
+C^2
+\langle u,w\rangle
+\]
+Da dies für jeden beliebigen Vektor $w$ gilt, folgt 
+\[
+\int_X \langle u,v_x\rangle v_x\,d\mu(x) = C^2 u
+\]
+der
+\[
+u = \frac{1}{C^2}\int_X \langle u,v_x\rangle v_x\,d\mu(x).
+\]
+Das Integral reproduziert also den Vektor $u$.
+\end{proof}
+
+Die Umkehrbarkeit der Transformation $T$ ist also nicht nur für gewöhliche
+Frames mit $A=B$ möglich sondern auch in Fällen, wo mit einer überabzählbaren
+Menge von Vektoren analyisiert wird.
+Wir werden diese Eigenschaft im Kapitel~\ref{chapter:cwt} wieder antreffen,
+wenn wir die Umkehrformel für die stetige Wavelet-Transformation finden.
+
+
+
+
+

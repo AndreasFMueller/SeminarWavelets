@@ -1,0 +1,55 @@
+\section{Resultate}
+\rhead{Resultate}
+
+Die Ergebnisse des Versuches sind erstaunlich eindeutig.
+Die Variante mit Gabor-Kerneln erreicht immer höhere Genauigkeiten als die klassische CNN Variante.
+Gleichzeitig müssen bei der Gabor Variante weniger Gewichte gelernt werden, weshalb die Trainingszeit reduziert wird.
+Also werden nicht nur bessere Resultate erreicht, es werden auch noch weniger Ressourcen für das Training benötigt.
+
+In Abbildung \ref{fig:acc} sind die Genauigkeiten der beiden Varianten über fünf Trainingsepochen gezeigt.
+Eine Epoche entspricht dabei einem kompletten Trainingsdurchgang durch den gesamten Trainingsdatensatz.
+Beide Varianten sind 10 mal trainiert worden. 
+Es zeigt sich, dass die Variante mit dem fixen Gabor-Layer in allen 10 Fällen eine höhere Genauigkeit aufweist.
+Die kleinste Genauigkeit der Gabor-Variante nach 5 Epochen beträgt 67.32\% und die höchste Genauigkeit der klassischen Variante 66.42\%.
+Somit haben wir eine Lücke zwischen den beiden Varianten von ca. 1\%.
+Falls über eine längere Zeit trainiert wird (z.B. 20 Epochen), verändern sich die Resultate nur minimal und der Unterschied der beiden Varianten bleibt bestehen.
+Unsere Resultate bestätigen also die Hypothese \ref{hyp:1}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{./papers/visuell/images/accuracy}
+	\caption{Test-Genauigkeit (Accuracy) der beiden Varianten im Laufe des Trainings.}
+	\label{fig:acc}
+\end{figure}
+
+Entscheidend bei neuronalen Netzen sind neben der Genauigkeit die Geschwindigkeiten für das Trainieren und Klassifizieren.
+Bei der Variante mit Gabor dauerte das Training etwa 3 Minuten und 10 Sekunden (kann abhängig vom Computer und Grafikkarte stark variieren).
+Bei der zweiten Variante, wo erste Layer ebenfalls gelernt wird, dauert das Training ca. 15\% länger (also etwa 3 Minuten und 38 Sekunden).
+Das Klassifizieren von neuen Bildern dauert danach bei beiden Varianten gleich lange, da in beiden Fällen die identische Tensorflow-Struktur implementiert wurde.
+
+Lernt das klassische CNN Kernels welche Ähnlichkeiten zu Gabor-Wavelets aufweisen?
+In unserem Versuch ist dies nicht der Fall.
+Die Kernel welche gelernt wurden sehen zufällig aus, es sind keine Regelmässigkeiten zu erkennen.
+Abbildung \ref{fig:cnnkernels} zeigt diese gelernten Kernels, welche mit den Gabor-Kernels in Abbildung \ref{fig:cnngkernels} verglichen werden sollten.
+Durch die zufällige Initialisierung ist es aber nicht ausgeschlossen, dass solche Gabor-Ähnlichen Kernels gelernt werden könnten.
+Es gibt Beispiele von CNN-Kernels, welche Ähnlichkeiten zu Gabor-Kernels aufweisen (vgl. Kapitel 9.10 im Buch \cite{book:deeplearning}).
+Die Vermutung liegt nahe, dass durch die kleine Auflösung der CIFAR-10 Bilder solch komplexe Kernels nicht gelernt wurden.
+
+\begin{figure}
+	\centering
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernel1}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernel2}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernel3}}
+	\caption{Drei verschiedene Kernels des ersten Layers welche vom Netzwerk gelernt wurden. Es sind keine Regelmässigkeiten erkennbar.}
+	\label{fig:cnnkernels}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernelG1}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernelG2}}
+	\subfigure{\includegraphics[width=0.3\linewidth]{./papers/visuell/images/kernelG3}}
+	\caption{Drei verschiedene Gabor-Kernels des ersten Layers.}
+	\label{fig:cnngkernels}
+\end{figure}
+

@@ -1,0 +1,170 @@
+Betrachtet werden die beiden Funktionen, welche in Abbildung \ref{deconvolve:1d} dargestellt sind.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/1d.pdf}
+\caption{Funktionen für die eindimensionalen Versuche\label{deconvolve:1d}}
+\end{figure}
+Eine stetige Wavelet-Transformation von $f(x)$ mit dem Haar-Wavelet ist in \ref{deconvolve:y1_cwt} abgebildet.
+Lässt man nur bestimmte Dilatationen ($a=2^n, n\in \mathbb{N}$) bzw. die orangen \glqq Zeilen\grqq{} der stetigen Transformation zu, werden die Level der diskreten Transformation sichtbar.
+Jedes Level tiefer wird das Wavelet \glqq halbiert\grqq{} und somit die Auflösung höher.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/y1_cwt.pdf}
+\caption{CWT von $f(x)$ (Abbildung \ref{deconvolve:1d})\label{deconvolve:y1_cwt}}
+\end{figure}
+
+In \ref{deconvolve:y1_cwt} sind der Übersicht halber nur die Level 7-13 eingezeichnet. 
+Die Abbildung der stetigen Transformation dient hier nur zur Visualisierung, für die eigentliche Umsetzung wird nur noch mit der diskreten Transformation auf den Level 1-13 gearbeitet.
+
+Zu beachten ist, dass die Beschriftung der $y$-Achse (Scale) nicht direkt der Dilatation $a$ entspricht.
+Je tiefer der Wert, desto mehr ist das Wavelet gestaucht oder anders gesagt, tiefe Frequenzen befinden sich oben, hohe unten.
+
+Die Funktion $f(x)$ aus \ref{deconvolve:1d} wird mit dem Haar-Wavelet $\psi_{a,n}(x)$ analysiert.
+Mit $a$ wird dabei natürlich die Dilatation und mit $n$ die diskrete (sampleweise) Translation bezeichnet.
+Für jede Verschiebung $n$ erhalten wir einen Koeffizienten $cf_{k,n}$, wobei der Index $k\in[1,2,...,13]$ für das jeweilige Level steht. 
+
+Mathematisch ausgedrückt beutetet das
+\begin{align*}
+	cf_{13,n} =& \frac{1}{\sqrt{2^0}}\int_{-\infty}^{\infty}f(x)\cdot\psi_{2^0, n}(x)\,dx = \int_{-\infty}^{\infty}f(x)\cdot\psi_{1, n}(x)\,dx\\
+	cf_{12,n} =& \frac{1}{\sqrt{2^1}}\int_{-\infty}^{\infty}f(x)\cdot\psi_{2^1, n}(x)\,dx = \frac{1}{\sqrt{2}}\int_{-\infty}^{\infty}f(x)\cdot\psi_{2, n}(x)\,dx\\
+	\vdots\\
+	cf_{1,n} =& \frac{1}{\sqrt{2^{12}}}\int_{-\infty}^{\infty}f(x)\cdot\psi_{2^{12}, n}(x)\,dx = \frac{1}{64}\int_{-\infty}^{\infty}f(x)\cdot\psi_{4096, n}(x)\,dx.
+\end{align*}
+
+Nun kann aus all den erhaltenen Koeffizienten $cf_{k,n}$ ein Vektor $cf_k$ gebildet werden
+$$cf_k = \left(\begin{array}{c}
+	cf_{k,0}\\
+	cf_{k,1}\\
+	\vdots\\
+	cf_{k,n}\\
+\end{array}\right),$$
+mit welchem dann so kompakt weiter gearbeitet wird.
+Der Vektor aus der Koeffizienten $cg_{k,n}$ von $g(x)$ wird analog dazu $cg_k$ genannt.
+
+Zu erwähnen ist noch, dass $n$ von der Länge der analysierten Funktion und vom jeweiligen Level abhängig ist.
+Ist $f(x)$ wie in diesem Beispiel 9600 Samples lang, besteht $cf_1$ aus 4800 und $cf_2$ aus 2400 Elementen.
+Diese Division mit 2 geht so weiter bis man schlussendlich auf dem Level 13 nur noch 2 Koeffizienten hat.
+
+Kann nun eine Beziehung zwischen den Wavelet-Koeffizienten von $f(x)$ und $g(x)$ erkannt werden?
+Die Hoffnung ist, diesen Zusammenhang als Funktion zu formulieren die $cf_{k,n}$ als Input nimmt und einen Koeffizienten zurück gibt, welcher $cg_{k,n}$ ähnlich ist.
+Im Idealfall kann man also eine Funktion $s(cf_{k,n})$ so konstruieren dass
+$$cg_k = \left(\begin{array}{c}
+	s(cf_{k,0})\\
+	s(cf_{k,1})\\
+	\vdots\\
+	s(cf_{k,n})\\
+\end{array} \right)$$
+oder zumindest
+$$cg_k \approx \left(\begin{array}{c}
+	s(cf_{k,0})\\
+	s(cf_{k,1})\\
+	\vdots\\
+	s(cf_{k,n})\\
+\end{array} \right).$$
+
+Die Rücktransformation mit $cf_k$ sollte dann eine Funktion liefern, welche $g(x)$ nahe kommt.
+Bei Erfolg hätte man also eine Methode erarbeitet, welche aus der \glqq unscharfen\grqq{} $f(x)$ eine etwas \glqq schärfere\grqq{} Funktion $g(x)$ macht. 
+
+\subsection{Koeffizienten manipulieren}
+Abbildung \ref{deconvolve:level1} zeigt den Plot der Koeffizienten-Vektoren des ersten Levels (höchste Auflösung) der Funktionen $f(x)$ und $g(x)$ aus dem vorherigen Abschnitt, welche beide 9600 Samples lang sind.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/level/level1.pdf}
+\caption{Level 1 unverändert\label{deconvolve:level1}}
+\end{figure}
+
+Nun wird mit einer geeigneten Manipulation des Vektors $cf_k$ versucht, die blauen Koeffizienten so anzupassen, bis sie den orangen möglichst ähnlich sind.
+
+Man erkennt klar, dass die $cf_1$, also die Koeffizienten des ersten Level der Funktion $f(x)$ unter einer gewissen Schwelle abgeschwächt und darüber überproportional verstärkt werden müssen.
+Die Funktion
+$$s(cf_{k,n}) = \left( \frac{cf_{k,n}}{m}\right)^\alpha$$
+ist dafür ein vielversprechender Ansatz.
+Der Parameter $m$ ist hierbei ebendiese Schwelle und mit $\alpha$ kann die Verstärkung bestimmt werden.
+Wird $\alpha = 1$ gewählt soll sich der Koeffizient aber nicht verändern, weshalb man nochmals mit $m$ multiplizieren muss.
+$$s(cf_{k,n}) = m\cdot \left( \frac{cf_{k,n}}{m}\right)^\alpha.$$
+Ein Problem stellen hier aber noch negative Koeffizienten dar. In diesem Fall kann nur mit ganzzahligen Potenzen gearbeitet werden, da man sonst komplexe Lösungen erhält, welche für diese Anwendung nicht brauchbar sind.
+Um dies zu Umgehen muss nur der Betrag von $cf_{k,n}$ gebildet, und dessen Vorzeichen aber noch mit der Signumfunktion mitgenommen werden.
+Somit erhalten wir eine Funktion
+
+\begin{align}
+s(cf_{k,n})=m\cdot \left(\frac{|cf_{k,n}|}{m}\right)^{\alpha}\cdot \text{sign}(cf_{k,n}), \qquad m,\alpha\in\mathbb{R}
+\label{deconvolve:funktion}
+\end{align}
+als Beziehung zwischen den \glqq unscharfen\grqq{} und \glqq scharfen\grqq{} Koeffizienten.
+
+Abbildung \ref{deconvolve:function} zeigt unsere Funktion aus \eqref{deconvolve:funktion} mit $m=0.75$, verschiedenen $\alpha$ und der Variable $cf_k\in[-1.5;1.5]$.
+Gut erkennbar ist darin, wie mit dem Parameter $\alpha$ die Verstärkung justiert werden kann.
+Bei $\alpha = 1$ werden die Koeffizienten einfach übernommen.
+Auch die Wirkung von $m$ wird klar.
+Bei $m=-0.75$ und $m=0.75$ werden die Kurven fixiert.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/function.pdf}
+\caption{Funktion $s(cf_{k,n})$\label{deconvolve:function}}
+\end{figure}
+
+Nun soll diese Funktion auf wenn möglich alle verschiedenen Level unserer Wavelet-Koeffizienten angewendet werden.
+Für $m$ kann genau der Schnittpunkt zwischen den beiden Kurven in Abbildung \ref{deconvolve:level1} gewählt werden.
+$\alpha$ wird dann so bestimmt, dass die Spitze der blauen Kurve nach der Manipulation mit derjenigen der orangen zusammenfällt.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/level/level1_n.pdf}
+\caption{Level 1 mit veränderten $cf_1$\label{deconvolve:level1_n}}
+\end{figure}
+
+Abbildung \ref{deconvolve:level1_n} zeigt die Funktion \eqref{deconvolve:funktion} auf die Elemente von $cf_1$ angewendet.
+Der unterschied zwischen den beiden Kurven ist nur noch schwach erkennbar, die Manipulation scheint auf diesem Level also erfolgreich verlaufen zu sein.
+
+\subsection{Koeffizienten auf höheren Level}
+
+Mit entsprechenden $m$ und $\alpha$ soll nun gleich auf den anderen Level vorgegangen werden.
+Abbildung \ref{deconvolve:level5} zeigt Level 5 vor und nach der Koeffizientenmanipulation.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/level/level5.pdf}
+\caption{Level 5 vorher und nachher\label{deconvolve:level5}}
+\end{figure}
+
+Auf diesem Level scheint alles noch wie erwünscht zu funktionieren.
+Jeden Schritt höher kommen aber, wie weiter oben angedeutet, weniger (halb so viele) Koeffizienten dazu.
+Waren es im ersten noch 4800, so sind es im fünften nur noch 300.
+Auf dem Level 13 sind es dann nur noch zwei.
+Deswegen wird es immer schwerer, die beiden Freiheitsgrade $m$ und $\alpha$ so zu wählen, dass noch eine Annäherung von $cf_k$ an $cg_k$ resultiert.
+Mit dieser Beispielfunktion $f(x)$ war es möglich mit der Funktion aus \eqref{deconvolve:funktion} bis auf das Level 12 eine Verbesserung zu erreichen.
+
+\subsection{Ergebnis}
+Abbildung \ref{deconvolve:result_1d} zeigt unsere ursprüngliche Funktion $f_1(x)$.
+Deren Wavelet-Koeffizienten $cf_k$ wurden dann mit der oben beschriebenen Methode bearbeitet, was nach der Rücktransformation zu $f_2(x)$ führt.
+Verglichen mit $f_1(x)$, ist $f_2(x)$ deutlich näher an $g(x)$ gerückt.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/result_1d.pdf}
+\caption{Rücktransformation nach durchgeführter Manipulation\label{deconvolve:result_1d}}
+\end{figure}
+
+In der Nähe des Randes hat sich die Steilheit tatsächlich vergrössert, allerdings sind weiter weg von diesem Rand zusätzliche Artefakte hinzugekommen.
+Um dies besser zu verstehen wird an dieser Stelle die stetige Wavelet-Transformation zur Hilfe genommen.
+
+In Abbildung \ref{deconvolve:cwt} sind diese ersichtlich.
+Ein Vergleich der CWT von $g(x)$ und $f_1(x)$ zeigt, dass bei $f_1(x)$ \glqq Masse\grqq{} in die beiden Spitzen also nach unten verschoben werden muss.
+Das macht mit Einbezug der zur Fouriertheorie intuitiv Sinn, da ja ein Hinzufügen von hohen Frequenzen die Flankensteilheit erhöht.
+Dies ist mit der angewandten Methode natürlich nur beschränkt möglich, da ja jedes Level einzeln behandelt wird.
+Die so erzeugten Artefakte sind bei der stetigen Transformation von $f_2(x)$ als vertikale Striche vor allem in der unteren Hälfte erkennbar.
+Betrachtet man nur dieses Bild könnte man meinen, dass das Vorgehen erfolgreich war.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{./papers/deconvolve/pictures/cwt.pdf}
+\caption{Stetige Transformationen vor und nach Manipulation\label{deconvolve:cwt}}
+\end{figure}
+
+Wie gut man aber wirklich wieder zum Original zurückgekommen ist, sieht man noch deutlicher in der Abbildung mit der Differenz.
+Hier sind die Abweichungen zur  scharfen Funktion $g(x)$ nun klar zu erkennen.
+Die angewandte Methode hat praktisch über alle Dilatationen eine unerwünschte Änderung zur Folge.
+Es ist gut zu erkennen, dass nicht nur direkt am Ort der Änderung, sondern auch \glqq weit \grqq{} weg davon solche unerwünschten Linien entstanden sind.
+
+Das Problem scheint, dass beim Erarbeiten der Methode die Wavelet-Theorie ähnlich wie die Fourier-Theorie behandelt wurde.
+Macht man eine Fourier-Transformation, so wirkt sich eine Manipulation im Frequenzbereich automatisch auf den richtigen Ort im Zeitbereich aus.
+Bei der Wavelet-Transformation ist dies, wie der Versuch zeigt, nicht der Fall.
+Die Ortsinformation geht nicht ganz verloren, wodurch Ort und Frequenz nicht vollständig voneinander getrennt sind.

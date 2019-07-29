@@ -13,7 +13,12 @@ CHAPTERFILES =								\
 	chapters/1-geometrie/funktionen.tex				\
 	chapters/1-geometrie/hilbertraum.tex				\
 	chapters/1-geometrie/rekonstruktion.tex				\
+	chapters/1-geometrie/reziprok.tex				\
 	chapters/1-geometrie/frames.tex					\
+	chapters/1a-frames/chapter.tex					\
+	chapters/1a-frames/frame.tex					\
+	chapters/1a-frames/dual.tex					\
+	chapters/1a-frames/ginv.tex					\
 	chapters/2-fourier/chapter.tex					\
 	chapters/2-fourier/l2.tex					\
 	chapters/2-fourier/reihen.tex					\

@@ -322,13 +322,23 @@ $\lambda\in\mathbb R$.
 \end{definition}
 Die $n$-dimensionalen Spalten-Vektoren $\mathbb R^n$ bilden ganz offensichtlich
 einen Vektorraum über $\mathbb R$.
+Zeitbhängige Signale $x(t)$ können ebenfalls zu einem Vektorraum gemacht
+werden, wie wir in Abschnitt \ref{section:funktionenraume} sehen werden.
 
+Im vorangegangenen Abschnitt haben wir gelernt, dass wir Skalarprodukte
+bilden können müssen, um Vektoren miteinander zu vergleichen.
+Wir wissen zwar bereits, wie das Skalarprodukt von Vektoren in 
+$\mathbb R^n$ zu bilden ist, es ist aber nicht offensichtlich, wie
+dies zu verallgemeinern ist.
+Die folgende Definition fasst die wichtigsten Eigenschaften des
+bekannten Skalarproduktes zusammen, die wir für die Verallgemeinerung
+brauchen.
 
 \begin{definition}
 Sei $V$ ein Vektorraum über $\mathbb R$.
 Eine Abbildung
 \[
-\langle\;,\;\rangle
+\langle\;\,,\;\rangle
 \colon
 V\times V\to\mathbb R
 :
@@ -336,7 +346,7 @@ V\times V\to\mathbb R
 \]
 heisst ein Skalarprodukt, wenn
 \begin{enumerate}
-\item $\langle\;,\;\rangle$ ist linear im ersten Argument:
+\item $\langle\;\,,\;\rangle$ ist linear im ersten Argument:
 \begin{equation}
 \langle \lambda_1 u_1+\lambda_2 u_2,v\rangle
 =
@@ -344,7 +354,7 @@ heisst ein Skalarprodukt, wenn
 +
 \lambda_2 \langle u_2,v\rangle
 \end{equation}
-\item $\langle\;,\;\rangle$ ist linear im zweiten Argumument:
+\item $\langle\;\,,\;\rangle$ ist linear im zweiten Argumument:
 \begin{equation}
 \langle u,\lambda_1 v_1+\lambda_2 v_2\rangle
 =
@@ -353,11 +363,11 @@ heisst ein Skalarprodukt, wenn
 \lambda_2 \langle u,v_2\rangle
 \end{equation}
 \item
-$\langle\;,\;\rangle$
+$\langle\;\,,\;\rangle$
 ist symmetrisch:
 $\langle u,v\rangle=\langle v,u\rangle$
 \item
-$\langle\;,\;\rangle$
+$\langle\;\,,\;\rangle$
 ist {\em positiv definit}: $\langle u,u\rangle > 0$ und
 $\langle u,u\rangle=0$ genau dann, wenn $u=0$.
 \end{enumerate}
@@ -394,7 +404,7 @@ abhängig sind.
 Dies ist der Inhalt des folgenden Satzes.
 
 \begin{satz}
-Für eine Skalarprodukt $\langle\;,\;\rangle$ gilt die
+Für eine Skalarprodukt $\langle\;\,,\;\rangle$ gilt die
 Cauchy-Schwarz-Ungleichung
 \begin{equation}
 |\langle u,v\rangle| \le \| u\|\cdot\| v\|
@@ -512,7 +522,7 @@ Dies wird durch den folgenden Satz beschrieben.
 
 \begin{satz}
 \label{satz:parseval}
-Ist $\{e_k\,|\, k\in\mathbb N\}$ eine orthonormierte Basis des Vektorraumes
+Ist $\{e_k\,|\, 1\le k\le n\}$ eine orthonormierte Basis des Vektorraumes
 $V$, dann lässt sich jeder Vektor auf genau eine Art in der Form 
 \begin{equation}
 v = \sum_{k=1}^n \hat v_k\, e_k
