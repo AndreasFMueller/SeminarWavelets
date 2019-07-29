@@ -114,7 +114,8 @@ It was introduced in a paper from Ingrid Daubechies and Wim Sveldens \cite{fpga:
 The lifting scheme is an widely used algorithm, which is more efficient in terms of multiplication uses than normal wavelet transformations.
 The number of arithmetic operations is reduced nearly by a factor of two compared to a ordinary, convolutional calculation.
 
-The Lifting Scheme factorizes any discrete wavelet transform with finite filters into a series of elementary covolutions which are refered to as Lifting Steps.
+The Lifting Scheme factorizes any discrete wavelet transform with finite filters into a series of elementary covolutions which are referred to as Lifting Steps.
+This factorization splits a long filter into a tree of small filters, which is numerically superior in terms of rounding errors
 This decomposition is equivalent to a factorization of the polyphase matrix of the wavelet filter into elementary matrices. 
 In this paper, we want to focus only on orthogonal wavelets, where $\bm h = \bm{\bar h}$ and $\bm g = \bm{\bar g}$.
 In order to be consistent with the paper, we use the semantics of Daubechies et al. which refer to the coefficients
@@ -200,6 +201,7 @@ The factorization algorithm is of substantial length and is not explained in thi
 However, it results in the form
 \begin{align}
 	\bm{\bar P}(z) &=
+	\Biggl(
 	\prod_{i=1}^{m}
 	\begin{bmatrix}
 		1 & 0 \\
@@ -209,12 +211,14 @@ However, it results in the form
 		1 & -t_i(z^{-1}) \\
 		0 & 1
 	\end{bmatrix}
+	\Biggr)
 	\begin{bmatrix}
 		\frac{1}{K} & 0 \\
 		0 & K
 	\end{bmatrix}
 	\\
 	\bm P(z) &=
+	\Biggl(
 	\prod_{i=1}^{m}
 	\begin{bmatrix}
 		1 & s_i(z) \\
@@ -224,13 +228,14 @@ However, it results in the form
 		1 & 0 \\
 		t_i(z) & 1
 	\end{bmatrix}
+	\Biggr)
 	\begin{bmatrix}
 		K & 0 \\
 		0 & \frac{1}{K}
 	\end{bmatrix}
 	.
 \end{align}
-Figure \ref{fpga:fig:liftingStepFactorizatio} shows a graphical version of the factorized DWT.
+Figure \ref{fpga:fig:liftingStepFactorization} shows a graphical version of the factorized DWT.
 \begin{figure}
 	\centering
 	\input{papers/fpga/tikz/liftingStepFactorization.tikz}
@@ -238,6 +243,9 @@ Figure \ref{fpga:fig:liftingStepFactorizatio} shows a graphical version of the f
 	\caption{DWT signal flow graph with factorized filter functions (Lifting steps)}
 	\label{fpga:fig:liftingStepFactorization}
 \end{figure}
+$\bm s(z)$ and $\bm t(z)$ result from the factorizing algorithm.
+They replace $\bm h(z)$ and $\bm g(z)$ completely.
+
 
 
 \subsection{Haar wavelet}
@@ -410,7 +418,7 @@ Multiplications and divisions with the numer 2 can efficiently be implemented wi
 
 
 
-\subsubsection{Multiresolution analysis}
+\subsection{Multiresolution analysis}
 
 The multiresolution analysis is achieved by chaining the wavelet transform blocks.
 The block which holds the multiresolution analysis is called \texttt{branching}.

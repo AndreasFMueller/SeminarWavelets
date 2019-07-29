@@ -18,7 +18,7 @@
 
 %\tikzset{every node/.style={scale=0.7}}
 
-\coordinate      (start) at(0,0) ;
+\node      (start) at(0,0) {$x$} ;
 
 \coordinate (split)  at(1,0);
 
@@ -54,7 +54,7 @@
 
 \node[round] (combine)  at (13,0){$+$};
 
-\coordinate[right of=combine, node distance=1cm] (end) ;
+\node[right of=combine, node distance=1cm] (end) {$y$};
 
 
 \draw[->] (start) -- node {}(split);

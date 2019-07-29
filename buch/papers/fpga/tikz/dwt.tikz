@@ -14,7 +14,7 @@
 \tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black, scale = 0.8]
 \tikzstyle{dots}=[fill=white,thick,text=black,scale=0.8]
 
-\node[dots] (start) at (0,0) {$a_{j+1,k}$};
+\node[dots] (start) at (0,0) {$a_{j+1,*}$};
 
 \coordinate     (split) at (1,0);
 
@@ -24,8 +24,8 @@
 \node[round] (d1) [right of=h1] {$\downarrow 2$};
 \node[round] (d2) [right of=h2] {$\downarrow 2$};
 
-\node[dots] (dots1) [right of=d1] {$a_{j,k} \- \text{(LP)}$};
-\node[dots] (dots2) [right of=d2] {$b_{j,k} \- \text{(HP)}$};
+\node[dots] (dots1) [right of=d1] {$a_{j,*} \- \text{(LP)}$};
+\node[dots] (dots2) [right of=d2] {$b_{j,*} \- \text{(HP)}$};
 
 \node[round] (u1) [right of=dots1] {$\uparrow 2$};
 \node[round] (u2) [right of=dots2] {$\uparrow 2$};
@@ -35,7 +35,7 @@
 
 \node[round] (combine) at (12.5,0) {$+$};
 
-\node[dots, right of=combine, node distance=2cm] (end) {$a_{j+1,k}$} ;
+\node[dots, right of=combine, node distance=2cm] (end) {$a_{j+1,*}$} ;
 
 %\node[state]  (w1)          {$\omega_1$};
 %
