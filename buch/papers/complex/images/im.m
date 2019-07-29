@@ -15,13 +15,13 @@ tend = 4;
 t = linspace(0, tend, width)';    
 
 % Frequency vector
-P = 1.5; % Periods of frequency variation
+P = 2; % Periods of frequency variation
 % f = logspace(0, 2, N)';
 % f = 5 + 3 * cos(2*pi*P/tend * t);        % Sine
 if sig == 0
   f = linspace(2, 8, width)';                  % Chirp
 else
-  f = 6 + 2 * sign(cos(2*pi*P/tend * t)); % Square
+  f = 6 + 2 * sign(sin(2*pi*P/tend * t)); % Square
 end
   
 

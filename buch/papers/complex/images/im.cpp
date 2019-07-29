@@ -99,17 +99,17 @@ int main(int argc, char *argv[]) {
 	for (int y = 1; y <= height; y++) {
 		for (int x = 0; x < width; x++) {
 			m = mag[y][x];
-			if (m == 255 & show_max){
+			if ((m == 255) & show_max){
 				row_pointers[height - y][3 * x + 0] = 255;
 				row_pointers[height - y][3 * x + 1] = 255;
 				row_pointers[height - y][3 * x + 2] = 255;
 			} else {
 				p = phi[y][x];
-				row_pointers[height - y][3 * x + 2] = round(abs(m * cos(p)));
+				row_pointers[height - y][3 * x + 2] = round(abs(m * (1 + cos(p)) / 2));
 				p += 2 * M_PI / 3;
-				row_pointers[height - y][3 * x + 0] = round(abs(m * cos(p)));
+				row_pointers[height - y][3 * x + 0] = round(abs(m * (1 + cos(p)) / 2));
 				p += 2 * M_PI / 3;
-				row_pointers[height - y][3 * x + 1] = round(abs(m * cos(p)));
+				row_pointers[height - y][3 * x + 1] = round(abs(m * (1 + cos(p)) / 2));
 			}
 		}
 	}

@@ -38,7 +38,7 @@ function [yab, a] = myCWT(x, ts, height, padding, WL)
       case 1
         Psi_ab = myHaarReal(w, a);
       case 2
-        Psi_ab = myHaarImag(w, a);
+        Psi_ab = myHaarComplex(w, a);
       case 3
         Psi_ab = myGabor(w, a);
       otherwise    
@@ -90,7 +90,7 @@ function Psi_ab = myHaarReal(w, a)
     Psi_ab(idx) = 0;
 end
 
-function Psi_ab = myHaarImag(w, a)    
+function Psi_ab = myHaarComplex(w, a)    
     w = w ./ a;
     Psi_ab = pi*1i .* (1 - cos(w/pi)) ./ w; 
     Psi_ab([1, length(w)/2:end], :) = 0;
