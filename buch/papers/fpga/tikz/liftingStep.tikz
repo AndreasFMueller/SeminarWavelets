@@ -18,7 +18,7 @@
 
 %\tikzset{every node/.style={scale=0.7}}
 
-\coordinate      (start) at(0,0) ;
+\node      (start) at(0,0) {$x$} ;
 
 \coordinate (split)  at(1,0);
 
@@ -32,7 +32,7 @@
 \coordinate (h1bl) at (4.5,-1);
 \coordinate (h1tr) at (6, 1);
 \coordinate (h1br) at (6,-1);
-\node[block] (h1) at (5.25,0) {$\bm{\bar P}(z^{-1})$};
+\node[block] (h1) at (5.25,0) {$\bm{\bar P}(z^{-1})^t$};
 
 
 
@@ -54,7 +54,7 @@
 
 \node[round] (combine)  at (13,0){$+$};
 
-\coordinate[right of=combine, node distance=1cm] (end) ;
+\node[right of=combine, node distance=1cm] (end) {$y$};
 
 
 \draw[->] (start) -- node {}(split);

@@ -1,0 +1,93 @@
+\usetikzlibrary{automata,arrows,positioning,calc}
+\usetikzlibrary{shapes}
+
+
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 1]
+
+
+%\useasboundingbox (0,-0.5) rectangle (12.5,1.5);
+
+%\tikzset{every node/.style={scale=0.7}}
+
+\tikzstyle{block}=[rectangle, inner sep=4pt, fill=white,draw=black,thick,text=black, minimum height = 2.5cm, minimum width = 1.5cm, scale = 1]
+\tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm,  scale = 1]
+\tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black,  scale = 1]
+
+\tikzstyle{dots}=[circle, fill=white,thick,text=black,scale=1, minimum size=0.8cm,  scale = 1]
+
+\tikzstyle{amp}= [regular polygon, regular polygon sides=3,	draw, fill=white, text width=1em, inner sep=0.5mm, outer sep=0mm,	shape border rotate=-90, minimum size = 1.7cm, scale = 1]
+
+%\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-3) grid (10,3);
+
+%\tikzset{every node/.style={scale=0.7}}
+
+\coordinate      (start) at(0,0) ;
+
+\coordinate (split)  at(1,0);
+
+\node[] (z1)  {};
+\node[square] (z2) at (2,-1) {$z$};
+
+\node[round] (d1) at (3.5,1) {$\downarrow 2$};
+\node[round] (d2) at (3.5,-1) {$\downarrow 2$};
+
+\node[round] (min1) [right of=d1] {$-$};
+\node[square] (s1) [below of=min1, node distance=1cm] {$s_1(z)$};
+\coordinate[right of=d2] (c1) ;
+
+\node[round] (min2) [right of=c1] {$-$};
+\node[square] (s2) [above of=min2, node distance=1cm] {$t_1(z)$};
+\coordinate[right of=min1] (c2) [right of=min1];
+
+\node[dots] (dots1) [right of=c2] {...};
+\node[dots] (dots2) [right of=min2] {...};
+
+\node[round] (min3) [right of=dots1] {$-$};
+\node[square] (s3) [below of=min3, node distance=1cm] {$s_m(z)$};
+\coordinate[right of=dots2] (c3) ;
+
+\node[round] (min4) [right of=c3] {$-$};
+\node[square] (s4) [above of=min4, node distance=1cm] {$t_m(z)$};
+\coordinate[right of=min3] (c4) [right of=min1];
+
+\node[amp] (amp1) [right of=c4] {$\frac{1}{K}$};
+\node[amp] (amp2)  [right of=min4] {$K$};
+
+\node[dots] (lp) [right of=amp1] {\text{LP}};
+\node[dots] (hp) [right of=amp2] {\text{HP}};
+
+
+\draw[->] (start) -- (split);
+
+\draw[->] (split) |- (d1);
+\draw[->] (split) |- (z2);
+\draw[->] (z2) -- (d2);
+
+
+\draw[->] (d1) -- (min1);
+\draw[->] (d2) -- (min2);
+
+\draw[->] (c1) -- (s1);
+\draw[->] (s1) -- (min1);
+\draw[->] (c2) -- (s2);
+\draw[->] (s2) -- (min2);
+
+\draw[->] (min1) -- (dots1);
+\draw[->] (min2) -- (dots2);
+
+
+\draw[->] (dots1) -- (min3);
+\draw[->] (dots2) -- (min4);
+
+\draw[->] (c3) -- (s3);
+\draw[->] (s3) -- (min3);
+\draw[->] (c4) -- (s4);
+\draw[->] (s4) -- (min4);
+
+\draw[->] (min3) -- (amp1);
+\draw[->] (min4) -- (amp2);
+
+\draw[->] (amp1) -- (lp);
+\draw[->] (amp2) -- (hp);
+
+\end{tikzpicture}

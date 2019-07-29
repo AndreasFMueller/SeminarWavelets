@@ -14,28 +14,28 @@
 \tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black,scale=0.8]
 \tikzstyle{dots}=[fill=white,thick,text=black,scale=0.8]
 
-\node[dots] (a0) at (0,0) {$x_k = a_{0,k}$};
+\node[dots] (a0) at (0,0) {$x_* = a_{0,*}$};
 
 \node[square] (s1) [right of=a0, node distance=1.75cm] {DWT};
-\node[dots] (b1) at (7 , 0) {$b_{-1,k}$};
-\node[dots] (a1) [below of=s1] {$a_{-1,k}$};
+\node[dots] (b1) at (7 , 0) {$b_{-1,*}$};
+\node[dots] (a1) [below of=s1] {$a_{-1,*}$};
 
 \node[square] (s2) [right of=a1, node distance=1.75cm] {DWT};
-\node[dots] (b2) at (7 , -1.5) {$b_{-2,k}$};
-\node[dots] (a2) [below of=s2] {$a_{-2,k}$};
+\node[dots] (b2) at (7 , -1.5) {$b_{-2,*}$};
+\node[dots] (a2) [below of=s2] {$a_{-2,*}$};
 
 \node[square] (s3) [right of=a2, node distance=1.75cm] {DWT};
-\node[dots] (b3) at (7 , -3) {$b_{-3,k}$};
-\node[dots] (a3) at (7 , -4.5) {$a_{-3,k}$};
+\node[dots] (b3) at (7 , -3) {$b_{-3,*}$};
+\node[dots] (a3) at (7 , -4.5) {$a_{-3,*}$};
 
 \node[square] (i3) [right of=b3, node distance=1.75cm] {iDWT};
-\node[dots]   (ia3) [right of=i3, node distance=1.75cm] {$a_{-2,k}$};
+\node[dots]   (ia3) [right of=i3, node distance=1.75cm] {$a_{-2,*}$};
 
 \node[square] (i2) [above of=ia3] {iDWT};
-\node[dots]   (ia2) [right of=i2, node distance=1.75cm] {$a_{-1,k}$};
+\node[dots]   (ia2) [right of=i2, node distance=1.75cm] {$a_{-1,*}$};
 
 \node[square] (i1) [above of=ia2] {iDWT};
-\node[dots]   (ia1) [right of=i1, node distance=1.75cm] {$a_{-0,k} = y_k$};
+\node[dots]   (ia1) [right of=i1, node distance=1.75cm] {$a_{-0,*} = y_*$};
 
 
 

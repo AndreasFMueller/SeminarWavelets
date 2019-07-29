@@ -1,0 +1,104 @@
+\usetikzlibrary{automata,arrows,positioning,calc}
+\usetikzlibrary{shapes}
+
+
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 1]
+
+
+%\useasboundingbox (0,-0.5) rectangle (12.5,1.5);
+
+%\tikzset{every node/.style={scale=0.7}}
+
+\tikzstyle{block}=[rectangle, inner sep=4pt, fill=white,draw=black,thick,text=black, minimum height = 2.5cm, minimum width = 1.5cm, scale = 1]
+\tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm,  scale = 1]
+\tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black,  scale = 1]
+
+\tikzstyle{dots}=[circle, fill=white,thick,text=black,scale=1, minimum size=0.8cm,  scale = 1]
+
+\tikzstyle{amp}= [regular polygon, regular polygon sides=3,	draw, fill=white, text width=1em, inner sep=0.5mm, outer sep=0mm,	shape border rotate=-90, minimum size = 1.7cm, scale = 1]
+
+%\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-3) grid (10,3);
+
+%\tikzset{every node/.style={scale=0.7}}
+
+\coordinate      (start) at(0,0) ;
+
+\coordinate (split)  at(1,0);
+
+\node[] (z1)  {};
+\node[square] (z2) at (2,-1) {$z$};
+
+\node[round] (d1) at (3.5,1) {$\downarrow 2$};
+\node[round] (d2) at (3.5,-1) {$\downarrow 2$};
+
+\node[round] (min1) [right of=d1] {$+$};
+\node[square] (s1) [below of=min1, node distance=1cm] {$-1$};
+\coordinate[right of=d2] (c1) ;
+
+\node[round] (min2) [right of=c1] {$+$};
+\node[square] (s2) [above of=min2, node distance=1cm] {$\frac{1}{2}$};
+\coordinate[right of=min1] (c2) [right of=min1];
+
+\node[dots] (lp) [right of=c2]   {\text{LP}};
+\node[dots] (hp) [right of=min2] {\text{HP}};
+
+
+\coordinate[right of=lp] (c3) ;
+\node[round] (sum3) [right of=hp] {$+$};
+\node[square] (s3) [above of=sum3, node distance=1cm] {$-\frac{1}{2}$};
+
+\coordinate[right of=sum3] (c4) ;
+\node[round] (sum4) [right of=c3] {$+$};
+\node[square] (s4) [below of=sum4, node distance=1cm] {$1$};
+
+
+\node[round] (u1) [right of=sum4] {$\uparrow 2$};
+\node[round] (u2) [right of=c4] {$\uparrow 2$};
+
+\node[square] (zz2) [right of=u2] {$z^{-1}$};
+
+\node[round] (combine)  at (15,0){$+$};
+
+\coordinate[right of=combine, node distance=1cm] (end);
+
+
+\draw[->] (start) -- (split);
+
+\draw[->] (split) |- (d1);
+\draw[->] (split) |- (z2);
+\draw[->] (z2) -- (d2);
+
+
+\draw[->] (d1) -- node[above]{$s^{(0)}$} (min1);
+\draw[->] (d2) -- node[below]{$d^{(0)}$} (min2);
+
+\draw[->] (c1) -- (s1);
+\draw[->] (s1) -- (min1);
+\draw[->] (c2) -- (s2);
+\draw[->] (s2) -- (min2);
+
+\draw[->] (min1) -- node[above]{$s$} (lp);
+\draw[->] (min2) -- node[below]{$d$} (hp);
+
+\draw[->] (lp) -- node[above]{$s$} (sum4);
+\draw[->] (hp) -- node[below]{$d$} (sum3);
+
+
+\draw[->] (c3) -- (s3);
+\draw[->] (s3) -- (sum3);
+\draw[->] (c4) -- (s4);
+\draw[->] (s4) -- (sum4);
+
+\draw[->] (sum4) -- node[above]{$s^{(0)}$}(u1);
+\draw[->] (sum3) -- node[below]{$d^{(0)}$}(u2);
+
+
+
+\draw[->] (u1) -| (combine);
+\draw[->] (u2) -- (zz2);
+\draw[->] (zz2) -| (combine);
+
+\draw[->] (combine) -- (end);
+
+
+\end{tikzpicture}
