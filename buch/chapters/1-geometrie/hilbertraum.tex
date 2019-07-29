@@ -483,7 +483,7 @@ Als nächstes konstruieren wir die Folge $f_i$ von Funktionen, die wie
 folgt definiert sind:
 \begin{align*}
 f_1(x) &= \begin{cases}
-\sqrt{2}&\qquad \frac12x1\\
+\sqrt{2}&\qquad \frac12 \le x < 1\\
 0\phantom{000}&\qquad\text{sonst}
 \end{cases}
 \\
@@ -676,7 +676,7 @@ bewiesen werden soll.
 
 Bevor wir soweit kommen können, brauchen wir jedoch ein noch elementareres
 Resultat, welches in jedem beliebigen Hilbertsatz zutrifft.
-Es besagt, dass sich zu einem eabschlossener Unterraum eines Hilbertraum 
+Es besagt, dass sich zu einem abgeschlossenen Unterraum eines Hilbertraums 
 immer ein Orthogonalkomplement finden lässt, also ein darauf orthogonaler
 Unterraum, der zusammen mit dem gegebenen Unterraum jeden Vektor von $H$
 erzeugen kann.
@@ -686,9 +686,9 @@ endlichdimensionalen Vektorgeometrie hat.
 \begin{satz}
 \label{satz:orthogonalkomplement}
 Ist $V\subset H$ ein abgeschlossener Unterraum eines Hilbertraumes $H$,
-lässt sich jeder Vektor $v\in H$ auf genau eine Art in $v = v_1+v_2$
-zerlegen derart, dass $v_1 \in V$ und $v_1\in V^{\perp}$,
-d.~h.~$\langle v_2,v\rangle$ für alle $v\in V$.
+dann lässt sich jeder Vektor $v\in H$ auf genau eine Art in $v = v_1+v_2$
+zerlegen derart, dass $v_1 \in V$ und $v_2\in V^{\perp}$,
+d.~h.~$\langle v_2,v\rangle$ für alle $v\in V$. %TODO ...? <v1, v2> = 0?
 \end{satz}
 
 \begin{proof}[Beweis]
