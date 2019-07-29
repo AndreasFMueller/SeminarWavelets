@@ -59,7 +59,7 @@ Wir werden als erstes die Signale in \cref{polynomials:signals} mittels des db1
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_signals.pdf}
-    \caption{Die verschiedenen zu analysierenden polynomialen Signale\label{polynomials:signals}}
+    \caption{Die verschiedenen zu analysierenden polynomialen Signale.\label{polynomials:signals}}
 \end{figure}
 In~\cref{polynomials:haar} sind die Approximations- und die Detailkoeffizienten
 der Transformation zu sehen. Wir sehen, dass die Approximationskoeffizienten
@@ -79,7 +79,7 @@ die Ableitungen der verschiedenen Signale geben.
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_signals_diff.pdf}
-    \caption{Ableitungen der Polynome\label{polynomials:diff}}
+    \caption{Ableitungen der Polynome.\label{polynomials:diff}}
 \end{figure}
 
 Dieses Verhalten ist zu erwarten wenn man bedenkt, dass das Haar Wavelet
@@ -117,7 +117,6 @@ Nun stellt sich die Frage: Was passiert wenn wir Daubechies Wavelets mit mehr
 verschwindenden Momenten zur Analyse einsetzen? In \cref{polynomials:db2_3}
 sind jeweils die Detailkoeffizienten der Analyse mit db2 und db3 Wavelet zu
 sehen.
-
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_signals_db2_3.pdf}
@@ -125,12 +124,11 @@ sehen.
              proportional zur zweiten und dritten Ableitung der
              Polynome.\label{polynomials:db2_3}}
 \end{figure}
-
 Wie sich herausstellt liefern diese Wavelets jeweils Detailkoeffizienten,
 welche proportional zur zweiten und dritten Ableitung der Polynome ist.
-Warum ist das so?
-Betrachten wir zuerst einmal algebraisch wie sich konstante und lineare
-Funktionen mit den Daubechies Wavelets verhalten.
+
+Warum ist das so? Betrachten wir zuerst einmal algebraisch wie sich konstante
+und lineare Funktionen mit den Daubechies Wavelets verhalten.
 
 \subsection{Konstante Funktionen}
 Die Detailkoeffizienten konstanter Funktionen $f(x) = a$ ergeben sich direkt
@@ -139,7 +137,6 @@ aus \cref{polynomials:cD_haar}:
     cD &= \frac{1}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l a \\
        &= \frac{a}{\sqrt{2}} \sum_{l\in\mathbb Z} \bar{g}_l.
 \end{align*}
-
 Da die Summe der $\bar{g}_l$ immer 0 ist, werden die Detailkoeffizienten für
 konstante Funktionen also immer 0 sein für beliebige Wavelets.
 
@@ -225,7 +222,10 @@ An der Stelle $x=0.1=10^{-1}$ ausgewertet ergibt sich
 \end{align*}
 Wollen wir nun die dritte Ableitung mit dem db3 Wavelet berechnen, ist der Term
 $\frac{10^{-3}}{3!}$ relevant. Der nächste Term $\frac{10^{-4}}{4!}$ ist schon
-um Faktor 40 kleiner.
+um Faktor 40 kleiner. Je nach Anwendung haben diese Terme somit weniger
+Einfluss auf das Resultat als etwaiges Rauschen oder die Approximation genügt
+bereits den Anforderungen wenn nur eine qualitative Aussage zur Ableitung des
+Signals gefordert ist.
 
 Daubechies Wavelets mit $A$ verschwindenden Momenten können uns also direkt die
 $A$-te Ableitung von Polynomen der Ordnung $A$ liefern. Für beliebige
@@ -252,6 +252,8 @@ Polynoms ist kaum noch erkennbar.
              dominiert vom Rauschen und die Steigung der Polynome ist kaum noch
              zu erkennen.\label{polynomials:noise:signals}}
 \end{figure}
+
+\subsection{Erste Ableitung mit Haar Wavelet}
 
 Was passiert nun wenn wir das verrauschte Signale mit einem Haar Wavelet
 analysieren?  Wie in \cref{polynomials:noise:db1} zu sehen bringt das so noch
@@ -322,6 +324,27 @@ cD_{2,0}
 Die Detailkoeffizienten entsprechen somit der Differenz der Mittelwerte zweier
 benachbarter Abtastwerte.
 
+\begin{figure}
+    \centering
+    \includegraphics{papers/polynomials/images/polynomials_noise_db1_multi.pdf}
+    \caption{Multiskalenanalyse von $x^2 + r(x)$ mit Haar Wavelet.\\
+        Blau: Signal mit den einzelnen Samples\\
+        Orange: Detailkoeffizienten $cD_{1-4}$ \\
+        Grün: Approximationskoeffizienten $cA_4$\\
+        Die Detailkoeffizienten der Stufe 4 sind kaum noch vom Rauchen
+        betroffen und approximieren die Ableitung des Ursprungssignals gut.
+        Jedoch ist die zeitliche Auflösung reduziert.\label{polynomials:noise:db1_multi}}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics{papers/polynomials/images/polynomials_noise_moving_average.pdf}
+    \caption{Ableitung nach Mittelwertbildung.
+        Blau: Signal mit den einzelnen Samples\\
+        Orange: Ableitungen nach Mittelwertbildung über 1, 2, 4 und 8 Samples\\
+        Grün: Mittelwerte über 8 Samples\\
+        Die zeitliche Auflösung ist doppelt so hoch im Vergleich zu der
+        Multiskalenanalyse mit dem Haar Wavelet.\label{polynomials:noise:average}}
+\end{figure}
 In \cref{polynomials:noise:db1_multi} ist das Signal $x^2 + r(x)$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem
 Haar Wavelet und dann noch die Approximationskoeffizienten der letzten Stufe
@@ -330,32 +353,25 @@ eher der Ableitung des originalen Polynoms entsprechen und weniger vom Rauschen
 betroffen sind. Jedoch nimmt die zeitliche Auflösung ab.
 Die Stufenbreite macht jeweils den zeitlichen Bereich, also die Anzahl Samples,
 welcher für die Berechnung des jeweiligen Koeffizienten relevant ist sichtbar.
-\begin{figure}
-    \centering
-    \includegraphics{papers/polynomials/images/polynomials_noise_db1_multi.pdf}
-    \caption{Multiskalenanalyse von $x^2 + r(x)$ mit Haar Wavelet.\\
-        Blau: Signal mit den einzelnen Samples\\
-        Orange: Detailkoeffizienten $cD_{1-4}$ \\
-        Grün: Approximationskoeffizienten $cA_4$\label{polynomials:noise:db1_multi}}
-\end{figure}
+
 Im Vergleich dazu sind in \cref{polynomials:noise:average} die direkte
 Ableitung und die Ableitungen nach der Mittelwertbildung über 2, 4 und 8 Werte
-zu sehen.
-%TODO Vorteil der höheren zeitlichen Auflösung bei direktem Ableitung, da kein Downsampling.
+zu sehen. Auffällig ist die höhere zeitliche Auflösung, da im Gegensatz zur
+Methode mit den Wavelets kein Downsampling durchgeführt wird. Ansonsten zeigen
+die beiden Verfahren wie erwartet das gleiche Verhalten bezüglich
+Rauschresistenz.
 
-\begin{figure}
-    \centering
-    \includegraphics{papers/polynomials/images/polynomials_noise_moving_average.pdf}
-    \caption{Ableitung nach Mittelwertbildung\label{polynomials:noise:average}}
-\end{figure}
+\subsection{Zweite Ableitung mit db2 Wavelet}
 
 Nun haben wir aber mit dem Verfahren mit den Wavelets den Vorteil, dass wir bei
 entsprechender Wahl des Wavelets mit $A$ verschwindenden Momenten direkt die
 $A$-te Ableitung berechnen können.
-
 In \cref{polynomials:noise:db2_multi} ist das Signal $x^3 + r(x)$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem db2
 Wavelet und die Approximationskoeffizienten der letzten Stufe abgebildet.
+Es zeigt sich ein ähnliches Verhalten wie schon bei der Berechnung der ersten
+Ableitung.
+
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_noise_db2_multi.pdf}
@@ -367,12 +383,19 @@ Wavelet und die Approximationskoeffizienten der letzten Stufe abgebildet.
 Im Vergleich dazu sind in \cref{polynomials:noise:average} die direkt
 berechnete zweite Ableitung und die zweite Ableitungen nach der
 Mittelwertbildung über 2, 4 und 8 Werte zu sehen.
-%TODO: zweite Ableitung kann auch direkt mit f(x) - 2f(x+1) + f(x+2) berechnet werden
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_noise_moving_average_2nd.pdf}
-    \caption{Zweite Ableitung nach Mittelwertbildung\label{polynomials:noise:average2nd}}
+    \caption{Zweite Ableitung nach Mittelwertbildung.\\
+        Blau: Signal mit den einzelnen Samples\\
+        Orange: Ableitungen nach Mittelwertbildung über 1, 2, 4 und 8 Samples\\
+        Grün: Mittelwerte über 8 Samples\label{polynomials:noise:average2nd}}
 \end{figure}
+Wieder liefern uns beide Verfahren ähnliche Resultate. Da die Daubechies
+Wavelets höherer Ordnung im Vergleich zum einfachen Mitteln des
+Ursprungssignals ein anderes Verhalten aufweisen, ist ein direkter Vergleich
+nicht mehr so einfach möglich. Je nach Anwendung könnte aber das
+Frequenzverhalten der Daubechies Wavelets einen Vorteil bieten.
 
 Daubechies Wavelets bieten also eine komfortable Methode um verrauschte Signale
 abzuleiten. Die Multiskalenanalyse kann dabei einen Kompromiss zwischen
@@ -398,7 +421,7 @@ Signal direkt in den Detailkoeffizienten sehen können.
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_sin_signals.pdf}
-    \caption{Polynomiale Signale mit Sinus\label{polynomials:sin:signals}}
+    \caption{Polynomiale Signale mit überlagertem Sinus.\label{polynomials:sin:signals}}
 \end{figure}
 
 In \cref{polynomials:sin:db2} ist die Analyse mit dem db2 Wavelet zu sehen. Die
@@ -408,7 +431,9 @@ Sinussignal lässt sich so also bestens extrahieren.
 \begin{figure}
     \centering
     \includegraphics{papers/polynomials/images/polynomials_sin_db2.pdf}
-    \caption{Analyse mit db2 Wavelet\label{polynomials:sin:db2}}
+    \caption{Analyse mit db2 Wavelet. Die Detailkoeffizienten sind dominiert
+             vom Sinus Signal welches sich somit zuverlässig extrahieren
+             lässt.\label{polynomials:sin:db2}}
 \end{figure}
 
 Wenn man an sinusförmigen Signalen interessiert ist, liegt es auch nahe die
