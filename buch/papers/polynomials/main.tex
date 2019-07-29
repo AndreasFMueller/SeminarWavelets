@@ -104,14 +104,15 @@ wir die Detailkoeffizienten
 \begin{align}
     cD_{1,k} & = \frac{1}{\sqrt{2}}\left(f(x_k) - f(x_{k + 1})\right).
 \end{align}
-Vergleichen wir das mit der Ableitung stellt sich heraus, dass sie dem mit
-$-\frac{\sqrt{2}}{\Delta x}$ skalierten Detailkoeffizienten entspricht.
+Vergleichen wir diese mit der Ableitung
 \begin{align}
 \frac{\Delta y}{\Delta x} &= \frac{f(x_0+\Delta x) - f(x_0)}{\Delta x}
                            = \frac{f(x_{k+1}) - f(x_k)}{x_{k+1} - x_k} \nonumber \\
-                          &= cD_{1,k} \frac{-\sqrt{2}}{x_{k+1} - x_k}
+                          &= cD_{1,k} \frac{-\sqrt{2}}{x_{k+1} - x_k},
                           \label{polynomials:eq:cD_haar_ableitung}
 \end{align}
+stellt sich heraus, dass sie dem mit $-\frac{\sqrt{2}}{\Delta x}$ skalierten
+Detailkoeffizienten entspricht.
 
 Nun stellt sich die Frage: Was passiert wenn wir Daubechies Wavelets mit mehr
 verschwindenden Momenten zur Analyse einsetzen? In \cref{polynomials:db2_3}
