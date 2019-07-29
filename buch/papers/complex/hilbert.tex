@@ -2,7 +2,7 @@
 \rhead{Hilbert-Transformation}
 Im ersten Kapitel haben wir aus dem reellen Gabor-Wavelet und dem Wunsch nach Separation von Amplitude und Phase das komplexe Morlet-Wavelet gefunden.
 Hierzu haben wir die negativen Frequenzen aus dem Spektrum des Wavelets entfernt.
-Dieses Verfahren lässt isch mit der Hilbert-Transformation
+Dieses Verfahren lässt sich mit der Hilbert-Transformation
 \[
 	\mathcal{H}f(t) =
 	\frac{1}{\pi}\int_{-\infty}^{\infty}\frac{f(x)}{t-x} dx
@@ -15,11 +15,8 @@ Hierzu benötigen wir den Begriff des analytischen Signals.
 		f^\ast(t) 
 		&= f(t) + i\,\mathcal{H}f(t)
 	\end{align*}
-	das zu $f(t)$ \emph{analytische Signal}\footnote{Der Begriff `analytisch' ist in diesem Kapitel immer im Sinne dieser Definition aus der Signaltheorie zu verstehen.
+	das zu $f(t)$ zugeordnete \emph{analytische Signal}\footnote{Der Begriff `analytisch' ist in diesem Kapitel immer im Sinne dieser Definition aus der Signaltheorie zu verstehen.
 	Er ist nicht zu verwechseln mit der Eigenschaft analytischer Funktionen in der Analysis.
-%	Die Analysis kennt den Begriff der analytischen Funktion. 
-%	Diese Eigenschaft ist in der komplexen Analysis jedoch äquivalent zur Holomorphie.
-%	Wo benötigt wird folglich von holomorphen Funktionen gesprochen, um Verwechslungen zu vermeiden.
 	}.
 \end{definition}
 
@@ -55,7 +52,7 @@ Hierzu benötigen wir den Begriff des analytischen Signals.
 		&=\left\lbrace\begin{matrix}
 			2\hat{f}_{a,b} & \omega > 0\\
 			0 & \omega \le 0
-		\end{matrix} \right.
+		\end{matrix} \right.\qedhere
 	\end{align*}
 \end{proof}
 

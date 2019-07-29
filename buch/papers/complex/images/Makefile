@@ -4,7 +4,7 @@
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 # (c) 2019 Roy Seitz, Hochschule Rapperswil
 #
-imfiles = im.dat im.png im.jpg im.aux im.log
+imfiles = im.dat im.png im.jpg square.aux square.log chirp.aux chirp.log
 
 all:	images
 images:	haar.pdf gabor.pdf morlet.pdf \
@@ -39,59 +39,59 @@ morlet.data:	morlet.m
 im :	im.cpp
 	g++ -o im -Wall -O2 im.cpp -lpng16
 
-chirp_morlet.pdf:	im im.m
+chirp_morlet.pdf:	im im.m chirp.tex
 	octave --silent --eval 'im(1920, 1080, 0, 0, 1, 0, 1)' 
 	./im 
 	convert im.png -density 300 -units PixelsPerInch im.jpg 
-	pdflatex -interaction=batchmode im.tex 
-	mv im.pdf chirp_morlet.pdf && rm $(imfiles)
+	pdflatex -interaction=batchmode chirp.tex 
+	mv chirp.pdf chirp_morlet.pdf
 
-square_morlet.pdf:	im im.m
+square_morlet.pdf:	im im.m square.tex
 	octave --silent --eval 'im(1920, 1080, 1, 0, 1, 0, 1)' 
 	./im 
 	convert im.png -density 300 -units PixelsPerInch im.jpg 
-	pdflatex -interaction=batchmode im.tex 
-	mv im.pdf square_morlet.pdf && rm $(imfiles)
+	pdflatex -interaction=batchmode square.tex 
+	mv square.pdf square_morlet.pdf
 
-chirp_haar.pdf:	im im.m
+chirp_haar.pdf:	im im.m chirp.tex
 	octave --silent --eval 'im(1920, 1080, 0, 1, 1, 0, 1)' 
 	./im 
 	convert im.png -density 300 -units PixelsPerInch im.jpg 
-	pdflatex -interaction=batchmode im.tex 
-	mv im.pdf chirp_haar.pdf && rm $(imfiles)
+	pdflatex -interaction=batchmode chirp.tex 
+	mv chirp.pdf chirp_haar.pdf
 
-square_haar.pdf:	im im.m
+square_haar.pdf:	im im.m square.tex
 	octave --silent --eval 'im(1920, 1080, 1, 1, 1, 0, 1)' 
 	./im 
 	convert im.png -density 300 -units PixelsPerInch im.jpg 
-	pdflatex -interaction=batchmode im.tex 
-	mv im.pdf square_haar.pdf && rm $(imfiles)
+	pdflatex -interaction=batchmode square.tex 
+	mv square.pdf square_haar.pdf
 
-chirp_ahaar.pdf:	im im.m
+chirp_ahaar.pdf:	im im.m chirp.tex
 	octave --silent --eval 'im(1920, 1080, 0, 2, 1, 0, 1)' 
 	./im 
 	convert im.png -density 300 -units PixelsPerInch im.jpg 
-	pdflatex -interaction=batchmode im.tex 
-	mv im.pdf chirp_ahaar.pdf && rm $(imfiles)
+	pdflatex -interaction=batchmode chirp.tex 
+	mv chirp.pdf chirp_ahaar.pdf
 
-square_ahaar.pdf:	im im.m
+square_ahaar.pdf:	im im.m square.tex
 	octave --silent --eval 'im(1920, 1080, 1, 2, 1, 0, 1)' 
 	./im 
 	convert im.png -density 300 -units PixelsPerInch im.jpg 
-	pdflatex -interaction=batchmode im.tex 
-	mv im.pdf square_ahaar.pdf && rm $(imfiles)
+	pdflatex -interaction=batchmode square.tex 
+	mv square.pdf square_ahaar.pdf
 
-chirp_gabor.pdf:	im im.m
+chirp_gabor.pdf:	im im.m chirp.tex
 	octave --silent --eval 'im(1920, 1080, 0, 3, 1, 0, 1)' 
 	./im 
 	convert im.png -density 300 -units PixelsPerInch im.jpg 
-	pdflatex -interaction=batchmode im.tex 
-	mv im.pdf chirp_gabor.pdf && rm $(imfiles)
+	pdflatex -interaction=batchmode chirp.tex 
+	mv chirp.pdf chirp_gabor.pdf
 
-square_gabor.pdf:	im im.m
+square_gabor.pdf:	im im.m square.tex
 	octave --silent --eval 'im(1920, 1080, 1, 3, 1, 0, 1)' 
 	./im 
 	convert im.png -density 300 -units PixelsPerInch im.jpg 
-	pdflatex -interaction=batchmode im.tex 
-	mv im.pdf square_gabor.pdf && rm $(imfiles)
+	pdflatex -interaction=batchmode square.tex 
+	mv square.pdf square_gabor.pdf
 

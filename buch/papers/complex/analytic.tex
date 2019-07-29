@@ -10,29 +10,29 @@ Dies führt zur
 	\begin{equation}
 		\psi^\ast = \frac{1}{\sqrt{2}}\left(\psi + i\,\mathcal{H}\psi\right) \label{complex:anawave}
 	\end{equation}
-	das zu $\psi$ \emph{analytische Wavelet}.
+	das zu $\psi$ zugeordnete \emph{analytische Wavelet}.
 \end{definition}
 
-Für die Norm eines analytischen Wavelets gilt
+Durch den Skalierungsfaktor in obiger Definition gilt für die Norm eines analytischen Wavelets der folgende Satz.
 \begin{satz}
 	\label{complex:norm}
 	Die Norm eines analytischen Wavelets ist gleich der Norm des Original-Wavelets.
-	\[\left\|\psi\right\| = \left\|\psi^\ast\right\|\].
+	\[\left\|\psi\right\| = \left\|\psi^\ast\right\|\]
 \end{satz}
 
 \begin{proof}
 	Wir rechnen nach:
-	\begin{align*}
-		\left\|\psi\right\| = \left\|\hat{\psi}\right\|
-		&= \int_{-\infty}^{\infty}\left|\hat{\psi}(\omega)\right|^2 d\omega \\
-		&= \int_{-\infty}^{0}\left|\hat{\psi}(\omega)\right|^2 d\omega +  \int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 d\omega \\
-		&=  2\int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 d\omega \\
-		&=  \int_{0}^{\infty}\left|\frac{2}{\sqrt{2}}\hat{\psi}(\omega)\right|^2 d\omega \\
+	\begin{align}
+		\left\|\psi\right\| = \left\|\hat{\psi}\right\| 
+		&= \int_{-\infty}^{\infty}\left|\hat{\psi}(\omega)\right|^2 d\omega \label{complex:norm-proof-p1}\\
+		&= \int_{-\infty}^{0}\left|\hat{\psi}(\omega)\right|^2 d\omega +  \int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 d\omega \notag\\
+		&=  2\int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 d\omega \label{complex:norm-proof}\\
+		&=  \int_{0}^{\infty}\left|\frac{2}{\sqrt{2}}\hat{\psi}(\omega)\right|^2 d\omega \notag\\
 		&=  \int_{-\infty}^{\infty}\left|\hat{\psi}^\ast(\omega)\right|^2 d\omega 
-		= \left\|\hat{\psi}^\ast\right\| = \left\|\psi^\ast\right\|.
-	\end{align*}
-	Hierbei haben wir zu begin und am Ende die Placherel-Formel verwendet.
-	In Zeile drei nutzten wir die hermitesche Symmetrie der Fourier-Transformierten eines reellen Wavelets, nach welcher
+		= \left\|\hat{\psi}^\ast\right\| = \left\|\psi^\ast\right\|.\label{complex:norm-proof-p2}
+	\end{align}
+	Hierbei haben wir in Gleichung~\eqref{complex:norm-proof-p1} und \eqref{complex:norm-proof-p2} die Placherel-Formel verwendet.
+	In Gleichung~\eqref{complex:norm-proof} nutzten wir die hermitesche Symmetrie der Fourier-Transformierten eines reellen Wavelets, nach welcher
 	\[\left|\hat{f}(\omega)\right| = \left|\hat{f}(-\omega)\right|\]
 	gilt.
 	Somit ist Satz~\ref{complex:norm} bewiesen.

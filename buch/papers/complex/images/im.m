@@ -21,7 +21,7 @@ P = 1.5; % Periods of frequency variation
 if sig == 0
   f = linspace(2, 8, width)';                  % Chirp
 else
-  f = 5 + 3 * sign(cos(2*pi*P/tend * t)); % Square
+  f = 6 + 2 * sign(cos(2*pi*P/tend * t)); % Square
 end
   
 
