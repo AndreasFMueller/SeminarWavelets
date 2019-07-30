@@ -139,16 +139,16 @@ Its polyphase decomposition is
 \end{equation}
 or in the z-domain:
 \begin{equation}
-	h(z)=h_{e}(z^2) + z^{-1} h_o(z^2).
+	h(z)=h_{e}(z^2) + z^{-1} h_o(z^2),
 \end{equation}
+where $h_o(z^2)$ is the two times upsampled version of $h_o(z)$.
 This yields the even and odd components:
 \begin{align}
 	h_e(z) &= \sum_{n=-\infty}^{\infty} h_{2n}z^{-n}
 	\\
 	h_o(z) &= \sum_{n=-\infty}^{\infty} h_{2n+1}z^{-n}.
 \end{align}
-
-These coefficients are then placed together with the $g(z)$ components in the polyphase Matrix.
+These coefficients are then placed together with the $g(z)$ components in the polyphase matrix.
 \begin{equation}
 	\bm P(z) = 
 	\begin{bmatrix}
@@ -166,7 +166,7 @@ Using the polyphase decomposition the DWT algorithm is
 &=
 \bm{\bar P}(z^{-1})^t
 \begin{bmatrix}
-	x(z^2) \\
+	x(z^2) \\     
 	x(z^2) z
 \end{bmatrix}
 \\
@@ -188,7 +188,7 @@ The DFT using polyphase implementation is depicted graphically in figure \ref{fp
 	\centering
 	%\includegraphics[width=\textwidth]{./images/lifting_step_wavelet.pdf}
 	\input{papers/fpga/tikz/liftingStep.tikz}
-	\caption{DWT graph using the polyface matrix $\bm P$}
+	\caption{DWT graph using the polyphase matrix $\bm P$}
 	\label{fpga:fig:liftingSteps}
 \end{figure}
 
@@ -196,8 +196,8 @@ The DFT using polyphase implementation is depicted graphically in figure \ref{fp
 \section{Lifting}
 
 The core idea of the polyphase decomposition is the possibility of factorization of the $\bm P$ matrix.
-Daubechies et al. proof, that this is possible for an arbitrary complementary matrix $\bm P$ if composed only of Laurent polynomials.
-The factorization algorithm is of substantial length and is not explained in this work.
+Daubechies et al. prove that this is possible for an arbitrary complementary matrix $\bm P$ if composed only of Laurent polynomials.
+The factorization algorithm is of substantial length and is not explained in this work. %TODO: different formulation
 However, it results in the form
 \begin{align}
 	\bm{\bar P}(z) &=
@@ -319,7 +319,7 @@ x_{2l} &= s_l^{(0)}
 \end{aligned}
 \end{equation}
 and the original stream can be fully recovered.
-Figure \ref{fpga:fig:liftingStepHaar} shoes both transforms graphically.
+Figure \ref{fpga:fig:liftingStepHaar} shows both transforms graphically.
 \begin{figure}
 	\centering
 	\input{papers/fpga/tikz/liftingStepHaar.tikz}
@@ -333,7 +333,7 @@ The VHDL implementation adds some complexity to the mathematical representation 
 A physical implementation allows only causal filters.
 These are recognizable by containing solely negative exponentials of $z$.
 All non-causal filters must be delayed, in order to get causal.
-Notably, the polyface decomposition of the forward wavelet transform is non-causal and must be delayed by one sample.
+Notably, the polyphase decomposition of the forward wavelet transform is non-causal and must be delayed by one sample.
 
 \subsection{Design Considerations}
 
@@ -345,8 +345,8 @@ Since this work is not based on a defined objective, we must come up with our ow
 In most cases, which do not require low latency and high data rates, a digital signal processor would be a better choice than a custom VHDL-implemented hardware.
 A sequential processor unit is computationally very efficient and requires almost no area compared to most VHDL solutions.
 However, it features a significantly higher latency, which is a major drawback.
-Hence, the VHDL implementation should feature low latency and high data rate as its main objectives in order to provide solution, that is reasonable as a hardware implementation.
-The application should make use of on of the biggest advantages of custom hardware, which is parallelism.
+Hence, the VHDL implementation should feature low latency and high data rate as its main objectives in order to provide a solution that is reasonable as a hardware implementation.
+The application should make use of one of the biggest advantages of custom hardware, which is parallelism.
 Performing calculations in parallel leads to higher throughput and allows data rates which are as fast as the clock speed of the logic.
 The strengths of the aspired implementation are thus high speed and low latency processing, suitable for real-time applications.
 
@@ -378,7 +378,7 @@ The following sections describe the internal blocks in detail.
 \subsubsection{Forward and backward transformation}
 
 It takes a 16-bit number as its input which is processed when the associated ready signal is driven high.
-The outputs consist of an array of wavelet coefficients, each of 16 bits, which are accompanied with a vector of ready signals. 
+The outputs consist of an array of wavelet coefficients, each 16 bits wide, which are accompanied by a vector of ready signals. 
 
 The inverse wavelet transform \texttt{inv\_haar} has an analogous outline.
 The blocks are fed with the different coefficients and they get processed by the algorithm defined in equation \ref{fpga:equation:inv_haar}.
@@ -389,10 +389,10 @@ In this process the input coefficients are reconstructed to a 16-bit signed outp
 
 \subsubsection{Wavelet transform}
 
-The transformation block \texttt{haar} implements the algorithm needed for the wavelet transformation.
+The transformation block \texttt{haar} implements the algorithm needed for the Haar wavelet transformation.
 So far, only the Haar wavelets has been implemented.
 However, the outline stays the same for every other discrete wavelet.
-Figure \ref{fpga:fig:haar} shows the outlihne of the \texttt{haar} and \texttt{inv\_haar} block.
+Figure \ref{fpga:fig:haar} shows the interface of the \texttt{haar} and \texttt{inv\_haar} block.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.49\textwidth]{papers/fpga/images/haar.pdf} %TODO fix rdy signal
@@ -400,7 +400,7 @@ Figure \ref{fpga:fig:haar} shows the outlihne of the \texttt{haar} and \texttt{i
 	\caption{Complete architecture \label{fpga:fig:haar}}
 \end{figure}
 The output of the \texttt{haar} block features the half sample rate due to the down sampling operator.
-The forward transform, which is in mathematical notation non-causal, has been delayed in order to be causal.
+The forward transform, which is in mathematical notation non-causal, has been delayed in order to become causal.
 In order to contain the propagation delay, a flip-flop is inserted at the end of the block.
 This leads to another delay of one clock cycle.
 The arithmetic inside the blocks are implemented as derived in section \ref{fpga:sec:haar}.
@@ -428,7 +428,7 @@ The inverse branching is then used to reconstruct the original signal from all t
 
 The \texttt{branching} and \texttt{inv\_branching} block are sufficient for the objective. %dont like that
 
-However the output of the forward transform and the input of the inverse transform are not compatible
+However the output of the forward transform and the input of the inverse transform are not compatible.
 In order to make them connectable, a delay block must be inserted in between of the two blocks.
 Figure \ref{fpga:fig:mainDelay} shows the connected blocks.
 In this formation the input \texttt{x} is converted to wavelet coefficients and subsequently reconstructed to the output \texttt{y}.
@@ -454,7 +454,7 @@ All coefficients except the one with the lowest frequency must be delayed for th
 
 The test structure contains the forward transform, followed by the inverse transform, which should recover the original signal from the processed coefficients.
 The depth of the branching and the recursion can be set by a variable. 
-The test setup is shown in figure \ref{fpga:fig:testing}
+The test setup is shown in figure \ref{fpga:fig:testing}.
 If done right, the output should resemble the input, delayed by the latency of the whole pipeline.
 
 \begin{figure}
@@ -473,7 +473,7 @@ After the VHDL simulation finishes, the results are again fed into MATLAB for va
 \rhead{Results}
 
 The results are promising. The results of the Vivado Toolchain and MATLAB match up. 
-In picture \ref{fpga:fig:coeff} the coefficients and ready signals before delaying are depicted.
+In figure \ref{fpga:fig:coeff} the coefficients and ready signals before delaying are depicted.
 The delay of the ready signals, stepping into the recursion tree, gets doubled every step. 
 And the wavelet coefficients are also plotted in different colors. 
 The faster changing signals correspond to the higher frequencies and the slow changing signals are deeper in the recursion.
@@ -484,14 +484,14 @@ The higher frequencies also react faster to changes at the input.
 	\caption{Coefficients and ready signals after transformation \label{fpga:fig:coeff}}
 \end{figure}
 
-Picture \ref{fpga:fig:coeff_delayed} shows the coefficients and ready signals after delaying. 
+Figure \ref{fpga:fig:coeff_delayed} shows the coefficients and ready signals after delaying. 
 As visible the coefficients start to change now delayed only by clock cycle. 
 Like this there is no misalignment in the time domain and when they are transformed back the original signal is recovered. 
 The ready signal illustrates this. 
-Before the delaying the ready signal of the fast coefficients was first and the slower ones where delayed. 
+Before delaying the ready signal of the fast coefficients was first and the slower ones where delayed. 
 But in reality the slower frequencies change at the same moment as the higher frequencies. 
 And also the information from the high frequencies is also needed at the moment when the inverse transformation starts. 
-So after the delaying the slow ready signal arrives first and then with every clock cycle the faster readys arrive. 
+So after the delaying the slow ready signal arrives first and then with every clock cycle the faster ready signals arrive. 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\textwidth]{papers/fpga/images/output.pdf}
