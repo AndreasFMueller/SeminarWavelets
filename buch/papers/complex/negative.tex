@@ -4,22 +4,26 @@
 \subsection{Warum komplex?}
 % TODO: Prof. Müller fragen wegen Notation unendlich-dimensionaler Räume!
 Das Problem der Separation von Betrag und Winkel kennt man aus der Fourierteorie mit Cosinus und Sinus.
-$a$ und $w$ erfüllen ähnliche Zwecke in beiden Welten, die Verschiebung durch $b$ macht für unendlich lange Basisfunktionen aber nur bedingt sinn.
-Deshlab kommen bei Fourier nur zwei Familien an Basisfunktionen zum Einsatz, der Cosinus und die um 90\textdegree{} verschobene, orthogonale Version, der Sinus.
-Diese beiden Familien an Funktionen bilden eine Basis, sie sind alle orthogonal zueinander.
-Sie spannen zusammen einen unendlichdimensionalen, reellen Hilbertraum auf. % TODO quasi einen unendlich^2-Raum...?
+$a$ und $\omega$ erfüllen ähnliche Zwecke in beiden Welten, die Verschiebung durch $b$ macht für unendlich lange Basisfunktionen aber nur bedingt sinn.
+Deshalb kommen bei Fourier nur zwei Familien an Basisfunktionen zum Einsatz, der Cosinus und die um 90\textdegree{} verschobene, orthogonale Version, der Sinus.
+Diese beiden Familien an Funktionen bilden eine Hilbertbasis des $L^2(\mathbb{R})$
+\[L^2(\mathbb{R}) \cong \mathop{\text{Span}}(\cos\omega t) \times \mathop{\text{Span}}(\sin\omega t) = H_c \times H_s.\]
+$H_c$ und $H_s$ sind aufeinander orthogonal und bilden eine Partition des $L^2(\mathbb{R})$.
+\[
+\forall h_1 \in H_c, h_2 \in H_s: \langle h_1, h_2\rangle = 0
+\]
+Die Fourier-Transformation berechnet genau die Skalarprodukte mit den Basisfunktionen aus $H_c$ und $H_s$ und folglich die Koordinaten bezüglich $H_c\times H_s$.
 \begin{align*}
-	\Four : \mathbb{R}^\infty &\to \mathbb{R}^\infty  \times \mathbb{R}^\infty\\
-	C^\infty(\mathbb{R}) &\mapsto \langle\cos(\omega t),\, \sin(\omega t)\rangle
+	\Four : L^2(\mathbb{R}) &\to H_c \times H_s
 \end{align*}
 
 Sinus und Cosinus liefern -- in Analogie zu einem Kreis -- kartesischen Koordinaten. 
 Für eine Darstellung als Betrag und Winkel sind sie ungeeignet.
-Der Trick ist nun, beide Räume mit einem komplexen Hilbertraum zu asoziieren.
-\begin{align*}
-	\mathbb{R}^\infty  \times \mathbb{R}^\infty &\cong \mathbb{C}^\infty\\
-	(u(t),\, v(t)) &\mapsto u(t) + iv(t) % Auch nur so, weil sin / cos 90° zueinander. R x R 'grösser' C
-\end{align*}
+Der Trick ist nun, $H_c \times H_s$ durch einen Isomorphismus $\varphi$ mit einem komplexen Hilbertraum zu asoziieren.
+\[
+	\varphi\colon H_c \times H_s \to \mathbb{C}^\mathbb{R} \colon
+	(\cos\omega t,\, \sin\omega t) \mapsto e^{i\omega t}
+\]
 In einem komplexen Hilbertraum ist die Frage nach Betrag und Winkel direkt beantwortbar.
 Die Basisfunktion
 \begin{align*}
