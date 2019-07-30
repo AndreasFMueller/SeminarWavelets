@@ -293,7 +293,7 @@ This corresponds to the following implementation of the forward transform \cite{
 where $x_{n}$ is the incoming sample stream.
 The analysis side is in the following form:
 \begin{equation*}
-\bm {\bar P}(z^{-1})^ =
+\bm {\bar P}(z^{-1})^t =
 \begin{bmatrix}
 \frac{1}{2} & \frac{1}{2} \\
 -1 & 1
@@ -375,11 +375,7 @@ The inverse block has the coefficients and ready signals as input and outputs th
 The following sections describe the internal blocks in detail.
 
 
-
-
-
 \subsubsection{Forward and backward transformation}
-
 
 It takes a 16-bit number as its input which is processed when the associated ready signal is driven high.
 The outputs consist of an array of wavelet coefficients, each of 16 bits, which are accompanied with a vector of ready signals. 
@@ -389,12 +385,9 @@ The blocks are fed with the different coefficients and they get processed by the
 In this process the input coefficients are reconstructed to a 16-bit signed output number.
 % in the \texttt{inv\_branching} block, which holds several blocks of inverse wavelet transforms.
 
-
-
-
 %TODO make figure of delay
 
-\subsection{Wavelet transform}
+\subsubsection{Wavelet transform}
 
 The transformation block \texttt{haar} implements the algorithm needed for the wavelet transformation.
 So far, only the Haar wavelets has been implemented.
@@ -406,23 +399,21 @@ Figure \ref{fpga:fig:haar} shows the outlihne of the \texttt{haar} and \texttt{i
 	\includegraphics[width=0.49\textwidth]{papers/fpga/images/inv_haar.pdf}
 	\caption{Complete architecture \label{fpga:fig:haar}}
 \end{figure}
-The output of the \texttt{haar} block features the half samplerate due to the downsampling operator.
+The output of the \texttt{haar} block features the half sample rate due to the down sampling operator.
 The forward transform, which is in mathematical notation non-causal, has been delayed in order to be causal.
 In order to contain the propagation delay, a flip-flop is inserted at the end of the block.
 This leads to another delay of one clock cycle.
 The arithmetic inside the blocks are implemented as derived in section \ref{fpga:sec:haar}.
-In the case of the Haar wavelet, the arithmetic is afairly simple sequence of calculations as  described in equation \ref{fpga:equation:haar}.
-Multiplications and divisions with the numer 2 can efficiently be implemented with a bitshift.
+In the case of the Haar wavelet, the arithmetic is a fairly simple sequence of calculations as  described in equation \ref{fpga:equation:haar}.
+Multiplications and divisions with the number 2 can efficiently be implemented with a bit shift.
 
 %Because of the generalized structure and of VHDL in general this blocks can be adapted to different algorithms to perform transformations with different wavelets.
 
-
-
-\subsection{Multiresolution analysis}
+\subsubsection{Multiresolution analysis}
 
 The multiresolution analysis is achieved by chaining the wavelet transform blocks.
 The block which holds the multiresolution analysis is called \texttt{branching}.
-Hereby, the lowpass output (\texttt{s}) of each DFT block (\texttt{haar}) is connected to the input of annother DFT block, which performes another transformation to increase detail. 
+Hereby, the lowpass output (\texttt{s}) of each DFT block (\texttt{haar}) is connected to the input of annother DFT block, which performs another transformation to increase detail. 
 
 %Insert graph of vhdl simulation 
 
@@ -433,7 +424,7 @@ Because of this we need the also delayed ready signal from the last block becaus
 The inverse branching is then used to reconstruct the original signal from all the different transformations and coefficients.
 
 
-\subsection{Delay}
+\subsubsection{Delay}
 
 The \texttt{branching} and \texttt{inv\_branching} block are sufficient for the objective. %dont like that
 
@@ -521,7 +512,7 @@ This is because every step the detail information (higher frequencies) get subtr
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{papers/fpga/images/inv_branching_screenshot.png}
+	\includegraphics[width=0.9\textwidth]{papers/fpga/images/inv_branching_screenshot.PNG}
 	\caption{Coefficients in simulation \label{fpga:fig:sim}}
 \end{figure}
 
