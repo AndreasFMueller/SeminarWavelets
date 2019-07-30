@@ -25,9 +25,9 @@ Therefore, we have committed ourselfs to implement a wavelet transform as a hard
 
 A hardware implemented wavelet algorithm has many advantages over a software implementation.
 First, arithmetic operations in hardware are much faster than in software.
-While a CPU is bond to its limited instruction set.
+While a CPU is bound to its limited instruction set.
 A custom hardware can execute multiple operations of choice in one clock cycle.
-Some of operations can be executed in parallel in order to gain even more spped.
+Some of the operations can be executed in parallel in order to gain even more speed.
 Secondly, if stream based processing is implemented, which continuously processes incoming data, the latency is significantly lower.
 This property makes hardware superior for real time applications.
 
@@ -48,13 +48,13 @@ This section provides a short summary, as well as some additions, notably the Li
 The discrete wavelet transform is defined by a pair of formulas to calculate the wavelet coefficients $\bm a$ and $\bm b$.
 $a_{j,k}$ and $b_{j,k}$ represent the coefficients in layer $j$ at the discrete time step $k$.
 %The wavelet transform calculates $a_{j,k}$ and $b_{j,k}$ of layer $j$ from an input signal or coefficient $a_{j+1,k}$.
-The formula to calculate the forward DTF is
+The formula to calculate the forward DTF is %TODO: DWT??
 \begin{align}
 a_{j,k} = \sum_{l} \bar{h}_l a_{j+1,l+2k}
 \\
 b_{j,k} = \sum_{l} \bar{g}_l a_{j+1,l+2k} .
 \end{align}
-This calculation uses the Father and Mother wavelet coefficients $\bm{\bar h}$ and $\bm{\bar g}$, which are given from the chosen wavelet.
+This calculation uses the father and mother wavelet coefficients $\bm{\bar h}$ and $\bm{\bar g}$, which are given from the chosen wavelet.
 The inverse transform has been derived in the script as well: 
 \begin{align}
 a_{j+1,k} =
@@ -67,13 +67,13 @@ g_{k-2l}
 b_{j,l} .
 \end{align}
 %These formulas state the connection between two layers of a tower of wavelet transforms.
-In order to create a connection between the theory covered in the script and additional theory, the z transform is used.
-The z-transform of a FIR (finite impulse response) filter $h$ is a Laurent polynomial given by
+In order to create a connection between the theory covered in the script and additional theory, the $z$ transform is used.
+The $z$-transform of a FIR (finite impulse response) filter $h$ is a Laurent polynomial given by
 \begin{equation}
 h(z) = \sum_{k} h_k z^{-k}
 \end{equation}
 A convolution is equal to a multiplication in the z-domain.
-The formulas from the script can be rewritten in the z-transform notation.
+The formulas from the script can be rewritten in the $z$-transform notation.
 The forward transform becomes
 \begin{align}
 \quad a_{j,k}(z) &= \bar h(z^{-1}) a_{j+1,2k}(z) 
@@ -94,7 +94,7 @@ Figure \ref{fpga:fig:dwt} depicts a graphical representation of the DWT followed
 
 An input signal $\bm x$, where $x_k$ is its value at time step $k$, can be recursively transformed into a tower of wavelet coefficients.
 $x_t$ is set equal to $a_{0,k}$ and represents the first layer of the tower.
-This layer can be split into an arbitrarily long number of coefficients.
+This layer can be split into an arbitrarily long sequence of coefficients.
 From all generated coefficients, only the $\bm b$ and the last layer of $\bm a$ coefficients are required, since they hold all information. %Dont like that sentence
 Figure \ref{fpga:fig:dwtTower} shows a decomposition of 3 levels using DWTs and a subsequent unification using inverse DWTs.
 \begin{figure}
@@ -110,18 +110,18 @@ Figure \ref{fpga:fig:dwtTower} shows a decomposition of 3 levels using DWTs and 
 \rhead{Lifting Scheme}
 
 The lifting scheme is a technique to perform a DWT efficiently.
-It was introduced in a paper from Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998}. 
-The lifting scheme is an widely used algorithm, which is more efficient in terms of multiplication uses than normal wavelet transformations.
-The number of arithmetic operations is reduced nearly by a factor of two compared to a ordinary, convolutional calculation.
+It was introduced in a paper by Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998}. 
+The lifting scheme is a widely used algorithm, which is more efficient in terms of the number of multiplications  used than normal wavelet transformations.
+The number of arithmetic operations is reduced nearly by a factor of two compared to an ordinary, convolutional calculation.
 
-The Lifting Scheme factorizes any discrete wavelet transform with finite filters into a series of elementary covolutions which are referred to as Lifting Steps.
-This factorization splits a long filter into a tree of small filters, which is numerically superior in terms of rounding errors
-This decomposition is equivalent to a factorization of the polyphase matrix of the wavelet filter into elementary matrices. 
+The lifting scheme factorizes any discrete wavelet transform with finite filters into a series of elementary convolutions which are referred to as Lifting Steps.
+This factorization splits a long filter into a tree of small filters, which is numerically superior in terms of rounding errors.
+This decomposition is equivalent to a factorization of the polyphase matrix of the wavelet filter into elementary matrices. %TODO Explain in Detail
 In this paper, we want to focus only on orthogonal wavelets, where $\bm h = \bm{\bar h}$ and $\bm g = \bm{\bar g}$.
-In order to be consistent with the paper, we use the semantics of Daubechies et al. which refer to the coefficients
+In order to be consistent with the paper, we use the terminology of Daubechies et al. which refer to the coefficients
 \begin{align}
-\bm a & \iff \bm s \quad \text{(smooth)} \quad \text{and} \\
-\bm b & \iff \bm d \quad \text{(detail)} .
+\bm a & \leftrightarrow \bm s \quad \text{(smooth)} \quad \text{and} \\
+\bm b & \leftrightarrow \bm d \quad \text{(detail)} .
 \end{align}
 
 \subsubsection{Polyphase Decomposition \label{fpga:polyphase}}
