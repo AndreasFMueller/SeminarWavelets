@@ -48,13 +48,13 @@ This section provides a short summary, as well as some additions, notably the Li
 The discrete wavelet transform is defined by a pair of formulas to calculate the wavelet coefficients $\bm a$ and $\bm b$.
 $a_{j,k}$ and $b_{j,k}$ represent the coefficients in layer $j$ at the discrete time step $k$.
 %The wavelet transform calculates $a_{j,k}$ and $b_{j,k}$ of layer $j$ from an input signal or coefficient $a_{j+1,k}$.
-The formula to calculate the forward DTF is %TODO: DWT??
+The formula to calculate the forward DWT is
 \begin{align}
 a_{j,k} = \sum_{l} \bar{h}_l a_{j+1,l+2k}
 \\
 b_{j,k} = \sum_{l} \bar{g}_l a_{j+1,l+2k} .
 \end{align}
-This calculation uses the father and mother wavelet coefficients $\bm{\bar h}$ and $\bm{\bar g}$, which are given from the chosen wavelet.
+This calculation uses the father and mother wavelet coefficients $\bm{\bar h}$ and $\bm{\bar g}$, which are given by the chosen wavelet.
 The inverse transform has been derived in the script as well: 
 \begin{align}
 a_{j+1,k} =
@@ -67,7 +67,7 @@ g_{k-2l}
 b_{j,l} .
 \end{align}
 %These formulas state the connection between two layers of a tower of wavelet transforms.
-In order to create a connection between the theory covered in the script and additional theory, the $z$ transform is used.
+In order to create a connection between the theory covered in the script and additional theory, the $z$-transform is used.
 The $z$-transform of a FIR (finite impulse response) filter $h$ is a Laurent polynomial given by
 \begin{equation}
 h(z) = \sum_{k} h_k z^{-k}
@@ -111,13 +111,14 @@ Figure \ref{fpga:fig:dwtTower} shows a decomposition of 3 levels using DWTs and 
 
 The lifting scheme is a technique to perform a DWT efficiently.
 It was introduced in a paper by Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998}. 
-The lifting scheme is a widely used algorithm, which is more efficient in terms of the number of multiplications  used than normal wavelet transformations.
+The lifting scheme is a widely used algorithm, which is more efficient in terms of the number of multiplications than normal wavelet transformations.
 The number of arithmetic operations is reduced nearly by a factor of two compared to an ordinary, convolutional calculation.
 
 The lifting scheme factorizes any discrete wavelet transform with finite filters into a series of elementary convolutions which are referred to as Lifting Steps.
 This factorization splits a long filter into a tree of small filters, which is numerically superior in terms of rounding errors.
-This decomposition is equivalent to a factorization of the polyphase matrix of the wavelet filter into elementary matrices. %TODO Explain in Detail
-In this paper, we want to focus only on orthogonal wavelets, where $\bm h = \bm{\bar h}$ and $\bm g = \bm{\bar g}$.
+This decomposition is equivalent to a factorization of the polyphase matrix of the wavelet filter into elementary matrices, as elaborated in the following sections. %TODO Explain in Detail
+
+%In this paper, we want to focus only on orthogonal wavelets, where $\bm h = \bm{\bar h}$ and $\bm g = \bm{\bar g}$.
 In order to be consistent with the paper, we use the terminology of Daubechies et al. which refer to the coefficients
 \begin{align}
 \bm a & \leftrightarrow \bm s \quad \text{(smooth)} \quad \text{and} \\
@@ -197,7 +198,7 @@ The DFT using polyphase implementation is depicted graphically in figure \ref{fp
 
 The core idea of the polyphase decomposition is the possibility of factorization of the $\bm P$ matrix.
 Daubechies et al. prove that this is possible for an arbitrary complementary matrix $\bm P$ if composed only of Laurent polynomials.
-The factorization algorithm is of substantial length and is not explained in this work. %TODO: different formulation
+The factorization algorithm is not explained in this work, since the required theory is too far away from the theory covered in the script.
 However, it results in the form
 \begin{align}
 	\bm{\bar P}(z) &=
@@ -235,6 +236,10 @@ However, it results in the form
 	\end{bmatrix}
 	.
 \end{align}
+
+The factorized matrices consist of $1$ in the diagonal and one single factor in the upper right or lower left corner.
+A Matrix of this structure only uses one multiplication and one addition to implement, which results in sort of a ladder structure.
+The implementation uses only $2(i+1)$ multiplications and $2i$ additions and is two times more efficient than the convolutional DWT.
 Figure \ref{fpga:fig:liftingStepFactorization} shows a graphical version of the factorized DWT.
 \begin{figure}
 	\centering
@@ -253,7 +258,7 @@ They replace $\bm h(z)$ and $\bm g(z)$ completely.
 
 %Where $h_e(z)$ are the even- and $h_o(z)$ are the odd coefficients of the low pass filter.
 %$g(z)$ is the corresponding high pass filter. 
-For the sake of simplicity we initially chose the Haar Wavelet for the VHDL implementation, which constists of the following coefficients:
+For the sake of simplicity we initially chose the Haar Wavelet for the VHDL implementation, which consists of the following coefficients:
 \begin{align}
 h(z) = 1 + z^{-1} \quad & \Rightarrow \quad \bar h(z) = \frac{1}{2} + \frac{1}{2} z^{-1}
 \\
@@ -345,10 +350,10 @@ Since this work is not based on a defined objective, we must come up with our ow
 In most cases, which do not require low latency and high data rates, a digital signal processor would be a better choice than a custom VHDL-implemented hardware.
 A sequential processor unit is computationally very efficient and requires almost no area compared to most VHDL solutions.
 However, it features a significantly higher latency, which is a major drawback.
-Hence, the VHDL implementation should feature low latency and high data rate as its main objectives in order to provide a solution that is reasonable as a hardware implementation.
+Hence, the VHDL implementation should feature low latency and high data rate as its main objectives in order to provide a solution which is useful as a hardware implementation.
 The application should make use of one of the biggest advantages of custom hardware, which is parallelism.
 Performing calculations in parallel leads to higher throughput and allows data rates which are as fast as the clock speed of the logic.
-The strengths of the aspired implementation are thus high speed and low latency processing, suitable for real-time applications.
+The strengths of the chosen implementation are thus high speed and low latency processing, suitable for real-time applications.
 
 The main priority is to implement the Haar wavelet.
 A optional goal is the implementation of a higher order wavelet, such as the orthogonal Daubechies-4 wavelet.
@@ -363,17 +368,22 @@ Figure \ref{fpga:fig:idea} shows the outline of the two blocks.
 	\includegraphics[width=0.8\textwidth]{papers/fpga/images/idea.pdf}
 	\caption{Outline of the modules \label{fpga:fig:idea}}
 \end{figure}
-The number of multiresolution layers \texttt{N} can be specified as a generic parameter.
+The number of multiresolution layers $N$ can be specified as a generic parameter.
 The forward algorithm has a 16-bit signed number input \texttt{x} ($a_{j,k} \forall k=0$) and outputs the wavelet coefficients as a stream.
-Each signal is accompanied by a ready signal which is driven \texttt{1} if the coefficient has been newly calculated.
+Each signal is accompanied by a ready signal which is driven \texttt{1} if the coefficient has been updated by the logic.
 If this ready signal is always driven high, the input value is sampled each clock cycle.
-The coefficients are in form of a vector \texttt{d\_s}, which holds \texttt{N} detail coefficients ($b_{j,k} \forall k \in [-1 .. -N]$) and \texttt{s}, which holds remaining smooth coefficient ($a_{j,k} \forall k=-N$).
-The coefficients are accompanied by a vector of ready signals with length \texttt{N}, where each element corresponds to a level of the multiresolution analysis.
+The coefficients are in form of a vector \texttt{d\_s}, which holds $N$ detail coefficients ($b_{j,k} \forall k \in [-1 .. -N]$) and \texttt{s}, which holds remaining smooth coefficient ($a_{j,k} \forall k=-N$).
+The coefficients are accompanied by a vector of ready signals with length $N$, where each element corresponds to a level of the multiresolution analysis.
 The inverse block has the coefficients and ready signals as input and outputs the reconstructed signal \texttt{y}, again accompanied by its ready signal.
 
 \subsection{Architecture}
 The following sections describe the internal blocks in detail.
-
+Figure \ref{fpga:fig:mainDelay} shows an overview of the forward and inverse blocks.
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{papers/fpga/images/main_delay.pdf}
+	\caption{Complete architecture \label{fpga:fig:mainDelay}}
+\end{figure}
 
 \subsubsection{Forward and backward transformation}
 
@@ -397,11 +407,12 @@ Figure \ref{fpga:fig:haar} shows the interface of the \texttt{haar} and \texttt{
 	\centering
 	\includegraphics[width=0.49\textwidth]{papers/fpga/images/haar.pdf} %TODO fix rdy signal
 	\includegraphics[width=0.49\textwidth]{papers/fpga/images/inv_haar.pdf}
-	\caption{Complete architecture \label{fpga:fig:haar}}
+	\caption{Interface description of the forward and inverse Haar wavelet blocks. \label{fpga:fig:haar}}
 \end{figure}
 The output of the \texttt{haar} block features the half sample rate due to the down sampling operator.
 The forward transform, which is in mathematical notation non-causal, has been delayed in order to become causal.
-In order to contain the propagation delay, a flip-flop is inserted at the end of the block.
+In order to contain the propagation delay, registers (flip-flops) are inserted for all output signals of the \texttt{haar} and \texttt{inv\_haar} blocks.
+
 This leads to another delay of one clock cycle.
 The arithmetic inside the blocks are implemented as derived in section \ref{fpga:sec:haar}.
 In the case of the Haar wavelet, the arithmetic is a fairly simple sequence of calculations as  described in equation \ref{fpga:equation:haar}.
@@ -430,25 +441,28 @@ The \texttt{branching} and \texttt{inv\_branching} block are sufficient for the 
 
 However the output of the forward transform and the input of the inverse transform are not compatible.
 In order to make them connectable, a delay block must be inserted in between of the two blocks.
-Figure \ref{fpga:fig:mainDelay} shows the connected blocks.
+Figure \ref{fpga:fig:delay} shows the connected blocks. %TODO change this 
 In this formation the input \texttt{x} is converted to wavelet coefficients and subsequently reconstructed to the output \texttt{y}.
 \texttt{y} should be equal to the signal \texttt{x}, if delayed with the latency of the blocks, considering numerical accuracy
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{papers/fpga/images/main_delay.pdf}
-	\caption{Complete architecture \label{fpga:fig:mainDelay}}
+	\includegraphics[width=\textwidth]{papers/fpga/images/delay.pdf}
+	\caption{
+		Shift between the ready signals of the forward and inverse branching blocks.
+		The coefficients need to be delayed individually, in order to match the interface of the inverse block.
+	}
+	\label{fpga:fig:delay}
 \end{figure}
 
 
 %TODO rewrite this block
 In order to provide low-latency regardless, a compromise has been made, which tolerates a delay of one cyle in each layer of the muliresolution analysis.
 Because of this one clock cycle of delay in the transformation block the faster coefficients need to be artificially delayed.
-If not they arrive to early at the inverse transformation and the result is faulty. To compensate this the   faster signals get delayed according to de depth of the recursion tree.
+If not, they arrive too early at the inverse transformation and the result is faulty. To compensate this the faster signals get delayed according to de depth of the recursion tree.
 The coefficients containing the lowest frequencies stay the same and then for every step up on the recursion tree the delay gets one clock cycle longer.
 With this processing the coefficients with belong together arrive at the inverse transformation at the same time.
 
 All coefficients except the one with the lowest frequency must be delayed for the inverse algorithm.
-
 
 \subsection{Testing}
 
@@ -472,7 +486,8 @@ After the VHDL simulation finishes, the results are again fed into MATLAB for va
 \section{Results}
 \rhead{Results}
 
-The results are promising. The results of the Vivado Toolchain and MATLAB match up. 
+The results are promising.
+The results of the Vivado Toolchain and MATLAB match up. 
 In figure \ref{fpga:fig:coeff} the coefficients and ready signals before delaying are depicted.
 The delay of the ready signals, stepping into the recursion tree, gets doubled every step. 
 And the wavelet coefficients are also plotted in different colors. 
@@ -491,23 +506,23 @@ The ready signal illustrates this.
 Before delaying the ready signal of the fast coefficients was first and the slower ones where delayed. 
 But in reality the slower frequencies change at the same moment as the higher frequencies. 
 And also the information from the high frequencies is also needed at the moment when the inverse transformation starts. 
-So after the delaying the slow ready signal arrives first and then with every clock cycle the faster ready signals arrive. 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.9\textwidth]{papers/fpga/images/output.pdf}
-	\caption{Output \label{fpga:fig:output}}
-\end{figure}
-
-Figure \ref{fpga:fig:output} shows the final result of the whole pipeline, As expected the signal is the same but delayed by the time the processing needed. 
+So after delaying the slow ready signal arrives first and then with every clock cycle the faster ready signals arrive. 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\textwidth]{papers/fpga/images/coefs_delayed.pdf}
 	\caption{Coefficients and ready signals after delaying \label{fpga:fig:coeff_delayed}}
 \end{figure}
 
-Also interesting is how the coefficients and signals look inside the simulation (figure \ref{fpga:fig:coefficients}). 
-In a screenshot the coefficients of all recursive steps are visible. 
-There is clearly visible, that the signal losses information in de deeper stages. 
+Figure \ref{fpga:fig:output} shows the final result of the whole pipeline, As expected the signal is the same but delayed by the time the processing needed. 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{papers/fpga/images/output.pdf}
+	\caption{Output \label{fpga:fig:output}}
+\end{figure}
+
+Also interesting is how the coefficients and signals look inside the simulation as shown in figure \ref{fpga:fig:sim}). 
+The simulation output makes the recursive multiresolution analysis visible.
+%It is clearly visible that the signal losses information in de deeper stages. 
 This is because every step the detail information (higher frequencies) get subtracted and only the low frequencies stay.
 
 \begin{figure}[h]
@@ -552,6 +567,18 @@ This is because every step the detail information (higher frequencies) get subtr
 
 \section{Conclusion}
 \rhead{Conclusion}
+
+
+
+% Found an efficient algorithm (lifting scheeme) for a hardware implementation of the DWT
+
+% implemented the Haar wavelet in a forward and inverse multiresolution DWT
+
+%created a test bench to validate our implementation with a equivalent MATLAB simulation
+
+
+
+
 
 In our view this project was a success. We were able to use some of the knowledge gained in this course to implement a hardware version of a wavelet transformation.
 
