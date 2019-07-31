@@ -57,7 +57,7 @@ Abschnitt~\ref{subsection:hilbertraum-basis} erklärt den Begriff der
 Hilbertraum-Basis.
 \item {\bf Dualität:}
 In einem endlichdimensionalen Vektorraum ist es so offensichtlich, dass
-jede Linear-Form also Skalarprodukt mit einem geeigneten Vektor 
+jede Linear-Form als Skalarprodukt mit einem geeigneten Vektor 
 dargestellt werden kann.
 Dies ermöglicht, einen Vektor als Linearform zu charakterisieren.
 In einem unendlichdimensionalen Vektorraum ist dies nicht mehr
@@ -423,7 +423,7 @@ mit dem Skalarprodukt
 \end{beispiel}
 
 \subsection{Basis eines Hilbertraumes
-\label{subsecdtion:hilberraum-basis}}
+\label{subsection:hilbertraum-basis}}
 Eine Basis eines Vektorraums ist eine Menge von Vektoren, aus der sich
 jeder beliebige Vektor linear kombinieren lässt.
 In einem unendlichdimensionalen Vektorraum ist dieses Konzept nur
@@ -483,7 +483,7 @@ Als nächstes konstruieren wir die Folge $f_i$ von Funktionen, die wie
 folgt definiert sind:
 \begin{align*}
 f_1(x) &= \begin{cases}
-\sqrt{2}&\qquad \frac12x1\\
+\sqrt{2}&\qquad \frac12 \le x < 1\\
 0\phantom{000}&\qquad\text{sonst}
 \end{cases}
 \\
@@ -647,7 +647,7 @@ Ausserdem gilt für das Skalarprodukt die Plancherel-Identität
 \end{align*}
 \end{satz}
 
-Die Abbildung $T\colon V\to \mathbb l^2: v\mapsto (\hat{v}_k\,|\,1\le k)$
+Die Abbildung $T\colon V\to l^2: v\mapsto (\hat{v}_k\,|\,1\le k)$
 ist also wie im reellen Fall eine {\em Isometrie} von Hilberträumen.
 \index{Isometrie}
 
@@ -905,7 +905,7 @@ Der Abstand von $y$ von $V$ ist
 d = \inf \{ \| y - x\| \;|\; x \in V\}.
 \]
 In einem Hilbertraum ist es nicht mehr selbstverständlich, dass es auch
-einen Vektor $x\in H$ gibt, der das Minimum realisiert, dass also
+einen Vektor $x\in V$ gibt, der das Minimum realisiert, dass also
 $ d = \|y-x\|$.
 Wir können aber zeigen, dass gute Approximationen des minimalen Abstands
 nicht weit voneinander entfernt sein können.
@@ -913,7 +913,7 @@ nicht weit voneinander entfernt sein können.
 \begin{satz}
 \label{satz:approx}
 Sei $y\in H$ und $V$ ein Unterraum von $H$.
-Sei $d=\inf \{ \|y-x\| \;|\;x\in H\}$ der Abstand von $y$ zum Unterraum $V$.
+Sei $d=\inf \{ \|y-x\| \;|\;x\in V\}$ der Abstand von $y$ zum Unterraum $V$.
 Sind $x_1,x_2$ zwei verschiedene Approxmationen des minimalen Abstands, d.~h.
 \[
 \| y-x_1\|^2 = d^2+\varepsilon_1
@@ -1015,9 +1015,9 @@ in Satz~\ref{satz:orthogonalkomplement}
 \begin{satz}
 \label{satz:orthogonalkomplement}
 Ist $V\subset H$ ein abgeschlossener Unterraum eines Hilbertraumes $H$,
-lässt sich jeder Vektor $y\in H$ auf genau eine Art in $y = x+u$
-zerlegen derart, dass $x \in V$ und $u\in V^{\perp}$,
-d.~h.~$\langle z,u\rangle$ für alle $z\in V$.
+lässt sich jeder Vektor $y\in H$ auf genau eine Art in $y = v+u$
+zerlegen derart, dass $v \in V$ und $u\in V^{\perp}$,
+d.~h.~$\langle z,u\rangle=0$ für alle $z\in V$.
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -1030,40 +1030,40 @@ Folge von Vektoren $v_k\in V$ finden derart, dass
 ist.
 Dies ist gleichbedeutend damit, dass zu vorgegebenem $\varepsilon>0$ ein
 $N$ gefunden werden kann, so dass $|d- \|y-v_k\|| < \varepsilon$ falls
-$k>N$ ist (Siehe auch Abbildung~\ref{satz:orthogonalkomplement}.
+$k>N$ ist (Siehe auch Abbildung~\ref{figure:orthogonalkomplement}.
 
-Wir zeigen, dass $x_k$ eine Cauchy-Folge ist.
+Wir zeigen, dass $v_k$ eine Cauchy-Folge ist.
 Dazu verwenden wir den Satz~\ref{satz:approx}, der besagt, dass zwei
 gute Approximationen des minimalen Abstandes nicht weit voneinander
 entfernt sein können.
 Ist
-$\|y-x_n\|^2 - d^2  < \varepsilon$ 
+$\|y-v_n\|^2 - d^2  < \varepsilon$ 
 und
-$\|y-x_m\|^2 - d^2  < \varepsilon$,
+$\|y-v_m\|^2 - d^2  < \varepsilon$,
 dann folgt nach Satz~\ref{satz:approx}, dass
 \[
-\|x_n-x_m\|
+\|v_n-v_m\|
 \le 2\sqrt{\mathstrut\varepsilon}
 \qquad
 \text{für $n,m>N.$}
 \]
-Da man $\varepsilon$ beliebig klein wählen kann, ist $(x_k)_{k\in\mathbb N}$
+Da man $\varepsilon$ beliebig klein wählen kann, ist $(v_k)_{k\in\mathbb N}$
 eine Cauchy-Folge.
 
-Da $(x_k)_{k\in\mathbb N}$ eine Cauchy-Folge ist in $V$ und $V$ ausserdem
-abgeschlossen ist, folgt, dass $x_n$ gegen einen Grenzwert 
+Da $(v_k)_{k\in\mathbb N}$ eine Cauchy-Folge ist in $V$ und $V$ ausserdem
+abgeschlossen ist, folgt, dass $v_n$ gegen einen Grenzwert 
 \[
-x=\lim_{k\to\infty} x_k
+v=\lim_{k\to\infty} v_k
 \]
 konvergiert.
-$x$ ist der Vektor, für den das Minimum $\|y-u\|=d$ erreicht wird.
-Auf diese Weise entsteht eine eindeutige Zerlegung $y = x + u$ mit $u=y-x$.
+$v$ ist der Vektor, für den das Minimum $\|y-u\|=d$ erreicht wird.
+Auf diese Weise entsteht eine eindeutige Zerlegung $y = v + u$ mit $u=y-v$.
 
 Es muss jetzt nur noch gezeigt werden, dass $u\in V^{\perp}$.
 Dazu wenden wir den Satz~\ref{satz:minimalallgemein} auf die Gerade
-durch $x$ mit einem beliebigen Vektor $z\in V$ an.
-Da $x$ minimalen Abstand hat, ist $\tilde{x}=x$ unde $z$ muss orthogonal
-zu $y-x=u$ sein.
+durch $v$ mit einem beliebigen Vektor $z\in V$ an.
+Da $v$ minimalen Abstand hat, ist $\tilde{v}=v$ unde $z$ muss orthogonal
+zu $y-v=u$ sein.
 \end{proof}
 
 \subsubsection{Darstellungssatz von Riesz

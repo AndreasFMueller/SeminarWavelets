@@ -15,7 +15,7 @@
 \begin{tikzpicture}[>=latex]
 \def\perioden{5}
 \draw[->,line width=0.7pt] (-6.3,0)--(6.5,0) coordinate[label={$\omega$}];
-\draw[->,line width=0.7pt] (0,-0.8)--(0,2.5) coordinate[label={right:$\operatorname{Im}\hat{\psi}(\omega)|$}];
+\draw[->,line width=0.7pt] (0,-0.8)--(0,2.5) coordinate[label={right:$\operatorname{Im}\hat{\psi}(\omega)$}];
 \draw[color=red,line width=1pt] plot[domain=-{\perioden*360+1}:{\perioden*360+1},samples=300]
 	({\x*3.1415/(\perioden*180)},{5*(sqrt(2)/sqrt(3.14159))*sin(\x)*(\x/180)/(3.14159*(1-(\x/180)*(\x/180)))});
 \foreach \x in {-10,...,10}{

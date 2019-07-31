@@ -2,28 +2,91 @@
 # Makefile -- build auxiliary data
 #
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+# (c) 2019 Roy Seitz, Hochschule Rapperswil
 #
-all:	haar.pdf gabor.pdf morlet.pdf
+imfiles = im.dat im.png im.jpg square.aux square.log chirp.aux chirp.log
+
+all:	
+images:	ahaar.pdf haar.pdf haar_dom.pdf gabor.pdf morlet.pdf \
+	chirp_morlet.pdf square_morlet.pdf \
+	chirp_haar.pdf square_haar.pdf \
+	chirp_ahaar.pdf square_ahaar.pdf \
+	chirp_gabor.pdf square_gabor.pdf
 clean:
-	rm -rf *.aux *.data *.log haar.pdf morlet.pdf gabor.pdf
+	rm -rf *.aux *.log $(imfiles)
 
-images:	haar.pdf gabor.pdf morlet.pdf
 
-haar.pdf:	haar.tex haar.data
-	pdflatex haar.tex
+ahaar.pdf: ahaar.tex
+	pdflatex -interaction=batchmode ahaar.tex
 
-haar.data:	haar.m
-	octave haar.m
+haar.pdf: haar.tex
+	pdflatex -interaction=batchmode haar.tex
 
-gabor.pdf:	gabor.tex gabor.data
-	pdflatex gabor.tex
+haar_dom.pdf: haar_dom.tex
+	pdflatex -interaction=batchmode haar_dom.tex
 
-gabor.data:	gabor.m
-	octave gabor.m
+gabor.pdf: gabor.tex
+	pdflatex -interaction=batchmode gabor.tex
 
-morlet.pdf:	morlet.tex morlet.data
-	pdflatex morlet.tex
+morlet.pdf: morlet.tex
+	pdflatex -interaction=batchmode morlet.tex
 
-morlet.data:	morlet.m
-	octave morlet.m
+im : im.cpp
+	g++ -o im -Wall -O2 im.cpp -lpng16
+
+chirp_morlet.pdf: im.cpp im.m im.tex
+	octave --silent --eval 'im(1920, 1080, 0, 0, 1, 0, 1)' 
+	./im 
+	convert im.png -density 300 -units PixelsPerInch im.jpg 
+	pdflatex -interaction=batchmode im.tex 
+	mv im.pdf chirp_morlet.pdf
+
+square_morlet.pdf: im.cpp im.m im.tex
+	octave --silent --eval 'im(1920, 1080, 1, 0, 1, 0, 1)' 
+	./im 
+	convert im.png -density 300 -units PixelsPerInch im.jpg 
+	pdflatex -interaction=batchmode im.tex 
+	mv im.pdf square_morlet.pdf
+
+chirp_haar.pdf:	im.cpp im.m im.tex
+	octave --silent --eval 'im(1920, 1080, 0, 1, 1, 0, 1)' 
+	./im 
+	convert im.png -density 300 -units PixelsPerInch im.jpg 
+	pdflatex -interaction=batchmode im.tex 
+	mv im.pdf chirp_haar.pdf
+
+square_haar.pdf: im.cpp im.m im.tex
+	octave --silent --eval 'im(1920, 1080, 1, 1, 1, 0, 1)' 
+	./im 
+	convert im.png -density 300 -units PixelsPerInch im.jpg 
+	pdflatex -interaction=batchmode im.tex 
+	mv im.pdf square_haar.pdf
+
+chirp_ahaar.pdf: im.cpp im.m im.tex
+	octave --silent --eval 'im(1920, 1080, 0, 2, 1, 0, 1)' 
+	./im 
+	convert im.png -density 300 -units PixelsPerInch im.jpg 
+	pdflatex -interaction=batchmode im.tex 
+	mv im.pdf chirp_ahaar.pdf
+
+square_ahaar.pdf: im.cpp im.m im.tex
+	octave --silent --eval 'im(1920, 1080, 1, 2, 1, 0, 1)' 
+	./im 
+	convert im.png -density 300 -units PixelsPerInch im.jpg 
+	pdflatex -interaction=batchmode im.tex 
+	mv im.pdf square_ahaar.pdf
+
+chirp_gabor.pdf: im.cpp im.m im.tex
+	octave --silent --eval 'im(1920, 1080, 0, 3, 1, 0, 1)' 
+	./im 
+	convert im.png -density 300 -units PixelsPerInch im.jpg 
+	pdflatex -interaction=batchmode im.tex 
+	mv im.pdf chirp_gabor.pdf
+
+square_gabor.pdf: im.cpp im.m im.tex
+	octave --silent --eval 'im(1920, 1080, 1, 3, 1, 0, 1)' 
+	./im 
+	convert im.png -density 300 -units PixelsPerInch im.jpg 
+	pdflatex -interaction=batchmode im.tex 
+	mv im.pdf square_gabor.pdf
 
