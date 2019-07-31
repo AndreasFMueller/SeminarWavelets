@@ -31,13 +31,16 @@ int main(int argc, char *argv[]) {
 	int c;
 	int longindex;
 
-	while (EOF != (c = getopt_long(argc, argv, "o:M", options, &longindex)))
+	while (EOF != (c = getopt_long(argc, argv, "i:o:M", options, &longindex)))
 		switch (c) {
+		case 'i':
+			infilename = optarg;
+			break;
 		case 'o':
 			outfilename = optarg;
 			break;
 		case 'M':
-			show_max = false;
+			// show_max = false; // Use show_max in octave!
 			break;
 		}
 
