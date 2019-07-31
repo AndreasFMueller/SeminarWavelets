@@ -1,6 +1,39 @@
 %
 % references.bib -- Bibliography file
 %
-% (c) 2019 Autor, Hochschule Rapperswil
+% (c) 2019 Jonas Gr�ndler / Nicolas Tobler, Hochschule Rapperswil
 %
 
+@Article{fpga:Daubechies1998,
+author="Daubechies, Ingrid
+and Sweldens, Wim",
+title="Factoring wavelet transforms into lifting steps",
+journal="Journal of Fourier Analysis and Applications",
+year="1998",
+month="May",
+day="01",
+volume="4",
+number="3",
+pages="247--269",
+abstract="This article is essentially tutorial in nature. We show how any discrete wavelet transform or two band subband filtering with finite filters can be decomposed into a finite sequence of simple filtering steps, which we call lifting steps but that are also known as ladder structures. This decomposition corresponds to a factorization of the polyphase matrix of the wavelet or subband filters into elementary matrices. That such a factorization is possible is well-known to algebraists (and expressed by the formulaSL(n;R[z, z−1])=E(n;R[z, z−1])); it is also used in linear systems theory in the electrical engineering community. We present here a self-contained derivation, building the decomposition from basic principles such as the Euclidean algorithm, with a focus on applying it to wavelet filtering. This factorization provides an alternative for the lattice factorization, with the advantage that it can also be used in the biorthogonal, i.e., non-unitary case. Like the lattice factorization, the decomposition presented here asymptotically reduces the computational complexity of the transform by a factor two. It has other applications, such as the possibility of defining a wavelet-like transform that maps integers to integers.",
+issn="1531-5851",
+doi="10.1007/BF02476026",
+url="https://doi.org/10.1007/BF02476026"
+}
+
+@online{fpga:gitrepo-wavelets,
+	title = {Github-repository, Mathematisches Seminar, Wavelets},
+	URL = {https://github.com/AndreasFMueller/SeminarWavelets},
+	DAY = {24},
+	MONTH = {july},
+	YEAR = {2019}
+}
+
+@online{fpga:wavelets-org-lifting-scheme,
+	title = {Lifting Scheme},
+	URL = {https://github.com/AndreasFMueller/SeminarWavelets},
+}
+
+
+%https://en.wikipedia.org/wiki/Lifting_scheme
+%http://wavelets.org/schemes-lifting.php

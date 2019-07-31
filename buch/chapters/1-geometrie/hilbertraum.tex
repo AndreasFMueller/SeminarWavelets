@@ -651,10 +651,424 @@ Die Abbildung $T\colon V\to l^2: v\mapsto (\hat{v}_k\,|\,1\le k)$
 ist also wie im reellen Fall eine {\em Isometrie} von Hilberträumen.
 \index{Isometrie}
 
+\subsection{Geometrie des Hilbertraumes
+\label{subsection:geometrie-hilbertraum}}
+Das Skalarprodukt in einem endlichdimensionalen Vektorraum formalisiert
+den Begriff der Orthogonalität, der die Grundlage für viele Aspekte
+der geometrischen Anschauung ist.
+Und tatsächlich zeigen die Entwicklungen dieses Abschnitts, dass Aussagen
+wie die Existenz eines Orthogonalkomplements tatsächlich auch in einem
+Hilbertraum Gültigkeit haben.
+Dies bedeutet, dass wir uns bei Argumenten in einem Hilbertraum von 
+der geometrischen Intuition leiten lassen können, solange wir nicht
+von Eigenschaften Gebrauch machen, die von der endlichen Dimensionalität
+des Anschauungsraumes abhängen.
 
-\subsection{Darstellungssatz von Riesz
-\label{subsection:riesz}}
-Zu einem gegeben Vektor $v\in H$ eines Hilbertraums ist die Abbildung
+\subsubsection{Formel von Pythagoras}
+Die Pythagoras-Formel gilt auch für Vektoren in einem Hilbertraum.
+Sind $x$ und $y$ orthogonale Vektoren in $H$, d.~h.~$x\perp y$, dann
+gilt
+\begin{equation}
+\|y-x\|^2
+=
+\langle y-x,y-x\rangle
+=
+\|y\|^2
+-
+2\operatorname{Re}\underbrace{\langle y,x\rangle}_{\displaystyle=0}
++
+\|x\|^2
+=
+\|x\|^2 + \|y\|^2.
+\label{formel:pythagoras}
+\end{equation}
+
+\subsubsection{Parallelogrammregel}
+\begin{satz}
+\label{satz:parallelogrammregel}
+Seien $x,y\in H$ Vektoren in einem Hilbertraum, dann gilt
+\begin{equation}
+2\|x\|^2 + 2\|y\|^2
+=
+\| x+y\|^2 + \|x-y\|^2.
+\label{formel:parallelogrammregel}
+\end{equation}
+Die Formel~\eqref{formel:parallelogrammregel} heisst die
+{\em Parallelogrammregel}.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir berechnen die Normquadrate auf der rechten Seite von 
+\eqref{formel:parallelogrammregel} mit Hilfe des Skalarproduktes:
+\begin{align*}
+\|x+y\|^2 + \|x-y\|^2
+&=
+\langle x+y,x+y\rangle + \langle x-y,x-y\rangle
+\\
+&=
+\|x\|^2 + \langle x,y\rangle + \langle y,x\rangle + \|y\|^2
++
+\|x\|^2 - \langle x,y\rangle - \langle y,x\rangle + \|y\|^2
+\\
+&=
+2\|x\|^2 + 2\|y\|^2.
+\end{align*}
+Dies ist linke Seite der Parallelogrammregel~\eqref{formel:parallelogrammregel}.
+\end{proof}
+
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/parallelogramm.pdf}
+\caption{Parallelogramm-Regel (Satz~\ref{satz:parallelogrammregel})
+\label{figure:parallelogrammregel}}
+\end{figure}
+
+
+Die Parallelogramm-Regel besagt, dass die Summe der Quadrate über den
+Seiten eines Parallelgramms gleich der Summe der Quadrate über den
+Diagonalen ist.
+Dies ist in Abbildung~\ref{figure:parallelogrammregel} illustriert.
+
+\subsubsection{Orthonormalisierung}
+Der Gram-Schmidt-Algorithmus zur Orthonormalisierung funktioniert auch
+in einem Hilbertraum.
+
+\begin{satz}
+\label{satz:orthonormierung}
+Sind $\{b_1,\dots,b_n\}\subset H$ eine endliche Menge von orthonormieren
+Vektoren in $H$ und $a\in H$ ein Vektor, der nicht Linearkombination
+von der Vektoren $b_1,\dots,b_n$ ist.
+Dann ist
+\[
+b
+=
+\frac{a-\langle a,b_1\rangle b_1-\dots-\langle a,b_n\rangle b_n}%
+{|a-\langle a,b_1\rangle b_1-\dots-\langle a,b_n\rangle b_n|}
+=
+\frac{a-\displaystyle\sum_{k=1}^n \langle a,b_k\rangle b_k}%
+{\biggl| a-\displaystyle\sum_{k=1}^n \langle a,b_k\rangle b_k\biggr|}
+\]
+ein Einheitsvektor, der zu allen $b_i$ orthogonal ist, insbesondere sind
+die Vektoren
+$b_1,\dots,b_n,b$ orthonormiert.
+\end{satz}
+
+\begin{proof}[Beweis]
+Nach Definition ist $b$ ein Einheitsvektor
+Das Skalarprodukt mit $b_i$ ist
+\begin{align*}
+\langle b, b_i\rangle
+&=
+\frac{\biggl\langle a-\displaystyle\sum_{k=1}^n \langle a,b_k\rangle b_k,b_i\biggr\rangle}%
+{\biggl| a-\displaystyle\sum_{k=1}^n \langle a,b_k\rangle b_k\biggr|}
+=
+\frac{\langle a,b_i\rangle-\displaystyle\sum_{k=1}^n \langle a,b_k\rangle \langle b_k,b_i\rangle}%
+{\biggl| a-\displaystyle\sum_{k=1}^n \langle a,b_k\rangle b_k\biggr|}
+\\
+&=
+\frac{\langle a,b_i\rangle-\displaystyle\sum_{k=1}^n \langle a,b_k\rangle \delta_{ki}}%
+{\biggl| a-\displaystyle\sum_{k=1}^n \langle a,b_k\rangle b_k\biggr|}
+=
+\frac{\langle a,b_i\rangle-\langle a,b_i\rangle}%
+{\biggl| a-\displaystyle\sum_{k=1}^n \langle a,b_k\rangle b_k\biggr|}
+=0,
+\end{align*}
+also ist $b$ orthogonal zu $b_i$ für alle $i=1,\dots,n$.
+\end{proof}
+
+Daraus lässt sich ableiten, dass jede endliche Menge von linear unabhängiger
+Vektoren in einem Hilbertraum in eine orthonormierte Menge von Vektoren
+verwandelt werden kann.
+
+\subsubsection{Abstand zu einer Geraden}
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/abstand.pdf}
+\caption{Satz~\ref{satz:abstand} besagt, dass es zu einem Punkt $y$ ausserhalb
+der Geraden $\{tx\;|\;t\in\mathbb C\}$ einen Punkte $\tilde{x}$ auf der
+Geraden gibt, der minimalen Abstand von $y$ hat.
+\label{figure:geradenabstand}}
+\end{figure}
+In einem reellen Vektorraum $H$ mit Skalarprodukt kann man zu einem Vektor
+$y\in H$ und einem Richtungsvektor $x\in H$ immer einen Vektor
+$\tilde{x}$ finden, der ein Vielfaches von $x$ ist und minimale Entfernung
+von $y$ hat.
+Das komplexe Skalarprodukt eines (komplexen) Hilbertraumes ermöglicht, 
+das folgende analoge Minimalproblem zu lösten (Siehe auch
+Abbildung~\ref{figure:geradenabstand}).
+
+\begin{satz}
+\label{satz:abstand}
+Seien $y,x\in H$ gegeben, dann gibt es einen eindeutigen Vektor $\tilde x=tx$
+derart, dass der Abstand
+\[
+\| y - \tilde{x}\|
+=
+\inf \{ \| y-t x\|\;|\; t \in \mathbb C\}
+=:d.
+\]
+Ausserdem ist $y-\tilde{x}\perp x$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Der Abstand von $y$ zum Punkt $tx$ ist
+\begin{align*}
+\| y-tx \|^2
+&=
+\|y\|^2
+-\langle y,tx\rangle
+-\langle tx,y\rangle
++
+|t|^2\|x\|^2
+\notag
+\\
+&=
+\|y\|^2
+-\bar{t} \langle y,x\rangle
+-t \langle x,y\rangle
++
+|t|^2\|x\|^2
+\notag
+\\
+&=
+\|y\|^2
+-2\operatorname{Re}(t\langle x,y\rangle)
++
+|t|^2\|x\|^2.
+\end{align*}
+Der Abstand wird minimal, wenn der mittlere Term möglichst klein wird.
+Dieser Fall tritt ein, wenn $t\langle x,y\rangle$ reell ist.
+
+Schreibt man $t=\tau e^{i\varphi}$ mit $\tau\in\mathbb R$ derart, dass
+$e^{i\varphi}\langle x,y\rangle=|\langle x,y\rangle|\in\mathbb R$,
+dann folgt
+\begin{equation}
+\| y-tx \|^2
+=
+\|y\|^2
+-2\tau|\langle x,y\rangle|
++
+\tau^2\|x\|^2.
+\label{min:minimalabstand}
+\end{equation}
+Mit Hilfe von $\tau$ und $\varphi$ kann man das Skalarprodukt auch
+schreiben als $\langle x,y\rangle = e^{-i\varphi}|\langle x,y\rangle|$
+oder $\langle y,x\rangle = e^{i\varphi}|\langle x,y\rangle|$.
+
+Der Abstand~\ref{min:minimalabstand} wird minimal, wenn der mittlere Term
+verschwindet,~d.~h. für
+\[
+\tau = \frac{|\langle y,x\rangle|}{\|x\|^2},
+\qquad
+\text{wir setzen}
+\qquad
+\tilde{x}
+=
+tx = \tau e^{i\varphi}x.
+\]
+Das Skalarprodukt ist
+\begin{align*}
+\langle y-\tilde x,x\rangle
+&=
+\langle y,x\rangle - \tau e^{i\varphi}\langle x,x\rangle
+=
+e^{i\varphi}|\langle y,x\rangle|
+- \frac{|\langle y,x\rangle|}{\|x\|^2} e^{i\varphi}\|x\|^2
+=
+0,
+\end{align*}
+was die behauptete Orthogonalität von $y-\tilde{x}$ und $x$ beweist.
+\end{proof}
+
+Der Satz besagt, dass es zu einem Vektor $y$ immer einen Punkt auf der 
+komplexen Geraden $\{ tx\;|\; t\in\mathbb C\}$ gibt derart, dass der Abstand
+minimal zu $y$ ist.
+
+\begin{satz}
+\label{satz:minimalallgemein}
+Sei $x,y,z\in H$ mit $\|z\|\ne 0$ und sei $d$ der Abstand der (komplexen)
+Geraden durch $x$ mit Richtungsvektor $z$ von $y$.
+Dann gibt es einen Punkt $\tilde{x}$ auf der Geraden derart, dass
+$d=\|y-\tilde{x}$ und $y-\tilde{x}\perp z$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Satz~\ref{satz:minimalallgemein} folgt aus Satz~\ref{satz:abstand}, indem
+man für das $y$ in Satz~\ref{satz:abstand} den Vektor $y-x$ verwendet und
+für das $x$ den Vektor $z$.
+\end{proof}
+
+\subsubsection{Approximationen des minimalen Abstands}
+Sei $V$ ein Unterraum von $H$ und $y\in H$.
+Der Abstand von $y$ von $V$ ist
+\[
+d = \inf \{ \| y - x\| \;|\; x \in V\}.
+\]
+In einem Hilbertraum ist es nicht mehr selbstverständlich, dass es auch
+einen Vektor $x\in H$ gibt, der das Minimum realisiert, dass also
+$ d = \|y-x\|$.
+Wir können aber zeigen, dass gute Approximationen des minimalen Abstands
+nicht weit voneinander entfernt sein können.
+
+\begin{satz}
+\label{satz:approx}
+Sei $y\in H$ und $V$ ein Unterraum von $H$.
+Sei $d=\inf \{ \|y-x\| \;|\;x\in H\}$ der Abstand von $y$ zum Unterraum $V$.
+Sind $x_1,x_2$ zwei verschiedene Approxmationen des minimalen Abstands, d.~h.
+\[
+\| y-x_1\|^2 = d^2+\varepsilon_1
+\qquad\text{und}\qquad
+\| y-x_2\|^2 = d^2+\varepsilon_2
+\]
+In Abbildung~\ref{figure:approx} ist die Gerade $g$ durch die Punkte $x_1$
+und $x_2$ dargestellt.
+Dann ist 
+\begin{equation}
+\|x_1-x_2\| \le \sqrt{\mathstrut\varepsilon_1}+\sqrt{\mathstrut\varepsilon_2}.
+\label{satz:approx:ungleichung}
+\end{equation}
+\end{satz}
+
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/approx.pdf}
+\caption{Approximation des minimalen Abstands von einer Geraden durch
+die Punkte $x_1$ und $x_2$.
+Es lässt sich immer ein Punkt $\tilde{x}$ auf der Geraden $g$ durch
+$x_1$ und $x_2$ finden, der eine noch bessere Approximation ist und so,
+dass $y-\tilde{x}$ orthogonal ist zur Geraden.
+Es folgt die Abschätzung~\eqref{satz:approx:ungleichung} für 
+$\|x_1-x_2\|$ (Siehe auch Satz~\ref{satz:approx}).
+\label{figure:approx}}
+\end{figure}
+
+\begin{proof}[Beweis]
+Die beiden Vektoren $x_1$ und $x_2$ liegen auf der Geraden durch $x_1$ 
+mit Richtungsvektor $z=x_2-x_1$.
+Der minimale Abstand eines Punktes auf der Geraden durch $x_1$ mit 
+Richtungsvektor $z$ ist mindestens $d$.
+Wir schreiben ihn
+\[
+\inf \{ \|y- (x_1+tz)\|^2 \;|\; t\in \mathbb C\}
+=
+d^2 + \varepsilon.
+\]
+Nach dem Satz~\ref{satz:minimalallgemein} gibt es einen Vektor $\tilde{x}$
+auf der Geraden durch $x_1$ mit Richtungsvektor $z$ derart, dass der minimale
+Abstand durch $\tilde{x}$ realisiert wird, also
+$\|y-\tilde{x}\|^2 = d^2+\varepsilon$.
+Ausserdem ist $y-\tilde{x}\perp z$.
+
+Da $y-\tilde{x}$ und $z$ orthogonal sind, kann man die Abstände
+$\|y-x_i\|$ mit der Formel von Pythagoras \eqref{formel:pythagoras}
+berechnen:
+\begin{align*}
+d^2 + \varepsilon_1
+=
+\|y-x_1\|^2 &= \|y-\tilde{x}\|^2 + \|\tilde{x}-x_1\|^2
+=
+\|\tilde{x}-x_1\|^2 + d^2 + \varepsilon
+&&\Rightarrow&
+\|\tilde{x}-x_1\|^2&=\varepsilon_1-\varepsilon
+\\
+d^2 + \varepsilon_2
+=
+\|y-x_2\|^2 &= \|y-\tilde{x}\|^2 + \|\tilde{x}-x_2\|^2
+=
+\|\tilde{x}-x_2\|^2 + d^2 + \varepsilon
+&&\Rightarrow&
+\|\tilde{x}-x_2\|^2&=\varepsilon_2-\varepsilon
+\end{align*}
+Damit kann man den Abstand zwischen $x_1$ und $x_2$ berechnen:
+\[
+\|x_1-x_2\|
+\le
+\|x_1-\tilde{x}\| + \| \tilde{x}-x_2\|
+=
+\sqrt{\mathstrut\varepsilon_1-\varepsilon}
++
+\sqrt{\mathstrut\varepsilon_2-\varepsilon}
+\le
+\sqrt{\mathstrut\varepsilon_1} + \sqrt{\mathstrut\varepsilon_2}.
+\]
+Damit ist die Ungleichung \ref{satz:approx:ungleichung} bewiesen.
+\end{proof}
+
+\subsubsection{Orthogonalkomplement}
+In einem endlichdimensionalen Vektorraum mit Skalarprodukt gibt es zu
+einem abgeschlossenen Unterraum immer ein orthogonales Komplement,
+selbst dann, wenn der Vektorraum nicht abgeschlossen ist.
+Wenn man nämlich für den Unterraum eine endliche Basis wählt ist das
+Orthogonalkomplement charakterisiert durch endlich viele lineare 
+Gleichungen, für die sich immer eine Lösungsmenge angeben lässt.
+In einem unendlichdimensionalen Raum funktioniert dies nur noch, wenn
+man Grenzwerte bestimmen kann, also zum Beispiel in einem Hilbertraum.
+
+\begin{figure}
+\centering
+\includegraphics{chapters/1-geometrie/images/orthogonalkomplement.pdf}
+\caption{Beweis der Existenz des Orthogonalkomplements in einem Hilbertraum
+in Satz~\ref{satz:orthogonalkomplement}
+\label{figure:orthogonalkomplement}}
+\end{figure}
+
+\begin{satz}
+\label{satz:orthogonalkomplement}
+Ist $V\subset H$ ein abgeschlossener Unterraum eines Hilbertraumes $H$,
+lässt sich jeder Vektor $y\in H$ auf genau eine Art in $y = x+u$
+zerlegen derart, dass $x \in V$ und $u\in V^{\perp}$,
+d.~h.~$\langle z,u\rangle$ für alle $z\in V$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $y\in H\setminus V$.
+Die Funktion $v\mapsto \|y-v\|$ ist $\ge 0$, man kann also eine
+Folge von Vektoren $v_k\in V$ finden derart, dass
+\[
+\lim_{k\to\infty} \|y-v_k\| = \inf_{v\in V} \|y-v\| =: d
+\]
+ist.
+Dies ist gleichbedeutend damit, dass zu vorgegebenem $\varepsilon>0$ ein
+$N$ gefunden werden kann, so dass $|d- \|y-v_k\|| < \varepsilon$ falls
+$k>N$ ist (Siehe auch Abbildung~\ref{satz:orthogonalkomplement}.
+
+Wir zeigen, dass $x_k$ eine Cauchy-Folge ist.
+Dazu verwenden wir den Satz~\ref{satz:approx}, der besagt, dass zwei
+gute Approximationen des minimalen Abstandes nicht weit voneinander
+entfernt sein können.
+Ist
+$\|y-x_n\|^2 - d^2  < \varepsilon$ 
+und
+$\|y-x_m\|^2 - d^2  < \varepsilon$,
+dann folgt nach Satz~\ref{satz:approx}, dass
+\[
+\|x_n-x_m\|
+\le 2\sqrt{\mathstrut\varepsilon}
+\qquad
+\text{für $n,m>N.$}
+\]
+Da man $\varepsilon$ beliebig klein wählen kann, ist $(x_k)_{k\in\mathbb N}$
+eine Cauchy-Folge.
+
+Da $(x_k)_{k\in\mathbb N}$ eine Cauchy-Folge ist in $V$ und $V$ ausserdem
+abgeschlossen ist, folgt, dass $x_n$ gegen einen Grenzwert 
+\[
+x=\lim_{k\to\infty} x_k
+\]
+konvergiert.
+$x$ ist der Vektor, für den das Minimum $\|y-u\|=d$ erreicht wird.
+Auf diese Weise entsteht eine eindeutige Zerlegung $y = x + u$ mit $u=y-x$.
+
+Es muss jetzt nur noch gezeigt werden, dass $u\in V^{\perp}$.
+Dazu wenden wir den Satz~\ref{satz:minimalallgemein} auf die Gerade
+durch $x$ mit einem beliebigen Vektor $z\in V$ an.
+Da $x$ minimalen Abstand hat, ist $\tilde{x}=x$ unde $z$ muss orthogonal
+zu $y-x=u$ sein.
+\end{proof}
+
+\subsubsection{Darstellungssatz von Riesz
+\label{subsubsection:riesz}}
+Zu einem gegebenen Vektor $v\in H$ eines Hilbertraums ist die Abbildung
 \begin{equation}
 H\to\mathbb C
 :
@@ -674,40 +1088,13 @@ darstellen lässt.
 Dies ist der Inhalt des Satzes von Riesz, der in diesem Abschnitt
 bewiesen werden soll.
 
-Bevor wir soweit kommen können, brauchen wir jedoch ein noch elementareres
-Resultat, welches in jedem beliebigen Hilbertsatz zutrifft.
-Es besagt, dass sich zu einem abgeschlossenen Unterraum eines Hilbertraums 
-immer ein Orthogonalkomplement finden lässt, also ein darauf orthogonaler
-Unterraum, der zusammen mit dem gegebenen Unterraum jeden Vektor von $H$
-erzeugen kann.
-Dies entspricht der Intuition für Orthogonalität, die man aus der
-endlichdimensionalen Vektorgeometrie hat.
-
-\begin{satz}
-\label{satz:orthogonalkomplement}
-Ist $V\subset H$ ein abgeschlossener Unterraum eines Hilbertraumes $H$,
-dann lässt sich jeder Vektor $v\in H$ auf genau eine Art in $v = v_1+v_2$
-zerlegen derart, dass $v_1 \in V$ und $v_2\in V^{\perp}$,
-d.~h.~$\langle v_1,v_2\rangle = 0$ für alle $v\in V$.
-\end{satz}
-
-\begin{proof}[Beweis]
-Sei $u\in H\setminus V$.
-Die Funktion $v\mapsto \| u-v\|$ ist $\ge 0$, man kann also eine
-Folge von Vektoren $v_k\in V$ finden derart, dass
-\[
-\lim_{k\to\infty} \|u-v_k\| = \inf_{v\in V} \|u-v\|
-\]
-ist.
-\end{proof}
-
 \begin{satz}[Riesz]
 Ist $\varphi\colon H\to \mathbb C$ eine stetige Lineaform auf $H$, dann 
 gibt es einen Vektor $v\in H$ derart, dass
 \[
 \varphi(u) = \langle u,v\rangle
 \qquad
-\forall u\in H
+\forall u\in H.
 \]
 \end{satz}
 
@@ -716,21 +1103,68 @@ Man betrachte den Raum
 \[
 V_1 = \{ u \in H \;|\;\varphi(u)=0\}.
 \]
-Da $\varphi$ eine stetige Linearform ist, ist $V_1$ ein abgeschlossener Raum.
-Falls $V_1=H$ bedeutet dies, dass $\varphi(u)=0$ für alle $u\in H$ ist,
+Da $\varphi$ eine stetige Linearform ist, ist $V_1$ ein abgeschlossener
+Unterraum von $H$.
+Falls $V_1=H$ folgt, dass $\varphi(u)=0$ für alle $u\in H$ ist,
 also kann man $\varphi$ als Skalarprodukt mit dem Nullvektor schreiben:
 $\varphi(u) = \langle u,0\rangle$.
 
 Falls $V_1 \ne H$ ist, betrachtet man das orthogonale Komplement
 \[
-V_1^{\perp} = \{ v\in H\;|\; \langle v,u\rangle = 0 \forall u\in V_1\}.
+V_1^{\perp} = \{ v\in H\;|\; \langle v,u\rangle = 0\; \forall u\in V_1\},
 \]
 welches nach Satz~\ref{satz:orthogonalkomplement} existiert.
-Jeder Vektor $v\in H$ lässt sich auf eindeutige Weise zerlegen in
-$v_1+v_2$ mit $v_1\in V_1$ und $v_2\in V_1^{\perp}$.
-Es ist $\varphi(v)=\varphi(v_1)+\varphi(v_2)=\varphi(v_2)$.
+Angenommen, es gibt in $V_1^\perp$ zwei linear unabhängige Vektoren,
+dann kann man diese orthonormalisieren.
+Seien also $v'$ und $v''$ orthonormierte Vektoren $V_1^\perp$.
+Die Linearkombination
+\[
+v
+=
+\varphi(v'') v' - \varphi(v') v''
+\in
+V_1^\perp
+\]
+erfüllt $\varphi(v) = 0$, also ist $v\in V_1$.
+Da die Zerlegung in $V_1$ und $V_1^\perp$ eindeutig ist, folgt
+$v=0$.
+Die Vektoren $v'$ und $v''$ waren also nicht linear unabhängig.
+Es folgt, dass $V_1^\perp$ eindimensional ist.
 
+Wir wählen einen beliebigen Vektor $v_0\in V_1^\perp$ und
+setzen $v = \overline{\varphi(v_0)}v_0/\|v_0\|^2$.
+Es gilt 
+\[
+\langle v_0,v\rangle
+=
+\biggl\langle v_0,
+\overline{\varphi(v_0)}\frac{v_0}{\|v_0\|^2}
+\biggr\rangle
+=
+\varphi(v_0).
+\]
+Ist $u$ ein beliebiger Vektor in $H$, dann lässt sich $u$ auf eindeutige
+Weise schreiben als $u=u_1+u_2$ mit $u_1\in V_1$ und $u_2=\lambda $.
+Es folgt
+\begin{align*}
+\varphi(u)
+&=
+\varphi(u_1) + \varphi(\lambda v_0)
+=
+\lambda \varphi(v_0)
+\\
+\langle u,v\rangle
+&=
+\langle u_1,v\rangle + \langle u_2,v\rangle
+=
+\lambda \underbrace{\langle v_0,v\rangle}_{\displaystyle=\varphi(v_0)}
+=
+\lambda \varphi(v_0).
+\end{align*}
+Es ist also tatsächlich $\varphi(u)=\langle u,v\rangle$.
 \end{proof}
 
+Der Darstellungssatz von Riesz verdeutlicht, dass sich alle Informationen über
+Vektoren in einem Hilbertraum aus Skalarprodukten ablesen lassen.
 
 
