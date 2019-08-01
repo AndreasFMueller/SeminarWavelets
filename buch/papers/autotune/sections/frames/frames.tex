@@ -7,7 +7,7 @@ Die Grundlegende Idee bestand darin eine Frequenzanalyse mit Wavelets zu machen.
 \subsection{Framing}
 Die normale msa besitzt nur Orthonormierte Basen weshalb sie auch keine redundante Daten besitzt. Zur analyse zwecken würde es sich lohnen mehr von diesen Basen zu erzeugen und die enstehung der zusätzlichen Informationen zu verwenden. Wenn wir nun mehr von diesen Basen hinzufügen erschaffen wir ein überbestimmtes System welches ab hier Frame genannt wird. Genauere abhandlungen über Frames ist im Kapitel\ref{chapter:geometrie} unter \ref{subsetion:skript:frames:framesinrn} zu finden. Um ein Frame sinnvoll zu gestalten werden die zusätzlichen Basen auch im Zweierlogharitmus gestaltet. Um nun alle zwölf Halbtöne eines eines Signales detektieren zu können werden mindestens zwölf Basen benötigt. Um ein Sampling herzustellen wird als Grundbasis der Beginn einer Oktave verwendet. Da die Samplingfrequenz mindestens doppelt so schnell sein muss wie die zu Analysierende Frequenz kann als Oktavenbasis ein vielfaches von $220[Hz]$ verwendet werden. Sinnvollerweise auch im zweierlogarhytmus. Das mp3 Format kann eine maximale Tonfrequenz von $16k[Hz]$ wiedergeben. Dem entsprechend ist für Musik eine Maximale Samplingfrequenz von $32k[Hz]$ sinvoll. In der Theorie spielt es jedoch keine Rolle in welchen Frequenzband das Sampling geschieht solange $\frac{f_{Sampling}}{f_{Signal}}\geq2$ gegeben ist. Mit der folgenden Gleichung wurden die verschiednen Samplingfrequenzen bestimmt welche dann verwendet wurden um die Signale neu zu Samplen. 
 \begin{equation}
-fs_{n}=f*2^{\frac{n}{k}}
+fs_{n}=f\cdot2^{\frac{n}{k}}
 \end{equation}
 $k$ steht dabei für die Anzahl Basen die man in einer Oktave haben möchte. Sinnvollerweise wird $k \geq 12$ gewählt.\\
 
@@ -69,7 +69,7 @@ fs_{11}\\
 \]
 In dem Vektor $fs$ sind die Sampelfrequenzen vorhanden mit welchen die dazughörigen Sampelintervalle berechnet werden. Um die  Signallänge von der Sampling Frequenz zu entkoppeln werden die Elemente von $fs$ als auf Samples pro Sekunde normiert. $fs$ mus nun immer mit der Signaldauer multiliziert werden um die richtige Menge an Samples zu erhalten.\\
 
-Es wird also eine Frame Matrix erstellt, dessen Zeilen aus dem verschieden Gesampleten Signal besteht. Die Signaldauer $T_{s}$ wird dabei mit der Anzahl Samples pro Sekunde Multipliert um damit den Kehrwert der Zeit $T$ zweischen den Samples zu erlangen.
+Das Ziel ist es ein Frame zu erstellen, dessen Zeilen aus dem verschieden Gesampleten Signal besteht. Die Signaldauer $T_{s}$ wird dabei mit der Anzahl Samples pro Sekunde Multipliert um damit den Kehrwert der Zeit $T$ zweischen den Samples zu erlangen.
 \[T_{i}=\frac{1}{fs_{n}\cdot T_{s}}\]
 Der Index $T_{i}\in[t_{0},t_{1},...,t_{k}]$ steht dabei für alle Diskrete Zeitwerte die für ein Sampling mit den $k$ Basen verwendet werden.
 \[
@@ -88,74 +88,19 @@ Auf dieses Frame wird dann eine Multiskalenanalyse angwendet. In dem Frame gibt 
 \[level = \left\lfloor\log_2\left(\mathtt{
 	\frac{\mathcal{T}\_\text{min\_len}}{\text{filter\_len -1}}}\right)\right\rfloor
 \]
-Das resultat 
+Mit Level0 wird dabei auf das oberste Level referenziert welches die kleinste Frequenzteiung erfährt. Die Levels laufen also reziprok zu den Basen welche von unten nach oben benannt sind. Um dies besser zu Ilustrieren sind die Anzahl und Positionen in dem Bild \ref{fig:frame_konst} konzeptionell abgebildet. Man ging dabei von der Ursprungsbasis von 55 Samples aus. Es wurde dann mit sechs unterteilungen also $k=6$ ein Frame gebaut welches dann über vier Levels dargstellt ist. In der Grafik \ref{fig:frame_konst} ist die Struktur der einzelnen Vektoren, deren Anzahl von Datenpunkten sowie derigen verschiebung gut ersichtlich. \\
+  
+Das Resultat der msa liefert uns $k\cdot \text{Anz. Level}$ Vektoren zurück welche alle eine unterschiedliche Länge besitzen. Um sie sinnvoll zu Sortieren beginnt man mit der Tiefsten Basis auf dem höchsten Level. Die gleichwertigen Level werden dann übereinander gestapelt von der kleinsten Basis zur grössten. Dann kommt das nächste Level. Mit dieser Struktur hat man die besten Resultate ohne eingriffe in die eigentlichen Werte vorzunehmen. 
 
 
-\begin{figure}[!ht]
+\begin{figure}[h]
 	\centering
-	\scalebox{.75}{
-		\begin{tikzpicture}
-		\draw (6,-5.3) node{$t$};
-		\draw (-0.4,0) node{$Hz$};
-		
-		\draw (-0.8,-0.5) node{Level 0};
-		\draw (-0.8,-1.333) node{Level 1};
-		\draw (-0.8,-2.166) node{Level 2};
-		\draw (-0.8,-2.999) node{Level 3};
-		\draw (-0.8,-3.832) node{Level 4};
-		\draw (-0.8,-4.665) node{Level 5};
-		
-		
-		\draw[->, very thick] (0,-5)--(0,0.2);
-		\draw[->, very thick] (0,-5)--(6.2,-5);
-		
-		\draw[thick] (0,-0)--(6,-0);
-		\draw[thick] (0,-0.833)--(6,-0.833);
-		\draw[thick] (0,-1.666)--(6,-1.666);
-		\draw[thick] (0,-2.499)--(6,-2.499);
-		\draw[thick] (0,-3.33)--(6,-3.33);
-		\draw[thick] (0,-4.166)--(6,-4.166);
-		
-		\draw[thick] (3,-5)--(3,0);
-		\draw[thick] (6,-5)--(6,0);
-		\draw[thick] (1.5,-4.166)--(1.5,0);
-		\draw[thick] (4.5,-4.166)--(4.5,0);
-		
-		\draw[thick] (0.75,-3.33)--(0.75,0);
-		\draw[thick] (2.25,-3.33)--(2.25,0);
-		\draw[thick] (3.75,-3.33)--(3.75,0);
-		\draw[thick] (5.25,-3.33)--(5.25,0);
-		
-		\foreach \x in {0,0.375,...,6}
-		\draw[thick] (\x,-2.499)--(\x,0);
-		
-		\foreach \x in {0,0.1875,...,6}
-		\draw[thick] (\x,-1.666)--(\x,0);
-		
-		\foreach \x in {0,0.09375,...,6}
-		\draw[thick] (\x,-0.833)--(\x,0);
-		
-		\draw (13,-5.3) node{$t$};
-		\draw (6.6,0) node{$Hz$};
-		\draw[->, very thick] (7,-5)--(7,0.2);
-		\draw[->, very thick] (7,-5)--(13.2,-5);
-		
-		\draw[thick] (7,-0)--(13,-0);
-		\draw[thick] (7,-0.833)--(13,-0.833);
-		\draw[thick] (7,-1.666)--(13,-1.666);
-		\draw[thick] (7,-2.499)--(13,-2.499);
-		\draw[thick] (7,-3.33)--(13,-3.33);
-		\draw[thick] (7,-4.166)--(13,-4.166);
-		
-		\draw[thick] (8.5,-5)--(8.5,0);
-		\draw[thick] (10,-5)--(10,0);
-		\draw[thick] (11.5,-5)--(11.5,0);
-		\draw[thick] (13,-5)--(13,0);
-		\end{tikzpicture}
-	}
-	\caption{Multiskalenanalyse Auflösung im Vergleich zu STFT Analyse}\label{fig:faauf}
-	
-\end{figure}
+	\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/msa/msa.pdf}
+	\caption{Frame-Multiskalenanalyse mit 6 Basen und 4 Level gezeigt}\label{fig:frame_konst}
+\end{figure}%
+
+Die gleiche Methodik wie in Grafik \ref{fig:frame_konst} wurde für die anschliessenden Frame-Multiskalenanalysen verwendet.
+
 
 \subsection{Analyse mit Frames}
 In diesem Unterkapitel wird beschrieben welchen ablauf gewählt wurde um eine Analyse eines Testsignales durchzuführen.\\
@@ -166,7 +111,7 @@ Der letzte Block beginnt mit $220\cdot 2^{\frac{2}{12}}$\text{[Hz]} über eine d
 
 
 
-In der Grafik \ref{fig:Frame-Analyse} wird eine Frame-Analyse und eine cwt-Analyse des gleichen Testsignales\ref{fig:frame-testsig} nebeneinander gestellt. Darin kann mun nun die unterschiede 
+In der Grafik \ref{fig:Frame-Analyse} wird eine Frame-msa und eine cwt-Analyse des gleichen Testsignales\ref{fig:frame-testsig} nebeneinander gestellt. Die Frame-msa wird dabei nur im Absolutwert dargestellt da so die Resultate noch eindeutiger sind. Im vergleich können nun die Unterschiede erkannt werden. Die Frame-msa hat deutliche Peak- und Nullstellen an Orten wo die cwt keine solche schwankungen aufweist. 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/testsig.jpg}
@@ -181,16 +126,55 @@ In der Grafik \ref{fig:Frame-Analyse} wird eine Frame-Analyse und eine cwt-Analy
 	\label{fig:Frame-Analyse}
 \end{figure}%
 
+
+
 \begin{figure}[!ht]
+	\begin{minipage}{.5\linewidth}
+		\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/1dwt.jpg}
+		\caption{Frame-msa mit 1 Basis}
+	\end{minipage}%
+
+	
+	\begin{minipage}{.5\linewidth}
 	\centering
-	\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/cwtmaxima.jpg}
-	\captionof{figure}{Maxima berechnung  des CWT}\label{fig:cwt:max}
-\end{figure}%
+	\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/4dwt.jpg}
+	\caption{Frame-msa mit 4 Basen}
+	\end{minipage}
+
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/12dwt.jpg}
+	\caption{Frame-msa mit 12 Basen}
+	\end{minipage}
+	
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/24dwt.jpg}
+		\caption{Frame-msa mit 24 Basen}
+	\end{minipage}
+
+	
+	\caption{Verschiedene Fensterfunktionen und deren Beschreibung}\cite{wikipedia:Window}
+	\label{fig:STFTtab}
+\end{figure}
+
+
+Von diesen Analyseresultaten sollen nun auch die Frequenzen extrahiert werden. Dabei macht man sich die Lokalen maximas der Matrix zunutze. Man vergleicht in der Matrix selber die jeweiligen nachbar Werte ob der Wert grösser oder kleiner ist. Von den Lokalen maximas werden die Koordinaten gesammelt welche dann mit den Level verglichen werden kann und so die Frequenz gefunden.\\
+Um eine gute Qualität von Peak zu erhalten wurde noch ein Maximum Filter auf die Matrix angewendet. Dieser ersetzt in dem vordefinierten radius $r$ die Werte einer Matrix mit den Lokal gefundenen Maximalwert. Das Ziel des Maximum Filters ist die elimination der Nullstellen die direkt in den wichtigen Signalverläufen vorkommen. Durch dieser Maximal Filter werden jedoch auch Resultate verfälscht, was in den Versuchen gerade im Frequenzbereich sichtbar wurde. Dieser ist mit der relativ beschränkten Ahnzahl Level und Basen, viel empfindlicher auf Störungen, als die sehr fein aufgelöste Zeitachse. \\
+In der Folgenden Grafik\ref{fig:cwt_max} wurde das genannte Ferfahren um Maximalstellen zu finden an der cwt Analyse angewendet. Diese kann somit als Referenz dienen. 
 
 \begin{figure}[!ht]
 	\centering
+	\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/cwtmaxima.jpg}
+	\captionof{figure}{Maxima berechnung  des cwt}\label{fig:cwt_max}
+\end{figure}%
+In der cwt Grafik sieht man schön wie stabil die Frequenzen in der jeweils konstanten Frequenz angezeigt wird. Auch wenn man das Ergebnis der Koordinaten zurück rechnet kommt man auf die richtigen Frequenzen. Sprünge, Anfangswerte und jegliche andere Unstetigkeit der Funktion verzeiht auch die Ergebnisse der cwt.
+\\
+Die nächste Grafik \ref{fig:msa_max} bildet die Frame-msa ab, welche nach der fleichen Art wie \ref{fig:cwt_max} Analysiert wurde. Man bekommt die Frequenz nicht 
+\begin{figure}[!ht]
+	\centering
 	\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/dwtmaxima.jpg}
-	\captionof{figure}{Maxima berechnung  des DWT}\label{fig:cwt:max}
+	\captionof{figure}{Maxima berechnung  der Frame-msa}\label{fig:msa_max}
 \end{figure}%
 
 
