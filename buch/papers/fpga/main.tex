@@ -477,7 +477,7 @@ After the VHDL simulation finishes, the results are again fed into MATLAB for va
 
 After some testing and debugging the plots are promising.
 The results of the extracted data from the Vivado Toolchain and the numerical equivalent MATLAB simulation match up.
-To compare every step of the processed data the signals are extracted after transformation, after delaying and finally after the reconstruction.
+To compare every step of the processed data, the signals are extracted after transformation, after delaying and finally after the reconstruction.
 The different signals are then plotted in MATLAB and compared.
 
 In figure \ref{fpga:fig:coeff} the coefficients after the transformation are plotted.
@@ -487,7 +487,7 @@ In figure \ref{fpga:fig:coeff} the coefficients after the transformation are plo
 	\caption{Coefficients and ready signals after transformation \label{fpga:fig:coeff}}
 \end{figure}
 The black line is the input signal and the other colors are the different coefficients.
-Deeper in the multiresolution analysis, the coefficients change slower.
+Deeper in the multiresolution analysis, the coefficients are updated more and more infrequently.
 The frequency gets halved every step.
 Additionally, deeper coefficients are delayed more, as visible in the bottom graph, which shows the ready signals.
 The fast changing coefficients correspond to the higher frequencies and the slow changing coefficients correspond to the slower frequencies.
@@ -500,33 +500,32 @@ Figure \ref{fpga:fig:coeff_delayed} shows the coefficients and ready signals aft
 	\includegraphics[width=0.9\textwidth]{papers/fpga/images/coefs_delayed.pdf}
 	\caption{Coefficients and ready signals after delaying \label{fpga:fig:coeff_delayed}}
 \end{figure}
-As visible the coefficients start to change now delayed only by one clock cycle. 
+As visible, the coefficients are aligned with a separation of one clock cycle. 
 In this form the coefficients can be transformed back to the original signal. 
 This is also illustrated in the ready signals.
-Now the slower coefficients are first and then the fast ones follow.
+The slower coefficients are calculated first and then the fast ones follow. %TODO uncomprehensible
 The slower ones are also longer valid.
-The information from the high frequencies are also needed at the moment when the inverse transformation starts.  
+The information from the high frequencies are also needed at the moment when the inverse transformation starts. %TODO don't understnad ???? 
 
 
-Figure \ref{fpga:fig:output} shows the final output of the whole pipeline,  compared to the input signal. 
+Figure \ref{fpga:fig:output} shows the final output of the whole pipeline, compared to the input signal. 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{papers/fpga/images/output.pdf}
 	\caption{Output \label{fpga:fig:output}}
 \end{figure}
-As expected the signals are the same but delayed by the processing time of the system.
-The pink line is the result of the MATLAB simulation and the pink dots are the results of the Vivado hardware simulation. 
+As expected, the input and output signals are the same, delayed by the processing time of the system.
+The pink line is the result of the MATLAB simulation and the pink dots are the results of the Vivado hardware simulation. %TODO makes more sence if mentioned in first graph of this kind
 
-
-Also interesting is how the different coefficients and signals look inside the simulation.
-The different ready signals, coefficients and also a graphic interpretation of the remaining signal are shown in figure \ref{fpga:fig:sim}.
+An also interesting view shows the VHDL simulation graph of Vivado, as depicted in figure \ref{fpga:fig:sim}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{papers/fpga/images/inv_branching_screenshot.PNG}
 	\caption{VHDL simulation coefficients \label{fpga:fig:sim}}
 \end{figure}
-The simulation output makes the recursive multiresolution analysis visible. 
-As the recursion gets deeper the higher frequencies are subtracted and only the slow frequencies stay.
+The simulation shows the delayed coefficients, as well as the ready signals, as they are resembled in the inverse DFT.
+The signals are arranged, as they occur in the multiresolution analysis.
+As the recursion gets deeper the higher frequencies are subtracted and only the slow frequencies stay. %TODO graph shows inverse transform, not forward transform
 
 
 %\newpage
@@ -561,27 +560,26 @@ As the recursion gets deeper the higher frequencies are subtracted and only the 
 \section{Conclusion}
 \rhead{Conclusion}
 
+%TODO too much 'we' .. use passive structure
+
 In our view this project was a success.
-We Found an efficient algorithm (lifting scheme) for a hardware implementation of the DWT.
-First the theory was difficult to understand but finally we understood enough to get something working.
-So we implemented a multiresolution forward and inverse DWT for the Haar wavelet in VHDL. 
-To validate our implementation we built a numerical equivalent test bench in MATLAB.
-After this we were able to compare our hardware implementation with a working MATLAB simulation. 
+We have found an efficient algorithm (lifting scheme) for a hardware implementation of the DWT.
+At first, the theory was difficult to understand but finally we have managed to gain insight of the lifting scheme % TODO clumsy sentence
+Then, a forward and inverse DWT for the Haar wavelet has been implemented in VHDL. 
+To validate our implementation, we built a numerical equivalent test bench in MATLAB.
+Using the testbench, we were able to compare our hardware implementation with a working MATLAB simulation. 
 With the aid of this MATLAB simulation we were then able to validate our output and debug the implementation until both versions matched up.
-And finally we got it working.
+% And finally we got it working.
 It was satisfying to use some of the knowledge gained in this course and also to add some additional theory to this paper.
 
-We tried to implement the VHDL structure as general as possible.
-So it is probably easier to implement the transformation with different wavelets later. 
-The frequency selectivity of the Haar wavelet is low and not suitable for audio applications.
-If one would use this implementation on a audio signal a change of gain of a coefficient would result in various distortions at the output. 
-Besides other thing s which need to be changed.
-But with the implementation of a higher order Daubechies wavelet the frequency selectivity would be better.
-This way it would be possible to boost or attenuate different frequencies in a audio signal better. 
+The VHDL structure has been implemented in a general structure, which enables the implementation of different, higher order wavelets later. 
+The frequency selectivity of the Haar wavelet is low and not suitable for audio applications
+If one would use this implementation on a audio signal, a change of gain of a coefficient would result in various distortions at the output. 
+A higher order Daubechies wavelet has increased frequency selectivity, which is more suitable for audio applications.
+This way it is possible to boost or attenuate different frequencies in a audio signal with more quality. 
 
 All Codes (VHDL, MATLAB) are stored in the github repository belonging to this book. 
 \cite{fpga:gitrepo-wavelets}
-
 
 \printbibliography[heading=subbibliography]
 \end{refsection}
