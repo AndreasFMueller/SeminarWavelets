@@ -23,9 +23,9 @@ bestimmen.
 Die Fourier-Transformierte von $B_n$ kann dank der Faltungsformel für die
 Fourier-Transfomierte 
 \begin{equation}
-\hat{B}_n = \widehat{B_0 * B_{n-1}} = \hat{B}_0 \cdot \hat{B}_{n-1}
+\hat{B}_n = \widehat{B_0 * B_{n-1}} = \sqrt{2\pi}\hat{B}_0 \cdot \hat{B}_{n-1}
 \qquad
-\hat{B}_n = \hat{B}_0)^{n-1}
+\hat{B}_n = (\!\sqrt{2\pi})^n \hat{B}_0^{n-1}
 \label{Bn-ft}
 \end{equation}
 berechnet werden.
@@ -67,7 +67,7 @@ e^{-i\omega/2}
 =
 \frac1{\sqrt{2\pi}}
 e^{-i\omega/2}
-\operatorname{sinc}\frac{\omega}2
+\operatorname{sinc}\frac{\omega}2.
 \end{align*}
 Daraus und aus \eqref{Bn-ft} folgt jetzt der folgende Satz
 
@@ -77,15 +77,117 @@ Die Fourier-Transformierte von $B_n$ ist
 \[
 \hat{B}_n(\omega)
 =
-(\sqrt{2\pi})^n
-\hat{B}_0(\omega)
+(\!\sqrt{2\pi})^n
+\hat{B}_0(\omega)^{n+1}
 =
-(\sqrt{2\pi})^n
+(\!\sqrt{2\pi})^n
+\biggl(
+\frac{1}{\sqrt{2\pi}}
+e^{-i\omega/2} \operatorname{sinc}\frac{\omega}2
+\biggr)^{n+1}
+=
+\frac{1}{\sqrt{2\pi}}
+\biggl(
+e^{-i\omega/2} \operatorname{sinc}\frac{\omega}2
+\biggr)^{n+1}.
 \]
 \end{satz}
 
 \subsection{Orthonormalisierung
 \label{subsection:spline-orthonormalisierung}}
+In Abschnitt~\ref{section:orthonormalisierung} wurde gezeigt, wie 
+erreicht werden kann, dass die Translate einer Funktion orthonormiert
+sind.
+Dieses Verfahren soll jetzt auf die Funktionen $B_n$ angewendet werden.
+Es wurde gezeigt, dass dazu zunächst die periodisierte Funktion
+\[
+\Phi_n(\omega)
+=
+2\pi \mathcal{P}|\hat{B}_n|^2(\omega)
+\]
+bestimmt werden muss. 
+Den Periodisierungs-Operator kann man direkt berechnen:
+\begin{align*}
+\mathcal{P} |\hat{B}_n|^2(\omega)
+&=
+\sum_{l\in\mathbb Z} |\hat{B}_n(\omega + 2\pi l)|^2
+=
+\frac{1}{2\pi}
+\sum_{l\in\mathbb Z}
+\biggl|
+e^{-i\omega/2 +i\pi l}
+\operatorname{sinc}\biggl(\frac{\omega}2+l\pi\biggr)^{n+1}
+\biggr|^2
+\\
+&=
+\frac{1}{2\pi}
+\sum_{l\in\mathbb Z}
+\biggl|
+\frac{\sin\frac{\omega}2}{\frac{\omega}2 + l\pi}
+\biggr|^{2n+2}
+=
+\frac{1}{2\pi}
+\biggl|\sin\frac{\omega}2\biggr|^{2n+2}
+\sum_{l\in\mathbb Z}
+\biggl|
+\frac{1}{\frac{\omega}2 + l\pi}
+\biggr|^2
+\\
+\Rightarrow\qquad
+\Phi_n(\omega)
+=
+2\pi\mathcal{P}|\hat{B}_n|^2(\omega)
+&=
+\biggl|\sin\frac{\omega}2\biggr|^{2n+2}
+\sum_{l\in\mathbb Z}
+\biggl|
+\frac{1}{\omega/2 + l\pi}
+\biggr|^2.
+\end{align*}
+Da die Funktion $\operatorname{sinc}$ gerade ist, ist auch $\Phi_n(\omega)$
+gerade.
+
+Als nächstes muss die Funktion $1/\sqrt{\Phi_n(\omega)}$ in eine komplexe
+Fourier-Reihe entwickelt werden.
+Da $\Phi_n(\omega)$ gerade ist, muss dies auch mit einer reinen
+Fourier-Kosinus-Reihe möglich sein.
+Dies bedeutet, dass die Koeffizienten $c_k$ der komplexen Fourier-Reihe
+von $1/\sqrt{\Phi_n(\omega)}$ reell sind und $c_k=c_{-k}$,
+sie können mit 
+der Formel
+\begin{equation}
+c_k = c_{-k}
+=
+\frac{1}{2\pi}
+\int_{-\pi}^{\pi}
+\frac{\cos(k\omega)}{\sqrt{\Phi_n(\omega)}}
+\,d\omega
+\label{sqrtPhincoef}
+\end{equation}
+berechnet werden.
+
+Aus der Lösung von Aufgabe~\ref{aufgabe:orthonormalisierung} ist bekannt,
+dass das gesuchte Wavelet mit Hilfe der Koeffizienten gebildet werden 
+kann:
+\[
+\varphi_n(\omega)
+=
+\sum_{k\in\mathbb Z}
+c_k B_n(t-k).
+=
+\sum_{k\in\mathbb Z}
+c_k T_kB_n(t).
+\]
+Da die Funktionen $B_n$ stückweise Grad-$n$-polynomiell sind, ist auch
+$\varphi_n(\omega)$ stückweise Grad-$n$-polynomiell.
+
+In \cite{buch:blatter} wird sogar gezeigt, dass $\sqrt{\Phi_n(\omega)}$
+als Polynom in $\cos\omega$ mit rationalen Koeffizienten geschrieben
+werden kann.
+Wir benötigen diese Eigenschaft im folgenden nicht und sie ist auch nicht
+weiter hilfreich für die Berechnung der Koeffizienten $c_k$, die mit
+Hilfe der Formel \eqref{sqrtPhincoef}
+numerisch berechnet werden müssen.
 
 \subsection{Koeffizienten der Skalierungsrelation
 \label{subsection:spline-skalierungskoeffizienten}}
