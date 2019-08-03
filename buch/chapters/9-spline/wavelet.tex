@@ -1,0 +1,99 @@
+%
+% wavelet.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Wavelets
+\label{section:spline-wavelets}}
+\rhead{Spline-Wavelet}
+Die Funktionen $B_n$ erfüllen eine Skalierungsrelation, es besteht also
+die Hoffnung, dass daraus eine Multiskalen-Analyse konstruiert werden kann.
+Dazu muss zunächst die Fourier-Transformierte von $B_n$ bestimmt werden,
+da alle Konstruktionen von Abschnitt~ \ref{section:skalfour} im
+Frequenzbereich stattgefunden haben.
+Anschliessend kann das Orthonormalisierungsverfahren von
+Abschnitt~\ref{section:orthonormalisierung} auf die Funktionen $B_n$
+angewendet werden.
+Schliesslich kann man aus den Koeffizienten der Skalierungsrelation
+auch die Koeffizienten des Wavelets ableiten und so das Wavelet
+bestimmen.
+
+\subsection{Fourier-Transformierte $\hat{B}_n$
+\label{subsection:spline-ft}}
+Die Fourier-Transformierte von $B_n$ kann dank der Faltungsformel für die
+Fourier-Transfomierte 
+\begin{equation}
+\hat{B}_n = \widehat{B_0 * B_{n-1}} = \hat{B}_0 \cdot \hat{B}_{n-1}
+\qquad
+\hat{B}_n = \hat{B}_0)^{n-1}
+\label{Bn-ft}
+\end{equation}
+berechnet werden.
+Es muss also nur $\hat{B}_0$ berechnet werden.
+
+Die Fourier-Transformierte von $B_0$ ist
+\begin{align*}
+\hat{B}_0(\omega)
+&=
+\frac1{\sqrt{2\pi}}
+\int_{-\infty}^{\infty}
+B_0(t) e^{-i\omega t}\,dt
+=
+\frac1{\sqrt{2\pi}}
+\int_0^1 e^{-i\omega t}\,dt
+=
+\frac1{\sqrt{2\pi}}
+\biggl[
+\frac{1}{-i\omega} 
+e^{-i\omega t}
+\biggr]_0^1
+\\
+&=
+\frac1{\sqrt{2\pi}}
+\frac{e^{-i\omega}-1}{-i\omega}
+=
+\frac1{\sqrt{2\pi}}
+\frac{1-e^{-i\omega}}{i\omega}
+=
+\frac1{\sqrt{2\pi}}
+\frac{2}{\omega}
+e^{-i\omega/2}
+\frac{e^{i\omega/2} - e^{-i\omega/2}}{2i}
+\\
+&=
+\frac1{\sqrt{2\pi}}
+e^{-i\omega/2}
+\frac{\displaystyle\sin\frac{\omega}2}{\displaystyle\frac{\omega}2}
+=
+\frac1{\sqrt{2\pi}}
+e^{-i\omega/2}
+\operatorname{sinc}\frac{\omega}2
+\end{align*}
+Daraus und aus \eqref{Bn-ft} folgt jetzt der folgende Satz
+
+\begin{satz}
+\label{satz:Bn-ft}
+Die Fourier-Transformierte von $B_n$ ist
+\[
+\hat{B}_n(\omega)
+=
+(\sqrt{2\pi})^n
+\hat{B}_0(\omega)
+=
+(\sqrt{2\pi})^n
+\]
+\end{satz}
+
+\subsection{Orthonormalisierung
+\label{subsection:spline-orthonormalisierung}}
+
+\subsection{Koeffizienten der Skalierungsrelation
+\label{subsection:spline-skalierungskoeffizienten}}
+
+\subsection{Spline-Wavelet
+\label{subsection:spline-wavelet}}
+
+
+
+
+
