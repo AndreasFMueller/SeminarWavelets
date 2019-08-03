@@ -6,44 +6,49 @@
 # width   width in pixel
 # height  height in pixel
 # sig     0: chirp, 1: f-square
+#         Wave form: +0: Real, +2: Complex, +4 Square, +6: Complex square
+#         noise: +8
 # WL      0: Morlet, 1: Haar, 2: analytic Haar, 3: gabor
 # pad     0: None, 1: Standard, 2: Zero-padding, 3: Matlab
-function im(width=1920, height=1080, sig=0, WL=0, pad=1, create_plot=1, create_file=0)
+function im(width=1920, height=1080, sig=0, WL=0, file_name=0, pad=1, show_max=1, a_max=16, create_plot=0)
 # Create data for image
 
 tend = 4; 
 t = linspace(0, tend, width)';    
+dt = t(2) - t(1);           % Time increment
 
 % Frequency vector
 P = 2; % Periods of frequency variation
 % f = logspace(0, 2, N)';
 % f = 5 + 3 * cos(2*pi*P/tend * t);        % Sine
-if sig == 0
-  f = linspace(2, 8, width)';                  % Chirp
-else
-  f = 6 + 2 * sign(sin(2*pi*P/tend * t)); % Square
+switch mod(sig, 2)
+  case 0; f = linspace(2, 8, width)';             % Chirp
+  case 1; f = 6 + 2 * sign(sin(2*pi*P/tend * t)); % Square
 end
-  
 
-dt = t(2) - t(1);           % Time increment
 phi = 2 * pi * cumsum(f)*dt; % Phase vector
 
-x = cos(phi);               % Real wave
-% x = exp(1i * phi);          % Complex wave
-% x = exp(2i * pi * t);       % Constand frequency complex wave
-% x = sign(cos(phi)); % Square wave
+switch mod(floor(sig/2), 4)
+  case 0; x = cos(phi);       % Real wave
+  case 1; x = exp(1i * phi);  % Complex wave
+  case 2; x = sign(cos(phi)); % Square wave (1, -1)
+  case 3; x = exp(0.5i*pi*(floor(2*phi/pi))); % Complex square wave (1, i, -1, -i)
+end
 
 % Noise
-% x = x + 0.25 * (randn(size(x)) + 1i * randn(size(x)));
+if sig > 8
+  x = x + 0.25 * [1, 1i] .* randn(length(x, 2));
+end
 
-[yab, a] = myCWT(x, dt, height, pad, WL);
+[yab, a] = myCWT(x, dt, height, pad, WL, a_max);
 
 yab = yab / max(abs(yab(:))) * 254;
-
-[~, idx] = max(abs(yab), [], 2);
-for i = 1:width
-  if yab(i, idx(i)) >= 255*2/3
-    yab(i, idx(i)) = 255;
+if show_max
+  [~, idx] = max(abs(yab), [], 2);
+  for i = 1:width
+    if abs(yab(i, idx(i))) >= 255*2/3
+      yab(i, idx(i)) = 255;
+    end
   end
 end
 
@@ -70,8 +75,7 @@ if create_plot
   end
 end
 
-if create_file
-  fname = 'im.dat';
+if file_name ~= 0
   data = [width height; round(abs(yab(:))) angle(yab(:))];
-  save -ascii 'im.dat' data
+  save('-ascii', file_name, 'data')
 end
