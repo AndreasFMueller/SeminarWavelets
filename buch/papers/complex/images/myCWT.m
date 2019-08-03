@@ -9,13 +9,12 @@
 % Return values
 % yab:  The wavelet transform, one column per a-values
 % a:    The used a values calculated based on ts and signal length
-function [yab, a] = myCWT(x, ts, height, padding, WL)
+function [yab, a] = myCWT(x, ts, height=300, padding=1, WL=0, a_max = 16)
     N = length(x);
     if ~exist('padding', 'var'); padding = 0; end
     if ~exist('WL', 'var'); WL = 0; end
     % a values 
     a_min = 1;
-    a_max = 16;
     
     a = linspace(a_min, a_max, height);
     % FFTs of signal
