@@ -8,7 +8,7 @@
 MAKEFLAGS+=" -j "
 
 all:
-images:	ahaar.pdf haar.pdf haar_dom.pdf gabor.pdf morlet.pdf \
+images:	ahaar.pdf haar.pdf haar_dom.pdf gabor.pdf morlet.pdf signals.pdf \
 	chirp_morlet.pdf square_morlet.pdf \
 	chirp_haar.pdf square_haar.pdf \
 	chirp_ahaar.pdf square_ahaar.pdf \
@@ -21,6 +21,9 @@ images:	ahaar.pdf haar.pdf haar_dom.pdf gabor.pdf morlet.pdf \
 
 clean:
 	rm -rf *.aux *.log *.synctex.gz *.dat *.png *.jpg
+
+signals.pdf: signals.tex
+	pdflatex -interaction=batchmode signals.tex && rm signlas.log signlas.aux
 
 ahaar.pdf: ahaar.tex
 	pdflatex -interaction=batchmode ahaar.tex && rm ahaar.log ahaar.aux

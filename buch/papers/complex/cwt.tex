@@ -55,36 +55,7 @@ Dann benötigt man nur eine FFT für das Signal, so wie für jedes $a$ eine inve
 \subsection{Beispiel -- CWT mit Haar-Wavelet}
 \begin{figure}
 	\centering
-	\begin{tikzpicture}[>=latex]
-	
-		\pgfmathparse{12/4} % scale to tend
-		\xdef\a{\pgfmathresult} 
-		
-		\begin{scope}[yshift=1.4cm]
-			\draw[color=blue,line width=1pt]
-			plot[domain=0:4,samples=4000]
-			({\x*\a},{sin(360*\x*(2 + 6/\a * \x))});
-			\draw[->,line width=0.7pt] (-0.1,0)--(12.3,0) coordinate[label={$t$}];
-			\draw[->,line width=0.7pt] (0,-1.1)--(0,1.3) coordinate[label={right:$x_1(t)$}];
-			
-			\foreach \x in {0,...,4}{
-				\draw[line width=0.7pt] ({\x*\a},-0.1) --({\x*\a},0.1);
-			}
-			\end{scope}
-		
-		\begin{scope}[yshift=-1.4cm]
-			\draw[color=blue,line width=1pt]
-			plot[domain=0:4,samples=4000]
-			({\x*\a},{sin(360*\x*(6 + 2 * sign(sin(180*\x)) ))});
-			\draw[->,line width=0.7pt] (-0.1,0)--(12.3,0) coordinate[label={$t$}];
-			\draw[->,line width=0.7pt] (0,-1.1)--(0,1.3) coordinate[label={right:$x_2(t)$}];
-			
-			\foreach \x in {0,...,4}{
-				\draw[line width=0.7pt]	({\x*\a},-0.1)--({\x*\a},0.1);
-			}
-		\end{scope}
-	
-	\end{tikzpicture}
+	\includegraphics[width=\textwidth, keepaspectratio]{papers/complex/images/signals.pdf}
 	\caption{Die beiden Beispielsignale $x_1(t)$ und $x_2(t)$}
 \end{figure}
 Für ein Beispiel benötigen wir zwei Dinge: ein Wavelet und ein Beispielsignal.
@@ -172,10 +143,9 @@ Dies liefert die Bilder aus Abbildung~\ref{complex:haar-ex}.
 \end{figure}
 
 Wie erwartet ist die Lokalisierung in der Frequenz zimelich schlecht.
-Das Haar-Wavelet gibt den Zeitpunkt einer Änderungen der Frequenz dafür sehr genau wieder.
-Als Orientierungshilfe sind die Maxima weiss hervorgehoben.
-Sie weichen von $1\,/\,a$ um $\omega_\psi$ von der Signal-Frequenz ab.
-Die Signal-Frequenz ist als Schwingung in der Amplitude gut erkennbar.
+Das Haar-Wavelet gibt den Zeitpunkt einer Änderungen der Frequenz zwar sehr genau wieder, die Frequenz selbst ist jedoch kaum ablesbar.
+Als Orientierungshilfe ist $a_\text{max} (b) = \max_a{|\Wave x_n(a,b)|}$ weiss hervorgehoben.
+Sie weichen um $\omega_\psi$ von der Signal-Frequenz ab, welche als Schwingung in der Amplitude gut erkennbar ist.
 Dies werden wir im Abschnitt~\ref{complex:separate} durch komplexe Wavelets vermeiden.
 Zuerst kümmern wir uns aber um die Lokalisierung in der Frequenz.
 
