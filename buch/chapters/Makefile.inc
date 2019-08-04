@@ -53,6 +53,7 @@ CHAPTERFILES =								\
 	chapters/9-spline/chapter.tex					\
 	chapters/9-spline/faltung.tex					\
 	chapters/9-spline/splines.tex					\
+	chapters/9-spline/wavelet.tex					\
 	chapters/a-komplex/komplexezahlen.tex				\
 	uebungsaufgaben/15001.tex					\
 	uebungsaufgaben/15002.tex					\

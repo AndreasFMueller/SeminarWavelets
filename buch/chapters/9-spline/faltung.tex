@@ -9,17 +9,17 @@
 Die Faltung kann dazu verwendet werden, neue Funktionen zu erzeugen.
 Dazu müssen wir verstehen, wie die Faltung und die Operatoren $T_b$ und
 $D_b$ zusammenwirken.
-Wir gehen von der Form
+Wir erinnern an die Definition~\ref{definition:faltung} und die
+Formel \eqref{definition:formel:faltung}
 \[
 (f*g)(t)
 =
-\int_{-\infty}^\infty f(s)g(t-s)\,ds
+\int_{-\infty}^\infty f(s)g(t-s)\,ds.
 \]
-aus.
 
 \subsection{Translation und Dilatation
 \label{subsection:translation-und-dialatation}}
-Wir berechnen die Faltung von $T_bf$ und $T_cg$:
+Wir berechnen die Faltung der Translate $T_bf$ und $T_cg$:
 \begin{align*}
 (T_bf * T_cg)(t)
 &=
@@ -34,7 +34,8 @@ Wir berechnen die Faltung von $T_bf$ und $T_cg$:
 &=
 T_{b+c}(f*g)(t)
 \end{align*}
-mit der Substituion $\sigma=s-b$ oder $s=\sigma+b$.
+mit der Substitution $\sigma=s-b$ oder $s=\sigma+b$.
+Wir formulieren dieses Resultat als
 
 \begin{satz}
 Für beliebige Funktionen $f,g\in L^2(\mathbb R)$ gilt
@@ -57,20 +58,51 @@ $D_af$ und $D_ag$:
 \int_{-\infty}^\infty \frac{1}{a}f(s/a) g((t-s)/a)\,ds
 \\
 &=
+\int_{-\infty}^\infty f(s/a) g((t-s)/a)\,\frac{ds}{a}
+\\
+&=
 \int_{-\infty}^\infty f(\sigma) g(t/a- \sigma)\,d\sigma
 \\
 &=
 (f*g)(t/a) = \sqrt{a} D_a(f*g)(t)
 \end{align*}
 mit der Substitution $\sigma=s/a$.
+In der Skalierungsrelation einer Multiskalenanalyse kommen keine
+gemischten Skalierungsfaktoren $a$ vor, daher reicht die Form
+\eqref{eq:Dconv} für die nachfolgenden Rechnung aus.
 
 \begin{satz}
 Für beliebige Funktionen $f,g\in L^2(\mathbb R)$ gilt
-\begin{equation}
-D_af * D_ag = \sqrt{a}D_a(f*g)
+\begin{align}
+D_af * D_ag &= \sqrt{a}D_a(f*g)
+&&\text{und}
+&
+\tilde{D}_af * \tilde{D}_ag &= a\tilde{D}_a(f*g).
 \label{eq:Dconv}
-\end{equation}
+\end{align}
+für $a>0$.
 \end{satz}
+
+\begin{proof}[Beweis]
+Wir müssen nur noch die zweite Formel für den Operator $\tilde{D}_a$
+nachweisen.
+Dazu verwenden wir die Relation $D_af = \sqrt{a}\tilde{D}_a$ und die
+erste Beziehung in \eqref{eq:Dconv} und erhalten
+\[
+\tilde{D}_af * \tilde{D}_ag
+=
+\sqrt{a}D_af * \sqrt{a}D_ag
+=
+a
+\sqrt{a}
+D_a (f*g)
+=
+a
+\tilde{D}_a(f*g).
+\]
+Damit ist auch die zweite Relation bewiesen.
+\end{proof}
+
 
 \subsection{Linearkombinationen
 \label{subsection:linearkombinationen}}
@@ -156,8 +188,86 @@ h_s = \frac1{\sqrt{2}} \sum_{k+l=s}f_kg_l.
 Damit ist alles bewiesen.
 \end{proof}
 
-
-
-
-
+\subsection{Faltung im Frequenzbereich
+\label{subsection:faltung-im-frequenzbereich}}
+Wir können dieses Resultat auch im Frequenzbereich formulieren.
+Wir haben im Abschnitt~\ref{section:skalfour} die Skalierungsrelation
+für die Fourier-Transformierte $\hat{\varphi}$ von $\varphi$ mit Hilfe
+der erzeugenden Funktion
+\[
+H(\omega)
+=
+\frac{1}{\sqrt{2}}
+\sum_{k\in\mathbb Z} h_ke^{ik\omega}
+\]
+(siehe Definition~\ref{definition:erzeugende-funktion-msa})
+als
+\begin{equation}
+\hat{\varphi}(\omega)
+=
+H\biggl(\frac{\omega}2\biggr)
+\,
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\label{faltung:skalierung}
+\end{equation}
+geschrieben.
+Sind
+$(\varphi_1,H_1)$ und $(\varphi_2,H_2)$ zwei Paare von Funktionen,
+welche beide die Skalierungsrelation~\eqref{faltung:skalierung} erfüllen,
+dann folgt
+\begin{align*}
+%\hat{\varphi}_1(\omega)
+%&=
+%H_1\biggl(\frac{\omega}2\biggr)
+%\hat{\varphi}_1 \biggl(\frac{\omega}2\biggr)
+%&&\wedge&
+%\hat{\varphi}_1(\omega)
+%=
+%H_1\biggl(\frac{\omega}2\biggr)
+%\hat{\varphi}_1\biggl(\frac{\omega}2\biggr)
+%&&\Rightarrow&
+\hat{\varphi}_1(\omega)
+\cdot
+\hat{\varphi}_2(\omega)
+&=
+H_1\biggl(\frac{\omega}2\biggr)
+\cdot
+H_2\biggl(\frac{\omega}2\biggr)
+\cdot
+\hat{\varphi}_1\biggl(\frac{\omega}2\biggr)
+\cdot
+\hat{\varphi}_2\biggl(\frac{\omega}2\biggr)
+\\
+%&&&&
+%&\Rightarrow&
+\Rightarrow\qquad
+\widehat{\mathstrut\varphi_1*\varphi_2}(\omega)
+&=
+H_1\biggl(\frac{\omega}2\biggr)
+H_2\biggl(\frac{\omega}2\biggr)
+\,
+\widehat{\mathstrut\varphi_1*\varphi_2}\biggl(\frac{\omega}2\biggr).
+\end{align*}
+Die Faltung $\varphi_1*\varphi_2$ erfüllt also die Skalierungsrelation
+mit der erzeugenden Funktion $H_1\cdot H_2$, die wegen
+\[
+H_1(\omega)\,H_2(\omega)
+=
+\frac{1}{\sqrt{2}}
+\sum_{k\in\mathbb Z} h_{1,k}e^{ik\omega}
+\cdot
+\frac{1}{\sqrt{2}}
+\sum_{l\in\mathbb Z} h_{2,l}e^{il\omega}
+=
+\frac{1}{\sqrt{2}}
+\sum_{s\in\mathbb Z} e^{is\omega}
+\frac{1}{\sqrt{2}}
+\sum_{k+l=s}h_{1,k}h_{2,l}
+\]
+die Koeffizienten
+\[
+h_s = \frac{1}{\sqrt{2}}\sum_{k+l=s} h_{1,k}h_{2,l}
+\]
+hat,
+wie bereits im Satz~\ref{satz:faltung-linearkombination} gezeigt worden ist.
 

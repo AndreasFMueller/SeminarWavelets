@@ -5,6 +5,7 @@
 %
 \section{Spline-Funktionen
 \label{section:spline-funktionen}}
+\rhead{Spline-Funktionen}
 In diesem Abschnitt konstruieren wir ausgehend vom Haar-Wavelet mit Hilfe
 der Faltung eine Familie $\varphi^{(n)}$ von Funktionen die zunehmend glatt
 sind in dem Sinne, dass $\varphi^{(n)}$ für $n>1$ $n$ mal stetig
@@ -90,7 +91,7 @@ einfach ist wie das eben repetiert Haar-Wavelet, aber bessere
 Stetigkeitseigenschaften und damit bessere Lokalisierung im Frequenzbereich
 hat.
 
-Wir definieren die Funktionen $\varphi^{(n)}$ rekursiv wie folgt.
+Wir definieren die Funktionen $B_n=\varphi^{(n)}$ rekursiv wie folgt.
 
 \begin{definition}
 Die Funktion $\varphi^{(0)}$ ist wie vorhin die charakteristische Funktion
@@ -99,6 +100,8 @@ Für $n>0$ setzt man
 \[
 \varphi^{(n)} = \varphi^{(0)} * \varphi^{(n-1)}.
 \]
+Wir verwenden auch die Notation $B_n=\varphi^{(n)}$.
+Die Funktionen $B_n(t)$ heissen $B$-Splines vom Grad $n$.
 \end{definition}
 
 Man beachte, dass die Funktionen $\varphi^{(n)}$ zwar in $L^2(\mathbb R)$ 
@@ -302,14 +305,35 @@ gewonnen werden können:
 \phantom{-}
 0&\qquad\text{sonst}
 \end{cases}
+\label{phi3-polynome}
 \end{equation}
 Der Graph der Funktion $\varphi^{(3)}$ ist in Abbildung~\ref{spline:phi3}
 dargestellt.
 \end{beispiel}
 
+Aus den Beispielen kann man ablesen, dass die Funktionen
+$B_n(t)=\varphi^{(n)}(t)$ auf jedem Interval der Form $[k,k+1)$ 
+ein Polynom vom Grad $n$ ist.
+Wir sagen, $B_n$ sei stückweise {\em Grad-$n$-polynomiell}.
+\index{Grad $n$-polynomiell}
+Man kann zeigen, dass die vier Polynome auf der rechten
+Seite von~\eqref{phi3-polynome} linear unabhängig sind.
+Wir vermuten, dass die Translate von $B_n$ auf jedem Interval der Form
+$[k,k+1)$ {\em linear unabhängige} Polynome vom Grad $n$ sind.
+Dies bedeutet, dass durch Linearkombination von Translaten der
+Funktionen $B_n$ jede beliebige stückweise Grad-$n$-polynomielle
+Funktion dargestellt werden kann.
+Die Funktionen $B_n$ bilden somit eine Basis des Raums der stückweise 
+Grad-$n$-polynomiellen Funktionen.
+Dies erklärt die Bedeutung der Funktionen $B_n$ in der Numerik.
+Besonders die Funktionen $B_3$ spielen eine grosse Rolle in den
+Anwendungen.
+Zum Beispiel werden solche kubischen Splines für die Beschreibung
+von Kurven in der Computergraphik verwendet.
+
 \subsection{Skalierungsrelation für $\varphi^{(n)}$
 \label{subsection:skalierungsrelation-phin}}
-Die Funktionen $\varphi^{(n)}$ können nur dann Anlass zu einer
+Die Funktionen $B_n=\varphi^{(n)}$ können nur dann Anlass zu einer
 Multiskalen-Analyse geben, wenn sie die Skalierungseigenschaft
 besitzen.
 Wir wissen bereits aus Abschnitt~\ref{subsection:spline:haar},
@@ -375,7 +399,7 @@ Das Beispiel lässt sich verallgemeinern und führt auf den folgenden Satz.
 Die Funktion $\varphi^{(n)}$ hat die Skalierungseigenschaft  mit den
 Koeffizienten
 \[
-\varphi^{(n)}_k = \frac{1}{(\sqrt{2})^{n+2}}\binom{n}{k}.
+\varphi^{(n)}_k = \frac{\sqrt{2}}{2^{n+1}}\binom{n+1}{k}.
 \]
 für $0\le k\le n$.
 \end{satz}
