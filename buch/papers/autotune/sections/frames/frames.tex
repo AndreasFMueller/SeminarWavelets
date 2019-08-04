@@ -2,18 +2,35 @@
 
 
 
-Die grundlegende Idee bestand darin eine Frequenzanalyse mit Wavelets zu machen. Diese kann dann verwendet werden um die Signale nach belieben zu manipulieren und nach wünschen anzupassen. Die Multiskalenanalyse bietet einen schnellen Rechenalgorhytmus jedoch ist er darauf konzipiert keine redundate Daten zu erzeugen. Durch das prinzip der Frequenzhalbierung, die auf jedem sogenannten Level einer Multiskalenanalyse passiert, sieht man nur alle Oktaven eines Signales. So können Frequenzen die nahe bei einander liegen nicht von einander unterschieden werden. Dafür lässt sich das ursprüngliche Signal nach einer msa wieder verlustfrei rekonstruieren. 
+Die grundlegende Idee bestand darin eine Zeit-Frequenz-Analyse mit Wavelets zu machen. Diese wird dann verwendet, um die Signale nach belieben zu manipulieren. Um die Rechenzeit zu minimieren, sollte ein mglichst schneller Algorhytmus verwendet werden. Dafür bietet sich die Multiskalenanalyse, mit ihrem schnellen Rechenalgorhytmus an. Jedoch ist jener so konipiert, keine redundante Daten zu erzeugen. Das mit der Multiskalenanalyse, mit ihrer $2^{n}$-fachen Fensterung, nur die Oktaven eines Siganles ersichtlich sind, ist für diese Vorhaben nicht von Vorteil. Besonders da die Tonleiter aus 12 Halbtönen in einer Oktave besteht. Dabei sind die Halbtöne mit dem Faktor $2^{\frac{1}{12}}$ in der Oktave verteilt. Die nebeneinanderliegenden Halbtöne sind dadurch für eine Multiskalenanalyse unsichtbar. \\
+In diesem Kapitel wollen wir eine Methode erzeugen, mit deren Hilfe es möglich ist, einzelne Halbtöne in einer Oktave zu unterscheiden. Dafür sollen Frames und die Multiskalenanalyse verwendet werden.
+
+
+
 
 \subsection{Framing}
-Die normale msa besitzt nur Orthonormierte Basen weshalb sie auch keine redundante Daten besitzt. Zur analyse zwecken würde es sich lohnen mehr von diesen Basen zu erzeugen und die enstehung der zusätzlichen Informationen zu verwenden. Wenn wir nun mehr von diesen Basen hinzufügen erschaffen wir ein überbestimmtes System welches ab hier Frame genannt wird. Genauere abhandlungen über Frames ist im Kapitel\ref{chapter:geometrie} unter \ref{subsetion:skript:frames:framesinrn} zu finden. Um ein Frame sinnvoll zu gestalten werden die zusätzlichen Basen auch im Zweierlogharitmus gestaltet. Um nun alle zwölf Halbtöne eines eines Signales detektieren zu können werden mindestens zwölf Basen benötigt. Um ein Sampling herzustellen wird als Grundbasis der Beginn einer Oktave verwendet. Da die Samplingfrequenz mindestens doppelt so schnell sein muss wie die zu Analysierende Frequenz kann als Oktavenbasis ein vielfaches von $220[Hz]$ verwendet werden. Sinnvollerweise auch im zweierlogarhytmus. Das mp3 Format kann eine maximale Tonfrequenz von $16k[Hz]$ wiedergeben. Dem entsprechend ist für Musik eine Maximale Samplingfrequenz von $32k[Hz]$ sinvoll. In der Theorie spielt es jedoch keine Rolle in welchen Frequenzband das Sampling geschieht solange $\frac{f_{Sampling}}{f_{Signal}}\geq2$ gegeben ist. Mit der folgenden Gleichung wurden die verschiednen Samplingfrequenzen bestimmt welche dann verwendet wurden um die Signale neu zu Samplen. 
-\begin{equation}
-fs_{n}=f\cdot2^{\frac{n}{k}}
-\end{equation}
-$k$ steht dabei für die Anzahl Basen die man in einer Oktave haben möchte. Sinnvollerweise wird $k \geq 12$ gewählt.\\
+Die normale Multiskalenanalyse verwendet nur Orthonormierte Basen. Weshalb sie auch keine redundante Daten erzeugt. Zu Analysezwecken, würde es sich lohnen mehr von diesen Basen zu erzeugen. Die zusätzlich entstandenen Informationen können dann zur Analyse verwendet werden. Fügen wir mehr Basen zu unserem Signale hinzu ensteht ein Frame. Genauere Abhandlungen über Frames sin im Kapitel\ref{chapter:geometrie} unter \ref{subsetion:skript:frames:framesinrn} zu finden. Um sinvolle Frames zu gestalten wird die Problematik noch einmal genauer angeschaut.\\
+
+Wir möchten ein Signal mit der Multiskalenanalyse so bearbeiten, dass wir die einzelnen Halbtöne in einer Oktave untersuchen können. Die Multiskalenanalyse liefert uns jedoch nur Resultate im Zweierlogarhytmus. Die $2^{n}$-fache Fensterung der Multiskalenanalyse ensteht durch die verwendung von orthogonalen Basen. Folglich sollte man doch einfach die Basen verändern.\\
+
+Fügt man nun mehr Basen zu unserem Frame hinzu, können wir mit der Multiskalenanalyse Zwischenschritte in den Oktaven erzeugen. Das heisst, fügt man 12 linear unabhängige Basen zu einem Frame hinzu. Sollte man nach einer Multiskalenanalyse des Frames, 12 Schritte pro Oktave bekommen. Nun möchte man mit dem Frame Töne erkennen. Deshalb ist es nur sinnvoll mindestens 12 Basen zu verwenden. So wird die die Anzahl Basen $k$ mit
+\[ 2^{n} \cdot 12 = k \]
+definiert.\\
+Um eine neue Basis für ein Frame zu erzeugen, wird das zu analysierende Signal neu gesamplet. Wobei jedes neue Sampling einer neuen Basis entspricht. Die erste Samplerate, die auf das Signal angewendet wird, ist die Grundbasis $f_{g}$. Von der Grundbasis aus werden Anzahl $k$ Basen hinzugefügt.
+\[fs_{n}=f_{g}\cdot2^{\frac{n}{k}}\]
+
+Nach dem Samplingtheorem ist es dabei sinnvoll die Samplefrequenzen zu vergrössern und nicht zu verkleinern.
+\[ \frac{f_{\text{sampling}}}{f_{\text{Signal}}} \geq 2\]
+Damit kann garantiert werden, dass kein Datenverlust oder Aliasing auftritt. Es empfielt sich ohnehin genügend Abstand zwischen Sampling- und Signlfrequenz zu lassen.\\
+
+Da die Tonleiter nicht willkürliche Frequenzen abdecken, wird auch die Grundbasis der Frames auf die Tonleiter festgelegt. Dabei bietet sich der Kammerton $\text{a}^{1}$ auch A4 genannt an. Dieser ist mit 440 \text{[Hz]} definiert.\\
+
+
+
 
 Hierzu ein praktisches Beispiel zu den Sampelfrequenzen. Folgende Werte werden gegeben:
 \begin{itemize}
-	\item Samplefrequenz $f=440$\text{[Hz]}
+	\item Samplefrequenz $f_{g}=440$\text{[Hz]}
 	\item Anzahl Basen $k=12$
 \end{itemize}	
 
@@ -21,56 +38,57 @@ Hierzu ein praktisches Beispiel zu den Sampelfrequenzen. Folgende Werte werden g
 fs
 =
  \begin{pmatrix}
-fs_{0}\\
-fs_{1}\\
-fs_{2}\\
-fs_{3}\\
-fs_{4}\\
-fs_{5}\\
-fs_{6}\\
-fs_{7}\\
-fs_{8}\\
-fs_{9}\\
-fs_{10}\\
-fs_{11}\\
+fs_{0}\\[1mm]
+fs_{1}\\[1mm]
+fs_{2}\\[1mm]
+fs_{3}\\[1mm]
+fs_{4}\\[1mm]
+fs_{5}\\[1mm]
+fs_{6}\\[1mm]
+fs_{7}\\[1mm]
+fs_{8}\\[1mm]
+fs_{9}\\[1mm]
+fs_{10}\\[1mm]
+fs_{11}\\[1mm]
 \end{pmatrix}
 =
 \begin{pmatrix}
-440\cdot2^{\frac{0}{12}}\\
-440\cdot2^{\frac{1}{12}}\\
-440\cdot2^{\frac{2}{12}}\\
-440\cdot2^{\frac{3}{12}}\\
-440\cdot2^{\frac{4}{12}}\\
-440\cdot2^{\frac{5}{12}}\\
-440\cdot2^{\frac{6}{12}}\\
-440\cdot2^{\frac{7}{12}}\\
-440\cdot2^{\frac{8}{12}}\\
-440\cdot2^{\frac{9}{12}}\\
-440\cdot2^{\frac{10}{12}}\\
-440\cdot2^{\frac{11}{12}}\\
+440\cdot2^{\frac{0}{12}}\\[0.5mm]
+440\cdot2^{\frac{1}{12}}\\[0.5mm]
+440\cdot2^{\frac{2}{12}}\\[0.5mm]
+440\cdot2^{\frac{3}{12}}\\[0.5mm]
+440\cdot2^{\frac{4}{12}}\\[0.5mm]
+440\cdot2^{\frac{5}{12}}\\[0.5mm]
+440\cdot2^{\frac{6}{12}}\\[0.5mm]
+440\cdot2^{\frac{7}{12}}\\[0.5mm]
+440\cdot2^{\frac{8}{12}}\\[0.5mm]
+440\cdot2^{\frac{9}{12}}\\[0.5mm]
+440\cdot2^{\frac{10}{12}}\\[0.5mm]
+440\cdot2^{\frac{11}{12}}\\[0.5mm]
 \end{pmatrix}
  \text{[Hz]}
  \approx
  \begin{pmatrix}
- 440\\
-466.164\\
-493.883\\
-523.251\\
-554.365\\
-587.330\\
-622.254\\
-659.255\\
-698.456\\
-739.989\\
-783.991\\
-830.609\\
+ 440\\[1mm]
+466.164\\[1mm]
+493.883\\[1mm]
+523.251\\[1mm]
+554.365\\[1mm]
+587.330\\[1mm]
+622.254\\[1mm]
+659.255\\[1mm]
+698.456\\[1mm]
+739.989\\[1mm]
+783.991\\[1mm]
+830.609\\[1mm]
  \end{pmatrix}
  \text{[Hz]} 
 \]
-In dem Vektor $fs$ sind die Sampelfrequenzen vorhanden mit welchen die dazughörigen Sampelintervalle berechnet werden. Um die  Signallänge von der Sampling Frequenz zu entkoppeln werden die Elemente von $fs$ als auf Samples pro Sekunde normiert. $fs$ mus nun immer mit der Signaldauer multiliziert werden um die richtige Menge an Samples zu erhalten.\\
-
-Das Ziel ist es ein Frame zu erstellen, dessen Zeilen aus dem verschieden Gesampleten Signal besteht. Die Signaldauer $T_{s}$ wird dabei mit der Anzahl Samples pro Sekunde Multipliert um damit den Kehrwert der Zeit $T$ zweischen den Samples zu erlangen.
+In dem Vektor $fs$ sind die Samplefrequenzen für das Frame enthalten. Damit können die dazughörigen Sampleintervalle berechnet werden. Um die  Signallänge von der Sampling Frequenz zu entkoppeln werden die Elemente von $fs$ als auf Samples pro Sekunde normiert.  
+\[fs = \frac{\text{Samples}}{\text{Sekunden}}\]
+Das Ziel ist es ein Frame zu erstellen, dessen Zeilen aus dem verschieden gesampleten Signal besteht. Die Signaldauer $T_{s}$ wird dabei mit der Anzahl Samples pro Sekunde Multipliert um damit den Kehrwert der Zeit $T$ zweischen den Samples zu erlangen.
 \[T_{i}=\frac{1}{fs_{n}\cdot T_{s}}\]
+
 Der Index $T_{i}\in[t_{0},t_{1},...,t_{k}]$ steht dabei für alle Diskrete Zeitwerte die für ein Sampling mit den $k$ Basen verwendet werden.
 \[
 \mathcal{T}
@@ -89,15 +107,25 @@ Auf dieses Frame wird dann eine Multiskalenanalyse angwendet. In dem Frame gibt 
 	\frac{\mathcal{T}\_\text{min\_len}}{\text{filter\_len -1}}}\right)\right\rfloor
 \]
 Mit Level0 wird dabei auf das oberste Level referenziert welches die kleinste Frequenzteiung erfährt. Die Levels laufen also reziprok zu den Basen welche von unten nach oben benannt sind. Um dies besser zu Ilustrieren sind die Anzahl und Positionen in dem Bild \ref{fig:frame_konst} konzeptionell abgebildet. Man ging dabei von der Ursprungsbasis von 55 Samples aus. Es wurde dann mit sechs unterteilungen also $k=6$ ein Frame gebaut welches dann über vier Levels dargstellt ist. In der Grafik \ref{fig:frame_konst} ist die Struktur der einzelnen Vektoren, deren Anzahl von Datenpunkten sowie derigen verschiebung gut ersichtlich. \\
-  
+
+\subsubsection{Stacking Frame} 
 Das Resultat der msa liefert uns $k\cdot \text{Anz. Level}$ Vektoren zurück welche alle eine unterschiedliche Länge besitzen. Um sie sinnvoll zu Sortieren beginnt man mit der Tiefsten Basis auf dem höchsten Level. Die gleichwertigen Level werden dann übereinander gestapelt von der kleinsten Basis zur grössten. Dann kommt das nächste Level. Mit dieser Struktur hat man die besten Resultate ohne eingriffe in die eigentlichen Werte vorzunehmen. 
 
 
 \begin{figure}[h]
 	\centering
+	\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/frame/msa.pdf}
+	\caption{Frame-Multiskalenanalyse mit 6 Basen und 4 Level gezeigt}\label{fig:frame_konst}
+\end{figure}%
+
+\subsubsection{Overlaying Frame}
+Bla
+\begin{figure}[h]
+	\centering
 	\includegraphics[width=\linewidth]{papers/autotune/sections/frames/images/msa/msa.pdf}
 	\caption{Frame-Multiskalenanalyse mit 6 Basen und 4 Level gezeigt}\label{fig:frame_konst}
 \end{figure}%
+
 
 Die gleiche Methodik wie in Grafik \ref{fig:frame_konst} wurde für die anschliessenden Frame-Multiskalenanalysen verwendet.
 
