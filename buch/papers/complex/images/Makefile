@@ -8,22 +8,26 @@
 MAKEFLAGS+=" -j "
 
 all:
-images:	ahaar.pdf haar.pdf haar_dom.pdf gabor.pdf morlet.pdf signals.pdf \
+images:	ahaar.pdf haar.pdf haar_dom.pdf gabor.pdf morlet.pdf \
+	signals.pdf signal_padding.pdf \
 	chirp_morlet.pdf square_morlet.pdf \
 	chirp_haar.pdf square_haar.pdf \
 	chirp_ahaar.pdf square_ahaar.pdf \
 	chirp_gabor.pdf square_gabor.pdf \
 	padding_none.pdf padding_zero.pdf \
-	padding_sym.pdf padding_sym_conj.pdf \
-	add_cs_chirp.pdf add_rs_square_haar.pdf \
-	add_cs_haar_chirp.pdf \
-	test.pdf
+	padding_sym.pdf padding_sym_conj.pdf 
+# 	add_cs_chirp.pdf add_rs_square_haar.pdf \
+# 	add_cs_haar_chirp.pdf \
+# 	test.pdf
 
 clean:
 	rm -rf *.aux *.log *.synctex.gz *.dat *.png *.jpg
 
 signals.pdf: signals.tex
 	pdflatex -interaction=batchmode signals.tex && rm signlas.log signlas.aux
+
+signal_padding.pdf: signal_padding.tex
+	pdflatex -interaction=batchmode signal_padding.tex && rm signal_padding.log signal_padding.aux
 
 ahaar.pdf: ahaar.tex
 	pdflatex -interaction=batchmode ahaar.tex && rm ahaar.log ahaar.aux
@@ -107,58 +111,58 @@ square_gabor.pdf: im im.m im.tex
 	rm square_gabor.dat square_gabor.png square_gabor.jpg square_gabor.log square_gabor.aux
 
 padding_none.pdf: im im.m im.tex
-	octave --silent --eval 'im(1920, 1080, 1, 3, "padding_none.dat", 0)' 
+	octave --silent --eval 'im(1920, 1080, 3, 0, "padding_none.dat", 0, 0)' 
 	./im -ipadding_none.dat -opadding_none.png
 	convert padding_none.png -density 300 -units PixelsPerInch padding_none.jpg
 	pdflatex -interaction=batchmode -jobname=padding_none '\newcommand{\imname}{padding_none.jpg}\input{im.tex}'
 	rm padding_none.dat padding_none.png padding_none.jpg padding_none.log padding_none.aux
 
 padding_sym_conj.pdf: im im.m im.tex
-	octave --silent --eval 'im(1920, 1080, 1, 3, "padding_sym_conj.dat", 1)' 
+	octave --silent --eval 'im(1920, 1080, 3, 0, "padding_sym_conj.dat", 1, 0)' 
 	./im -ipadding_sym_conj.dat -opadding_sym_conj.png
 	convert padding_sym_conj.png -density 300 -units PixelsPerInch padding_sym_conj.jpg
 	pdflatex -interaction=batchmode -jobname=padding_sym_conj '\newcommand{\imname}{padding_sym_conj.jpg}\input{im.tex}'
 	rm padding_sym_conj.dat padding_sym_conj.png padding_sym_conj.jpg padding_sym_conj.log padding_sym_conj.aux
 
 padding_zero.pdf: im im.m im.tex
-	octave --silent --eval 'im(1920, 1080, 1, 3, "padding_zero.dat", 2)' 
+	octave --silent --eval 'im(1920, 1080, 3, 0, "padding_zero.dat", 2, 0)' 
 	./im -ipadding_zero.dat -opadding_zero.png
 	convert padding_zero.png -density 300 -units PixelsPerInch padding_zero.jpg
 	pdflatex -interaction=batchmode -jobname=padding_zero '\newcommand{\imname}{padding_zero.jpg}\input{im.tex}'
 	rm padding_zero.dat padding_zero.png padding_zero.jpg padding_zero.log padding_zero.aux
 
 padding_sym.pdf: im im.m im.tex
-	octave --silent --eval 'im(1920, 1080, 1, 3, "padding_sym.dat", 3)' 
+	octave --silent --eval 'im(1920, 1080, 3, 0, "padding_sym.dat", 3, 0)' 
 	./im -ipadding_sym.dat -opadding_sym.png
 	convert padding_sym.png -density 300 -units PixelsPerInch padding_sym.jpg
 	pdflatex -interaction=batchmode -jobname=padding_sym '\newcommand{\imname}{padding_sym.jpg}\input{im.tex}'
 	rm padding_sym.dat padding_sym.png padding_sym.jpg padding_sym.log padding_sym.aux
 
-add_cs_chirp.pdf: im im.m im.tex
-	octave --silent --eval 'im(1920, 1080, 4, 0, "add_cs_chirp.dat")' 
-	./im -iadd_cs_chirp.dat -oadd_cs_chirp.png
-	convert add_cs_chirp.png -density 300 -units PixelsPerInch add_cs_chirp.jpg
-	pdflatex -interaction=batchmode -jobname=add_cs_chirp '\newcommand{\imname}{add_cs_chirp.jpg}\input{im.tex}'
-	rm add_cs_chirp.dat add_cs_chirp.png add_cs_chirp.jpg add_cs_chirp.log add_cs_chirp.aux
-
-add_rs_square_haar.pdf: im im.m im.tex
-	octave --silent --eval 'im(1920, 1080, 5, 1, "add_rs_square_haar.dat", 1, 0)' 
-	./im -iadd_rs_square_haar.dat -oadd_rs_square_haar.png
-	convert add_rs_square_haar.png -density 300 -units PixelsPerInch add_rs_square_haar.jpg
-	pdflatex -interaction=batchmode -jobname=add_rs_square_haar '\newcommand{\imname}{add_rs_square_haar.jpg}\input{im.tex}'
-	rm add_rs_square_haar.dat add_rs_square_haar.png add_rs_square_haar.jpg add_rs_square_haar.log add_rs_square_haar.aux
-
-add_cs_haar_chirp.pdf: im im.m im.tex
-	octave --silent --eval 'im(1920, 1080, 6, 1, "add_cs_haar_chirp.dat", 1, 0)' 
-	./im -iadd_cs_haar_chirp.dat -oadd_cs_haar_chirp.png
-	convert add_cs_haar_chirp.png -density 300 -units PixelsPerInch add_cs_haar_chirp.jpg
-	pdflatex -interaction=batchmode -jobname=add_cs_haar_chirp '\newcommand{\imname}{add_cs_haar_chirp.jpg}\input{im.tex}'
-	rm add_cs_haar_chirp.dat add_cs_haar_chirp.png add_cs_haar_chirp.jpg add_cs_haar_chirp.log add_cs_haar_chirp.aux
-
-test.pdf: im im.m im.tex
-	octave --silent --eval 'im(1920, 1080, 4, 0, "test.dat", 1, 1)' 
-	./im -itest.dat -otest.png
-	convert test.png -density 300 -units PixelsPerInch test.jpg
-	pdflatex -interaction=batchmode -jobname=test '\newcommand{\imname}{test.jpg}\input{im.tex}'
-	rm test.dat test.png test.jpg test.log test.aux
+# add_cs_chirp.pdf: im im.m im.tex
+# 	octave --silent --eval 'im(1920, 1080, 4, 0, "add_cs_chirp.dat")' 
+# 	./im -iadd_cs_chirp.dat -oadd_cs_chirp.png
+# 	convert add_cs_chirp.png -density 300 -units PixelsPerInch add_cs_chirp.jpg
+# 	pdflatex -interaction=batchmode -jobname=add_cs_chirp '\newcommand{\imname}{add_cs_chirp.jpg}\input{im.tex}'
+# 	rm add_cs_chirp.dat add_cs_chirp.png add_cs_chirp.jpg add_cs_chirp.log add_cs_chirp.aux
+# 
+# add_rs_square_haar.pdf: im im.m im.tex
+# 	octave --silent --eval 'im(1920, 1080, 5, 1, "add_rs_square_haar.dat", 1, 0)' 
+# 	./im -iadd_rs_square_haar.dat -oadd_rs_square_haar.png
+# 	convert add_rs_square_haar.png -density 300 -units PixelsPerInch add_rs_square_haar.jpg
+# 	pdflatex -interaction=batchmode -jobname=add_rs_square_haar '\newcommand{\imname}{add_rs_square_haar.jpg}\input{im.tex}'
+# 	rm add_rs_square_haar.dat add_rs_square_haar.png add_rs_square_haar.jpg add_rs_square_haar.log add_rs_square_haar.aux
+# 
+# add_cs_haar_chirp.pdf: im im.m im.tex
+# 	octave --silent --eval 'im(1920, 1080, 6, 1, "add_cs_haar_chirp.dat", 1, 0)' 
+# 	./im -iadd_cs_haar_chirp.dat -oadd_cs_haar_chirp.png
+# 	convert add_cs_haar_chirp.png -density 300 -units PixelsPerInch add_cs_haar_chirp.jpg
+# 	pdflatex -interaction=batchmode -jobname=add_cs_haar_chirp '\newcommand{\imname}{add_cs_haar_chirp.jpg}\input{im.tex}'
+# 	rm add_cs_haar_chirp.dat add_cs_haar_chirp.png add_cs_haar_chirp.jpg add_cs_haar_chirp.log add_cs_haar_chirp.aux
+# 
+# test.pdf: im im.m im.tex
+# 	octave --silent --eval 'im(1920, 1080, 4, 0, "test.dat", 1, 1)' 
+# 	./im -itest.dat -otest.png
+# 	convert test.png -density 300 -units PixelsPerInch test.jpg
+# 	pdflatex -interaction=batchmode -jobname=test '\newcommand{\imname}{test.jpg}\input{im.tex}'
+# 	rm test.dat test.png test.jpg test.log test.aux
 
