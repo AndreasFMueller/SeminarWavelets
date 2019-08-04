@@ -91,9 +91,10 @@ e^{-i\omega/2} \sinc\frac{\omega}2
 e^{-i\omega/2} \sinc\frac{\omega}2
 \biggr)^{n+1},
 \\
-\hat{B}_0(0)
+\hat{B}_0(\omega)
 &=
-\frac{e^{-i(n+1)\omega/2}}{\sqrt{2\pi}}.
+\frac{e^{-i(n+1)\omega/2}}{\sqrt{2\pi}}
+.
 \end{align*}
 \end{satz}
 
@@ -212,6 +213,16 @@ berechnet werden:
 =
 \Phi_n(0)=1.
 \end{align*}
+Damit kann die Fourier-Transformierte $\hat{\varphi}_n(\omega)$ als
+\[
+\hat{\varphi}_n(\omega)
+=
+\frac{\hat{B}_n(\omega)}{\sqrt{\Phi_n(\omega)}}
+=
+\frac{1}{\sqrt{2\pi}}
+\biggl(e^{-i\omega/2}\sinc\frac{\omega}2\biggr)^{n+1}
+\]
+geschrieben werden.
 
 Als nächstes muss die Funktion $1/\sqrt{\Phi_n(\omega)}$ in eine komplexe
 Fourier-Reihe entwickelt werden.
@@ -282,7 +293,7 @@ numerisch berechnet werden müssen.
 \end{tabular}
 \caption{Koeffizienten des Vater-Wavelets für das Spline-Wavelet mit
 $n=1$, also für ein stückweise lineares Wavelet.
-Das zugehörige Vater-Wavelet ist in Abbildung~\ref{phi1:polyonzug}
+Das zugehörige Vater-Wavelet ist in Abbildung~\ref{phi1:polygonzug}
 dargestellt.
 \label{table:B1-koef}}
 \end{table}
@@ -332,6 +343,73 @@ zusammengestellt.
 
 \subsection{Koeffizienten der Skalierungsrelation
 \label{subsection:spline-skalierungskoeffizienten}}
+Für die praktische Durchführung der Wavelet-Analyse mit Hilfe der
+zugehörigen Multiskalen-Analyse brauchen wir die Skalierungsrelation 
+für die Funktionen $\phi_n$ und daraus abgeleitet die
+Skalierungsrelation für das zugehörige Wavelet $\psi_n$.
+
+Da wir einen expliziten Ausdruck für die $\hat{\varphi}(\omega)$ haben,
+können wir die Skalierungsrelation für $\varphi_n$ daraus ableiten.
+Wir bezeichnen die erzeugende Funktion von $\varphi_n$ mit $H_n$.
+Dann gilt
+\begin{equation}
+\begin{aligned}
+\hat{\varphi}_n(\omega)
+&=
+H_n\biggl(\frac{\omega}2\biggr)
+\,
+\hat{\varphi}_n\biggl(\frac{\omega}2\biggr)
+&&\Rightarrow&
+H_n(\omega)
+&=
+\frac{\hat{\varphi}_n(2\omega)}{\hat{\varphi}_n(\omega)}
+\end{aligned}
+\label{Hnformel}
+\end{equation}
+Für die Fourier-Transformierte $\hat{\varphi}_n(\omega)$ haben wir früher
+\[
+\hat{\varphi}_n(\omega)
+=
+\frac{\hat{B}_n(\omega)}{\sqrt{\Phi_n(\omega)}}
+\]
+erhalten.
+Setzen wir dies in \eqref{Hnformel} ein, erhalten wir
+\begin{equation}
+H_n(\omega)
+=
+\frac{\hat{B}_n(2\omega)}{\hat{B}_n(\omega)}
+\frac{\sqrt{\Phi_n(\omega)}}{\sqrt{\Phi_n(2\omega)}}
+\label{formel:phinskal}
+\end{equation}
+
+In Abschnitt~\ref{subsection:skalierungsrelation-phin} haben wir bereits
+die Skalierungsrelation für die Spline-Funktionen $B_n$ gefunden und die
+zugehörige erzeugende Funktion
+\[
+\tilde{H}_n(\omega) = \biggl(\frac{1+e^{-i\omega}}{2}\biggr)^{n+1}
+\]
+bestimmt.
+Im Frequenzbereich ist die Skalierungsrelation für $\hat{B}_n(\omega)$
+\[
+\hat{B}_n(2\omega)=\tilde{H}_n(\omega) \, \hat{B}_n(\omega)
+\qquad\Rightarrow\qquad
+\frac{\hat{B}_n(2\omega)}{\hat{B}_n(\omega)}
+=
+\tilde{H}_n(\omega).
+\]
+Eingesetzt in \eqref{formel:phinskal} erhalten wir damit für die 
+erzeugende Funktion 
+\begin{equation}
+H_n(\omega)
+=
+\tilde{H}_n(\omega)
+\frac{\sqrt{\Phi_n(\omega)}}{\sqrt{\Phi_n(2\omega)}}
+=
+\biggl(
+\frac{1+e^{-i\omega}}{2}
+\biggr)^{n+1}
+\frac{\sqrt{\Phi_n(\omega)}}{\sqrt{\Phi_n(2\omega)}}
+\end{equation}
 
 \subsection{Spline-Wavelet
 \label{subsection:spline-wavelet}}
