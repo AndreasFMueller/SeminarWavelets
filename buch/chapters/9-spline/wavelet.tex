@@ -245,7 +245,7 @@ c_k = c_{-k}
 berechnet werden.
 
 Aus der Lösung von Aufgabe~\ref{aufgabe:orthonormalisierung} ist bekannt,
-dass das gesuchte Wavelet mit Hilfe der Koeffizienten gebildet werden 
+dass das gesuchte Wavelet mit Hilfe der Koeffizienten $c_k$ gebildet werden 
 kann:
 \[
 \varphi_n(\omega)
@@ -257,7 +257,7 @@ c_k B_n(t-k)
 c_k T_kB_n(t).
 \]
 Da die Funktionen $B_n$ stückweise Grad-$n$-polynomiell sind, ist auch
-$\varphi_n(\omega)$ stückweise Grad-$n$-polynomiell.
+$\varphi_n(\omega)$ stückweise Grad-$n$-po\-ly\-no\-miell.
 
 In \cite{buch:blatter} wird sogar gezeigt, dass $\sqrt{\Phi_n(\omega)}$
 als Polynom in $\cos\omega$ mit rationalen Koeffizienten geschrieben
@@ -310,7 +310,7 @@ B_1(k)
 &=
 \begin{cases}
 1&\qquad k=1\\
-0&\qquad 1\ne k\in\mathbb Z.
+0&\qquad 1\ne k\in\mathbb Z
 \end{cases}
 \\
 &=\delta_{1k}
@@ -408,11 +408,76 @@ H_n(\omega)
 \biggl(
 \frac{1+e^{-i\omega}}{2}
 \biggr)^{n+1}
-\frac{\sqrt{\Phi_n(\omega)}}{\sqrt{\Phi_n(2\omega)}}
+\frac{\sqrt{\Phi_n(\omega)}}{\sqrt{\Phi_n(2\omega)}}.
+\label{formel:Hnf}
 \end{equation}
+Um die Koeffizienten von $H_n(\omega)$ zu bestimmen, müssen wir den
+Bruch auf der rechten Seite in eine Fourier-Reihe entwickeln.
+Da $\Phi_n(\omega)$ gerade ist, ist dies wieder mit einer Kosinus-Reihe
+möglich.
+Die Koeffizienten
+\[
+d_k
+=
+d_{-k}
+=
+\int_{-\pi}^\pi
+\frac{\sqrt{\Phi_n(\omega)}}{\sqrt{\Phi_n(2\omega)}}
+\,\cos(k\omega)
+\,d\omega
+\]
+ergeben die Fourier-Reihe
+\[
+\frac{\sqrt{\Phi_n(\omega)}}{\sqrt{\Phi_n(2\omega)}}
+=
+\sum_{k\in\mathbb Z} d_k e^{ik\omega},
+\]
+sie müssen wie vorhin die Koeffizienten $c_k$ numerisch bestimmt werden.
+Einsetzen in \eqref{formel:Hnf} liefert dann die Koeffizienten für die
+erzeugende Funktion
+\begin{align*}
+H_n(\omega)
+&=
+\sum_{l=0}^{n+1} \frac1{2^{n+1}} \binom{n+1}{l} e^{-il\omega}
+\cdot
+\sum_{k\in\mathbb Z} d_ke^{ik\omega}
+=
+\sum_{l=0}^{n+1}
+\sum_{k\in\mathbb Z}
+\frac{1}{2^{n+1}}
+\binom{n+1}{l}d_k
+e^{i(k-l)\omega}
+\\
+&=
+\sum_{s\in\mathbb Z}
+e^{is\omega}
+\sum_{l=0}^{n+1}
+\frac{1}{2^{n+1}}
+\binom{n+1}{l}d_{s-l}.
+\end{align*}
+Daraus liest die Koeffizienten
+\begin{equation}
+h_s
+= 
+\sum_{l=0}^{n+1}
+\frac{1}{2^{n+1}}
+\binom{n+1}{l}d_{s-l}
+\label{formel:hs}
+\end{equation}
+der Skalierungsrelation ab.
 
 \subsection{Spline-Wavelet
 \label{subsection:spline-wavelet}}
+Da mit \eqref{formel:hs} die Koeffizienten der Skalierungsrelation bekannt
+sind, können auch die Koeffizienten berechnet werden, mit denen das
+Mutter-Wavelet $\psi_n$ durch die $B_n$ linear kombiniert werden kann.
+In \cite{buch:blatter} ist die Berechnung der Skalierungskoeffizienten 
+durchgeführt.
+
+Die Berechnungen dieses Kapitels zeigen, dass sich für jedes $n$ ein 
+stückeweise Grad-$n$-po\-ly\-no\-mi\-elles Wavelet finden lässt,
+das Spline-Wavelet vom Grade $n$.
+Es wird auch nach seinen Entdeckern Battle-Lemarie-Wavelet genannt.
 
 
 
