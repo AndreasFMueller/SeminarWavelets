@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.7.19)  4 AUG 2019 02:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.7.19)  5 AUG 2019 10:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -795,7 +795,7 @@ File: utxsyc.fd 2000/12/15 v3.1
 Here is how much of TeX's memory you used:
  24944 strings out of 492615
  635491 string characters out of 6131390
- 799245 words of memory out of 5000000
+ 801246 words of memory out of 5000000
  28396 multiletter control sequences out of 15000+600000
  20845 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -805,7 +805,7 @@ exlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fo
 nts/type1/public/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/txfonts/txsy.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
 8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on msa.pdf (1 page, 25195 bytes).
+Output written on msa.pdf (1 page, 25764 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream
