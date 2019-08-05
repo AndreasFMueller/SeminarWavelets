@@ -9,14 +9,12 @@ Menge von Knoten $V$ und einer Menge von Kanten $E$ zusammen.
 \begin{equation*}
 G = \{V, E\}
 \end{equation*}
-Die jeweiligen Kanten $E$ verbinden jeweils genau zwei Knoten der zum Graph 
-geh\"orenden Knotenmenge $V$ miteinander.
+Die Kanten $E$ verbinden jeweils genau zwei Knoten der zum Graph 
+geh\"orenden Knotenmenge $V$ miteinander. Es gilt also
 \begin{equation}
-E \subset \{\{v_1, v_2\} | v_i \in V, v_1 \neq v_2 \}
+E \subset \{\{v_1, v_2\} | v_i \in V, v_1 \neq v_2 \}.
 \label{eq:sgwt:graph:def}
 \end{equation}
-
-\subsection{Ungerichtete Graphen}
 
 Aus der von uns gew\"ahlten Definition eines Graphen 
 in~\cref{eq:sgwt:graph:def} ist ersichtlich, dass es sich dabei um einen 
@@ -38,6 +36,8 @@ einfachen Graphen mit f\"unf Knoten und vier Kanten, die diese verbinden.
         \label{fig:sgwt:graph:simple}}
 \end{figure}
 
+\subsection{Ungerichtete Graphen}
+
 Zu den grundlegenden Eigenschaften eines Graphen geh\"ort der Grad eines jeden 
 Knotens. Dieser entspricht der Anzahl Kanten, von denen dieser Knoten ein 
 Teil ist.
@@ -52,24 +52,24 @@ erhalten wir somit folgende Grade f\"ur die jeweiligen Knoten: $d(A) = 1, d(B)
 
 Den einzelnen Kanten ein Gewicht zu geben, ist eine M\"oglichkeit, 
 zus\"atzliche Informationen in einem Graphen zu hinterlegen. Jeder ungewichtete 
-Graph kann auch als ein gewichteter Graph, dessen Kanten einfach jeweils ein 
-Gewicht von $1$ haben, gesehen werden.
+Graph kann auch als ein gewichteter Graph gesehen werden, dessen Kanten einfach 
+jeweils ein Gewicht von $1$ haben.
 
 Bei gewichteten Graphen wird auch der Grad eines Knotens zu einem gewichteten 
 Grad. Das heisst, dass nun nicht mehr einfach die Anzahl Kanten von Bedeutung 
 ist, sondern auch das jeweilige Gewicht der Kante. Der gewichtete Grad eines 
 Graphen ist also die Summe aller Kantengewichte, die den jeweiligen Knoten 
-beinhalten. 
+beinhalten:
 \begin{equation*}
-    d_w(v) = \sum_{i = 1}^{|E|}w(e_i), \qquad v \in e_i
+    d_w(v) = \sum_{i = 1}^{|E|}w(e_i), \qquad v \in e_i.
 \end{equation*}
 Nehmen wir wieder den Beispielgraphen aus~\cref{fig:sgwt:graph:simple} und 
 versehen die einzelnen Kanten mit Gewichten. Damit erhalten wir dann den 
 Graphen in~\cref{fig:sgwt:graph:simpleweight}. Die Gewichte sind dabei 
 willk\"urlich gew\"ahlt worden, sie k\"onnen aber auch einen realen Hintergrund 
-haben, zum Beispiel die inverse Luftliniendistanz zweier Ortschaften. Der Grade 
-f\"ur die jeweiligen Knoten sind somit: $d_w(A) = 1, d_w(B) = 3.4, d_w(C) = 
-1.2, d_w(D) = 0.4, d_w(E) = 0.8$.
+haben, zum Beispiel die reziproke Luftliniendistanz zweier Ortschaften. Der 
+Grade f\"ur die jeweiligen Knoten sind somit: $d_w(A) = 1, d_w(B) = 3.4, d_w(C) 
+= 1.2, d_w(D) = 0.4, d_w(E) = 0.8$.
 
 \begin{figure}
     \centering
@@ -92,14 +92,14 @@ Funktion zu.
 f(v) = \dots, \qquad v \in V
 \end{equation*}
 
-Nehmen wir eine Funktion die an den f\"unf Punkten $x_1$ bis $x_5$ auf der 
+Nehmen wir eine Funktion, die an den f\"unf Punkten $x_1$ bis $x_5$ auf der 
 $x$-Achse abgetastet wurde. Diese Funktion k\"onnen wir einfach auf einen 
 Graphen abbilden, indem wir die einzelnen Punkte auf der $x$-Achse als Knoten 
 eines Graphen sehen und diese mit einfachen Kanten verbinden. Wir k\"onnen 
 diese Kanten auch gewichten, zum Beispiel in dem wir jeweils die Differenz 
 zwischen zwei Punkten nehmen. Schlussendlich haben wir dann etwas in der Form 
 des Graphen in~\cref{fig:sgwt:graph:fungraph}. Dabei sind die Funktionswerte 
-nicht mehr direkt ersichtlich, sondern wurden mit Farben kodiert.
+farblich kodiert und nicht mehr als Zahlen ersichtlich.
 
 \begin{figure}
     \centering
@@ -116,11 +116,11 @@ nicht mehr direkt ersichtlich, sondern wurden mit Farben kodiert.
         \label{fig:sgwt:graph:fungraph}}
 \end{figure}
 
-\subsection{Linien-, Ring- und Kugelgraphen}
+\subsection{Strecken-, Kreis- und Kugelgraphen}
 
-In den weiteren Abschnitten wird immer wieder von Linien-, Ring- und 
+In den weiteren Abschnitten wird immer wieder von Strecken-, Kreis- und 
 Kugelgraphen gesprochen. Damit gemeint ist jeweils eine Approximation einer 
-Linie, eines Ringes oder einer Kugel mittels eines ungewichteten Graphen. 
+Strecke, eines Kreises oder einer Kugel mittels eines ungewichteten Graphen. 
 \Cref{fig:sgwt:graph:ring,fig:sgwt:graph:line,fig:sgwt:graph:sphere} 
 illustrieren die jeweiligen Graphen anhand eines Beispieles.
 
@@ -131,7 +131,7 @@ illustrieren die jeweiligen Graphen anhand eines Beispieles.
     origin=c,
     scale=0.6
     ]{papers/sgwt/images/ring-graph.pdf}
-    \caption{Graph Approximation eines Ringes oder auch eines periodisch 
+    \caption{Graph Approximation eines Kreises oder auch eines periodisch 
     fortgesetzten Signales.
     \label{fig:sgwt:graph:ring}}
 \end{figure}
@@ -145,7 +145,8 @@ illustrieren die jeweiligen Graphen anhand eines Beispieles.
     ]{papers/sgwt/images/line-graph.pdf}
     \vspace{-160pt}
     \caption{Graph Approximation einer einfachen Linie. Speziell sind dabei die 
-    Endknoten, die jeweils nur den Grad $1$, statt $2$ wie alle anderen Knoten, 
+    Endknoten $1$ und $8$, die jeweils nur den Grad $1$, statt $2$ wie alle 
+    anderen Knoten, 
     haben. 
     \label{fig:sgwt:graph:line}}
 \end{figure}
@@ -156,7 +157,7 @@ illustrieren die jeweiligen Graphen anhand eines Beispieles.
     scale=0.6
     ]{papers/sgwt/images/sphere-graph.pdf}
     \caption{Graph Approximation einer Kugel. Zu beachten gilt, dass der Grad 
-    der beiden Polknoten jeweils stark vom Grad aller andere Knoten abweichen 
-    kann.
+    der beiden Polknoten $1$ und $8$ jeweils stark vom Grad aller andere Knoten 
+    abweichen kann.
     \label{fig:sgwt:graph:sphere}}
 \end{figure}

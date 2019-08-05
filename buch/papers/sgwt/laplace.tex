@@ -4,13 +4,12 @@
 \rhead{Laplace Operator und Graphen}
 
 F\"ur die Analyse und Synthese von Funktionen auf Graphen und deren Spektren 
-spielen der 
-Laplace Operator und besonders die Laplace Matrix eine wichtige Rolle, wie 
-bereits Graphen in~\cref{sec:sgwt:graphs}, wollen wir daher zuerst 
-die Grundlagen des Laplace Operators in~\cref{subsec:sgwt:laplaceop} und der 
-Laplace Matrix \laplaceL{} in~\cref{subsec:sgwt:laplacem} eingehen, bevor wir 
-dann in~\cref{sec:sgwt:spectralanalysis} mit der Analyse des Spektrums und 
-Konstruktion der SGWT beginnen.
+spielen der Laplace Operator und besonders die Laplace Matrix eine wichtige 
+Rolle. Analog den Graphen in~\cref{sec:sgwt:graphs}, wollen wir zuerst 
+auf die Grundlagen des Laplace Operators in~\cref{subsec:sgwt:laplaceop} und 
+der Laplace Matrix \laplaceL{} in~\cref{subsec:sgwt:laplacem} eingehen. 
+In~\cref{sec:sgwt:spectralanalysis} folgt dann die Analyse des Spektrums und 
+Konstruktion der SGWT.
 
 \subsection{Laplace Operator\label{subsec:sgwt:laplaceop}}
 \rhead{Laplace Operator}
@@ -36,9 +35,9 @@ approximierte Form des Laplace Operators zu haben.
 \subsection{Finite-Differenzen}
 \rhead{Finite-Differenzen}
 
-Finite-Differenzen erm\"oglichen uns eine diskrete Approximation des 
-Laplace Operators. Sie stellen also eine L\"osung f\"ur unsere Problem dar, auf 
-die wir weiter eingehen wollen.
+Finite-Differenzen erlauben uns eine diskrete Approximation des 
+Laplace Operators. Sie erm\"oglichen uns also genau das, was wir 
+in~\cref{subsec:sgwt:laplaceop} gesucht haben.
 
 Als Ausgangslage nehmen wir die Funktion $u(x)$ mit dem eindimensionalen 
 Definitionsbereich $u: \mathbb{R} \rightarrow \mathbb{R}$ und beginnen zuerst 
@@ -75,7 +74,7 @@ Dies k\"onnen wir wiederum mittels Finiten-Differenzen approximieren, mit $h =
 \label{eq:sgwt:fivepointstencil}
 \end{align}
 Dieser Operator ist auch bekannt als der F\"unfpunkte-Stern-Operator 
-oder five-point stencil im Englischen, siehe~\cref{fig:sgwt:graph:star}.
+oder five-point stencil (im Englischen), siehe~\cref{fig:sgwt:graph:star}.
 \begin{figure}
 \centering
 \includegraphics[
@@ -109,9 +108,9 @@ multipliziert mit dem Funktionswert $u(P)$, was uns folgende Gleichung
 \Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{8}u(P_i) - 8u(P)\right)
 \end{equation*}
 liefert. Generell erhalten wir f\"ur den Laplace Operator an einem Knoten $v$ 
-mit $n$~Nachbarn die folgende~\cref{eq:sgwt:generallaplace}.
+mit $n$~Nachbarn die Definition
 \begin{equation}
-\Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{n}u(v_i) - d(v)u(v)\right)
+\Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{n}u(v_i) - d(v)u(v)\right).
 \label{eq:sgwt:generallaplace}
 \end{equation}
 
@@ -206,7 +205,7 @@ u_3 - u_1 \\
 u_4 - u_1
 \end{pmatrix}
 \end{equation*}
-oder generell ausgedr\"uckt, mit $h = 1$
+oder generell ausgedr\"uckt, mit allgemeinem $h$
 \begin{equation*}
 \laplaceL u = \frac{1}{h^2}n\left(\frac{1}{n}\sum_{i\text{ Nachbarn}}^{n}u_i - 
 u_0\right) = \Delta u.

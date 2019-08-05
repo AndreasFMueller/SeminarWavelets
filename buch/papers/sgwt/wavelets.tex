@@ -8,7 +8,7 @@ Graph Wavelet Transformation.
 
 \subsection{Graph Fourier Transformation\label{subsec:sgwt:gft}}
 
-Die in~\cref{sec:sgwt:spectralanalysis} kennengelernten Eigenfunktionen 
+Die in~\cref{sec:sgwt:spectralanalysis} vorgestellten Eigenfunktionen 
 k\"onnen wir direkt nutzen um eine Graph Fourier Transformation zu definieren. 
 Wir ersetzen bei der Fourier Transformation einfach die Exponentialfunktion 
 oder Kugelfunktionen durch die Eigenvektoren der Laplace Matrix
@@ -61,9 +61,10 @@ Faktor ist, werden wir uns in der Praxis auf $J$ Faktoren, also eine endliche
 Anzahl $\{t_j\}^J_{j=1}$, beschr\"anken m\"ussen.
 
 Wir haben jetzt nur noch das Problem, dass $\lambda_0 = 0$ gilt. Wir verlieren 
-also den konstanten Anteil der zu analysieren und synthetisierenden Funktion. 
-Um das zu umgehen nehmen brauchen wir eine zus\"atzliche Kernelfunktion 
-$h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und $\lim_{\lambda\to\infty} = 0$.
+also den konstanten Anteil der zu analysierenden und synthetisierenden 
+Funktion. Um das zu umgehen nehmen brauchen wir eine zus\"atzliche 
+Kernelfunktion $h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und 
+$\lim_{\lambda\to\infty} = 0$.
 
 \subsection{Frames}
 
@@ -71,9 +72,9 @@ Mit $h(\lambda)$ und den $J$ skalierten $g(t\lambda)$ haben wir also $J + 1$
 Kernelfunktionen f\"ur die Analyse und Synthese zur Verf\"ugung. Wir arbeiten 
 also mit einem Frame. Die Grenzen sind dabei gegeben als
 \begin{align*}
-A &= \min_{\lambda \in \left[0, \lambda_{N-1}\right]} G(\lambda) \\
-B &= \max_{\lambda \in \left[0, \lambda_{N-1}\right]} G(\lambda) \\
-\text{mit } G(\lambda) &= h(\lambda)^2 + \sum_{j = 1}^{J} g(t_j\lambda)^2.
+A &= \min_{\lambda \in \left[0, \lambda_{N-1}\right]} f(\lambda) \\
+B &= \max_{\lambda \in \left[0, \lambda_{N-1}\right]} f(\lambda) \\
+\text{mit } f(\lambda) &= h(\lambda)^2 + \sum_{j = 1}^{J} g(t_j\lambda)^2.
 \end{align*}
 
 \subsection{\texorpdfstring{$\psi_j$}{psi} und \texorpdfstring{$\phi$}{phi}}
@@ -85,15 +86,15 @@ Damit lassen sich nun unsere Wavelets $\psi_j$ und $\phi$ wie folgt konstruieren
 \phi = \chi \diag{h(\lambda)} \chi'.
 \label{eq:sgwt:phi}
 \end{align}
-Zur Veranschaulichung sehen wir hier die Wavelets eines Ringgraphen 
+Zur Veranschaulichung sehen wir hier die Wavelets eines Kreisgraphen 
 in~\cref{fig:sgwt:wavelets:ring0,fig:sgwt:wavelets:ring1,fig:sgwt:wavelets:ring2,fig:sgwt:wavelets:ring3,fig:sgwt:wavelets:ring4,fig:sgwt:wavelets:ring5},
- eines Liniengraphen 
+ eines Streckengraphen 
 in~\cref{fig:sgwt:wavelets:line0,fig:sgwt:wavelets:line1,fig:sgwt:wavelets:line2,fig:sgwt:wavelets:line3,fig:sgwt:wavelets:line4,fig:sgwt:wavelets:line5}
  und eines Kugelgraphen 
 in~\cref{fig:sgwt:wavelets:sphere0,fig:sgwt:wavelets:sphere1,fig:sgwt:wavelets:sphere2,fig:sgwt:wavelets:sphere3,fig:sgwt:wavelets:sphere4,fig:sgwt:wavelets:sphere5}.
-Gut zu erkennen ist dabei, dass der Ringgraph die wohl beste Approximation der 
-bisherigen Wavelettheorie ist. Beim Liniengraph fehlt die Periodisierung, die 
-wir durch die Verbindungskante des Start- und Endknoten beim Ringgraphen 
+Gut zu erkennen ist dabei, dass der Kreisgraph die wohl beste Approximation der 
+bisherigen Wavelettheorie ist. Beim Streckengraph fehlt die Periodisierung, die 
+wir durch die Verbindungskante des Start- und Endknoten beim Kreisgraphen 
 erreicht haben. Auch beim Kugelgraphen wird klar, dass die Pole, aufgrund ihres 
 viel gr\"osseren Grades, deutlich st\"arker gewichtet werden und es daher zu 
 einer Verzerrung der Wavelets in Richtung der Pole kommt.
@@ -106,7 +107,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-1-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_1(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \caption{$\psi_1(v_{10})$-Wavelets eines Kreisgraphen mit 100 Knoten.}
         \label{fig:sgwt:wavelets:ring0}
     \end{minipage}
     ~
@@ -116,7 +117,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-2-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_2(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \caption{$\psi_2(v_{10})$-Wavelets eines Kreisgraphen mit 100 Knoten.}
         \label{fig:sgwt:wavelets:ring1}
     \end{minipage}
     ~
@@ -126,7 +127,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-3-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_3(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \caption{$\psi_3(v_{10})$-Wavelets eines Kreisgraphen mit 100 Knoten.}
         \label{fig:sgwt:wavelets:ring2}
     \end{minipage}
     ~
@@ -136,7 +137,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-4-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_4(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \caption{$\psi_4(v_{10})$-Wavelets eines Kreisgraphen mit 100 Knoten.}
         \label{fig:sgwt:wavelets:ring3}
     \end{minipage}
     ~
@@ -146,7 +147,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-5-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_5(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \caption{$\psi_5(v_{10})$-Wavelets eines Kreisgraphen mit 100 Knoten.}
         \label{fig:sgwt:wavelets:ring4}
     \end{minipage}
     ~
@@ -156,7 +157,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-phi-10.pdf}
         \vspace{-45pt}
-        \caption{$\phi(v_{10})$-Wavelets eines Ringgraphen mit 100 Knoten.}
+        \caption{$\phi(v_{10})$-Wavelets eines Kreisgraphen mit 100 Knoten.}
         \label{fig:sgwt:wavelets:ring5}
     \end{minipage}
 \end{figure}
@@ -169,7 +170,8 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-line-1-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_1(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \caption{$\psi_1(v_{10})$-Wavelets eines Streckengraphen mit 100 
+        Knoten.}
         \label{fig:sgwt:wavelets:line0}
     \end{minipage}
     ~
@@ -179,7 +181,8 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-line-2-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_2(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \caption{$\psi_2(v_{10})$-Wavelets eines Streckengraphen mit 100 
+        Knoten.}
         \label{fig:sgwt:wavelets:line1}
     \end{minipage}
     ~
@@ -189,7 +192,8 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-line-3-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_3(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \caption{$\psi_3(v_{10})$-Wavelets eines Streckengraphen mit 100 
+        Knoten.}
         \label{fig:sgwt:wavelets:line2}
     \end{minipage}
     ~
@@ -199,7 +203,8 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-line-4-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_4(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \caption{$\psi_4(v_{10})$-Wavelets eines Streckengraphen mit 100 
+        Knoten.}
         \label{fig:sgwt:wavelets:line3}
     \end{minipage}
     ~
@@ -209,7 +214,8 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-psi-line-5-10.pdf}
         \vspace{-45pt}
-        \caption{$\psi_5(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \caption{$\psi_5(v_{10})$-Wavelets eines Streckengraphen mit 100 
+        Knoten.}
         \label{fig:sgwt:wavelets:line4}
     \end{minipage}
     ~
@@ -219,7 +225,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets-phi-line-10.pdf}
         \vspace{-45pt}
-        \caption{$\phi(v_{10})$-Wavelets eines Liniengraphen mit 100 Knoten.}
+        \caption{$\phi(v_{10})$-Wavelets eines Streckengraphen mit 100 Knoten.}
         \label{fig:sgwt:wavelets:line5}
     \end{minipage}
 \end{figure}
@@ -305,7 +311,7 @@ packen um dann die Wavelet Koeffizienten wie folgt zu berechnen
 Um nun eine Funktion $f(v)$ auf einem Graphen $G$ zu analysieren gehen wir 
 also wie folgt vor:
 \begin{itemize}
-    \item[1.] Generierung der \laplaceL{} Matrix aus $G$.
+    \item[1.] Generierung der \laplaceL{} Matrix aus dem Graphen $G$.
     \item[2.] Berechnung der Eigenwerte $\lambda$ und Eigenvektoren $\chi$.
     \item[3.] Berechnung der $\psi_j$ und $\phi$ Wavelets 
     mit~\cref{eq:sgwt:psi,eq:sgwt:phi}.
