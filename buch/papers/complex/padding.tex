@@ -1,9 +1,3 @@
-% TODO Padding
-%% Effekt der zyklischen Faltung
-%% Lösen durch padden des Signals
-%%  - zero padding
-%%  - padden durch spiegeln des Signals
-%% Performanz-Vergleich anhand Matlab-Skript
 
 Zur effizienten Berechnung haben wir verwendet, dass die Multiplikation im Zeitbereich der Faltung im Frequenzbereich entspricht.
 Anschliessend haben wir die schnelle Fourier-Transformation zur Berechnung der Bilder verwendet.
@@ -25,7 +19,7 @@ ein $2\pi$-periodisches Signal, welches dieselbe Information beinhaltet, wie das
 Insbesondere rechnet die FFT immer mit diesem, äquivalenten Signal.
 Erst darauf sind die Fourier-Reihen sinnvoll definiert und die gesammte Theorie funktioniert wie gewünscht.
 Ausser, man beginnt, Signale miteinander zu falten.
-Durch die Periodisierung des Ursprungssignals wurde das Signal vom ursprünglichen Interval $[t_0, t_1]$ auf ganz $\mathbb{R}$ erweitert.
+Durch die Periodisierung des Ursprungssignals wurde das Signal vom ursprünglichen Interval $[t_0, t_1)$ auf ganz $\mathbb{R}$ erweitert.
 
 \begin{figure}
 	\centering
@@ -33,11 +27,12 @@ Durch die Periodisierung des Ursprungssignals wurde das Signal vom ursprünglich
 	\caption{Signal, gefaltet mit Dirac-Folgen unterschiedlicher Periode}
 	\label{complex:cyclic-conv}
 \end{figure}
+
 Warum dies ein Problem ist, sei mit einem Beispiel illustriert.
 In Abbildung~\ref{complex:cyclic-conv} ist ein Beispielsignal, welches mit einem Dirac gefaltet werden soll.
 Dieser Dirac-Impuls sei nun aber periodisch.
 Durch diese Fortsetzung überlappen die verschiedenen Signal-Kopien, falls am Rand nicht extra Platz gelassen wird.
-Bei realen Signalen ist dies in der Regel nciht der Fall, die Aufzeichnugn begint erst, wenn auch etwas interessantes passiert.
+Bei realen Signalen ist dies in der Regel nicht der Fall, die Aufzeichnung beginnt erst, wenn auch etwas interessantes passiert.
 
 Es ist also wichtig, dem Signal vor der FFT extra Platz einzuräumen, sogenantes \emph{Signal Padding}.
 Hierzu muss man sinnvolle Werte für das Signal ``erfinden''.
@@ -46,16 +41,16 @@ Abbildung~\ref{complex:padding} zeigt die zwei meistverwendeten, Zero Padding un
 \begin{figure}
 	\centering
 	\includegraphics{papers/complex/images/signal_padding.pdf}
-	\caption{Vershiedene Signal Padding-Optionen}
+	\caption{Verschiedene Signal Padding-Optionen}
 	\label{complex:padding}
 \end{figure}
 
 Die wohl einfachste Art ist das Auffüllen mit $0$.
 Dies führt zu einem verschwinden des Signals am Rande, dafür müssen keine Sampels ``erfunden'' werden.
-Diese Methode lässt sich einfach begründen: wenn man das Signal nicht kennt, nehmen wir an, es sei $0$.
+Diese Methode lässt sich auch gut begründen: wenn man das Signal nicht kennt, nehmen wir an, es sei $0$.
 Zudem gibt sie am wenigsten zu tun.
 
-Falls möglich, kann man das Signal auf geschicktere Art und Weise ergänzen, etwa durch extrapolation.
+Manchmal kann man das Signal auf geschicktere Art und Weise ergänzen, etwa durch extrapolation.
 Gängig ist etwa das Signal an den Enden zu spiegeln.
 Dadurch bleibt die Intensität des Signals am Rande erhalten.
 Sinnvoll ist das jedoch nur, wenn man annehmen kann, dass das Signal auch eine entsprechende Symmetrie aufweist.
@@ -65,13 +60,13 @@ Anhand der beiden unteren Bilden in Abbildung~\ref{complex:padding} kann man sic
 Gespiegelt resultiert in einer Phasen-Inversion, dafür tritt kein Phasen-Sprung auf.
 Beim gespiegelten und komplex-konjugierten Signal ist es genau andersrum.
 
-Ban beachte, dass bei diesem Beispiel gespiegelt und konjugiert-komplex identisch ist mit der periodischen Fortsetzung.
-Wären Real- udn Imaginärteil im Original vertauscht, resultierte gespiegelt und komplex-konjugiert in korrekter fortsetzung der Schwingung.
+Man beachte, dass bei diesem Beispiel gespiegelt und konjugiert-komplex identisch ist mit der periodischen Fortsetzung.
+Wären Real- und Imaginärteil im Original vertauscht, resultierte gespiegelt und komplex-konjugiert in korrekter Fortsetzung der Schwingung.
 
 Dies soll verdeutlichen, dass es keine generell richtige Methode gibt, das Signal zu erweitern.
 Falls die Randwerte wirklich wichtig sind, kann man versuchen, das Signal zu extrapolieren, etwa über eine Polynom-Aproximation.
 Man sollte sich jedoch im Klaren sein, dass man gerade dabei ist, neue Signal-Werte zu erfinden.
-Spiegeln ist deshalb meist die bevorzugte Wahl bei leistungsstarken Rechnern.
+Spiegeln ist deshalb meist die bevorzugte Wahl bei leistungsstarken Rechnern, mit Zero Padding macht man aber bestimmt nichts falsch.
 
 Die Beispielsignale sind so gewählt, dass sie eine ganzzahlige Anzahl Perioden durchlaufen. 
 Spiegeln an den Enden und komplex-konjugieren führt also zu einer korrekten Vortsetzung des Signals.

@@ -12,13 +12,13 @@
 % \section{Einleitung}
 Die diskrete Wavelet-Transformation (DWT) mit reellen Wavelets ist besonders schnell zu berechnen.
 Deshalb ist sie die bevorzugte Wahl zur Signalverarbeitung.
-Beim Erstellen `schöner' Bilder trifft man jedoch unter Anderem auf folgende drei Probleme:
+Beim Erstellen `schöner' Bilder trifft man jedoch, unter Anderem, auf folgende drei Probleme:
 
 Erstens wäre es für Bilder vorteilhaft, die relevanten Frequenzpunkte vorgeben zu können.
-So kann man direkt lineare oder logarithmische Skalen wählen. Die DFT ist an Zweierpotenzen gebunden. %TODO: Referenz zum Frame für a^n statt 2^n
+So kann man direkt lineare oder logarithmische Skalen wählen. Die DWT ist an Zweierpotenzen gebunden. %TODO: Referenz zum Frame für a^n statt 2^n
 Zweitens erfordern die meisten Methoden zum Erstellen von Bildern ein reguläres Raster.
-Die DFT liefert aber in jeder zusätzlichen Zeile nur noch halb so viele Punkte.
-Drittens, wenn man Schwingungen finden möchte, ist es vorteilhaft, wenn die Amplitude ersichtlich ist.
+Die DWT liefert aber in jeder zusätzlichen Zeile nur noch halb so viele Punkte.
+Drittens ist es, wenn man Schwingungen finden möchte, vorteilhaft, wenn die Amplitude ersichtlich ist.
 Sie kann beispielsweise als Helligkeit abgebildet werden. 
 Bei reellen Wavelets sind Amplitude und Phase jedoch nicht einfach zu trennen.
 
@@ -27,7 +27,7 @@ Als kontinuierliche Transformation benötigt sie jedoch etwas Vorarbeit,
 nämlich eine Diskretisierung der $a$- und $b$-Variablen.
 Eine anschliessende direkte Berechnung der diskretisierten Integrale ist allerdings sehr rechenintensiv.
 Im ersten Abschnitt betrachten wir deshalb, wie man die CWT als Faltung interpretieren kann, welche sich effizient mittels FFT berechnen lässt.
-Zur Illustration verwenden wir ein einfaches Beispielsignal und die CWT mittels Haar-Wavelet.
+Zur Illustration verwenden wir zwei einfache Beispielsignale und die CWT mittels Haar-Wavelet.
 
 Die Wahl des Wavelets spielt eine zentrale Rolle und beeinflusst das erhaltene Bild wesentlich.
 Ein wichtiger Punkt ist hierbei die Unschärfe-Relation zwischen Zeit und Frequenz.
@@ -38,18 +38,15 @@ Im dritten Abschnitt wenden wir uns den komplexen Wavelets zu.
 Via Hilbert-Transformation können wir basierend auf einem beliebigen Wavelet ein neues finden, bei welchem sich Phasen und Amplitude trennen lassen.
 
 Durch die Berechnung der CWT mittels FFT entstehen Artefakte durch die zirkuläre Faltung.
-Geschickte Erweiterung des Signals kann diesen Effekt vermeiden.
-Dies beeinflusst jedoch massgeblich die Performance, da durch Erweitern des Signals der Rechenaufwand signifikant steigt.
-Im letzten Abschnitt vergleichen wir deshalb den Rechenaufwand und die erzielten Bilder mit verschiedenen Padding-Optionen anhand eines Matlab-Skripts.
-Zudem vergleichen wir die Performance dieses Skripts mit der Implementation von Matlab selbst.
-Überraschenderweise ist es auf den getesteten Rechnern in jedem Fall schneller als die cwt-Funktion aus der Wavelet-Toolbox von Matlab.
+Geschickte Erweiterung des Signals kann diesen Effekt vermindern.
+Im letzten Abschnitt vergleichen wir deshalb die erzielten Bilder mit verschiedenen Padding-Optionen.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{papers/complex/cwt.tex}
 \input{papers/complex/gabor.tex}
 \input{papers/complex/negative.tex}
 
-\section{Analytische Wavelets und Hilbert-Transformation}
+\section{Analytische Wavelets}
 \input{papers/complex/hilbert.tex}
 \input{papers/complex/analytic.tex}
 \input{papers/complex/haar.tex}
