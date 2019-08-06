@@ -1,0 +1,87 @@
+\usetikzlibrary{automata,arrows,positioning,calc}
+
+
+
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 1]
+
+
+%\useasboundingbox (0,-0.5) rectangle (12.5,1.5);
+
+%\tikzset{every node/.style={scale=0.7}}
+
+\tikzstyle{block}=[rectangle, inner sep=4pt, fill=white,draw=black,thick,text=black, minimum height = 2.5cm, minimum width = 1.5cm, scale = 1]
+\tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm,  scale = 1]
+\tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black,  scale = 1]
+\tikzstyle{dots}=[circle, fill=white,thick,text=black,scale=1, minimum size=0.8cm,  scale = 1]
+
+%\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-3) grid (10,3);
+
+%\tikzset{every node/.style={scale=0.7}}
+
+\node      (start) at(0,0) {$x$} ;
+
+\coordinate (split)  at(1,0);
+
+\node[] (z1)  {};
+\node[square] (z2) at (2,-1) {$z$};
+
+\node[round] (d1) at (3.5,1) {$\downarrow 2$};
+\node[round] (d2) at (3.5,-1) {$\downarrow 2$};
+
+\coordinate (h1tl) at (4.5, 1);
+\coordinate (h1bl) at (4.5,-1);
+\coordinate (h1tr) at (6, 1);
+\coordinate (h1br) at (6,-1);
+\node[block] (h1) at (5.25,0) {$\bm{\bar P}(z^{-1})^t$};
+
+
+
+\node[dots] (dots1) at (7, 1) {\text{LP}};
+\node[dots] (dots2) at (7, -1) {\text{HP}};
+
+\coordinate (h2tl) at (8, 1);
+\coordinate (h2bl) at (8,-1);
+\coordinate (h2tr) at (9.5, 1);
+\coordinate (h2br) at (9.5,-1);
+\node[block] (h2) at (8.75,0) {$\bm P(z)$};
+
+
+\node[round] (u1) at (10.5,1) {$\uparrow 2$};
+\node[round] (u2) at (10.5,-1) {$\uparrow 2$};
+
+\node[] (zz1) [right of=u1] {};
+\node[square] (zz2) [right of=u2] {$z^{-1}$};
+
+\node[round] (combine)  at (13,0){$+$};
+
+\node[right of=combine, node distance=1cm] (end) {$y$};
+
+
+\draw[->] (start) -- node {}(split);
+
+\draw[->] (split) |- node {}(d1);
+\draw[->] (split) |- node {}(z2);
+\draw[->] (z2) -- node {}(d2);
+
+\draw[->] (d1) -- node {}(h1tl);
+\draw[->] (d2) -- node {}(h1bl);
+
+\draw[->] (h1tr) -- node {}(dots1);
+\draw[->] (h1br) -- node {}(dots2);
+
+\draw[->] (dots1) -- node {}(h2tl);
+\draw[->] (dots2) -- node {}(h2bl);
+
+\draw[->] (h2tr) -- node {}(u1);
+\draw[->] (h2br) -- node {}(u2);
+
+
+
+\draw[->] (u1) -| node {}(combine);
+\draw[->] (u2) -- node {}(zz2);
+\draw[->] (zz2) -| node {}(combine);
+
+\draw[->] (combine) -- node {}(end);
+
+
+\end{tikzpicture}

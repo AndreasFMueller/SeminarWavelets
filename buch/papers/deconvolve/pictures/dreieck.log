@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.4.25)  23 JUN 2019 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.4.25)  16 JUL 2019 20:53
 entering extended mode
 **./dreieck.tex
 (dreieck.tex
@@ -558,19 +558,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 11.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 11.
-(dreieck.tikz)
-Overfull \hbox (13.89705pt too wide) in paragraph at lines 2016--14
-[][] 
- []
-
-[1
+(dreieck.tikz) [1
 
 {C:/Users/User/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./dreieck_b.
 png (PNG copy)>] (dreieck.aux) ) 
 Here is how much of TeX's memory you used:
  22210 strings out of 492945
  588335 string characters out of 3135516
- 1235627 words of memory out of 3000000
+ 1234626 words of memory out of 3000000
  25752 multiletter control sequences out of 15000+200000
  3640 words of font info for 14 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -578,7 +573,7 @@ Here is how much of TeX's memory you used:
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmr10.pfb>
-Output written on dreieck.pdf (1 page, 119049 bytes).
+Output written on dreieck.pdf (1 page, 119111 bytes).
 PDF statistics:
  18 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

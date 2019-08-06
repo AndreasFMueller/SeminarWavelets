@@ -1,0 +1,72 @@
+%
+% sweep.tex -- template for standalon tikz images
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+% (c) 2019 Roy Seitz, Hochschule Rapperswil
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\begin{tikzpicture}[>=latex]
+
+% Can be overwritten by compiling with: pdflatex '\newcommand{\imname}{im.jpg} \input{im.tex}'
+\providecommand{\imname}{im.jpg} 
+\providecommand{\amax}{16}
+
+\pgfmathparse{(12/(\amax-1)*9/16)}
+\xdef\s{\pgfmathresult} % scale to picture width
+
+\pgfmathparse{(12/4)} % scale to tend
+\xdef\a{\pgfmathresult} 
+
+\node at (6,{6*9/16}) {\includegraphics[width=12cm]{\imname}};
+
+\draw[->,line width=0.75pt] (-0.1,0)--(12.3,0) coordinate[label={$b$}];
+\draw[->,line width=0.75pt] (0,-0.1)--(0,{12*9/16+0.3})
+	coordinate[label={right:$1/a$}];
+
+\foreach \x in {1, 2, 4, ..., \amax}{
+	\draw[line width=0.75pt] (-0.1,{(\x-1)*\s})--(0,{(\x-1)*\s});
+	\node at (-0.1,{(\x-1)*\s}) [left] {$\x$};
+}
+
+\foreach \x in {1, ..., 4}{
+	\draw[line width=0.75pt] ({\x*\a}, -0.1) -- ({\x*\a}, 0);
+	\node at ({\x*\a}, -0.1) [below] {$\x$};
+}
+
+%\begin{scope}[yshift=-1.8cm]
+%	\draw[color=red,line width=1pt]
+%		plot[domain=0:4,samples=4000]
+%			({\x*\a},{sin(360*\x*(2 + 6/\a * \x))});
+%	\draw[->,line width=0.7pt] (-0.1,0)--(12.3,0) coordinate[label={$t$}];
+%	\draw[->,line width=0.7pt] (0,-1.1)--(0,1.3) coordinate[label={right:$x(t)$}];
+%	
+%	\foreach \x in {0,...,4}{
+%		\draw[line width=0.7pt]
+%			({\x*\a},-0.1)--({\x*\a},0.1);
+%	}
+%\end{scope}
+
+%\begin{scope}[yshift=-1.8cm]
+%	\draw[color=red,line width=1pt]
+%		plot[domain=0:4,samples=4000]
+%			({\x*\a},{sin(360*\x*(6 + 2 * sign(sin(180*\x)) ))});
+%	\draw[->,line width=0.7pt] (-0.1,0)--(12.3,0) coordinate[label={$t$}];
+%	\draw[->,line width=0.7pt] (0,-1.1)--(0,1.3) coordinate[label={right:$x(t)$}];
+%	
+%	\foreach \x in {0,...,4}{
+%		\draw[line width=0.7pt]
+%			({\x*\a},-0.1)--({\x*\a},0.1);
+%	}
+%\end{scope}
+
+
+\end{tikzpicture}
+\end{document}
+

@@ -11,11 +11,11 @@ all:	sinsin.pdf	\
 	translation.pdf	\
 	dilatation.pdf	\
 	kommutator.pdf	\
-	kommutatorD.pdf	\
 	hexagon.pdf	\
 	hexagon1.pdf	\
 	hexagon2.pdf	\
 	hexagon3.pdf	\
+	l2orth.pdf	\
 	tri.pdf		\
 	beispiel2.pdf	\
 	b3-01.pdf	\
@@ -27,7 +27,17 @@ all:	sinsin.pdf	\
 	b3-07.pdf	\
 	b3-08.pdf	\
 	b3-09.pdf	\
-	b3-10.pdf
+	b3-10.pdf	\
+	parallelogramm.pdf	\
+	orthogonalkomplement.pdf	\
+	approx.pdf	\
+	abstand.pdf
+
+parallelogramm.pdf:	parallelogramm.tex
+	pdflatex parallelogramm.tex
+
+orthogonalkomplement.pdf:	orthogonalkomplement.tex
+	pdflatex orthogonalkomplement.tex
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
@@ -62,9 +72,6 @@ dilatation.pdf:	dilatation.tex
 
 kommutator.pdf:	kommutator.tex
 	pdflatex kommutator.tex
-
-kommutatorD.pdf:	kommutatorD.tex
-	pdflatex kommutatorD.tex
 
 hexagon.pdf:	hexagon.tex
 	pdflatex hexagon.tex
@@ -123,3 +130,11 @@ b3-09.pdf:	b3-09.tex b3curves.tex axes.tex
 b3-10.pdf:	b3-10.tex b3curves.tex axes.tex
 	pdflatex b3-10.tex
 
+l2orth.pdf:	l2orth.tex
+	pdflatex l2orth.tex
+
+approx.pdf:	approx.tex
+	pdflatex approx.tex
+
+abstand.pdf:	abstand.tex
+	pdflatex abstand.tex

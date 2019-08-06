@@ -1,0 +1,26 @@
+%
+% b3-05.tex -- Beispiel-Kurve
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\begin{tikzpicture}[>=latex]
+
+\def\ampli{5.2}
+
+\input{axes.tex}
+\input{b3curves.tex}
+
+\curvefive
+\dualcurvefive
+
+\end{tikzpicture}
+\end{document}
+

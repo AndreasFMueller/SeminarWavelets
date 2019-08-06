@@ -4,116 +4,61 @@
 % (c) 2019 Hochschule Rapperswil
 %
 
-\chapter{Komplexe Morlet Wavelets und CWT\label{chapter:thema}}
+\chapter{Komplexe Wavelets und CWT\label{chapter:complex}}
 \lhead{Komplexe Wavelets und CWT}
 \begin{refsection}
 \chapterauthor{Roy Seitz}
 
-Die schnelle Wavelettransformation (Fast Wavelet Transform, FWT) mit reellen Wavelets besitzt eine Vielzahl nützlicher Eigenschaften.
-Je nach Anwendung besitzt sie jedoch auch zwei wesentliche Nachteile.
+% \section{Einleitung}
+Die diskrete Wavelet-Transformation (DWT) mit reellen Wavelets ist besonders schnell zu berechnen.
+Deshalb ist sie die bevorzugte Wahl zur Signalverarbeitung.
+Beim Erstellen `schöner' Bilder trifft man jedoch, unter Anderem, auf folgende drei Probleme:
 
-Erstens ist man sich aus der Fouriertheorie gewohnt, Phasen- und Amplitudeninformation getrennt betrachten zu können.
-Diese Eigenschaft folg direkt aus der Wahl komplexer Basisfunktionen (oder Sinus und Cosinus als REal- und Imaginärteil der komplexen Schwingung) und ist mit reellen Wavelets folglich nicht möglich.
+Erstens wäre es für Bilder vorteilhaft, die relevanten Frequenzpunkte vorgeben zu können.
+So kann man direkt lineare oder logarithmische Skalen wählen. Die DWT ist an Zweierpotenzen gebunden. %TODO: Referenz zum Frame für a^n statt 2^n
+Zweitens erfordern die meisten Methoden zum Erstellen von Bildern ein reguläres Raster.
+Die DWT liefert aber in jeder zusätzlichen Zeile nur noch halb so viele Punkte.
+Drittens ist es, wenn man Schwingungen finden möchte, vorteilhaft, wenn die Amplitude ersichtlich ist.
+Sie kann beispielsweise als Helligkeit abgebildet werden. 
+Bei reellen Wavelets sind Amplitude und Phase jedoch nicht einfach zu trennen.
 
-Als zweites sind die Frequenzen in der FWT nur in Zweierpotenzen der Abtastfrequenz berechnet, ähnlich der Fourier-Reihen, wo nur ganzzahlige Vielfache der Grundfrequenz berechnet werden.
-Aus mathematischer Sicht ist das zwar ausreichend, für manche Anwendungen ist diese Auflösung jedoch zu grob.
+Die CWT aus Kapitel~\ref{chapter:cwt} ist die bevorzugte Wahl für analytische Berechnungen.
+Als kontinuierliche Transformation benötigt sie jedoch etwas Vorarbeit,
+nämlich eine Diskretisierung der $a$- und $b$-Variablen.
+Eine anschliessende direkte Berechnung der diskretisierten Integrale ist allerdings sehr rechenintensiv.
+Im ersten Abschnitt betrachten wir deshalb, wie man die CWT als Faltung interpretieren kann, welche sich effizient mittels FFT berechnen lässt.
+Zur Illustration verwenden wir zwei einfache Beispielsignale und die CWT mittels Haar-Wavelet.
 
-Die Antworten hierzu fanden wir in Kapitel~\ref{chapter:cwt}, die kontinuierliche Wavelettransformation mit komplexen Wavelets (Continuous Wavelet Transform, CCWT).
-Als erstes möchten wir folglich betrachten, wie wir mit komplexen Wavelets Amplituden- und Phasen-Information getrennt auswerten können und als zweites, wie wir geeignete Wavelets finden.
+Die Wahl des Wavelets spielt eine zentrale Rolle und beeinflusst das erhaltene Bild wesentlich.
+Ein wichtiger Punkt ist hierbei die Unschärfe-Relation zwischen Zeit und Frequenz.
+Ein Signal kann nicht in beidem zugleich gut lokalisiert sein.
+Im zweiten Abschnitt vergleichen wir deshalb die CWT mittels Haar- und Gabor-Wavelet anhand zweier Beispielsignale.
 
-Als drittes möchten wir die CCWT effizient berechnen können.
-Wir werden sehen, wie dies mittels Fourier-Transformation elegant erledigt werden kann.
-Diese Berechnung liefert eine neue Interpretation der Wavelettransformation und führt zugleich zu einer Bedingung für nützliche Wavelets.
+Im dritten Abschnitt wenden wir uns den komplexen Wavelets zu.
+Via Hilbert-Transformation können wir basierend auf einem beliebigen Wavelet ein neues finden, bei welchem sich Phasen und Amplitude trennen lassen.
 
-Abschliessend betrachten wir noch die Effekte der zyklischen Faltung, welche durch die FFT erzielt wird.
-Dies führt zu -- möglicherweise störenden -- Randeffekten.
-Deren Vermeidung ist durch padding des Sinal vermeidbar, was allerdings zusätzliche Rechenleistung erfordert.
-Im letzten Teil dieses Kapitels betrachten wir folglich die Performance-Unterschiede, welche durch das PAdding entstehen.
-
+Durch die Berechnung der CWT mittels FFT entstehen Artefakte durch die zirkuläre Faltung.
+Geschickte Erweiterung des Signals kann diesen Effekt vermindern.
+Im letzten Abschnitt vergleichen wir deshalb die erzielten Bilder mit verschiedenen Padding-Optionen.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{papers/complex/morlet.tex}
+\input{papers/complex/cwt.tex}
+\input{papers/complex/gabor.tex}
+\input{papers/complex/negative.tex}
 
-\section{Analytische Wavelets und Hilbert-Transformation}
+\section{Analytische Wavelets}
 \input{papers/complex/hilbert.tex}
 \input{papers/complex/analytic.tex}
 \input{papers/complex/haar.tex}
 
-\section{Schnelle Berechnung der CWT}
-\rhead{Berechnung der CWT}
-
-Betrachten wir nun die kontinuierliche Wavelet-Transformation aus Definition~\ref{cwt:definition}, Gleichung~\eqref{cwt:definition:eq},
-\[
-\mathcal{W}f (a,b)
-=
-\langle f,\psi_{a,b}\rangle
-=
-\frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty f(t)\,
-	\overline{\psi}\left(\frac{t-b}{a}\right)\,dt.
-\]
-
-Dieses Integralt entspricht der Faltung zwischen $f(t)$ und $\frac{1}{\sqrt{|a|}} \overline{\psi}\left(\frac{-t}{a}\right)$.
-Die Faltung wird im Fre\-quenz\-bereich zur Multiplikation. 
-Die Fouriertransformierte von $\frac{1}{\sqrt{|a|}} \overline{\psi}\left(\frac{-t}{a}\right)$ ist
-\begin{align*}
-	\mathcal{F}\left\lbrace \frac{1}{\sqrt{|a|}} \overline{\psi}\left(\frac{-t}{a}\right)\right\rbrace 
-	&= \frac{1}{\sqrt{|a|}} \int_{-\infty}^{\infty}\overline{\psi}\left(\frac{-t}{a}\right)e^{-i\omega t}\, dt\\
-	&= \frac{1}{\sqrt{|a|}} \overline{\int_{-\infty}^{\infty}\psi\left(\frac{-t}{a}\right)e^{i\omega t}\, dt}\\
-	&= \frac{1}{\sqrt{|a|}} \overline{\int_{-\infty}^{\infty}\psi\left(t'\right)e^{-ia\omega t'} |a|\, dt'} \qquad \left(t' = \frac{-t}{a}\right)\\
-	&= \sqrt{|a|} \, \overline{\hat{\psi}}\left(a\omega\right),
-\end{align*}
- also gilt
-
-\begin{equation}
-\mathcal{W}f(a,b)
-= \mathcal{F}^{-1}\left\lbrace\hat{f}(\omega)\cdot \sqrt{|a|}\, \overline{\hat{\psi}}\left(a\omega\right)\right\rbrace. \label{complex:fcwt}
-\end{equation}
-
-Mittels Fourier-Transformation lässt sich die Wavelet-Transformation also besonders elegant berechnen.
-Kontinuierliche Funktionen sind für nummerische Systeme jedoch ungeeignet.
-Die CWT muss also in $a$ und $b$ diskretisiert werden.
-Die Diskretisierung von $b$ entspricht vorteilhaft gerade der Diskretisierung des Signals selbst.
-Dann lässt sich die Fourier-Transformation mittels FFT berechnen und Gleichung~\eqref{complex:fcwt} wird zu
-\begin{equation}
-	\mathcal{W}f(a,b) = \text{IFFT}(\text{FFT}(f) \cdot \overline{\hat{\psi}}\left(a\omega\right))\footnote{Der Faktor $\sqrt{|a|}$ wurde hierbei weggelassen.
-		Hierdurch werden die hohen Frequenzen stärker gewichtet und $|\mathcal{W}f(a,b)|$ ist gerade proportional zur Amplitude der analysierten Signalkomponente.
-	}. \label{complex:ffcwt}
-\end{equation}
-Diese Gleichung muss für jedes $a$ einzeln gelöst werden.
-Falls das Wavelet im Frequenzbereich eine geschlossene Form besitzt, wird diese Gleichung besonders interessant.
-Dann benötigt man eine FFT für das Signal, und eine inverse FFT sowie eine punktweise Multiplikation mit dem Wavelet für jedes $a$.
-Sei \verb|Psi_ab| eine Matrix, in deren Spalten die Fourier-Transformierten für jedes $a$ stehen, und sei \verb|f| das zu analysierende Signal $f(t)$, dann lässt sich die Wavelettransformation in Matlab oder Octave mit folgendem Code einfach berechnen
-\begin{verbatim}
-	function Psi_ab = myMorlet(w, a)
-	  sigma = 2 * pi;
-	  c_sigma = pi^(-1/4) / sqrt(1 + exp(-sigma^2) - 2 * exp(-3/4 * sigma^2));
-	  w = w ./ a;
-	  Psi_ab = c_sigma .* exp(-(sigma - w).^2 / 2);
-	end
-	
-	w = linspace(0, fs, length(f))' * 2 * pi; % Column freq. vector
-	a = ... ; % Interesting a values as row vector
-	Psi_ab = myMorlet(w, a);
-	F   = fft(f);
-	yab = ifft(F .* Psi_ab);
-\end{verbatim}
-
-%% Wavelet-TraFo als Faltung zwischen Signal und Wavelet
-%% Morlet-Wavelet in Frequenzbereich geschlossen berechenbar
-%%  -> Faltungs-Matrix mit verschieden skalierten Morlet-Wavelets in den Spalten
-%%   - Matrix-Multiplikation mit Signal
-%%   - ifft über die Spalten
-
-\section{Zyklische Faltung, Signal-Padding und Performanz}
+\section{Zyklische Faltung und Signal-Padding}
 \rhead{Zyklische Faltung}
-%% Effekt der zyklischen Faltung
-%% Lösen durch padden des Signals
-%%  - zero padding
-%%  - padden durch spiegeln des Signals
-%% Performanz-Vergleich anhand Matlab-Skript
+\label{complex:circ-conv-padding}
+\input{papers/complex/padding.tex}
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
+%TODO Schlusswort
 %% Jedes Wavelet kann in ein analytisches transformiert werden
 %% Die Wavelets aus der FWT sind allerdings für die CWT ungeeignet, 
 %% da sie nich in geschlossener Form im Frequenzbereich berechnet werden können

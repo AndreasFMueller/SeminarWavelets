@@ -15,6 +15,10 @@ CHAPTERFILES =								\
 	chapters/1-geometrie/rekonstruktion.tex				\
 	chapters/1-geometrie/reziprok.tex				\
 	chapters/1-geometrie/frames.tex					\
+	chapters/1a-frames/chapter.tex					\
+	chapters/1a-frames/frame.tex					\
+	chapters/1a-frames/dual.tex					\
+	chapters/1a-frames/ginv.tex					\
 	chapters/2-fourier/chapter.tex					\
 	chapters/2-fourier/l2.tex					\
 	chapters/2-fourier/reihen.tex					\
@@ -47,6 +51,9 @@ CHAPTERFILES =								\
 	chapters/8-kompakt/betrag.tex					\
 	chapters/8-kompakt/bedingungen.tex				\
 	chapters/9-spline/chapter.tex					\
+	chapters/9-spline/faltung.tex					\
+	chapters/9-spline/splines.tex					\
+	chapters/9-spline/wavelet.tex					\
 	chapters/a-komplex/komplexezahlen.tex				\
 	uebungsaufgaben/15001.tex					\
 	uebungsaufgaben/15002.tex					\

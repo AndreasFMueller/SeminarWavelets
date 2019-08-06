@@ -6,13 +6,18 @@
 \section{Umkehrformel%
 \label{section:cwt:umkehrformel}}
 \rhead{Umkehrformel}
-Die Plancherel-Formel von Satz~{satz:wplancherel} zeigt, dass die
+Die Plancherel-Formel von Satz~\ref{satz:wplancherel} zeigt, dass die
 Wavelettransformation~\eqref{cwt:definition:eq} bis auf den Faktor
-$C_{\psi}$ eine Isomietrie ist.
+$C_{\psi}$ eine Isometrie ist.
+In Abschnitt~\ref{section:plancherel} wurde dies die Plancherel-Eigenschaft
+der stetigen Wavelet-Transformation genannt und gezeigt, dass daraus
+eine einfache Umkehrformel folgt.
 Zu jeder Wavelet-Transformierten sollten daher die ursprüngliche
 Funktionen wiedergewonnen werden können.
-Ziel dieses Abschnitts ist die Konstruktion einer Umkehrformel, 
+Ziel dieses Abschnitts ist die unabhängige Konstruktion einer Umkehrformel, 
 die $f$ aus $\mathcal{W}f$ wiedergewinnt.
+Es wird sich herausstellen, dass diese Umkehrformel genau der Formel
+entspricht, die in Satz~\ref{satz:plancherel-prinzip} ermittelt wurde.
 
 \begin{satz}
 Unter geeigneten Stetitkeitsvoraussetzungen an die Funktion $f$ gilt
@@ -26,11 +31,11 @@ f(t) = \frac{1}{C_{\psi}}\int_{\mathbb R^*}\int_{-\infty}^\infty
 
 \begin{proof}[Beweis]
 Wir haben zu zeigen, dass die Funktion
-\[
+\begin{equation}
 \tilde{f}(t) = \frac{1}{C_{\psi}}\int_{\mathbb R^*}\int_{-\infty}^\infty
 \mathcal{W}f(a,b) \psi_{a,b}(t)
 \,db\,\frac{da}{|a|^2}
-\]
+\end{equation}
 existiert, in $L^2$ liegt  und mit $f$ übereinstimmt.
 
 Wir nehmen zunächst an, dass $\tilde{f}$ tatsächlich existiert und eine
@@ -39,7 +44,7 @@ Um zu zeigen, dass $\tilde{f}$ mit $f$ übereinstimmt, berechnen wir das
 Skalarprodukt von $\tilde{f}$ mit beliebigen Funktionen $g\in L^2$.
 Durch Vertauschung der Integrationsreihenfolge in~\eqref{cwt:umkehr:beweis1}
 und Verwendung der Plancherel-Formel in~\eqref{cwt:umkehr:beweis2}
-finden wir.
+finden wir
 \begin{align}
 \langle \tilde{f},g\rangle
 &=
@@ -80,14 +85,14 @@ g(t)
 \langle \mathcal{W}f, \mathcal{W}g \rangle_H
 =
 \langle f, g\rangle.
-\label{cwt:ummkehr:beweis2}
+\label{cwt:umkehr:beweis2}
 \end{align}
 Die Funktion $\tilde{f}$ hat mit allen Funktion $g$ das gleiche Skalarprodukt
 wie $f$.
 Daraus folgt $\tilde{f}=f$.
 
 Die bisherigen Überlegungen haben nur gezeigt, dass die
-Formel~\label{cwt:umkehr} eine sogenannte schache Lösung des Umkehrproblems
+Formel~\label{cwt:umkehr} eine sogenannte schwache Lösung des Umkehrproblems
 liefern kann.
 Der Nachweis, dass die Funktion $\tilde{f}$ existiert,
 ist etwas technisch und kann
