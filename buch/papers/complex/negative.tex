@@ -2,55 +2,41 @@
 \label{complex:separate}
 \rhead{Separation Amplitude / Phase}
 \subsection{Warum komplex?}
-% TODO: Prof. Müller fragen wegen Notation und Hilbertbasis L^2 
 Das Problem der Separation von Betrag und Winkel kennt man aus der Fourierteorie mit Cosinus und Sinus.
 Die Variablen $a$ in der Wavelet-Transformation und $\omega$ bei Fourier erfüllen ähnliche Zwecke, die Verschiebung durch $b$ macht für unendlich lange Basisfunktionen aber nur bedingt Sinn.
 Deshalb kommen bei Fourier nur zwei Familien an Basisfunktionen zum Einsatz, der Cosinus und die um 90\textdegree{} verschobene, orthogonale Version, der Sinus.
-Diese beiden Familien an Funktionen bilden eine Hilbertbasis des $L^2(\mathbb{R})$. %TODO Eigentlich nicht L^2 sondern der Raum der stückweise stetigen Funktionen
-\[L^2(\mathbb{R}) \cong \mathop{\text{Span}}(\cos\omega t) \times \mathop{\text{Span}}(\sin\omega t) = H_c \times H_s.\]
-$H_c$ und $H_s$ sind aufeinander orthogonal und bilden eine Partition des $L^2(\mathbb{R})$.
-\[
-\forall h_1 \in H_c, h_2 \in H_s: \langle h_1, h_2\rangle = 0
-\]
-Die Fourier-Transformation berechnet genau die Skalarprodukte mit den Basisfunktionen aus $H_c$ und $H_s$ und folglich die Koordinaten bezüglich $H_c\times H_s$.
-\begin{align*}
-	\Four : L^2(\mathbb{R}) &\to H_c \times H_s
-\end{align*}
+Im Abschnitt~\ref{subsection:complex-fourier-series} haben wir gesehen, wie man Fourierreihen mit komplexen Exponentialfunktionen berechnet.
 
 Sinus und Cosinus liefern -- in Analogie zu einem Kreis -- kartesischen Koordinaten. 
 Für eine Darstellung als Betrag und Winkel sind sie ungeeignet.
-Der Trick ist nun, $H_c \times H_s$ durch einen Isomorphismus $\varphi$ mit einem komplexen Hilbertraum zu asoziieren.
-\[
-	\varphi\colon H_c \times H_s \to \mathbb{C}^\mathbb{R} \colon
-	(\cos\omega t,\, \sin\omega t) \mapsto e^{i\omega t}
-\]
-In einem komplexen Hilbertraum ist die Frage nach Betrag und Winkel direkt beantwortbar.
 Die Basisfunktion
 \begin{align*}
 	z(t) = Ce^{i\omega t} &= |C|e^{i\left(\omega t + \arg C\right)}
 \end{align*}
-erlaubt durch 
+erlaubt hingegen durch 
 \begin{align*}
 	|z(t)| = |C| \quad \text{und}\quad
 	\arg z = \arg \omega t + \arg C
 \end{align*}
-eine separate Betrachtung von Amplitude und Winkel.
-Diese Eigenschaft überträgt sich von der Basisfunktion auf den ganzen Raum.
+direkt eine separate Betrachtung von Amplitude und Winkel.
 
-Die Assoziation $\mathbb{R}^\infty  \times \mathbb{R}^\infty \cong \mathbb{C}^\infty$ alleine garantiert die Separierbarkeit von Betrag und Winkel jedoch nicht.
-Jedes reelle Wavelet kann kanonisch in $\mathbb{C}^\infty$ eingebettet werden durch
+Komplexe Basisfunktionen alleine garantieren die Separierbarkeit von Betrag und Winkel jedoch noch nicht.
+Jedes reelle Wavelet kann durch
 \begin{align*}
-	\mathbb{R} \hookrightarrow \mathbb{C}, \quad x \mapsto x.
+	\mathbb{R} \hookrightarrow \mathbb{C} \colon \quad x \mapsto ix.
 \end{align*}
+als komplexes Wavelet aufgefasst werden.
+Ausser einem zusätzlichen Faktor $i$ ist jedoch nichts pasiert.
 Welche Anforderungen müssen also erfüllt sein, damit Betrag und Winkel wirklich voneinander unabhängig sind?
+
 Aufgrund der eulerschen Formel
 \begin{equation}
-	\cos(x) = \frac{e^{ix} + e^{-ix}}{2}\label{complex:euler}
+	\frac{e^{i\omega t} + e^{-i\omega t}}{2} = \cos(\omega t)\label{complex:euler}
 \end{equation}
 kann der Cosinus aus zwei komplexen Exponentialfunktionen mit inverser Frequenz dargestellt werden.
+Negative Frequenzen führen also zu einem Problem.
 Dies gilt auch, wenn die Amplituden der beiden Exponentialfunktionen nicht übereinstimmen, die Anwesenheit der negativen Frequenz reicht aus, damit ein Teil der Amplitude nicht von der Phase getrennt werden kann.
 \begin{align*}
-	\frac{e^{i\omega t} + e^{-i\omega t}}{2} &= \cos(\omega t)\\
 	\frac{e^{i\omega t} + \Delta e^{-i\omega t}}{2} &=
 	\Delta\cos(\omega t) + \frac{1-\Delta}{2} e^{i\omega t}\\
 \end{align*}
@@ -64,14 +50,22 @@ Etwas ähnliches geschiet bei positiven, leich unterschiedlichen Frequenzen
 Hierbei bezeichnet $\overline\omega=(\omega_1+\omega_2)/2$ die mittlere Frequenz und $\Delta\omega=(\omega_1-\omega_2)/2$ die mittlere Differenz.
 Ein $\Delta\omega$ führt also zu einer an- und abschwellenden Exponentialfunktion.
 Dies ist für Wavelets verkraftbar, da sie so wie so in der Zeit lokalisiert sind.
-$\Delta\omega$ muss nur klein genug sein.
+$\Delta\omega$ muss lediglich klein genug sein.
 
-Besitzt ein Wavelet also negative Frequenz-Anteile, dann geht bei diesen Frequenzen die Eigenschaft der Separierbarkeit von Amplitude und Phase verloren.
-Zudem sollten die relevanten Frequenzen möglichst kompakt sein.
+Daraus folgt, dass Amplitude und Phase nur dann separiert werden können, wenn die Fouriertransformierte des Wavelets für alle negativen Frequenzen verschwindet.
+Besitzt ein Wavelet Frequenz-Anteile bei $\omega < 0$, dann geht bei diesen Frequenzen die Eigenschaft der Separierbarkeit von Amplitude und Phase verloren.
+
+Fouriertransformierte von reellen Signalen weisen jedoch immer eine hermitesche Symmetrie auf, das heisst
+\begin{align*}
+	f(t)\in\mathbb R &\Rightarrow \hat f(\omega) = -\hat f(-\omega)
+\end{align*}
+Die einzigen, reellen Funktionen, deren Spektra für negative Frequenzen verschwindet, sind $f(t) = c$, $c\in\mathbb R$.
+Eine solche Funktion erfüllt jedoch nicht die Bedingung $\|f\| = 1$.
+Die reelle Mathematik stösst bei diesem Problem also an ihre Grenzen.
 
 \subsection{Von Gabor zu Morlet}
 \label{complex:gabor-to-morlet}
-Durch die Cosinus-Funktion besitzt das Gabor-Wavelet negative Frequenzen, wodurch eine isolierte Betrachtung von Amplitude und Phase unmöglich wird.
+Durch die Cosinus-Funktion besitzt das Gabor-Wavelet negative Frequenzen.
 Dies möchten wir im Folgenden korrigieren.
 Wir wechseln in den Fourierbereich und nutzen aus, dass die Fouriertransformierte einer Gaus-Funktion wieder eine Gaus-Funktion ist,
 \[

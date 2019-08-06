@@ -41,7 +41,7 @@ sprechen.
 Um die Notation etwas zu vereinheitlichen, schreiben wir auch $s_k$ für
 die Funktion $s_k(t)=\sin kt$ und $c_k$ für $c_k(t)=\cos kt$.
 
-Der natürliche Rahmen ist daher der Hilberträume $L^2([0,2\pi])$.
+Der natürliche Rahmen ist daher der Hilbertraum $L^2([0,2\pi])$.
 Und im Lichte des Analyse-Gedankens der letzten Kapitel stellt sich
 die Frage, ob die Sinus- und Kosinus-Funktionen eine Hilbert-Basis
 von $L^2([0,2\pi])$ bilden.
@@ -57,7 +57,7 @@ des Hilbertraums $L^2([0,2\pi])$.
 Wir müssen jetzt untersuchen, ob die Sinus- und Kosinus-Funktionen
 ein Erzeugendensystem bilden und ob sie orthonormiert sind.
 
-Wir müssen daher alle Skalarprodukte von der Sinus- und
+Wir müssen daher alle Skalarprodukte der Sinus- und
 Kosinus-Funktionen berechnen.
 Dazu verwenden wir die goniometrischen Formeln, die Produkte von
 trigonometrischen Funktionen durch Linearkombinationen anderer
@@ -85,7 +85,7 @@ trigonometrischer Funktionen ausdrücken:
 &&\Rightarrow&
 \sin kt\cos lt
 &=
-\frac12\sin(k-l)t + \frac12(k+l)t
+\frac12\sin(k-l)t + \frac12\sin(k+l)t
 \end{align*}
 Damit können die Skalarprodukte der Funktionen $c_k$ und $s_k$ für natürliche
 $k$ leicht berechnet werden.
@@ -116,7 +116,7 @@ Wir betrachten zunächst den Fall $k\ne l$:
 \\
 &=
 \frac12\biggl[ \frac{\sin (k-l)t}{k-l}\biggr]_0^{2\pi}
--
++
 \frac12\biggl[ \frac{\sin (k+l)t}{k+l}\biggr]_0^{2\pi}
 =
 0
@@ -162,7 +162,7 @@ Für $k=l>0$ erhält man dagegen
 \\
 &=
 \pi
--
++
 \frac12\biggl[ \frac{\sin 2kt}{2k}\biggr]_0^{2\pi}
 =
 \pi
@@ -302,6 +302,7 @@ In der Frequenz-Zeit-Ebene lässt sich dieser Sachverhalt wie in
 Abbildung~\ref{ft:ftplane} darstellen.
 
 \subsection{Komplexe Fourier-Reihen}
+\label{subsection:complex-fourier-series}
 Eine reelle Funktion in $L^2([0,2\pi])$ lässt sich mit einer Fourier-Reihe
 darstellen, deren Koeffizienten alle reell sind.
 Für eine komplexe Funktion werden auch die Koeffizienten komplex sein.
