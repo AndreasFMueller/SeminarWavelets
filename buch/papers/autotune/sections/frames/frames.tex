@@ -2,7 +2,7 @@
 
 
 
-Die grundlegende Idee bestand darin eine Zeit-Frequenz-Analyse mit Wavelets zu machen. Diese wird dann verwendet, um die Signale nach belieben zu manipulieren. Um die Rechenzeit zu minimieren, sollte ein möglichst schneller Algorithmus verwendet werden. Dafür bietet sich die Multiskalenanalyse, mit ihrem schnellen Rechenalgorithmus an. Jedoch ist jener so konzipiert, keine redundante Daten zu erzeugen. Da eine Tonleiter aus 12 Halbtönen in einer Oktave besteht ist die Multiskalenanalyse, mit ihrer $2^{n}$-fachen Fensterung, für dieses Vorhaben nicht von Vorteil. Dabei sind die Halbtöne mit dem Faktor $2^{\frac{1}{12}}$ in der Oktave verteilt. Die nebeneinanderliegenden Halbtöne sind für eine Multiskalenanalyse unsichtbar. \\
+Die grundlegende Idee bestand darin eine Zeit-Frequenz-Analyse mit Wavelets durchzuführen. Diese wird dann verwendet, um die Signale nach Belieben zu manipulieren. Um die Rechenzeit zu minimieren, sollte ein möglichst schneller Algorithmus verwendet werden. Dafür bietet sich die Multiskalenanalyse mit ihrem schnellen Rechenalgorithmus an. Jedoch ist jener so konzipiert, keine redundanten Daten zu erzeugen. Da eine Tonleiter aus 12 Halbtönen in einer Oktave besteht ist die Multiskalenanalyse, mit ihrer $2^{n}$-fachen Fensterung, für dieses Vorhaben nicht von Vorteil. Dabei sind die Halbtöne mit dem Faktor $2^{\frac{1}{12}}$ in der Oktave verteilt. Die nebeneinanderliegenden Halbtöne sind für eine Multiskalenanalyse unsichtbar. \\
 In diesem Kapitel wollen wir eine Methode erzeugen, mit deren Hilfe es möglich ist, einzelne Halbtöne in einer Oktave zu unterscheiden. Dafür sollen Frames und die Multiskalenanalyse verwendet werden.
 
 
@@ -10,11 +10,11 @@ In diesem Kapitel wollen wir eine Methode erzeugen, mit deren Hilfe es möglich 
 
 \subsection{Framing}
 
-Die normale Multiskalenanalyse verwendet nur Orthonormierte Basen. Weshalb sie auch keine redundante Daten erzeugt. Zu Analysezwecken, würde es sich lohnen mehr von diesen Basen zu erzeugen. Die zusätzlich entstandenen Informationen, können dann zur Analysezwecke verwendet werden. Fügen wir mehr Basen zu unserem Signal hinzu ensteht ein Frame. Genauere Abhandlungen über Frames sind im Kapitel \ref{chapter:geometrie} unter \ref{subsetion:skript:frames:framesinrn} zu finden. Um sinnvolle Frames zu gestalten, wird die Problematik noch einmal genauer angeschaut.\\
+Die normale Multiskalenanalyse verwendet nur orthonormierte Basen, weshalb sie auch keine redundanten Daten erzeugt. Zu Analysezwecken würde es sich lohnen, mehr von diesen Basen zu erzeugen. Die zusätzlich entstandenen Informationen können dann zur Analysezwecke verwendet werden. Fügen wir mehr Basen zu unserem Signal hinzu ensteht ein Frame. Genauere Abhandlungen über Frames sind im Kapitel \ref{chapter:geometrie} unter \ref{subsetion:skript:frames:framesinrn} zu finden. Um sinnvolle Frames zu gestalten, wird die Problematik noch einmal genauer angeschaut.\\
 
-Wir möchten ein Signal mit der Multiskalenanalyse so bearbeiten, dass wir die einzelnen Halbtöne in einer Oktave untersuchen können. Die Multiskalenanalyse liefert uns jedoch nur Resultate im Zweierlogarhytmus. Die $2^{n}$-fache Fensterung der Multiskalenanalyse ensteht durch die verwendung von orthogonalen Basen. Folglich sollte man doch einfach die Basen verändern.\\
+Wir möchten ein Signal mit der Multiskalenanalyse so bearbeiten, dass wir die einzelnen Halbtöne in einer Oktave untersuchen können. Die Multiskalenanalyse liefert uns jedoch nur Resultate im Zweierlogarithmus. Die $2^{n}$-fache Fensterung der Multiskalenanalyse ensteht durch die Verwendung von orthogonalen Basen. Folglich sollte man doch einfach die Basen verändern.\\
 
-Fügt man nun mehr Basen zu unserem Frame hinzu, können wir mit der Multiskalenanalyse Zwischenschritte in den Oktaven erzeugen. Das heisst, fügt man 12 linear unabhängige Basen zu einem Frame hinzu. Sollte man nach einer Multiskalenanalyse des Frames, 12 Schritte pro Oktave bekommen. Nun möchte man mit dem Frame Töne erkennen. Deshalb ist es nur sinnvoll mindestens 12 Basen zu verwenden. So wird die die Anzahl Basen $k$ mit der Tonleiter gekoppelt
+Fügt man nun mehr Basen zu unserem Frame hinzu, können wir mit der Multiskalenanalyse Zwischenschritte in den Oktaven erzeugen. Das heisst, fügt man 12 linear unabhängige Basen zu einem Frame hinzu, sollte man nach einer Multiskalenanalyse des Frames, 12 Schritte pro Oktave bekommen. Nun möchte man mit dem Frame Töne erkennen. Deshalb ist es nur sinnvoll mindestens 12 Basen zu verwenden. So wird die die Anzahl Basen $k$ mit der Tonleiter gekoppelt
 \[ 2^{n} \cdot 12 = k \]
 definiert.\\
 Um eine neue Basis für ein Frame zu erzeugen, wird das zu analysierende Signal neu gesamplet. Dabei entspricht jedes neue Sampling einer neuen Basis. Die erste Samplerate, die auf das Signal angewendet wird, ist die Grundbasis $f_{g}$. Von der Grundbasis aus werden Anzahl $k$ Basen hinzugefügt.
@@ -24,12 +24,12 @@ Nach dem Samplingtheorem ist es dabei sinnvoll die Samplefrequenzen zu vergröss
 \[ \frac{f_{\text{sampling}}}{f_{\text{Signal}}} \geq 2\]
 Damit kann garantiert werden, dass kein Datenverlust oder Aliasing auftritt. Es empfiehlt sich ohnehin genügend Abstand zwischen Sampling- und Signalfrequenz zu lassen.\\
 
-Da die Tonleiter nicht willkürliche Frequenzen abdecken, wird auch die Grundbasis der Frames auf die Tonleiter festgelegt. Dabei bietet sich der Kammerton $\text{a}^{1}$ auch A4 genannt an. Dieser ist mit 440 \text{[Hz]} definiert.\\
+Da die Tonleiter keine willkürlichen Frequenzen abdeckt, wird auch die Grundbasis der Frames auf die Tonleiter festgelegt. Dabei bietet sich der Kammerton $\text{a}^{1}$ -auch A4 genannt- an. Dieser ist mit 440 \text{[Hz]} definiert.\\
 
 
 
 
-Hierzu ein praktisches Beispiel zu den Sampelfrequenzen. Folgende Werte werden gegeben:
+Hierzu ein praktisches Beispiel zu den Samplefrequenzen. Folgende Werte werden gegeben:
 \begin{itemize}
 	\item Samplefrequenz $f_{g}=440$\text{[Hz]}
 	\item Anzahl Basen $k=12$
@@ -110,14 +110,14 @@ Auf dieses Frame $\mathcal{T}$ wird eine Multiskalenanalyse angwendet. Die Zeile
 \[\text{level} = \left\lfloor\log_2\left(\mathtt{
 	\frac{\mathcal{T}\_\text{min\_len}}{\text{filter\_len -1}}}\right)\right\rfloor
 \]
-Mit Level0 wird dabei auf das oberste Level referenziert welches die kleinste Frequenzteiung erfährt. Die Levels laufen also reziprok zu den Basen welche von unten nach oben benannt sind. Um das Ergebnis der Multiskalenanalyse mit dem Frame auszuwerten, können zwei verschiedne Mtehoden verwendet werden. Die Methoden wurden in diesem Paper Stacked-Frame und Overlaid-Frame benannt. 
+Mit Level0 wird dabei auf das oberste Level referenziert welches die kleinste Frequenzteilung erfährt. Die Levels laufen also reziprok zu den Basen, welche von unten nach oben benannt sind. Um das Ergebnis der Multiskalenanalyse mit dem Frame auszuwerten, können zwei verschiedene Methoden verwendet werden. Die Methoden wurden in diesem Paper Stacked-Frame und Overlaid-Frame benannt. 
 
 \newpage
 
 
 \subsubsection{Stacked-Frame} 
 
-Bei dem Staked-Frame wurden die einzelnen Levels aufeinander gestapelt. Daher auch der gewählte Name. Dabei werden die Level von unten nach oben sortiert. Zuerst kommt das höchste Level der Grundbasis. Auf dieses wird dann das höchste Level der nächst grösseren Basis gestapelt. Dieser Vorgang repetiert sich so lange bis die letzte Basis des Frames ereicht ist. Danach beginnt das gleiche Prinzip mit dem nächst tieferen Level. Das Ergebnis des Vorganges wurde in der Grafik \ref{fig:Stacked_frame} Illustriert. Dabei wurde für die Grafik eine Frame-Analyse mit den folgenden Eigenschaften verwendet:
+Bei dem Stacked-Frame wurden die einzelnen Levels aufeinander gestapelt. Daher auch der gewählte Name. Dabei werden die Level von unten nach oben sortiert. Zuerst kommt das höchste Level der Grundbasis. Auf dieses wird dann das höchste Level der nächst grösseren Basis gestapelt. Dieser Vorgang repetiert sich so lange bis die letzte Basis des Frames ereicht ist. Danach beginnt das gleiche Prinzip mit dem nächst tieferen Level. Das Ergebnis des Vorganges wurde in der Grafik \ref{fig:Stacked_frame} Illustriert. Dabei wurde für die Grafik eine Frame-Analyse mit den folgenden Eigenschaften verwendet:
 \[
 f_{g}=55\text{[Hz]}; \qquad
 k = 6 ; \qquad
@@ -141,7 +141,7 @@ Beim Overlaid-Frame werden die einzelnen Levels übereinander gelegt. Dabei muss
 \[
 m= \frac{1}{k}
 \]
-gegeben. Die verschobenen und übereinander gelegten Levels werden alle mit einander Addiert. Dieser Vorgang ist in der Abbildung \ref{fig:Overlaid_frame} ersichtlich. Dabei wurde für die Grafik ein Frame mit folgenden Eigenschaften analysiert:
+gegeben. Die verschobenen und übereinander gelegten Levels werden alle aufaddiert. Dieser Vorgang ist in der Abbildung \ref{fig:Overlaid_frame} ersichtlich. Dabei wurde für die Grafik ein Frame mit folgenden Eigenschaften analysiert:
 \[ 
 f_{g}=16\text{[Hz]}; \qquad
 k = 3; \qquad
@@ -155,7 +155,7 @@ k = 3; \qquad
 \end{figure}%
 
 
-Mit diesen zwei Analysearten wurden dann die folgenden analysen durchgefürt.
+Mit diesen zwei Analysearten wurden dann die folgenden Analysen durchgeführt.
 \newpage
 
 \subsection{Analyse mit Frames}
@@ -176,7 +176,7 @@ Um die verschiedenen Analyse- und Auswertungsarten vergleichen zu können, wurde
 	0.9\text{s} \leq t \leq 1\text{s}\qquad		& = \qquad (-0.5\cdot \cos(10\cdot\pi t))\cdot \sin(220\cdot2^{\frac{6}{12}}\cdot 2\pi t) \\
 	\end{align*}
 \end{loesung}
-Das Testsignal ist in der folgenden Abbildung\ref{fig:frame-testsig} auch gleich dargestellt.
+Das Testsignal ist auch in der folgenden Abbildung\ref{fig:frame-testsig} dargestellt.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.9\columnwidth]{papers/autotune/sections/frames/images/testsig.jpg}
@@ -185,25 +185,25 @@ Das Testsignal ist in der folgenden Abbildung\ref{fig:frame-testsig} auch gleich
 
 Auf $x_{\text{Test}}$ wurde wieder die gleiche cwt mit komplexen Gauss Wavelet angewendet. Dieses Resultat soll als Referenz dienen, um die Frame-Analysen zu vergleichen.
 \\
-In den Grafiken \ref{fig:frame-cwt} und \ref{fig:stacked-12dwt} wird eine Stacked-Frame-Analyse \ref{fig:stacked-12dwt} mit 12 Basen und eine cwt-Analyse \ref{fig:frame-cwt} des $x_{\text{Test}}$ \ref{fig:frame-testsig} nebeneinander gestellt. Die beiden Resultate werden dabei nur in Absolutwerten dargestellt, da so die Resultate noch eindeutiger sind. Die Stacked-Frame-Analyse hat deutliche Peak- und Nullstellen an Orten wo die cwt keine solche Artifakte aufweist. Diese sind durch die verschiebung der Level erklärbar, welche auch bei dem.   
+In den Grafiken \ref{fig:frame-cwt} und \ref{fig:stacked-12dwt} wird eine Stacked-Frame-Analyse \ref{fig:stacked-12dwt} mit 12 Basen und eine cwt-Analyse \ref{fig:frame-cwt} des $x_{\text{Test}}$ \ref{fig:frame-testsig} nebeneinander gestellt. Die beiden Resultate werden dabei nur in Absolutwerten dargestellt, da so die Resultate noch eindeutiger sind. Die Stacked-Frame-Analyse hat deutliche Peak- und Nullstellen an Orten wo die cwt keine solcher Artefakte aufweist. Diese sind durch die verschiebung der Level erklärbar. Diese Musterung ist jedoch schon in der Abbildung \ref{fig:Stacked_frame} erahnbar.    
 \begin{figure}[!ht]
 	\centering
 	\begin{tabularx}{\columnwidth}{XX}
 		\includegraphics[width=1.3\linewidth]{papers/autotune/sections/frames/images/cwt.jpg}
-		\captionof{figure}{Cwt Analyse mit komplexem Gauss Wavelet des Testsignal}\label{fig:frame-cwt}
+		\captionof{figure}{Cwt Analyse mit komplexem Gauss Wavelet des Testsignals}\label{fig:frame-cwt}
 		&   \includegraphics[width=1.3\linewidth]{papers/autotune/sections/frames/images/Stacked/12dwt.jpg}   
 		\captionof{figure}{Stacked-Frame-Analyse mit Daubechies 8 Wavelet $k=12$}\label{fig:stacked-12dwt}         
 	\end{tabularx}
 \end{figure}%
 
-Um den gleichen vergleich für die Overlaid-Frame-Analyse zu haben wurde in der Grafiken \ref{fig:frame-cwt} und \ref{fig:overlaid-12dwt} eine Overlaid-Frame-Analyse mit 12 Basen \ref{fig:overlaid-12dwt} und eine cwt-Analyse \ref{fig:frame-cwt2} des $x_{\text{Test}}$ \ref{fig:frame-testsig} nebeneinander gestellt. Die Overlaid-Frame-Analyse sieht der cwt ungemein ähndlich. Im vergleich mit der Stacked-Frame-Analyse besitzt sie auch nicht diese Artifakte der Levels. Der Unterschied zur cwt ist aber noch leicht sichtbar. In der Zeitachse gibt es immerwieder Störungen und auch in der Frequenzachse ist das Resultat ein wenig verzerrt. \\
+Um den gleichen Vergleich für die Overlaid-Frame-Analyse zu haben wurde in der Grafiken \ref{fig:frame-cwt} und \ref{fig:overlaid-12dwt} eine Overlaid-Frame-Analyse mit 12 Basen \ref{fig:overlaid-12dwt} und eine cwt-Analyse \ref{fig:frame-cwt2} des $x_{\text{Test}}$ \ref{fig:frame-testsig} nebeneinander gestellt. Die Overlaid-Frame-Analyse sieht der cwt ungemein ähnlich. Im Vergleich mit der Stacked-Frame-Analyse besitzt sie auch nicht diese Artifakte der Levels. Der Unterschied zur cwt ist aber noch leicht sichtbar. In der Zeitachse gibt es immer wieder Störungen und auch in der Frequenzachse ist das Resultat ein wenig verzerrt. \\
  
 
 \begin{figure}[!ht]
 	\centering
 	\begin{tabularx}{\columnwidth}{XX}
 		\includegraphics[width=1.3\linewidth]{papers/autotune/sections/frames/images/cwt.jpg}
-		\captionof{figure}{Cwt Analyse mit komplexem Gauss Wavelet des Testsignal}\label{fig:frame-cwt2}
+		\captionof{figure}{Cwt Analyse mit komplexem Gauss Wavelet des Testsignals}\label{fig:frame-cwt2}
 		&   \includegraphics[width=1.3\linewidth]{papers/autotune/sections/frames/images/Overlaid/7040Hz12dwt.jpg}   
 		\captionof{figure}{Overlaid-Frame-Analyse mit Daubechies 8 Wavelet $k=12$}\label{fig:overlaid-12dwt}         
 	\end{tabularx}
@@ -225,9 +225,9 @@ Um die Auflösung der Stacked-Frame und Overlaid-Frame zu erhöhen können jedoc
 
 \newpage
 
-Von diesen Analyseresultaten sollen nun auch die Frequenzen extrahiert werden. Dabei macht man sich die Lokalen maximas der Matrix zunutze. Man vergleicht in der Matrix selber die jeweiligen nachbar Werte. Von den Lokalen maximas werden die Koordinaten gesammelt. Diese Koordinaten können dann mit den Level der verschiednen Basen verglichen werden. Jeh nach Koordinaten höhe in der Matrix kann ein kleineres Frequenzband zugewiesen werden in welchem sich das analysierte Signal zu diesem Zeitpunkt befinden sollte. Dieses Frequenzband kann man durch die Anzahl Basen $k$  und das gegebene Level wieder rekonstruiert werden.\\
+Von diesen Analyseresultaten sollen nun auch die Frequenzen extrahiert werden. Dabei macht man sich die lokalen Maxima der Matrix zunutze. Man vergleicht in der Matrix selbst die jeweiligen Nachbarwerte. Von den lokalen Maxima werden die Koordinaten gesammelt. Diese Koordinaten können dann mit den Level der verschiedenen Basen verglichen werden. Je nach Koordinaten höhe in der Matrix kann ein kleineres Frequenzband zugewiesen werden in welchem sich das analysierte Signal zu diesem Zeitpunkt befinden sollte. Dieses Frequenzband kann man durch die Anzahl Basen $k$  und das gegebene Level wieder rekonstruieren.\\
 
-Um eine bessere Qualität von Maximalstellen zu erhalten, kann noch ein Maximum Filter auf die Matrix angewendet werden. Dieser Maximalfilter ersetzt in einem vordefinierten Radius $r$, die umliegenden Werte einer Matrix, mit dem Lokal gefundenen Maximalwert. Das Ziel des Maximumfilters ist die Elimination der Nullstellen Artifakten, welche direkt in den wichtigen Signalverläufen vorkommen. Die Anwendung eines Maximalfilters werden jedoch auch Resultate verfälscht. Diese verfälschung kann jedoch meistens vernachlässigt werden.\\
+Um eine bessere Qualität von Maximalstellen zu erhalten, kann noch ein Maximum Filter auf die Matrix angewendet werden. Dieser Maximalfilter ersetzt in einem vordefinierten Radius $r$, die umliegenden Werte einer Matrix, mit dem lokal gefundenen Maximalwert. Das Ziel des Maximumfilters ist die Elimination der Nullstellen Artefakten, welche direkt in den wichtigen Signalverläufen vorkommen. Durch die Anwendung eines Maximalfilters werden jedoch auch Resultate verfälscht. Diese Verfälschung kann jedoch meistens vernachlässigt werden.\\
 
 In der Folgenden Grafik\ref{fig:cwt_max} wurde das genannte Verfahren um Maximalstellen zu finden an der cwt Analyse angewendet. Diese kann somit als Referenz dienen wie eine Ideale Frequenzrückgewinnung aussehen kann. 
 
