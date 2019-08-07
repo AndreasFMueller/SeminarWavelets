@@ -455,7 +455,7 @@ The different signal stages are then plotted in MATLAB and compared.
 In figure \ref{fpga:fig:coeff} shows the plotted coefficients after the forward transformation, but before the delay block
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{papers/fpga/images/coefs.pdf}
+	\includegraphics[width=\textwidth]{papers/fpga/images/coefs_with_step.pdf}
 	\caption{Coefficients and ready signals after transformation \label{fpga:fig:coeff}}
 \end{figure}
 The black line is the input signal and the other colors are the different coefficients.
@@ -467,7 +467,7 @@ The fast changing coefficients correspond to the higher frequencies and the slow
 Figure \ref{fpga:fig:coeff_delayed} shows the coefficients and ready signals after delaying as explained in section \ref{fpga:sec:delay}.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{papers/fpga/images/coefs_delayed.pdf}
+	\includegraphics[width=\textwidth]{papers/fpga/images/coefs_delayed_with_step.pdf}
 	\caption{Coefficients and ready signals after delaying \label{fpga:fig:coeff_delayed}}
 \end{figure}
 As visible, the coefficients are aligned with a separation of one clock cycle. 
@@ -478,7 +478,7 @@ This is also illustrated in the ready signals.
 Figure \ref{fpga:fig:output} shows the final output of the whole pipeline compared to the input signal. 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{papers/fpga/images/output.pdf}
+	\includegraphics[width=\textwidth]{papers/fpga/images/output_with_step.pdf}
 	\caption{Output \label{fpga:fig:output}}
 \end{figure}
 As expected, the input and output signals are the same when delayed by the processing time of the system.
