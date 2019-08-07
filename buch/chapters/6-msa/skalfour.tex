@@ -52,12 +52,15 @@ Wir werden diese Operation wiederholt benötigen und spendieren ihr daher
 eine formelle Definition
 
 \begin{definition}
+\label{msa:peri}
 Für eine Funktion $f\in L^2(\mathbb R)$ ist die periodisch gemachte Funktion
 \[
 \mathcal{P}f(t) = \sum_{k\in\mathbb Z} f(t+2\pi k)
 \]
 eine Funktion $L^2([0,2\pi])$.
+$\mathcal{P}$ heisst Periodisierungs-Operator.
 \end{definition}
+\index{Periodisierungs-Operator}
 
 \begin{proof}[Beweis]
 Die Definition behauptet, dass die Operation $\mathcal{P}$ für
@@ -222,6 +225,7 @@ orthogonal sind, ist notwendig und hinreichend, dass
 \end{equation}
 für fast alle $\omega\in\mathbb R$.
 \end{satz}
+\index{Orthogonalitätsbedingung}
 
 Dieselbe Idee lässt sich auch auf Funktionen anwenden, die orthogonal
 sind mit allen Translaten.
@@ -283,6 +287,7 @@ genügen, die wir in der Form
 \label{msa:skalt}
 \end{equation}
 schreiben.
+\index{Skalierungsrelation}
 Wir wenden darauf die Fourier-Transformation an und erhalten
 \[
 \hat{\varphi}(t)
@@ -295,6 +300,7 @@ Wir wenden darauf die Fourier-Transformation an und erhalten
 \]
 
 \begin{definition}
+\label{definition:erzeugende-funktion-msa}
 Schreiben wir 
 \[
 H(s)
@@ -304,6 +310,7 @@ H(s)
 \]
 sie heisst die {\em erzeugende Funktion} einer Multiskalen-Analyse.
 \end{definition}
+\index{erzeugende Funktion einer MSA}
 
 Mit der erzeugenden Funktion $H(s)$ wird die
 Skalierungsbedingung~\eqref{msa:skalt} im Zeitbereich
@@ -872,7 +879,8 @@ für die die Koeffizienten $h_k$ der Skalierungsrelation.
 %
 % 
 %
-\section{Mutter-Wavelet $\psi$ aus dem Vater-Wavelet $\varphi$}
+\section{Mutter-Wavelet $\psi$ aus dem Vater-Wavelet $\varphi$
+\label{section:mutter-aus-vater}}
 Lemma~\ref{lemma:msa:psivorschlag} stellt einen Zusammenhang zwischen
 den Fouriertransformation von $\psi$ und $\varphi$ und der Skalierungsrelation
 von $\varphi$ her.

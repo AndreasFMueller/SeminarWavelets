@@ -3,9 +3,18 @@
 %
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Fourier-Integral
+\section{Fourier-Integral und Fourier-Transformation
 \label{section:fourier-integral}}
 \rhead{Fourier-Integral}
+In $L^2(\mathbb R)$ gibt es ebenfalls eine Transformation, welche
+ein Signal im Frequenzbereich analysieren kann.
+Da der Definitionsbereich unbegrenzt ist, kann jede beliebige Frequenz
+vorkommen.
+Die Fourier-Transformation produziert aus einer Funktion $f\in L^2(\mathbb R)$
+also eine Funktion $\hat{f}\in\mathbb L^2(\mathbb R)$.
+
+\subsection{Fourier-Integral
+\label{subsection:fourier-integral}}
 Für Funktionen $f\in L^2(\mathbb R)$ ist die Fourier-Transformation
 \[
 \hat{f}(\omega)
@@ -14,6 +23,7 @@ Für Funktionen $f\in L^2(\mathbb R)$ ist die Fourier-Transformation
 \int_{-\infty}^\infty f(t)e^{-i\omega t}\,dt
 \]
 wohldefiniert.
+\index{Fourier-Transformation}
 Wir schreiben die Fourier-Transformation auch
 \[
 \mathcal{F}\colon f\mapsto \hat{f}.
@@ -22,6 +32,11 @@ Sie verallgemeinert die Eigenschaften der Fourier-Koeffizienten $c_k$
 für Funktionen auf $\mathbb R$.
 Für die Rechungen in den folgenden Kapiteln stellen wir hier die
 wichtigsen Formeln für die Fourier-Transformation zusammen.
+
+\subsection{Fourier-Umkehrformel
+\label{subsection:fourier-umkehrformel}}
+Die Fourier-Transformation kann invertiert werden.
+\index{Fourier-Umkehrformel}
 
 \begin{satz}
 Für $\hat{f}\in L^2(\mathbb R)$ gilt die Umkehrformel
@@ -34,24 +49,35 @@ f(t)
 \end{satz}
 
 Die Fourier-Transformation ist also eine invertierbare lineare Abbildung,
-$\mathcal{F}^{-1}(\hat{f}) = f$.
+$\mathcal{F}^{-1}\!\left\lbrace\hat{f}\right\rbrace = f$.
+
+\subsection{Translation und Dilatation
+\label{subsection:ft-translation-und-dilatation}}
+Wenn wir die Fourier-Transformation auf Wavelets anwenden wollen, müssen
+wir in der Lage sein, die Fourier-Transformierte von Translaten und
+Dilatationen zu berechnen.
+Wir berechnen daher die Verträglichkeit von $\mathcal{F}$ mit $T_b$ und
+$D_a$ bzw.~$\tilde{D}_a$.
 
 \begin{satz}
+\label{four-int:trans-dial}
 Die Fourier-Transformation $\mathcal F\colon f\mapsto f$ ist eine linear
 Abbildung, die sich mit Translation, Dilatation und Ableitung wie folgt
 verträgt:
 \begin{align*}
 \widehat{T_bf}(\omega)
 &=
-e^{-i\omega b}\hat{f}(\omega).
+e^{-i\omega b}\hat{f}(\omega),
 \\
 \widehat{\tilde{D}_af}(\omega)
 &=
 a \hat{f}(a\omega)
+=
+a D_{1/a} \hat{f}(\omega),
 \\
 \widehat{D_af}(\omega)
 &=
-D_{1/a}\hat{f}(\omega)
+D_{1/a}\hat{f}(\omega),
 \\
 \widehat{e^{ibt}f}(\omega)
 &=
@@ -96,7 +122,23 @@ a \hat{f}(a\omega)
 =
 (T_b\hat{f})(\omega).
 \end{align*}
-Damit sind alle drei Identitäten bewiesen.
+Damit sind bis auf die dritte alle Identitäten bewiesen.
+Für die dritte wenden wir die Definition $\tilde{D}_a = \sqrt{a}D_a$
+auf die zweite Relation an und erhalten
+\[
+\widehat{D_af}(\omega)
+=
+\frac{1}{\sqrt{a}}
+\widehat{\tilde{D}_af}(\omega)
+=
+\frac{1}{\sqrt{a}}
+a\hat{f}(a\omega)
+=
+\sqrt{a} \tilde{D}_{1/a}\hat{f}(\omega)
+=
+D_{1/a}\hat{f}(\omega),
+\]
+womit auch die dritte Identität bewiesen ist.
 \end{proof}
 
 Schreibt man $M_b$ für den Operator, der eine Funktion mit dem
@@ -117,7 +159,7 @@ T_b\hat{f},
 oder mit der Schreibweise $\mathcal{F}f$ für die Fourier-Transformation
 \[
 \begin{aligned}
-\mathcal{F}T_b f &= M_{-b}\mathcal F
+\mathcal{F}T_b f &= M_{-b}\mathcal F f
 &&\Rightarrow &
 \mathcal{F}T_b &= M_{-b}\mathcal{F}
 \\
@@ -135,6 +177,10 @@ oder mit der Schreibweise $\mathcal{F}f$ für die Fourier-Transformation
 \end{aligned}
 \]
 
+\subsection{Plancherel-Formel}
+Die Plancherel-Formel beschreibt, wie sich Skalarprodukt und Norm
+unter Fourier-Transformation verhalten.
+
 \begin{satz}
 Für zwei Funktionen $f,g\in L^2(\mathbb R)$ gilt die Plancherel-Formel
 \begin{align*}
@@ -147,6 +193,10 @@ Für zwei Funktionen $f,g\in L^2(\mathbb R)$ gilt die Plancherel-Formel
 Die Fourier-Transformation $\mathcal{F}\colon f\mapsto \hat{f}$ ist
 also eine Isometrie.
 \end{satz}
+
+\subsection{Fourier-Transformation und Ableitung
+\label{subsection:ft-ableitung}}
+Die Ableitung einer Fourier-Transformierten kann direkt berechnet werden.
 
 \begin{satz}
 Für differenzierbare Funktionen $f$ gilt
@@ -211,8 +261,97 @@ kompakter schreiben:
 \end{aligned}
 \]
 
+\subsection{Faltung und Fourier-Transformation
+\label{subsection:faltung-und-ft}}
 
+\begin{definition}
+\label{definition:faltung}
+Die Faltung zweier Funktionen ist
+\begin{equation}
+(f*g)(t)
+=
+\int_{-\infty}^\infty f(s)g(t-s)\,ds
+\label{definition:formel:faltung}
+\end{equation}
+\end{definition}
+\index{Faltung}
+Die Fourier-Transformation verwandelt die Faltung in ein gewöhnliches
+Produkt der Fourier-Transformierten:
+\begin{align*}
+\mathcal{F}(f*g)(\omega)
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+f*g(t)
+e^{-i\omega t}
+\,dt
+\\
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+\int_{-\infty}^\infty
+f(s) g(s-t)
+\,ds
+\,dt
+\\
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+\int_{-\infty}^\infty
+f(s) g(t-s)
+e^{-i\omega s+t-s}
+\,ds
+\,dt
+\\
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+f(s) g(\tau)
+e^{-i\omega s}
+\,ds
+\int_{-\infty}^\infty
+e^{-i\omega (\tau)}
+\,d\tau
+\\
+&=
+\sqrt{2\pi}
+\cdot
+\underbrace{
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+f(s)
+e^{-i\omega s}
+\,ds}_{\displaystyle \hat{f}(\omega)}
+\underbrace{
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^\infty
+g(\tau)
+e^{-i\omega (\tau)}
+\,d\tau}_{\displaystyle \hat{g}(\omega)}
+\\
+&=
+\sqrt{2\pi}\,
+\hat{g}(\omega)\cdot \hat{f}(\omega)
+\end{align*}
+Wir halten dies im folgenden Satz fest.
 
+\begin{satz}[Faltungsformel]
+\label{satz:faltungsformel}
+Sind $f,g\in L^2(\mathbb R)$, dann ist die Fourier-Transformierte
+der Faltung
+\begin{equation}
+\widehat{f*g}
+=
+\sqrt{2\pi}
+\hat{f}\cdot \hat{g}
+\qquad\text{oder}\qquad
+\widehat{f*g}(\omega)
+=
+\sqrt{2\pi}
+\hat{f}(\omega)\, \hat{g}(\omega).
+\label{ft:faltungsformel}
+\end{equation}
+\end{satz}
 
 
 

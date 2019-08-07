@@ -54,7 +54,7 @@ sweep-phase.jpg:	sweep-phase.png
 	convert sweep-phase.png -density 300 -units PixelsPerInch sweep-phase.jpg
 
 sweep.pdf:	sweep.jpg sweep.tex
-	pdflatex sweep.tex
+	pdflatex -interaction=batchmode sweep.tex
 
 sweep2.pdf:	sweep-abs.jpg sweep-phase.jpg sweep2.tex
-	pdflatex sweep2.tex
+	pdflatex -interaction=batchmode sweep2.tex

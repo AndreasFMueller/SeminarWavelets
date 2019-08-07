@@ -14,10 +14,14 @@ from scipy.signal import chirp
 from scipy.interpolate import interp1d
 from scipy.interpolate import interp2d
 from scipy.interpolate import RegularGridInterpolator
+from scipy.interpolate import griddata
 import scipy
-import scipy.ndimage as ndimage
-import scipy.ndimage.filters as filters
+
+
+from scipy import ndimage as ndi
+import matplotlib.pyplot as plt
 from skimage.feature import peak_local_max
+from skimage import data, img_as_float
 
 neighborhood_size = 5
 threshold = 1500
@@ -30,7 +34,7 @@ coff2 = []
 coffap = []
 samp = 220*np.power(2,5)
 print(samp)
-nr = 48
+nr = 24
 fs = []
 freq = []
 for x in range(13):
@@ -106,11 +110,11 @@ plt.ylim([20, 500])
 cbar = plt.colorbar(cs)
 plt.xlabel('Zeit in [s]')
 plt.ylabel('Frequenz in [Hz]')
-plt.savefig('sinsweep.jpg',dpi=1200)
+plt.savefig('cwt.jpg',dpi=1200)
 print(min(wlen))
 #-------------------------------------------
-
 """
+
 
 #for m in range(len(t)):
 #    print(len(t[m]))
@@ -120,7 +124,7 @@ for r in range(len(coff)):
     tp = np.linspace(0, 1, len(coff[r][-1]))
     for k in range(len(coff[r])-1):
         tp = np.linspace(0, 1, len(coff[r][k]))
-        co = interp1d(tp, coff[r][k], kind='next')
+        co = interp1d(tp, coff[r][k], kind='cubic')
         #co = interp1d(tp, coff[r][k], kind='next')
         coff2[r].append(co(t[-1]))
 
@@ -142,12 +146,10 @@ for q in range(min(wlen)):
     level1 = np.power(2, q)*level
     level2 = np.power(2, q+1)*level
     laen.append(np.linspace(level1, level2, nr))
-freq=[]
-for q in range(min(wlen)):
-    freq.append(int((np.power(2, q+1)*level)))
+
   
 #axis = [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1, 0]
-axis = [4, 8, 16, 32, 64, 128, 256, 512, 1028, 2048, 4096]
+axis = [27.5, 55, 110, 220, 440, 880, 1760, 3520, 7040]
 xaxis= [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,0.7, 0.8, 0.9, 1]
 #xaxis = np.arange(0,1.01,1/10)
 
@@ -157,6 +159,7 @@ X, Y = np.meshgrid(hoeh, laen)
 ln = np.linspace(0, 1, len(X))
 print(X.shape)
 coffap = np.abs(coffap)
+#coffap = np.power(coffap,3)
 plt.imshow(coffap, cmap=plt.cm.gnuplot2,interpolation='nearest', aspect='auto',origin='lower')
 ax = plt.gca()
 #ax.set_xticks(np.arange(-.5, 10, 1))
@@ -177,7 +180,68 @@ plt.colorbar()
 
 #plt.savefig('sincos.pdf')
 #plt.savefig('sincosmdwt.jpg',dpi=1200)
-plt.savefig('48dwt.jpg',dpi=1200)
+plt.savefig('48dwtcubic.jpg',dpi=1200)
+
+"""
+# image_max is the dilation of im with a 20*20 structuring element
+# It is used within peak_local_max function
+#grid = griddata(points, values, (grid_x, grid_y), method='cubic')
+image_max = ndi.maximum_filter(coef, size=5, mode='constant')
+
+# Comparison between image_max and im to find the coordinates of local maxima
+coordinates = peak_local_max(coef, min_distance=10, threshold_abs=3)
+
+# display results
+fig, axes = plt.subplots(1, 3, figsize=(8, 3), sharex=True, sharey=True)
+ax = axes.ravel()
+ax[0].imshow(coef, cmap=plt.cm.gray,aspect='auto')
+ax[0].axis('off')
+ax[0].set_title('Original')
+
+ax[1].imshow(image_max, cmap=plt.cm.gray,aspect='auto')
+ax[1].axis('off')
+ax[1].set_title('Maximum filter')
+
+ax[2].imshow(coef, cmap=plt.cm.gray,aspect='auto')
+ax[2].autoscale(True)
+ax[2].plot(coordinates[:, 1], coordinates[:, 0], 'r.')
+ax[2].axis('off')
+ax[2].set_title('Peak local max')
+
+fig.tight_layout()
+plt.savefig('cwtmaxima.jpg', dpi= 600)
+plt.show()
+
+plt.figure()
+"""
+image = ndi.maximum_filter(coffap, size=1, mode='constant')
+image_max = ndi.median_filter(coffap, size=2, mode='constant')
+
+
+# Comparison between image_max and im to find the coordinates of local maxima
+coordinates = peak_local_max(coffap, min_distance=48, threshold_abs=5)
+
+
+# display results
+fig, axes = plt.subplots(1, 3, figsize=(8, 3), sharex=True, sharey=True)
+ax = axes.ravel()
+ax[0].imshow(image, cmap=plt.cm.gray,aspect='auto',origin='lower')
+ax[0].axis('off')
+ax[0].set_title('Original')
+
+ax[1].imshow(image_max, cmap=plt.cm.gray,aspect='auto',origin='lower')
+ax[1].axis('off')
+ax[1].set_title('Maximum filter')
+
+ax[2].imshow(coffap, cmap=plt.cm.gray,aspect='auto',origin='lower')
+ax[2].autoscale(True)
+ax[2].plot(coordinates[:, 1], coordinates[:, 0], 'r.')
+ax[2].axis('off')
+ax[2].set_title('Peak local max')
+
+fig.tight_layout()
+plt.savefig('dwtmaxima.jpg', dpi= 600)
+plt.show()
 
 """ 
 fig, ax = plt.subplots()

@@ -70,7 +70,7 @@ Doch aus der Cauchy-Schwarz-Ungleichung folgt
 (\|u\| + \| v \|)^2
 \\
 \|u+v\|
-&=
+&\le
 \|u\| + \|v\|
 \end{align*}
 
@@ -593,32 +593,37 @@ und damit beschränkte Länge $|I|$ länge hat, ist das Integral von $|f|$
 ebenfalls beschränkt.
 \end{proof}
 
-\subsection{Die Operatoren $T_b$ und $D_a$}
+\subsection{Die Operatoren für Translation und Dilatation
+\label{subsection:translation-dilatation2}}
+Für das Verständnis von Wavelets müssen wir die Wirkung der Operatoren
+$T_b$ und $D_a$ auf das Skalarprodukt und die $L^2$-Norm verstehen.
 
 \begin{satz}
-Für eine Funktion $f,g\in\mathbb R$ gilt
-\[
-\begin{aligned}
+Für Funktionen $f,g\in\mathbb R$ gilt
+\begin{align}
+&\qquad&
 \langle T_bf,T_bg\rangle
 &=
 \langle f,g\rangle
-&&
 &
 \| T_bf\|^2 &= \|f\|^2
+&\qquad&
+\label{normTb}
 \\
+&&
 \langle D_af,D_ag\rangle
 &=
 |a|\cdot
 \langle f,g\rangle
-&&
 &
 \| D_af\|^2 &= |a|\cdot \|f\|^2.
-\end{aligned}
-\]
+&&
+\label{normDa}
+\end{align}
 \end{satz}
 
 \begin{proof}[Beweis]
-Die Translation ändert die Norm nicht weil das Lebesgue-Integral 
+Die Translation ändert die Norm nicht, weil das Lebesgue-Integral 
 translationsinvariant ist, wie man sich durch die Rechnung
 \begin{align*}
 \int_{-\infty}^\infty (T_bf)(t)\,\overline{(T_bg)(t)}\,dt
@@ -638,11 +643,11 @@ translationsinvariant ist, wie man sich durch die Rechnung
 \|f\|^2
 \end{align*}
 überzeugen kann.
-Für $D_a$ findet man ähnlich
+Für $\tilde{D}_a$ findet man ähnlich
 \begin{align*}
-\langle D_af,D_ag\rangle
+\langle \tilde{D}_af,\tilde{D}_ag\rangle
 &=
-\int_{-\infty}^\infty (D_af)(t)\,\overline{(D_ag)(t)}\,dt
+\int_{-\infty}^\infty (\tilde{D}_af)(t)\,\overline{(\tilde{D}_ag)(t)}\,dt
 =
 \int_{-\infty}^\infty
 f(\underbrace{t/a}_{\displaystyle=t'})
@@ -652,61 +657,82 @@ f(\underbrace{t/a}_{\displaystyle=t'})
 \int_{-\infty}^\infty f(t')\bar{g}(t')\,|a|\,dt'
 \\
 &=
-|a|\cdot \langle f,g\rangle.
-\qedhere
+|a|\cdot \langle f,g\rangle
 \end{align*}
+mit der Substitution $t'=t/a$ bzw.~$t=at'$.
+Daraus ergibt sich auch die Beziehung
+\[
+\|\tilde{D}_af\|^2
+=
+\langle \tilde{D}_af,\tilde{D}_af\rangle
+=
+|a|\cdot \langle f,f\rangle
+=
+|a|\cdot \|f\|^2
+\]
+für die Norm.
 \end{proof}
 
-\subsection{Translation und Dilatation
-\label{subsection:translation-dilatation2}}
-In Abschnitt~\ref{subsection:translation-dilatation} haben wir die
-Operationen $T_b$ und $\tilde{D}_a$ definiert.
-Es ist ganz offensichtlich, dass die Operation $T_b$ die Norm einer
-Funktion $f(t)$ nicht ändert, denn
-\[
-\|T_bf\|
-=
-\int_{-\infty}^{\infty} |T_bf(t)|^2\,dt
-=
-\int_{-\infty}^{\infty} |f(t-b)|^2\,dt
-=
-\int_{-\infty}^{\infty} |f(t)|^2\,dt
-=
-\|f\|^2.
-\]
-Die Dilatation $\tilde{D}_a$ hingegen ändert die Norm, es gilt nämlich
-\begin{align*}
-\|\tilde{D}_af\|^2
-&=
-\int_{-\infty}^\infty |\tilde{D}_af(t)|^2\,dt
-=
-\int_{-\infty}^\infty |f(t/a)|^2 \,dt
-=
-\int_{-\infty}^\infty |f(\tau)|^2 \, a\,d\tau
-=
-\int_{-\infty}^\infty |\sqrt{a} f(\tau)|^2 \,d\tau
-=
-\| \sqrt{a} f \|^2,
-\end{align*}
-wobei wir die Subsitution $\tau = t/a$ verwendet haben.
-Wir können daraus ablesen, wie wir die Definition von $\tilde{D}_a$
-modifizieren müssen, dass auch die Dilatation die Norm erhält.
+Der Operator $\tilde{D}_a$ erhält nach \eqref{normDa} die Norm nicht.
+Eine um den Faktor $|a|$ ``gestreckte'' Funktion hat eine um $\sqrt{|a|}$
+grössere Norm.
+Dies lässt sich aber leicht korrigieren, indem man den Dilationsoperator
+neu skaliert, wie in der folgenden Definition.
+
+
+%In Abschnitt~\ref{subsection:translation-dilatation} haben wir die
+%Operationen $T_b$ und $\tilde{D}_a$ definiert.
+%Es ist ganz offensichtlich, dass die Operation $T_b$ die Norm einer
+%Funktion $f(t)$ nicht ändert, denn
+%\[
+%\|T_bf\|
+%=
+%\int_{-\infty}^{\infty} |T_bf(t)|^2\,dt
+%=
+%\int_{-\infty}^{\infty} |f(t-b)|^2\,dt
+%=
+%\int_{-\infty}^{\infty} |f(t)|^2\,dt
+%=
+%\|f\|^2.
+%\]
+%Die Dilatation $\tilde{D}_a$ hingegen ändert die Norm, es gilt nämlich
+%\begin{align*}
+%\|\tilde{D}_af\|^2
+%&=
+%\int_{-\infty}^\infty |\tilde{D}_af(t)|^2\,dt
+%=
+%\int_{-\infty}^\infty |f(t/a)|^2 \,dt
+%=
+%\int_{-\infty}^\infty |f(\tau)|^2 \, a\,d\tau
+%=
+%\int_{-\infty}^\infty |\sqrt{a} f(\tau)|^2 \,d\tau
+%=
+%\| \sqrt{a} f \|^2,
+%\end{align*}
+%wobei wir die Subsitution $\tau = t/a$ verwendet haben.
+%Wir können daraus ablesen, wie wir die Definition von $\tilde{D}_a$
+%modifizieren müssen, dass auch die Dilatation die Norm erhält.
 
 \begin{definition}
 Die Dilatation $D_af$ der Funktion $f\colon\mathbb R\to\mathbb C$ ist 
 \[
-(D_af)(t) = \frac{1}{\sqrt{a}} f\biggl(\frac{t}{a}\biggr).
+(D_af)(t)
+=
+\frac{1}{\sqrt{a}} \tilde{D}_af(t)
+=
+\frac{1}{\sqrt{a}} f\biggl(\frac{t}{a}\biggr).
 \]
 \end{definition}
+Der Operator $D_a$ ist im Gegensatz zu $\tilde{D}_b$ eine Isometrie.
 
 \begin{satz}
 Die Operationen $T_b$ und $D_a$ sind Isometrien, sie erhalten die
 Norm:
 \[
 \begin{aligned}
-\| T_bf \| &= \|f\|
-&&&
-\| D_af \| &= \| f \|.
+\|T_bf\| &= \|f\|
+&&\qquad&
+\|D_af\| &= \|f\|.
 \end{aligned}
 \]
 Ausserdem gelten die Rechenregeln
@@ -722,7 +748,8 @@ T_{ab}D_a
 \end{satz}
 
 \begin{proof}[Beweis]
-Die Eigenschaften Rechenregeln folgen unmittelbar aus den Definitionen und
+Die Eigenschaften der Operatoren bezügich der Norm und die Rechenregeln
+folgen unmittelbar aus den Definitionen und
 den früher bewiesenen Regeln, insbesondere Satz~\ref{satz:kommutator}.
 \end{proof}
 

@@ -13,8 +13,7 @@ Um diese Idee zu quantifizieren brauchen wir zunächst ein Mass für
 die Lokalisierung von $f(t)$ bzw.~$\hat{f}(\omega)$.
 Wäre $f$ eine Wahrscheinlichkeitsdichte, dann wäre die Varianz ein
 naheliegendes Mass dafür.
-Die Funktion muss aber nicht $\le 0$ sein, man könnte das Problem
-aber korrigeren, indem man stattdessen $|f(t)|^2$ verwendet.
+Die Funktion darf aber nicht $\le 0$ sein. Man könnte das Problem korrigeren, indem man stattdessen $|f(t)|^2$ verwendet.
 Das Mass für die Lokalisierung in Zeit und Frequenz ist daher
 \begin{align*}
 \int_{-\infty}^\infty
@@ -42,10 +41,11 @@ Sie drückt dies dadurch aus, dass das Produkt der beiden Normen
 eine untere Schranke hat.
 
 \begin{satz}[Heisenberg]
+\label{satz:heisenberg}
 Ist $f\in L^2(\mathbb R)$ derart, dass 
 $\|tf\|<\infty$ und $\|\omega\hat{f}\|<\infty$, dann gilt
 \begin{equation}
-\| tf \| \cdot \| \omega \hat{f}(\omega)\| \ge \frac12\| f\|^2.
+\| tf \| \cdot \| \omega \hat{f}\| \ge \frac12\| f\|^2.
 \label{heisenberg:gleichung}
 \end{equation}
 Die untere Schranke wir erreicht für Gauss-Funktionen, also Funktionen
@@ -56,8 +56,8 @@ der Form $De^{-t^2/2\sigma^2}$.
 Die Voraussetzungen garantieren, dass die Fourier-Transformation existiert.
 Ausserdem bedeutet $\|\omega\hat{f}\|<\infty$, dass $\omega\hat{f}(\omega)$ 
 eine $L^2$-Funktion ist.
-Nach den Rechenregeln für die Fourier-Transformation besagen, dass 
-$f$ fast überall differenzierbar sein muss, enn es gilt
+Die Rechenregeln für die Fourier-Transformation besagen, dass 
+$f$ fast überall differenzierbar sein muss, denn es gilt
 \[
 i\omega \hat{f}(\omega) = \widehat {f'}(\omega).
 \]

@@ -1,7 +1,7 @@
 \section{Künstliches Neuronales Netz}
 \rhead{Künstliches Neuronales Netz}
 
-Künstliche neuronale Netze (KNN) stellen eine Möglichkeit des maschinellen Lernens dar, welche vom Hirn inspiriert wurde.
+Künstliche neuronale Netze (KNN) stellen eine Möglichkeit des maschinellen Lernens dar, welche vom Gehirn inspiriert wurde.
 Ein KNN besteht aus verschiedenen Neuronen, welche hierarchisch in sogenannten Layern angeordnet werden (vgl. Abbildung \ref{fig:neuralnet}).
 Jeder Eingangswert $x_i$ zu einem Neuron wird mit einem Gewicht $w_i$ multipliziert.
 Alle gewichteten Eingänge werden zusammen mit einem Schwellenwert $b$ addiert.
@@ -52,7 +52,7 @@ Diese und weitere Eigenschaften inspirierten die Entwicklung der CNNs (vgl. Kapi
 Bei einem CNN werden die Kernel nicht mehr vom Ingenieur bestimmt, sondern während Trainings durch den Algorithmus gelernt.  
 Die gelernten Gewichte (Kernels) haben an jeder Position der Faltung die selben Werte, sind also Translationsinvariant.
 Diese Eigenschaft ist entscheidend, da sie einerseits die Anzahl zu lernender Gewichte extrem reduziert und andererseits die Generalisierung fördert.
-Solche CNNs zeigen extrem gute Resultate in der Bildverarbeitung, speziell im Bereich der Klassifizierung von Bildern (z.B. Erkennen von Katzen).
+Solche CNNs zeigen gute Resultate in der Bildverarbeitung, speziell im Bereich der Klassifizierung von Bildern (z.B. Erkennen von Katzen).
 
 Anhand der Bildverarbeitung kann man den Unterschied von KNNs und CNNs gut erklären.
 Bei einem KNN wird jedes Pixel mit jedem Neuron verbunden und für jede dieser Verbindungen wird ein eigenes Gewicht gelernt.
@@ -63,7 +63,7 @@ Beim CNN hingegen genügen $256 \cdot 3 \cdot 3 = 2'304$ Gewichte.
 
 Die zweidimensionale Wavelet-Transformation kann auch als Faltung des Bildes mit dem Wavelet (Kernel) interpretiert werden.
 Dabei werden allerdings nicht mehr alle kontinuierlichen Grössen des Wavelets berücksichtigt, sondern nur noch eine diskrete Anzahl.
-Da KNNs (und CNNs) vom Hirn inspirierte Algorithmen darstellen und die Bildvorverarbeitung im Hirn als Gabor-Wavelet-Transformation modelliert werden kann, drängt sich daher eine Kombination dieser beiden Konzepte auf.
+Da KNNs (und CNNs) vom Gehirn inspirierte Algorithmen darstellen und die Bildvorverarbeitung im Gehirn als Gabor-Wavelet-Transformation modelliert werden kann, drängt sich daher eine Kombination dieser beiden Konzepte auf.
 
 Eine offensichtliche Idee ist dabei das Vorverabeiten der Bilder mit Gabor-Wavelets.
 Diese vorverarbeiteten Bilder können dann als Input in das CNN verwendet werden und sollten gute Resultate zeigen, analog zum menschlichen Hirn.
@@ -147,7 +147,7 @@ Der Nachteil würde entstehen, da das Netzwerk für jede Farbe eigene Kernels le
 		Softmax & - & $ 10 $ \\ 
 		\hline
 	\end{tabular} 
-	\caption{Unsere Netzwerk-Architektur. Der erste Layer (Conv1) wird bei der Gabor-Variante fix gesetzt und nicht gelernt. Nach jedem Convolutional- und Fully-Connected-Layer wird eine Batch-Normalization durchgeführt. Die Aktivierungsfunktion ist immer ReLu, ausser beim Softmax-Output.}
+	\caption{Unsere Netzwerk-Architektur. Der erste Layer (Conv1) wird bei der Gabor-Variante fix gesetzt und nicht gelernt. Nach jedem Convolutional- und Fully-Connected-Layer wird eine Batch-Normalization durchgeführt. Die Aktivierungsfunktion ist immer ReLu, ausser beim Softmax-Output. Die Pooling-Layer reduzieren die Grösse des Bildes indem jeweils eine $2\times2$ Pixel-Nachbarschaft durch den maximalen Wert der Nachbarschaft ersetzt wird.}
 	\label{table:architecture}
 \end{table}
 

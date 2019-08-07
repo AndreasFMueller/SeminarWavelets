@@ -27,7 +27,17 @@ all:	sinsin.pdf	\
 	b3-07.pdf	\
 	b3-08.pdf	\
 	b3-09.pdf	\
-	b3-10.pdf
+	b3-10.pdf	\
+	parallelogramm.pdf	\
+	orthogonalkomplement.pdf	\
+	approx.pdf	\
+	abstand.pdf
+
+parallelogramm.pdf:	parallelogramm.tex
+	pdflatex parallelogramm.tex
+
+orthogonalkomplement.pdf:	orthogonalkomplement.tex
+	pdflatex orthogonalkomplement.tex
 
 sinsin.pdf:	sinsin.tex sinpoints.tex
 	pdflatex sinsin.tex
@@ -122,3 +132,9 @@ b3-10.pdf:	b3-10.tex b3curves.tex axes.tex
 
 l2orth.pdf:	l2orth.tex
 	pdflatex l2orth.tex
+
+approx.pdf:	approx.tex
+	pdflatex approx.tex
+
+abstand.pdf:	abstand.tex
+	pdflatex abstand.tex

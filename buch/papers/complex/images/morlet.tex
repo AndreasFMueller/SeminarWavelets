@@ -4,18 +4,32 @@
 \usepackage{pgfplots}
 %\usepackage{tikz-3dplot}
 
-\pgfplotsset{scale=0.95}
+\pgfplotsset{compat=1.16}
 
 \usetikzlibrary{arrows,intersections,math}
 
 \begin{document}
-	\begin{tikzpicture}[>=latex]
-		\begin{axis}[width=15cm, height=7.5cm, xmin=-3.5, xmax=3.5, ymin=-0.9, ymax=0.9, axis lines=middle, ytick={-1, -0.5, ..., 1}, xtick={-3, -2, ..., 3}]
-		\addplot[fill=gray, opacity=0.1]  table[x=t,y=envp] {morlet.data};
-		\addplot[fill=gray, opacity=0.1]  table[x=t,y=envn] {morlet.data};
-		
-		\addplot[smooth, mark=none, color=blue] table[x=t,y=re] {morlet.data};
-		\addplot[smooth, mark=none, color=red]  table[x=t,y=im] {morlet.data};
-		\end{axis}
+	\begin{tikzpicture}
+		\begin{scope}
+			\begin{axis}[axis lines=middle, width=12cm, height=4cm,
+				y label style={at={(axis cs:0.3, 0.75)},anchor=west},
+				xmin=-4.2, xmax=4.2, ymin=-0.85, ymax=0.9,	xlabel=$t$,ylabel=$\psi_{\text{Morlet}}$]
+				\addplot[domain=-5:5,samples=200, smooth, color=blue,line width=1pt] 
+				{1.061/sqrt(2)*exp(-(\x^2)/2)*cos(360*\x)};
+				\addplot[domain=-5:5,samples=200, smooth, color=red,line width=1pt] 
+				{1.061/sqrt(2)*exp(-(\x^2)/2)*sin(360*\x)};
+			\end{axis}
+		\end{scope}
+		\begin{scope}[yshift=-3cm]
+			\begin{axis}[axis lines=middle, width=12cm, height=4cm,
+				xmin={-3.5*pi}, xmax={3.5*pi}, ymin=-0.1, ymax=0.85,
+				xlabel=$\omega$,ylabel=$\hat\psi_{\text{Morlet}}$,
+				xtick={-3*pi, -2*pi, -pi, 0, pi, 2*pi, 3*pi},
+				xticklabels={$-3\pi$,$-2\pi$,$-\pi$,,$\pi$,$2\pi$,$3\pi$},
+				ytick={0.75}]
+				\addplot[domain=-11:11,samples=100, smooth, color=blue,line width=1pt] 
+				{0.751125544 * exp(-((\x-2*pi)^2)/2)};
+			\end{axis}
+		\end{scope}
 	\end{tikzpicture}
 \end{document}
