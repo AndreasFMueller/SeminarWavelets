@@ -1,56 +1,55 @@
 \subsection{Analytische Wavelets}
 \rhead{Analytische Wavelets}
 
-Mittels Hilbert-Transformation kann also zu einem reellen Zeitsignal ein zugeordnetes analytisches Signal gefunden werden.
-Der Realteile des zugeordneten analytischen Signals bleibt dabei gleich dem Original.
-Spektral erhällt man das analytische Signal, indem man die negativen Frequenzen entfernt und die positiven verdoppelt, wie wir das im Abschnitt~\ref{complex:gabor-to-morlet} auf dem Weg vom Gabor- zum Morlet-Wavelet auch getan haben.
+Mittels Hilbert-Transformation kann also einem reellen Signal ein Imaginärteil gefunden werden, so dass alle negativen Frequenzen verschwinden.
+Der Realteil bleibt dabei unverändert, und auch das Spektrum der positiven Frequenzen bleibt bis auf Skalierung unverändert.
+Das ist auch im Abschnitt~\ref{complex:gabor-to-morlet} auf dem Weg vom Gabor- zum Morlet-Wavelet passiert.
 Tatsächlich ist das Morlet-Wavelet das dem Gabor-Wavelet zugeordnete analytische Wavelet.
 
 \begin{satz}
 	\label{complex:analytic-wavelet}
-	Sei $\psi$ ein reelles Wavelet. Dann ist
+	Sei $\psi(t)$ ein reelles Wavelet. Dann ist
 	\begin{equation}
-		\psi^\ast = \frac{1}{\sqrt{2}}\left(\psi + i\,\mathcal{H}\psi\right)
+		\psi^\ast(t) = \frac{1+i\Hilb}{\sqrt{2}}\psi(t)
 	\end{equation}
-	das zu $\psi$ zugeordnete \emph{analytische Wavelet}\footnote{Auch hierbei ist ``analytisch'' wieder im Sinne der Signaltheorie zu verstehen, also $\hat\psi^\ast = 0 \,\forall\,\omega < 0$.}.
+	das $\psi(t)$ zugeordnete \emph{analytische Wavelet}\footnote{Auch hierbei ist ``analytisch'' wieder im Sinne der Signaltheorie zu verstehen, also $\forall \omega < 0 \colon \hat\psi^\ast(\omega) = 0$.}.
 	Die Fouriertransformierte $\hat\psi^\ast$ verschwindet für alle negativen Frequenzen.
-	\[\hat\psi^\ast(\omega) = \,\forall\,\omega<0\]
+	\[\forall \omega < 0 \colon \hat\psi^\ast(\omega) = 0\]
 \end{satz}
 
 \begin{proof}
-	Dass $\hat\psi^\ast = 0$ für $\omega < 0$ gilt, folgt trivial aus Satz~\ref{complex:analytic-signal}.
-
+	Für analytische Wavelets findet man analog zum Beweis von Satz~\ref{complex:analytic-signal}, dass
+	\[\hat\psi^\ast(\omega) = \frac{1}{\sqrt{2}}\hat\psi(1 +\sgn(\omega))\]
+	
 	Um sicherzustellen, dass $\psi^\ast$ wirklich ein Wavelet ist, müssen wir die Zulässigkeitsbedingung aus Gleichung~\eqref{cwt:zulaessig} prüfen.
-	Nach Voraussetzung ist 
+	Nach Voraussetzung ist $\psi$ ein Wavelet, also gilt
 	\[
 	C_{\psi}
 	=
 	2\pi
 	\int_{-\infty}^\infty \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,\mathrm{d}\omega < \infty.
 	\]
-	Daraus folgt
-	\[
+	Daraus folgt nun
+	\begin{align}
 	C_{\psi^\ast}
-	=
-	2\pi
-	\int_{0}^\infty \frac{|\hat{\psi}^\ast(\omega)|^2}{|\omega|}\,\mathrm{d}\omega < \infty,
-	\]
-	da $\hat\psi^\ast$ für $\omega > 0$ lediglich mit einem Faktor $\sqrt 2$ skaliert wurde.
-	Nun überprüfen wir noch die Norm $\|\psi^\ast\|$. 
+	&= 2\pi	\int_{0}^\infty \frac{|\hat{\psi}^\ast(\omega)|^2}{|\omega|}\,\mathrm{d}\omega \\
+	&= 2\pi \int_{0}^\infty \frac{|\sqrt{2}\hat{\psi}(\omega)|^2}{|\omega|}\,\mathrm{d}\omega 
+	< \infty,
+	\end{align}
+	da $\hat\psi^\ast(\omega)$ für $\omega > 0$ lediglich mit einem Faktor $\sqrt 2$ skaliert wurde.
+	Somit bleibt nur noch die Norm zu prüfen.
 	Sie muss $1$ sein.
 	\begin{align}
-		1 = \left\|\psi\right\| = \left\|\hat{\psi}\right\| 
-		&= \int_{-\infty}^{\infty}\left|\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega \label{complex:norm-proof-p1}\\
-		&= \int_{-\infty}^{0}\left|\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega +  \int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega \notag\\
-		&=  2\int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega \label{complex:norm-proof}\\
-		&=  \int_{0}^{\infty}\left|\frac{2}{\sqrt{2}}\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega \notag\\
-		&=  \int_{-\infty}^{\infty}\left|\hat{\psi}^\ast(\omega)\right|^2 \mathrm{d}\omega 
-		= \left\|\hat{\psi}^\ast\right\| = \left\|\psi^\ast\right\|.\label{complex:norm-proof-p2}
+		1 = \|\psi\| = \|\hat{\psi}\| 
+		&= \int_{-\infty}^{\infty}|\hat{\psi}(\omega)|^2 \mathrm{d}\omega \label{complex:norm-proof-p1}\\
+		&= \int_{-\infty}^{0}|\hat{\psi}(\omega)|^2 \mathrm{d}\omega +  \int_{0}^{\infty}|\hat{\psi}(\omega)|^2 \mathrm{d}\omega \notag\\
+		&=  2\int_{0}^{\infty} |\hat{\psi}(\omega)|^2 \mathrm{d}\omega \label{complex:norm-proof}\\
+		&=  \int_{0}^{\infty}\biggl|\frac{2}{\sqrt{2}}\hat{\psi}(\omega)\biggr|^2 \mathrm{d}\omega \notag\\
+		&=  \int_{-\infty}^{\infty}|\hat{\psi}^\ast(\omega)|^2 \mathrm{d}\omega 
+		= \|\hat{\psi}^\ast\| = \|\psi^\ast\|.\label{complex:norm-proof-p2}
 	\end{align}
 	In den Gleichungen~\eqref{complex:norm-proof-p1} und \eqref{complex:norm-proof-p2} kam die Placherel-Formel zur Anwendung.
 	In Gleichung~\eqref{complex:norm-proof} nutzten wir die hermitesche Symmetrie der Fourier-Transformierten eines reellen Wavelets, nach welcher
-	\[\left|\hat{f}(\omega)\right| = \left|\hat{f}(-\omega)\right|.\]
-
-
-	Bei $\psi^\ast$ handelt es sich also tatsächlich um ein Wavelet.
+	\[|\hat{f}(\omega)| = |\hat{f}(-\omega)|.\]
+	Bei $\psi^\ast(\omega)$ handelt es sich also tatsächlich um ein Wavelet.
 \end{proof}
