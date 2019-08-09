@@ -403,7 +403,31 @@ Koeffizienten
 \]
 für $0\le k\le n$.
 \end{satz}
-
-
+Die zugehörige erzeugende Funktion Funktion ist
+\begin{equation}
+\tilde{H}_n(\omega)
+=
+\frac{1}{\sqrt{2}}
+\sum_{k=0}^{n+1}
+\varphi_k^{(n)} e^{-ik\omega}
+=
+\frac{1}{\sqrt{2}}
+\sum_{k=0}^{n+1}
+\frac{\sqrt{2}}{2^{n+1}}
+\binom{n+1}{k}
+e^{-ik\omega}
+=
+\sum_{k=0}^{n+1}
+\frac{1}{2^{n+1}}
+\binom{n+1}{k}
+e^{ik\omega}
+=
+\biggl(
+\frac{1+e^{-i\omega}}{2}
+\biggr)^{n+1},
+\end{equation}
+wir werden sie in Abschnitt~\ref{subsection:spline-ft} verwenden,
+um die erzeugende Funktion für die orthonormalisierten Spline-Wavelets
+zu berechnen.
 
 
