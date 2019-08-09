@@ -3,10 +3,59 @@
 \section{Spectral Graph Wavelet Transformation\label{sec:sgwt:wavelets}}
 \rhead{SGWT}
 
-Hier wollen wir nun das bisher in diesem Kapitel gelernte vereinen zur Spectral 
-Graph Wavelet Transformation.
+Hier wollen wir nun das Bisherige zur Spectral Graph Wavelet Transformation 
+vereinen.
 
 \subsection{Graph Fourier Transformation\label{subsec:sgwt:gft}}
+
+Bevor wir uns auf die Graph Wavelets st\"urzen, wollen wir zuerst versuchen die 
+Fourier Theorie auf Funktionen auf Graphen anzuwenden. Dazu nehmen wir das 
+Beispiel eines Dirac-Stosses $\delta(x)$, siehe~\cref{fig:sgwt:gft:dirac}.
+\begin{figure}
+    \centering
+    \includegraphics[
+    angle=-90,
+    origin=c,
+    scale=0.6
+    ]{papers/sgwt/images/dirac.pdf}
+    \vspace{-70pt}
+    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximalem Wert $1$. 
+    \label{fig:sgwt:gft:dirac}}
+\end{figure}
+Wenn wir davon die Fourier Transformation berechnen, zu sehen 
+in~\cref{fig:sgwt:gft:fftdirac}, stellen wir fest, das nicht nur alle 
+Frequenzen vorhanden sondern auch alle gleich stark vorhanden sind. Die 
+Fouriertransformierte $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
+\begin{figure}
+    \centering
+    \includegraphics[
+    angle=-90,
+    origin=c,
+    scale=0.6
+    ]{papers/sgwt/images/dirac_fft.pdf}
+    \vspace{-70pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:fftdirac}}
+\end{figure}
+
+$g(\lambda)\cdot\hat{\delta}(\lambda)$
+
+\subsubsection{Kernelfunktionen}
+
+Um dieses Problem zu l\"osen nehmen wir eine Kernelfunktion $g(\lambda)$, 
+welche die Eigenschaften $g(0) = 0$ und $\lim_{\lambda\to\infty} g(x) = 0$ 
+erf\"ullt. Mit Hilfe dieses Bandpasses k\"onnen wir die Eigenwerte bewusst 
+delokalisieren. Wenn wir nun zus\"atzlich die Eigenwerte mit einem 
+Skalierungsfaktor $t$ multiplizieren, erhalten wir auch eine 
+M\"oglichkeit, das Spektrum zu verschieben. Obwohl $t$ ein kontinuierlicher 
+Faktor ist, werden wir uns in der Praxis auf $J$ Faktoren, also eine endliche 
+Anzahl $\{t_j\}^J_{j=1}$, beschr\"anken m\"ussen.
+
+Wir haben jetzt nur noch das Problem, dass $\lambda_0 = 0$ gilt. Wir verlieren 
+also den konstanten Anteil der zu analysierenden und synthetisierenden 
+Funktion. Um das zu umgehen nehmen brauchen wir eine zus\"atzliche 
+Kernelfunktion $h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und 
+$\lim_{\lambda\to\infty} = 0$.
 
 Die in~\cref{sec:sgwt:spectralanalysis} vorgestellten Eigenfunktionen 
 k\"onnen wir direkt nutzen um eine Graph Fourier Transformation zu definieren. 
@@ -37,7 +86,7 @@ Die R\"ucktransformation ist dann auch wieder analog der Fouriertheorie
 f = \chi \hat{f}.
 \end{equation*}
 
-\subsection{Graph Wavelet Transformation\label{subsec:sgwt:gwt}}
+\subsection{Graph Wavelets: Lokalisierung\label{subsec:sgwt:gwt:localizing}}
 
 Mit der Graph Fourier Transformation k\"onnen wir nun Funktionen auf Graphen 
 analysieren und dann auch wieder synthetisieren. Mit Hilfe von Wavelets haben 
@@ -49,22 +98,7 @@ Eigenwerte der Laplace Matrix eines Graphen definiert. Die Eigenwerte sind
 allerdings komplett lokalisiert, sie kommen also einem Dirac-Stoss an 
 einem Knoten gleich.
 
-\subsection{Kernelfunktionen}
-
-Um dieses Problem zu l\"osen nehmen wir eine Kernelfunktion $g(\lambda)$, 
-welche die Eigenschaften $g(0) = 0$ und $\lim_{\lambda\to\infty} g(x) = 0$ 
-erf\"ullt. Mit Hilfe dieses Bandpasses k\"onnen wir die Eigenwerte bewusst 
-delokalisieren. Wenn wir nun zus\"atzlich die Eigenwerte mit einem 
-Skalierungsfaktor $t$ multiplizieren, erhalten wir auch eine 
-M\"oglichkeit, das Spektrum zu verschieben. Obwohl $t$ ein kontinuierlicher 
-Faktor ist, werden wir uns in der Praxis auf $J$ Faktoren, also eine endliche 
-Anzahl $\{t_j\}^J_{j=1}$, beschr\"anken m\"ussen.
-
-Wir haben jetzt nur noch das Problem, dass $\lambda_0 = 0$ gilt. Wir verlieren 
-also den konstanten Anteil der zu analysierenden und synthetisierenden 
-Funktion. Um das zu umgehen nehmen brauchen wir eine zus\"atzliche 
-Kernelfunktion $h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und 
-$\lim_{\lambda\to\infty} = 0$.
+\subsection{Graph Wavelets: Skalierung\label{subsec:sgwt:gwt:scaling}}
 
 \subsection{Frames}
 
