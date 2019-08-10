@@ -14,11 +14,11 @@
 \section{Introduction}
 \rhead{Introduction}
 
-VHDL, an acronym for Very High Speed Integrated Circuit Hardware Description Language is commonly used to implement fast, application-specific logic for an FPGA or custom silicon chip.
+VHDL, an acronym for Very High Speed Integrated Circuit Hardware Description Language, is commonly used to implement fast, application-specific logic for an FPGA or custom silicon chip.
 As every other programming language, VHDL relies heavily on reuse of code.
-Blocks of contained code can be stored as a semiconductor intellectual property core (IP core) and reused for further applications.
+Blocks of encapsulated code can be stored as a semiconductor intellectual property core (IP core) and reused for further applications.
 A often used IP core is the Fast Fourier Transform (FFT), which is available online for free.
-Discrete wavelet transforms (DWT), however are not that common.
+Discrete wavelet transforms (DWT), however, are not that common.
 Therefore, we have committed ourselfs to implement a wavelet transform as a hardware block in VHDL.
 
 A hardware implementation of a wavelet transform has many advantages over a software implementation.
@@ -231,6 +231,7 @@ Hence, it is two times more efficient than the convolutional DWT.
 Figure \ref{fpga:fig:liftingStepFactorization} shows a graphical version of the factorized DWT.
 \begin{figure}
 	\centering
+	%\includeagraphics[width=\hsize]{papers/fpga/tikz/liftingStepFactorization.tikz}
 	\input{papers/fpga/tikz/liftingStepFactorization.tikz}
 	\input{papers/fpga/tikz/liftingStepFactorizationInv.tikz}
 	\caption{DWT signal flow graph with factorized filter functions (lifting steps)}
@@ -439,7 +440,10 @@ The test setup is shown in figure \ref{fpga:fig:testing}.
 \end{figure}
 If no mistakes are present, the output should resemble the input, delayed by the latency of the whole pipeline.
 The Vivado toolchain from Xilinx has been used to simulate the VHDL modules.
-The wavelet transforms have also been implemented numerically identical in MATLAB in order to provide a direct comparison. 
+The wavelet transforms have also been implemented using integer numbers in MATLAB in order to provide a direct comparison.
+An important point is to round towards negative infinity when performing divisions.
+This can be accomplished with the MATLAB function \texttt{idivide(x, 'floor')} instead of using the normal division operator (\texttt{/}).
+The special rounding leads to divisions which are numerically identical to integer divisions in hardware.
 A set of helper modules have been implemented in VHDL 2008, which are able to read and write test vectors and results from or to a file.
 These modules provide an easy way to inject test data from the MATLAB enviroment.
 After the VHDL simulation finishes, the results are again fed into MATLAB for validation.
@@ -484,7 +488,8 @@ Figure \ref{fpga:fig:output} shows the final output of the whole pipeline compar
 As expected, the input and output signals are the same when delayed by the processing time of the system.
 The pink line is the result of the MATLAB simulation and the pink dots are the results of the Vivado hardware simulation. 
 
-An also interesting view shows the VHDL simulation graph of Vivado, as depicted in figure \ref{fpga:fig:sim}.
+Another interesting insight of the process gives the VHDL simulation graph of Vivado.
+Figure \ref{fpga:fig:sim} depicts the signals of the inverse DWT block (\texttt{inv\_branching}).
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{papers/fpga/images/inv_branching_screenshot.PNG}
