@@ -74,7 +74,7 @@ while the backward transform is
 \begin{equation}
 a_{j+1,k}(z) = h(z) a_{j,k}(z) + g(z) b_{j,k}(z).
 \end{equation}
-Figure \ref{fpga:fig:dwt} depicts a representation of the DWT followed by an inverse DWT.
+Figure \ref{fpga:fig:dwt} depicts a graphical representation of the DWT followed by an inverse DWT.
 \begin{figure}
 	\centering
 	\input{papers/fpga/tikz/dwt.tikz}
@@ -338,8 +338,8 @@ The application should make use of one of the biggest advantages of custom hardw
 Performing calculations in parallel leads to higher throughput and allows data rates which are as fast as the clock speed of the logic.
 The strengths of the chosen implementation are thus high speed and low latency processing suitable for real-time applications.
 
-The main priority was to implement the Haar wavelet.
-A optional goal was the implementation of a higher order wavelet, such as the orthogonal Daubechies-4 wavelet.
+Implementing the Haar wavelet has been the main priority.
+A optional goal has been the implementation of a higher order wavelet, such as the orthogonal Daubechies-4 wavelet.
 The implementation should be as generic as possible, in order to allow customization.
 
 \subsection{Idea}
@@ -441,8 +441,8 @@ If no mistakes are present, the output should resemble the input, delayed by the
 The Vivado toolchain by Xilinx has been used to simulate the VHDL modules.
 The wavelet transforms have also been implemented using integer numbers in MATLAB in order to provide a direct comparison.
 An important point is to round towards negative infinity when performing divisions.
-This can be accomplished with the MATLAB function \texttt{idivide(x, 'floor')} instead of using the normal division operator (\texttt{/}).
-The special rounding leads to divisions which are numerically identical to integer divisions in hardware.
+This leads to divisions which are numerically identical to integer divisions in hardware.
+In MATLAB, this is accomplished with the function \texttt{idivide(x, 'floor')} instead of using the normal division operator (\texttt{/}).
 A set of helper modules have been implemented in VHDL 2008, which are able to read and write test vectors and results from or to a file.
 These modules provide an easy way to inject test data from the MATLAB enviroment.
 After the VHDL simulation finishes, the results are again fed into MATLAB for validation.
