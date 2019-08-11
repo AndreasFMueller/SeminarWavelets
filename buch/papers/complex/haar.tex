@@ -17,21 +17,18 @@ Betrachten wir zum Abschluss noch beispielhaft das Haar-Wavelet.
     &= \frac{1}{\sqrt2\pi} \log\left|\frac{(t+0.5)(t-0.5)}{t^2}\right|
     = \frac{1}{\sqrt2\pi} \log\left|\frac{t^2-0.5^2}{t^2}\right|.
     \end{align*}
-    Das zugehörige, analytische Wavelet ist nach Satz~\eqref{complex:anawave}
-    \[
-    \psi^\ast_{\text{Haar}} = \frac{1}{\sqrt{2}}\left(\psi_{\text{Haar}} + \frac{i}{\pi} \log\left|\frac{t^2-0.5^2)}{t^2}\right|\right).\qedhere
-    \]
+    Daraus folgt das zugehörige, analytische Wavelet nach Satz~\ref{complex:analytic-wavelet}.
 \end{proof}
 
 Das analytische Haar-Wavelet ist in Abbildung~\ref{complex:ahaar} dargestellt.
-Es hat keinen kompakten Träger mehr.
+Es hat keinen kompakten Träger mehr, ist jedoch noch immer gut lokalisiert in der Zeit.
 Abbildung~\ref{complex:ahaar-ex} zeigt die Wavelet-Transformation mit dem analytischen Haar-Wavelet.
 Gut ersichtlich sind die scharfe Lokalisierung in der Zeit, die schlecht Lokalisierung in der Frequenz, die Verschiebung zwischen $1/a$ und $f$, so wie die Unabhängigkeit von Amplitude und Phase.
 
 \begin{figure}
 	\centering
 	\includegraphics{papers/complex/images/ahaar.pdf}
-	\caption{Das dem Haar-Wavelet zugeordnete analytische Wavelet.}
+	\caption{Das analytische Haar-Wavelet im Zeit- und Frequenzbereich.}
 	\label{complex:ahaar}
 \end{figure}
 

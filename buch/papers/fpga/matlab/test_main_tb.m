@@ -2,7 +2,7 @@ L = 3000;
 N = 4;
 
 
-x_lim = 350;
+x_lim = 300;
 
 %% Define input signal
 t = 1:L;
@@ -12,9 +12,9 @@ x = zeros(1, L);
 
 x(1:64) = sin(2*pi*[0:64-1]/64);% + 1.2*cos(2*pi*t/40); %500
 
-x(100:150) = [1:51] / 50;
-x(150:200) = [50:-1:0]/50;
-x(250:301) = [1];
+x(90:140) = [1:51] / 50;
+x(140:190) = [50:-1:0]/50;
+x(230:261) = [1];
 
 % x = x+(t/1000);
 
@@ -106,24 +106,25 @@ xlim([1 x_lim])
 
 %% Plot 
 fig = figure(1);
+% figure(1);
 ax1 =  subplot(2,1,1);
 
 plot(t, x, 'k-'); hold on;
 
-plot(t, dsVhdl{1}, 'g.');
-plot(t, dsExtended{1}, 'g-');
+plot(t, dsVhdl{1}, 'g.', 'MarkerSize',10);
+plot(t, dsExtended{1}, 'g-', 'MarkerSize',10);
 
-plot(t, dsVhdl{2}, 'b.');
-plot(t, dsExtended{2}, 'b-');
+plot(t, dsVhdl{2}, 'b.', 'MarkerSize',10);
+plot(t, dsExtended{2}, 'b-', 'MarkerSize',10);
 
-plot(t, dsVhdl{3}, 'r.');
-plot(t, dsExtended{3}, 'r-');
+plot(t, dsVhdl{3}, 'r.', 'MarkerSize',10);
+plot(t, dsExtended{3}, 'r-', 'MarkerSize',10);
 
-plot(t, dsVhdl{4}, 'c.');
-plot(t, dsExtended{4}, 'c-');
+plot(t, dsVhdl{4}, 'c.', 'MarkerSize',10);
+plot(t, dsExtended{4}, 'c-', 'MarkerSize',10);
 
-plot(t, sVhdl, 'm.');
-plot(t, sExtended, 'm-'); hold off;
+plot(t, sVhdl, 'm.', 'MarkerSize',10);
+plot(t, sExtended, 'm-', 'MarkerSize',10); hold off;
 
 legend({'x', 'd0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's', 'sVhdl'})
 title('Coefficients')
@@ -199,24 +200,25 @@ sExtended = delayRep( s , 2^i, 9+(2^4)-i, L);
 
 %% Plot 
 fig = figure(3);
+% figure(3);
 ax1 = subplot(2,1,1);
 
 plot(t, x, 'k-'); hold on;
 
-plot(t, dsVhdlDelayed{1}, 'g.');
-plot(t, dsExtended{1}, 'g-');
+plot(t, dsVhdlDelayed{1}, 'g.', 'MarkerSize',10);
+plot(t, dsExtended{1}, 'g-', 'MarkerSize',10);
 
-plot(t, dsVhdlDelayed{2}, 'b.');
-plot(t, dsExtended{2}, 'b-');
+plot(t, dsVhdlDelayed{2}, 'b.', 'MarkerSize',10);
+plot(t, dsExtended{2}, 'b-', 'MarkerSize',10);
 
-plot(t, dsVhdlDelayed{3}, 'r.');
-plot(t, dsExtended{3}, 'r-');
+plot(t, dsVhdlDelayed{3}, 'r.', 'MarkerSize',10);
+plot(t, dsExtended{3}, 'r-', 'MarkerSize',10);
 
-plot(t, dsVhdlDelayed{4}, 'c.');
-plot(t, dsExtended{4}, 'c-');
+plot(t, dsVhdlDelayed{4}, 'c.', 'MarkerSize',10);
+plot(t, dsExtended{4}, 'c-', 'MarkerSize',10);
 
-plot(t, sVhdlDelayed, 'm.');
-plot(t, sExtended, 'm-'); hold off;
+plot(t, sVhdlDelayed, 'm.', 'MarkerSize',10);
+plot(t, sExtended, 'm-', 'MarkerSize',10); hold off;
 
 legend({'x' 'd0 Vhdl', 'd0', 'd1Vhdl', 'd1', 'd2Vhdl', 'd2', 'd3Vhdl', 'd3', 's', 'sVhdl'})
 title('Coefficients delayed')
@@ -242,11 +244,12 @@ saveFig(fig, "coefs_delayed")
 
 %% Plot 
 fig = figure(4);
+% figure(4);
 
-plot(t, x, 'k-'); hold on;
+plot(t, x, 'k-', 'MarkerSize',10); hold on;
 
-plot(t, yVhdl, 'm.');
-plot(t, yExtended, 'm-'); hold off;
+plot(t, yVhdl, 'm.', 'MarkerSize',10);
+plot(t, yExtended, 'm-', 'MarkerSize',10); hold off;
 
 legend({'x',  'yVhdl', 'y'})
 xlim([0 x_lim])

@@ -1,32 +1,38 @@
 
+In diesem Abschnitt wird die stetige und diskrete Wavelet-Transformation betrachtet. Dabei soll ein Überblick über von Vor- und Nachteile der Wavelet-Transformation zu Frequenz-Zeit-Spektrum analyse geschaffen werden. 
+
+
+
 \subsection{Stetige Wavelet-Transformation} 
-Im Kapitel \ref{chapter:cwt} wurde die Theorie der Stetigen Wavelet-Transformation behandelt. In dieser Theorie haben wir gesehen das wir mit der Stetigen Wavelet-Transformation ein Zeit-Frequenz Analyse machen kann und gut interpretierbare Egebnisse erhält. Der Nachteil bei der cwt ist jedoch die grosse redundanz. Diese redundanz spiegelt sich in der Analysedauer wieder. Welsche schon bei simplen Datensätzen mehrere Sekunden dauern kann. Weshalb sie für eine realtime Applikation nicht geeignet ist.\\
-Um dennoch die zu zeigen welche vorteile eine cwt bringen kann wurde noch einmal der Frequenzsweep \ref{fig:stftsig} mit einem Komplexen Gauss Wavelet Analysiert. Das komplexe Gauss-Wavelet ist wie folgt definiert:
+In Kapitel \ref{chapter:cwt} wurde die Theorie der stetigen Wavelet-Transformation, auch cwt genannt, behandelt. In dieser Theorie haben wir gesehen, dass wir mit der stetigen Wavelet-Transformation eine Zeit-Frequenz-Analyse machen können, welche uns gut interpretierbare Egebnisse liefert. Der Nachteil bei der cwt ist jedoch die grosse Redundanz. Diese Redundanz spiegelt sich in der Analysedauer wieder, welche schon bei simplen Datensätzen mehrere Sekunden dauern kann, weshalb die cwt für eine realtime Applikation nicht geeignet ist.\\
+Um dennoch zu zeigen welche Vorteile eine cwt bringen kann, wurde noch einmal der Frequenzsweep \ref{fig:stftsig} mit einem komplexen Gauss Wavelet analysiert. Das komplexe Gauss-Wavelet ist wie folgt definiert:
 \begin{equation}
-\psi(t)=C \exp ^{-\mathrm{j} t} \exp ^{-t^{2}}
+\psi(t)=C \cdot e^{-it} e^{-t^{2}}
+\label{eq:cgau}
 \end{equation}
-Wobei $C$ eine Konstante ist. Das Komplexe Gauss Wavelet wird in der folgenden Analyse in der achten Ableitung verwendet. In der Python Library wird dies cgauN benennt wobei N für die häufigkeit der Ableitungen der Wavletfunktion steht.\\
+Bei $C$ handelt es sich um eine Konstante. Das Wavelet wurde in der folgenden Analyse in der achten Ableitung verwendet. In der Python Library wird dies mit $\texttt{cgau}N$ benannt. \text{N} steht dabei für die Häufigkeit der Ableitungen der Waveletfunktion.\\
 
-Die Analyse wurde mit der Python Library pywt durchgeführt welche schon eine komplette cwt-Funktion bereitstellt. In der folgenden Abbildung \ref{fig:python-cwt} ist der wesentliche Ausschnitt aus dem Python Code dargestellt mit dem die cwt Analyse jeweils erstellt wurde. Da es sich um ein komplexes Wavelet handelt, wurde zur besseren veranschaulichung, die Absolutwerte der Analyse zur illustration verwendet.\\
+Alle Wavelet-Transformationen wurden mit der Python Library pywt \cite{Lee2019PyWavelets} durchgeführt. Pywt stellt schon eine cwt- und viele weitere Waveletfunktionen bereit. In der folgenden Abbildung \ref{fig:python-cwt} ist ein wesentlicher Ausschnitt aus dem Python Code dargestellt, mit dessen Hilfe die cwt jeweils erstellt wurde. Da es sich um ein komplexes Wavelet handelt, wurden zur besseren Illustration der Resultate die Absolutwerte der Transformation verwendet.\\
 
-\begin{figure}
+\begin{figure}[!ht]
 	\centering
 	\lstinputlisting[language=Python,firstline=9,lastline=26,numbers=left,style = Python]{papers/autotune/sections/frequenzanalyse/code/cwt.py}
 	\caption{Python cwt Beispiel}
 	\label{fig:python-cwt}
 \end{figure}
 
-Das Ergebnis der cwt ist in der Grafik \ref{fig:STFTCWT} ersichtlich. Dabei stehen sich eine STFT und cwt gegenüber. Dringend ist zu betrachten, dass dieser Vergleich auf keinsterweise eine allgemeingültige Aussage über diese zwei Arten der Zeit-Frequenz Analyse sein soll. Sondern mehr eine gegenüberstellung zur betrachtung von unterschieden. 
+Das Ergebnis der cwt, die auf $x_{\text{sweep}}(t)$\ref{fig:stft-sig} angewendet wurde, ist in der Grafik \ref{fig:cwt-sweep} ersichtlich. Dabei stehen sich eine STFT \ref{fig:stft-4096} und cwt\ref{fig:cwt-sweep} gegenüber. Dringend ist zu beachten, dass dieser Vergleich in der Grafik \ref{fig:STFTCWT} in keinster Weise eine allgemeingültige Aussage über diese zwei Arten der Zeit-Frequenz-Analyse sein soll, sondern mehr eine Gegenüberstellung zur Betrachtung von Unterschieden. \\
+
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\linewidth]{papers/autotune/sections/fft/signal.jpg}
-	\captionof{figure}{Sweep Signal 0-400$Hz$}\label{fig:stftsig}
+	\captionof{figure}{Sweep Signal 0-400\text{[Hz]}}\label{fig:stft-sig}
 	\begin{tabularx}{\columnwidth}{XX}
 		\includegraphics[width=\linewidth]{papers/autotune/sections/fft/stft4096.jpg}
-		\captionof{figure}{STFT Blackman mit 4096 Sample Fenster}\label{fig:stft256}
+		\captionof{figure}{STFT Blackman mit 4096 Sample Fenster}\label{fig:stft-4096}
 		&   \includegraphics[width=1.24\linewidth]{papers/autotune/sections/frequenzanalyse/images/sinsweep.jpg}   
-		\captionof{figure}{Dauberchi 8 Cwt Analyse des Frequensweeps}\label{fig:cwtsweep}         
+		\captionof{figure}{Komplex Gauss 8 \ref{eq:cgau} Cwt Analyse des Frequensweeps}\label{fig:cwt-sweep}         
 	\end{tabularx}
 	\caption{figure}{Vergleich zwischen STFT und der CWT}
 	\label{fig:STFTCWT}
@@ -34,7 +40,9 @@ Das Ergebnis der cwt ist in der Grafik \ref{fig:STFTCWT} ersichtlich. Dabei steh
 
 
 \subsection{Diskrete Wavelet-Transformation}
-Die diskrete Analyse ... hier noch eine gute einleitung
+ Um eine diskrete Wavelet-Transformation über mehrere Skalen zu berechnen, bietet sich der schnelle Multiskalenanalyse-Algorithmus an. Dieser wurde genauer im Kapitel \ref{chapter:msa} behandelt. In den folgenden Teilen dieser Arbeit wurde vermehrt mit der Multiskalenanalyse gearbeitet. Für Berechnungen wurde erneut die Python pywt Library verwendet. Für die Multiskalenanalyse wurde dabei immer die Funktion \text{wavedec()} verwendet. Für die Auswertungen der Analyse ist jedoch die Erkenntnis ausschlaggebend, dass nur Frequenzen verwendet werden die das $2^n$-fache einer Grundfrequenz sind. Die Analyse kann also nur Oktaven unterscheiden. Dabei sind Töne einer Tonleiter im Frequenzverhältnis von $\sqrt[12]{2}$. Wir können also mit einer normalen Multiskalenanalyse nicht einzelne Töne eines Signales unterscheiden. Dennoch können wir gewisse Vorteile nutzen, wie z.B. das automatische Fenstern einer Multiskalenanalyse, wobei die Mutiskalenanalyse eine $2^n$-fache Fensterungseigenschaft besitzt. In der folgenden Grafik\ref{fig:faauf} ist die Zeit-Frequenz-Fensterung der Multiskalenanalyse neben der STFT Fensterung aufgezeigt.  \\
+ 
+
 
 \begin{figure}[!ht]
 	\centering
@@ -98,23 +106,25 @@ Die diskrete Analyse ... hier noch eine gute einleitung
 		\draw[thick] (13,-5)--(13,0);
 		\end{tikzpicture}
 	}
-	\caption{Multiskalenanalyse Auflösung im Vergleich zu STFT Analyse}\label{fig:faauf}
+	\caption{Multiskalenanalyse-Fensterung im Vergleich zu STFT-Fensterung}\label{fig:faauf}
 	
 \end{figure}
 
-Wie man in der Abbildung \ref{fig:faauf} erkennt übernimmt einem die Multiskalenanalyse das Fenstern. Dabei geht die Wavelet-Transformation einen Kompromiss ein. Im oberen bereich bei den schnelleren Frequenzen sieht man den Zeitpunkt sehr genau. Die tiefen Frequenzen werden dabei wie bei einem Hochpass weggefiltert. In den tieferen Levels sieht man aber trozdem noch die Tiefen Frequenzen. Jedoch sind diese nicht mehr sehr genau auf dem Zeitstrahl abgebildet. Gerade bei der Multiskalenanalyse können durch tiefe Frequenzen an den Rändern oder Sprüngen eines Signales Artifkten enstehen. In der Grafik \ref{fig:faauf} können die beiden Darstellungen der Zeit-Frequenzaufteilung von der STFT und Diskreten Wavelet-Transformation nicht direkt miteinander verglichen werden sondern dienen zur Sinnbildlichen darstellung in dessen Aufteilung\\
+Wie man in der Abbildung \ref{fig:faauf} erkennt, übernimmt die Multiskalenanalyse, folgend auch msa abgekürzt, das Fenstern. Dabei geht die Wavelet-Transformation einen Kompromiss ein. Im oberen Bereich, wo die höheren Frequenzen liegen, sieht man den Zeitpunkt sehr genau. Die tieferen Frequenzen werden dabei wie bei einem Hochpass weggefiltert. In den tieferen Levels erkennt man die tiefen Frequenzen, jedoch sind diese nicht mehr sehr genau auf dem Zeitstrahl abgebildet. Gerade bei der Multiskalenanalyse können durch tiefe Frequenzen an den Rändern oder bei den Unstetigkeiten eines Signales, Artefakten enstehen. In der Grafik \ref{fig:faauf} können die beiden Darstellungen der Zeit-Frequenzaufteilung von der STFT und Multiskalenanalyse nicht direkt miteinander verglichen werden. Die Grafiken sind dafür nicht richtig skaliert. Sie dienen lediglich zur sinnbildlichen Darstellung in dessen Aufteilung.\\
 
-Um dies zu verdeutlichen wird eine  Multiskalenanalyse des gleichen Sinussweepes gemacht wie in der Grafik \ref{fig:STFT} und gleich mit der STFT verglichen.
-Die msa wird mit dem Dauberchie 8 Wavelet durchgeführt welches auch in der folgenden Tabelle \ref{tab:Dauberchies} über die Dauberchies Familie zu finden ist. Die diskrete Analyse kann nicht mit dem gleichen Wavelet durchgeführt werden da in der Python pywt Library die Stetigen und Diskreten Wavelets getrennt sind und es keine Überlappungen gibt. \\
-In dieser Tabelle \ref{tab:Dauberchies} werden vier verschiedene Dauberchies Wavelets in verschiedner Auflösung dargestellt. Aus der Tabelle sind die Numerisch berechneten Vater und Mutter Wavelets der Dauberchien Reihe. Auch wird gut ersichtlich das die höheren Dauberchiesfunktionen mehr Samples brauchen um korrekt dargestelltzu werden.Zur berechnung der Koeffizienten wird auf das Kapitel \ref{chapter:daubechies} verwiesen.\\
+Um die $2^{n}$-fache Fensterung zu verdeutlichen, wird eine  Multiskalenanalyse des weiter oben verwendeten Sinussweeps \ref{fig:STFT} gemacht und gleich mit der STFT verglichen.
+Die msa wird mit einem Daubechies 8 Wavelet durchgeführt. Die verwendete Daubechies-Familie ist in der folgenden Tabelle \ref{tab:Daubechies} zu finden. Eine Multiskalenanalyse kann nicht mit dem gleichen Wavelet durchgeführt werden wie die cwt. Der Grund dafür ist, dass in der Python pywt Library die stetigen und diskreten Wavelets getrennt sind und es keine Überlappungen gibt. \\
+In dieser Tabelle \ref{tab:Daubechies} werden vier verschiedene Daubechies Wavelets, in verschiedener Auflösung, dargestellt. Dabei handelt es sich um die numerisch berechneten Vater und Mutter Wavelets. Auch wird gut ersichtlich, dass die höheren Daubechiesfunktionen mehr Samples brauchen um korrekt dargestellt zu werden. Zur Berechnung der Koeffizienten wird auf das Kapitel \ref{section:daubechies} verwiesen.\\
 
-\begin{table}
-	\includegraphics[width=\linewidth]{papers/autotune/sections/frequenzanalyse/images/DauberchiesFamilie.pdf}
-	\caption{Eine kleine Auswahl aus der Dauberchies Familie}
-	\label{tab:Dauberchies}
+
+\begin{table}[!ht]
+	\includegraphics[width=\linewidth]{papers/autotune/sections/frequenzanalyse/images/DaubechiesFamilie.pdf}
+	\caption{Eine kleine Auswahl aus der Daubechies Familie}
+	\label{tab:Daubechies}
 \end{table}
 
-Das Ergebnis der Diskreten Wavelet-Tranformation ist in der Grafik \ref{fig:sin-sweep} wiedergegeben. Man sieht eine klare verschlechterung der Ergebnisse im vergleich mit der cwt Analyse aus \ref{fig:STFTCWT} im Frequenzbereich. Man erkennt nur die jeweiligen Oktaven die in der Zeit dargestellt werden. Für eine genauere Analyse sind diese ergebnisse jedoch unbrauchbar.  
+Das Ergebnis der Multiskalenanalyse ist in der Grafik \ref{fig:sin-sweep} wiedergegeben. Im Frequenzbereich sieht man eine klare Verschlechterung im Vergleich zur cwt Analyse  \ref{fig:STFTCWT}. Nur die jeweiligen Oktaven sind erkennbar. Für eine genauere Frequenz-Analyse sind diese Ergebnisse jedoch unbrauchbar.  
+
 
 \begin{figure}[!ht]
 	\centering
@@ -123,5 +133,5 @@ Das Ergebnis der Diskreten Wavelet-Tranformation ist in der Grafik \ref{fig:sin-
 \end{figure}%
 
 
-\newpage
+
 

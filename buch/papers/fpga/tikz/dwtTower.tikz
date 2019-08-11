@@ -1,18 +1,20 @@
 \usetikzlibrary{automata,arrows,positioning,calc}
 
-\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 0.8]
 
-%\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-8) grid (15,1);
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 0.85]
 
 %\useasboundingbox (0,-0.5) rectangle (12.5,1.5);
 
-%\tikzset{every node/.style={scale=0.7}}
+\tikzstyle{every state}=[fill=white,draw=black,thick,text=black,scale=1]
+\tikzstyle{block}=[rectangle, inner sep=10pt, fill=white,draw=black,thick,text=black,scale=1]
+\tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm,scale=1]
+\tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black,scale=1]
+\tikzstyle{dots}=[fill=white,thick,text=black,scale=1]
 
-\tikzstyle{every state}=[fill=white,draw=black,thick,text=black,scale=0.8]
-\tikzstyle{block}=[rectangle, inner sep=10pt, fill=white,draw=black,thick,text=black,scale=0.8]
-\tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm,scale=0.8]
-\tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black,scale=0.8]
-\tikzstyle{dots}=[fill=white,thick,text=black,scale=0.8]
+\tikzset{every node/.style={scale=0.85}}
+\tikzset{every coordinate/.style={scale=0.85}}
+
+%\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-8) grid (15,1);
 
 \node[dots] (a0) at (0,0) {$x_* = a_{0,*}$};
 
@@ -36,9 +38,6 @@
 
 \node[square] (i1) [above of=ia2] {iDWT};
 \node[dots]   (ia1) [right of=i1, node distance=1.75cm] {$a_{-0,*} = y_*$};
-
-
-
 
 \draw[->] (a0) -- (s1);
 \draw[-] (s1) -- (a1);
@@ -64,75 +63,5 @@
 \draw[->] (ia2) -- (i1);
 \draw[->] (b1) -- (i1);
 \draw[->] (i1) -- (ia1);
-
-
-
-%
-%\node[round] (d1) [right of=h1] {$\downarrow 2$};
-%\node[round] (d2) [right of=h2] {$\downarrow 2$};
-%
-%\node[dots] (dots1) [right of=d1] {$a_{j,k} \- \text{(LP)}$};
-%\node[dots] (dots2) [right of=d2] {$b_{j,k} \- \text{(HP)}$};
-%
-%\node[round] (u1) [right of=dots1] {$\uparrow 2$};
-%\node[round] (u2) [right of=dots2] {$\uparrow 2$};
-%
-%\node[block] (hh1) [right of=u1] {$ h(z)$};
-%\node[block] (hh2) [right of=u2] {$ g(z)$};
-%
-%\node[round] (combine) at (15,0) {$+$};
-%
-%\node[dots, right of=combine, node distance=1cm] (end) {$a_{j+1,k}$} ;
-
-%\node[state]  (w1)          {$\omega_1$};
-%
-%\node[state]  (w0)    [left of=w1]                   {$\omega_0$};
-%
-%\node[state]  (w2)    [right of=w1]      {$\omega_2$};
-%\node[dots]   (dotss) [right of=w2]      {...};
-%\node[state]  (w5)    [right of=dotss]   {$\omega_5$};
-%\node[state]  (w6)    [right of=w5]      {$\omega_6$};
-%
-
-c
-
-%\draw[->] (split) |- node {}(h1);
-%\draw[->] (split) |- node {}(h2);
-%
-%\draw[->] (h1) -- node {}(d1);
-%\draw[->] (h2) -- node {}(d2);
-%
-%\draw[->] (d1) -- node {}(dots1);
-%\draw[->] (d2) -- node {}(dots2);
-%
-%\draw[->] (dots1) -- node {}(u1);
-%\draw[->] (dots2) -- node {}(u2);
-%
-%\draw[->] (u1) -- node {}(hh1);
-%\draw[->] (u2) -- node {}(hh2);
-%
-%\draw[->] (hh1) -| node {}(combine);
-%\draw[->] (hh2) -| node {}(combine);
-%
-%\draw[->] (combine) -- node {}(end);
-
-%\path
-%(start) edge[]       (split)
-%     
-%(split) edge[]     (w1);
-%     
-%(w1) edge[loop above]    node{$A_{1,1}$}     (w1)
-%     edge[bend left]     node{$A_{1,2}$}     (w2)
-%     
-%(w2) edge[loop above]    node{$A_{2,2}$}     (w2)
-%     edge[bend left]     node{$A_{2,3}$}     (dotss)
-%
-%(dotss) edge[bend left]    node{$A_{4,5}$}     (w5)
-%     
-%(w5) edge[loop above]    node{$A_{5,5}$}     (w5)
-%     edge[bend left]     node{$A_{5,6}$}     (w6)
-%     
-%(w6) edge[loop above]    node{$A_{6,6}$}     (w6);
-
 
 \end{tikzpicture}
