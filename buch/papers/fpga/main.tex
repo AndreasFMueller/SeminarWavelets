@@ -14,12 +14,12 @@
 \section{Introduction}
 \rhead{Introduction}
 
-VHDL, an acronym for Very High Speed Integrated Circuit Hardware Description Language is commonly used to implement fast, application-specific logic for an FPGA or custom silicon chip.
+VHDL, an acronym for Very High Speed Integrated Circuit Hardware Description Language, is commonly used to implement fast, application-specific logic for an FPGA or custom silicon chip.
 As every other programming language, VHDL relies heavily on reuse of code.
-Blocks of contained code can be stored as a semiconductor intellectual property core (IP core) and reused for further applications.
+Blocks of encapsulated code can be stored as a semiconductor intellectual property core (IP core) and reused for further applications.
 A often used IP core is the Fast Fourier Transform (FFT), which is available online for free.
-Discrete wavelet transforms (DWT), however are not that common.
-Therefore, we have committed ourselfs to implement a wavelet transform as a hardware block in VHDL.
+Discrete wavelet transforms (DWT), however, are not that common.
+Therefore, we have committed ourselfs to implementing a wavelet transform as a hardware block in VHDL.
 
 A hardware implementation of a wavelet transform has many advantages over a software implementation.
 First, chained arithmetic operations in hardware can be executed much faster than in software.
@@ -29,24 +29,24 @@ Secondly, if stream based processing is implemented, which continuously processe
 This property makes hardware superior for real time applications.
 
 In the first part, this work covers the theory of an efficient algorithm for the discrete wavelet transform.
-Then, a implementation of this algorithm in VHDL is presented.
+Then, an implementation of this algorithm in VHDL is presented.
 
 \section{Discrete Wavelet Transform}
 \rhead{Discrete Wavelet Transform}
 
-The DTW is covered in detail in chapter \ref{section:schnelle-synthese} of the script.
+The DTW is covered in detail in chapter \ref{section:schnelle-synthese} of part 1.
 This section provides a short summary, as well as some additions, notably the lifting scheme.
 
 The discrete wavelet transform is defined by a pair of formulas to calculate the wavelet coefficients $\bm a$ and $\bm b$.
 $a_{j,k}$ and $b_{j,k}$ represent the coefficients in layer $j$ at the discrete time step $k$.
 The formula to calculate the forward DWT is
 \begin{align}
-a_{j,k} = \sum_{l} \bar{h}_l a_{j+1,l+2k}
+a_{j,k} &= \sum_{l} \bar{h}_l a_{j+1,l+2k}
 \\
-b_{j,k} = \sum_{l} \bar{g}_l a_{j+1,l+2k} .
+b_{j,k} &= \sum_{l} \bar{g}_l a_{j+1,l+2k} .
 \end{align}
 This calculation uses the father and mother wavelet coefficients $\bm{\bar h}$ and $\bm{\bar g}$, which are given by the chosen wavelet.
-The inverse transform has been derived in the script as well: 
+The inverse transform has been derived in the part 1 as well: 
 \begin{align}
 a_{j+1,k} =
 \sum_{l\in\mathbb Z}
@@ -63,7 +63,7 @@ The $z$-transform of a FIR (finite impulse response) filter $h$ is a Laurent pol
 h(z) = \sum_{k} h_k z^{-k}
 \end{equation}
 A convolution is equal to a multiplication in the $z$-domain.
-Thus, the formulas from the script can be rewritten in the $z$-transform notation.
+Thus, the formulas from part 1 can be rewritten in the $z$-transform notation.
 The forward transform becomes
 \begin{align}
 \quad a_{j,k}(z) &= \bar h(z^{-1}) a_{j+1,2k}(z) 
@@ -138,15 +138,14 @@ This yields the even and odd components:
 	\\
 	h_o(z) &= \sum_{n=-\infty}^{\infty} h_{2n+1} z^{-n}.
 \end{align}
-These coefficients are then placed together with the $g(z)$ components in the polyphase matrix.
+These coefficients are then placed together with the $g(z)$ components in the polyphase matrix
 \begin{equation}
 	\bm P(z) = 
 	\begin{bmatrix}
 	h_e(z) & g_e(z) \\
 	h_o(z) & g_o(z)
-	\end{bmatrix}
+	\end{bmatrix}.
 \end{equation}
-
 Using the polyphase decomposition the DWT algorithm is
 \begin{align}
 \begin{bmatrix}
@@ -172,8 +171,8 @@ Using the polyphase decomposition the DWT algorithm is
 \end{bmatrix}
 ,
 \end{align}
-where $x$ is the input of the forward DFT and $y$ is the reconstructed output of the inverse DFT.
-The DFT using polyphase implementation is depicted graphically in figure \ref{fpga:fig:liftingSteps}.
+where $x$ is the input of the forward DWT and $y$ is the reconstructed output of the inverse DWT.
+The DWT using polyphase implementation is depicted graphically in figure \ref{fpga:fig:liftingSteps}.
 \begin{figure}
 	\centering
 	\input{papers/fpga/tikz/liftingStep.tikz}
@@ -186,7 +185,7 @@ The DFT using polyphase implementation is depicted graphically in figure \ref{fp
 
 The core idea of the polyphase decomposition is the possibility of factorizing the $\bm P$ matrix.
 Daubechies et al. prove that this is possible for an arbitrary complementary matrix $\bm P$ if composed only of Laurent polynomials.
-The factorization algorithm is not explained in this work, since the required theory exceeds the theory covered in the script.
+The factorization algorithm is not explained in this work, since the required theory exceeds what is covered in part 1.
 However, it results in the form
 \begin{align}
 	\bm{\bar P}(z) &=
@@ -226,11 +225,12 @@ However, it results in the form
 \end{align}
 The factorized matrices consist of $1$ in the diagonal and one single factor in the upper right or lower left corner.
 A matrix of this structure only uses one multiplication and one addition to implement, which results in sort of a ladder structure.
+Figure \ref{fpga:fig:liftingStepFactorization} shows a graphical version of the factorized DWT.
 The implementation uses only $2(i+1)$ multiplications and $2i$ additions.
 Hence, it is two times more efficient than the convolutional DWT.
-Figure \ref{fpga:fig:liftingStepFactorization} shows a graphical version of the factorized DWT.
 \begin{figure}
 	\centering
+	%\includeagraphics[width=\hsize]{papers/fpga/tikz/liftingStepFactorization.tikz}
 	\input{papers/fpga/tikz/liftingStepFactorization.tikz}
 	\input{papers/fpga/tikz/liftingStepFactorizationInv.tikz}
 	\caption{DWT signal flow graph with factorized filter functions (lifting steps)}
@@ -319,7 +319,7 @@ Figure \ref{fpga:fig:liftingStepHaar} shows both transforms graphically.
 The VHDL implementation adds some complexity to the mathematical representation of the algorithm.
 A physical implementation allows only causal filters.
 In other words, a filter may only use information of the past and not the future.
-These are recognizable by containing solely negative exponentials of $z$.
+These are recognizable by containing solely negative powers of $z$.
 All non-causal filters must be delayed, in order to get causal.
 Notably, the polyphase decomposition of the forward wavelet transform is non-causal and must be delayed by one sample.
 
@@ -327,19 +327,19 @@ Notably, the polyphase decomposition of the forward wavelet transform is non-cau
 
 When implementing an algorithm in hardware, a lot of design considerations must be made in advance.
 The hardware architecture is very dependent of the application.
-A hardware block can be optimized for various points, such as high accuracy, low latency, high data rate, low area and low power consumption.
+A hardware block can be optimized for various goals, such as high accuracy, low latency, high data rate, low area and low power consumption.
 Since this work is not based on a defined objective, we must come up with our own design specifications.
 
 In most cases which do not require low latency and high data rates, a digital signal processor would be a better choice than a custom VHDL-implemented hardware.
-A sequential processor unit is computationally very efficient and requires almost no area compared to most VHDL solutions.
+A sequential processor unit is computationally very efficient and requires almost no chip area compared to most VHDL solutions.
 However, it features a significantly higher latency, which is a major drawback.
 Hence, the VHDL implementation should feature low latency and high data rate as its main objectives in order to provide a solution which is useful as a hardware implementation.
 The application should make use of one of the biggest advantages of custom hardware, which is parallelism.
 Performing calculations in parallel leads to higher throughput and allows data rates which are as fast as the clock speed of the logic.
 The strengths of the chosen implementation are thus high speed and low latency processing suitable for real-time applications.
 
-The main priority is to implement the Haar wavelet.
-A optional goal is the implementation of a higher order wavelet, such as the orthogonal Daubechies-4 wavelet.
+Implementing the Haar wavelet has been the main priority.
+A optional goal has been the implementation of a higher order wavelet, such as the orthogonal Daubechies-4 wavelet.
 The implementation should be as generic as possible, in order to allow customization.
 
 \subsection{Idea}
@@ -376,11 +376,11 @@ Figure \ref{fpga:fig:mainDelay} depicts an overview of the forward and inverse b
 	\caption{Complete architecture \label{fpga:fig:mainDelay}}
 \end{figure}
 In this formation the input \texttt{x} is converted into wavelet coefficients and subsequently reconstructed to the output \texttt{y}.
-Thanks to lossless reconstruction, \texttt{y} is equal to \texttt{x} if delayed with the latency of the blocks, considering numerical accuracy.
+Thanks to lossless reconstruction, \texttt{y} is equal to \texttt{x} if delayed with the latency of the blocks, within numerical accuracy.
 
 \subsubsection{Wavelet transform}
 
-The transformation block \texttt{haar} implements the algorithm needed for the Haar DFT.
+The transformation block \texttt{haar} implements the algorithm needed for the Haar DWT.
 So far, only the Haar wavelet has been implemented.
 Yet, the outline stays the same for every other discrete wavelet and allows a later implementation of more wavelets.
 Figure \ref{fpga:fig:haar} shows the interface of the \texttt{haar} and \texttt{inv\_haar} block.
@@ -412,11 +412,11 @@ However, the output of the forward transform and the input of the inverse transf
 A direct connection of the two blocks shifts the coefficients out of phase, which results in a faulty interpretation of the signals.
 This behavior is mostly due to the exponentially growing delay caused by the causal implementation of the polyphase decomposition.
 In order to make the blocks connectable, a delay block must be inserted in between of the two blocks.
-Figure \ref{fpga:fig:delay} compares the ready signals of the forward DFT output coefficients and the inverse DFT input coefficients.
+Figure \ref{fpga:fig:delay} compares the ready signals of the forward DWT output coefficients and the inverse DWT input coefficients.
 Clearly, they are not in sync.
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{papers/fpga/images/delay.pdf}
+	\includegraphics[width=\hsize]{papers/fpga/images/delay.pdf}
 	\caption{
 		Shift between the ready signals of the forward and inverse branching blocks.
 	}
@@ -438,8 +438,11 @@ The test setup is shown in figure \ref{fpga:fig:testing}.
 	\caption{Testing Workflow \label{fpga:fig:testing}}
 \end{figure}
 If no mistakes are present, the output should resemble the input, delayed by the latency of the whole pipeline.
-The Vivado toolchain from Xilinx has been used to simulate the VHDL modules.
-The wavelet transforms have also been implemented numerically identical in MATLAB in order to provide a direct comparison. 
+The Vivado toolchain by Xilinx has been used to simulate the VHDL modules.
+The wavelet transforms have also been implemented using integer numbers in MATLAB in order to provide a direct comparison.
+An important point is to round towards negative infinity when performing divisions.
+This leads to divisions which are numerically identical to integer divisions in hardware.
+In MATLAB, this is accomplished with the function \texttt{idivide(x, 'floor')} instead of using the normal division operator (\texttt{/}).
 A set of helper modules have been implemented in VHDL 2008, which are able to read and write test vectors and results from or to a file.
 These modules provide an easy way to inject test data from the MATLAB enviroment.
 After the VHDL simulation finishes, the results are again fed into MATLAB for validation.
@@ -470,8 +473,8 @@ Figure \ref{fpga:fig:coeff_delayed} shows the coefficients and ready signals aft
 	\includegraphics[width=\textwidth]{papers/fpga/images/coefs_delayed_with_step.pdf}
 	\caption{Coefficients and ready signals after delaying \label{fpga:fig:coeff_delayed}}
 \end{figure}
-As visible, the coefficients are aligned with a separation of one clock cycle. 
-The coefficients for the high frequencies have been delayed long whereas the slow frequencies have been delayed only for a short time. 
+The coefficients are aligned with a separation of one clock cycle. 
+The coefficients for the high frequencies have been delayed more whereas the slow frequencies have been delayed only for a short time. 
 In this form, the coefficients can be transformed back to the original signal. 
 This is also illustrated in the ready signals.
 
@@ -484,10 +487,11 @@ Figure \ref{fpga:fig:output} shows the final output of the whole pipeline compar
 As expected, the input and output signals are the same when delayed by the processing time of the system.
 The pink line is the result of the MATLAB simulation and the pink dots are the results of the Vivado hardware simulation. 
 
-An also interesting view shows the VHDL simulation graph of Vivado, as depicted in figure \ref{fpga:fig:sim}.
+Another interesting insight of the process gives the VHDL simulation graph of Vivado.
+Figure \ref{fpga:fig:sim} depicts the signals of the inverse DWT block (\texttt{inv\_branching}).
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{papers/fpga/images/inv_branching_screenshot.PNG}
+	\includegraphics[width=\textwidth]{papers/fpga/images/inv_branching_screenshot.PNG}
 	\caption{VHDL simulation view of \texttt{inv\_branching} \label{fpga:fig:sim}}
 \end{figure}
 The simulation shows the delayed coefficients, as well as the ready signals, as they are reassembled in the inverse DWT (\texttt{inv\_branching}).
