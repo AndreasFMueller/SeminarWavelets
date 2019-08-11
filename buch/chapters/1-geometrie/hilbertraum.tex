@@ -62,7 +62,8 @@ dargestellt werden kann.
 Dies ermöglicht, einen Vektor als Linearform zu charakterisieren.
 In einem unendlichdimensionalen Vektorraum ist dies nicht mehr
 selbstverständlich.
-Der Darstellungssatz von Riesz in Abschnitt~\ref{subsection:riesz}
+Der Darstellungssatz von Riesz auf Seite~\pageref{subsubsection:riesz}
+in Abschnitt~\ref{subsection:geometrie-hilbertraum}
 stellt dies in einem Hilbertraum jedoch sicher.
 \end{itemize}
 
@@ -75,8 +76,48 @@ der Skalare ein sogenannter Körper ist, wenn also die Addition
 und die Multiplikation mit von $0$ verschiedenen Skalaren umkehrbar sind.
 Dies trifft natürlich für komplexe Zahlen zu, aber auch für $\mathbb Q$.
 
+Im komplexen Vektorraum der komplexen Funktionen $C(\mathbb R,\mathbb C)$
+lässt sich die besondere Rolle der Funktionen $t\mapsto e^{i\omega t}$ 
+besser verstehen, auf denen die Fourier-Theorie basiert.
+
+\begin{satz}
+Die einzigen stetigen Funktionen, die Eigenvektoren von $T_b$ sind für
+jeden beliebigen Wert von $b$ sind die Funktionen $t\mapsto e^{i\omega t}$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $f$ eine Eigenfunktion aller Operatoren $T_b$ mit Eigenwert $\lambda(b)$.
+$f$ kann keine Nullstelle haben.
+Wäre nämlich $f(t_0)=0$, dann würde folgen
+\[
+(T_bf)(t_0) = f(t_0-b) = \lambda(b) f(t_0) = 0,
+\]
+die Funktion würde identisch verschwinden.
+
+Mit $\lambda(b)$ sind aber alle Funktionswerte festgelegt, denn es 
+gilt
+\[
+f(x) = f(0-(-x)) = T_{-x}f(0) = \lambda(-x) f(0).
+\]
+Die Funktion $\lambda$ ist bis auf eine Spiegelung eine Eigenfunktion.
+
+Weiter kann man aus der Regel $T_{a+b}=T_aT_b$ schliessen, dass
+\[
+\lambda(a+b) f
+=
+T_{a+b}f
+=
+T_aT_bf
+=
+\lambda(a)\lambda(b)f
+\]
+sein muss, also  $\lambda(a+b)=\lambda(a)\lambda(b)$.
+Die Exponentialfunktionen $t\mapsto e^{i\omega t}$ sind die einzigen
+Funktionen, die als Lösung für $\lambda$ in Frage kommen.
+\end{proof}
+
 Die Definition der Länge eines Vektors und des Skalarproduktes auf dem
-Vektorraum $\mathbb C^n$ erfordert aber etwas mehr Sorgfalt.
+Vektorraum $\mathbb C^n$ erfordert etwas zusätzliche Aufmerksamkeit.
 Die Quadratsumme der Komponenten funktioniert sicher nicht, da komplexe
 Zahlen negative Quadrate haben können.
 Die naheliegende Norm ist daher
@@ -92,7 +133,7 @@ Eine Möglichkeit ist
 \langle u,v\rangle = \sum_{k=1}^n u_k\bar{v}_k.
 \label{hilbert:skalaransatz}
 \end{equation}
-Die zugehörige Norm ist \eqref{buch:hilbert:norm1}.
+Die zugehörige Norm ist tatsächlich \eqref{buch:hilbert:norm1}.
 
 Allerdings ist diese Bildung nicht mehr linear im zweiten Faktor.
 Multipliziert man $v$ mit $\lambda$ erhält man
@@ -105,8 +146,11 @@ Multipliziert man $v$ mit $\lambda$ erhält man
 =
 \bar{\lambda}\langle u,v\rangle.
 \]
-Man sagt, $\langle\;,\;\rangle$ ist {\em konjugiert linear} im zweiten Argument.
-Im ersten Argument ist $\langle\;,\;\rangle$ aber immer noch linear.
+Man sagt, $\langle\;\,,\;\rangle$ ist {\em konjugiert linear} oder
+{\em sesquilinear} im zweiten Argument.
+\index{konjugiert linear}%
+\index{sesquilinear}%
+Im ersten Argument ist $\langle\;\,,\;\rangle$ aber immer noch linear.
 
 Die Konstruktion~\eqref{hilbert:skalaransatz} ist auch nicht mehr
 symmetrisch, vielmehr gilt:
@@ -121,9 +165,10 @@ symmetrisch, vielmehr gilt:
 \]
 Vertauschen der Faktoren führt zum konjugiert komplexen Wert des
 Skalarproduktes.
-Man nennt diese Symmetrieeigenschaft von $\langle\;,\;\rangle$
+Man nennt diese Symmetrieeigenschaft von $\langle\;\,,\;\rangle$
 {\em hermitesch}.
-Hermitesche Formen zeichnen sich dadurch aus, dass
+Hermitesche Formen ermöglichen wieder eine Skalarproduktdefinition.
+Das Skalarprodukt eines Vektors mit sich selbst ist nämlich
 \[
 \overline{\langle {\color{red}u},{\color{blue}u}\rangle}
 =
@@ -135,31 +180,36 @@ $\langle u,u\rangle\in\mathbb R$ ist.
 
 Dies führt uns auf die folgende Definition eines Skalarproduktes für einen
 komplexen Vektorraum.
+\index{Skalarprodukt, komplexes}%
+\index{komplexes Skalarprodukt}%
 \begin{definition}
 Eine Funktion
 \[
-\langle\;,\;\rangle
+\langle\;\,,\;\rangle
 \colon V\times V\to \mathbb C : (u,v) \mapsto \langle u,v\rangle
 \]
 heisst ein komplexes Skalarprodukt, wenn gilt:
 \begin{enumerate}
-\item $\langle \;,\;\rangle$ ist linear im ersten Argument.
-\item $\langle \;,\;\rangle$ ist konjugiert linear im zweiten Argument.
-\item $\langle\;,\;\rangle$ ist hermitesch,
+\item $\langle \;\,,\;\rangle$ ist linear im ersten Argument.
+\item $\langle \;\,,\;\rangle$ ist konjugiert linear im zweiten Argument.
+\item $\langle\;\,,\;\rangle$ ist hermitesch,
 d.~h.~$\langle u,v\rangle=\overline{\langle v,u\rangle}$.
-\item $\langle \;,\;\rangle$ ist positiv definit, d.~h.~es gilt
+\item $\langle \;\,,\;\rangle$ ist positiv definit, d.~h.~es gilt
 $\langle u,u\rangle \ge 0$ mit Gleichheit nur falls $u=0$.
 \end{enumerate}
 \end{definition}
 
 Die Herleitung der Cauchy-Schwarz-Ungleichung hat die Symmetrie
+\index{Cauchy-Schwarz-Ungleichung}%
 und die Bilinearität des Skalarproduktes verwendet, sie lässt sich
 also auf diese hermitesche Skalarprodukt nicht direkt übertragen.
+Wir rollen das Problem daher nochmals neu auf im Beweis des folgenden
+Satzes.
 
 \begin{satz}
 Sei $V$ ein komplexer Vektorraum mit komplexem Skalarprodukt
-$\langle\;,\;\rangle$,
-dann gilt
+$\langle\;\,,\;\rangle$,
+dann gilt die Cauchy-Schwarz-Ungleichung
 \[
 |\langle u,v\rangle| \le \|u\|\cdot \|v\|
 \]
@@ -207,7 +257,7 @@ Auch für ein komplexes Skalarprodukt gilt, dass die Werte der Norm
 das Skalarprodukt eindeutig bestimmen.
 Da die Norm jedoch immer reelle Werte annimmt, ist etwas mehr Arbeit
 erforderlich, um den Imaginärteil des Skalarproduktes wiederzugewinnen.
-Znächst rechnen wir wie im Fall des reellen Skalarproduktes
+Zunächst rechnen wir wie im Fall des reellen Skalarproduktes
 \begin{align*}
 \| u+v\|^2 
 &=
@@ -251,7 +301,7 @@ Um den Imaginärteil zu bekommen, multiplizieren wir $v$ mit $i$:
 \operatorname{Im}\langle u,v\rangle
 &=
 \frac12(
-\|u+iv\|^2- \|u\|^2 - \|v\|^2)
+\|u+iv\|^2- \|u\|^2 - \|v\|^2).
 \end{align*}
 Zusammengesetzt finden wir die Formel
 \begin{equation}
@@ -269,7 +319,7 @@ Zusammengesetzt finden wir die Formel
 für das Skalarprodukt zweier beliebiger Vektoren, ausgedrückt
 ausschliesslich mit der Norm.
 Die Identität \eqref{hilbert:polarisierung} ist auch bekannt unter dem
-Namen Polar-Identität oder Polarisierung des Skalarprodukts.
+Namen {\em Polar-Identität} oder {\em Polarisierung} des Skalarprodukts.
 \index{Polar-Identität}
 \index{Polarisierung}
 
@@ -522,7 +572,7 @@ als
 \frac1{2^n}\cdot 2^n = 1.
 \]
 Somit ist gezeigt, dass die Funktionen $f_n$ orthonormiert im Sinne des
-Skalarprodukts $\langle\;,\;\rangle$ sind.
+Skalarprodukts $\langle\;\,,\;\rangle$ sind.
 
 Trotzdem gibt es eine Funktion $g$, die auf allen $f_n$ orthogonal ist.
 Wir wählen
