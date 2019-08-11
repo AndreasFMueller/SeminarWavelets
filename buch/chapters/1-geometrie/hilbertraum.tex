@@ -320,8 +320,8 @@ für das Skalarprodukt zweier beliebiger Vektoren, ausgedrückt
 ausschliesslich mit der Norm.
 Die Identität \eqref{hilbert:polarisierung} ist auch bekannt unter dem
 Namen {\em Polar-Identität} oder {\em Polarisierung} des Skalarprodukts.
-\index{Polar-Identität}
-\index{Polarisierung}
+\index{Polar-Identität}%
+\index{Polarisierung}%
 
 
 \subsection{Norm und Grenzwert in einem Hilbertraum
@@ -334,14 +334,14 @@ $e_k$, $k\in\mathbb N$, erfordert, dass Ausdrücken der Form
 \label{hilbert:summe}
 \end{equation}
 einen Sinn gegeben werden muss.
-Die Algebra reicht dazu nicht, denn zum Ende der Berechnung einer Summe
-ohne Ende kann man grundsätzlich nicht gelangen.
+Die Algebra definiert nur endliche Summen.
+Eine unendliche Summe ist in einem rein algebraischen Kontext daher
+sinnlos.
 Ein Ausdruck wie \eqref{hilbert:summe} kann daher nur im Sinne eines
 Grenzwertes verstanden werden.
 In einem Vektorraum ist aber a priori nicht definiert, wie man die
 Approximation eines Vektors $v$ durch eine Folge von Vektoren $v_k$ zu
 verstehen hat.
-
 Mit der Einführung des Skalarproduktes und der daraus abgeleiteten Norm
 ändert sich das.
 \begin{definition}
@@ -357,12 +357,13 @@ wenn
 
 Man erwartet, dass eine Folge einen Grenzwert hat, wenn die Folgenglieder
 immer näher zu\-ei\-nan\-der rücken.
+\index{Grenzwert}%
 
 \begin{definition}
-Eine Folge $v_k\in V$ heisst Cauchy-Folge, wenn es für jedes $\varepsilon > 0$
-ein $N(\varepsilon)\in\mathbb N$ gibt, so dass
-$\|v_k - v_m\| < \varepsilon$
-sobald $k,m>N(\varepsilon)$.
+Eine Folge $v_k\in V$ heisst {\em Cauchy-Folge}, wenn es für jedes
+\index{Cauchy-Folge}%
+$\varepsilon > 0$ ein $N(\varepsilon)\in\mathbb N$ gibt, so dass
+$\|v_k - v_m\| < \varepsilon$ sobald $k,m>N(\varepsilon)$.
 \end{definition}
 
 Leider ist nicht garantiert, dass in einem komplexen Vektorraum eine
@@ -374,7 +375,7 @@ Wir betrachten den Vektorraum
 c_0 = \{ X=(x_0, x_1, \dots ,x_k,0,\dots)\,| x_i \in \mathbb C\}
 \]
 von Folgen, die nur endlich viele Terme haben, die von $0$ verschieden sind.
-Wir können diesem Vektorraum ein Skalarprodukt verpassen, indem wir
+Wir können diesem Vektorraum ein komplexes Skalarprodukt verpassen, indem wir
 \[
 \langle X,Y\rangle
 =
@@ -388,13 +389,13 @@ Jetzt betrachten wir die Folge
 \begin{align*}
 X_1 &= (1,0,0,0,\dots)
 \\
-X_2 &= (1,\frac12,0,0,\dots)
+X_2 &= \textstyle (1,\frac12,0,0,\dots)
 \\
-X_3 &= (1,\frac12,\frac13,0,\dots)
+X_3 &= \textstyle (1,\frac12,\frac13,0,\dots)
 \\
 &\vdots
 \\
-X_k &= (1,\frac12,\frac13,\dots,\frac1k,0,\dots)
+X_k &= \textstyle (1,\frac12,\frac13,\dots,\frac1k,0,\dots)
 \\
 &\vdots
 \end{align*}
@@ -412,9 +413,10 @@ Auf der rechten Seite steht ein Reststück der Reihe
 \[
 \sum_{k=1}^\infty \frac{1}{k^2},
 \]
-die Euler als erster berechnet hat.
+die Euler als Erster berechnet hat.
+\index{Euler, Leonhard}%
 Er hat den Wert $\frac{\pi^2}{6}$ gefunden.
-Die Tatsache, dass die Reihe konvergiert heisst aber auch, dass
+Die Tatsache, dass die Reihe konvergiert, heisst aber auch, dass
 es für jedes $\varepsilon >0$ eine Zahl $N(\varepsilon)$ gibt derart,
 dass die rechte Seite von \eqref{hilbert:eulercauchy} kleiner ist
 als $\varepsilon$, wenn nur $m,n>N(\varepsilon)$.
@@ -422,7 +424,7 @@ Die Folge $(X_k)$ ist also tatsächlich ein Cauchy-Folge.
 
 Als Grenzwert kommt nur die Folge 
 \[
-X = (1,\frac12, \frac13,\frac14,\dots)
+X = \textstyle (1,\frac12, \frac13,\frac14,\dots)
 \]
 in Frage.
 Und tatsächlich ist
@@ -432,7 +434,8 @@ Und tatsächlich ist
 \sum_{k=n+1}^\infty \frac1{k^2},
 \label{hilbert:falscherabstand}
 \end{equation}
-wieder ein Reststück der Reihe von Euler.
+wieder ein Reststück der Reihe von Euler, welches daher beliebig klein
+gemacht werden kann.
 Also konvergiert tatsächlich $X_k$ gegen $X$.
 
 Die Folge $X$ ist aber gar nicht in $c_0$,
@@ -455,6 +458,8 @@ Ein komplexer Vektorraum $V$ mit Skalarprodukt heisst {\em vollständig},
 wenn jede Cauchy-Folge von Vektoren in $V$ einen Grenzwert in $V$ hat.
 Ein solcher Vektorraum heisst {\em Hilbertraum}.
 \end{definition}
+\index{vollständig}%
+\index{Hilbertraum}%
 
 Der Vektorraum $c_0$ des obigen Beispiels lässt sich leicht zu einem
 Hilbertraum machen.
@@ -469,7 +474,22 @@ mit dem Skalarprodukt
 \[
 \langle X,Y\rangle = \sum_{k=1}^\infty x_k\bar{y}_k.
 \]
-% XXX TODO: Vervollständigung: Summierbarkeit des Grenzwertes...
+Die aus dem Skalarprodukt abgeleitete $l^2$-Norm ist
+\[
+\|x\|^2 = \sum_{k=1}^\infty |x_k|^2.
+\]
+Eine Cauchy-Folge $x^{(n)}\in l^2$ konvergiert gegen die Folge
+\[
+x_k = \lim_{n\to\infty} x_k^{(n)},
+\]
+da jedes einzelne Folgenglied in den Folgen $x^{(n)}$ eine Cauchy-Folge
+bilden muss.
+Daher ist $l^2$ ein Hilbertraum, er ist die naheligendste Verallgemeinerung
+des komplexen Vektorraumes $\mathbb{C}^N$ mit Skalarprodukt auf unendlich
+viele Dimensionen.
+Da er auch relativ leicht verständlich ist und mit einem Computer gut
+approximiert werden kann, wird er in den folgenden Kapiteln immer wieder
+auftauchen.
 \end{beispiel}
 
 \subsection{Basis eines Hilbertraumes
@@ -492,6 +512,7 @@ als Linearkombination approximieren lässt.
 \begin{definition}
 Eine Menge von Vektoren $\mathcal{B} = \{v_1,v_2,\dots\}\subset H$ in einem
 Hilbertraum $H$ heisst eine {\em Erzeugendensystem}, wenn es keinen Vektor
+\index{Erzeugendensystem}%
 $v\in H$ gibt, der auf allen Vektoren von $\mathcal{B}$ senkrecht steht.
 \end{definition}
 
@@ -504,13 +525,14 @@ und einen weiteren Vektor zu finden, der auf jedem Vektor senkrecht ist.
 \begin{figure}
 \centering
 \includegraphics{chapters/1-geometrie/images/l2orth.pdf}
-\caption{Familie von orthnormierten Funktionen $f_n(x)$, die alle auf der
+\caption{Familie von orthonormierten Funktionen $f_n(x)$, die alle auf der
 Funktion $g(x)$ orthogonal sind.
 Es gilt also $\langle f_n,f_m\rangle = \delta_{nm}$ und
 $\langle f_n,g\rangle=0$.
 \label{l2orth}}
 \end{figure}
-Wir zeigen Anhang eines Beispiels, dass der Vektorraum  der integrierbaren
+Wir zeigen Anhand eines Beispiels, dass der Vektorraum  der
+quadrat-integrierbaren
 Funktionen auf dem Interval $[0,1]$ mit einem Skalarprodukt
 ausgestattet werden kann, welches ihn zu einem Hilbertraum macht.
 Ausserdem konstruieren wir eine unendliche Menge von Funktionen, die alle
@@ -518,7 +540,7 @@ senkrecht aufeinander stehen.
 Trotzdem werden wir einen weiteren Vektor finden, der auf all diesen
 Vektoren senkrecht steht.
 
-Als erstes definieren wir das Skalarprodukt von Funktionen auf dem
+Als Erstes definieren wir das Skalarprodukt von Funktionen auf dem
 Interval $[0,1]$ als
 \[
 \langle f, g\rangle
@@ -560,8 +582,7 @@ $0$ verschieden.
 Zwei verschiedene Funktionen $f_n$ und $f_m$ mit $n\ne m$ sind also
 nirgends gleichzeitig von $0$ verschieden, es folgt
 $\langle f_n,f_m\rangle =0$.
-Aber auch die Norm der Funktionen $f_n$ lässt sich leicht bereichen
-als
+Aber auch die Norm der Funktionen $f_n$ lässt sich leicht berechnen als
 \[
 \|f_n\|^2
 =
@@ -618,7 +639,7 @@ noch einen weiteren Vektor geben, der senkrecht auf allen steht.
 
 Das Beispiel lässt sich beliebig erweitern: Jede Skalierung
 $\tilde{D}_{2^n}g$ ist ebenfalls orthogonal auf allen Vektoren $f_k$.
-Offenbar gibt die Folge $f_k$ den Hilbertraum nur sehr lückenhaft wieder.
+Offenbar gibt die Folge $f_k$ den Hilbertraum nur sehr skelettartig wieder.
 
 \begin{beispiel}
 Wir betrachten den Hilbertraum $l^2$, dessen Vektoren Folgen
@@ -664,13 +685,13 @@ d.~h.~der Vektor $v$ ist $0$.
 
 Die naheliegende Erweiterung des Begriffs der orthonormierten Basis
 eines endlichdimensionalen Vektorraums ist jetzt der Begriff der
-Hilberbasis.
+Hilbertbasis.
 
 \begin{definition}
 Ein aus orthonormierten Vektoren bestehendes Erzeugendensystem
 eines Hilbertraumes heisst {\em Hilberbasis}
 \end{definition}
-\index{Hilbertbasis}
+\index{Hilbertbasis}%
 
 \begin{satz}
 Wenn die Vektoren $\{e_k\,|\, 1\le k\le n\}$ eine Hilbertbasis des
@@ -689,7 +710,7 @@ Skalarproduktes als
 \]
 gefunden werden.
 Ausserdem gilt für das Skalarprodukt die Plancherel-Identität
-\index{Plancherel-Identität}
+\index{Plancherel-Identität}%
 \begin{align*}
 \langle u,v\rangle &= \sum_{k=1}^\infty \hat{u}_k\bar{\hat{v}}_k
 \\
@@ -699,22 +720,23 @@ Ausserdem gilt für das Skalarprodukt die Plancherel-Identität
 
 Die Abbildung $T\colon V\to l^2: v\mapsto (\hat{v}_k\,|\,1\le k)$
 ist also wie im reellen Fall eine {\em Isometrie} von Hilberträumen.
-\index{Isometrie}
+\index{Isometrie}%
 
 \subsection{Geometrie des Hilbertraumes
 \label{subsection:geometrie-hilbertraum}}
 Das Skalarprodukt in einem endlichdimensionalen Vektorraum formalisiert
 den Begriff der Orthogonalität, der die Grundlage für viele Aspekte
 der geometrischen Anschauung ist.
-Und tatsächlich zeigen die Entwicklungen dieses Abschnitts, dass Aussagen
-wie die Existenz eines Orthogonalkomplements tatsächlich auch in einem
-Hilbertraum Gültigkeit haben.
+Und tatsächlich zeigen die nachstehenden Entwicklungen dieses Abschnitts,
+dass Aussagen wie die Existenz eines Orthogonalkomplements tatsächlich
+auch in einem Hilbertraum Gültigkeit haben.
 Dies bedeutet, dass wir uns bei Argumenten in einem Hilbertraum von 
 der geometrischen Intuition leiten lassen können, solange wir nicht
 von Eigenschaften Gebrauch machen, die von der endlichen Dimensionalität
 des Anschauungsraumes abhängen.
 
 \subsubsection{Formel von Pythagoras}
+\index{Pythagoras-Formel}%
 Die Pythagoras-Formel gilt auch für Vektoren in einem Hilbertraum.
 Sind $x$ und $y$ orthogonale Vektoren in $H$, d.~h.~$x\perp y$, dann
 gilt
@@ -734,6 +756,7 @@ gilt
 \end{equation}
 
 \subsubsection{Parallelogrammregel}
+\index{Parallelogrammregel}%
 \begin{satz}
 \label{satz:parallelogrammregel}
 Seien $x,y\in H$ Vektoren in einem Hilbertraum, dann gilt
@@ -780,14 +803,16 @@ Diagonalen ist.
 Dies ist in Abbildung~\ref{figure:parallelogrammregel} illustriert.
 
 \subsubsection{Orthonormalisierung}
+\index{Orthonormalisierung}%
 Der Gram-Schmidt-Algorithmus zur Orthonormalisierung funktioniert auch
+\index{Gram-Schmidt-Algorithmus}%
 in einem Hilbertraum.
 
 \begin{satz}
 \label{satz:orthonormierung}
 Sind $\{b_1,\dots,b_n\}\subset H$ eine endliche Menge von orthonormieren
 Vektoren in $H$ und $a\in H$ ein Vektor, der nicht Linearkombination
-von der Vektoren $b_1,\dots,b_n$ ist.
+der Vektoren $b_1,\dots,b_n$ ist.
 Dann ist
 \[
 b
@@ -826,11 +851,12 @@ Das Skalarprodukt mit $b_i$ ist
 also ist $b$ orthogonal zu $b_i$ für alle $i=1,\dots,n$.
 \end{proof}
 
-Daraus lässt sich ableiten, dass jede endliche Menge von linear unabhängiger
+Daraus lässt sich ableiten, dass jede endliche Menge von linear unabhängigen
 Vektoren in einem Hilbertraum in eine orthonormierte Menge von Vektoren
 verwandelt werden kann.
 
 \subsubsection{Abstand zu einer Geraden}
+\index{Abstand zu einer Geraden}
 \begin{figure}
 \centering
 \includegraphics{chapters/1-geometrie/images/abstand.pdf}
@@ -855,8 +881,9 @@ derart, dass der Abstand
 \| y - \tilde{x}\|
 =
 \inf \{ \| y-t x\|\;|\; t \in \mathbb C\}
-=:d.
+=:d
 \]
+zu $y$ minimal wird.
 Ausserdem ist $y-\tilde{x}\perp x$.
 \end{satz}
 
@@ -905,16 +932,20 @@ Mit Hilfe von $\tau$ und $\varphi$ kann man das Skalarprodukt auch
 schreiben als $\langle x,y\rangle = e^{-i\varphi}|\langle x,y\rangle|$
 oder $\langle y,x\rangle = e^{i\varphi}|\langle x,y\rangle|$.
 
-Der Abstand~\ref{min:minimalabstand} wird minimal, wenn der mittlere Term
-verschwindet,~d.~h. für
+Der Abstand~\eqref{min:minimalabstand} ist ein quadratischer Ausdruck
+$a\tau^2 + b\tau +c$ der reellen Variablen $\tau$ mit
+$a=\|x\|^2$, $b=-2|\langle x,y\rangle|$ und $c=\|y\|^2$.
+Das Minimum wird für $t=-b/2a=|\langle x,y\rangle|/\|x\|^2$ erreicht.
+Wir setzen daher
 \[
-\tau = \frac{|\langle y,x\rangle|}{\|x\|^2},
-\qquad
-\text{wir setzen}
-\qquad
 \tilde{x}
 =
-tx = \tau e^{i\varphi}x.
+tx
+=
+\tau e^{i\varphi}x
+=
+\frac{|\langle x,y\rangle|}{\|x\|^2}
+e^{i\varphi}x.
 \]
 Das Skalarprodukt ist
 \begin{align*}
@@ -939,7 +970,7 @@ minimal zu $y$ ist.
 Sei $x,y,z\in H$ mit $\|z\|\ne 0$ und sei $d$ der Abstand der (komplexen)
 Geraden durch $x$ mit Richtungsvektor $z$ von $y$.
 Dann gibt es einen Punkt $\tilde{x}$ auf der Geraden derart, dass
-$d=\|y-\tilde{x}$ und $y-\tilde{x}\perp z$.
+$d=\|y-\tilde{x}\|$ und $y-\tilde{x}\perp z$.
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -982,8 +1013,8 @@ Dann ist
 \begin{figure}
 \centering
 \includegraphics{chapters/1-geometrie/images/approx.pdf}
-\caption{Approximation des minimalen Abstands von einer Geraden durch
-die Punkte $x_1$ und $x_2$.
+\caption{Approximation des minimalen Abstands des Punktes $y$ von
+einer Geraden durch die Punkte $x_1$ und $x_2$.
 Es lässt sich immer ein Punkt $\tilde{x}$ auf der Geraden $g$ durch
 $x_1$ und $x_2$ finden, der eine noch bessere Approximation ist und so,
 dass $y-\tilde{x}$ orthogonal ist zur Geraden.
@@ -1045,10 +1076,11 @@ Damit ist die Ungleichung \ref{satz:approx:ungleichung} bewiesen.
 \end{proof}
 
 \subsubsection{Orthogonalkomplement}
+\index{Orthogonalkomplement}%
 In einem endlichdimensionalen Vektorraum mit Skalarprodukt gibt es zu
 einem abgeschlossenen Unterraum immer ein orthogonales Komplement,
 selbst dann, wenn der Vektorraum nicht abgeschlossen ist.
-Wenn man nämlich für den Unterraum eine endliche Basis wählt ist das
+Wenn man nämlich für den Unterraum eine endliche Basis wählt, ist das
 Orthogonalkomplement charakterisiert durch endlich viele lineare 
 Gleichungen, für die sich immer eine Lösungsmenge angeben lässt.
 In einem unendlichdimensionalen Raum funktioniert dies nur noch, wenn
@@ -1073,14 +1105,15 @@ d.~h.~$\langle z,u\rangle=0$ für alle $z\in V$.
 \begin{proof}[Beweis]
 Sei $y\in H\setminus V$.
 Die Funktion $v\mapsto \|y-v\|$ ist $\ge 0$, man kann also eine
-Folge von Vektoren $v_k\in V$ finden derart, dass
+Folge von Vektoren $v_k\in V$ finden, die den minimalen Abstand
+approximieren, also derart, dass
 \[
 \lim_{k\to\infty} \|y-v_k\| = \inf_{v\in V} \|y-v\| =: d
 \]
 ist.
 Dies ist gleichbedeutend damit, dass zu vorgegebenem $\varepsilon>0$ ein
-$N$ gefunden werden kann, so dass $|d- \|y-v_k\|| < \varepsilon$ falls
-$k>N$ ist (Siehe auch Abbildung~\ref{figure:orthogonalkomplement}.
+$N$ gefunden werden kann, so dass $|d- \|y-v_k\|\,| < \varepsilon$ falls
+$k>N$ ist (Siehe auch Abbildung~\ref{figure:orthogonalkomplement}).
 
 Wir zeigen, dass $v_k$ eine Cauchy-Folge ist.
 Dazu verwenden wir den Satz~\ref{satz:approx}, der besagt, dass zwei
@@ -1101,7 +1134,7 @@ Da man $\varepsilon$ beliebig klein wählen kann, ist $(v_k)_{k\in\mathbb N}$
 eine Cauchy-Folge.
 
 Da $(v_k)_{k\in\mathbb N}$ eine Cauchy-Folge ist in $V$ und $V$ ausserdem
-abgeschlossen ist, folgt, dass $v_n$ gegen einen Grenzwert 
+nach Voraussetzung abgeschlossen ist, folgt, dass $v_n$ gegen einen Grenzwert 
 \[
 v=\lim_{k\to\infty} v_k
 \]
@@ -1118,6 +1151,9 @@ zu $y-v=u$ sein.
 
 \subsubsection{Darstellungssatz von Riesz
 \label{subsubsection:riesz}}
+\index{Satz von Riesz}%
+\index{Darstellungssatz von Riesz}%
+\index{Riesz, Friedrich}%
 Zu einem gegebenen Vektor $v\in H$ eines Hilbertraums ist die Abbildung
 \begin{equation}
 H\to\mathbb C
@@ -1166,7 +1202,7 @@ V_1^{\perp} = \{ v\in H\;|\; \langle v,u\rangle = 0\; \forall u\in V_1\},
 welches nach Satz~\ref{satz:orthogonalkomplement} existiert.
 Angenommen, es gibt in $V_1^\perp$ zwei linear unabhängige Vektoren,
 dann kann man diese orthonormalisieren.
-Seien also $v'$ und $v''$ orthonormierte Vektoren $V_1^\perp$.
+Seien also $v'$ und $v''$ orthonormierte Vektoren in $V_1^\perp$.
 Die Linearkombination
 \[
 v
