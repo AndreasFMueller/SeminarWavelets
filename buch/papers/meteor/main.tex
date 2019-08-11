@@ -263,27 +263,28 @@ In der Grafik lassen sich zwei verschiedene charakteristische Signaturen untersc
 
 \newpage
 \subsection{Auswertung}
-Signaturen der 1.Art sind mit beiden Methoden erkennbar.
-Da diese nur wenige Sekunden dauern und ein breites Frequenzband reflektieren deuten sie auf Meteore hin.
-Man kann annehmen, dass je grösser der Partikelstrom des Meteors ist, desto stärker zeigt sich seine Signatur nach der Wavelet-Transformation.
+Signaturen der 1. Art sind mit beiden Methoden erkennbar.
+Da diese nur wenige Sekunden dauern und ein breites Frequenzband reflektieren, deuten sie auf Meteore hin.
+Man kann annehmen, dass je grösser der Partikelstrom des Meteors ist, desto stärker sich seine Signatur nach der Wavelet-Transformation zeigt.
 Allerdings trifft diese Aussage nur zu, wenn wir annehmen, dass alle aufgezeichneten Meteore gleich weit entfernt sind.
 
-Signaturen der 2.Art sind mit beiden Methoden erkennbar.
+Signaturen der 2. Art sind mit beiden Methoden erkennbar.
 Jedoch zeigt sich hier ein erstaunlicher Unterschied.
-Nach der gefensterten Fouriertransformation sind die Signaturen S-Förmig.
-Diese S-Förmigen Signale deuten auf sich `langsamer' bewegende Flugobjekte, wie in den meisten Fällen Flugzeuge hin.
+Nach der gefensterten Fouriertransformation sind die Signaturen S-förmig.
+Diese S-förmigen Signale deuten auf sich `langsamer' bewegende Flugobjekte hin.
+Diese Objekte sind in den meisten Fällen Flugzeuge.
 Die charakteristische Form entsteht auf Grund des optischen Dopplereffektes. 
-Bewegt sich ein Objekt auf die Empfangsstation zu, werden die reflektierenden Radarwellen gestaucht, die empfangene Frequenz erscheint höher.
-Bewegt sich ein Objekt von der Empfangsstation weg, werden die reflektierenden Radarwellen in die Länge gezogen und die empfangene Frequenz erscheint tiefer.
+Bewegt sich ein Objekt auf die Empfangsstation zu, werden die reflektierten Radarwellen gestaucht, die empfangene Frequenz erscheint höher.
+Bewegt sich ein Objekt von der Empfangsstation weg, werden die reflektierten Radarwellen in die Länge gezogen und die empfangene Frequenz erscheint tiefer.
 
-Resultierende Frequenz aufgrund des optischen Dopplereffektes beim Annähern von Sender und Empfänger:
+Nähern sich Sender und Empfänger mit der Geschwindigkeit $v$, dann wird die ausgesandte Frequenz $f_S$ durch den Doppler-Effekt zur empfangenen Frequenz
 \[
 f_E
 =
 f_S\cdot\sqrt{\frac{1+\frac{v}{c}}{1-\frac{v}{c}}}
 \]
 
-Resultierende Frequenz aufgrund des optischen Dopplereffektes beim Entfernen von Sender und Empfänger:
+Entfernen sich Sender und Empfänger mit der Geschwindigkeit $v$, dann wird die ausgesandte Frequenz $f_S$ durch den Doppler-Effekt zur empfangenen Frequenz
 \[
 f_E
 =
@@ -291,15 +292,13 @@ f_S\cdot\sqrt{\frac{1-\frac{v}{c}}{1+\frac{v}{c}}}
 \]
 \(f_E\) ist die empfangene Frequenz.
 \(f_S\) ist die abgestrahlte Frequenz.
-v ist die relative Geschwindigkeit des Senders zum Empfänger.
-c ist die Phasengeschwindigkeit der elektromagnetischen Welle.
 
 Nach der Wavelet-Transformation zeigt sich uns ein leicht anderes Bild.
 Die S-förmigen Signale gleichen eher einem V.
 Die Frequenz des Signales nimmt ab und anschliessend wieder zu.
 Gleiche Ergebnisse tauchen mit unterschiedlichen Wavelets und Signalen ebenfalls auf.
 
-Signaturen der 3.Art sind nur mit der Fourier-Methode zu erkennen.
+Signaturen der 3. Art sind nur mit der Fourier-Methode zu erkennen.
 Es handelt sich dabei um das Sendesignal, welches ungehindert zur Ionosphäre gelangt, an ihr reflektiert wird und ungehindert beim Empfänger eintrifft.
 Diese Signatur ist nach der Wavelet-Transformation nicht mehr zu erkennen.
 Es scheint, als würde eben jenes Signal schlecht mit unseren eingesetzten Wavelets korrelieren. 
@@ -312,51 +311,70 @@ Des weiteren muss die Frequenz, eines sich vom Empfänger entfernenden Objektes,
 Nach der Wavelet-Transformation sieht es jedoch so aus, als würde die Frequenz des zu analysierenden Signales erst ab- und anschliessend wieder zunehmen.
 
 Um diesen Phänomenen auf den Grund zu gehen, wurden mit verschiedenen künstlich erzeugten Signalen Analysen durchgeführt.
-Um das Verhalten des Trägersignals nachzuvollziehen, werden Signale mit gleichbleibender Frequenzen von 100 Hz bis 2400 Hz untersucht:
+Um das Verhalten des Trägersignals nachzuvollziehen, werden Signale mit gleichbleibender Frequenzen von 100 Hz bis 2400 Hz untersucht.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/beam/cwt_0100hz.png}
-	\caption{100 Herz Sinussignal mit kontinuierliche Wavelet-Transformation}
+	\caption{100 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
+	Das Wavelet korreliert bei circa der Streckung 43 am besten mit dem Signal. 
+	Dies zeigt uns die stark rote Färbung in diesem Bereich.}
 	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/beam/cwt_0500hz.png}
-	\caption{500 Herz Sinussignal mit kontinuierliche Wavelet-Transformation}
+	\caption{500 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
+	Mit zunehmender Frequenz, korreliert ein weniger gestrecktes Wavelet besser mit dem Signal und der am besten korrelierende Bereich wandert im Bild nach oben. }
 	\label{fig:cwt_anomalie_beam_1}
 \end{figure}
-\newpage
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/beam/cwt_1000hz.png}
-	\caption{1000 Herz Sinussignal mit kontinuierliche Wavelet-Transformation}
+	\caption{1000 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
+	Diese Frequenz entspricht ungefähr dem zu untersuchenden belgischen Radarsignal.
+	Das Gabor Wavelet korreliert mit einer Dilatation von etwa 10 am besten mit dem Signal.
+	Der von mir untersuchte Bereich liegt nach Skala um Faktor 10 darüber.}
 	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/beam/cwt_1200hz.png}
-	\caption{1200 Herz Sinussignal mit kontinuierliche Wavelet-Transformation}
+	\caption{1200 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
+	Diese Bild bestätigt die Annahme, dass die ursprünglichen Untersuchungen nicht im korrekten Bereich vorgenommen wurden.}
 	\label{fig:cwt_anomalie_beam_2}
 \end{figure}
 Aus den durchgeführten Experimenten lässt sich erkennen, wie das am besten korrelierende Wavelet, mit zunehmender Frequenz gestaucht wird. 
 Signale mit Frequenzen über 1000 Hz korrelieren mit dem Gabor-Wavelet in Skalen unter 15.
 Dieser Bereich wurde bei der Radarsignalanalyse gar nicht betrachtet, da in diesem Bereich keine Auffälligkeiten sichtbar waren. 
+Es wird ausserdem Sichtbar, dass nicht immer ganz klar ist, mit welcher Dilatation das Wavelet am besten korreliert.
+Ich nehme an, dass sämtliche Vielfache der zu untersuchenden Frequenz ebenfalls gut korrelierende Ergebnisse erzielen. 
 
-\newpage
-Um das Verhalten der Signale der Flugobjekte nachzuvollziehen, werden Signale mit ansteigenden Frequenzen von 100 Hz bis 2400 Hz untersucht:
+Um das Verhalten der Signale der Flugobjekte nachzuvollziehen, werden Signale mit ansteigenden Frequenzen von 100 Hz bis 2400 Hz untersucht.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/sweep/cwt_0100to0300hz.png}
-	\caption{100 bis 300 Herz Sinussignal mit kontinuierliche Wavelet-Transformation}
+	\caption{100 bis 300 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
+	Nun wird gut sichtbar, wie sich die Deutung des Bildes verkompliziert. 
+	Es zeigen auch bereits Signaturen bei viel grösserer Dilatation.}
 	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/sweep/cwt_0500to0700hz.png}
-	\caption{500 bis 700 Herz Sinussignal mit kontinuierliche Wavelet-Transformation}
+	\caption{500 bis 700 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
+	Wie bereits beim untersuchten Signal mit gleichbleibender Frequenz, wandert der am besten korrelierende Bereich im Bild mit zunehmender Frequenz nach oben.
+	Die V-förmigen Signaturen sind bereits gut sichtbar.}
 	\label{fig:cwt_anomalie_beam_1}
 \end{figure}
-\newpage
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/sweep/cwt_0900to1100hz.png}
-	\caption{900 bis 1100 Herz Sinussignal mit kontinuierliche Wavelet-Transformation}
+	\caption{900 bis 1100 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
+	Dies ist der Frequenzbereich, der dem des belgischen Radarsignals entspricht.
+	Es ist sehr schön zu sehen, wie dominant sich die V-förmige Signatur zeigt.
+	Der Zeitpunkt des Auftretens scheint nicht klar definiert.}
 	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/sweep/cwt_2200to2400hz.png}
-	\caption{2200 bis 2400 Herz Sinussignal mit kontinuierliche Wavelet-Transformation}
+	\caption{2200 bis 2400 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
+	Bei diesen hohen Frequenzen ist ein neues Phänomen zu beobachten.
+	Obwohl die Frequenz des Signales ansteigt, zeigt die Wavelet-Transformation einen stark korrelierenden Bereich mit entgegengesetzter Aussage.}
 	\label{fig:cwt_anomalie_beam_2}
 \end{figure}
 Aus den durchgeführten Experimenten lässt sich erkennen, wie die V-förmigen Signaturen bereits bei tiefen `Sweep'-Signalen auftreten.
+Wie viele dieser Signaturen und zu welchen Zeitpunkten sie auftreten, ist derzeit unklar.
 Anhand von 24 untersuchten `Sweep'-Signalen komme ich zum Schluss, dass die Signaturen nicht von der Frequenz abhängig sind.
 Ausserdem resultieren sie nicht aus dem originalen Signal, darauf kann auch anhand der vorhergegangenen Experimente geschlossen werden, sondern einem Vielfachen der Frequenz daraus. 
 Die gezogenen Schlüsse aus den Signaturen beziehen sich also nicht auf das tatsächliche Signal.
+Und dennoch zeigen sie ziemlich genau den Zeitpunkt eines kreuzenden Flugobjektes an.
 
 \newpage
 \section{Schlussfolgerung}
@@ -367,13 +385,15 @@ Anhand der entstehenden Grafiken können Meteore von anderen Flugobjekten unters
 Den Ereignissen können sehr exakt eine Zeit zugeordnet werden.
 Im Vergleich zur gefensterten Fourier-Transformation müssen weniger Parameter evaluiert werden.
 Am Ende der Arbeit wurde mir bewusst, dass sich die mir charakteristisch zeigenden Signaturen nicht direkt Wavelet Korrelationen mit dem Grund-Radarsignal sind, sondern Korrelationen mit Vielfachen oder anderen Ähnlichkeiten mit der Form des Radarsignales.
+Es ist trotzdem erstaunlich, wie gut diese `falsch' resultierenden Signaturen Teile der Problemstellung zu lösen vermögen.
 Der Bereich, in dem das Gabor-Wavelet tatsächlich mit dem Radarsignal korreliert, bei circa 1000 Hz, befindet sich in der resultierenden Grafik im Bereich der Skala zwischen etwa 5 und 15.
 Leider ist bei der Analyse des Radarsignals in diesem Bereich nichts sichtbar.
 Meine Wavelet-Transformation ist in der derzeitigen Form nicht fähig diesen Bereich hoch genug aufzulösen, damit ein brauchbares Bild entsteht.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{papers/meteor/images/anomalie/cwt_signal_scale1to20.png}
-	\caption{Das Radarsignal aufgelöst im Bereich der Skala von 1 bis 20}
+	\caption{Das Radarsignal aufgelöst im Bereich der Skala von 1 bis 20. 
+	Aufgrund der niedrigen Auflösung in diesem Bereich sind keine verwertbaren Signaturen erkennbar.}
 	\label{fig:signalmitwscaloscale1to20}
 \end{figure}
 
@@ -382,7 +402,6 @@ Mit dem Programm Matlab müssen die Berechnungen sehr vorsichtig vorgenommen wer
 Ausserdem spielt es eine grosse Rolle welche Matlab Funktionen bei der Wavelet-Transformation eingesetzt werden.
 Die in diesem Abschnitt genutzten Matlab Funktionen haben sich als sehr geeignet erwiesen.  
 
-Es grüsst Dominic Hüppi
-
+\newpage
 \printbibliography[heading=subbibliography]
 \end{refsection}
