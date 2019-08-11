@@ -5,10 +5,11 @@
 %
 \section{Invertierung des Gram-Operators\label{section:ginv}}
 \rhead{Invertierung des Gram-Operators}
+\index{Invertierung des Gram-Operators}
 Die Bestimmung des dualen Frame setzt voraus, dass der Gram-Operator
 $G$ invertiert werden kann.
-Eine links-inverse Transformation zum Frame-Operator $M$ ist dann durch
-$S=G^{-1}T$ gegeben.
+Eine linksinverse Transformation zum Frame-Operator $M$ ist dann durch
+$S=G^{-1}T^t$ gegeben.
 
 Da $G$ eine positiv definite symmetrische Matrix mit Spektrum im
 Interval $[A,B]$ ist, ist die Matrix in der Eigenbasis sehr einfach
@@ -19,7 +20,7 @@ Ausserdem gibt es kein Interesse, in der Eigenbasis zu arbeiten, alle
 Operationen sollen in der durch das Frame vorgegebenen Basis durchgeführt
 werden.
 
-Eine linksinverse von $T$ zu finden ist gleichwerti damit,
+Eine Linksinverse von $T$ zu finden ist gleichbedeutend damit,
 die dualen Framevektoren $b_i' = Sb_i = G^{-1}Tb_i$ zu bestimmen.
 Ziel dieses Abschnitts ist daher, einen spezialisierten numerischen
 Algorithmus zu finden, der jeden der Vektoren $b_i'$ finden kann.
@@ -35,14 +36,15 @@ anschliessend auf die Bestimmung von $G^{-1}$ bzw.~$b_i'$.
 \label{subsection:reziprok}}
 Zu einer beliebigen Zahl $y$ mit $A < y < B$ muss der reziproke Wert $1/y$
 bestimmt werden.
-Um die Berechnung der inversen Matrix zu vermeiden, suchen wir nach einem
-iterativen Verfahren der Form $x_{n+1}=f(x_n)$, welches für einen beliebigen
-Startwert $x_0$ gegen $y^{-1}$ konvergiert.
+Wir suchen nach einem iterativen Verfahren der Form $x_{n+1}=f(x_n)$,
+welches für einen beliebigen Startwert $x_0$ gegen $y^{-1}$ konvergiert
+aber die Division nicht verwendet (da die Bestimmung der inversen
+Matrix ja vermieden werden soll).
 Der Wert $y^{-1}$ muss also der einzige Fixpunkt der Funktion $f(x)$ sein:
 $f(y^{-1}=y^{-1}$.
 
 Die Funktion $f(x) = x + g(x)$ hat als einzigen Fixpunkt die Stelle $x=y^{-1}$
-genau dann, wenn $(x)$ als einzige Nullstelle die Stelle $x=y^{-1}$ hat.
+genau dann, wenn $g(x)$ als einzige Nullstelle die Stelle $x=y^{-1}$ hat.
 Ausserdem muss die Funktion $g(x)$ berechenbar sein ausschliesslich mit
 Addition und Multiplikation von Konstanten und der Variablen $x$, Division
 darf nicht verwendet werden.
@@ -54,7 +56,7 @@ Bedingungen zu erfüllen.
 % XXX für das nachfolgende ist möglicherweise eine Graphik nötig
 Die Folge $x_{n+1} = f(x_n)$ konvergiert nämlich nur, wenn die Steigung
 der Funktion $f(x)$ in der Nähe des Fixpunktes Betrag $<1$ hat, 
-also $|f'(x)|<1$..
+also $|f'(x)|<1$.
 Für die eben konstruierte Funktion trifft dies im Allgemeinen nicht zu,
 es ist nämlich
 \[
@@ -107,6 +109,14 @@ Die Differenz zwischen aufeinanderfolgenden Approximationen nimmt
 in jedem Schritt um mindestens den Faktor $(B-A)/(B+A)<1$ ab.
 \end{satz}
 
+Die Fehler verhalten sich also wie eine geometrische Folge.
+\index{geometrische Folge}%
+Man nennt diese Art von Konvergenz, bei der der Fehler in jedem
+Schritt um den gleichen Faktor kleiner wird auch {\em lineare Konvergenz},
+\index{lineare Konvergenz}%
+weil die Anzahl der korrekten Stellen in jedem Schritt um gleichen
+Wert zunimmt.
+
 \begin{proof}[Beweis]
 Wir müssen uns nur noch mit der Aussage über die Konvergenz befassen.
 Dazu berechnen wir die Differenz zweier aufeinanderfolgender
@@ -121,14 +131,14 @@ x_n &= x_{n-1} + \frac{2}{A+B}(1-yx_{n-1})
 \quad\Rightarrow\quad
 x_{n+1}-x_n
 =
-x_n - x_{n-1} -\frac{2y}{A+B}(x_n-x_{n-+})
+x_n - x_{n-1} -\frac{2y}{A+B}(x_n-x_{n-1})
 =
 \underbrace{
 \biggl(1-\frac{2y}{A+B}\biggr)
 }_{\displaystyle=\vartheta}
 (x_n - x_{n-1}).
 \end{equation}
-Die Differenz wird also tatsächlich um den $\vartheta$ ab.
+Die Differenz wird also tatsächlich um den Faktor $\vartheta$ ab.
 Wir schätzen diesen Faktor ab
 \[
 \vartheta
@@ -182,7 +192,7 @@ x_n
 \biggr|
 =
 \biggl|
-\sum_{k=n}^\infty(x_{k+1}-x_k).
+\sum_{k=n}^\infty(x_{k+1}-x_k)
 \biggr|
 &\le
 \sum_{k=n}^\infty|x_{k+1}-x_k|
@@ -196,13 +206,16 @@ x_n
 &=
 \frac1{1-\vartheta}\cdot |x_{n+1}-x_n|
 \le
-\frac{\vartheta^n}{1-\vartheta} |x_1-x_0|.
+\frac{\vartheta^n}{1-\vartheta} |x_1-x_0|
 \end{align*}
+mit Hilfe der Summenformel für eine geometrische Reihe.
+\index{Summenformel für geometrische Reihe}%
+\index{geometrische Reihe!Summenformel}%
 Daraus kann man auch ablesen, dass der Fehler wie $\vartheta^n$ gegen $0$
 geht.
 
 Die eben erreichte Schlussfolgerung lässt sich allgemeiner für eine
-beliebige Vektofolge in $\mathbb R^s$ formulieren.
+beliebige Vektorfolge in $\mathbb R^s$ formulieren.
 Wir stellen dies im folgenden Lemma bereit, da uns die Aussage
 im nächsten Abschnitt bei der Berechnung der Inversen von $G$ 
 von Nutzen sein wird.
@@ -304,7 +317,7 @@ und erhalten}
 =
 |x-x_k| + |x_1-x_0|\vartheta^n \sum_{i=0}^{k-n-1}\vartheta^i.
 \intertext{Die geometrische Reihe auf der rechten Seite kann man mit
-der Summenformel für die geometrische Reihe vereinfachen und erhält}
+der Summenformel für die geometrische Reihe vereinfachen und man erhält}
 |x-x_n|
 &=
 |x-x_k|
@@ -505,10 +518,11 @@ Aus \eqref{inv:iteration:vector} leiten wir jetzt ab, dass
 \le \vartheta |x_n-x_{n-1}|
 \le \dots \le \vartheta^n |x_1-x_0|=\vartheta^n |x_1|.
 \]
-Da die Unterschiede zwischen aufeinanderfolgenden Folgengliedern
+Die Unterschiede zwischen aufeinanderfolgenden Folgengliedern
 nehmen also geometrisch ab.
 Aus Lemma~\ref{lemma:konvergenz} folgt daher wie früher, dass
-die Folge $(x_n)$ geometrisch gegen den Grenzwert $x=\lim_{n\to\infty}$
+die Folge $(x_n)_{n\in\mathbb N}$ geometrisch gegen den Grenzwert
+$x=\lim_{n\to\infty}$
 konvergiert.
 
 Wir müssen jetzt nur noch zeigen, dass $x$ tatsächlich das Bild von $y$
@@ -710,11 +724,13 @@ H \to H - \frac{2}{A+B}(E - GH)
 \]
 schreiben.
 Da jede einzeln Spalte mit der gleichen, durch $\vartheta = (B-A)/(B+A)$
-definirten Geschwindigkeit konvergiert, kann der Satz auch als
+definierten Geschwindigkeit konvergiert, kann der Satz auch als
 Iterationsverfahren für die inverse Matrix formuliert werden.
 
 \begin{satz}
-Die Operatorfolge
+Ist $G$ eine symmetrische Matrix derart, dass ihre Eigenwerte im
+Interval $[A,B]$ mit $0<A\le B$ enthalten sind, dann konvergiert
+die Matrixfolge
 \[
 H_{n+1}
 =
@@ -729,7 +745,9 @@ GH_n
 \qquad
 H_0=0
 \]
-konvergiert gegen den Operator $H$ mit der Eigenschaft $GH=E$.
+linear gegen den Matrix $H$ mit der Eigenschaft $GH=E$.
+Der Fehler nimmt in jeder Iteration mindestens um den Faktor
+$\vartheta=(B-A)/(A+B)$ ab.
 \end{satz}
 
 

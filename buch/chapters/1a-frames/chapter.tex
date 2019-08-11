@@ -6,27 +6,12 @@
 \chapter{Frames
 \label{chapter:frames}}
 \lhead{Frames}
-%In der linearen Algebra lernt man, in einem Vektorraum Problem mit einer
-%Basis, wenn möglich mit einer orthonormierten Basis zu lösen.
-%In der Praxis der Signalverarbeitung ist dies zu einschränkend.
-%Dieses Phänomen findet man bereits in der elementaren Geometrie.
-%Bienenwaben in der Ebene können natürlich mit einem rechtwinkligen
-%Koordinatensystem beschrieben werden, doch ein Koordinatensystem mit
-%Achsen, die einen Winkel von $60^\circ$ einschliessen, ist besser an
-%das Problem angepasst.
-%Genausogut ist jedoch auch ein Koordinatensystem  mit Achsen, die einen
-%Winkel von $120^\circ$ einschliessen.
-%Fügt man eine dritte Achse hinzu, kann man sich diesem Dilemma entziehen,
-%dafür führt man Redundanz ein.
-%Daher untersuchen wir in Abschnitt~4, wie man den Begriff der Basis
-%zu einem Begriff eines Frames erweitern kann, welches zwar redundant
-%ist, aber dank zusätzlicher Symmetrien besser geeignet ist.
-
-Analyse von Vektoren mit einer orthonormierten Basis führt auf eindeutige
-Darstellungen. 
+Analyse von Vektoren mit einer orthonormierten Basis ermöglich eine
+eindeutige Darstellungen durch eine Folge von Koeffizienten. 
 Ausserdem sind die Vektoren, die für Analyse und Synthese verwendet
 werden, im Wesentlichen gleich.
-Die Analyse erfolgt mit Hilfe einfacher Skalarprodukte mit den Basisvektoren.
+Die Analyse ist auch besonders einfach zu berechnen,
+sie erfolgt mit Hilfe einfacher Skalarprodukte mit den Basisvektoren.
 Die zugehörige Transformationsmatrix ist orthogonal, so dass die
 Matrix der Rücktransformation durch Transponieren gefunden werden kann.
 Eine orthonormierte Basis ist daher sehr starr und oft gibt es für ein
@@ -37,15 +22,16 @@ werden:
 \begin{enumerate}
 \item
 Es muss zugelassen werden, dass mehr Vektoren für die Analyse verwendet
-werden, als strikt notwendig wäre.
+werden, als notwendig wären.
 Die Menge der Analyse-Vektoren ist daher nicht mehr eine Basis, man
 verzichtet darauf, dass die Analyse-Vektoren {\em linear unabhängig} sein
 müssen.
-Man muss aber immer noch fordern, dass Vektoren nicht zu stark gestaucht
-werden, damit Umkehrbarkeit der Transformation stetig möglich ist.
+Man muss aber immer noch fordern, dass Vektoren in ihrer Länge nicht
+zu stark von $1$ abweichen,
+damit Umkehrbarkeit der Transformation stetig möglich ist.
 Auf diesem Weg gelangt man zum Begriff des {\em Frames}.
 \item
-Wenn die Vektoren nicht mehr linear unabhängig sind, ist es erst
+Wenn die Vektoren nicht mehr linear unabhängig sind, dann ist es erst
 recht nicht mehr möglich, dass sie orthonormiert sind.
 Es muss daher auch zugelassen werden, dass einzelne Skalarprodukte 
 $\langle v_i,v_j\rangle\ne 0$ sind für $i\ne j$.
@@ -53,12 +39,16 @@ Dies bedeutet aber dass die Transformationsmatrix nicht mehr so einfach
 invertiert werden kann.
 Analyse- und Synthese-Vektoren sind verschieden.
 \end{enumerate}
-In den folgenden Abschnitten wird erst in Abschnitt~\ref{section:frame}
-der Begriff des motiviert und definiert.
+In den folgenden Abschnitten wird zuerst in Abschnitt~\ref{section:frame}
+der Begriff des Frames motiviert und definiert.
 In Abschnitt~\ref{section:dual} wird der Begriff des dualen Frames
 eingeführt, die für die Synthese benötigt wird.
-Die numerische Bestimmung des dualen Frames wird in
+Die numerische Bestimmung des dualen Frames geschieht in
 Abschnitt~\ref{section:ginv}.
+
+Die Tatsache, dass sich die Analyse mit einem straffen Frame mit relativ
+einfachen durchführen lässt, wird in Abschnitt auf ein \ref{section:plancherel}
+auf ein abstrakteres Prinzip zurückgeführt.
 
 \input{chapters/1a-frames/frame.tex}
 \input{chapters/1a-frames/dual.tex}
