@@ -1,6 +1,10 @@
 \section{Effiziente Berechnung der CWT}
 \rhead{Berechnung der CWT}
+Als erstes möchten wir herausfinden, wie sich die CWT effizient berechnen lässt.
+Als zweites werden wir zwei Beispielsignale definieren und die CWT mittels Haar-Wavelet betrachten.
+Abschliessend rechnen wir die CWT noch mit dem Gabor-Wavelet und vergleichen die beiden Bilder.
 
+\subsection{CWT als Faltung}
 Betrachten wir zuerst die folgende Gleichung
 \begin{equation}
 \Wave f (a,b)
@@ -10,7 +14,7 @@ Betrachten wir zuerst die folgende Gleichung
 \frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty f(t)\,
 	\overline{\psi}\biggl(\frac{t-b}{a}\biggr)\,\mathrm{d}t,\label{complex:CWT}
 \end{equation}
-welche in Definition~\ref{cwt:definition} die kontinuierliche Wavelet-Transformation definierte.
+durch welche in Definition~\ref{cwt:definition} die kontinuierliche Wavelet-Transformation eingeführt wurde.
 Dieses Integral entspricht der Faltung zwischen $f(t)$ und 
 \begin{equation} 
     g(t) 
@@ -33,7 +37,7 @@ Dafür benötigen wir die Fouriertransformierte $\hat g (\omega)$:
 Gleichung~\eqref{complex:CWT} lässt sich somit schreiben als
 \begin{equation}
 \Wave f(a,b)
-= \mathcal{F}^{-1}\bigl\lbrace\hat{f}(\omega) \sqrt{|a|}\, \overline{\hat{\psi}(a\omega)}\bigr\rbrace. \label{complex:fcwt}
+= \mathcal{F}^{-1}\bigl\lbrace\hat{f}(\omega) \sqrt{|a|}\, \overline{\hat{\psi}}(a\omega)\bigr\rbrace. \label{complex:fcwt}
 \end{equation}
 
 Mittels Fourier-Transformation lässt sich die Wavelet-Transformation folglich besonders elegant berechnen.
@@ -46,7 +50,7 @@ Dann lässt sich die Fourier-Transformation mittels FFT effizient berechnen und 
 \end{equation}
 
 Der Faktor $\sqrt{|a|}$ wurde hierbei weggelassen.
-Hierdurch werden die hohen Frequenzen stärker gewichtet und $|\Wave f(a,b)|$ ist gerade proportional zur Amplitude der analysierten Signalkomponente.
+Hierdurch werden die hohen Frequenzen stärker gewichtet und $|\!\Wave f(a,b)|$ ist gerade proportional zur Amplitude der analysierten Signalkomponente.
 Zudem erzielen wir im Diskreten nicht exakt die Faltung, sondern die zirkuläre Version davon. 
 Mehr dazu im Abschnitt~\ref{complex:circ-conv-padding}.
 
@@ -54,15 +58,17 @@ Gleichung~\eqref{complex:ffcwt} muss für jedes $a$ einzeln gelöst werden.
 Sie wird besonders interessant, wenn das Wavelet im Frequenzbereich eine geschlossene, analytische Form besitzt.
 Dann benötigt man nur eine FFT für das Signal, so wie für jedes $a$ eine inverse FFT und eine punktweise Multiplikation zwischen Signal und Wavelet.
 
+\clearpage
 \subsection{Das Haar-Wavelet}
+\rhead{Haar-Wavelet}
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{papers/complex/images/signals.pdf}
+	\includegraphics{papers/complex/images/signals.pdf}
 	\caption{Die beiden Beispielsignale $x_1(t)$ und $x_2(t)$}
 \end{figure}
-Für ein Beispiel benötigen wir zwei Dinge: ein Wavelet und ein Beispielsignal.
-Nehmen wir für den Anfang das einfachste aller Wavelets, das Haar-Wavelet.
-Als Signal nehmen wir zwei Sinus-Schwingungen, eine mit linear ansteigender und eine mit stückweise konstanter Frequenz.
+Rechnen wir das erste Beispiel.
+Hierfür benötigen wir zwei Dinge: Signal und Wavelet.
+Als Signale nehmen wir zwei Sinus-Schwingungen, eine mit linear ansteigender und eine mit stückweise konstanter Frequenz.
 \begin{align}
     x_1(t) &= \sin\left( \int_{0}^{t} 2\pi f_1(t')\,\mathrm{d}t'\right) & f_1(t) &= 2 + 6/4 \cdot t \\
     x_2(t) &= \sin\left( \int_{0}^{t} 2\pi f_2(t')\,\mathrm{d}t'\right) & f_2(t) &= \left\lbrace \begin{matrix}
@@ -72,13 +78,12 @@ Als Signal nehmen wir zwei Sinus-Schwingungen, eine mit linear ansteigender und 
     8, & 3.0 \le &t&\\
     \end{matrix}\right.
 \end{align}
-Zudem benötigen wir das Haar-Wavelet und seine Fourier-Transformierte.
-In diesem Abschnitt sei das Wavelet zentriert um $t=0$.
+Das Haar-Wavelet sei in diesem Abschnitt zentriert um $t=0$.
 Die daraus resultierende Symmetrie wird sich in der Berechnung der Fourier-Transformation als hilfreich erweisen.
 
 \begin{definition}
 	\label{complex:def-haar-wavelet}
-	Das zentrierte, reelle Haar-Wavelet besitzt folgende Gestalt:
+	Das Haar-Wavelet besitzt folgende Gestalt:
 	\[
 	\psi_{\text{Haar}}(t) = \left\lbrace\begin{matrix*}[r]
 	1 & -\frac{1}{2} \le t < 0  \\
@@ -97,15 +102,14 @@ Die Fourier-Transformierte von $\psi_{\text{Haar}}$ berechnet sich wie folgt:
 \end{align}
 Das Haar-Wavelet ist also nicht nur im Zeitbereich besonder einfach, sondern auch im Frequenzbereich.
 Insbesondere lässt sich die mit $a$ skalierte Version des Wavelets durch Satz~\ref{four-int:trans-dial} direkt im Frequenzbereich berechnen.
-Auffallend ist zudem, dass das im Zeitbereich besonders gut lokalisierte Haar-Wavelet in der Frequenz sehr schlecht lokalisiert ist.
-Das Haar-Wavelet ist in Abbildung \ref{complex:haar} dargestellt.
+Abbildung~\ref{complex:haar} zeigt das Haar-Wavelet im Zeit- und Frequenzbereich.
+Auffallend ist, dass das im Zeitbereich besonders gut lokalisierte Haar-Wavelet in der Frequenz sehr schlecht lokalisiert ist.
 \begin{figure}
 	\centering
 	\includegraphics{papers/complex/images/haar.pdf}
 	\caption{Das Haar-Wavelet}
 	\label{complex:haar}
 \end{figure}
-\[\hat{\psi}_\text{Haar} = \frac{i}{2\sqrt{\pi}} \frac{1-\cos(\omega/2)}{\omega/2} \]
 
 \begin{figure}
 	\centering
@@ -114,7 +118,7 @@ Das Haar-Wavelet ist in Abbildung \ref{complex:haar} dargestellt.
 	\caption{Blau: $\psi_\text{Haar}$, Rot: $\sin ({\color{red}\omega_\psi}\cdot t)$, Gelb: $\sin ({\color{yellow}1.0}\cdot 2\pi t)$, Grün: $\sin ({\color{green}0.5}\cdot 2\pi t)$}
 	\label{complex:dom-freq}
 \end{figure}
-An dieser Stelle definieren wir noch die \emph{Dominante Frequenz} eines Wavelets.
+An dieser Stelle definieren wir noch die \emph{dominante Frequenz} eines Wavelets.
 \begin{definition}
 	Die Fourier-Transformierte eines Wavelets erreicht den maximalen Betrag bei der \emph{dominante Frequenz $\omega_\psi$}.
 	\begin{equation}
@@ -137,14 +141,22 @@ Bei unseren Beispielsignalen ist dies der Fall.
 Abbildung~\ref{complex:dom-freq} illustriert die Bedeutung von $\omega_\psi$ für das Haar-Wavelet.
 Es ist die Frequenz, bei welcher das Skalarprodukt mit dem Wavelet maximal wird.
 
-% Image after gabor wavelet
 Somit haben wir für unser Beispiel alles zusammen.
 Nach einer Diskretisierung der Variablen überlassen wir die Arbeit dem Computer.
 Dies liefert die Bilder aus Abbildung~\ref{complex:haar-ex}.
 
+\begin{figure}
+	\centering
+	\includegraphics{papers/complex/images/chirp_haar.pdf}
+	\includegraphics{papers/complex/images/square_haar.pdf}
+	\caption{Wavelet-Transformationen der beiden Beispielsignale mit dem Haar-Wavelet. Die Lokalisierung in der Zeit ist sehr gut, aber die momentane Frequenz ist ohne Weiteres kaum ersichtlich. Zudem resultiert das periodische Signal in einer periodischen Helligkeit. (Zur Erinnerung: Blau entspricht $+1$, Gelb entspricht $-1$)}
+	\label{complex:haar-ex}
+\end{figure}
+
 Wie erwartet ist die Lokalisierung in der Frequenz zimelich schlecht.
 Das Haar-Wavelet gibt den Zeitpunkt einer Änderungen der Frequenz zwar sehr genau wieder, die Frequenz selbst ist jedoch kaum ablesbar.
-Als Orientierungshilfe sind $a_\text{max} (b) = \max_a{|\Wave x_n(a,b)|}$ weiss hervorgehoben.
+Als Orientierungshilfe sind $a_\text{max} (b) = \max_a{|\!\Wave x_n(a,b)|}$ weiss hervorgehoben.
 Sie weichen um $\omega_\psi$ von der Signal-Frequenz ab, welche als Schwingung in der Amplitude gut erkennbar ist.
-Dies werden wir im Abschnitt~\ref{complex:separate} durch komplexe Wavelets vermeiden.
+Dieses An- und Abschwellen des Betrags der Skalarprodukte verhindert es, $a_\text{max}(b)$ einfach zu folgen.
+Dies werden wir im Abschnitt~\ref{complex:separate} durch komplexe Wavelets beheben.
 Zuerst kümmern wir uns aber um die Lokalisierung in der Frequenz.
