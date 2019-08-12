@@ -15,6 +15,7 @@ also eine Funktion $\hat{f}\in\mathbb L^2(\mathbb R)$.
 
 \subsection{Fourier-Integral
 \label{subsection:fourier-integral}}
+\index{Fourier-Integral}%
 Für Funktionen $f\in L^2(\mathbb R)$ ist die Fourier-Transformation
 \[
 \hat{f}(\omega)
@@ -36,7 +37,7 @@ wichtigsen Formeln für die Fourier-Transformation zusammen.
 \subsection{Fourier-Umkehrformel
 \label{subsection:fourier-umkehrformel}}
 Die Fourier-Transformation kann invertiert werden.
-\index{Fourier-Umkehrformel}
+\index{Fourier-Umkehrformel}%
 
 \begin{satz}
 Für $\hat{f}\in L^2(\mathbb R)$ gilt die Umkehrformel
@@ -49,7 +50,7 @@ f(t)
 \end{satz}
 
 Die Fourier-Transformation ist also eine invertierbare lineare Abbildung,
-$\mathcal{F}^{-1}\!\left\lbrace\hat{f}\right\rbrace = f$.
+$\mathcal{F}^{-1}\!(\hat{f}) = f$.
 
 \subsection{Translation und Dilatation
 \label{subsection:ft-translation-und-dilatation}}
@@ -178,6 +179,7 @@ oder mit der Schreibweise $\mathcal{F}f$ für die Fourier-Transformation
 \]
 
 \subsection{Plancherel-Formel}
+\index{Plancherel-Formel}%
 Die Plancherel-Formel beschreibt, wie sich Skalarprodukt und Norm
 unter Fourier-Transformation verhalten.
 
@@ -247,7 +249,7 @@ f(t) e^{-i\omega t}\,dt
 
 Schreibt man $\partial_t$ für die Ableitung nach $t$ und $\partial_\omega$
 für die Ableitung nach $\omega$ und $\mu_{t}$ bzw.~$\mu_{\omega}$ für
-die Multiplikation $t$ bzw.~$\omega$, dann kann man die Regeln wieder
+die Multiplikation mit $t$ bzw.~$\omega$, dann kann man die Regeln wieder
 kompakter schreiben:
 \[
 \begin{aligned}
@@ -353,6 +355,37 @@ der Faltung
 \end{equation}
 \end{satz}
 
+\subsection{Lokalisierung
+\label{fourier:integral:lokalisierung}}
+Auch für die Fourier-Transformation kann man die bereits in
+Abschnitt~\ref{fourier:reihen:lokalisierung} für Fourier-Reihen
+aufgeworfene Frage stellen, wie sich $\hat{f}$ ändert, wenn man $f$
+an einer einzigen Stelle modifiziert.
+Wir berechnen dazu wieder die Transformation von $T_b\delta_n$ und
+erhalten
+\begin{align*}
+\widehat{T_b\delta_n}
+&=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty}
+T_b\delta_n(t) e^{-i\omega t}\,dt
+=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty}
+\delta_n(\tau) e^{-i\omega (\tau+b)}\,d\tau
+=
+\frac{2n}{\sqrt{2\pi}}
+\int_{-\frac1n}^{\frac1n}
+e^{-i\omega (\tau+b)}\,d\tau
+\\
+&\to
+\frac{1}{\sqrt{2\pi}}
+e^{i\omega b}.
+\end{align*}
+Wieder bewirkt eine solche Störung eine vollständig delokalisierte
+Änderung aller Werte $\hat{f}$ um eine Zahl vom Betrag $1/\sqrt{2\pi}$.
+Die Information über den genauen Zeitpunkt der Störung ist in den
+Phasenfaktoren $e^{i\omega b}$ codiert.
 
 
 
