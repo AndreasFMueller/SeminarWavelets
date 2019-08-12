@@ -13,28 +13,35 @@ In diesem Abschnitt soll diese Konstruktion etwas detaillierter
 durchgeführt und verallgemeinert werden.
 
 \subsection{Funktionenräume}
-Wir bezeichnen mit $\mathbb C^X$ die Menge der Funktionen
+Wir bezeichnen wieder mit $\mathbb C^X$ die Menge der Funktionen
 $f\colon X\to \mathbb C$.
-Sie wird auf natürliche Art zu einem Vektorraum, indem man die
+Wir haben ihn bereits im Abschnitt~\ref{section:funktionenraume}
+zu einem Vektorraum gemacht, indem wir die
 Addition von Funktionen und die Multiplikation mit Skalaren
 punktweise definiert.
-Seien $f,g$ Funktionen auf $X$, dann definieren wir die Summe $f+g$ und
-$\lambda f$ als
-\begin{align*}
-f+g&\colon X\to\mathbb C: x \mapsto f(x) + g(x)
-\\
-\lambda f &\colon X \to \mathbb C: x \mapsto \lambda f(x).
-\end{align*}
+%Seien $f,g$ Funktionen auf $X$, dann definieren wir die Summe $f+g$ und
+%$\lambda f$ als
+%\begin{align*}
+%f+g&\colon X\to\mathbb C: x \mapsto f(x) + g(x)
+%\\
+%\lambda f &\colon X \to \mathbb C: x \mapsto \lambda f(x).
+%\end{align*}
+
 Die Signale, die im Folgenden analysiert werden sollen, sind jedoch
 nicht beliebige Funktionen.
-Sie haben zusätzliche Eigenschaften, zum Beispiel sind sie oft stetig,
+Sie haben zusätzliche Eigenschaften, zum Beispiel sind sie oft stetig
 oder beschränkt.
-Die bekannten Rechenregeln für stetige Funktionen stellen sicher, dass
-diese Eigenschaften in Summen von Funktionen und skalaren Vielfachen
-erhalten bleiben.
+Auch den Raum der stetigen Funktionen $C(X,\mathbb C)$ haben wir bereits
+in Abschnitt~\ref{section:funktionenraume} zu einem normierten Raum
+mit der Supremum-Norm $\|\;\cdot\;\|_\infty$ gemacht.
+Wir haben schon damals darauf hingewiesen, dass die Supremum-Norm
+nicht von einem Skalarprodukt herkommt und damit nicht harmoniert
+mit der Art und Weise, wie wir Funktionen analysieren wollen.
 
-Wenn die Funktion $f$ durch andere Funktionen approximiert werden soll,
-dann wird dazu ein Abstandsbegriff benötigt.
+Die Norm als Abstandsbegriff zwischen Funktionen wird zum Zweck der
+Approximation durch einfachere Funktionen benötigt.
+Die geometrische Intuition erwartet ungefähr die folgenden Eigenschaften
+von einem solchen Abstandsbegriff:
 
 \begin{definition}
 Eine reellwertige Funktion $\|\mathstrut\cdot\mathstrut\|$ heisst
@@ -69,52 +76,61 @@ Doch aus der Cauchy-Schwarz-Ungleichung folgt
 =
 (\|u\| + \| v \|)^2
 \\
+\Rightarrow\qquad\qquad
 \|u+v\|
 &\le
-\|u\| + \|v\|
+\|u\| + \|v\|.
 \end{align*}
 
-\begin{definition}
-Der Vektorraum der stetigen Funktionen auf $X\subset R^n$ ist die Menge
-\[
-C_{\mathbb C}(X)
-=
-C(X)
-=
-\{ f\in \mathbb C^X\,|\, \text{$f$ ist stetig}\}
-\]
-mit der punktweisen Addition und Multiplikation mit Skalaren und der
-Norm
-\[
-\| f \| = \sup_{x\in X} |f(x)|.
-\]
-$\|f\|$ heisst auch die Supremum-Norm.
-\end{definition}
+Unser nächstes Ziel muss daher sein, auf den Funktionenräumen ein
+Skalarprodukt zu definieren.
+Daraus ergibt sich dann automatisch eine für unsere Zwecke geeignete
+Norm.
 
-Man beachte, dass diese Norm nicht von einem Skalarprodukt herkommt.
-Man kann aber zeigen, dass Cauchy-Folgen in dieser Norm gegen eine
-stetige Funktion konvergieren.
-Diese Norm stellt also sicher, dass die Grenzfunktion einer
-Approximationsfolge aus stetigen Funktion wieder stetig ist.
-Umgekehrt können wir bei einer anderen Norm wie der im nächsten
-Abschnitt definierten $L^2$-Norm nicht mehr garantieren, dass 
-Grenzfunktionen stetig sind.
-Dies verursacht zwar ein paar mathematische Unannehmlichkeiten,
-kommt aber den Anwendungen entgegen, da in der Praxis durchaus
-nicht stetige Signale vorkommen.
+%\begin{definition}
+%Der Vektorraum der stetigen Funktionen auf $X\subset R^n$ ist die Menge
+%\[
+%C_{\mathbb C}(X)
+%=
+%C(X)
+%=
+%\{ f\in \mathbb C^X\,|\, \text{$f$ ist stetig}\}
+%\]
+%mit der punktweisen Addition und Multiplikation mit Skalaren und der
+%Norm
+%\[
+%\| f \| = \sup_{x\in X} |f(x)|.
+%\]
+%$\|f\|$ heisst auch die Supremum-Norm.
+%\end{definition}
+
+%Man beachte, dass diese Norm nicht von einem Skalarprodukt herkommt.
+%Man kann aber zeigen, dass Cauchy-Folgen in dieser Norm gegen eine
+%stetige Funktion konvergieren.
+%Diese Norm stellt also sicher, dass die Grenzfunktion einer
+%Approximationsfolge aus stetigen Funktion wieder stetig ist.
+%Umgekehrt können wir bei einer anderen Norm wie der im nächsten
+%Abschnitt definierten $L^2$-Norm nicht mehr garantieren, dass 
+%Grenzfunktionen stetig sind.
+%Dies verursacht zwar ein paar mathematische Unannehmlichkeiten,
+%kommt aber den Anwendungen entgegen, da in der Praxis durchaus
+%nicht stetige Signale vorkommen.
 
 \subsection{Definition des Skalarproduktes}
-In diesem Abschnitt betrachten wir ausschliesslich Funktionen, die auf
-einem endlichen oder unendlichen Interval $I$ definiert sind.
+In diesem Abschnitt betrachten wir ausschliesslich komplexwertige Funktionen,
+die auf einem endlichen oder unendlichen Interval $I$ definiert sind.
 
 \begin{definition}
+\label{l2:definition:skalarprodukt}
+\index{Skalarprodukt in $L^2$}%
 Das Skalarprodukt zweier Funktionen $f,g\colon I\to\mathbb C$ ist definiert
 als
-\[
+\begin{equation}
 \langle f,g\rangle
 =
-\int_I f(t) \bar{g}(t)\,dt
-\]
+\int_I f(t) \bar{g}(t)\,dt.
+\label{l2:formel:skalarprodukt}
+\end{equation}
 \end{definition}
 
 Die bekannten Rechenregeln für Integrale stellen sicher, dass dies
@@ -154,19 +170,207 @@ zeigt:
 =
 \langle g,f\rangle.
 \end{align*}
-Weniger klar ist jedoch, ob dieses Produkt auch tatsächlich definit ist.
-Die aus dem Skalarprodukt abgeleitete Norm ist
+Die algebraischen Eigenschaften eines komplexen Skalarproduktes sind
+also erfüllt.
+
+\subsubsection{Unstetige Grenzfunktionen}
+\begin{figure}
+\centering
+\includegraphics{chapters/2-fourier/images/lim.pdf}
+\caption{Der Grenzwert $f_0$ einer Folge von stetigen Funktionen $f_n$
+braucht nicht stetig zu sein.
+\label{fourier:grenzwertunstetig}}
+\end{figure}
+Die aus \eqref{l2:formel:skalarprodukt} abgeleitete Norm überrascht uns
+damit, dass Grenzfunktionen einer Folge stetiger Funktionen nicht mehr
+stetig sein müssen.
+Wir betrachten dazu das folgende Beispiel.
+
+\begin{beispiel}
+Die Funktionen
+\[
+f_n(t)
+=
+\begin{cases}
+0&\qquad t\le 0\\
+nt&0<t\le \frac1n\\
+1&\qquad t\ge 0
+\end{cases}
+\]
+sind für alle $n>1$ stetig (siehe auch
+Abbildung~\ref{section:funktionenraume}).
+Die Funktion
+\[
+f_0(t) = \begin{cases}
+0&\qquad t \le 0\\
+1&\qquad t>0
+\end{cases}
+\]
+ist dagegen unstetig.
+Die Funktionen $f_n$ und $f_0$ unterscheiden sich nur in einem Interval
+der Länge $\frac1n$, der Unterschied ist $\le 1$.
+Damit können wir den Unterschied in der Norm berechnen:
+\[
+\| f_n - f_0 \|^2
+=
+\int_{-\infty}^{\infty}
+|f_n(t)-f_0(t)|^2
+\,dt
+\le
+\int_0^{\frac1n} 1\,dt
+=
+\frac1n.
+\]
+Wir schliessen daher, dass $f_n$ im Sinne der Norm gegen $f_0$ konvergiert.
+Die Grenzfunktion $f_0$ ist aber nicht stetig.
+\end{beispiel}
+
+Das Beispiel zeigt, dass der Funktionenraum der stetigen Funktionen nicht
+der geeignete Rahmen für eine Hilbertraum-Theorie für Signale sein kann.
+Andererseits kommt dies der Anwendung sehr entgegen, in denen unstetige
+Signale wie Rechteck- oder Sägezahn-Signale von grosser praktischer
+Bedeutung sind.
+Im Folgenden muss daher geklärt werden, welche Art von Funktionen überhaupt
+verwendet werden soll.
+
+\subsubsection{Nullmengen und Nullfunktionen}
+Es ist bis jetzt nicht klar, ob das Produkt~\eqref{l2:formel:skalarprodukt}
+auch tatsächlich definit ist.
+Dazu betrachten wir die aus dem Skalarprodukt abgeleitete Norm
 \[
 \|f\|^2 = \int_I |f(t)|^2\,dt \ge 0.
 \]
-Für eine stetige Funktion folgt tatsächlich, dass die Norm nur
-verschwinden kann, wenn die Funktion überall verschwindet.
+Für eine stetige Funktion gilt sicher, dass die Norm nur dann verschwinden
+kann, wenn der Integrand überall $=0$ ist.
+Allerdings wissen wir auch, dass wir uns nicht auf stetige Funktionen
+beschränken dürfen.
+
 Eine Funktion, die nur an endlich vielen Stellen nicht verschwindet,
 ist immer noch integrierbar und ihr Integral ist $0$.
-Eine solche Funktion hätte also Norm $0$ ohne selbst die Nullfunktion zu
-sein.
+Eine solche Funktion hätte also Norm $0$ ohne überall $=0$ zu sein.
+Zwei Funktionen, die sich um eine solche Funktion unterschieden, 
+sind mit der Norm nicht unterscheidbar.
+
 Dies deutet an, dass wir bei der Auswahl der Funktionenmenge, mit der
 wir arbeiten wollen, sehr viel sorgfältiger sein müssen.
+Doch auch der Begriff des Integrals erfordert einer Revision.
+Das Riemann-Integral, das man im Analysis-Unterricht kennen lernt, 
+ist leider nicht geeignet für das vorliegende Approximationsproblem.
+Eine Funktion soll durch quadratintegrierbare Funktionen approximiert
+werden im Sinne der Norm $\|\mathstrut\cdot\mathstrut\|_2$.
+Doch kann man leicht Folgen konstruieren, die im Sinne dieser Norm
+Cauchy-Folgen sind, aber die Grenzfunktion ist nicht mehr integrierbar.
+
+\begin{beispiel}
+Die Menge $[0,1]\cap \mathbb Q$ der rationalen Zahlen im Interval
+$[0,1]$ ist abzählbar, es gibt  also eine Folge $q_k$, die alle rationalen
+Zahlen durchläuft.
+Daraus kann man jetzt eine Funktionen-Folge $f_n$ wie folgt konstruieren:
+\[
+f_n(t) = \begin{cases} 
+1&\qquad \text{$t=t_k$ für ein $k\le n$}\\
+0&\qquad\text{sonst}.
+\end{cases}
+\]
+Jede der Funktionen $f_n$ ist integrierbar, denn sie weichen nur an
+endlich vielen, genauer an $n$ Stellen von $0$ ab.
+Ihr Integral ist daher $0$.
+Der Abstand zwischen zwei Funktionen der Folge ist $\| f_n-f_m\|_2 = 0$,
+da auch die Differenz nur an endlich vielen Stellen von $0$ verschieden ist.
+Trotzdem kann man nicht sagen, dass die Folge eine Grenzfunktion hat.
+Punktweise konvergiert die Folge $f_n$ gegen die Funktion
+\[
+f_{\mathbb Q}(t) = \begin{cases}
+1&\qquad t\in\mathbb Q\\
+0&\qquad\text{sonst}
+\end{cases}
+\]
+Diese Funktion ist aber nicht einmal integrierbar im Sinne des
+Riemann-Integrals.
+\end{beispiel}
+
+Die Funktion $f_{\mathbb{Q}}$ ist in jedem Punkt des Definitionsbereichs
+unstetig, aber sie ist der Grenzwert einer Folge von Funktionen, die
+alle Riemann-integrierbar sind und Integral $0$ haben.
+Das Riemann-Integral verträgt sich nicht gut mit Grenzwertbildung.
+
+Die intuitive Vorstellung des ``Volumens'' der Menge 
+$[0,1]\cap\mathbb{Q}$ zeigt, dass das Problem tiefer liegt.
+Die Menge $[0,1]\cap\mathbb{Q}$ ist abzählbare Vereinigung von Mengen $\{q_n\}$,
+die natürlich alle Volumen $0$ haben.
+Trotzdem liegt die Menge $[0,1]\cap\mathbb{Q}$ dicht im Interval $[0,1]$,
+die geometrische Intuition möchte ihr daher das Volumn $1$ geben.
+
+\subsubsection{Lebesgue-Integral}
+\index{Lebesgue-Integral}%
+\index{Lebesgue, Henri}%
+Die Lösung besteht darin, den Integralbegriff zu erweitern.
+Dies ist Henri Lebesgue in seiner Dissertation 1902 gelungen.
+Das Lebesgue-Integral ist für alle Riemann-integrierbaren Funktionen
+definiert und ergibt denselben Wert.
+Die bekannten Berechnungsregeln für Integrale bleiben daher erhalten
+und Algorithmen zur numerischen Berechnung von Integralen haben
+weiterhin ihre Gültigkeit.
+
+Das Lebesgue-Integral erweitert die Menge der integrierbaren Funktionen
+und stellt insbesondere sicher, dass die Grenzfunktionen von Folgen
+unter genügend allgemeinen Voraussetzungen integrierbar sind und dass
+Integral und Grenzwert vertauschbar sind.
+Damit ist die Klasse gross genug für das Approximationsproblem.
+
+Abzählbare Mengen wie $\mathbb Q$ haben kein Lebesgue-Mass, sie
+gelten als Mengen mit Mass Null oder {\em Nullmengen}.
+\index{Nullmenge}%
+Für das Riemann-Integral sind nur die endlichen Mengen Nullmengen,
+das Lebesgue-Integral erweitert die Klasse der Nullmengen soweit,
+dass abzählbare Vereinigungen von Nullmengen immer auch wieder
+Nullmengen sind.
+
+Das Lebesgue-Integral betrachtet die Funktion $f_{\mathbb Q}$ 
+als integrierbar mit Integralwert $0$.
+Allgemein heisst eine Funktion, die überall ausser auf einer Nullmenge
+verschwindet, eine {\em Nullfunktion}.
+Man sagt auch, die Funktion sei {\em fast überall} $0$.
+\index{Nullfunktion}
+Das Integral einer beliebigen Nullfunktion ist $0$.
+
+Für eine beliebige integrierbare Funktion $g$ ist daher auch 
+$g+f_{\mathbb Q}$ integrierbar und hat den gleichen Integralwert
+wie $g$.
+Dies gilt auch für jede andere Nullfunktion an Stelle von $f_{\mathbb Q}$.
+Man sagt, zwei Funktionen seien {\em fast überall} gleich, wenn sie sich
+nur um eine Nullfunktion unterscheiden.
+\index{fast überall}%
+In $\mathcal{L}^p$ sind daher sehr viele Funktionen nicht unterscheidbar,
+da sie sich nur um eine Nullfunktion unterscheiden.
+
+\begin{definition}
+\index{$L^p(I)$}%
+Die Menge $L^p(I)$ besteht aus Äquivalenzklassen von Funktionen in
+$\mathcal{L}^p(I)$, die sich durch eine Nullfunktion unterscheiden.
+Zwei Funktionen $f_1,f_2\in L^p(I)$ werden als gleich betrachtet,
+wenn
+\[
+\int_I
+|f_2-f_1|
+\,dx
+=0
+\]
+ist.
+\end{definition}
+
+Die Menge $L^p(I)$ erbt von $\mathcal{L}^p(I)$ die Struktur eines
+Vektorraums mit der Norm $\|\mathstrut\cdot\mathstrut\|_p$.
+Der Raum $L^2(I)$ wird dank der oben formulierten Grenzwertsätze zu
+einem Hilbertraum.
+Damit ist der Raum $L^2(I)$ als die Bühne für die nachfolgend zu diskutierende
+Approximationstheorie bereitgestellt.
+
+Die Definition von $L^p(I)$ als Menge von Äquivalenzklassen von Funktionen
+ist etwas schwerfällig und ungewohnt, für die Praxis aber kaum von Bedeutung.
+Jegliche Rechnungen mit Funktionen finden immer mit einem
+Riemann-integrierbaren Repräsentaten statt.
+
 
 Die Definition ist natürlich nur sinnvoll für Funktionen, für die diese
 Integrale tatsächlich existieren.
@@ -190,7 +394,14 @@ mit zugehöriger Norm
 Für $p=2$ ist die Norm $\|f\|_2$ bereits bekannt, es ist die Norm, die
 vom Skalarprodukt herkommt.
 
-Die Beziehung der Vektorräume zueinander ist nicht ganz offensichtlich.
+\subsubsection{Beziehung zwischen $\mathcal{L}^1(I)$ und $\mathcal{L}^2(I)$}
+Die Beziehung der Funktionenräume $\mathcal{L}^1(I)$ und $\mathcal{L}^2(I)$
+zueinander ist nicht ganz offensichtlich.
+Die folgenden Beispiele sollen zeigen, dass der Definitionsbereich
+dabei eine wichtige Rolle spielt.
+Wir beginnen damit zu zeigen, dass auf einem beschränkten Interval
+die quadratintegrierbaren Funktionen eine echte Teilmenge der integrierbaren
+Funktionen bilden.
 
 \begin{lemma}
 \label{fourier:l1l2}
@@ -222,7 +433,7 @@ und die Cauchy-Schwarz-Ungleichung auf das Produkt anwenden können:
 \begin{align*}
 %\|f\|_1
 %&
-=
+%=
 \int_I |f(x)|\,dx
 &=
 \int_I |f(x)| \cdot 1 \,dx
@@ -236,7 +447,7 @@ und die Cauchy-Schwarz-Ungleichung auf das Produkt anwenden können:
 \end{align*}
 Da das Interval $I$ beschränkt ist, ist das rechte Integral gerade die
 Länge des Intervals.
-Das linke Integral ist die Norm $\|f\|_2$, so dass wir ablesen können,
+Das erste Integral ist die Norm $\|f\|_2$, so dass wir ablesen können,
 dass $\|f\|_1$ beschränkt ist.
 Eine quadratintegrierbare Funktion ist also automatisch integrierbar,
 $\mathcal{L}^2(I)\subset \mathcal{L}^1(I)$.
@@ -253,9 +464,8 @@ f(x)
 0&\qquad x=a\\
 (x-a)^\alpha&\qquad x>a.
 \end{cases}
-\\
 \end{align*}
-Die Normen für $p=1$ ist
+Die Norm für $p=1$ ist
 \begin{align*}
 \|f\|_1
 &=
@@ -263,20 +473,21 @@ Die Normen für $p=1$ ist
 =
 \int_a^b (x-a)^\alpha\,dx 
 =
-\int_0^{b-a} x^\alpha\,dx 
+\int_0^{b-a} \xi^\alpha\,d\xi
 =
 \biggl[
-\frac{1}{\alpha+1}x^{\alpha+1}
-\biggr]_0^{b-a}.
-\intertext{Für $p=2$ kann man die gleiche Formel mit $2\alpha$ an Stelle
+\frac{1}{\alpha+1}\xi^{\alpha+1}
+\biggr]_0^{b-a}
+\intertext{mit der Substition $x=a+\xi$.
+Für $p=2$ kann man die gleiche Formel mit $2\alpha$ an Stelle
 von $\alpha$ vewenden:}
 \|f\|_2^2
 &=
 \biggl[
-\frac{1}{2\alpha+1}x^{2\alpha+1}
+\frac{1}{2\alpha+1}\xi^{2\alpha+1}
 \biggr]_0^{b-a}.
 \end{align*}
-Das Integral existiert also genau dann, wenn der Exponent von $x$
+Das Integral existiert also genau dann, wenn der Exponent von $\xi$
 positiv ist.
 Wenn $\alpha$ so gewählt wird, dass $\alpha+1>0$ und $2\alpha+1 <0$ ist,
 dann haben wir ein Beispiel der gesuchten Art gefunden.
@@ -289,12 +500,10 @@ f_\alpha(x)
 \displaystyle\frac{1}{(x-a)^\alpha}&\qquad x > a\\
 0&\qquad x=a
 \end{cases}
-\qquad
-\text{für}
-\quad
-\frac12 <\alpha < 1
 \]
-sind integrierbar, aber nicht quadratintegrierbar.
+sind für
+$\frac12 <\alpha < 1$
+integrierbar, aber nicht quadratintegrierbar.
 Die Funktionen $f_\alpha(x)$ sind in Abbildung~\ref{fourier:intfun}
 dargestellt.
 \end{proof}
@@ -373,180 +582,250 @@ noch
 $\mathcal{L}^2(I)\subset\mathcal{L}^1(I)$.
 \end{beispiel}
 
+\subsubsection{Vollständigkeit}
+Das Lebesgue-Integral wurde sorgfältig so konstruiert, dass Grenzfunktionen
+von Funktionenfolgen unter sehr milden Voraussetzungen als Integral den
+Grenzwert der Integrale der Folgenglieder haben.
+Genauer gilt der folgende grundlegende Satz
 
-\subsection{Lebesgue-Integral und Vollständigkeit}
-Das Riemann-Integral, das man im Analysis-Unterricht kennen lernt, 
-ist leider nicht geeignet für das vorliegende Approximationsproblem.
-Eine Funktion soll durch quadratintegrierbare Funktionen approximiert
-werden im Sinne der Norm $\|\mathstrut\cdot\mathstrut\|_2$.
-Doch kann man leicht Folgen konstruieren, die im Sinne dieser Norm
-Cauchy-Folgen sind, aber die Grenzfunktion ist nicht mehr integrierbar.
-
-\begin{beispiel}
-Die Menge $[0,1]\cap \mathbb Q$ der rationalen Zahlen im Interval
-$[0,1]$ ist abzählbar, es gibt  also eine Folge $q_k$, die alle rationalen
-Zahlen durchläuft.
-Daraus kann man jetzt eine Funktionen-Folge $f_n$ wie folgt konstruieren:
+\begin{satz}[Lebesgue]
+\label{satz:domkonv}
+Ist $f_n$ eine Folge integrierbarer Funktionen, die durch eine
+integrierbare Funktion $g$ beschränkt ist:
+$
+|f_n| \le |g|
+$
+für alle $n$, dann gibt es eine integrierbare Funktion $f$, so dass
+$f_n$ fast überall gegen die Funktion $f$ konvergiert und es gilt
 \[
-f_n(t) = \begin{cases} 
-1&\qquad \text{$t=t_k$ für ein $k\le n$}\\
-0&\qquad\text{sonst}.
-\end{cases}
+\lim_{n\to\infty} \int_I f_n(x)\,dx = \int_I f(x)\,dx.
 \]
-Jede der Funktionen $f_n$ ist integrierbar, denn sie weichen nur an
-endlich vielen, genauer an $n$ Stellen von $0$ ab.
-Ihr Integral ist daher $0$.
-Der Abstand zwischen zwei Funktionen der Folge ist $\| f_n-f_m\|_2 = 0$,
-da auch die Differenz nur an endlich vielen Stellen von $0$ verschieden ist.
-Trotzdem kann man nicht sagen, dass die Folge eine Grenzfunktion hat.
-Punktweise konvergiert die Folge $f_n$ gegen die Funktion
-\[
-f_{\mathbb Q}(t) = \begin{cases}
-1&\qquad t\in\mathbb Q\\
-0&\qquad\text{sonst}
-\end{cases}
-\]
-Diese Funktion ist aber nicht einmal integrierbar im Sinne des
-Riemann-Integrals.
-\end{beispiel}
+\end{satz}
 
-Das Beispiel illustriert die Unzulänglichkeit des Riemann-Integrals.
-Die Lösung besteht darin, den Integralbegriff zu erweitern.
-Dies ist Henri Lebesgue in seiner Disseration 1902 gelungen.
-Das Lebesgue-Integral ist für alle Riemann-integrierbaren Funktionen
-definiert und ergibt denselben Wert.
-Es ist also für konkrete Berechnungen nicht relevant.
-Es erweitert die Menge der integrierbaren Funktionen und stellt insbesondere
-sicher, dass die Grenzfunktionen von Folgen unter genügend allgemeinen
-Voraussetzungen integrierbar sind und dass Integral und Grenzwert vertauschbar
-sind.
-Damit ist die Klasse gross genug für das Approximationsproblem.
+Die Grenzfunktion $f$ ist nicht eindeutig. 
+Jede andere Funktion, die sich nur auf einer Nullmenge von $f$ unterscheidet,
+kommt genauso als Grenzfunktion in Frage.
+Die Grenzfunktion ist daher eigentlich eine Äquivalenzklasse in $L^1(I)$.
+Wir sollten daher den Satz~\ref{satz:domkonv}
+besser für $L^1(I)$ formulieren.
+
+\begin{satz}
+\label{satz:domkonv}
+Ist $f_n\in L^1(I)$ durch $g\in L^1(I)$ beschränkt, also $|f_n|\le |g|$,
+dann ist $\lim_{n\to\infty}f_n\in L^1(I)$ und es gilt
+\[
+\lim_{n\to\infty} \int_I f_n(x)\,dx = \int_I \lim_{n\to\infty} f_n(x)\,dx.
+\]
+\end{satz}
+
+Auch andere aus der Theorie des Riemann-Integrals bekannte Formeln gelten
+weiterhin, zum Beispiel die Formel
+\[
+\int_a^b \int_c^d f(x,y) \,dx \,dy
+=
+\int_c^d
+\int_a^b
+f(x,y)
+\,dy
+\,dx,
+\]
+die auch als {\em Satz von Fubini} bekannt ist.
+\index{Fubini, Satz von}%
+Die Reihenfolge von Integrationen kann also unter gewissen
+technischen Bedingungen vertauscht werden.
+
+Die Vektorräume $L^1(I)$ und $L^2(I)$ haben daher genau die Eigenschaften,
+die wir brauchen.
+Man kann darin beliebige Grenzwerte bilden und die Grenzwerte verhalten
+sich so, dass man den Grenzübergang aus dem Integral herausziehen kann.
+Die gewohnten Formeln aus der Theorie des Riemann-Integrals sind weiterhin
+anwendbar, die dort gewonnene Intuition bleibt zuverlässig.
+Die gesamte zu entwickelnde Theorie wird sich daher in diesen Räumen
+abspielen.
+Die etwas unintuitive Definition als Menge von Äquilvalenzklassen hat
+keine praktische Konsequenzen, da für stetige oder stückweise stetige
+Funktionen das Lebesgue-Integral mit dem Riemann-Integral übereinstimmt.
+Für Funktionen von praktischer Relevanz sind daher die bekannten
+Integrationstechniken anwendbar.
+
+%\subsection{Lebesgue-Integral und Vollständigkeit}
+%Das Riemann-Integral, das man im Analysis-Unterricht kennen lernt, 
+%ist leider nicht geeignet für das vorliegende Approximationsproblem.
+%Eine Funktion soll durch quadratintegrierbare Funktionen approximiert
+%werden im Sinne der Norm $\|\mathstrut\cdot\mathstrut\|_2$.
+%Doch kann man leicht Folgen konstruieren, die im Sinne dieser Norm
+%Cauchy-Folgen sind, aber die Grenzfunktion ist nicht mehr integrierbar.
+
+%\begin{beispiel}
+%Die Menge $[0,1]\cap \mathbb Q$ der rationalen Zahlen im Interval
+%$[0,1]$ ist abzählbar, es gibt  also eine Folge $q_k$, die alle rationalen
+%Zahlen durchläuft.
+%Daraus kann man jetzt eine Funktionen-Folge $f_n$ wie folgt konstruieren:
+%\[
+%f_n(t) = \begin{cases} 
+%1&\qquad \text{$t=t_k$ für ein $k\le n$}\\
+%0&\qquad\text{sonst}.
+%\end{cases}
+%\]
+%Jede der Funktionen $f_n$ ist integrierbar, denn sie weichen nur an
+%endlich vielen, genauer an $n$ Stellen von $0$ ab.
+%Ihr Integral ist daher $0$.
+%Der Abstand zwischen zwei Funktionen der Folge ist $\| f_n-f_m\|_2 = 0$,
+%da auch die Differenz nur an endlich vielen Stellen von $0$ verschieden ist.
+%Trotzdem kann man nicht sagen, dass die Folge eine Grenzfunktion hat.
+%Punktweise konvergiert die Folge $f_n$ gegen die Funktion
+%\[
+%f_{\mathbb Q}(t) = \begin{cases}
+%1&\qquad t\in\mathbb Q\\
+%0&\qquad\text{sonst}
+%\end{cases}
+%\]
+%Diese Funktion ist aber nicht einmal integrierbar im Sinne des
+%Riemann-Integrals.
+%\end{beispiel}
+
+%Das Beispiel illustriert die Unzulänglichkeit des Riemann-Integrals.
+%Die Lösung besteht darin, den Integralbegriff zu erweitern.
+%Dies ist Henri Lebesgue in seiner Disseration 1902 gelungen.
+%Das Lebesgue-Integral ist für alle Riemann-integrierbaren Funktionen
+%definiert und ergibt denselben Wert.
+%Es ist also für konkrete Berechnungen nicht relevant.
+%Es erweitert die Menge der integrierbaren Funktionen und stellt insbesondere
+%sicher, dass die Grenzfunktionen von Folgen unter genügend allgemeinen
+%Voraussetzungen integrierbar sind und dass Integral und Grenzwert vertauschbar
+%sind.
+%Damit ist die Klasse gross genug für das Approximationsproblem.
 
 % XXX Fubini
 % XXX Fatou
 % XXX Dominated convergence
 
-Das Lebesgue-Integral betrachtet die Funktion $f_{\mathbb Q}$ 
-als integrierbar mit Integralwert $0$.
-Für eine beliebige integrierbare Funktion $g$ ist daher auch 
-$g+f_{\mathbb Q}$ integrierbar und hat den gleichen Integralwert
-wie $g$.
-In $\mathcal{L}^p$ sind daher sehr viele Funktionen nicht unterscheidbar,
-da sie sich nur um eine Funktion mit Integral $0$ unterscheiden.
+%Das Lebesgue-Integral betrachtet die Funktion $f_{\mathbb Q}$ 
+%als integrierbar mit Integralwert $0$.
+%Für eine beliebige integrierbare Funktion $g$ ist daher auch 
+%$g+f_{\mathbb Q}$ integrierbar und hat den gleichen Integralwert
+%wie $g$.
+%In $\mathcal{L}^p$ sind daher sehr viele Funktionen nicht unterscheidbar,
+%da sie sich nur um eine Funktion mit Integral $0$ unterscheiden.
 
-\begin{definition}
-Die Menge $L^p(I)$ besteht aus Äquivalenzklassen von Funktionen in
-$\mathcal{L}^p(I)$, die sich durch eine Nullfunktion unterscheiden.
-Zwei Funktionen $f_1,f_2\in L^p(I)$ werden als gleich betrachtet,
-wenn
-\[
-\int_I
-|f_2-f_1|
-\,dx
-=0
-\]
-ist.
-\end{definition}
+%\begin{definition}
+%Die Menge $L^p(I)$ besteht aus Äquivalenzklassen von Funktionen in
+%$\mathcal{L}^p(I)$, die sich durch eine Nullfunktion unterscheiden.
+%Zwei Funktionen $f_1,f_2\in L^p(I)$ werden als gleich betrachtet,
+%wenn
+%\[
+%\int_I
+%|f_2-f_1|
+%\,dx
+%=0
+%\]
+%ist.
+%\end{definition}
 
-Die Menge $L^p(I)$ erbt von $\mathcal{L}^p(I)$ die Struktur eines
-Vektorraums mit der Norm $\|\mathstrut\cdot\mathstrut\|_p$.
-Der Raum $L^2(I)$ wird dank der oben formulierten Grenzwertsätze zu
-einem Hilbertraum.
-Damit ist der Raum $L^2(I)$ als die Bühne für die nachfolgend zu diskutierende
-Approximationstheorie bereitgestellt.
+%Die Menge $L^p(I)$ erbt von $\mathcal{L}^p(I)$ die Struktur eines
+%Vektorraums mit der Norm $\|\mathstrut\cdot\mathstrut\|_p$.
+%Der Raum $L^2(I)$ wird dank der oben formulierten Grenzwertsätze zu
+%einem Hilbertraum.
+%Damit ist der Raum $L^2(I)$ als die Bühne für die nachfolgend zu diskutierende
+%Approximationstheorie bereitgestellt.
 
-Die Definition von $L^p(I)$ als Menge von Äquivalenzklassen von Funktionen
-ist etwas schwerfällig und ungewohnt, für die Praxis aber kaum von Bedeutung.
-Jegliche Rechnungen mit Funktionen finden immer mit einem
-Riemann-integrierbaren Repräsentaten statt.
+%Die Definition von $L^p(I)$ als Menge von Äquivalenzklassen von Funktionen
+%ist etwas schwerfällig und ungewohnt, für die Praxis aber kaum von Bedeutung.
+%Jegliche Rechnungen mit Funktionen finden immer mit einem
+%Riemann-integrierbaren Repräsentaten statt.
 
 
-\subsection{$L^2$ und $L^1$}
-Eine integrierbare Funktion ist nicht automatisch
-quadratintegrierbar.
-Wenn eine Funktion gerade noch langsam genug anwächst, dass ihr
-Integral existiert, kann das Quadrat der Funktion bereits zu schnell
-anwachsen, so dass das Quadrat nicht mehr integrierbar ist.
+\subsubsection{$L^2$ und $L^1$}
+Wir haben die Beziehung zwischen integrierbaren und quadratintegrierbaren
+Funktionen bereits früher untersucht und gefunden, dass der Definitionsbereich
+eine wesentliche Rolle spielt.
+Als Beispiel dafür, wie sich solche Aussagen auf die Räume $L^1$ und $L^2$
+übertragen lassen, formulieren wir eines der damals gefundene Resultate um.
 
-\begin{beispiel}
-Auf dem Interval $I=[0,1]$ ist die Funktion
-\[
-f\colon I\to \mathbb R: t\mapsto \begin{cases} 0&\qquad t=0\\
-t^{-\alpha}&\qquad t > 0
-\end{cases}
-\]
-gegeben, der genaue Wert von $\alpha$ wird später festgelegt.
-Die Integrale von $f$ und $f^2$ sind
-\begin{align*}
-\int_0^1 |f(t)|\,dt
-&=
-\int_0^1 t^{-\alpha}\,dt
-=
-\biggl[\frac{1}{1-\alpha}t^{1-\alpha}\biggr]_0^1
-=
-\begin{cases}
-\frac{1}{1-\alpha}&\qquad \alpha < 1\\
-\infty&\qquad \alpha \ge 1
-\end{cases}
-\\
-\int_0^1|f(t)|^2\,dt
-&=
-\int_0^1 t^{-2\alpha}\,dt
-=
-\begin{cases}
-\frac{1}{1-2\alpha}&\qquad \alpha < \frac12\\
-\infty&\qquad \alpha \ge \frac12
-\end{cases}
-\end{align*}
-Für $\frac12<\alpha<1$ tritt also die Situation ein, dass das Integral
-von $f$ existiert, das von $f^2$ aber nicht\footnote{In der Rechnung in
-diesem und im nächsten Beispiel wurde der Fall $\alpha=1$ nicht sorgfältig
-nachgerechnet.
-In diesem Fall ist die Stammfunktion nämlich $\log|t|$, der jedoch
-auch für $t\to 0$ und $t\to\infty$ divergiert.
-Die Behauptungen sind daher auch in diesem Fall richtig.}.
-\end{beispiel}
-
-Die umgekehrte Situation kann für Funktionen auf $\mathbb R$ eintreten,
-die zu langsam abfallen, um integrierbar zu sein. 
-Da das Quadrieren kleine Werte noch kleiner macht, kann das Quadrat
-der Funktion schnell genug abfallen, so dass es integrierbar ist.
-Eine solche Funktion ist in $L^2(\mathbb R)$, aber nicht in $L^1(\mathbb R)$.
-
-\begin{beispiel}
-Auf dem Interval $J=[1,\infty)$ ist die Funktion
-$f(t)=t^{-\alpha}$ gegeben.
-Die Integrale von $f$ und $f^2$ sind
-\begin{align*}
-\int_1^\infty |f(t)|\,dt
-&=
-\int_1^\infty t^{-\alpha}\,dt
-=
-\biggl[\frac{t^{1-\alpha}}{1-\alpha}\biggr]_1^\infty
-=
-\begin{cases}
-\frac{1}{\alpha-1}&\qquad \alpha > 1\\
-\infty &\qquad \alpha \le 1
-\end{cases}
-\\
-\int_1^\infty |f(t)|^2\,dt
-&=
-\int_1^\infty t^{-2\alpha}\,dt
-=
-\biggl[\frac{t^{1-2\alpha}}{1-2\alpha}\biggr]_1^\infty
-=
-\begin{cases}
-\frac{1}{2\alpha-1}&\qquad \alpha > \frac12\\
-\infty &\qquad \alpha \le \frac12
-\end{cases}
-\end{align*}
-Man liest daraus ab, dass für $\frac12<\alpha < 1$ die Funktion $f$ zwar
-in $L^2([0,\infty))$, nicht aber in $L^1([1,\infty))$ ist.
-\end{beispiel}
-
-Der Fall des letzten Beispiels kann vermieden werden, wenn man den
-Definitionsbereich der Funktion auf ein kompaktes Interval beschränkt.
-Dann folgt, der folgende Satz.
+%Eine integrierbare Funktion ist nicht automatisch quadratintegrierbar.
+%Wenn eine Funktion gerade noch langsam genug anwächst, dass ihr
+%Integral existiert, kann das Quadrat der Funktion bereits zu schnell
+%anwachsen, so dass das Quadrat nicht mehr integrierbar ist.
+%
+%\begin{beispiel}
+%Auf dem Interval $I=[0,1]$ ist die Funktion
+%\[
+%f\colon I\to \mathbb R: t\mapsto \begin{cases} 0&\qquad t=0\\
+%t^{-\alpha}&\qquad t > 0
+%\end{cases}
+%\]
+%gegeben, der genaue Wert von $\alpha$ wird später festgelegt.
+%Die Integrale von $f$ und $f^2$ sind
+%\begin{align*}
+%\int_0^1 |f(t)|\,dt
+%&=
+%\int_0^1 t^{-\alpha}\,dt
+%=
+%\biggl[\frac{1}{1-\alpha}t^{1-\alpha}\biggr]_0^1
+%=
+%\begin{cases}
+%\frac{1}{1-\alpha}&\qquad \alpha < 1\\
+%\infty&\qquad \alpha \ge 1
+%\end{cases}
+%\\
+%\int_0^1|f(t)|^2\,dt
+%&=
+%\int_0^1 t^{-2\alpha}\,dt
+%=
+%\begin{cases}
+%\frac{1}{1-2\alpha}&\qquad \alpha < \frac12\\
+%\infty&\qquad \alpha \ge \frac12
+%\end{cases}
+%\end{align*}
+%Für $\frac12<\alpha<1$ tritt also die Situation ein, dass das Integral
+%von $f$ existiert, das von $f^2$ aber nicht\footnote{In der Rechnung in
+%diesem und im nächsten Beispiel wurde der Fall $\alpha=1$ nicht sorgfältig
+%nachgerechnet.
+%In diesem Fall ist die Stammfunktion nämlich $\log|t|$, der jedoch
+%auch für $t\to 0$ und $t\to\infty$ divergiert.
+%Die Behauptungen sind daher auch in diesem Fall richtig.}.
+%\end{beispiel}
+%
+%Die umgekehrte Situation kann für Funktionen auf $\mathbb R$ eintreten,
+%die zu langsam abfallen, um integrierbar zu sein. 
+%Da das Quadrieren kleine Werte noch kleiner macht, kann das Quadrat
+%der Funktion schnell genug abfallen, so dass es integrierbar ist.
+%Eine solche Funktion ist in $L^2(\mathbb R)$, aber nicht in $L^1(\mathbb R)$.
+%
+%\begin{beispiel}
+%Auf dem Interval $J=[1,\infty)$ ist die Funktion
+%$f(t)=t^{-\alpha}$ gegeben.
+%Die Integrale von $f$ und $f^2$ sind
+%\begin{align*}
+%\int_1^\infty |f(t)|\,dt
+%&=
+%\int_1^\infty t^{-\alpha}\,dt
+%=
+%\biggl[\frac{t^{1-\alpha}}{1-\alpha}\biggr]_1^\infty
+%=
+%\begin{cases}
+%\frac{1}{\alpha-1}&\qquad \alpha > 1\\
+%\infty &\qquad \alpha \le 1
+%\end{cases}
+%\\
+%\int_1^\infty |f(t)|^2\,dt
+%&=
+%\int_1^\infty t^{-2\alpha}\,dt
+%=
+%\biggl[\frac{t^{1-2\alpha}}{1-2\alpha}\biggr]_1^\infty
+%=
+%\begin{cases}
+%\frac{1}{2\alpha-1}&\qquad \alpha > \frac12\\
+%\infty &\qquad \alpha \le \frac12
+%\end{cases}
+%\end{align*}
+%Man liest daraus ab, dass für $\frac12<\alpha < 1$ die Funktion $f$ zwar
+%in $L^2([0,\infty))$, nicht aber in $L^1([1,\infty))$ ist.
+%\end{beispiel}
+%
+%Der Fall des letzten Beispiels kann vermieden werden, wenn man den
+%Definitionsbereich der Funktion auf ein kompaktes Interval beschränkt.
+%Dann folgt, der folgende Satz.
 
 \begin{satz}
 \label{satz:l2inl1}
@@ -595,6 +874,8 @@ ebenfalls beschränkt.
 
 \subsection{Die Operatoren für Translation und Dilatation
 \label{subsection:translation-dilatation2}}
+\index{Translation}%
+\index{Dilatation}%
 Für das Verständnis von Wavelets müssen wir die Wirkung der Operatoren
 $T_b$ und $D_a$ auf das Skalarprodukt und die $L^2$-Norm verstehen.
 
@@ -678,7 +959,6 @@ Eine um den Faktor $|a|$ ``gestreckte'' Funktion hat eine um $\sqrt{|a|}$
 grössere Norm.
 Dies lässt sich aber leicht korrigieren, indem man den Dilationsoperator
 neu skaliert, wie in der folgenden Definition.
-
 
 %In Abschnitt~\ref{subsection:translation-dilatation} haben wir die
 %Operationen $T_b$ und $\tilde{D}_a$ definiert.
@@ -767,6 +1047,7 @@ gestaucht.
 
 Die Vertauschungsregel für $T_b$ und $D_a$ ist in
 Abbildung~\ref{geometrie:kommutatorD:image} visualisiert.
+\index{Vertauschungsregel}%
 
 
 
