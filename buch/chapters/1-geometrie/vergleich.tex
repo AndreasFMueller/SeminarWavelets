@@ -16,11 +16,13 @@ Beginnend mit Binärsignalen entwickeln wir ein anschauliches Mass für die
 
 \subsubsection{Binärsignale}
 Wir beginnen unsere Betrachtungen mit zwei diskrete Signale mit Werten $\pm 1$:
-\begin{align*}
+\[
+\begin{aligned}
 &x_1,x_2,x_3,\dots,x_N &&\in \{\pm 1\},
 \\
-&y_1,y_2,y_3,\dots,y_N &&\in \{\pm 1\},
-\end{align*}
+&y_1,y_2,y_3,\dots,y_N &&\in \{\pm 1\}
+\end{aligned}
+\]
 und versuchen eine Masszahl für die Ähnlichkeit dieser beiden
 Zahlfolgen zu entwickeln.
 
@@ -48,7 +50,7 @@ $p=-1$ für entgegengesetzte Signale.
 
 Wenn die beiden Folgen nichts mitenander zu tun haben, dann erwarten
 wir, dass $x_k$ und $y_k$ jeweils etwa in der Hälfte der Fälle
-entgegengesetztes Vorzeichen haben werden, und gleiches in allen
+entgegengesetztes Vorzeichen haben werden und gleiches in allen
 anderen.
 Dies führt auf $p=0$.
 Die Zahl $p$ könnte also als Mass dafür dienen, wie ähnlich die beiden Signale
@@ -59,6 +61,7 @@ Warum sollten die Werte $+1$ und $-1$ gleich häufig sein?
 Man könnte dies korrigieren, indem man den mittleren Wert beider Folgen
 subtrahiert.
 So erhält man die Kovarianz
+\index{Kovarianz}%
 \begin{equation}
 \operatorname{cov}(x_k,y_k)
 =
@@ -80,7 +83,7 @@ in~\eqref{geometrie:cov}.
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/sinsin.pdf}
 \caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
-verrauschen Sinus-Signal $\color{blue}y(t)$.
+verrauschten Sinus-Signal $\color{blue}y(t)$.
 Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
 hauptsächlich im ersten und dritten Quadranten.
 \label{geometrie:kovarianz:sinsin:image}}
@@ -89,7 +92,7 @@ hauptsächlich im ersten und dritten Quadranten.
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/sincos.pdf}
 \caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
-verrauschen Kosinus-Signal $\color{blue}y(t)$.
+verrauschten Kosinus-Signal $\color{blue}y(t)$.
 Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
 in ungefähr gleicher Zahl in allen vier Quadranten, die Kovarianz
 wird klein sein.
@@ -99,7 +102,7 @@ wird klein sein.
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/sinrect.pdf}
 \caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
-verrauschen Rechteck-Signal $\color{blue}y(t)$.
+verrauschten Rechteck-Signal $\color{blue}y(t)$.
 Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
 hauptsächlich im ersten und dritten Quadranten.
 \label{geometrie:kovarianz:sinrect:image}}
@@ -108,7 +111,7 @@ hauptsächlich im ersten und dritten Quadranten.
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/cosrect.pdf}
 \caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
-verrauschen und phasenverschobenen Rechteck-Signal $\color{blue}y(t)$.
+verrauschten und phasenverschobenen Rechteck-Signal $\color{blue}y(t)$.
 Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
 in ungefähr gleicher Zahl in allen vier Quadranten, die Kovarianz
 wird klein sein.
@@ -127,13 +130,18 @@ wird klein sein.
 \end{figure}
 
 
-Binäre Signale sind nicht allzu realistisch, wir möchten daher zwei
+Binäre Signale sind nicht allgemein genug, wir möchten daher zwei
 beliebige rellwertige Signale vergleichen.
 Die früher verwendete Summe der Produkte der Signalwerte wird grösser,
 wenn die Signalwerte grösser werden, sie ist also nicht geeignet als
 absolutes Mass für die Ähnlichkeit zweier Funktionen.
 Wir müssen daher mit einem Faktor korrigieren, der die ungefähre
 Grösse der Absolutbeträge des Signals wiedergibt.
+Der Mittelwert ist dazu nicht geeignet, da er bei Werten mit verschiedenen
+Vorzeichen verschwinden kann.
+Der Absolutbetrag ist eine nicht differenzierbare Funktion und damit
+oft etwas unhandlich.
+Es drängt sich daher auf, die quadratischen Mittelwerte
 \[
 \frac1{N}
 \sum_{k=1}^N x_k^2
@@ -141,6 +149,7 @@ Grösse der Absolutbeträge des Signals wiedergibt.
 \frac1{N}
 \sum_{k=1}^N y_k^2
 \]
+zu
 verwenden.
 Diese haben allerdings die falsche Masseinheit, nämlich die des
 Quadrates des Signals, wir müssen also ihre Quadratwurzel verwenden.
@@ -155,9 +164,16 @@ Für Signale mit Mittelwert $0$ führt dies auf
 \qquad\text{oder}\qquad
 r
 =
-\frac{\operatorname{cov}(x_k,y_k)}{\sqrt{\operatorname{var}(x_k)}\sqrt{\operatorname{var}(y_k)}}
+\frac{\operatorname{cov}(x_k,y_k)}{\sqrt{\mathstrut\operatorname{var}(x_k)}\sqrt{\mathstrut\operatorname{var}(y_k)}}
 \]
 Die Grösse $r$ ist auch bekannt als der Korrelationskoeffizient.
+\index{Korrelationskoeffizient}%
+\index{Varianz}%
+
+\subsubsection{Beispiele}
+Wir illustrieren die eben entwickelten Konzepte an Hand einiger Beispiele
+in den Abbildungen~\ref{geometrie:kovarianz:sinsin:image} bis
+\ref{geometri:kovarianz:sinrand:image}.
 
 In den Abbildung~\ref{geometrie:kovarianz:sinsin:image} bis
 \ref{geometrie:kovarianz:sinrand:image} wird ein Sinus-Signal
@@ -184,14 +200,14 @@ Die Summe wird also besonders gross, wenn die violetten Punkte vor
 Allem im ersten und dritten Quadranten liegen, und besonders negativ,
 wenn sie vor Allem im zweiten und vierten Quadranten liegen.
 
-Liegen die violetten Punkte in allen Quadranten gleichmässig, ist
-davon auszugehen, dass sich die positiven und negativen Werte des
+Liegen die violetten Punkte ungefähr gleich häufig in allen vier Quadranten,
+ist davon auszugehen, dass sich die positiven und negativen Werte des
 Produktes im Mittel wegheben werden, dass also die Summe der
-Produkte nur einen kleinen Werte haben wird.
+Produkte nur einen kleinen Wert haben wird.
 
 Die Abbildungen~\ref{geometrie:kovarianz:sinsin:image} und
 \ref{geometrie:kovarianz:sinrect:image} zeigen den Vergleich
-des Sinus-Signals mit einer verrauschen Version eines Sinus-Signals
+des Sinus-Signals mit einer verrauschten Version eines Sinus-Signals
 bzw.~eines Rechteck-Signals $\operatorname{sign}(\sin(t))$.
 In beiden Fällen liegen die violetten Punkte vorzugsweise im ersten
 und dritten Quadranten, 
@@ -253,6 +269,7 @@ Sinus-Signal ausdrückt.
 Die Ausführungen des letzten Abschnitts haben gezeigt, dass die Summe der
 Produkte der Signale eine Masszahl für die Ähnlichkeit zweier Signale ist.
 Die Summe der Produkte können wir aber als Skalarprodukte von Signalvektoren
+\index{Skalarprodukt}%
 schreiben:
 \[
 \sum_{k=1}^N x_ky_k
@@ -300,7 +317,8 @@ in ausreichender Allgemeinheit nachzubilden.
 Dazu müssen wir zunächst die Objekte definieren, deren Skalarprodukt wir
 nehmen wollen.
 \begin{definition}
-Ein Vektorraum über den reellen Zahlen $\mathbb R$ ist eine Menge $V$ 
+Ein {\em Vektorraum} über den reellen Zahlen $\mathbb R$ ist eine Menge $V$ 
+\index{Vektorraum}%
 von Objekten, genannt Vektoren, versehen mit zwei Operationen, der
 Addition von Vektoren, geschrieben $+$, und der Multiplikation von Vektoren
 mit reellen Zahlen, sowie einem ausgezeichneten Element $0\in V$, mit
@@ -309,14 +327,16 @@ folgenden Eigenschaften:
 \item Die Addition ist assoziativ: $(u+v)+w = u+(v+w)$ für $u,v,w\in V$.
 \item Die Addition ist kommutativ: $u+v=v+u$ für $u,v\in V$.
 \item Die Multiplikation ist assoziativ: $(\lambda \mu)u=\lambda (\mu u)$ für
+$u\in V$ und $\lambda,\mu\in\mathbb R$.
 \item Der Vektor $0\in V$ ist neutral bezüglich der Addition: $u+0=u$ für
 $u\in V$.
 \item Zu jedem Vektor $v$ gibt es einen Vektor $-v\in V$ derart, dass
 $v+(-v)=0$.
-$u\in V$ und $\lambda,\mu\in\mathbb R$.
-\item $(\lambda + \mu) u = \lambda u + \mu u$ für $u\in V$ und
+\item Die Multiplikation ist distributiv über Summen von Skalaren:
+$(\lambda + \mu) u = \lambda u + \mu u$ für $u\in V$ und
 $\lambda,\mu\in \mathbb R$.
-\item $\lambda (u + v) = \lambda u + \lambda v$ für $u,v\in V$ und
+\item Die Multiplikaton ist distributiv über Summen von Vektoren:
+$\lambda (u + v) = \lambda u + \lambda v$ für $u,v\in V$ und
 $\lambda\in\mathbb R$.
 \end{enumerate}
 \end{definition}
@@ -344,7 +364,8 @@ V\times V\to\mathbb R
 :
 (u,v)\mapsto \langle u,v\rangle
 \]
-heisst ein Skalarprodukt, wenn
+heisst ein {\em Skalarprodukt}, wenn
+\index{Skalarprodukt}%
 \begin{enumerate}
 \item $\langle\;\,,\;\rangle$ ist linear im ersten Argument:
 \begin{equation}
@@ -365,20 +386,23 @@ heisst ein Skalarprodukt, wenn
 \item
 $\langle\;\,,\;\rangle$
 ist symmetrisch:
+\index{symmetrisch}
 $\langle u,v\rangle=\langle v,u\rangle$
 \item
 $\langle\;\,,\;\rangle$
 ist {\em positiv definit}: $\langle u,u\rangle > 0$ und
+\index{positiv definit}%
 $\langle u,u\rangle=0$ genau dann, wenn $u=0$.
 \end{enumerate}
 \end{definition}
 
-Für Vektoren $u,v\in\mathbb R^n$ ist das gewohnt Punkt-Produkt
+Für Vektoren $u,v\in\mathbb R^n$ ist das gewohnte Punkt-Produkt
 \[
 u\cdot v = u^t v = \langle u,v\rangle
 \]
 ein Skalarprodukt.
-Eine kurze Überlegung erfordert nur der letzte Punkt der Definition.
+Eine kurze Überlegung erfordert nur der letzte Punkt der Definition,
+dass das Skalarprodukt positiv definit sei.
 Das Skalarprodukt eines Vektors mit sich selbst ist 
 \[
 \langle u,u\rangle = u^t u = \sum_{k=1}^n u_k^2 \ge 0.
@@ -387,7 +411,8 @@ Wenn es $0$ ist, dann müssen alle Komponenten $u_k=0$ sein, also $u=0$.
 
 \begin{definition}
 Ist $\langle\;,\;\rangle$ ein Skalarprodukt auf $V$, dann ist die zugehörige
-Norm der Vektoren definiert als
+{\em Norm} der Vektoren definiert als
+\index{Norm zu einem Skalarprodukt}%
 \[
 \| u \|^2 = \langle u,u\rangle
 \qquad\Leftrightarrow\qquad
@@ -398,6 +423,7 @@ Norm der Vektoren definiert als
 Die Definition der Norm ist sinnvoll, weil die Eigenschaft des Skalarprodukts,
 positiv definit zu sein, sicherstellt, dass die Wurzel immer wohldefiniert
 ist.
+
 Jedes Skalarprodukt hat automatisch die Eigenschaft, dass die Extremwerte
 des Skalarproduktes nur angenommen werden, wenn die Faktoren linear
 abhängig sind.
@@ -405,7 +431,8 @@ Dies ist der Inhalt des folgenden Satzes.
 
 \begin{satz}
 Für eine Skalarprodukt $\langle\;\,,\;\rangle$ gilt die
-Cauchy-Schwarz-Ungleichung
+{\em Cauchy-Schwarz-Ungleichung}
+\index{Cauchy-Schwarz-Ungleichung}%
 \begin{equation}
 |\langle u,v\rangle| \le \| u\|\cdot\| v\|
 \label{geometrie:cauchy-schwarz}
@@ -419,14 +446,16 @@ Das Skalarprodukt ist positiv definit, also
 \begin{align*}
 0
 &\le
-\| u+tv \|
+\|u+tv\|
 \intertext{mit Gleichheit genau dann, wenn $u+tv=0$.
 Wir berechnen}
+\|u+tv\|
 &= \| u \|^2 + 2t \langle u,v\rangle + t^2 \|v\|^2
 \end{align*}
-Die rechte Seite ist eine quadratische Funktion $c+bt + at^2$, die ihr
-Minimum bei $t=-b/2a=-\langle u,v\rangle / \| v\|^2$ annimmt.
-Für den kleinstmöglichen Wert gilt daher
+Die rechte Seite ist eine quadratische Funktion $c+bt + at^2$ mit
+$a=\|v\|^2$, $b=2\langle u,v\rangle$ und $c=\|u\|^2$.
+Sie nimmt ihr Minimum bei $t=-b/2a=-\langle u,v\rangle / \| v\|^2$ an.
+Für den kleinstmöglichen Wert folgt durch Einsetzen dieses Wertes für $t$
 \begin{align*}
 0
 &\le
@@ -438,14 +467,14 @@ Für den kleinstmöglichen Wert gilt daher
 =
 \| u\|^2
 -
-\frac{\langle u,v\rangle^2}{\|v\|^2}
+\frac{\langle u,v\rangle^2}{\|v\|^2}.
 \end{align*}
 Multiplizieren wir mit $\| v\|^2$ und bringen das Skalarprodukt auf die
 linke Seite, erhalten wir
 \begin{align*}
 \langle u,v\rangle^2
 &\le
-\|u\|^2 \cdot \|v\|^2
+\|u\|^2 \cdot \|v\|^2.
 \end{align*}
 Mit Gleichheit genau dann, wenn $ u+tv=0$ ist.
 \end{proof}
@@ -481,13 +510,17 @@ Die Linearität des Skalarproduktes bedeutet nämlich
 \end{align}
 Die Bildung der Norm aus dem Skalarprodukt ist also nicht mit
 Informationsverlust verbunden.
+Formel~\eqref{geometrie:polar} heisst auch {\em Polar-Identität} oder
+{\em Polarisierung} eines reellen Skalarprodukts.
+\index{Polar-Identität}%
 
 \subsection{Skalarprodukt und orthonormierte Basis}
 In der linearen Algebra lernt man, dass eine orthonormierte Basis besonders
 gut geeignet ist für die Beschreibung von Vektoren.
 
 \begin{definition}
-Eine Menge von Vektoren $\{e_k\,|\, k\in\mathbb N\}$ heisst orthonormiert,
+Eine Menge von Vektoren $\{e_k\,|\, k\in\mathbb N\}$ heisst {\em orthonormiert},
+\index{orthonormiert}%
 wenn
 \[
 \langle e_k,e_l\rangle
@@ -496,12 +529,22 @@ wenn
 =
 \begin{cases}
 1 &\qquad k=l\\
-0 &\qquad k\ne l
-\end{cases}.
+0 &\qquad k\ne l.
+\end{cases}
 \]
-Sie heisst eine Basis von $V$, wenn jeder Vektor von $V$ sich als
+Das Symbol $\delta_{kl}$ heissen auch {\em Kronecker-Symbol}.
+\index{Kronecker-Symbol}%
+\index{Kronecker-Delta}%
+\index{$\delta$, Kronecker-Delta}%
+Sie heisst eine {\em orthonormierte Basis} von $V$, wenn jeder Vektor
+von $V$ sich als
+\index{Basis}%
+\index{orthonormierte Basis}%
 Linearkombination der Vektoren $e_k$ schreiben lässt.
 \end{definition}
+
+Man beachte, dass lineare Unabhängigkeit, die man normalerweise für eine
+Basis fordern muss, eine direkte Konsequenz der Orthonormalität ist.
 
 Die Standardbasisvektoren
 \[
@@ -528,12 +571,13 @@ $V$, dann lässt sich jeder Vektor auf genau eine Art in der Form
 v = \sum_{k=1}^n \hat v_k\, e_k
 \label{gemoetrie:zerlegung}
 \end{equation}
-schreiben, und für die Koeffiziente gilt
+schreiben und für die Koeffiziente gilt
 \begin{equation}
 \hat{v}_k = \langle v,e_k\rangle.
 \label{geometrie:synthese}
 \end{equation}
 Für das Skalarprodukt zweier Vektoren gilt die Plancherel-Identität
+\index{Plancherel-Identität}%
 \begin{align}
 \langle u,v\rangle
 &=

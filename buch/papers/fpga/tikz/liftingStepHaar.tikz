@@ -1,28 +1,20 @@
 \usetikzlibrary{automata,arrows,positioning,calc}
 \usetikzlibrary{shapes}
 
-
-\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 0.8]
-
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 0.85]
 
 %\useasboundingbox (0,-0.5) rectangle (12.5,1.5);
-
-
 
 \tikzstyle{block}=[rectangle, inner sep=4pt, fill=white,draw=black,thick,text=black, minimum height = 2.5cm, minimum width = 1.5cm, scale = 1]
 \tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm,  scale = 1]
 \tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black,  scale = 1]
-
-\tikzstyle{dots}=[circle, fill=white,thick,text=black,scale=1, minimum size=0.8cm,  scale = 1]
-
+\tikzstyle{dots}=[circle, fill=white,thick,text=black, minimum size=0.8cm, scale = 1]
 \tikzstyle{amp}= [regular polygon, regular polygon sides=3,	draw, fill=white, text width=1em, inner sep=0.5mm, outer sep=0mm, shape border rotate=-90, minimum size = 1.7cm, scale = 1]
 
-\tikzset{every node/.style={scale=0.8}}
-\tikzset{every coordinate/.style={scale=0.8}}
+\tikzset{every node/.style={scale=0.85}}
+\tikzset{every coordinate/.style={scale=0.85}}
 
 %\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-3) grid (10,3);
-
-%\tikzset{every node/.style={scale=0.7}}
 
 \coordinate      (start) at(0,0) ;
 
@@ -88,8 +80,6 @@
 
 \draw[->] (hp) -- node[above]{$s_l$} (sum3);
 \draw[->] (lp) -- node[below]{$d_l$} (sum4);
-
-
 
 \draw[->] (c3) -- (s3);
 \draw[->] (s3) -- (sum3);

@@ -6,29 +6,39 @@
 \section{Sampling%
 \label{section:sampling}}
 \rhead{Sampling}
-Im vorangegangenen Abschnitt wurden stückweise konstante Funktionen studiert
-und es wurde gezeigt, dass diese einen Vektorraum mit Skalarprodukt bilden,
-also alle Voraussetzungen für eine Theorie ähnlich der Fourier-Theorie
+Bei der Digitalisierung eines Signals wird eine sample hold Schaltung am
+Eingang des Analog-/Digital-Wandlers verwendet, welche das Signal für die
+Zeit der Wandlung in einen digitalen Wert konstant hält.
+Die Abtastung eines Signals produziert also auf natürliche Weise
+stückweise konstante Funktionen.
+Digitalisierte Signal bilden also einen Vektorraum mit Skalarprodukt,
+erfüllen also alle Voraussetzungen für eine Theorie ähnlich der Fourier-Theorie
 bauen kann.
-Es wurde aber auch gezeigt, dass die freie Unterteilbarkeit des Intervals
-die Konstruktion einer orthonormierten Basis erschwert hat.
+Im Abschnitt~\ref{section:stueckweise} wurde auch gezeigt, dass die freie
+Unterteilbarkeit des Intervals die Konstruktion einer orthonormierten Basis
+erschwert hat, dieses Problem soll in diesem Abschnitt in Angriff genommen
+werden.
+
+\subsection{Konstante Sampling-Rate}
 Das Problem kann gelöst werden, indem man die Unterteilung ein für alle
 Male festlegt, zum Beispiel indem man das Interval in $n$ gleichgrosse
 Teil unterteilt:
 \begin{equation}
-x_k = a + k\cdot\frac{b-a}{n}.
+x_k = a + k\cdot\frac{b-a}{n} = a + kh
+\qquad
+\text{mit $\displaystyle h=\frac{b-a}n$}
 \label{sampling:unterteilung}
 \end{equation}
 Das Korn dieser Unterteilung ist $(b-a)/n$, durch Vergrösserung von $n$
 kann man die Approximation verbessern.
 
-Diese spezielle Unterteilung ist von grosser praktischer Bedeutung,
-da die digitale Abtastung eines Signals $f(x)$ genau so eine Unterteilung
-der Zeitachse verwendet und die Funktion $f(x)$ durch die stückweise
-konstante Funktion
-\[
-\tilde{f} (x) = f(x_k)\quad\text{für $x\in[x_k,x_{k+1})$}.
-\]
+%Diese spezielle Unterteilung ist von grosser praktischer Bedeutung,
+%da die digitale Abtastung eines Signals $f(x)$ genau so eine Unterteilung
+%der Zeitachse verwendet und die Funktion $f(x)$ durch die stückweise
+%konstante Funktion
+%\[
+%\tilde{f} (x) = f(x_k)\quad\text{für $x\in[x_k,x_{k+1})$}.
+%\]
 % XXX Graphische Darstellung der gesampelten Funktion
 Die Abtastung einer Funktion $f(x)$ an den Stellen $x_k$ ersetzt
 die Funktion durch eine Folge von Zahlen $f_k = f(x_k)$.
@@ -39,18 +49,27 @@ Unterteilung zu finden, weil alle Funktionen bereits die gemeinsame
 Unterteilung~\eqref{sampling:unterteilung} verwenden.
 Die Vektorraum-Operationen sind ebenfalls einfach zu bilden,
 da sie direkt auf den Sample-Vektoren wirken:
-\[
-(f+g)_k = f_k + g_k.
-\]
+\begin{align*}
+(f+g)_k &= f_k + g_k \\
+(\lambda f)_k &= \lambda f_k.
+\end{align*}
+
+\subsection{Skalarprodukt
+\label{haar:subsection:skalarprodukt}}
 Auch das Skalarprodukt 
 \[
 \langle f,g\rangle
 =
 \frac{b-a}{n}
 \sum_{k=0}^{n-1} f_k g_k
+=
+h
+\sum_{k=0}^{n-1} f_k g_k
 \]
-kann allein mit Vektoroperationen durchgeführt werden.
+kann allein mit Operationen auf den Samplevektoren berechnet werden.
 
+\subsection{Basis
+\label{haar:subsection:basis}}
 Es ist auch einfach, eine Basis zu finden.
 Dazu kann man die Indikatorfunktionen der $\chi_{[lh,(l+1)h)}(x)$
 verwenden.
@@ -77,6 +96,7 @@ Die Skalarprodukte dieser Funktionen sind
 \]
 die Funktionen $e^{(l)}$ sind daher orthonormiert.
 
+\subsection{Erweiterung auf $\mathbb R$}
 Diese Konstruktion kann auf die ganze reelle Achse erweitert werden.
 Der Sample-Abstand $h$ definiert eine Unterteilung
 \[
@@ -86,13 +106,14 @@ der reellen Achse mit Korn $h$.
 Zu einer stetigen Funktion $f(x)$ gehört dann ein Sample-Vektor
 $f_k=f(x_k)=f(kh)$ mit $k\in\mathbb Z$, für den auch die
 arithmetischen Operationen definiert sind.
-Auch das Skalarprodukt wird durch die unendliche Summe
+Das Skalarprodukt wird durch die unendliche Summe
 \[
 \langle f, g\rangle
 =
+h
 \sum_{k\in\mathbb Z} f_k g_k
 \]
-definiert werden.
+definiert.
 Es ist natürlich nur definiert, wenn die Summe konvergiert.
 Dazu müssen die Folgen $f_k$ und $g_k$ quadratsummierbar sein.
 Diese Bedingung ist für die praktischen Anwendungen keine Einschränkung,
@@ -104,6 +125,8 @@ e^{(r)}_k = \delta_{rk}
 \]
 können als orthonormierte Basis verwendet werden.
 
+\subsection{Translation
+\label{haar:subsection:translation}}
 Der erweiterte Definitionsbereich der $\{kh\,|\,k\in\mathbb Z\}$ ermöglicht,
 Signale zu vergleichen, die nur zeitlich verschoben sind.
 Sind zwei Funktionen $f(x)$ und $g(x)$ um ein Vielfaches von $h$ verschoben,
@@ -116,8 +139,8 @@ Diese Translationen sind bezüglich des Skalarprodukts Isometrien.
 Allerdings haben wir uns jetzt ein weiteres Problem eingehandelt.
 Weil das Korn der Unterteilung fest ist, können wir nicht mehr jede
 beliebige Funktion beliebig genau approximieren.
-In der Tat hat das Sampling-Theorem gezeigt, dass nur bandbreitenbegrenzte
-Funktionen exakt rekonstruiert werden können.
+%In der Tat hat das Sampling-Theorem gezeigt, dass nur bandbreitenbegrenzte
+%Funktionen exakt rekonstruiert werden können.
 Man könnte natürlich von Vornherein ein so feines Korn wählen, dass alle
 möglicherweise interessierenden Details durch den Sampling-Prozess
 erfasst werden.
@@ -128,7 +151,7 @@ Masse redundant ist, da der grösste Teil der Information bereits bei
 viel kleinerem Sample-Abstand erkennbar wird.
 
 Gesucht ist also eine Hierarchie von Unterteilungen, so dass wir einerseits
-die nützliche Translations-Invarianz retten können, aber andererseits auch
+die nützliche Trans\-la\-tions-Invarianz retten können, aber andererseits auch
 beliebig gute Approximation eines Signals finden können.
 
 

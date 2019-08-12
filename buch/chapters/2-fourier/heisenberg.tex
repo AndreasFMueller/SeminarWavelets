@@ -14,7 +14,7 @@ die Lokalisierung von $f(t)$ bzw.~$\hat{f}(\omega)$.
 Wäre $f$ eine Wahrscheinlichkeitsdichte, dann wäre die Varianz ein
 naheliegendes Mass dafür.
 Die Funktion darf aber nicht $\le 0$ sein. Man könnte das Problem korrigeren, indem man stattdessen $|f(t)|^2$ verwendet.
-Das Mass für die Lokalisierung in Zeit und Frequenz ist daher
+Die Masse für die Lokalisierung in Zeit und Frequenz sind daher
 \begin{align*}
 \int_{-\infty}^\infty
 t^2 \, |f(t)|^2\,dt
@@ -23,6 +23,7 @@ t^2 \, |f(t)|^2\,dt
 |t\,f(t)|^2\,dt
 =
 \|tf\|^2
+\qquad\text{bzw.}
 \\
 \int_{-\infty}^\infty
 \omega^2\,|\hat{f}(\omega)|^2\,d\omega
@@ -72,7 +73,7 @@ Damit kann man die Lokalisierung von $\hat{f}$ durch $f$ ausdrücken:
 &=
 \int_{-\infty}^\infty f'(t)|^2\,dt.
 \end{align*}
-Jetzt kann man die Cauchy-Schwarz-Ungleichung auf die Funktione $f'$ und $tf$
+Jetzt kann man die Cauchy-Schwarz-Ungleichung auf die Funktionen $f'$ und $tf$
 anwenden:
 \begin{align*}
 \|tf\| \cdot \| f'\|
@@ -81,7 +82,7 @@ anwenden:
 =
 \biggl|
 \int_{-\infty}^\infty
-\frac 12\bigl( tf(t)\bar{f}'(t)  + t\bar{f}(t)f'(t)\biggr)\,dt
+\frac 12\bigl( tf(t)\bar{f}'(t)  + t\bar{f}(t)f'(t)\bigr)\,dt
 \biggr|
 \\
 &=
@@ -133,5 +134,15 @@ f(t) = D e^{-\frac{t^2}{2\sigma^2}}
 hat.
 \end{proof}
 
-
+In der Nachrichtentechnik ist die Bezieung von Satz~\ref{satz:heisenberg}
+\index{Nachrichtentechnik}%
+\index{Küpfmüllersche Unbestimmtheitsrelation}
+auch als die Küpfmüllersche Unbestimmtheitsrelation bekannt nach
+Karl Küpfmüller, der sie 1924 formulierte.
+\index{Küpfmüller, Karl}%
+Die Erkenntnis von Werner Heisenberg war, dass diese Relation in
+der Quantenmechanik eine die grundsätzliche Unmöglichkeit zur Folge
+hat, Ort und Impuls eines Teilchens gleichzeitig beliebig genau
+zu kennen.
+\index{Heisenberg, Werner}%
 

@@ -1,22 +1,20 @@
 \usetikzlibrary{automata,arrows,positioning,calc}
+\usetikzlibrary{shapes}
 
-
-
-\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 1]
-
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=1.5cm, scale = 0.85]
 
 %\useasboundingbox (0,-0.5) rectangle (12.5,1.5);
-
-%\tikzset{every node/.style={scale=0.7}}
 
 \tikzstyle{block}=[rectangle, inner sep=4pt, fill=white,draw=black,thick,text=black, minimum height = 2.5cm, minimum width = 1.5cm, scale = 1]
 \tikzstyle{square}=[rectangle, fill=white,draw=black,thick,text=black, minimum height = 0.8cm, minimum width = 0.8cm,  scale = 1]
 \tikzstyle{round}=[circle, fill=white,draw=black,thick,text=black,  scale = 1]
 \tikzstyle{dots}=[circle, fill=white,thick,text=black,scale=1, minimum size=0.8cm,  scale = 1]
 
-%\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-3) grid (10,3);
 
-%\tikzset{every node/.style={scale=0.7}}
+\tikzset{every node/.style={scale=0.85}}
+\tikzset{every coordinate/.style={scale=0.85}}
+
+%\draw[step=1.0,black,thin,xshift=0.0cm,yshift=0.0cm] (-2,-3) grid (10,3);
 
 \node      (start) at(0,0) {$x$} ;
 
@@ -74,8 +72,6 @@
 
 \draw[->] (h2tr) -- node {}(u1);
 \draw[->] (h2br) -- node {}(u2);
-
-
 
 \draw[->] (u1) -| node {}(combine);
 \draw[->] (u2) -- node {}(zz2);

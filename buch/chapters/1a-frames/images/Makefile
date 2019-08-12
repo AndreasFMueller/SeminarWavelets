@@ -18,7 +18,11 @@ all:	hexagon.pdf	\
 	b3-07.pdf	\
 	b3-08.pdf	\
 	b3-09.pdf	\
-	b3-10.pdf
+	b3-10.pdf	\
+	iteration.pdf	\
+	itkonv.pdf	\
+	ibkonv.pdf	\
+	div.pdf
 
 hexagon.pdf:	hexagon.tex
 	pdflatex hexagon.tex
@@ -76,4 +80,16 @@ b3-09.pdf:	b3-09.tex b3curves.tex axes.tex
 
 b3-10.pdf:	b3-10.tex b3curves.tex axes.tex
 	pdflatex b3-10.tex
+
+iteration.pdf:	iteration.tex
+	pdflatex iteration.tex
+
+itkonv.pdf:	itkonv.tex
+	pdflatex itkonv.tex
+
+ibkonv.pdf:	ibkonv.tex
+	pdflatex ibkonv.tex
+
+div.pdf:	div.tex
+	pdflatex div.tex
 

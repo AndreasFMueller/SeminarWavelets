@@ -9,7 +9,7 @@
 Joseph Fourier publizierte 1922 seine {\em Théorie analytique de la chaleur},
 \index{Fourier, Joseph}
 in der er die zeitliche Änderung der Temperaturverteilung mit Hilfe einer
-partiellen Differentialgleichung beschreibt und dann eine Lösung als
+partiellen Differentialgleichung beschrieb und dann eine Lösung als
 Linearkombination von Sinus- und Kosinus-Funktionen konstruierte. 
 Er wählte Sinus- und Kosinus-Funktionen, weil diese besonders gut in
 seine Differentialgleichungen zweiter Ordnung passten.
@@ -19,8 +19,9 @@ Kosinus-Funktionen offenbar eine geeignete Funktionenmenge für die
 Beschreibung eines Hilbertraums von periodischen Funktionen sind.
 
 In diesem Abschnitt geht es daher um $2\pi$-periodische Funktionen,
-also Funktionen $f\colon \mathbb R\to \mathbb R$ (oder auch $\mathbb C$),
-für die gilt $f(t+2\pi)= f(t)$ für alle $t\in\mathbb R$.  
+also Funktionen $f\colon \mathbb R\to \mathbb R$ (oder auch
+$f\colon\mathbb R\to \mathbb C$),
+für die $f(t+2\pi)= f(t)$ gilt für alle $t\in\mathbb R$.  
 Solche Funktionen sind natürlich nicht integrierbar, sie passen also
 in dieser Form nicht in den Rahmen, den wir bisher in diesem Kapitel
 entwickelt haben.
@@ -42,7 +43,7 @@ Um die Notation etwas zu vereinheitlichen, schreiben wir auch $s_k$ für
 die Funktion $s_k(t)=\sin kt$ und $c_k$ für $c_k(t)=\cos kt$.
 
 Der natürliche Rahmen ist daher der Hilbertraum $L^2([0,2\pi])$.
-Und im Lichte des Analyse-Gedankens der letzten Kapitel stellt sich
+Und im Lichte des Analyse-Gedankens des ersten Kapitels stellt sich
 die Frage, ob die Sinus- und Kosinus-Funktionen eine Hilbert-Basis
 von $L^2([0,2\pi])$ bilden.
 
@@ -58,8 +59,9 @@ des Hilbertraums $L^2([0,2\pi])$.
 Wir müssen jetzt untersuchen, ob die Sinus- und Kosinus-Funktionen
 ein Erzeugendensystem bilden und ob sie orthonormiert sind.
 
-Wir müssen daher alle Skalarprodukte der Sinus- und
-Kosinus-Funktionen berechnen.
+Wir müssen daher alle Skalarprodukte von Sinus- und Kosinus-Funktionen
+berechnen.
+\index{Orthogonalität der trigonometrischen Funktionen}%
 Dazu verwenden wir die goniometrischen Formeln, die Produkte von
 trigonometrischen Funktionen durch Linearkombinationen anderer
 trigonometrischer Funktionen ausdrücken:
@@ -183,7 +185,7 @@ Für $k=l>0$ erhält man dagegen
 \end{align*}
 Die Funktionen $s_k$ und $c_l$ sind also tatsächlich orthogonal, aber
 die Normierung stimmt nicht.
-Dies ist aber leicht zu korrigieren, die Funktionen
+Dies ist leicht zu korrigieren, die Funktionen
 \[
 \frac1{\sqrt{\pi}} c_k(t) = \frac{1}{\sqrt{\pi}} \cos kt
 \qquad\text{und}\qquad
@@ -219,13 +221,13 @@ Die Menge der Funktionen
 k>0
 \biggr\}
 \]
-bilden somit ein orthogonormiertes Funktionensystem.
+ist somit ein orthogonormiertes Funktionensystem.
 Man kann zeigen, dass die Funktionen sogar ein Erzeugendensystem sind
 und damit eine Hilbertbasis.
-Aus den allgemeinen Prinzipen der Kapitel~\ref{chapter:geometrie} und
-\ref{chapter:frames} folgt jetzt, dass sich jede Funktion in $L^2([0,2\pi])$
+Aus den allgemeinen Prinzipien von Kapitel~\ref{chapter:geometrie}
+folgt jetzt, dass sich jede Funktion in $L^2([0,2\pi])$
 durch eine konvergente Reihe
-mit den Funktionen von $\mathcal{B}$ darstellen lässt.
+aus Vielfachen der Funktionen von $\mathcal{B}$ darstellen lässt.
 Die Koeffizienten sind die Skalarprodukte, also
 \begin{align*}
 \tilde{a}_0
@@ -264,19 +266,20 @@ a_0
 \sqrt{\frac{2}{\pi}}
 \tilde{a}_0
 =
-\frac1{\pi\mathstrut} \int_0^{2\pi} f(t)\,dt
+\frac1{\pi\mathstrut} \int_0^{2\pi} f(t)\,dt,
 \\
 a_k
 &=
 \frac{1}{\sqrt{\pi\mathstrut}} \tilde{a}_k
 =
 \frac1{\pi\mathstrut} \int_0^{2\pi} f(t) \cos kt\,dt
+\qquad\text{und}
 \\
 b_k
 &=
 \frac{1}{\sqrt{\pi\mathstrut}} \tilde{b}_k
 =
-\frac1{\pi\mathstrut} \int_0^{2\pi} f(t) \sin kt\,dt
+\frac1{\pi\mathstrut} \int_0^{2\pi} f(t) \sin kt\,dt.
 \end{align*}
 Die Reihe bekommt dann die Form
 \[
@@ -310,7 +313,7 @@ Für eine komplexe Funktion werden auch die Koeffizienten komplex sein.
 Die Form einer reellen Fourier-Reihe ist jetzt nicht mehr unbedingt
 vorteilhaft, da die Funktionen $s_k$ und $c_k$ ziemlich unsymmetrisch
 sind.
-Gesucht ist also eine orthonormiertes Erzeugendensystem aus
+Gesucht ist daher eine orthonormiertes Erzeugendensystem aus
 $2\pi$-periodischen komplexen Funktionen.
 Die Eulersche Gleichung $e^{it} = \cos t + i\sin t$ deutet an, dass
 dafür die Funktionen
@@ -396,10 +399,13 @@ Damit wird die Fourier-Reihe dann
 f(t) = \sum_{k\in\mathbb Z} c_k e^{ikt}.
 \]
 
-\subsection{Plancherel-Bedingung}
+\subsection{Plancherel-Formel}
 Da die Funktionen $\mathcal{B}$ eine Hilbertbasis bilden, können wir sofort
 schliessen, dass die $L^2$-Norm $\|f\|$ einer Funktion $f\in L^2([0,2\pi])$
 auch mit den Fourier-Koeffizienten berechnet werden kann.
+Für eine Hilbertbasis ist die $L^2$-Norm $\|f\|^2$ ist die Quadratsumme
+der Koeffizienten $|\langle f,b_i\rangle|^2$.
+Für die Fourier-Reihe folgt daher
 \[
 \| f \|^2
 =
@@ -433,7 +439,68 @@ Dort gilt
 2\pi \sum_{k\in\mathbb Z} |c_k|^2.
 \]
 
+\subsection{Lokalisierung
+\label{fourier:reihen:lokalisierung}}
+\index{Lokalisierung}%
+Wie änderen sich die komplexen Fourier-Koeffizienten $c_k$, wenn die
+Funktion an einer Stelle modifiziert wird?
+Zunächst ist ein einzelner Punkt eine Nullmenge und damit äussert sich
+eine solche Änderung im Skalarprodukt nicht.
+Wir können aber eine Folge $\delta_n$ von $L^2$ Funktionen mit beliebig
+kleinem Träger und $L^1$-Norm $1$ definieren:
+\begin{equation}
+\delta_n(t) = \begin{cases}
+2n&\qquad-\frac1n \le t\le \frac1n\\
+0&\qquad\text{sonst.}
+\end{cases}
+\label{fourier:deltadef}
+\end{equation}
+Die Funktion ist so konstruiert, dass das Integral immer $1$ ist, also
+$\|\delta-n\|_1=1$ für alle $n$.
 
+Die Fourier-Koeffizienten der Funktionen $\delta_n$ sind
+\begin{equation}
+\langle \delta_n,e_k \rangle
+=
+\frac{1}{\sqrt{2\pi}}\int_{-\pi}^\pi \delta_n(t) e^{-ik t}\,dt
+=
+\frac{1}{\sqrt{2\pi}}\int_{-\frac1n}^{\frac1n} e^{-ikt}\,dt
+\to
+\frac{1}{\sqrt{2\pi}}
+\qquad\text{für $n\to\infty$}.
+\label{fourier:delta0}
+\end{equation}
+Eine Änderung eines Signals um die Funktion $\delta_n$ ändert daher im
+Grenzfall alle Fourier-Koeffizienten um $1/\sqrt{2\pi}$.
 
+Verschieben wir die Funktion um $b$, betrachten wir also
+$T_b\delta_n$, dann folgt analog
+\begin{equation}
+\langle T_b\delta_n,e_k\rangle
+\to
+\frac{1}{\sqrt{2\pi}}e^{-ikb}
+\quad
+\text{für $n\to\infty$}
+\label{fourier:deltab}
+\end{equation}
+Eine Änderung des Signals in unmittelbarer Nähe des Punktes $b$ ändert also
+ebenfalls alle Fourier-Koeffizienten um eine Zahl mit Betrag
+$1/\sqrt{2\pi}$, aber die Änderungen unterscheiden sich gegenüber
+\eqref{fourier:delta0} um den Phasenfaktor.
+Die Information über die lokaler Änderung ist also verteilt über alle
+Koeffizienten und ist codiert im Phasenfaktor $e^{-ikb}$.
+Man sagt auch, eine lokale Änderung ist im Frequenzbereich vollständig
+delokalisiert.
+\index{delokalisiert}%
 
+Die Folge $\delta_n$ hat in $L^2$ keinen Grenzwert, kann also nicht als
+Funktion betrachtet werden.
+Trotzdem spricht man oft von einer {\em Delta-Funktion}.
+\index{Delta-Funktion}%
+\index{Dirac-$\delta$}%
+Die Theorie der Distributionen gibt dem Grenzwert der Folge $\delta_n$ 
+einen Sinn, muss zu diesem Zweck aber den Raum der in Frage kommenden
+Funktionen von $L^2$ auf einen kleineren Raum reduzieren.
+Wir benötigen diese Theorie wie auch die $\delta$-``Funktion'' im
+Folgenden nicht und verzichten daher auf eine tiefergehende Darstellung.
 

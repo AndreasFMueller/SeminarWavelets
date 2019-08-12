@@ -15,107 +15,24 @@ Von vornherein ist aber nicht klar, ob die Abbildung überhaupt umkehrbar ist,
 denn es wurde ja nicht verlangt, dass die Framevektoren linear unabhängig
 sind.
 Im besten Fall kann man also Linksinverse von $\mathcal{T}$ erwarten.
+\index{Linksinverse}
 Eine solche ordnet jedem Koeffizienten $\hat{v}_k$ einen Vektor $v_k'$
 zu, das sogenannte duale Frame, welches in diesem Abschnitt konstruiert
 werden soll.
 
-\subsection{Der Gram-Operator\label{subsection:gram-operator}}
-Der Frame-Operator berechnet die Analysekoeffizienten
-$\hat{v}_k=\langle v,b_k\rangle$ eines Signals
-$v\in \mathbb R^n$ bezüglich des Frames $\mathcal{B}$:
-\[
-\mathcal{T}\colon \mathbb R^n \to \mathbb R^m
-:
-v \mapsto
-\begin{pmatrix}
-\hat{v}_1\\\hat{v}_2\\\vdots\\\hat{v}_m
-\end{pmatrix}
-=
-(\hat{v}_k=\langle v,b_k\rangle)_{1\le k\le m}.
-\]
-Zur Berechnung der Skalarprodukte kann man das Matrizenproukt
-\[
-\langle v,b_k\rangle
-=
-b_k^t v
-\]
-verwenden.
-Die Zeilenvektoren $b_k^t$ kann man zeilenweise in einer grossen Matrix $T$
-\[
-T 
-=
-\begin{pmatrix}
-\dots&b_1^t &\dots\\
-\dots&b_2^t &\dots\\
-     &\vdots&     \\
-\dots&b_m^t &\dots
-\end{pmatrix}
-\]
-zusammenführen.
-Das Matrixprodukt $Tv$ liefert dann genau das Resultat des Frame-Operators
-\[
-\mathcal{T} v
-=
-\begin{pmatrix}
-\langle v, b_1\rangle\\
-\langle v, b_2\rangle\\
-\vdots\\
-\langle v, b_m\rangle\\
-\end{pmatrix}
-=
-\begin{pmatrix}
-b_1^tv\\
-b_2^tv\\
-\vdots\\
-b_m^tv\\
-\end{pmatrix}
-=
-\begin{pmatrix}
-\dots&b_1^t &\dots\\
-\dots&b_2^t &\dots\\
-     &\vdots&     \\
-\dots&b_m^t &\dots
-\end{pmatrix}
-v
-=
-Tv.
-\]
-Die Matrix $T$ ist die Matrix des Frame-Operator $\mathcal T$ bezüglich der
-Standardbasis von $\mathbb R^n$.
+Wir betrachten in diesem Abschnitt immer ein Frame $\mathcal{B}$
+mit Framevektoren $b_k$ und Framekonstanten $A$ und $B$.
+Der Frameoperator $\mathcal{T}$ ordnet dem Vektor $v\in V$ den Vektor
+mit Koordinaten $\hat{v}_k$ zu.
 
-\begin{beispiel}
-Im Beispiel von Abschnitt~\ref{subsection:hexagon} besteht das Frame
-aus den Vektoren
-\[
-\mathcal{B}
-=
-\biggl\{
-\begin{pmatrix}1\\[2pt] 0\end{pmatrix},
-\begin{pmatrix}-\frac12\\[2pt] \frac{\sqrt{3}}2\end{pmatrix},
-\begin{pmatrix}-\frac12\\[2pt] -\frac{\sqrt{3}}2\end{pmatrix}
-\biggr\}.
-\]
-Der zugehörige Frameoperator $\mathcal{T}$ hat daher die Matrix
-\begin{equation}
-T
-=
-\begin{pmatrix}
-1&0\\[2pt]
--\frac12&\frac{\sqrt{3}}2\\[2pt]
--\frac12&-\frac{\sqrt{3}}2
-\end{pmatrix}.
-\label{beispielTmatrix}
-\end{equation}
-\end{beispiel}
-
-\subsection{Die Gram-Matrix}
+\subsection{Der Gram-Operator}
 Das Frame $\mathcal{B}$ mit den Frame-Konstanten $A$ und $B$ erfüllt
 \[
 A\|v\|^2 \le \sum_{k=1}^m |\langle v,b_k\rangle|^2 \le B\|v\|^2
 \qquad\forall v\in \mathbb R^n.
 \]
 Die Quadratsumme in der Mitte ist genau die Norm des Vektors
-$\mathcal{V}$ in $\mathbb R^m$.
+$\hat{v}$ in $\mathbb R^m$.
 Unterscheiden wir für den Moment die verschiedenen Skalarprodukte
 und Normen dadurch, dass wir die Vektorräume als Indizes hinzufügen,
 können wir die Frame-Ungleichung schreiben als
@@ -144,8 +61,10 @@ den Frame-Operator $\mathcal{T}$ verzerrt werden.
 Dies rechtfertigt eine eigene Definition.
 
 \begin{definition}
+\label{definition:gram-operator}
+\index{Gram-Operator}
 Ist $T$ die Matrix des Frame-Operators $\mathcal{T}$ eines Frames
-$\mathcal{B}$, dann heisst $G=T^tT$ der Gram-Operator des Frames
+$\mathcal{B}$, dann heisst $G=T^tT$ der {\em Gram-Operator} des Frames
 $\mathcal{B}$.
 \end{definition}
 
@@ -164,8 +83,8 @@ Man kann daraus schliessen, dass der Gram-Operator $T^tT$ regulär ist.
 Die symmetrische Matrix $T^tT$ kann durch Wahl einer geeigneten Basis
 in $\mathbb R^n$ diagonalisiert werden.
 Die Eigenvektoren können sogar orthonormiert gewählt werden.
-Seien daher $u_1,\dots,u_n$ Eigenvektoren von $T^tT$ mit Eigenwerten
-$\lambda_1\le\dots\le\lambda_n$.
+Seien daher $u_1,\dots,u_n$ orthonormierte Eigenvektoren von $T^tT$
+mit Eigenwerten $\lambda_1\le\dots\le\lambda_n$.
 Die Framebedingung~\eqref{framebedingung:ttt}
 für den Vektore $v=u_k$ sagt dann
 \[
@@ -264,7 +183,7 @@ Die Vektoren
 \]
 erzeugen den ganzen Raum $\mathbb R^2$, sie bilden daher ein
 Frame (Abbildung~\ref{frame:beispiel2}).
-Wir berechnen den Frame-Operator, den Gram-Operator und seine Eigenwerte
+Wir berechnen den Frame-Operator, den Gram-Operator und seine Eigenwerte,
 um die Frame-Konstanten zu ermiteln.
 
 Der Frame-Operator ist die Matrix
@@ -320,7 +239,7 @@ Da die beiden Konstanten nicht übereinstimmen, ist dieses Frame
 nicht straff.
 \end{beispiel}
 
-\begin{proof}[Beweis]
+\begin{proof}[Beweis des Korollars]
 Ein straffes Frame hat $A=B$, was gleichbedeutend damit ist, dass
 die Eigenwerte des Frame-Operators $T^tT$ mit 
 $A=B=\lambda_1=\dots=\lambda_n$ übereinstimmen.
@@ -358,12 +277,14 @@ STv,
 die Matrix $S=G^{-1}T^t$ ist also die gesuchte Linksinverse von $T$.
 
 \subsection{Das duale Frame}
+\index{duales Frame}
+\index{Frame!duales}
 Um den Frame-Operator umzukehren, muss man $G^{-1}T^t$ berechnen
 können.
 Auf einen Vektor $\hat{v} = (\hat{v}_k)_{1\le k\le m} = Tv$ angewendet
 bedeutet dies, dass man $G^{-1}$ auf
 \[
-T^t \hat{v} = \sum_{k=1}^m \hat{v}_k  b_k,
+T^t \hat{v} = \sum_{k=1}^m \hat{v}_k  b_k
 \]
 anwenden muss, dabei wurde verwendet, dass $T^t$ als Spalten die
 Vektoren $b_k$ enthält.
@@ -482,7 +403,7 @@ $\hat{v}_k$ liefert also das ursprüngliche Signal zurück.
 \begin{beispiel}
 \label{beispiel3}
 In diesem Beispiel betrachten wir das Frame bestehend aus den
-Signalen, die auf einem von maximal zehn Samles konstant sind
+Signalen, die auf einem von maximal elf Samples konstant sind
 und sonst verschwinden.
 Das Signal $b_k$ verschwindet für Samples $i>k$ und $i<k-10$
 und ist so normiert, dass $\|b_k\|=1$.
@@ -516,7 +437,7 @@ tatsächlich ein Frame bilden.
 Wegen $b_k=G\tilde{b}_k$ ist aber klar, dass die Vektoren $\tilde{b}_k$
 den ganzen Vektorraum $\mathbb R^n$ erzeugen.
 Insbesondere bilden sie ein Frame.
-Damit sind die Framekonstanten noch nicht bestimmt.
+Damit sind jedoch die Framekonstanten noch nicht bestimmt.
 Dies wird im folgenden Satz nachgeholt.
 
 \begin{satz}
@@ -565,7 +486,10 @@ verwendet.
 Auch die geplante Anwendung auf Wavelets ist davon betroffen.
 Dort wollen wir mit Funktionen $\psi_{a,b}$ vergleichen, die 
 skalierte und verschobene Versionen eines Mutter-Wavelets $\psi$ sind,
-mit Skalierungsfaktor $a\in\mathbb R^*$ und $b\in \mathbb R$.
+mit Skalierungsfaktor $a\in\mathbb R^*$ und die Translationsdistanz
+$b\in \mathbb R$.
+\index{Skalierungsfaktor}%
+\index{Translationsdistanz}%
 
 Lässt man eine beliebige Indexmenge zu, ist die Definition der
 Transformation $T$

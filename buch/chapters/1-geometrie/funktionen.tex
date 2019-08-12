@@ -5,6 +5,7 @@
 %
 \section{Funktionenräume%
 \label{section:funktionenraume}}
+\index{Funktionenraum}%
 \rhead{Funktionenräume}
 Die abgetasteten Signale haben einen endlichdimensionalen Vektorraum
 mit Skalarprodukt gebildet und darin könnte man auch bereits ein
@@ -36,10 +37,14 @@ definiert werden
 Die Vektorraum-Operationen auf $\mathbb R^X$ sind definiert durch
 \[
 \begin{aligned}
+&\text{Addition:}
+&
 f,g&\in \mathbb R^X
 	&&\Rightarrow
 	&(f+g)&\colon X\to\mathbb R:x\mapsto f(x)+g(x)
 \\
+&\text{Multiplikation:}
+&
 f&\in\mathbb R^X, \lambda\in\mathbb R
 	&&\Rightarrow
 	&(\lambda f)&\colon X\to\mathbb R:x\mapsto \lambda f(x)
@@ -87,7 +92,10 @@ Wenn $X$ eine Teilmenge von $\mathbb R^n$ ist, dann kann man sich auf
 stetige Funktionen beschränken und daraus einen Vektorraum bauen.
 
 \begin{definition}
-Ist $X\subset\mathbb R^n$, dann ist die Menge der
+Ist $X\subset\mathbb R^n$, dann wird die Menge der stetigen reellwertigen
+\index{$C(X,\mathbb R)$}%
+\index{stetige Funktion}%
+Funktionen auf $X$ mit
 \[
 C_{\mathbb R}(X)
 =
@@ -95,6 +103,7 @@ C(X,\mathbb R)
 =
 \{ f\in \mathbb R^X\,|\,\text{$f$ ist stetig}\}
 \]
+bezeichnet.
 \end{definition}
 
 Diese Definition ist kompatibel mit den Vektoraumoperationen,
@@ -102,15 +111,29 @@ denn in der Analysis lernt man, dass eine Linearkombination
 stetiger Funktionen wieder stetig ist.
 
 Man kann sogar einen Begriff des Abstands zwischen zwei Funktionen
-defenieren mit Hilfe der {\em Norm}:
+definieren mit Hilfe der {\em Norm}:
 
 \begin{definition}
-Die Norm einer Funktion $f\in C(X,\mathbb R)$ ist
+Die {\em Supremum-Norm} einer Funktion $f\in C(X,\mathbb R)$ ist
+\index{Supremum-Norm}%
 \[
 \|f\| = \sup_{x\in X} |f(x)|.
 \]
+Um die Supremum-Norm von anderen Normen zu unterscheiden, wird sie
+manchmal auch $\|f\|_{\infty}$ geschrieben.
 \end{definition}
 
+Man beachte aber, dass diese Art von Norm von grundsätzlich anderer Art
+ist wie der geometrische Abstandsbegriff.
+Dank der Pythagoras-Formel wirkt sich jede Koordinate eines Vektors 
+auf die übliche geometrische Norm aus.
+In der Supremum-Norm spielt nur der maximale Wert eine Rolle,
+Änderungen an kleineren Funktionswerten verändern den Abstand nicht.
+
+Von besonderem Interesse ist für die Zwecke der Signal-Analyse und
+-Synthese natürlich der Definitionsbereich $X=\mathbb{R}$, der
+zusätzliche algebraische, geometrische und analytische Struktur trägt, die man
+zur Definition einer Norm verwenden kann, wie wir später sehen werden.
 
 \subsection{Translation und Dilatation\label{subsection:translation-dilatation}}
 Der Definitionsbereich $\mathbb R$ zeichnet sich durch die darin zur
@@ -118,6 +141,8 @@ Verfügung stehenden Rechenoperationen aus.
 Man kann zu einem Argument einen konstanten Wert hinzuaddieren oder mit
 einer Zahl multiplizieren, bevor man eine Funktion auswertet.
 Daraus ergeben sich die zwei Operationen der Translation und der Dilatation.
+\index{Translation}%
+\index{Dilatation}%
 
 \begin{figure}
 \centering
@@ -149,13 +174,14 @@ Die Wirkung der beiden Operatoren ist in den
 Abbildungen~\ref{geometrie:Tb:image} und \ref{geometrie:Da:image} dargestellt.
 Der Operator $\tilde{D}_a$ dehnt den Graphen der Funktion entlang der
 $t$-Achse um den Faktor $a$ während der Operator $T_b$ den Graphen
-der Funktion um den Betrag $b$ entlant der $t$-Achse verschiebt.
+der Funktion um den Betrag $b$ entlang der $t$-Achse verschiebt.
 
 Die gewählte Notation für die Dilatation ist etwas asymmetrisch.
-Der Grund ist, dass Operation $T_b$ die später zu definierende Norm
-erhält, dass aber $\tilde{D}_a$ die Norm verändert.
-Die später formulierte Definition von $D_a$ wird erreichen, dass auch
-die $D_a$ die Norm erhält.
+Der Grund ist, dass Operation $T_b$ die später zu definierende,
+skalarproduktbasierte Norm erhält, dass aber $\tilde{D}_a$ diese Norm
+verändert.
+Die später formulierte Definition von $D_a$ wird erreichen, dass 
+die $D_a$ die zum Skalarprodukt gehörige Norm erhält.
 
 \begin{figure}
 \centering
@@ -179,6 +205,7 @@ Translation $T_b$ und Dilatation $\tilde{D}_a$ sind lineare Abbildungen.
 Die beiden Operatoren vertauschen nicht, vielmehr gilt
 $T_{ab}\tilde{D}_a = \tilde{D}_aT_b$.
 \end{satz}
+\index{Vertauschungsregel für $T_b$ und $D_a$}%
 
 \begin{proof}[Beweis]
 Die Linearität der Operatoren wird durch Nachrechnen verifiziert.
@@ -198,7 +225,7 @@ T_b(\lambda f+ \mu g)(t)
 =
 \lambda f(t-b)+\mu g(t-b)
 =
-\lambda (T_bf)(t)+\mu (T_bg)(t),
+\lambda (T_bf)(t)+\mu (T_bg)(t).
 \end{align*}
 Ohne Argumente geschrieben heisst dies
 \begin{align*}
@@ -243,26 +270,26 @@ Vertauschungsregel für die Operatoren $T_b$ und $\tilde{D}_a$ und liefert
 einen ``graphischen'' Beweis für die Vertauschungsregel von
 Satz~\ref{satz:kommutator}.
 
-\begin{satz}
-Die einzigen stetigen Funktionen, die Eigenvektoren von $T_b$ sind für
-jeden beliebigen Wert von $b$ sind die Funktionen $t\mapsto e^{i\omega t}$.
-\end{satz}
-
-\begin{proof}[Beweis]
-Sei $f$ eine Eigenfunktion aller Operatoren $T_b$ mit Eigenwert $\lambda(b)$.
-$f$ kann keine Nullstelle haben.
-Wäre nämlich $f(t_0)=0$, dann würde folgen
-\[
-(T_bf)(t_0) = f(t_0-b) = \lambda(b) f(t_0) = 0,
-\]
-die Funktion würde identisch verschwinden.
-
-Weiter kann man aus der Stetigkeit von $f$ schliessen, dass auch
-\[
-\lambda(b) = \frac{f(t)}{f(t-b)}
-\]
-eine stetige Funktion von $b$ ist, die keine Nullstellen hat.
-\end{proof}
-
-Dieser Satz erklärt die besondere Stellung, die den komplexen
-Exponentialfunktionen in der Fourier-Theorie zukommt.
+%\begin{satz}
+%Die einzigen stetigen Funktionen, die Eigenvektoren von $T_b$ sind für
+%jeden beliebigen Wert von $b$ sind die Funktionen $t\mapsto e^{i\omega t}$.
+%\end{satz}
+%
+%\begin{proof}[Beweis]
+%Sei $f$ eine Eigenfunktion aller Operatoren $T_b$ mit Eigenwert $\lambda(b)$.
+%$f$ kann keine Nullstelle haben.
+%Wäre nämlich $f(t_0)=0$, dann würde folgen
+%\[
+%(T_bf)(t_0) = f(t_0-b) = \lambda(b) f(t_0) = 0,
+%\]
+%die Funktion würde identisch verschwinden.
+%
+%Weiter kann man aus der Stetigkeit von $f$ schliessen, dass auch
+%\[
+%\lambda(b) = \frac{f(t)}{f(t-b)}
+%\]
+%eine stetige Funktion von $b$ ist, die keine Nullstellen hat.
+%\end{proof}
+%
+%Dieser Satz erklärt die besondere Stellung, die den komplexen
+%Exponentialfunktionen in der Fourier-Theorie zukommt.
