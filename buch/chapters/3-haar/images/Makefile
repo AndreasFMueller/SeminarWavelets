@@ -7,7 +7,8 @@ all:	stueckweise1.pdf	\
 	stueckweise8.pdf	\
 	stueckweise64.pdf	\
 	wavelets.pdf		\
-	haar-vater.pdf
+	haar-vater.pdf		\
+	chi.pdf
 	
 stueckweise1.pdf:	stueckweise1.tex stueckcommon.tex
 	pdflatex stueckweise1.tex
@@ -23,3 +24,6 @@ wavelets.pdf:	wavelets.tex
 
 haar-vater.pdf:	haar-vater.tex
 	pdflatex haar-vater.tex
+
+chi.pdf:	chi.tex
+	pdflatex chi.tex

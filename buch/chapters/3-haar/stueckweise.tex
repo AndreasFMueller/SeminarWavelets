@@ -7,7 +7,9 @@
 \label{section:stueckweise}}
 \rhead{Stückweise konstante Funktionen}
 Eine Funktion $f\colon[a,b]\to\mathbb R$ heisst {\em stückweise konstant},
+\index{stückweise konstant}
 wenn es eine Unterteilung des Intervals $[a,b]$ durch Punkte
+\index{Unterteilung}%
 $x_k\in\mathbb R$ mit $0\le k\le n$ gibt, also
 \[
 a=x_0 < x_1 < \dots < x_k < \dots < x_{n-1} < x_n = b,
@@ -24,7 +26,7 @@ x_k \le x < x_{k+1}.
 \label{buch:stückweisef}
 \end{equation}
 Stückweise konstante Funktionen sind natürlich nicht überall stetig sein,
-vielmehr ist jeder der Punkte $x_k$ ein potentielle Unstetigkeitsstelle.
+vielmehr ist jeder der Punkte $x_k$ eine potentielle Unstetigkeitsstelle.
 Es gilt nämlich
 \begin{equation*}
 \begin{aligned}
@@ -43,16 +45,31 @@ Grenzwert ist verschieden, die Funktion hat einen Sprung an der
 Stelle $x_k$.
 
 \subsection{Charakteristische Funktion}
-Mit Hilfe der charakteristischen Funktion eines Intervals lässt sich
-eine stückweise konstante Funktion etwas eleganter schreiben.
-Wir definieren  die {\em charakteristische Funktion} oder
-{\em Indikatorfunktion} des Intervals $I$ als
-\[
+\begin{figure}
+\centering
+\includegraphics{chapters/3-haar/images/chi.pdf}
+\caption{Indikatorfunktion oder charakteristische Funktion $\chi_I(t)$
+des Intervals $I=[a,b]\subset \mathbb R$ (vgl. auch \eqref{formel:chi}).
+\label{haar:figure:chi}}
+\end{figure}
+Mit Hilfe der Indikatorfunktion oder charakteristischen Funktion
+eines Intervals lässt sich eine stückweise konstante Funktion etwas
+eleganter schreiben.
+Wir definieren  die
+{\em Indikatorfunktion}
+\index{Indikatorfunktion}%
+oder
+{\em charakteristische Funktion}
+\index{charakteristische Funktion}
+des Intervals $I$ als
+\begin{equation}
 \chi_{I}(x) = \begin{cases}
 1&\qquad x\in I\\
-0&\qquad x\not\in I.
+0&\qquad x\not\in I
 \end{cases}
-\]
+\label{formel:chi}
+\end{equation}
+(siehe auch Abbildung~\ref{haar:figure:chi}).
 Damit kann man die stückweise konstante Funktion $f(x)$ aus
 \eqref{buch:stückweisef}
 als Linearkombination
@@ -96,6 +113,7 @@ stetige Funktionen beliebig genau approximieren.
 Dazu ist aber auch nötig, die Punkte $x_k$ genügen nahe beeinander zu
 haben.
 Als Mass dafür definieren wir das {\em Korn} einer Unterteilung:
+\index{Korn}%
 
 \begin{definition}
 Die grösste Länge eines Teilintervals einer Unterteilung $U$
@@ -112,14 +130,14 @@ heisst das {\em Korn} der Unterteilung.
 Es wird also behauptet, dass eine stetige Funktion durch eine stückweise
 konstante Funktion beliebig genau approximiert werden kann, wenn das
 Korn der Unterteilung klein genug gemacht wird.
-Genauer, sei $\varepsilon>0$ geben.
+Um dies genauer auszudrücken sei jetzt $\varepsilon >0$ gegeben.
 Da die Funktion $f(x)$ stetig ist, gibt es eine Zahl $\delta>0$ derart,
 dass
 \[
 |f(x) - f(y)| < \varepsilon\qquad\forall x,y\in [a,b]\quad\text{mit}\quad
 |x-y|<\delta.
 \]
-Wählt man nun eine Unterteilung des Intervals mit Korn
+Man wählt nun eine Unterteilung des Intervals mit Korn
 $\delta(\{x_0,\dots,x_n\}) < \delta$ und setzt
 \[
 g_k = f(x_k),\quad 0\le k < n.
@@ -137,23 +155,26 @@ die Funktion $f$ mit maximalem Fehler $\varepsilon$ approximiert:
 \]
 für $x\in [x_k,x_{k+1})$.
 
+\subsubsection{Obere und untere Approximation}
 Sei $f$ ein stetige Funktion, und $\{x_0,\dots,x_n\}$ eine Unterteilung
 des Intervals $[a,b]$.
-Dann kann man sofort mehrere stückweise approximationen Approximationen 
-konstruieren:
-\begin{equation*}
-\begin{aligned}
+Dann kann man sofort zwei weitere stückweise konstanten Approximationen 
+konstruieren, die {\em obere Approximation}:
+\begin{align*}
 \overline{f}(x)
+&\hspace{3cm}&
 &= 
 \sup_{x\in[x_k,x_{k+1})} f(x)
 &\text{falls }&x\in[x_k,x_{k+1}]
-\\
+&\hspace{3cm}&
+\intertext{und die {\em untere Approximation}}
 \underline{f}(x)
+&\hspace{3cm}&
 &= 
 \inf_{x\in[x_k,x_{k+1})} f(x)
 &\text{falls }&x\in[x_k,x_{k+1}]
-\end{aligned}
-\end{equation*}
+&\hspace{3cm}&
+\end{align*}
 Die Funktion $\overline{f}$ ist also immer mindestens so gross wie $f$
 und $\underline{f}$ ist immer höchstens so gross wie $f$.
 Es gilt also
@@ -168,6 +189,7 @@ Funktion $f(x)$ die Ungleichung
 \]
 für $x\in[a,b]$.
 
+\subsection{Vektorraum der stückweise stetigen Funktionen}
 Die stetigen Funktionen auf einem Interval bilden einen Vektorraum: eine
 Summe von stetigen Funktionen ist wieder eine stetige Funktionen.
 Intuitiv ist auch klar, dass ein Summe stückweise konstanter Funktionen
@@ -202,7 +224,10 @@ Die Vereinigung der Unterteilungen stellt also sicher, dass sich
 zu zwei beliebigen stückweise konstanten Funktionen immer eine
 gemeinsame Unterteilung finden lässt, die klar macht, dass $f+g$
 wieder eine stückweise konstante Funktion ist.
-Die Vektorraumstruktur verlangt also etwas mehr sorgfalt.
+
+Die vom Funktionenraum geerbte Vektorraumstruktur verlangt zwar etwas
+mehr Sorgfalt bei der Verifikation, darf aber als gegeben angesehen
+werden.
 
 \subsection{Integration stückweise konstanter Funktionen}
 Das Integral einer stückweise konstanten Funktion ist besonders einfach 
@@ -210,7 +235,7 @@ zu berechnen, nämlich
 \[
 \int_{\mathbb R} f(x)\,dx = \sum_{k=0}^{n-1} f_k\cdot (x_{k+1}-x_k).
 \]
-Dies ist im wesentlichen die Definition des Riemann Integrals.
+Dies ist im wesentlichen die Definition des Riemann-Integrals.
 Genauer wird das Riemann-Integral einer stetigen Funktion jeweils
 konstruiert mit Hilfe von genügend feinen Unterteilungen und den
 Approximationen $\overline{f}$ und $\underline{f}$.
@@ -245,9 +270,10 @@ Es verträgt sich aber auch mit dem Begriff der Approximation von
 stetigen Funktionen: nahe beeinanderliegende Funktionen haben nahe
 beeinanderliegende Integrale.
 
+\subsection{Skalarprodukt}
 Die stückweise konstanten Funktionen bilden aber auch einen Vektorraum
 mit Skalarprodukt.
-Das Skalarprodukt ist wieder definiert durch
+Das Skalarprodukt ist wie in Kapitel~\ref{chapter:fourier} definiert durch
 \[
 \langle f,g\rangle
 =
@@ -259,10 +285,11 @@ Funktionen $f$ und $g$, dann ist das Skalarprodukt
 \[
 \langle f,g\rangle
 =
-\sum_{k=0}^{n-1} f(x_k) g(x_k).
+\sum_{k=0}^{n-1} f(x_k) g(x_k) \cdot |x_{k+1}-x_{k\mathstrut}|.
 \]
-Das Skalarprodukt hat also genau die gleiche Form wie das Skalarprodukt
-in einem endlichdimensionalen Vektorraum.
+Das Skalarprodukt hat also bis auf die Faktoren $|x_{k+1}-x_{k\mathstrut}|$
+die gleiche Form wie das Skalarprodukt in einem endlichdimensionalen
+Vektorraum.
 Daraus kann zum Beispiel geschlossen werden, dass für dieses Skalarprodukt
 die Cauchy-Schwarz-Ungleichung gilt und dass es positiv definit ist.
 
