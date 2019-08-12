@@ -6,7 +6,7 @@
 all:	buch.pdf
 
 #SUBDIRECTORIES = chapters uebungsaufgaben 
-SUBDIRECTORIES = chapters papers/complex papers/wwt
+SUBDIRECTORIES = chapters papers/wwt
 
 .PHONY:	images
 
