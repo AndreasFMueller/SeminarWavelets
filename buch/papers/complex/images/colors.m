@@ -18,7 +18,8 @@ r = 1.01;
 idx = find(abs(z) > r);
 z(idx) = r;
 
-z = round(z / r * 255);
+z = (exp( 2.5 * abs(z)) - 1) .* exp(1i * angle(z)); % Adapt to eye
+z = round(z / max(abs(z(:))) * 255);
 
 
 %% Plot

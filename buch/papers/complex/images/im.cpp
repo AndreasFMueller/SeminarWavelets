@@ -20,6 +20,28 @@ required_argument, NULL, 'm' }, { "phase", no_argument, NULL, 'P' }, {
 		"absolute", no_argument, NULL, 'A' }, { "maximum", no_argument, NULL,
 		'M' }, { NULL, 0, NULL, 0 } };
 
+int ang2blue(double phi, double mag){
+	// Blue is a even function
+	phi *= 180.0 / M_PI;
+	int ang = round(phi);
+	ang = abs((ang + 180) % 360 - 180);
+
+	if (ang <= 60){ // Fully on
+		return round(mag);
+	} else if (ang < 120) { // Linearly falling
+		return round(mag * (240.0 - 2.0 * ang) / 120.0);
+	} else // Fully off
+		return 0;
+}
+
+int hue2rgb(png_bytep res, double phi, double mag){
+	res[0] = ang2blue(phi + M_PI * 2 / 3, mag); // Red
+	res[1] = ang2blue(phi + M_PI * 4 / 3, mag); // Green
+	res[2] = ang2blue(phi + 0.0  , mag); // Blue
+	return 0;
+}
+
+
 int main(int argc, char *argv[]) {
 	const char *infilename = "im.dat";
 	const char *outfilename = "im.png";
@@ -107,12 +129,7 @@ int main(int argc, char *argv[]) {
 				row_pointers[height - y][3 * x + 1] = 255;
 				row_pointers[height - y][3 * x + 2] = 255;
 			} else {
-				p = phi[y][x];
-				row_pointers[height - y][3 * x + 2] = round(abs(m * (1 + cos(p)) / 2));
-				p += 2 * M_PI / 3;
-				row_pointers[height - y][3 * x + 0] = round(abs(m * (1 + cos(p)) / 2));
-				p += 2 * M_PI / 3;
-				row_pointers[height - y][3 * x + 1] = round(abs(m * (1 + cos(p)) / 2));
+				hue2rgb(&row_pointers[height - y][3 * x], phi[y][x], m);
 			}
 		}
 	}
