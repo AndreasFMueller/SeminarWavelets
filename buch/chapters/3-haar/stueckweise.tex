@@ -44,7 +44,7 @@ $f(x)$ ist immer noch rechtsseitig stetig, aber der linksseitige
 Grenzwert ist verschieden, die Funktion hat einen Sprung an der
 Stelle $x_k$.
 
-\subsection{Charakteristische Funktion}
+\subsection{Indikatorfunktion}
 \begin{figure}
 \centering
 \includegraphics{chapters/3-haar/images/chi.pdf}
@@ -155,24 +155,24 @@ die Funktion $f$ mit maximalem Fehler $\varepsilon$ approximiert:
 \]
 für $x\in [x_k,x_{k+1})$.
 
-\subsubsection{Obere und untere Approximation}
+\subsection{Obere und untere Approximation}
 Sei $f$ ein stetige Funktion, und $\{x_0,\dots,x_n\}$ eine Unterteilung
 des Intervals $[a,b]$.
 Dann kann man sofort zwei weitere stückweise konstanten Approximationen 
-konstruieren, die {\em obere Approximation}:
+konstruieren, die {\em obere Approximation}
 \begin{align*}
-\overline{f}(x)
 &\hspace{3cm}&
+\overline{f}(x)
 &= 
 \sup_{x\in[x_k,x_{k+1})} f(x)
 &\text{falls }&x\in[x_k,x_{k+1}]
 &\hspace{3cm}&
 \intertext{und die {\em untere Approximation}}
-\underline{f}(x)
 &\hspace{3cm}&
+\underline{f}(x)
 &= 
 \inf_{x\in[x_k,x_{k+1})} f(x)
-&\text{falls }&x\in[x_k,x_{k+1}]
+&\text{falls }&x\in[x_k,x_{k+1}].
 &\hspace{3cm}&
 \end{align*}
 Die Funktion $\overline{f}$ ist also immer mindestens so gross wie $f$
@@ -235,7 +235,8 @@ zu berechnen, nämlich
 \[
 \int_{\mathbb R} f(x)\,dx = \sum_{k=0}^{n-1} f_k\cdot (x_{k+1}-x_k).
 \]
-Dies ist im wesentlichen die Definition des Riemann-Integrals.
+Dies ist im wesentlichen die Definition des {\em Riemann-Integrals}.
+\index{Riemann-Integral}%
 Genauer wird das Riemann-Integral einer stetigen Funktion jeweils
 konstruiert mit Hilfe von genügend feinen Unterteilungen und den
 Approximationen $\overline{f}$ und $\underline{f}$.
