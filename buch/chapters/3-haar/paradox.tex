@@ -83,41 +83,41 @@ dass sie geschrieben werden kann als
 \[
 f(x)
 =
-\sum_{k\in\mathbb Z} b_k\varphi_k(x)
+\sum_{k\in\mathbb Z} a_k\varphi_k(x)
 +
-\sum_{k\in\mathbb Z} a_{k1}\psi_{k1}(x)
+\sum_{k\in\mathbb Z} b_{k1}\psi_{k1}(x)
 +
-\sum_{k\in\mathbb Z} a_{k2}\psi_{k2}(x)
+\sum_{k\in\mathbb Z} b_{k2}\psi_{k2}(x)
 +
 \dots
 +
-\sum_{k\in\mathbb Z} a_{kn}\psi_{kn}(x)
+\sum_{k\in\mathbb Z} b_{kn}\psi_{kn}(x)
 \]
 Die Filter $P_n$ und $I-P_n$ können daher auch durch die Koeffizienten
 ausgedrückt werden:
 \begin{align*}
 P_nf 
 &=
-\sum_{k\in\mathbb Z} a_{kn}\psi_{kn}(x)
+\sum_{k\in\mathbb Z} b_{kn}\psi_{kn}(x)
 \\
 (I-P_n)f
 &=
-\sum_{k\in\mathbb Z} b_k\varphi_k(x)
+\sum_{k\in\mathbb Z} a_k\varphi_k(x)
 +
-\sum_{k\in\mathbb Z} a_{k1}\psi_{k1}(x)
+\sum_{k\in\mathbb Z} b_{k1}\psi_{k1}(x)
 +
-\sum_{k\in\mathbb Z} a_{k2}\psi_{k2}(x)
+\sum_{k\in\mathbb Z} b_{k2}\psi_{k2}(x)
 +
 \dots
 +
-\sum_{k\in\mathbb Z} a_{k,n-1}\psi_{k,n-1}(x)
+\sum_{k\in\mathbb Z} b_{k,n-1}\psi_{k,n-1}(x)
 \end{align*}
 
-Die Aufgabe besteht jetzt also darin, die Koeffizienten $b_k$ und
-$a_{kj}$ dieser Zerlegung zu finden.
+Die Aufgabe besteht jetzt also darin, die Koeffizienten $a_k$ und
+$b_{kj}$ dieser Zerlegung zu finden.
 Die Koeffizienten können mit dem Skalarprodukt
 \[
-a_{kj} = \langle \psi_{kj}, f\rangle
+b_{kj} = \langle \psi_{kj}, f\rangle
 \]
 gefunden werden.
 Auf den ersten Blick sieht das nach einer aufwendigen Operation
@@ -127,7 +127,7 @@ Die spezielle Struktur erlaubt hingegen eine drastische Vereinfachung.
 
 
 \subsection{Der schnelle Approximations-Algorithmus}
-Wir betrachten die Berechnung der Koeffizienten $a_{kj}$ etwas genauer für
+Wir betrachten die Berechnung der Koeffizienten $b_{kj}$ etwas genauer für
 $j=n$.
 Dazu verwenden wir die Tatsache, dass 
 \[
@@ -142,7 +142,7 @@ Das Skalarprodukt mit dieser Funktion ist
 Die beiden Integrale sind aber nichts anderes als die Mittelwerte
 der Funktion $f$ über das jeweils halbe Intervall.
 
-Für die $j=n$ bedeutet dies, dass die Koeffizienten $a_{kn}$ im Wesentlichen
+Für die $j=n$ bedeutet dies, dass die Koeffizienten $b_{kn}$ im Wesentlichen
 die Differenzen sind zwischen benachbarten Sample-Werten.
 Der Hochpass-Filter $P_n$ extrahiert also bis auf die Normierung
 die Differenzen benachbarter Samplewerte.
@@ -156,23 +156,23 @@ der Skalierungsgleichung für $\varphi$ ist dies im wesentlichen der
 Mittelwert benachbarter Abtastwerte.
 
 Damit ist jetzt die Filterung vollständig beschrieben.
-Der Hochpassfilter $P_n$ ermittel aus benachbarten Abtastwerten die
+Der Hochpassfilter $P_n$ ermittelt aus benachbarten Abtastwerten die
 Differenz.
 Der Tiefpassfilter $I-P_n$ ermittelt den Mittelwert.
 Um den Rest der Funktion weiter zu analysieren, ist die Projektion $P_{n-1}$
 auf den Output von $I-P_n$ anzuwenden.
-Die Koeffizienten $a_{k,n-1}$ sind daher Differenzen aufeinanderfolgender
+Die Koeffizienten $b_{k,n-1}$ sind daher Differenzen aufeinanderfolgender
 Tiefpass-Werte.
 Um die weiteren Koeffizienten zu ermitteln müssen also Schrittweise
 immer wieder die Filter $P_j$ und $I-P_j$ oder Differenz und Mittelwert
 angewendet werden.
 
 Mit diesem Algorithmus ist es möglich, die Koeffizienten laufend zu ermitteln.
-Der erste Koeffizient $a_{0n}$ steht bereits nach dem zweiten Abtastwert zur
+Der erste Koeffizient $b_{0n}$ steht bereits nach dem zweiten Abtastwert zur
 Verfügung.
-Nach dem vierten Abtastwert fallen $a_{1n}$ und $a_{0,n-1}$ an.
-Der Koeffizient $b_0$ ist nach $2^n$ Schritten ermittelt, weitere
-Werte $b_k$ stehen jeweils nach weiteren $2^n$ Schritten zur Verfügung.
+Nach dem vierten Abtastwert fallen $b_{1n}$ und $b_{0,n-1}$ an.
+Der Koeffizient $a_0$ ist nach $2^n$ Schritten ermittelt, weitere
+Werte $a_k$ stehen jeweils nach weiteren $2^n$ Schritten zur Verfügung.
 Nach $2^n$ Schritt ist die Transformation also bereits abgeschlossen,
 die Verarbeitung des Output kann aber bereits früher beginnen, da einzelne
 Koeffizienten ja schon früher bereitstehen.

@@ -14,18 +14,31 @@ enthält, mit denen das Signal beliebig genau wiedergegeben werden kann.
 Die bereits erfassten ``groben'' Abtastwerte passen zudem genau in die
 ``feinen'' Abtastreihen.
 
+\begin{figure}
+\centering
+\includegraphics{chapters/3-haar/images/ortho.pdf}
+\caption{Die Funktion $f$ und $g$ von \eqref{haar:formel:ortho} sind
+nicht orthogonal.
+Dies zeigt, dass die Indikatorfunktionen von Zweierpotenzintervallen
+keine orthonormierte Basis sein können.
+\label{haar:figure:ortho}}
+\end{figure}
 Wir haben auch versucht, eine orthonormierte Basis für die Vektorräume
 $V_j$ der Signale zu konstruieren.
 Natürlich bilden die einzelnen in $V_j$ gefundenen Basisfunktionen eine 
 Hilbert-Basis des Vektorraumes $V_\infty$, aber die Funktionen sind
 nicht orthogonal.
 Zum Beispiel haben die Funktionen 
-\begin{align*}
+\begin{equation}
+\begin{aligned}
 f&=2^{j/2}\chi_{[0,2^{-j})}
 \\
 g&=2^{(j+1)/2}\chi_{[0,2^{-j-1})},
-\end{align*}
-das Skalarprodukt
+\end{aligned}
+\label{haar:formel:ortho}
+\end{equation}
+(Abbildung~\ref{haar:figure:ortho})
+das nicht verschwindende Skalarprodukt
 \[
 \langle f,g\rangle 
 =
@@ -37,18 +50,42 @@ das Skalarprodukt
 =
 2^{-j-1}2^{j + 1/2}
 =
-\frac{1}{\sqrt{2}}\ne 0
+\frac{1}{\sqrt{2}}\ne 0.
 \]
-verschwindet nicht.
 Das Sampling mit der Funktion $g$ nimmt einen Teil der Information,
-die das Sampling mit $f$ schon ermittel hat, nochmals auf.
+die das Sampling mit $f$ schon ermittelt hat, nochmals auf.
 
-Um eine orthonormierte Basis von $V_\infty$ zu erhalten, müssen also
-bei der Erweiterung von $V_j$ zu $V_{j+1}$ neue Basisfunktionen
-konstruiert werden, die nur die neue Information aufnehmen, die die
-feinere Unterteilung in $V_{j+1}$ zu erfassen in der Lage ist.
+\subsection{Detail auf Ebene $j$}
+\begin{figure}
+\centering
+\includegraphics{chapters/3-haar/images/detail.pdf}
+\caption{Analyse der Funktion $\color{red}f(t)$ mit dem Haar-Wavelet.
+Die Analyse in $V_0$ ergibt eine auf Intervallen der Länge 1 stückweise
+konstante Funktion mit Funktionswerten, die den Mittelwerten der Funktion
+über diese Intervalle entsprechen.
+In $V_1$ erhält man eine auf Intervallen der Länge $\frac12$ stückweise
+konstante Funktion.
+Der Unterschied ist eine Funktion, die aus $\psi_{k1}\in W_1$ linear
+kombiniert wurde.
+Die Koeffizienten $b_{k1}$ geben die zusätzlichen Details wieder,
+die in der Auflösung $2^{-1}$ sichtbar werden.
+\label{haar:figure:detail}}
+\end{figure}
+Um eine orthonormierte Basis von $V_\infty$ zu erhalten, müssen
+bei der Erweiterung von $V_j$ zu $V_{j+1}$ neue, auf den bisherigen
+orthogonale Basisfunktionen konstruiert werden, die nur die neue
+Information aufnehmen, die die feinere Unterteilung in $V_{j+1}$
+zu erfassen in der Lage ist.
+
+In Abbildung~\ref{haar:figure:detail} ist eine Funktion dergestellt mit
+der Approximation in $V_0$ unten und $V_1$ oben.
+Der Unterschied zwischen den Approximation ist die zusätzliche
+Detailinformation auf Ebene $j+1$.
+Das Ziel ist, diesen Unterschied als Linearkombination von orthonormierten
+Funktionen $\psi_{kj}$ zu beschreiben.
+
 Das Sampling eines Signals $f(x)$ mit der Funktion $e^{(l)}$ in $V_j$
-ermittel das Integral
+ermittelt das Integral
 \[
 \langle f,e^{(l)}\rangle
 =
@@ -60,7 +97,7 @@ Veränderungen des Signals innerhalb des Intervals sind in $V_j$ nicht
 auflösbar.
 Beim Sampling in $V_{j+1}$ stehen zwei Basisfunktionen zur Verfügung, die
 den gleichen Bereich abdecken.
-Jede dieser Basisfunktionen ermittel das Integral über eine Hälfte des
+Jede dieser Basisfunktionen ermittelt das Integral über eine Hälfte des
 Intervals.
 Veränderungen innerhalb der Intervalhälften sind in $V_{j+1}$ wieder nicht
 erkennbar.
@@ -85,11 +122,11 @@ Die Funktion rechts im Skalarprodukt ist also diejenige, die genau die
 neue Information in $V_{j+1}$ ermittelt.
 
 Die eben angestellte heuristische Überlegung legt nahe, dass die Funktionen
-\[
+\begin{equation}
 \chi_{[l2^{-j},(l+\frac12)2^{-j})}
 -
 \chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}
-\]
+\end{equation}
 zu den Basisfunktionen, die man in $V_j$ bereits hat, hinzugefügt werden
 müssen.
 Allerdings sind diese Funktionen noch nicht orthonormiert, denn die
@@ -124,7 +161,8 @@ Um dies zu rechtfertigen, muss gezeigt werden, dass diese Funktionen auf
 allen Funktionen in $V_j$ orthogonal und auch untereinander orthogonal
 sind.
 
-Betrachen wir erst die Frage, ob die Funktionen untereinander orthonormiert
+\subsection{Orthogonalität}
+Betrachten wir erst die Frage, ob die Funktionen untereinander orthonormiert
 sind.
 $\psi_{l,j}(x)$ ist nur im Interval $[l2^{-j},(l+1)2^{-j})$ von $0$
 verschieden.
@@ -157,8 +195,8 @@ Man rechnet
 =
 \int_{k2^{-j}}^{(k+1)2^{-j}} \psi_{l,j}(x)\,dx.
 \]
-Da $\psi_{l,j}$ verschwindet in Intervallen $[k2^{-j},(k+1)2^{-j})$ mit
-$k\ne l$, braucht nur der Fall $k=l$ zu untersucht werden.
+Da $\psi_{l,j}$ in Intervallen $[k2^{-j},(k+1)2^{-j})$ mit
+$k\ne l$ verschwindet, braucht nur der Fall $k=l$ zu untersucht werden.
 In diesem Fall gilt
 \[
 \langle \chi_{[l2^{-j},(l+1)2^{-j})},\psi_{l,j}\rangle
@@ -179,6 +217,7 @@ In diesem Fall gilt
 \]
 die Funktionen sind also orthogonal.
 
+\subsection{Erzeugendensystem}
 Die Funktionen $\psi_{l,j}(x)$ ermöglichen, wirklich alle Funktionen
 in $V_{j+1}$ darzustellen.
 Um dies einzusehen, muss man nur zeigen, dass sich die Indikatorfunktionen
@@ -236,8 +275,10 @@ bildet man
 2\chi_{[(l+\frac12)2^{-j},(l+1)2^{-j})}.
 \end{align*}
 Bis auf den Faktor $2$ lassen sich die gesuchten Indikatorfunktionen
+aus den $\psi_{l,j}$ und gröber aufgelösten Indikatorfunktionen linear
 kombinieren.
 
+\subsection{Multiskalenanalyse}
 Die Funktionen $\psi_{l,j}$ erfassen also genau die Details, die beim
 Abtasten mit der feineren Unterteilung mit Korn $2^{-j-1}$ erkennbar
 werden.
@@ -303,7 +344,9 @@ $\psi_{l,j}$, oder etwas formeller:
 \{0\}.
 \]
 \end{enumerate}
+Man nennt diese Struktur eine Multiskalen-Analyse.
 
+\subsection{Vater-Wavelet}
 Die Konstruktion der Funktionen $\psi$ zeigt aber noch eine weitere 
 Besonderheit, die später von Nutzen sein wird.
 Die $\psi$-Funktionen wurden als Differenzen von charakteristischen
@@ -367,6 +410,7 @@ V_0 \oplus W_1
 \]
 in zwei orthogonale Teilräume.
 
+\subsection{Verallgemeinerung}
 Aus diesem Beispiel können wir einen Plan für die Konstruktion allgemeinerer
 Wavelet-Basen ableiten.
 Wir hätten gerne eine Aufteilung des interessiernden Funktionenraumes

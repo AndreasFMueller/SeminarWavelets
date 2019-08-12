@@ -9,7 +9,9 @@ all:	stueckweise1.pdf	\
 	wavelets.pdf		\
 	haar-vater.pdf		\
 	chi.pdf			\
-	dual.pdf
+	dual.pdf		\
+	ortho.pdf		\
+	detail.pdf
 	
 stueckweise1.pdf:	stueckweise1.tex stueckcommon.tex
 	pdflatex stueckweise1.tex
@@ -31,3 +33,9 @@ chi.pdf:	chi.tex
 
 dual.pdf:	dual.tex
 	pdflatex dual.tex
+
+ortho.pdf:	ortho.tex
+	pdflatex ortho.tex
+
+detail.pdf:	detail.tex
+	pdflatex detail.tex
