@@ -20,6 +20,13 @@ Länge des Abtastintervals verwendet.
 Abtastung erfolgt also nur an ganzzahligen $x$-Werten und
 Translationen um ganze Zahlen sind uneingeschränkt möglich.
 
+\begin{figure}
+\centering
+\includegraphics{chapters/3-haar/images/dual.pdf}
+\caption{Dualzahlen-Unterteilung von $\mathbb R$ durch rationalen Zahlen
+mit Nennern, die Zweierpotenzen sind
+\label{haar:figure:dualzahlen}}
+\end{figure}
 Um mehr Detail zu erhalten, kann das Abtastinterval halbiert werden.
 Die Unterteilung bekommt dann die Form
 \[
@@ -40,7 +47,7 @@ feine Unterteilung
 \[
 U_j = \{ k2^{-j}\,|\,k\in\mathbb Z\}
 \]
-entstehen.
+entstehen (Siehe auch Abbildung~\ref{haar:figure:dualzahlen}).
 In jedem Schritt wird die Menge an Informationen der gesampelten Funktion
 verdoppelt, ohne dass früher gefundene Samples nutzlos werden.
 In $U_j$ sind Verschiebungen um ganzzahlige Vielfache von $2^{-j}$ 
@@ -85,7 +92,7 @@ Wegen
 =
 \delta_{lr},
 \]
-Jeder einzelne der Vektorräume $V_j$ hat also eine einfach anzgebende
+Jeder einzelne der Vektorräume $V_j$ hat also eine einfach anzugebende
 Basis.
 
 Die Vereinigung aller $U_j$ 
@@ -100,7 +107,10 @@ Die Vereinigung aller $U_j$
 \]
 ist die Menge aller Brüche mit Zweierpotenz-Nennern.
 Sie heisst die Menge der {\em Dualzahlen}.
-$\mathbb D$ noch eine weitere Struktur. % TODO: Check
+
+
+Ausser der Addition hat 
+$\mathbb D$ noch weitere Struktur.
 Sind $x = k_x2^{-j_x}\in U_{j_x}$ und $y=k_y2^{-j_y}\in U_{j_y}$, dann
 ist das Produkt
 \[
@@ -135,8 +145,8 @@ Zum einen sind die Funktionen $e^{(k)}$ der verschiedenen Vektorräume
 nicht orthogonal.
 Andererseits lösen sie das bereits angesprochen Problem der Redundanz
 der Information nicht.
-Das Skalarprodukt eines Signals mit $e^{(l)}$ ist im Wesentlichen der
-Abstastwert in der Nähe von $l2^{-j}$.
+Das Skalarprodukt eines Signals mit der stückweise konstanten Funktion
+$e^{(l)}$ ist im Wesentlichen der Abstastwert in der Nähe von $l2^{-j}$.
 Für langsam veränderliche Signale sind nahe beeinander liegende 
 Abtastwerte nahe beeinander.
 Mit den Vektorräumen $V_j$ ist es also möglich, ein Signal beliebig
