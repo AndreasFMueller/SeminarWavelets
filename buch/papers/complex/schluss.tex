@@ -8,13 +8,14 @@ Die kontinuierliche Wavelettransformation
 \overline{\psi}\biggl(\frac{t-b}{a}\biggr)\,\mathrm{d}t
 \end{equation}
 kann mittels FFT sehr effizient berechnet werden.
-Die Wavelettransformation entspricht nämlich einer Faltung
+Die Wavelettransformation entspricht nämlich einer Faltung.
+Deren Berechnung wird im Frequenzbereich zu einer einfachen Multiplikation
 \begin{equation}
 \Wave f(a,b)
 = \mathcal{F}^{-1}\bigl\lbrace\hat{f}(\omega) \sqrt{|a|}\, \overline{\hat{\psi}}(a\omega)\bigr\rbrace.
 \end{equation}
 Besonders interessant ist diese Berechnung mit Wavelets, die eine geschlossene, analytische Form im Frequenzbereich besitzen, etwa das Haar- oder das Gabor-Wavelets.
-Wie alle reellen Wavelets erlauben dises zwei Wavelets aber nicht, Phase und Amplitude getrennt zu betrachten.
+Wie alle reellen Wavelets erlauben dieses zwei Wavelets aber nicht, Phase und Amplitude getrennt zu betrachten.
 Eine Detektion der momentanen Signalfrequenzen wird dadurch erschwert.
 
 Durch den \emph{Auslöschungsoperator}
@@ -27,10 +28,10 @@ können wir jedoch aus jedem, reellen Wavelet ein \emph{analytisches Wavelet} er
 Dadurch ist es möglich, im erhaltenen Bild dem Punkt des maximalen Betrags zu folgen.
 Die \emph{dominanten Frequenz} des Wavelets erlaubt eine Interpretation dieses Maximas als Momentanfrequenz.
 
-Durch Anwendung dieses Operators fanden wir das Morlet-Wavelet, welches durch den Parameter $\sigma$ erlaubt, Zeit- und Frequenz-Lokalisierung gegeneinander auszuspielen.
-Für maximale Lokalisierung in der Zeit haben wir das analytische Haar-Wavelet gefunden.
+Durch den Operator $\Ana\,$ gelangten wir vom Gabor- zum Morlet-Wavelet, welche durch den Parameter $\sigma$ erlaubt, Zeit- und Frequenz-Lokalisierung gegeneinander auszuspielen.
+Für maximale Lokalisierung in der Zeit, etwa für Sprungstellen, haben wir das analytische Haar-Wavelet berechnet.
 
-Zum Schluss haben wir gesehen, dass durch die FFT als Algorithmus zur Berechnugn von Fourierreihen immer eine \emph{zirkuläre Faltung} entsteht.
+Zum Schluss haben wir gesehen, dass durch die FFT als Algorithmus zur Berechnung von Fourierreihen immer eine \emph{zirkuläre Faltung} entsteht.
 Dies führt zu Artefakten am Rande, welche sich durch \emph{Signal Padding} reduzieren lassen.
 Eine generelle Lösung für dieses Problem gibt es jedoch nicht.
 
