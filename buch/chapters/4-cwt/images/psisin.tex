@@ -16,9 +16,24 @@
 \def\ascale{0.5}
 \def\pxs{3.1415/60}
 
-\def\punkt#1#2#3{
+\def\rotpunkt#1#2#3{
 \fill[color=red!#3] ({#2-\pxs},{(\ascale*#1)-\pxs}) 
 	rectangle ({#2+\pxs},{(\ascale*#1)+\pxs});
+}
+\def\blaupunkt#1#2#3{
+\fill[color=blue!#3] ({#2-\pxs},{(\ascale*#1)-\pxs}) 
+	rectangle ({#2+\pxs},{(\ascale*#1)+\pxs});
+}
+
+\def\punkt#1#2#3{
+\ifnum #3 > 0
+	\rotpunkt{#1}{#2}{#3}
+\fi
+\ifnum #3 < 0
+	\pgfmathparse{-#3}
+	\xdef\f{\pgfmathresult}
+	\blaupunkt{#1}{#2}{\f}
+\fi
 }
 
 \input{psidots.tex}

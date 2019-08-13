@@ -36,12 +36,14 @@ Wir haben zu zeigen, dass die Funktion
 \mathcal{W}f(a,b) \psi_{a,b}(t)
 \,db\,\frac{da}{|a|^2}
 \end{equation}
-existiert, in $L^2$ liegt  und mit $f$ übereinstimmt.
+wohldefiniert ist, in $L^2(\mathbb R)$ liegt  und mit $f$ übereinstimmt.
 
-Wir nehmen zunächst an, dass $\tilde{f}$ tatsächlich existiert und eine
-$L^2$-Funktion ist.
-Um zu zeigen, dass $\tilde{f}$ mit $f$ übereinstimmt, berechnen wir das
-Skalarprodukt von $\tilde{f}$ mit beliebigen Funktionen $g\in L^2$.
+Wir nehmen zunächst an, dass $\tilde{f}$ tatsächlich wohldefiniert
+ist und eine $L^2$-Funktion ist.
+Um zu zeigen, dass $\tilde{f}$ mit $f$ übereinstimmt, genügt es nach
+dem Satz von Riesz~\ref{geometrie:satz:riesz}, zu zeigen, das
+$\tilde{f}$ und $f$ das selbe Skalarprodukt mit beliebigen Funktionen
+$g\in L^2$ hat.
 Durch Vertauschung der Integrationsreihenfolge in~\eqref{cwt:umkehr:beweis1}
 und Verwendung der Plancherel-Formel in~\eqref{cwt:umkehr:beweis2}
 finden wir
@@ -88,8 +90,21 @@ g(t)
 \label{cwt:umkehr:beweis2}
 \end{align}
 Die Funktion $\tilde{f}$ hat mit allen Funktion $g$ das gleiche Skalarprodukt
-wie $f$.
-Daraus folgt $\tilde{f}=f$.
+wie $f$ und daher
+\[
+\langle \tilde{f},g\rangle = \langle f,g\rangle
+\quad\Rightarrow\quad
+\langle \tilde{f}-f,g\rangle = 0.
+\]
+Für $g=\tilde{f}-f$ findet man
+\[
+=
+\langle \tilde{f}-f,\tilde{f}-f\rangle
+=
+\|\tilde{f}-f\|^2
+\quad\Rightarrow\quad
+\tilde{f}=f.
+\]
 
 Die bisherigen Überlegungen haben nur gezeigt, dass die
 Formel~\label{cwt:umkehr} eine sogenannte schwache Lösung des Umkehrproblems

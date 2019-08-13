@@ -125,11 +125,19 @@ printf("%d %f\n", ai, a);
 printf("%d %f\n", ai, a);
 		for (int bi = 0; bi <= bwidth; bi++) {
 			double	b = bmin + bi * bstep;
-			int 	w = round(255 * scale * fabs(Wf(a, b)) / wmax);
+			int 	w = round(255 * scale * Wf(a, b) / wmax);
 			if (w > 255) { w = 255; }
-			row_pointers[aheight - ai][3 * bi + 0] = 255;
-			row_pointers[aheight - ai][3 * bi + 1] = (255 - w);
-			row_pointers[aheight - ai][3 * bi + 2] = (255 - w);
+			if (w < -255) { w = -255; }
+			if (w > 0) {
+				row_pointers[aheight - ai][3 * bi + 0] = 255;
+				row_pointers[aheight - ai][3 * bi + 1] = (255 - w);
+				row_pointers[aheight - ai][3 * bi + 2] = (255 - w);
+			} else {
+				w = -w;
+				row_pointers[aheight - ai][3 * bi + 0] = (255 - w);
+				row_pointers[aheight - ai][3 * bi + 1] = (255 - w);
+				row_pointers[aheight - ai][3 * bi + 2] = 255;
+			}
 		}
 	}
 

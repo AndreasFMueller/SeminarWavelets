@@ -7,6 +7,7 @@
 \rhead{Wavelets}
 Das Ziel ist also, Funktionen mit Hilfe von verschobenen und skalierten
 Versionen eines sogenannten {\em Mutterwavelets} $\psi(t)$ zu analysieren.
+\index{Mutterwavelet}
 Die Analyse spielt sich im Raum der quadratintegrierbaren Funktionen
 $L^2(\mathbb R)$ ab, so dass vorausgesetzt werden muss,
 dass $\psi\in L^2(\mathbb R)$.
@@ -16,11 +17,13 @@ daher wird verlangt dass $\|\psi\|=1$.
 Diese Voraussetzungen reichen jedoch nicht.
 Es stellt sich heraus, dass einfache Rekonstruktionsformeln nur zu
 bekommen sind, wenn die Funktion $\psi(t)$ zusätzlich der folgenden
-Zulässigkeitsbedingung genügen.
+{\em Zulässigkeitsbedingung} genügen.
+\index{Zulässigkeitsbedingung}%
 
 \begin{definition}
 Eine Funktion $\psi\in L^2(\mathbb R)$ mit $\|\psi\|=1$ heisst 
-{\em Mutter-Wavelet} oder einfach nur {\em Wavelet}, wenn ihre
+{\em Mutterwavelet} oder einfach nur {\em Wavelet}, wenn ihre
+\index{Mutterwavelet}
 Fourier-Transformierte $\hat{\psi}(a)$ zusätzlich die Bedingung
 \begin{equation}
 C_{\psi}
@@ -33,7 +36,7 @@ erfüllt.
 \end{definition}
 
 \begin{beispiel}
-Das Haar-Mutter-Wavelet
+Das Haar-Mutterwavelet
 \[
 \psi_{\text{Haar}}(t) = \begin{cases}
  1&\qquad 0\le t < \frac12\\
@@ -87,23 +90,38 @@ Es gilt
 &=
 \frac{1}{\sqrt{2\pi}}
 ie^{-i\omega/2}
-\frac{\sin(\omega/4)^2}{\omega/4}.
+\frac{\sin(\omega/4)^2}{\omega/4}
 \end{align*}
 Die Zulässigkeitsbedingung ist jetzt leicht zu verifizieren, denn
-der Integrand ist
+der Integrand der Zulässigkeitsbedingung~\eqref{cwt:zulaessig} ist
 \[
 \frac{|\hat{\psi}_{\text{Haar}}(\omega)|^2}{|\omega|}
 =
-\frac{1}{8\pi}\frac{\sin(\omega/4)^4}{(\omega/4)^2}.
+\frac{1}{8\pi}\frac{\sin(\omega/4)^4}{(\omega/4)^2}
+=
+\frac{1}{8\pi}\si^2\frac{\omega}4 \sin^2 \frac{\omega}4
 \]
-Die Funktion auf der rechten Seite ist stetig und hat an der Stelle $\omega=0$
-den Grenzwert $0$.
-Damit existiert das Integral.
+mit der Sinus cardinalis Funktion
+\[
+\si x = \frac{\sin x}{x}
+\]
+(siehe auch Abbildung~\ref{cwt:figure:haarzulaessig}).
+Die Sinus-Funktion auf der rechten Seite ist beschränkt.
+Es ist wohl bekannt, dass die Kardinalsinus-Funktion integierbar ist.
+Folglich ist auch das Integral \eqref{cwt:zulaessig} beschränkt.
 \end{beispiel}
 
-% XXX TODO Graph für \hat{\psi}_{\text{Haar}}(\omega)
+\begin{figure}
+\centering
+\includegraphics{chapters/4-cwt/images/hatpsi.pdf}
+\caption{Nachweis der Zulässigkeitsbedingung für das Haar-Wavelet.
+Die Funktion $|\hat{\psi}|^2/|\omega|$ ist besschränkt und fällt
+für grosse $\omega$ wie $1/|\omega|^2$ ab, ihr Integral ist daher
+beschränkt.
+\label{cwt:figure:haarzulaessig}}
+\end{figure}
 
-Die Zulässigkeitsbedingung besagt, dass $\hat{\psi}(0)=0$ sein muss,
+Die Zulässigkeitsbedingung hat zur Folge, dass $\hat{\psi}(0)=0$ sein muss,
 sofern dieser Funktionswert der Fouriertransformation überhaupt
 definiert ist.
 Das ist aber gleichbedeutend damit, dass 
@@ -121,7 +139,7 @@ Ist $\psi \in L^2(\mathbb R)$ so, dass $t\psi\in L^1(\mathbb R)$, dann
 ist die Zulässigkeitsbedingung gleichbedeutend mit
 \[
 \int_{-\infty}^\infty \psi(t)\,dt = 0
-\qquad\Leftrightarrow\qquad
+\qquad\text{oder gleichbedeutend}\qquad
 \hat{\psi}(0)=0.
 \]
 \end{satz}

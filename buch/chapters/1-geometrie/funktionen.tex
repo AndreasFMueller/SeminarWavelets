@@ -183,6 +183,38 @@ verändert.
 Die später formulierte Definition von $D_a$ wird erreichen, dass 
 die $D_a$ die zum Skalarprodukt gehörige Norm erhält.
 
+\begin{satz}
+\label{geometrie:satz:inverse}
+Die Operatoren $T_b$ und $D_a$ sind invertierbar und es gilt
+\[
+T_b^{-1} = T_b
+\qquad\text{und}\qquad
+\tilde{D}_a^{-1} = \tilde{D}_{1/a}.
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Die folgenden Rechnungen zeigen, dass $T_bT_{-b}f=f$ und $D_aD_{1/a}f=f$:
+\begin{align*}
+(T_bT_{-b}f)(t)
+&=
+(T_{-b})f(t-b)
+=
+f((t+b)-b)
+=
+f(t)
+\\
+(\tilde{D}_a\tilde{D}_{1/a}f)(t)
+&=
+(\tilde{D}_{1/a}f)(t/a)
+=
+f((t/{\textstyle\frac1a})/a)
+=
+f(t).
+\qedhere
+\end{align*}
+\end{proof}
+
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/kommutator.pdf}
