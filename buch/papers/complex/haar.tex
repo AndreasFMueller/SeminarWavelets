@@ -1,29 +1,30 @@
 \subsection{Analytisches Haar-Wavelet}
-\rhead{Analytisches Haar-Wavelet}
 Betrachten wir zum Abschluss noch beispielhaft das Haar-Wavelet.
-\begin{satz}
-    Das dem Haar-Wavelet zugeordnete analytische Wavelet ist
-    \[\psi^\ast_{\text{Haar}} = \frac{1}{\sqrt{2}}\left(\psi_{\text{Haar}} + \frac{i}{\pi} \log\left|\frac{t^2-0.5^2)}{t^2}\right|\right).\]
-\end{satz}
+Das ihm zugeordnete analytische Wavelet lässt sich besonders einfach berechnen.
+Die Hilbert-Transformierte des Haar-Wavelets aus Definition~\ref{complex:def-haar} ist
+\begin{align*}
+	\Hilb \psi_{\text{Haar}}
+	&= \frac{1}{\pi} \CH\int_{-\infty}^{\infty} \frac{\psi_{\text{Haar}}(x)}{t-x} dx\\
+	&= \frac{1}{\pi}\left( \CH\int_{-0.5}^{0} \frac{1}{t-x}dx + \CH\int_{0}^{0.5} \frac{-1}{t-x}dx \right)\\
+	&= \frac{1}{\pi} \left( -\left[\log \left|t-x\right| \right]_{-0.5}^{0} + \left[\log\left|t-x\right| \right]_{0}^{0.5} \right)\\
+	&= \frac{1}{\pi} \left( -\log\left|t\right| + \log\left|t+0.5\right| + \log\left|t-0.5\right| - \log\left|t\right|\right)\\
+	&= \frac{1}{\pi} \log\left|\frac{(t+0.5)(t-0.5)}{t^2}\right|
+= \frac{1}{\pi} \log\left|\frac{t^2-0.5^2}{t^2}\right|.
+\end{align*}
 
-\begin{proof}
-    Die Hilbert-Transformierte des Haar-Wavelets aus Definition~\ref{complex:def-haar} ist
-    \begin{align*}
-    \mathcal{H} \psi_{\text{Haar}}
-    &= \frac{1}{\pi} \CH\int_{-\infty}^{\infty} \frac{\psi_{\text{Haar}}(x)}{t-x} dx\\
-    &= \frac{1}{\sqrt2\pi}\left( \CH\int_{-0.5}^{0} \frac{1}{t-x}dx + \CH\int_{0}^{0.5} \frac{-1}{t-x}dx \right)\\
-    &= \frac{1}{\sqrt2\pi} \left( -\left[\log \left|t-x\right| \right]_{-0.5}^{0} + \left[\log\left|t-x\right| \right]_{0}^{0.5} \right)\\
-    &= \frac{1}{\sqrt2\pi} \left( -\log\left|t\right| + \log\left|t+0.5\right| + \log\left|t-0.5\right| - \log\left|t\right|\right)\\
-    &= \frac{1}{\sqrt2\pi} \log\left|\frac{(t+0.5)(t-0.5)}{t^2}\right|
-    = \frac{1}{\sqrt2\pi} \log\left|\frac{t^2-0.5^2}{t^2}\right|.
-    \end{align*}
-    Daraus folgt das zugehörige, analytische Wavelet nach Satz~\ref{complex:analytic-wavelet}.
-\end{proof}
+Daraus folgt das dem Haar-Wavelet zugeordnete analytische Wavelet
+\[\psi^\ast_{\text{Haar}} = \Ana \psi_{\text{Haar}} =
+\frac{1}{\sqrt{2}}\biggl(\psi_{\text{Haar}} 
++ 
+\frac{i}{\pi} \log\biggl|\frac{t^2-0.5^2)}{t^2}\biggr|\biggr).\]
 
-Das analytische Haar-Wavelet ist in Abbildung~\ref{complex:ahaar} dargestellt.
-Es hat keinen kompakten Träger mehr, ist jedoch noch immer gut lokalisiert in der Zeit.
+Es ist in Abbildung~\ref{complex:ahaar} dargestellt.
+Der kompakte Träger ging zwar verloren, trotzdem ist es noch immer gut lokalisiert in der Zeit.
+
 Abbildung~\ref{complex:ahaar-ex} zeigt die Wavelet-Transformation mit dem analytischen Haar-Wavelet.
-Gut ersichtlich sind die scharfe Lokalisierung in der Zeit, die schlecht Lokalisierung in der Frequenz, die Verschiebung zwischen $1/a$ und $f$, so wie die Unabhängigkeit von Amplitude und Phase.
+Die scharfe Lokalisierung in der Zeit und die schlecht Lokalisierung in der Frequenz sind wie beim reellen Haar-Wavelet. Ebenso wie die Verschiebung zwischen $1/a$ und $f$.
+Wie erwartet ist jedoch die Helligkeit nun unabhängig von der Phase.
+Dadurch lässt sich $a_\text{max}(b)$ durchgehen bestimmen.
 
 \begin{figure}
 	\centering
@@ -36,6 +37,6 @@ Gut ersichtlich sind die scharfe Lokalisierung in der Zeit, die schlecht Lokalis
 	\centering
 	\includegraphics{papers/complex/images/chirp_ahaar.pdf}
 	\includegraphics{papers/complex/images/square_ahaar.pdf}
-	\caption{Farb-codierte Wavelet-Transformationen der beiden Beispielsignale mit dem \\ analytischen Haar-Wavelet.}
+	\caption{Wavelet-Transformationen der beiden Beispielsignale mit dem analytischen Haar-Wavelet. Die Auflösung in der Zeit ist sehr gut, dafür ist die Frequenz nicht ohne Weiteres zu erahnen. Durch die kontinuierliche Amplitude kann man jedoch relativ einfach dem Maximum folgen, um die momentane Frequenz -- skaliert mit $\omega_\psi$ -- zu finden.}
 	\label{complex:ahaar-ex}
 \end{figure}

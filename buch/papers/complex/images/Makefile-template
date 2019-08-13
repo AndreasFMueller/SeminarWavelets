@@ -2,7 +2,7 @@
 # Search and replace commands:
 # Prototype:  name.pdf im(...)
 # Search:     ^(.*)\.pdf[ \t]*im\(([0-9]*), ([0-9]*), ([0-9]*), ([0-9]*)(.*)
-# Replace:    \1.pdf: im im.m im.tex\n\toctave --silent --eval 'im(\2, \3, \4, \5, "\1.dat"\6'\n\t./im -i\1.dat -o\1.png\n\tconvert \1.png -colorspace CMY -density 300 -units PixelsPerInch \1.jpg\n\tpdflatex -interaction=batchmode -jobname=\1 '\\\\newcommand{\\\\imname}{\1.jpg}\\\\input{im.tex}'\n\trm \1.dat \1.png \1.jpg \1.log \1.aux\n
+# Replace:    \1.pdf: im im.m im.tex\n\toctave --silent --eval 'im(\2, \3, \4, \5, "\1.dat"\6'\n\t./im -i\1.dat -o\1.png\n\tconvert \1.png -density 300 -units PixelsPerInch \1.jpg\n\tpdflatex -interaction=batchmode -jobname=\1 '\\\\newcommand{\\\\imname}{\1.jpg}\\\\input{im.tex}'\n\trm \1.dat \1.png \1.jpg \1.log \1.aux\n
 
 chirp_morlet.pdf        im(1920, 1080, 0, 0)
 square_morlet.pdf       im(1920, 1080, 1, 0)
@@ -12,13 +12,21 @@ chirp_ahaar.pdf         im(1920, 1080, 0, 2)
 square_ahaar.pdf        im(1920, 1080, 1, 2)
 chirp_gabor.pdf         im(1920, 1080, 0, 3)
 square_gabor.pdf        im(1920, 1080, 1, 3)
-padding_none.pdf        im(1920, 1080, 3, 0, 0, 0)
-padding_sym_conj.pdf    im(1920, 1080, 3, 0, 1, 0)
-padding_zero.pdf        im(1920, 1080, 3, 0, 2, 0)
-padding_sym.pdf         im(1920, 1080, 3, 0, 3, 0)
+padding_none_sweep.pdf  im(1920, 1080, 0, 0, 0, 0)
+padding_none_square.pdf im(1920, 1080, 1, 0, 0, 0)
+padding_zero_sweep.pdf  im(1920, 1080, 0, 0, 2, 0)
+padding_zero_square.pdf im(1920, 1080, 1, 0, 2, 0)
+padding_sym_sweep.pdf   im(1920, 1080, 0, 0, 1, 0)
+padding_sym_square.pdf  im(1920, 1080, 1, 0, 1, 0)
 
-# add_cs_chirp.pdf        im(1920, 1080, 4, 0)
-# add_rs_square_haar.pdf  im(1920, 1080, 5, 1, 1, 0)
-# add_cs_haar_chirp.pdf   im(1920, 1080, 6, 1, 1, 0)
-# test.pdf                im(1920, 1080, 4, 0, 1, 1)
+add_rs_chirp_morlet.pdf   im(1920, 1080, 4, 0, 1, 0)
+add_rs_square_morlet.pdf  im(1920, 1080, 5, 0, 1, 0)
+
+add_rs_chirp_haar.pdf   im(1920, 1080, 4, 1, 1, 0)
+add_cs_chirp_haar.pdf   im(1920, 1080, 6, 1, 1, 0)
+
+add_nc_chirp_haar.pdf   im(1920, 1080, 8, 0)
+add_nc_square_haar.pdf  im(1920, 1080, 9, 0)
+
+test.pdf                im(1920, 1080, 4, 0)
 

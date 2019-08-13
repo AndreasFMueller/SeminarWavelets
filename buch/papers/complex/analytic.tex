@@ -1,56 +1,122 @@
-\subsection{Analytische Wavelets}
-\rhead{Analytische Wavelets}
+\section{Analytische Wavelets}
+Der Operator $\Ana\,$ hat den ersten Test also bestanden.
+Nun möchten wir ihn noch etwas besser verstehen.
+Was genau passiert eigentlich?
+Ist es Zufall, dass das Morlet- und Gabor-Wavelet so ähnlich sind?
+Dass der Realteil beim Morlet-Wavelet -- bis auf Skalierung -- genau dem Gabor-Wavelet entspricht?
+Eine Anforderung an den Operator $\Ana\,$ war ja, dass er das Wavelet nur so wenig wie möglich ändern soll.
+Beim Gabor-Wavelet hat das funktioniert.
+Aber ist diese Eigenschaft im Allgemeinen erfüllt?
+Diese Fragen möchten wir in diesem Abschnitt beantworten.
 
-Mittels Hilbert-Transformation kann also zu einem reellen Zeitsignal ein zugeordnetes analytisches Signal gefunden werden.
-Der Realteile des zugeordneten analytischen Signals bleibt dabei gleich dem Original.
-Spektral erhällt man das analytische Signal, indem man die negativen Frequenzen entfernt und die positiven verdoppelt, wie wir das im Abschnitt~\ref{complex:gabor-to-morlet} auf dem Weg vom Gabor- zum Morlet-Wavelet auch getan haben.
-Tatsächlich ist das Morlet-Wavelet das dem Gabor-Wavelet zugeordnete analytische Wavelet.
+Im vorherigen Abschnitt haben wir negative Frequenzen als Problem identifiziert.
+Wir definierten den Operator $\Ana\,$ so, dass er genau die negativen Frequenzen entfernt und dabei die Norm erhällt.
+Dazu wechselten wir in den Frequenzbereich, entfernten, was wir nicht wollten, und wechselten wieder zurück.
 
+Wie lässt sich dieses Verfahren verallgemeinern? 
+Ist dieses Hin- und Herwechseln tatsächlich notwendig?
+Und was ist denn der Effekt im Zeitbereich?
+Hierzu machen wir einen kurzen Ausflug in die Signaltheorie.
+Die Theorie der analytischen Signale liefert uns die gesuchten Antworten.
+
+
+\subsection{Analytische Signale und Hilbert-Transformation}
+\rhead{Hilbert-Transformation}
+In der Nachrichtentechnik ist Bandbreite ein beschränktes und dadurch wertvolles Gut.
+Die Spektra reeller Signale weisen aber immer eine hermitesche Symmetrie.
+Es reicht also, die Hälfte des Spektrums eines Signals zu übertragen, etwa nur die positiven Frequenzen.
+In der Signaltheorie ist dieses Verfahren unter dem Namen Einseitenband-Modulation bekannt.
+Ein Nebeneffekt hierbei ist, dass der Betrag des Signals gerade der Umhüllenden entspricht.
+Eine Schwingung verliert damit ihre Nullstellen, ohne aber Information zu verlieren.
+Genau das möchten wir von unseren Wavelets.
+
+Ein Signal, bei welchem die negativen Frequenzen entfernt wurden, nennt man \emph{analytisches Signal}\footnote{
+	Der Begriff `analytisch' ist in diesem Kapitel immer im Sinne der Signaltheorie zu verstehen, also $\forall \omega < 0 \colon \hat f (\omega) = 0 $.
+	Er ist nicht zu verwechseln mit der Eigenschaft analytischer Funktionen in der Analysis.
+}.
+Wir werden analog dazu \emph{analytische Wavelets} definieren und zeigen, dass der Auslöschungsoperator eben solche erzeugt.
+Dadurch übertragen sich die wesentlichen Eigneschaften ananltischer Signale auf unsere neuen Wavelets.
+
+Bevor wir den Begriff des analytischen Signals einführen können, benötigen wir aber die Hilbert-Transformation.
+\begin{definition}
+	Die Operator
+ 	\[
+ 	\Hilb\,\colon L^2(\mathbb R) \to L^2(\mathbb R)
+ 	~\quad~
+ 	f(t) \mapsto \Hilb f(t)
+ 	= \frac{1}{\pi} \CH\int_{-\infty}^{\infty}\frac{f(x)}{t-x} \mathrm{d}x
+ 	\]
+ 	heist \emph{Hilbert-Transformation}.
+ 	Hierbei bezeichnet $\CH\int_{-\infty}^{\infty} \dots \mathrm{d}x$ den cauchysche Hauptwert des divergenten Integrals.
+\end{definition}
+
+Die Hilberttransformation ist, wie die Wavelet- oder Fouriertransformation, eine Integraltransformation.
+Ein wesentlicher Unterschied besteht jedoch darin, dass sie den Raum nicht wechselt.
+Es ist eine Transformation aus der Zeit in die Zeit.
+
+Nun sind wir bereit für die Definition eines analytischen Signals.
+\begin{definition}
+	\label{complex:analytic-signal}
+	Sei $f \in L^2(\mathbb R)$ ein reelles Signal.
+	Dann heisst
+	\[f^\ast = (1 + i\Hilb\,)f \]
+	das $f$ zugeordnete \emph{analytische Signal}.
+\end{definition}
 \begin{satz}
-	\label{complex:analytic-wavelet}
-	Sei $\psi$ ein reelles Wavelet. Dann ist
-	\begin{equation}
-		\psi^\ast = \frac{1}{\sqrt{2}}\left(\psi + i\,\mathcal{H}\psi\right)
-	\end{equation}
-	das zu $\psi$ zugeordnete \emph{analytische Wavelet}\footnote{Auch hierbei ist ``analytisch'' wieder im Sinne der Signaltheorie zu verstehen, also $\hat\psi^\ast = 0 \,\forall\,\omega < 0$.}.
-	Die Fouriertransformierte $\hat\psi^\ast$ verschwindet für alle negativen Frequenzen.
-	\[\hat\psi^\ast(\omega) = \,\forall\,\omega<0\]
+	Ein analytisches Signal wird durch den Auslöschungsoperator erzeugt.
+	\[1 + i\Hilb\, \equiv \sqrt 2 \Ana\, \Rightarrow f^\ast \equiv \sqrt 2 \Ana f\]
 \end{satz}
 
 \begin{proof}
-	Dass $\hat\psi^\ast = 0$ für $\omega < 0$ gilt, folgt trivial aus Satz~\ref{complex:analytic-signal}.
-
-	Um sicherzustellen, dass $\psi^\ast$ wirklich ein Wavelet ist, müssen wir die Zulässigkeitsbedingung aus Gleichung~\eqref{cwt:zulaessig} prüfen.
-	Nach Voraussetzung ist 
-	\[
-	C_{\psi}
-	=
-	2\pi
-	\int_{-\infty}^\infty \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,\mathrm{d}\omega < \infty.
-	\]
-	Daraus folgt
-	\[
-	C_{\psi^\ast}
-	=
-	2\pi
-	\int_{0}^\infty \frac{|\hat{\psi}^\ast(\omega)|^2}{|\omega|}\,\mathrm{d}\omega < \infty,
-	\]
-	da $\hat\psi^\ast$ für $\omega > 0$ lediglich mit einem Faktor $\sqrt 2$ skaliert wurde.
-	Nun überprüfen wir noch die Norm $\|\psi^\ast\|$. 
-	Sie muss $1$ sein.
-	\begin{align}
-		1 = \left\|\psi\right\| = \left\|\hat{\psi}\right\| 
-		&= \int_{-\infty}^{\infty}\left|\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega \label{complex:norm-proof-p1}\\
-		&= \int_{-\infty}^{0}\left|\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega +  \int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega \notag\\
-		&=  2\int_{0}^{\infty}\left|\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega \label{complex:norm-proof}\\
-		&=  \int_{0}^{\infty}\left|\frac{2}{\sqrt{2}}\hat{\psi}(\omega)\right|^2 \mathrm{d}\omega \notag\\
-		&=  \int_{-\infty}^{\infty}\left|\hat{\psi}^\ast(\omega)\right|^2 \mathrm{d}\omega 
-		= \left\|\hat{\psi}^\ast\right\| = \left\|\psi^\ast\right\|.\label{complex:norm-proof-p2}
-	\end{align}
-	In den Gleichungen~\eqref{complex:norm-proof-p1} und \eqref{complex:norm-proof-p2} kam die Placherel-Formel zur Anwendung.
-	In Gleichung~\eqref{complex:norm-proof} nutzten wir die hermitesche Symmetrie der Fourier-Transformierten eines reellen Wavelets, nach welcher
-	\[\left|\hat{f}(\omega)\right| = \left|\hat{f}(-\omega)\right|.\]
-
-
-	Bei $\psi^\ast$ handelt es sich also tatsächlich um ein Wavelet.
+	Der Auslöschungsoperator wechselt in den Frequenzbereich.
+	Dort berechnet er die punktweise Multiplikation mit der Signumsfunktion und wechselt wieder zurück in den Zeitbereich.
+	\[\Ana\, = \mathcal{F}^{-1}\frac{1+\sgn(\omega)}{\sqrt 2}\Four\]
+	
+	Dies ist folglich analog zur Faltung mit der inversen Fouriertransformierten der Signumsfunktion direkt im Zeitbereich,
+	\[ \Ana f(t) = f(t) * \mathcal{F}^{-1}\frac{1 + \sgn(\omega)}{\sqrt 2}. \]
+	
+	Mit der Identität
+	\[\Four\frac{1}{\pi t} = -i\sgn(\omega)\]
+	so wie der Linearität der Fouriertransformation und der Faltung folg schliesslich
+	\begin{align*}
+		\sqrt 2 \Ana f(t) 
+		&= f(t) * \biggl(\delta(t) + \frac{i}{\pi t} \biggr)\\
+		&= f(t) + \frac{i}{\pi} \CH\int_{-\infty}^{\infty} \frac{f(x)}{t - x} \,\mathrm{d}x\\
+		&= (1 + i\Hilb\,) f(t)\qedhere
+	\end{align*}
 \end{proof}
+
+Jetzt haben wir endlich alle szusammen, was wir für den Satz zur Ähnlichkeit brauchen.
+Wir wollten ja zeigen, dass der Auslöschungsoperator das Signal nur gerade so stark verändert, wie notwendig.
+Beim Morlet-Wavelet haben wir gesehen, dass er lediglich einen passenden Imaginärteil hinzufügt und das ganze so skaliert, dass die Norm erhalten bleibt.
+Das stimmt für alle Wavelets.
+
+\begin{satz}
+	Sei $\psi \in L^2(\mathbb R)$ ein reelles Wavelet. Dann sind die Realteile von $\psi$ und $\Ana\psi$ bis auf Skalierung identisch.
+	\[ \psi = \sqrt 2 \Re\Ana\psi\]
+\end{satz}
+
+\begin{proof}
+	Die Hilbert-Transformation ist eine reelle Integraltransformation
+	\[\Hilb\,\colon L^2(\mathbb{R}) \to L^2(\mathbb{R}).\]
+	Nach Definition gilt
+	\[\Ana\psi = \frac{1 + i\Hilb\,}{\sqrt 2}\psi,\]
+	woraus sich nun Real- und Imaginärteil direkt ablesen lassen.
+	\[\Re \Ana\psi = \frac{1}{\sqrt 2}\psi \quad \text{und}\quad \Im \Ana\psi = \frac{\Hilb }{\sqrt 2}\psi\qedhere\]
+\end{proof}
+
+Mittels Hilbert-Transformation kann also zu einem reellen Wavelet ein passender Imaginärteil gefunden werden, so dass Amplitude und Phase separiert werden können.
+Wir definieren non noch das eigentliche Objekt unserer Begierde.
+
+\begin{satz}
+	\label{complex:analytic-wavelet}
+	Sei $\psi(t)$ ein reelles Wavelet. Dann ist
+	\begin{equation}
+	\psi^\ast = \Ana\psi
+	\end{equation}
+	das $\psi$ zugeordnete \emph{analytische Wavelet}\footnote{Auch hierbei ist ``analytisch'' wieder im Sinne der Signaltheorie zu verstehen, also $\forall \omega < 0 \colon \hat\psi^\ast(\omega) = 0$.}.
+\end{satz}
+
+Die analytischen Wavelets erben nun all die Eigenschaften analytischer Signale, welche durch den Auslöschungsoperator erzeugt werden.
+Sie erhalten einen Imaginärteil, so dass sich Phase und Amplitude separieren lassen.
+Analytische Wavelets eignen sich dadurch besonders gut, um periodische Anteile in einem Signal zu finden, da die Grösse des Skalarproduktes zwischen Wavelet und Signal unabhängig ist von der Phase.
