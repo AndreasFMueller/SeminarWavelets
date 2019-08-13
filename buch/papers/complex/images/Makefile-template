@@ -26,7 +26,7 @@ add_rs_chirp_haar.pdf   im(1920, 1080, 4, 1, 1, 0)
 add_cs_chirp_haar.pdf   im(1920, 1080, 6, 1, 1, 0)
 
 add_nc_chirp_haar.pdf   im(1920, 1080, 8, 0)
-add_nc_square_haar.pdf  im(1920, 1080, 8, 0)
+add_nc_square_haar.pdf  im(1920, 1080, 9, 0)
 
 test.pdf                im(1920, 1080, 4, 0)
 

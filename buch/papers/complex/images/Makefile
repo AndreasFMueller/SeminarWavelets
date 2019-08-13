@@ -202,7 +202,7 @@ add_nc_chirp_haar.pdf: im im.m im.tex
 	rm add_nc_chirp_haar.dat add_nc_chirp_haar.png add_nc_chirp_haar.jpg add_nc_chirp_haar.log add_nc_chirp_haar.aux
 
 add_nc_square_haar.pdf: im im.m im.tex
-	octave --silent --eval 'im(1920, 1080, 8, 0, "add_nc_square_haar.dat")'
+	octave --silent --eval 'im(1920, 1080, 9, 0, "add_nc_square_haar.dat")'
 	./im -iadd_nc_square_haar.dat -oadd_nc_square_haar.png
 	convert add_nc_square_haar.png -density 300 -units PixelsPerInch add_nc_square_haar.jpg
 	pdflatex -interaction=batchmode -jobname=add_nc_square_haar '\newcommand{\imname}{add_nc_square_haar.jpg}\input{im.tex}'
