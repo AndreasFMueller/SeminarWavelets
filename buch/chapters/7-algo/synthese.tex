@@ -23,12 +23,23 @@ orthonormiert sind, erwarten wir daher eine ebenfalls leicht zu
 berechnende schnelle Umkehrtransformation.
 Sie soll im Folgenden dargestellt werden.
 
+Die schnelle Wavelet-Transformation erzeugt die Detail-Koeffizienten
+$b_{jk}$ aus den Samples $a_{Nk}$.
+Dies entspricht einem Basiswechsel von $\varphi_{N,k}$ zu den
+Vektoren $\psi_{j,k}$ für $j<N$.
+Wir wollen diesen Basiswechsel als Transformationsmatrix für 
+die Waveletkoeffizienten ausdrücken und schliesslich auch invertieren.
+
 %
 % Basiswechsel zwischen orthonormierten Basen
 %
-\subsection{Basiswechsel}
-Seien in einem Vektorraum $V$ zwei Basen
-$\mathcal{B}=\{b_i\in V\}$ und $\mathcal{C}=\{c_i\in V\}$ gegeben.
+\subsection{Basiswechsel und Koordinatentransformationsmatrix}
+Zunächst erinnern wir an die abstrakte Konstruktion der
+Transformationsmatrix für die Koordinaten bei einem Basiswechsel.
+Zu diesem Zweck seien in einem Vektorraum $V$ zwei Basen
+$\mathcal{B}=\{b_i\in V\}$ und $\mathcal{C}=\{c_i\in V\}$ vorgegeben.
+Gesucht wird die Umrechnung von Koordinaten bezüglich der Basis
+$\mathcal{B}$ in Koordinaten bezüglich der Basis $\mathcal{C}$.
 
 Da $\mathcal{C}$ eine Basis ist, lassen sich die Vektoren $b_i$ als
 Linearkombinationen
@@ -58,6 +69,7 @@ den Vektor $\xi$ der Koordinaten $\xi_i$ mittels eines Produktes $T\xi$
 in den Vektor $\eta$ der Koordinaten $\eta_j$ der Koordinaten bezüglich
 der Basis $\mathcal{C}$ transformiert.
 
+\subsection{Transformationsmatrix für Wavelet-Koeffizienten}
 Im Wavelet-Kontext liefert die Skalierungs-Relation den Zusammenhang
 zwischen den verschiedenen Basen.
 Die Multiskalen-Analyse verspricht, dass sich jeder der Vektorräume
@@ -73,14 +85,15 @@ Die Skalierungsrelation für das Vater-Wavelet und die Darstellung des
 Mutter-Wavelets liefern die Beziehungen
 \begin{align*}
 \varphi_{j,k} &= \sum_{l} h_{l}\varphi_{j+1,l+2k}
+\qquad\text{und}
 \\
-\psi_{j,k} &= \sum_{l} g_{l} \varphi_{j+1,l+2k}
+\psi_{j,k} &= \sum_{l} g_{l} \varphi_{j+1,l+2k}.
 \end{align*}
 
 Im Abschnitt~\ref{section:fast} haben wir daraus die Formeln für
 die schnelle Wavelet-Transformation abgeleitet:
 \begin{align*}
-a_{j,k} &= \sum_{l} \bar{h}_l a_{j+1,l+2k}
+a_{j,k} &= \sum_{l} \bar{h}_l a_{j+1,l+2k} \qquad\text{und}
 \\
 b_{j,k} &= \sum_{l} \bar{g}_l a_{j+1,l+2k}
 \end{align*}
@@ -142,7 +155,9 @@ b_{j, 2}&\dots &\bar{g}_{-6}&\bar{g}_{-5}&\bar{g}_{-4}&\bar{g}_{-3}&\bar{g}_{-2}
 % invertierung der Transformation
 %
 \subsection{Invertierung}
-Wir nehmen jetzt zusätzlich an, dass die Basen $\mathcal{B}$ und $\mathcal{C}$ orthonormiert sind.
+Wir nehmen jetzt zusätzlich an, dass die Basen $\mathcal{B}$ und $\mathcal{C}$
+orthonormiert sind, eine Voraussetzung die für die skalierten Mutter- und
+Vaterwavelets einer Multiskalenanalyse erfüllt ist.
 Es gilt also
 \[
 \begin{aligned}
@@ -166,7 +181,7 @@ Die Orthogonalitätsbedingungen für die Vektoren $b_i$ werden damit
 \sum_{j,l} t_{ji}\bar{t}_{lk}
 \underbrace{\langle c_j,c_l\rangle}_{\displaystyle=\delta_{jl}}
 =
-\sum_{j} t_{ji}\bar{t}_{jk}
+\sum_{j} t_{ji}\bar{t}_{jk}.
 \]
 In Matrix-Schreibweise ist dies
 \[
@@ -314,7 +329,7 @@ a_{j,k} + b_{j,k}
 \\
 a_{j+1,2k         +1 }
 &= 
-a_{j,k} - b_{j,k}
+a_{j,k} - b_{j,k}.
 \end{align*}
 In diesem Fall sind die Umkehrformeln also ähnlich einfach wie die Formeln
 für die schnelle Vorwärts-Transformation.

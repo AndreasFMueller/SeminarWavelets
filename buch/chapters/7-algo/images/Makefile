@@ -5,7 +5,7 @@
 #
 all:	db1.pdf db2.pdf db3.pdf db4.pdf db5.pdf \
 	coif1.pdf coif2.pdf coif3.pdf coif4.pdf coif5.pdf \
-	approx.pdf
+	approx.pdf fastalgo.pdf
 
 db1.pdf:	db1.tex phi-db1.tex psi-db1.tex
 	pdflatex db1.tex
@@ -73,6 +73,7 @@ approx.pdf:	approx.tex phi-approx.tex psi-approx.tex
 phi-approx.tex psi-approx.tex:	approx.m
 	octave approx.m
 
-
+fastalgo.pdf:	fastalgo.tex
+	pdflatex fastalgo.tex
 
 
