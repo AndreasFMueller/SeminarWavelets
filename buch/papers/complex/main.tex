@@ -12,10 +12,10 @@
 % \section{Einleitung}
 Die diskrete Wavelet-Transformation (DWT) mit reellen Wavelets ist besonders schnell zu berechnen.
 Deshalb ist sie die bevorzugte Wahl zur Signalverarbeitung.
-In der Analyse und beim Erstellen `schöner' Bilder trifft man jedoch, unter Anderem, auf folgende drei Probleme:
+In der Analyse und beim Erstellen `schöner' Bilder trifft man indes, unter anderem, auf folgende drei Probleme:
 
 Erstens wäre es für Bilder vorteilhaft, die relevanten Frequenzpunkte vorgeben zu können.
-So kann man direkt lineare oder logarithmische Skalen wählen. Die DWT ist an Zweierpotenzen gebunden. %TODO: Referenz zum Frame für a^n statt 2^n
+So kann man direkt lineare oder logarithmische Skalen wählen. Die DWT ist jedoch an Zweierpotenzen gebunden. %TODO: Referenz zum Frame für a^n statt 2^n
 Zweitens erfordern die meisten Methoden zum Erstellen von Bildern ein reguläres Raster.
 Die DWT liefert aber in jeder zusätzlichen Zeile nur noch halb so viele Punkte.
 Drittens ist es, wenn man Schwingungen finden möchte, vorteilhaft, wenn die Amplitude ersichtlich ist.
@@ -45,7 +45,7 @@ Geschickte Erweiterung des Signals kann diesen Effekt reduzieren.
 Im dritten Abschnitt vergleichen wir deshalb die erzielten Bilder mit verschiedenen Padding-Optionen.
 
 Am Schluss betrachten wir noch ein paar weitere, interessante Bilder und sehen uns an, was die Wavelettransformation liefert.
-Für die Bilder werde wir in diesem Kapitel immer wieder komplexe, zweidimensionale Signale abbilden müssen.
+Für die Bilder werden wir in diesem Kapitel immer wieder komplexe, zweidimensionale Signale abbilden müssen.
 Dazu verwenden wir die Farbcodierung aus Abbildung~\ref{complex:color-code}.
 Auch die rein reellen, zweidimensionalen Bilder werden so abgebildet.
 Bei reellen Bildern sind dann eben nur Blau und Gelb vorhanden.

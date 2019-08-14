@@ -9,11 +9,11 @@ Das Skalarprodukt zwischen Signal und Wavelet ist also abhängig von der Phase m
 Diese Oszillation in der Amplitude ist unschön, da sich etwa $a_\text{max}(b)$ so nicht durchgehend bestimmen lässt.
 Dieser Abschnitt dreht sich um die Lösung dieses Problems.
 Ziel ist es, am Ende einen Operator $\Ana\,$ zu haben, der ein bestehendes Wavelet durch möglichst kleine Änderungen so anpasst, dass die Separation von Amplitude und Phase möglich wird.
-Dazu gehen wir wie folgt vor.
 
+Dazu gehen wir wie folgt vor:
 Als erstes identifizieren wir negative Frequenzen als Ursache des Problems und zeigen, dass es kein reelles Wavelet geben kann, bei dem sich Amplitude und Phase einer Schwingung separieren lassen.
 
-Daraus entwickeln wir einen Proototyp des Operators $\Ana\,$, und testen, ob er angewandt auf das Gabor-Wavelet, das gewünschte Resultat erzielt.
+Daraus entwickeln wir einen Prototyp des Operators $\Ana\,$, und testen, ob er angewandt auf das Gabor-Wavelet, das gewünschte Resultat erzielt.
 
 Ein kurzer Exkurs in die Signaltheorie erlaubt uns, den Operator $\Ana\,$ besser zu verstehen. 
 Dazu werden wir den Begriff des \emph{analytischen Wavelets} einführen.
@@ -81,7 +81,7 @@ Wie aber finden wir zu einem gegebenen, reellen Wavelet einen passenden, linear 
 Betrachten wir wieder die Exponentialfunktion.
 Bei ihr sind Real- und Imaginärteil nicht nur linear unabhängig, sondern orthogonal.
 Gewisse Kombinationen von komplexen Exponentialfunktionen führen jedoch wieder zu rein reellen Funktionen.
-Diese rekombination zweier komplexer Funktionen zu einer reellen müssen wir unterbinden.
+Diese Rekombination zweier komplexer Funktionen zu einer reellen müssen wir unterbinden.
 
 Mit Hilfe der komplexen Konjugation können Real- und Imaginärteil auch dargestellt werden als
 \[
@@ -129,7 +129,7 @@ Dieser Operator entfernt die negativen Frequenzen, die wir eben als Problem iden
 		\end{matrix}\right..\qedhere
 	\]
 \end{proof}
-Der Operator $\Ana\,$ konstruiert ausgehend von einem reellen Signal etwas komplexes.
+Der Operator $\Ana\,$ konstruiert ausgehend von einem reellen Signal etwas Komplexes.
 Aber handelt es sich bei $\psi^\ast = \Ana\psi$ überhaupt um ein Wavelet?
 
 \begin{satz}
@@ -218,9 +218,9 @@ Die Fouriertransformierte des Gabor-Wavelet wird hierdurch zu
 Hierbei bezeichnet $\delta(\omega)$ die Dirac-Distribution.
 Hieraus lassen sich die negative Frequenzen leicht entfernen
 \footnote{
-	Der Anteil von $\kappa_\sigma$ müsste man genauer betrachten.
-	Durch die Faltung mit der Gaussfunktion entstehen dadurch auch negative Frequenzen.
-	Und natürlich besitzt die Exponentialfunktion keinen kompakten Träger, also entstehen auch negative Frequenzen durch die Faltung der Gaussfunktion mit $\delta(\omega - \sigma)$.
+	Den Anteil von $\kappa_\sigma$ müsste man genauer betrachten.
+	Durch die Faltung mit der Gauss-Funktion entstehen dadurch auch negative Frequenzen.
+	Und natürlich besitzt die Exponentialfunktion keinen kompakten Träger, also entstehen auch negative Frequenzen durch die Faltung der Gauss-Ffunktion mit $\delta(\omega - \sigma)$.
 	Wir begnügen uns hier für einmal mit `fast exakt'.
 }.
 Wir erhalten
@@ -234,12 +234,12 @@ und durch Rücktransformation in den Zeitbereich
 \[
 	\psi^\ast_\text{Gabor} = c_\sigma e^{- \frac{t^2}{2}} \cdot (\!\sqrt 2 e^{i\sigma t} +	\kappa_\sigma ).
 \]
-Durch Skalierung der Faktoren $c_\sigma$ und $\kappa_\sigma$ werden wir die Wurzeln los und landen bei einem alten Bekannten, dem Morlet-Wavelet
+Durch Skalierung der Faktoren $c_\sigma$ und $\kappa_\sigma$ werden wir die Wurzeln los und landen bei einem alten Bekannten: dem Morlet-Wavelet
 \[\psi_\text{Morlet} = c_\sigma e^{- \frac{t^2}{2}} \cdot (e^{i\sigma t} + \kappa_\sigma).\]
-Wir traffen es bereits in Gleichung~\eqref{cwt:morlet} als Beispiel für die CWT.
+Wir trafen es bereits in Gleichung~\eqref{cwt:morlet} als Beispiel für die CWT.
 Das Morlet-Wavelet ist in Abbildung~\ref{complex:morlet} im Zeit- und Frequenzbereich dargestellt.
 Auffallend ist, dass der Realteil bis auf Skalierung unverändert blieb.
-Der Operator $\Ana\,$ hat also wie gewünscht das Wavelet nur minimal, respektive gar nicht verändert, sondern lediglich um einen passenden Imaginäteil ergänzt.
+Der Operator $\Ana\,$ hat also wie gewünscht das Wavelet nur minimal, respektive gar nicht verändert, sondern lediglich um einen passenden Imaginärteil ergänzt.
 
 Abbildung~\ref{complex:morlet-ex} zeigt die beiden Wavelet-Transformationen unserer Beispiel-Signale mit dem Morlet-Wavelet.
 Neu treten alle Farben auf, nicht nur jene für positive und negative Werte.

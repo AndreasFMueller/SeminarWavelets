@@ -2,7 +2,7 @@
 \rhead{Zyklische Faltung}
 \label{complex:circ-conv-padding}
 Verlassen wir nun den Rahmen der Analysis und wenden uns zum Schluss noch der Numerik zu.
-Zur effizienten Berechnung haben wir verwendet, dass die Multiplikation im Zeitbereich der Faltung im Frequenzbereich entspricht.
+Zur effizienten Berechnung haben wir ausgenutzt, dass die Multiplikation im Zeitbereich der Faltung im Frequenzbereich entspricht.
 Anschliessend haben wir die schnelle Fourier-Transformation zur Berechnung der Bilder verwendet.
 Die FFT berechnet jedoch eine Fourier-Reihe, welche im Kapitel~\ref{section:fourier-reihen} behandelt wurden.
 Für Fourier-Reihen wurde vorausgesetzt, dass die Signale $2\pi$-periodisch und im Interval $\left[0, 2\pi\right)$ quadratintegrierbar sind.
@@ -20,9 +20,9 @@ eine affine Transformation auf das Interval $\left[0, 2\pi \right)$ und
 \]
 ein $2\pi$-periodisches Signal, welches dieselbe Information beinhaltet, wie das ursprüngliche Signal $\tilde{x}(t)$.
 Die FFT als Fourierreihe geht implizit immer von der Annahme aus, dass das Signal periodisch war.
-Erst darauf sind die Fourier-Reihen sinnvoll definiert und die gesammte Theorie funktioniert wie gewünscht.
+Erst darauf sind die Fourier-Reihen sinnvoll definiert und die gesamte Theorie funktioniert wie gewünscht.
 Ausser, man beginnt, Signale miteinander zu falten.
-Durch die Periodisierung des Ursprungssignals wurde das Signal vom ursprünglichen Interval $[t_0, t_1)$ auf ganz $\mathbb{R}$ erweitert.
+Durch die Periodisierung des Ursprungssignals wurde das Signal vom ursprünglichen Intervall $[t_0, t_1)$ auf ganz $\mathbb{R}$ erweitert.
 
 \begin{figure}
 	\centering
@@ -35,9 +35,9 @@ Warum dies ein Problem ist, sei mit einem Beispiel illustriert.
 In Abbildung~\ref{complex:cyclic-conv} ist ein Beispielsignal, welches mit einem Dirac-Impuls gefaltet werden soll.
 Dieser Dirac-Impuls sei nun aber periodisch.
 Durch diese Fortsetzung überlappen die verschiedenen Signal-Kopien, falls am Rand nicht extra Platz gelassen wird.
-Bei realen Signalen ist dies in der Regel nicht der Fall, die Aufzeichnung beginnt erst, wenn auch etwas interessantes passiert.
+Bei realen Signalen ist dies in der Regel nicht der Fall, die Aufzeichnung beginnt erst, wenn auch etwas Interessantes passiert.
 
-Es ist also wichtig, dem Signal vor der FFT extra Platz einzuräumen, sogenantes \emph{Signal Padding}.
+Es ist also wichtig, dem Signal vor der FFT extra Platz einzuräumen, sogenanntes \emph{Signal Padding}.
 Dies kann auf verschiedene Arten geschehen.
 Abbildung~\ref{complex:padding} zeigt die zwei meistverwendeten, Zero Padding und Spiegeln an den Rändern, am Beispiel einer Cosinus- und Sinus-Schwingung.
 \begin{figure}
@@ -48,7 +48,7 @@ Abbildung~\ref{complex:padding} zeigt die zwei meistverwendeten, Zero Padding un
 \end{figure}
 
 Die wohl einfachste Art ist das Ergänzen mit $0$.
-Dies führt zu einem verschwinden des Signals am Rande.
+Dies führt zu einem Verschwinden des Signals am Rande.
 Diese Methode lässt sich gut begründen: kennt man das Signal nicht, nimmt man an, es sei $0$.
 Diese Methode ist sicher nie falsch und gibt nur wenig zu tun.
 
@@ -58,27 +58,27 @@ Dadurch bleibt die Intensität des Signals am Rande erhalten.
 Sinnvoll ist das jedoch nur, wenn man annehmen kann, dass das Signal auch eine entsprechende Symmetrie aufweist.
 Selbst bei einem periodischen Signal tritt dadurch im Allgemeinen eine Unstetigkeit in der Frequenz auf, da die Laufrichtung der Phase invertiert wird.
 
-Anhand der Bilden in Abbildung~\ref{complex:padding} kann man sich leicht überzeugen, dass es keine 'richtige' Art gibt, das Signal zu extrapollieren.
-Gespiegelt resultiert in einer Frequenz-Inversion, dafür tritt kein Phasen-Sprung auf.
+Anhand der Bilder in Abbildung~\ref{complex:padding} kann man sich leicht überzeugen, dass es keine 'richtige' Art gibt, das Signal zu extrapolieren.
+Auch durch Spiegeln des Signals an den Rändern entsteht eine Unstetigkeit, die Frequenz wird invertiert. Dafür tritt kein Phasen-Sprung auf.
 Falls die Randwerte wirklich wichtig sind, kann man versuchen, das Signal zu extrapolieren, etwa über eine Polynom-Aproximation.
 Man sollte sich jedoch im Klaren sein, dass man gerade dabei ist, neue Signal-Werte zu erfinden.
 
 Die Beispielsignale sind so gewählt, dass sie eine ganzzahlige Anzahl Perioden durchlaufen. 
-Spiegeln führt dadurch zu einer korrekten Vortsetzung des Signals.
-In den bisherigen Bildern wurde diese Methode gewählt um Artefakte zu vermeiden.
+Spiegeln führt dadurch zu einer korrekten Fortsetzung des Signals.
+In den bisherigen Bildern wurde diese Methode gewählt, um Artefakte zu vermeiden.
 Die Auswirkungen des Signal Paddings können in den Abbildungen~\ref{complex:padding-none}~bis~\ref{complex:padding-sym} betrachtet werden.
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{papers/complex/images/padding_none_sweep.pdf}
 	\includegraphics[width=\linewidth, keepaspectratio]{papers/complex/images/padding_none_square.pdf}
-	\caption{Ohne Signal Padding -- Man beachte, wie die Helligkeit an den Rändern abnimmt. Durch die periodische Fortsetzung entstehen im oberen Bild Artefakte bei ca.~$(0, 7)$ und $(4, 2)$, im unteren bei ca.~$(0,5)$ und $(4,7)$.} \label{complex:padding-none}
+	\caption{Ohne Signal Padding. Man beachte, wie die Helligkeit an den Rändern abnimmt. Durch die periodische Fortsetzung entstehen im oberen Bild Artefakte bei ca.~$(0, 7)$ und $(4, 2)$, im unteren bei ca.~$(0,5)$ und $(4,7)$.} \label{complex:padding-none}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{papers/complex/images/padding_zero_sweep.pdf}
 	\includegraphics[width=\linewidth, keepaspectratio]{papers/complex/images/padding_zero_square.pdf}
-	\caption{Zero Padding -- Es sind keine Artefakte erkennbar, aber die Helligkeit an den Rändern nimmt immer noch ab.}
+	\caption{Zero Padding. Es sind keine Artefakte erkennbar, aber die Helligkeit an den Rändern nimmt immer noch ab.}
 	\label{complex:padding-zero}
 \end{figure}
 
@@ -86,7 +86,7 @@ Die Auswirkungen des Signal Paddings können in den Abbildungen~\ref{complex:pad
 	\centering
 	\includegraphics[width=\linewidth, keepaspectratio]{papers/complex/images/padding_sym_sweep.pdf}
 	\includegraphics[width=\linewidth, keepaspectratio]{papers/complex/images/padding_sym_square.pdf}
-	\caption{Gespiegelt -- Es sind keine Artefakte erkennbar und die Helligkeit an den Rändern bleibt erhalten. Man beachte jedoch, dass das hier so gut funktioniert, da die Signale selbst eine klare Periodizität aufweisen und durch Spiegeln quasi perfekt fortgesetzt werden.}
+	\caption{Gespiegelt. Es sind keine Artefakte erkennbar und die Helligkeit an den Rändern bleibt erhalten. Man beachte jedoch, dass das hier so gut funktioniert, da die Signale selbst eine klare Periodizität aufweisen und durch Spiegeln quasi perfekt fortgesetzt werden.}
 	\label{complex:padding-sym}
 \end{figure}
 
