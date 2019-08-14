@@ -14,8 +14,8 @@ Deren Berechnung wird im Frequenzbereich zu einer einfachen Multiplikation
 \Wave f(a,b)
 = \mathcal{F}^{-1}\bigl\lbrace\hat{f}(\omega) \sqrt{|a|}\, \overline{\hat{\psi}}(a\omega)\bigr\rbrace.
 \end{equation}
-Besonders interessant ist diese Berechnung mit Wavelets, die eine geschlossene, analytische Form im Frequenzbereich besitzen, etwa das Haar- oder das Gabor-Wavelets.
-Wie alle reellen Wavelets erlauben dieses zwei Wavelets aber nicht, Phase und Amplitude getrennt zu betrachten.
+Besonders interessant ist diese Berechnung mit Wavelet, die eine geschlossene, analytische Form im Frequenzbereich besitzen, etwa das Haar- oder das Gabor-Wavelets.
+Wie alle reellen Wavelets erlauben auch diese zwei nicht, Phase und Amplitude getrennt zu betrachten.
 Eine Detektion der momentanen Signalfrequenzen wird dadurch erschwert.
 
 Durch den \emph{Auslöschungsoperator}
@@ -24,9 +24,9 @@ Durch den \emph{Auslöschungsoperator}
 	\quad\colon\quad
 	\psi \mapsto \frac{1 + i\Hilb\,}{\sqrt 2}\psi
 \]
-können wir jedoch aus jedem, reellen Wavelet ein \emph{analytisches Wavelet} erstellen, welches dem original sehr ähnlich ist, jedoch eine Trennung von Phase und Amplitude erlaubt.
+können wir jedoch aus jedem, reellen Wavelet ein \emph{analytisches Wavelet} erstellen, welches dem Original sehr ähnlich ist, jedoch eine Trennung von Phase und Amplitude erlaubt.
 Dadurch ist es möglich, im erhaltenen Bild dem Punkt des maximalen Betrags zu folgen.
-Die \emph{dominanten Frequenz} des Wavelets erlaubt eine Interpretation dieses Maximas als Momentanfrequenz.
+Die \emph{dominante Frequenz} des Wavelets erlaubt eine Interpretation dieser Maxima als Momentanfrequenz.
 
 Durch den Operator $\Ana\,$ gelangten wir vom Gabor- zum Morlet-Wavelet, welche durch den Parameter $\sigma$ erlaubt, Zeit- und Frequenz-Lokalisierung gegeneinander auszuspielen.
 Für maximale Lokalisierung in der Zeit, etwa für Sprungstellen, haben wir das analytische Haar-Wavelet berechnet.
@@ -53,7 +53,7 @@ Interessante Merkmale sind in den Bildlegenden hervorgehoben.
 	\includegraphics[width=\linewidth, keepaspectratio]{papers/complex/images/add_cs_chirp_haar.pdf}
 	\caption{Wavelettransformation mit dem Haar-Wavelet. 
 		Im oberen Bild wurde die Cosinus-Schwingung durch ein Rechteck-Signal mit $\pm 1$ ersetzt, im unteren Bild durch ein ``komplexes Rechtecksignal'' mit den Werten $\lbrace1, i, -1, -i\rbrace$.
-		Das Haar-Wavelet entspricht für grosse Werte von $1/a$ einer Art Ableitung (vorheriger minus nachfolgender Mittelwert) und eignet sich deshalb besonder gut, um Sprünge im Signal zu finden.}
+		Das Haar-Wavelet entspricht für grosse Werte von $1/a$ einer Art Ableitung (vorheriger minus nachfolgender Mittelwert) und eignet sich deshalb besonders gut, um Sprünge im Signal zu finden.}
 \end{figure}
 
 \begin{figure}

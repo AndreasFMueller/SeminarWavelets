@@ -8,7 +8,7 @@
 
 Die schlechte Lokalisierung des Haar-Wavelets in der Frequenz ist schon in seinem Spektrum ersichtlich.
 Die Frequenzen neben $\omega_\psi$ fallen nur langsam ab.
-Durch Heisenberg (Satz~\ref{satz:heisenberg}) wissen wir, dass die beste Lokalisierung durch Gaus-Funktionen erreicht wird.
+Durch Heisenberg (Satz~\ref{satz:heisenberg}) wissen wir, dass die beste Lokalisierung durch Gauss-Funktionen erreicht wird.
 Als nächstes verwenden wir deshalb das Gabor-Wavelet
 \[
 	\psi_\text{Gabor} = c_\sigma e^{-\frac{t^2}{2}}\left(\cos\left(\sigma t\right) - \kappa_\sigma\right),
@@ -16,7 +16,7 @@ Als nächstes verwenden wir deshalb das Gabor-Wavelet
 welches in Abbildung~\ref{complex:gabor} ersichtlich ist.
 $c_\sigma$ und $\kappa_\sigma$ sind hierbei positive, reelle Konstanten.
 $c_\sigma$ korrigiert die Norm des Wavelets, so dass $\|\psi\| = 1$.
-$\kappa_\sigma$ ist notwendig für die Zulässigkeitsbedingung~\eqref{cwt:zulaessig}, welche u.~A.~fordert, dass das Integral des Wavelets verschwindet,  $\int_{-\infty}^{\infty}\psi\,\mathrm{d}t = 0$.
+$\kappa_\sigma$ ist notwendig für die Zulässigkeitsbedingung~\eqref{cwt:zulaessig}, welche u.~a.~fordert, dass das Integral des Wavelets verschwindet,  $\int_{-\infty}^{\infty}\psi\,\mathrm{d}t = 0$.
 $\kappa_\sigma$ ist typischerweise sehr klein und wird in der Numerik oftmals einfach weggelassen.
 
 $\sigma$ erlaubt es, Zeit- und Frequenz-Lokalisierung gegeneinander abzuwägen.
@@ -28,7 +28,8 @@ Betrachten wir die Wavelet-Transformierten unserer Beispielsignale mit dem Gabor
 	\centering
 	\includegraphics{papers/complex/images/chirp_gabor.pdf}
 	\includegraphics{papers/complex/images/square_gabor.pdf}
-	\caption{Farb-codierte Wavelet-Transformationen  der beiden Beispielsignale mit dem Gabor-Wavelet.}
+	\caption{Wavelet-Transformationen der beiden Beispielsignale mit dem Gabor-Wavelet.
+		Die Frequenzlokalisierung ist deutlich besser, allerdings ist der Zeitpunkt der Frequenz-Änderung nicht mehr so scharf erkennbar wie beim Haar-Wavelet.}
 	\label{complex:gabor-ex}
 \end{figure}
 

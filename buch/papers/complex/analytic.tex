@@ -10,7 +10,7 @@ Aber ist diese Eigenschaft im Allgemeinen erfüllt?
 Diese Fragen möchten wir in diesem Abschnitt beantworten.
 
 Im vorherigen Abschnitt haben wir negative Frequenzen als Problem identifiziert.
-Wir definierten den Operator $\Ana\,$ so, dass er genau die negativen Frequenzen entfernt und dabei die Norm erhällt.
+Wir definierten den Operator $\Ana\,$ so, dass er genau die negativen Frequenzen entfernt und dabei die Norm erhält.
 Dazu wechselten wir in den Frequenzbereich, entfernten, was wir nicht wollten, und wechselten wieder zurück.
 
 Wie lässt sich dieses Verfahren verallgemeinern? 
@@ -23,7 +23,7 @@ Die Theorie der analytischen Signale liefert uns die gesuchten Antworten.
 \subsection{Analytische Signale und Hilbert-Transformation}
 \rhead{Hilbert-Transformation}
 In der Nachrichtentechnik ist Bandbreite ein beschränktes und dadurch wertvolles Gut.
-Die Spektra reeller Signale weisen aber immer eine hermitesche Symmetrie.
+Die Spektra reeller Signale weisen aber immer eine hermitesche Symmetrie auf.
 Es reicht also, die Hälfte des Spektrums eines Signals zu übertragen, etwa nur die positiven Frequenzen.
 In der Signaltheorie ist dieses Verfahren unter dem Namen Einseitenband-Modulation bekannt.
 Ein Nebeneffekt hierbei ist, dass der Betrag des Signals gerade der Umhüllenden entspricht.
@@ -35,19 +35,19 @@ Ein Signal, bei welchem die negativen Frequenzen entfernt wurden, nennt man \emp
 	Er ist nicht zu verwechseln mit der Eigenschaft analytischer Funktionen in der Analysis.
 }.
 Wir werden analog dazu \emph{analytische Wavelets} definieren und zeigen, dass der Auslöschungsoperator eben solche erzeugt.
-Dadurch übertragen sich die wesentlichen Eigneschaften ananltischer Signale auf unsere neuen Wavelets.
+Dadurch übertragen sich die wesentlichen Eigenschaften analytischer Signale auf unsere neuen Wavelets.
 
 Bevor wir den Begriff des analytischen Signals einführen können, benötigen wir aber die Hilbert-Transformation.
 \begin{definition}
-	Die Operator
+	Der Operator
  	\[
  	\Hilb\,\colon L^2(\mathbb R) \to L^2(\mathbb R)
  	~\quad~
  	f(t) \mapsto \Hilb f(t)
  	= \frac{1}{\pi} \CH\int_{-\infty}^{\infty}\frac{f(x)}{t-x} \mathrm{d}x
  	\]
- 	heist \emph{Hilbert-Transformation}.
- 	Hierbei bezeichnet $\CH\int_{-\infty}^{\infty} \dots \mathrm{d}x$ den cauchysche Hauptwert des divergenten Integrals.
+ 	heisst \emph{Hilbert-Transformation}.
+ 	Hierbei bezeichnet $\CH\int_{-\infty}^{\infty} \dots \mathrm{d}x$ den cauchyschen Hauptwert des divergenten Integrals.
 \end{definition}
 
 Die Hilberttransformation ist, wie die Wavelet- oder Fouriertransformation, eine Integraltransformation.
@@ -77,7 +77,7 @@ Nun sind wir bereit für die Definition eines analytischen Signals.
 	
 	Mit der Identität
 	\[\Four\frac{1}{\pi t} = -i\sgn(\omega)\]
-	so wie der Linearität der Fouriertransformation und der Faltung folg schliesslich
+	so wie der Linearität der Fouriertransformation und der Faltung folgt schliesslich
 	\begin{align*}
 		\sqrt 2 \Ana f(t) 
 		&= f(t) * \biggl(\delta(t) + \frac{i}{\pi t} \biggr)\\
@@ -86,7 +86,7 @@ Nun sind wir bereit für die Definition eines analytischen Signals.
 	\end{align*}
 \end{proof}
 
-Jetzt haben wir endlich alle szusammen, was wir für den Satz zur Ähnlichkeit brauchen.
+Jetzt haben wir endlich alles zusammen, was wir für den Satz zur Ähnlichkeit brauchen.
 Wir wollten ja zeigen, dass der Auslöschungsoperator das Signal nur gerade so stark verändert, wie notwendig.
 Beim Morlet-Wavelet haben wir gesehen, dass er lediglich einen passenden Imaginärteil hinzufügt und das ganze so skaliert, dass die Norm erhalten bleibt.
 Das stimmt für alle Wavelets.
@@ -106,7 +106,7 @@ Das stimmt für alle Wavelets.
 \end{proof}
 
 Mittels Hilbert-Transformation kann also zu einem reellen Wavelet ein passender Imaginärteil gefunden werden, so dass Amplitude und Phase separiert werden können.
-Wir definieren non noch das eigentliche Objekt unserer Begierde.
+Wir definieren nun noch das eigentliche Objekt unserer Begierde.
 
 \begin{satz}
 	\label{complex:analytic-wavelet}
@@ -114,7 +114,8 @@ Wir definieren non noch das eigentliche Objekt unserer Begierde.
 	\begin{equation}
 	\psi^\ast = \Ana\psi
 	\end{equation}
-	das $\psi$ zugeordnete \emph{analytische Wavelet}\footnote{Auch hierbei ist ``analytisch'' wieder im Sinne der Signaltheorie zu verstehen, also $\forall \omega < 0 \colon \hat\psi^\ast(\omega) = 0$.}.
+	das $\psi$ zugeordnete \emph{analytische Wavelet}.
+%	\footnote{Auch hierbei ist ``analytisch'' wieder im Sinne der Signaltheorie zu verstehen, also $\forall \omega < 0 \colon \hat\psi^\ast(\omega) = 0$.}
 \end{satz}
 
 Die analytischen Wavelets erben nun all die Eigenschaften analytischer Signale, welche durch den Auslöschungsoperator erzeugt werden.

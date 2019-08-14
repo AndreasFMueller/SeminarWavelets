@@ -100,7 +100,7 @@ Die Fourier-Transformierte von $\psi_{\text{Haar}}$ berechnet sich wie folgt:
 	&= \frac{i}{\sqrt{2\pi}\omega}\bigl( \bigl[ e^{-i\omega t}\bigr]_{-1/2}^0  - \bigl[ e^{-i\omega t}\bigr]_{0}^{1/2} \bigr)\nonumber\\
 	&= \frac{i}{\sqrt{2\pi}} \frac{1-\cos(\omega/2)}{\omega/2}\label{complex:f-psi-haar}
 \end{align}
-Das Haar-Wavelet ist also nicht nur im Zeitbereich besonder einfach, sondern auch im Frequenzbereich.
+Das Haar-Wavelet ist also nicht nur im Zeit-, sondern auch im Frequenzbereich besonders einfach.
 Insbesondere lässt sich die mit $a$ skalierte Version des Wavelets durch Satz~\ref{four-int:trans-dial} direkt im Frequenzbereich berechnen.
 Abbildung~\ref{complex:haar} zeigt das Haar-Wavelet im Zeit- und Frequenzbereich.
 Auffallend ist, dass das im Zeitbereich besonders gut lokalisierte Haar-Wavelet in der Frequenz sehr schlecht lokalisiert ist.
@@ -120,7 +120,7 @@ Auffallend ist, dass das im Zeitbereich besonders gut lokalisierte Haar-Wavelet 
 \end{figure}
 An dieser Stelle definieren wir noch die \emph{dominante Frequenz} eines Wavelets.
 \begin{definition}
-	Die Fourier-Transformierte eines Wavelets erreicht den maximalen Betrag bei der \emph{dominante Frequenz $\omega_\psi$}.
+	Die Fourier-Transformierte eines Wavelets erreicht den maximalen Betrag bei der \emph{dominanten Frequenz $\omega_\psi$}.
 	\begin{equation}
 		\omega_\psi \coloneqq \underset{\omega}{\text{\emph{argmax}}} \, |\hat\psi(\omega)|
 	\end{equation}
@@ -149,12 +149,16 @@ Dies liefert die Bilder aus Abbildung~\ref{complex:haar-ex}.
 	\centering
 	\includegraphics{papers/complex/images/chirp_haar.pdf}
 	\includegraphics{papers/complex/images/square_haar.pdf}
-	\caption{Wavelet-Transformationen der beiden Beispielsignale mit dem Haar-Wavelet. Die Lokalisierung in der Zeit ist sehr gut, aber die momentane Frequenz ist ohne Weiteres kaum ersichtlich. Zudem resultiert das periodische Signal in einer periodischen Helligkeit. (Zur Erinnerung: Blau entspricht $+1$, Gelb entspricht $-1$)}
+	\caption{Wavelet-Transformationen der beiden Beispielsignale mit dem Haar-Wavelet. 
+		Die Lokalisierung in der Zeit ist sehr gut, aber die momentane Frequenz ist kaum ersichtlich. 
+		Zudem resultiert das periodische Signal in einer periodischen Helligkeit. 
+		(Zur Erinnerung: bei reellen Werten entspricht die Farbe dem Vorzeichen, Blau: $+$, Gelb $-$)
+	}
 	\label{complex:haar-ex}
 \end{figure}
 
-Wie erwartet ist die Lokalisierung in der Frequenz zimelich schlecht.
-Das Haar-Wavelet gibt den Zeitpunkt einer Änderungen der Frequenz zwar sehr genau wieder, die Frequenz selbst ist jedoch kaum ablesbar.
+Wie erwartet ist die Lokalisierung in der Frequenz ziemlich schlecht.
+Das Haar-Wavelet gibt den Zeitpunkt einer Änderung der Frequenz zwar sehr genau wieder, die Frequenz selbst ist jedoch kaum ablesbar.
 Als Orientierungshilfe sind $a_\text{max} (b) = \max_a{|\!\Wave x_n(a,b)|}$ weiss hervorgehoben.
 Sie weichen um $\omega_\psi$ von der Signal-Frequenz ab, welche als Schwingung in der Amplitude gut erkennbar ist.
 Dieses An- und Abschwellen des Betrags der Skalarprodukte verhindert es, $a_\text{max}(b)$ einfach zu folgen.
