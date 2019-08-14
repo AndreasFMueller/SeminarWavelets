@@ -42,15 +42,24 @@ std::complex<double> W(double a, double b) {
 	return s * h / sqrt(std::abs(a));
 }
 
-struct option options[] = { { "width", required_argument, NULL, 'w' }, {
-		"height", required_argument, NULL, 'h' }, { "steps", required_argument,
-		NULL, 'n' }, { "output", required_argument, NULL, 'o' }, { "maximum",
-		required_argument, NULL, 'm' }, { "phase", no_argument, NULL, 'P' }, {
-		"absolute", no_argument, NULL, 'A' }, { "maximum", no_argument, NULL,
-		'M' }, { NULL, 0, NULL, 0 } };
+template <typename T> int sgn(T val) {
+	return (T(0) < val) - (val < T(0));
+}
+
+struct option options[] = {
+{ "width",	required_argument,	NULL,	'w' },
+{ "height",	required_argument,	NULL,	'h' },
+{ "steps",	required_argument,	NULL,	'n' },
+{ "output",	required_argument,	NULL,	'o' },
+{ "maximum",	required_argument,	NULL,	'm' },
+{ "phase",	no_argument,		NULL,	'P' },
+{ "absolute",	no_argument,		NULL,	'A' },
+{ "maximum",	no_argument,		NULL,	'M' },
+{ NULL,		0,			NULL,	 0  }
+};
 
 typedef enum diagram_e {
-	ABSOLUTE, PHASE, COLOR
+	ABSOLUTE, PHASE, COLOR, SIGNED
 } diagram_type;
 
 int main(int argc, char *argv[]) {
@@ -98,6 +107,9 @@ int main(int argc, char *argv[]) {
 		case 'P':
 			type = PHASE;
 			break;
+		case 'S':
+			type = SIGNED;
+			break;
 		case 'M':
 			show_max = true;
 			break;
@@ -136,6 +148,7 @@ int main(int argc, char *argv[]) {
 		for (int y = ymax; y >= 0; y--) {
 			double a = amin + y * deltaa;
 			std::complex<double> c = W(1 / a, b);
+			double	s = sgn(c.real());
 			if (abs(c) > A) {
 				A = abs(c);
 			}
@@ -169,6 +182,17 @@ int main(int argc, char *argv[]) {
 				row_pointers[ymax - y][3 * x + 1] = 255 - w;
 				row_pointers[ymax - y][3 * x + 2] = 255;
 				break;
+			case SIGNED:
+				if (s > 0) {
+				row_pointers[ymax - y][3 * x + 0] = 255;
+				row_pointers[ymax - y][3 * x + 1] = 255 - w;
+				row_pointers[ymax - y][3 * x + 2] = 255 - w;
+				} else {
+				row_pointers[ymax - y][3 * x + 0] = 255 - w;
+				row_pointers[ymax - y][3 * x + 1] = 255 - w;
+				row_pointers[ymax - y][3 * x + 2] = 255;
+				}
+				break;
 			}
 		}
 		if ((show_max) && (maxindex > 0) && (maxindex < ymax)) {
@@ -178,20 +202,21 @@ int main(int argc, char *argv[]) {
 				row_pointers[j - 1][3 * x + 0] = 255;
 				row_pointers[j - 1][3 * x + 1] = 255;
 				row_pointers[j - 1][3 * x + 2] = 255;
-				row_pointers[j][3 * x + 0] = 255;
-				row_pointers[j][3 * x + 1] = 255;
-				row_pointers[j][3 * x + 2] = 255;
+				row_pointers[j    ][3 * x + 0] = 255;
+				row_pointers[j    ][3 * x + 1] = 255;
+				row_pointers[j    ][3 * x + 2] = 255;
 				row_pointers[j + 1][3 * x + 0] = 255;
 				row_pointers[j + 1][3 * x + 1] = 255;
 				row_pointers[j + 1][3 * x + 2] = 255;
 				break;
 			case ABSOLUTE:
+			case SIGNED:
 				row_pointers[j - 1][3 * x + 0] = 0;
 				row_pointers[j - 1][3 * x + 1] = 154;
 				row_pointers[j - 1][3 * x + 2] = 0;
-				row_pointers[j][3 * x + 0] = 0;
-				row_pointers[j][3 * x + 1] = 154;
-				row_pointers[j][3 * x + 2] = 0;
+				row_pointers[j    ][3 * x + 0] = 0;
+				row_pointers[j    ][3 * x + 1] = 154;
+				row_pointers[j    ][3 * x + 2] = 0;
 				row_pointers[j + 1][3 * x + 0] = 0;
 				row_pointers[j + 1][3 * x + 1] = 154;
 				row_pointers[j + 1][3 * x + 2] = 0;
@@ -200,9 +225,9 @@ int main(int argc, char *argv[]) {
 				row_pointers[j - 1][3 * x + 0] = 0;
 				row_pointers[j - 1][3 * x + 1] = 154;
 				row_pointers[j - 1][3 * x + 2] = 0;
-				row_pointers[j][3 * x + 0] = 0;
-				row_pointers[j][3 * x + 1] = 154;
-				row_pointers[j][3 * x + 2] = 0;
+				row_pointers[j    ][3 * x + 0] = 0;
+				row_pointers[j    ][3 * x + 1] = 154;
+				row_pointers[j    ][3 * x + 2] = 0;
 				row_pointers[j + 1][3 * x + 0] = 0;
 				row_pointers[j + 1][3 * x + 1] = 154;
 				row_pointers[j + 1][3 * x + 2] = 0;

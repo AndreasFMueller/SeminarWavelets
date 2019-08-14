@@ -3,7 +3,9 @@
 #
 # (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
-all:	psigraph.pdf psisin.pdf notes.pdf f.pdf mexican.pdf sweep.pdf sweep2.pdf
+all:	psigraph.pdf psisin.pdf notes.pdf f.pdf mexican.pdf \
+	sweep.pdf sweep2.pdf \
+	hatpsi.pdf
 
 psigraph.pdf:	psigraph.tex
 	pdflatex psigraph.tex
@@ -58,3 +60,6 @@ sweep.pdf:	sweep.jpg sweep.tex
 
 sweep2.pdf:	sweep-abs.jpg sweep-phase.jpg sweep2.tex
 	pdflatex -interaction=batchmode sweep2.tex
+
+hatpsi.pdf:	hatpsi.tex
+	pdflatex hatpsi.tex
