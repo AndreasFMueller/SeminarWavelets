@@ -12,7 +12,7 @@ Eine linksinverse Transformation zum Frame-Operator $M$ ist dann durch
 $S=G^{-1}T^t$ gegeben.
 
 Da $G$ eine positiv definite symmetrische Matrix mit Spektrum im
-Interval $[A,B]$ ist, ist die Matrix in der Eigenbasis sehr einfach
+Intervall $[A,B]$ ist, ist die Matrix in der Eigenbasis sehr einfach
 zu invertieren.
 Die Eigenvektoren zu finden ist jedoch eine noch deutlich aufwendigere
 Aufgabe, als die Matrix $G$ zu invertieren.
@@ -388,7 +388,7 @@ der Fehler geht also geometrisch gegen 0.
 \centering
 \includegraphics{chapters/1a-frames/images/iteration.pdf}
 \caption{Iteration zur Bestimmung des Kehrwertes einer Zahl aus dem
-Interval $[1,5]$ mit der Iterationsformel
+Intervall $[1,5]$ mit der Iterationsformel
 $x_{n+1} = f_y(x_n)=x_n + \frac13(1-yx_n)$.
 Der Graph von $f_y(x)$ ist eine Gerade durch den Punkt $(0,\frac13)$.
 Die Graphen für $f_1$, $f_2$, $f_3$ und $f_4$ sind blau eingezeichnet.
@@ -453,12 +453,12 @@ $\log 7=0.84510$
 Stellen in jeder Iteration, in Übereinstimmung mit den obigen numerischen
 Resultaten.
 
-Für jeden beliebigen Wert von $y$ im gegebenen Interval ist die
+Für jeden beliebigen Wert von $y$ im gegebenen Intervall ist die
 Konvergenzgeschwindigkeit besser als
 $\vartheta=3/7 = 0.42857142\dots$.
 Die Anzahl Stellen, die man pro Iteration gewinnt ist daher 
 $-\log\vartheta = 0.36798$.
-Diese Konvergenzgeschwindigkeit erreicht man an den Enden des Intervals.
+Diese Konvergenzgeschwindigkeit erreicht man an den Enden des Intervalls.
 Dazwischen kann man, wie oben gezeigt, deutlich schnellere Konvergenz haben.
 \end{beispiel}
 
@@ -468,7 +468,7 @@ Dazwischen kann man, wie oben gezeigt, deutlich schnellere Konvergenz haben.
 \subsection{Invertierung einer positiv definiten symmetrischen Matrix $G$
 \label{subsection:ginv}}
 In diesem Abschnitt ist $G$ eine positiv definite symmetrische Matrix 
-mit Eigenwerten im Interval $[A,B]$.
+mit Eigenwerten im Intervall $[A,B]$.
 In Satz~\ref{satz:reziprok} haben wir einen iterativen Algorithmus
 gefunden, der jeden Eigenwert von $G$ invertieren kann.
 
@@ -476,7 +476,7 @@ gefunden, der jeden Eigenwert von $G$ invertieren kann.
 \begin{satz}
 \label{satz:ginv}
 Ist $G$ eine positiv definite symmetrische Matrix mit Eigenwerten im
-Interval $[A,B]$ und $y\in\mathbb R^n$ dann konvergiert die Folge
+Intervall $[A,B]$ und $y\in\mathbb R^n$ dann konvergiert die Folge
 \[
 x_{n+1} = x_n + \frac{2}{A+B} (y - Gx_n),\qquad x_n = 0
 \]
@@ -547,7 +547,7 @@ Die Einträge auf der Diagonalen sind
 \biggr)
 \label{inv:iteration:vector2}
 \end{align}
-Der Wert $(A+B)/2$ ist der Mittelpunkt des Intervals $[A,B]$, die Eigenwerte
+Der Wert $(A+B)/2$ ist der Mittelpunkt des Intervalls $[A,B]$, die Eigenwerte
 sind also höchstens die halbe Intervallänge $(B-A)/2$ vom Mittelpunkt
 entfernt.
 Die grosse Klammer auf der rechten Seite von~\eqref{inv:iteration:vector2}
@@ -613,7 +613,7 @@ G=\begin{pmatrix}2&1&0\\1&2&1\\0&1&2\end{pmatrix}.
 \]
 Zunächst benötigen wir die Frame-Konstanten $A$ und $B$.
 Diese müssen nicht exakt bekannt sein, es muss nur sichergestellt sein,
-dass alle Eigenwerte $\lambda$ von $G$ im Interval $[A,B]$ liegen.
+dass alle Eigenwerte $\lambda$ von $G$ im Intervall $[A,B]$ liegen.
 Das charakteristische Polynom von $G$ ist
 \[
 \chi_{G}(\lambda)
@@ -786,7 +786,7 @@ Iterationsverfahren für die inverse Matrix formuliert werden.
 
 \begin{satz}
 Ist $G$ eine symmetrische Matrix derart, dass ihre Eigenwerte im
-Interval $[A,B]$ mit $0<A\le B$ enthalten sind, dann konvergiert
+Intervall $[A,B]$ mit $0<A\le B$ enthalten sind, dann konvergiert
 die Matrixfolge
 \[
 H_{n+1}

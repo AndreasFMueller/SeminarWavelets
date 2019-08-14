@@ -16,7 +16,7 @@ Wavelet konstruieren.
 \subsection{Das Haar-Wavelet
 \label{subsection:spline:haar}}
 Das Vater-Wavelet des Haar-Wavelets war die charakteristische Funktion
-des Einheitsintervals
+des Einheitsintervalls
 \begin{equation}
 \varphi^{(0)}(t)
 =
@@ -95,7 +95,7 @@ Wir definieren die Funktionen $B_n=\varphi^{(n)}$ rekursiv wie folgt.
 
 \begin{definition}
 Die Funktion $\varphi^{(0)}$ ist wie vorhin die charakteristische Funktion
-des Einheitsintervals.
+des Einheitsintervalls.
 Für $n>0$ setzt man
 \[
 \varphi^{(n)} = \varphi^{(0)} * \varphi^{(n-1)}.
@@ -202,7 +202,7 @@ Funktion $\varphi^{(1)}$ stetig ist.
 Die Berechnung von $\varphi^{(2)}$ ist etwas aufwendiger.
 Nach \eqref{eq:varphin-berechnung} muss
 für $t\in\mathbb R$ das Integral von $\varphi^{(1)}$ über
-das Interval $[t-1,t]$ berechnet werden:
+das Intervall $[t-1,t]$ berechnet werden:
 \begin{align*}
 &t<0:
 &
@@ -312,13 +312,13 @@ dargestellt.
 \end{beispiel}
 
 Aus den Beispielen kann man ablesen, dass die Funktionen
-$B_n(t)=\varphi^{(n)}(t)$ auf jedem Interval der Form $[k,k+1)$ 
+$B_n(t)=\varphi^{(n)}(t)$ auf jedem Intervall der Form $[k,k+1)$ 
 ein Polynom vom Grad $n$ ist.
 Wir sagen, $B_n$ sei stückweise {\em Grad-$n$-polynomiell}.
 \index{Grad $n$-polynomiell}
 Man kann zeigen, dass die vier Polynome auf der rechten
 Seite von~\eqref{phi3-polynome} linear unabhängig sind.
-Wir vermuten, dass die Translate von $B_n$ auf jedem Interval der Form
+Wir vermuten, dass die Translate von $B_n$ auf jedem Intervall der Form
 $[k,k+1)$ {\em linear unabhängige} Polynome vom Grad $n$ sind.
 Dies bedeutet, dass durch Linearkombination von Translaten der
 Funktionen $B_n$ jede beliebige stückweise Grad-$n$-polynomielle
