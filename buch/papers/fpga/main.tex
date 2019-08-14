@@ -6,10 +6,10 @@
 
 \graphicspath{papers/fpga/}
 
-\chapter{FPGA Implementation der schnellen Wavelet-Transformation\label{chapter:fpga}}
-\lhead{FPGA Implementation der schnellen Wavelet-Transformation}
+\chapter{VHDL Implementation of the Fast Wavelet Transform\label{chapter:fpga}}
+\lhead{VHDL Implementation of the Fast Wavelet Transform}
 \begin{refsection}
-\chapterauthor{Jonas Gründler und Nicolas Tobler}
+\chapterauthor{Jonas Gründler and Nicolas Tobler}
 
 \section{Introduction}
 \rhead{Introduction}
@@ -74,7 +74,7 @@ while the backward transform is
 \begin{equation}
 a_{j+1,k}(z) = h(z) a_{j,k}(z) + g(z) b_{j,k}(z).
 \end{equation}
-Figure \ref{fpga:fig:dwt} depicts a graphical representation of the DWT followed by an inverse DWT.
+Figure \ref{fpga:fig:dwt} depicts the computational flow graph of the DWT followed by an inverse DWT.
 \begin{figure}
 	\centering
 	\input{papers/fpga/tikz/dwt.tikz}
