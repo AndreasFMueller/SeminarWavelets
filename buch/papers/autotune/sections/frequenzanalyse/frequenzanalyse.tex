@@ -40,14 +40,14 @@ Das Ergebnis der cwt, die auf $x_{\text{sweep}}(t)$ in Abbildung \ref{fig:stft-s
 
 
 \subsection{Diskrete Wavelet-Transformation}
- Um eine diskrete Wavelet-Transformation über mehrere Skalen zu berechnen, bietet sich der schnelle Multiskalenanalyse-Algorithmus an. Dieser wurde genauer im Kapitel \ref{chapter:msa} behandelt. In den folgenden Teilen dieser Arbeit wurde vermehrt mit der Multiskalenanalyse gearbeitet. Für Berechnungen wurde erneut die Python pywt Library verwendet. Für die Multiskalenanalyse wurde dabei immer die Funktion \texttt{wavedec()} verwendet. Für die Auswertungen der Analyse ist jedoch die Erkenntnis ausschlaggebend, dass nur Frequenzen verwendet werden die das $2^n$-fache einer Grundfrequenz sind. Die Analyse kann also nur Oktaven unterscheiden. Dabei sind Töne einer Tonleiter im Frequenzverhältnis von $\sqrt[12]{2}$. Wir können also mit einer normalen Multiskalenanalyse nicht einzelne Töne eines Signales unterscheiden. Dennoch können wir gewisse Vorteile nutzen, wie z.B. das automatische Fenstern einer Multiskalenanalyse, wobei die Mutiskalenanalyse eine $2^n$-fache Fensterungseigenschaft besitzt. In der folgenden Grafik\ref{fig:faauf} ist die Zeit-Frequenz-Fensterung der Multiskalenanalyse neben der STFT Fensterung aufgezeigt.  \\
+ Um eine diskrete Wavelet-Transformation über mehrere Skalen zu berechnen, bietet sich der schnelle Multiskalenanalyse-Algorithmus an. Dieser wurde genauer im Kapitel \ref{chapter:msa} behandelt. In den folgenden Teilen dieser Arbeit wurde vermehrt mit der Multiskalenanalyse gearbeitet. Für Berechnungen wurde erneut die Python pywt Library verwendet. Für die Multiskalenanalyse wurde dabei immer die Funktion \texttt{wavedec()} verwendet. Für die Auswertungen der Analyse ist jedoch die Erkenntnis ausschlaggebend, dass nur Frequenzen verwendet werden die das $2^n$-fache einer Grundfrequenz sind. Die Analyse kann also nur Oktaven unterscheiden. Dabei sind Töne einer Tonleiter im Frequenzverhältnis von $\sqrt[12]{2}$. Wir können also mit einer normalen Multiskalenanalyse nicht einzelne Töne eines Signales unterscheiden. Dennoch können wir gewisse Vorteile nutzen, wie z.B. das automatische Fenstern einer Multiskalenanalyse, wobei die Mutiskalenanalyse eine $2^n$-fache Fensterungseigenschaft besitzt. In der folgenden Grafik\ref{fig:faauf} ist die Zeit-Frequenz-Fensterung der Multiskalenanalyse neben der STFT Fensterung aufgezeigt. 
  
 
 
 \begin{figure}[!ht]
 	\centering
 	\scalebox{0.9}{
-		\begin{tikzpicture}
+		\begin{tikzpicture}[>=latex]
 		\draw (6,-5.3) node{$t$};
 		\draw (-0.4,0) node{$Hz$};
 		
@@ -115,7 +115,7 @@ Wie man in der Abbildung \ref{fig:faauf} erkennt, übernimmt die Multiskalenanal
 Um die $2^{n}$-fache Fensterung zu verdeutlichen, wird eine  Multiskalenanalyse des weiter oben verwendeten Sinussweeps (Abbildung \ref{fig:STFT}) gemacht und gleich mit der STFT verglichen.
 Die msa wird mit einem Daubechies 8 Wavelet durchgeführt. Die verwendete Daubechies-Familie ist in der tabellarischen Abbildung \ref{tab:Daubechies} zu finden. Eine Multiskalenanalyse kann nicht mit dem gleichen Wavelet durchgeführt werden wie die cwt. Der Grund dafür ist, dass in der Python pywt Library die stetigen und diskreten Wavelets getrennt sind und es keine Überlappungen gibt.
 
-In dieser Tabelle \ref{tab:Daubechies} werden vier verschiedene Daubechies Wavelets, in verschiedener Auflösung, dargestellt. Dabei handelt es sich um die numerisch berechneten Vater und Mutter Wavelets. Auch wird gut ersichtlich, dass die höheren Daubechiesfunktionen mehr Samples brauchen um korrekt dargestellt zu werden. Zur Berechnung der Koeffizienten wird auf das Kapitel \ref{section:daubechies} verwiesen.\\
+In dieser Tabelle \ref{tab:Daubechies} werden vier verschiedene Daubechies Wavelets, in verschiedener Auflösung, dargestellt. Dabei handelt es sich um die numerisch berechneten Vater und Mutter Wavelets. Auch wird gut ersichtlich, dass die höheren Daubechiesfunktionen mehr Samples brauchen um korrekt dargestellt zu werden. Zur Berechnung der Koeffizienten wird auf das Kapitel \ref{section:daubechies} verwiesen.
 
 
 \begin{table}[!ht]

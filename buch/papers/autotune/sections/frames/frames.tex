@@ -16,7 +16,8 @@ Wir möchten ein Signal mit der Multiskalenanalyse so bearbeiten, dass wir die e
 
 Fügt man nun mehr Basen zu unserem Frame hinzu, können wir mit der Multiskalenanalyse Zwischenschritte in den Oktaven erzeugen. Das heisst, fügt man 12 linear unabhängige Basen zu einem Frame hinzu, sollte man nach einer Multiskalenanalyse des Frames, 12 Schritte pro Oktave bekommen. Nun möchte man mit dem Frame Töne erkennen. Deshalb ist es nur sinnvoll mindestens 12 Basen zu verwenden. So wird die die Anzahl Basen $k$ mit der Tonleiter gekoppelt
 \[ 2^{n} \cdot 12 = k \]
-definiert.\\
+definiert.
+
 Um eine neue Basis für ein Frame zu erzeugen, wird das zu analysierende Signal neu gesamplet. Dabei entspricht jedes neue Sampling einer neuen Basis. Die erste Samplerate, die auf das Signal angewendet wird, ist die Grundbasis $f_{g}$. Von der Grundbasis aus werden Anzahl $k$ Basen hinzugefügt.
 \[fs_{n}=f_{g}\cdot2^{\frac{n}{k}}\]
 
@@ -197,7 +198,7 @@ In den Grafiken \ref{fig:frame-cwt} und \ref{fig:stacked-12dwt} wird eine Stacke
 	\end{tabularx}
 \end{figure}%
 
-Um den gleichen Vergleich für die Overlaid-Frame-Analyse zu haben wurde in der Grafiken \ref{fig:frame-cwt} und \ref{fig:overlaid-12dwt} eine Overlaid-Frame-Analyse mit 12 Basen (Abbildung \ref{fig:overlaid-12dwt}) und eine cwt-Analyse (Abbildung\ref{fig:frame-cwt2}) des $x_{\text{Test}}$ nebeneinander gestellt. Die Overlaid-Frame-Analyse sieht der cwt ungemein ähnlich. Im Vergleich mit der Stacked-Frame-Analyse besitzt sie auch nicht diese Artifakte der Levels. Der Unterschied zur cwt ist aber noch leicht sichtbar. In der Zeitachse gibt es immer wieder Störungen und auch in der Frequenzachse ist das Resultat ein wenig verzerrt. \\
+Um den gleichen Vergleich für die Overlaid-Frame-Analyse zu haben wurde in der Grafiken \ref{fig:frame-cwt} und \ref{fig:overlaid-12dwt} eine Overlaid-Frame-Analyse mit 12 Basen (Abbildung \ref{fig:overlaid-12dwt}) und eine cwt-Analyse (Abbildung\ref{fig:frame-cwt2}) des $x_{\text{Test}}$ nebeneinander gestellt. Die Overlaid-Frame-Analyse sieht der cwt ungemein ähnlich. Im Vergleich mit der Stacked-Frame-Analyse besitzt sie auch nicht diese Artifakte der Levels. Der Unterschied zur cwt ist aber noch leicht sichtbar. In der Zeitachse gibt es immer wieder Störungen und auch in der Frequenzachse ist das Resultat ein wenig verzerrt. 
  
 
 \begin{figure}[!ht]
@@ -227,9 +228,9 @@ Um die Auflösung der Stacked-Frame und Overlaid-Frame zu erhöhen können jedoc
 
 \subsection{Tonhöhenbestimmung}
 
-Von diesen Analyseresultaten sollen nun auch die Frequenzen extrahiert werden. Dabei macht man sich die lokalen Maxima der Matrix zunutze. Man vergleicht in der Matrix selbst die jeweiligen Nachbarwerte. Von den lokalen Maxima werden die Koordinaten gesammelt. Diese Koordinaten können dann mit den Level der verschiedenen Basen verglichen werden. Je nach Koordinaten höhe in der Matrix kann ein kleineres Frequenzband zugewiesen werden in welchem sich das analysierte Signal zu diesem Zeitpunkt befinden sollte. Dieses Frequenzband kann man durch die Anzahl Basen $k$  und das gegebene Level wieder rekonstruieren.\\
+Von diesen Analyseresultaten sollen nun auch die Frequenzen extrahiert werden. Dabei macht man sich die lokalen Maxima der Matrix zunutze. Man vergleicht in der Matrix selbst die jeweiligen Nachbarwerte. Von den lokalen Maxima werden die Koordinaten gesammelt. Diese Koordinaten können dann mit den Level der verschiedenen Basen verglichen werden. Je nach Koordinaten höhe in der Matrix kann ein kleineres Frequenzband zugewiesen werden in welchem sich das analysierte Signal zu diesem Zeitpunkt befinden sollte. Dieses Frequenzband kann man durch die Anzahl Basen $k$  und das gegebene Level wieder rekonstruieren.
 
-Um eine bessere Qualität von Maximalstellen zu erhalten, kann noch ein Maximum Filter auf die Matrix angewendet werden. Dieser Maximalfilter ersetzt in einem vordefinierten Radius $r$, die umliegenden Werte einer Matrix, mit dem lokal gefundenen Maximalwert. Das Ziel des Maximumfilters ist die Elimination der Nullstellen Artefakten, welche direkt in den wichtigen Signalverläufen vorkommen. Durch die Anwendung eines Maximalfilters werden jedoch auch Resultate verfälscht. Diese Verfälschung kann jedoch meistens vernachlässigt werden.\\
+Um eine bessere Qualität von Maximalstellen zu erhalten, kann noch ein Maximum Filter auf die Matrix angewendet werden. Dieser Maximalfilter ersetzt in einem vordefinierten Radius $r$, die umliegenden Werte einer Matrix, mit dem lokal gefundenen Maximalwert. Das Ziel des Maximumfilters ist die Elimination der Nullstellen Artefakten, welche direkt in den wichtigen Signalverläufen vorkommen. Durch die Anwendung eines Maximalfilters werden jedoch auch Resultate verfälscht. Diese Verfälschung kann jedoch meistens vernachlässigt werden.
 
 In der Abbildung \ref{fig:cwt_max} wurde das genannte Verfahren um Maximalstellen zu finden an der cwt Analyse angewendet. Diese kann somit als Referenz dienen wie eine ideale Frequenzrückgewinnung aussehen kann. 
 

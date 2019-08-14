@@ -1,11 +1,11 @@
 
-Die üblichste Methode um eine Frequenzanalyse über ein längeres Signal anzuwenden, ist die  Kurzzeit-Fourier-Transformation oder auch short-time fourier transform (kurz STFT). Bei dieser Methode wird ein Signal, beschrieben durch $x(t)$, in kleine Zeitabschnitte zerhackt und bei jedem dieser Signalstücke eine Fourier-Transformation angewendet. Dabei wird üblicherweise die Fourier-Transformation in praktischen Anwendungen mit dem schnellen Fourier-Transformations Algorithmus berechnet.\\
+Die üblichste Methode um eine Frequenzanalyse über ein längeres Signal anzuwenden, ist die  Kurzzeit-Fourier-Transformation oder auch short-time fourier transform (kurz STFT). Bei dieser Methode wird ein Signal, beschrieben durch $x(t)$, in kleine Zeitabschnitte zerhackt und bei jedem dieser Signalstücke eine Fourier-Transformation angewendet. Dabei wird üblicherweise die Fourier-Transformation in praktischen Anwendungen mit dem schnellen Fourier-Transformations Algorithmus berechnet.
 
-Start- und Endwert eines Segments des zerhackten Signals können verschieden sein. Für die Fourier-Transformation, die von periodischen Signalen ausgeht, führt dies zu einem Sprung am Intervalende. Es resultiert eine Verschmierung der Resultate im Frequenzbereich, auch Unschärfe genannt. \\
+Start- und Endwert eines Segments des zerhackten Signals können verschieden sein. Für die Fourier-Transformation, die von periodischen Signalen ausgeht, führt dies zu einem Sprung am Intervalende. Es resultiert eine Verschmierung der Resultate im Frequenzbereich, auch Unschärfe genannt. 
 
 Um dies zu verdeutlichen, wird in der Abbildung \ref{fig:Spectral} ein unendlich langes Signal 
 \[x(t)=sin(t)\]
-(in grau dargestellt) untersucht. \\
+(in grau dargestellt) untersucht.
 
 \begin{figure}[!ht]
 	\centering
@@ -14,7 +14,7 @@ Um dies zu verdeutlichen, wird in der Abbildung \ref{fig:Spectral} ein unendlich
 	\label{fig:Spectral}
 \end{figure}%
 
-Zuerst wird das Signal $x(t)$ zeitkontinuierlich betrachtet. Im ersten Beispiel in \ref{fig:Spectral} wird das unendliche, kontinuierliche Signal $x(t)$ schwarz im Frequenzbereich abgebildet. Man bildet dafür die Fourierreihe von $x(t)$. Als Resultat erhält man nur eine Frequenz. Diese ist durch einen schwarzen Pfeil dargestellt.\\
+Zuerst wird das Signal $x(t)$ zeitkontinuierlich betrachtet. Im ersten Beispiel in \ref{fig:Spectral} wird das unendliche, kontinuierliche Signal $x(t)$ schwarz im Frequenzbereich abgebildet. Man bildet dafür die Fourierreihe von $x(t)$. Als Resultat erhält man nur eine Frequenz. Diese ist durch einen schwarzen Pfeil dargestellt.
 
 Beim zweiten Beispiel in Abbildung \ref{fig:Spectral} (in Blau) wird das Signal $x(t)$ mit der Rechteck-Fensterfunktion $w_{1}(t)$ multipliziert. Auf das Resultat wird eine Fouriertransformation angewendet. Dabei gilt: 
 \begin{equation}
@@ -24,7 +24,7 @@ Beim zweiten Beispiel in Abbildung \ref{fig:Spectral} (in Blau) wird das Signal 
 	\hat{x_{1}}(\omega)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} w_{1}(t)\cdot x(t) \cdot e^{-i \omega t} \,dt.
 \end{equation}.
 
-Dabei decken $\alpha$ und $\beta_{1}$ ein Zeitintervall von $13$ Perioden ab. Im Frequenzbereich ist nun in blau sichtbar, dass die Fourier-Transformation eine deutliche Unschärfe zur Folge hat. Diese Unschärfe ist im kontinuierlichen Spektrum ersichtlich. Das Maximum des Fouriertransformierten Signals korreliert jedoch mit dem einen Resultat des originalen Signals $x(t)$\\
+Dabei decken $\alpha$ und $\beta_{1}$ ein Zeitintervall von $13$ Perioden ab. Im Frequenzbereich ist nun in blau sichtbar, dass die Fourier-Transformation eine deutliche Unschärfe zur Folge hat. Diese Unschärfe ist im kontinuierlichen Spektrum ersichtlich. Das Maximum des Fouriertransformierten Signals korreliert jedoch mit dem einen Resultat des originalen Signals $x(t)$
 
 
 
@@ -37,9 +37,9 @@ Im letzten Fall in Abbildung \ref{fig:Spectral} wird $x(t)$ mit der etwas länge
 	\hat{x_{2}}(\omega)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} w_{2}(t)\cdot x(t) \cdot e^{-i \omega t} \,dt.
 \end{equation}
 
-Wobei $\alpha$ und $\beta_{2}$ ein Zeitintervall von $13\frac{1}{2}$ Perioden abdecken. Nun sieht man nicht nur eine Unschärfe, sondern auch eine fehlende Korrelation zwischen den Maxima der Fouriertansformierten und der eigentlichen Frequenz des Signales $x(t)$.\\
+Wobei $\alpha$ und $\beta_{2}$ ein Zeitintervall von $13\frac{1}{2}$ Perioden abdecken. Nun sieht man nicht nur eine Unschärfe, sondern auch eine fehlende Korrelation zwischen den Maxima der Fouriertansformierten und der eigentlichen Frequenz des Signales $x(t)$.
 
-Betrachtet man nun die diskrete Fouriertransformierte der beiden gefensterten Signale, kann man Folgendes erkennen: Ist das Signal genau über ein Vielfaches der Periode gefenstert, kann man im diskreten Fall keine Frequenzunschärfe erkennen. Trifft die Fensterung jedoch auf eine zufällige Stelle im Signal und deckt nicht gerade eine Periode ab, zeigen die diskrete Werte ein nur schwer zu interpretierendes Ergebnis an. Man spricht von einer Unschärfe im Frequenzbereich. Durch die Unschärfe werden nicht nur die eigentlichen Frequenzen des Signales $x(t)$ abgebildet. Stattdessen werden die Frequenzen über ein ganzes Band verschmiert.\\
+Betrachtet man nun die diskrete Fouriertransformierte der beiden gefensterten Signale, kann man Folgendes erkennen: Ist das Signal genau über ein Vielfaches der Periode gefenstert, kann man im diskreten Fall keine Frequenzunschärfe erkennen. Trifft die Fensterung jedoch auf eine zufällige Stelle im Signal und deckt nicht gerade eine Periode ab, zeigen die diskrete Werte ein nur schwer zu interpretierendes Ergebnis an. Man spricht von einer Unschärfe im Frequenzbereich. Durch die Unschärfe werden nicht nur die eigentlichen Frequenzen des Signales $x(t)$ abgebildet. Stattdessen werden die Frequenzen über ein ganzes Band verschmiert.
 
 Möchte man nun ein reales Signal analysieren kommt es zu einem ähnlichen Verhalten. Reale Signale, die meistens nicht periodisch auftreten und mit diskreten Werten beschrieben sind, werden solche Unschärfen aufzeigen. Nun gibt es verschiedenste Methoden um eine Frequenzanalyse zu realisieren. In diesem Paper wird jedoch nur auf die STFT und die Wavelet-Transformation eingegangen. 
 
@@ -47,16 +47,16 @@ Möchte man nun ein reales Signal analysieren kommt es zu einem ähnlichen Verha
 \subsection{Zeitkontinuierliche STFT}
 
 Das Produkt des Signals $x(t)$ mit der Fensterfunktion $w(t) $ liefert uns also eine neue Funktion die im Bereich ausserhalb des Fensters alle Werte auf null gesetzt hat. In der Anwendung sind diese Fenster meistens ein wenig überlappend damit kein Datenverlust entsteht. Die verallgemeinerte zeitkontiunierliche STFT ist  gegeben als
-\begin{equation}
+\[
 	\hat{f}(\tau, \omega)=\int_{-\infty}^{\infty} f(t)\cdot w(t-\tau)\cdot e^{-i \omega t} dt
-\end{equation}
+\]
 mit der Kreisfrequenz  $\omega $. Mit $\tau$ wird die Funktion $w(t)$ der Zeitachse entlang verschoben.
 
 \subsection{Zeitdiskrete STFT}
 Bei der zeitdiskreten STFT liegt das Signal in einzelnen Abtastwerten vor. Diese Abtastwerte werden dann durch die Fensterfunktionen in einzelne Abschnitte unterteilt. Die diskrete STFT ist gegeben als
-\begin{equation}
+\[
 	\hat{f}(m, \omega)=\sum_{n=-\infty}^{\infty} f_{n} \cdot w_{n-m}\cdot e^{-i \omega n}.
-\end{equation}
+\]
 
 
 \subsection{Fensterfunktionen}
@@ -116,7 +116,7 @@ Um die Unschärfeproblematik der STFT zu verbessern, gibt es eine ganze Reihe an
 
 \subsection{Verhalten der STFT}
 
-Wenn man ein Signal mit einer Fensterfunktion analysiert, zerteilt man es vertikal in der Zeitachse. Diese vertikalen Streifen besitzen die Breite eines Fensterintervalles. Wendet man nun darauf die Fourier-Transformation an, wird jeder dieser Streifen zu Rechtecken im Spektrum aufgeteilt. Die jeweilige Höhe dieser Rechtecke wird durch die Unschärferelation bestimmt. Daraus folgt, dass es bei einem breiteren Streifen eine bessere Frequenzauflösung ergibt, was jedoch eine schlechtere Zeitauflösung bedeutet. In der Abbildung \ref{fig:stftauf} kann man die grafische Darstellung der Zeit-Frequenz-Auflösung der STFT sehen. Bei gleichbleibendem Flächeninhalt der einzelnen Rechtecke ist auf der linken Seite eine feinere Zeitauflösung zu sehen. Der Graph rechts weist dabei eine bessere Frequenzauflösung auf. \\
+Wenn man ein Signal mit einer Fensterfunktion analysiert, zerteilt man es vertikal in der Zeitachse. Diese vertikalen Streifen besitzen die Breite eines Fensterintervalles. Wendet man nun darauf die Fourier-Transformation an, wird jeder dieser Streifen zu Rechtecken im Spektrum aufgeteilt. Die jeweilige Höhe dieser Rechtecke wird durch die Unschärferelation bestimmt. Daraus folgt, dass es bei einem breiteren Streifen eine bessere Frequenzauflösung ergibt, was jedoch eine schlechtere Zeitauflösung bedeutet. In der Abbildung \ref{fig:stftauf} kann man die grafische Darstellung der Zeit-Frequenz-Auflösung der STFT sehen. Bei gleichbleibendem Flächeninhalt der einzelnen Rechtecke ist auf der linken Seite eine feinere Zeitauflösung zu sehen. Der Graph rechts weist dabei eine bessere Frequenzauflösung auf. 
 
 Dies kann mit der Küpfmüllerschen Unbestimmtheitsrelation begründet werden. Sie besagt, dass die Zeitdauer $\delta t$ und die Bandbreite $\delta f$ eines Signals nicht beliebig klein werden können.  
 \[\Delta t \cdot \Delta f \geq q\]
