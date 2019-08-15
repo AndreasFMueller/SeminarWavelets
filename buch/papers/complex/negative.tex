@@ -69,13 +69,14 @@ und es folgt
 Hierbei ist $1+i\lambda$ ein konstanter Faktor. 
 Er kann aus der Wavelettransformation ausgeklammert werden und es folgt
 \begin{align*}
-	\Wave_\psi f 
+	\Wave_\psi\! f 
 	= \langle f, \psi \rangle
 	&= \langle f, (1+i\lambda) \Re \psi \rangle
 %	&= \overline{1+i\lambda} \langle f, \Re \psi \rangle
-	= (1-i\lambda) \Wave_{\Re\psi}f
+	= (1-i\lambda) \Wave_{\Re\psi}\! f
 \end{align*}
 Ein solches Wavelet birgt also keinen zusätzlichen Nutzen gegenüber reellen Wavelets.
+Insbesondere erfüllen rein reelle Wavelets die obere Gleichung für $\lambda=0$.
 Wie aber finden wir zu einem gegebenen, reellen Wavelet einen passenden, linear unabhängigen Imaginärteil?
 
 Betrachten wir wieder die Exponentialfunktion.
@@ -113,7 +114,8 @@ Wir wagen einen Versuch mit folgender Definition.
 	Hierbei bezeichnet $\sgn(\omega)$ die Signumsfunktion
 	\[\sgn(\omega) = \left\lbrace\begin{matrix} 1, & \omega > 0 \\ 0, &\omega = 0 \\ -1 & \omega < 0 \end{matrix}\right..\]
 \end{definition}
-Dieser Operator entfernt die negativen Frequenzen, die wir eben als Problem identifiziert haben.
+Dieser Operator entfernt alle negativen Frequenzen.
+Folglich ist auch für keine Frequenz sowohl die positive, als auch die negative Komponente enthalten.
 \begin{lemma}
 	Der Auslöschungsoperator entfernt alle negativen Frequenzanteile.
 	\[\forall \omega < 0 \colon \Four\Ana f = 0\]
@@ -175,7 +177,7 @@ Aber handelt es sich bei $\psi^\ast = \Ana\psi$ überhaupt um ein Wavelet?
 	Bei $\psi^\ast(\omega)$ handelt es sich also tatsächlich um ein Wavelet.
 \end{proof}
 
-Bevor wir diesen Operator aber genauer untersuchen, testen wir ihn anhand des Gabor-Wavelets.
+Bevor wir diesen Operator aber genauer untersuchen, testen wir ihn am Gabor-Wavelet.
 
 \subsection{Von Gabor zu Morlet}
 \label{complex:gabor-to-morlet}

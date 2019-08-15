@@ -44,15 +44,18 @@ Sie sind der zirkulären Faltung geschuldet.
 Geschickte Erweiterung des Signals kann diesen Effekt reduzieren.
 Im dritten Abschnitt vergleichen wir deshalb die erzielten Bilder mit verschiedenen Padding-Optionen.
 
-Am Schluss betrachten wir noch ein paar weitere, interessante Bilder und sehen uns an, was die Wavelettransformation liefert.
+Zuletzt betrachten wir noch ein paar weitere, interessante Bilder und sehen uns an, was die Wavelettransformation liefert.
+
 Für die Bilder werden wir in diesem Kapitel immer wieder komplexe, zweidimensionale Signale abbilden müssen.
 Dazu verwenden wir die Farbcodierung aus Abbildung~\ref{complex:color-code}.
-Auch die rein reellen, zweidimensionalen Bilder werden so abgebildet.
-Bei reellen Bildern sind dann eben nur Blau und Gelb vorhanden.
+Rein reelle, zweidimensionale Bilder werden kanonisch in den komplexen Raum eingebettet, 
+\[ \mathbb R \hookrightarrow \mathbb C \colon x \mapsto z = x + 0i,\]
+und ebenfalls so abgebildet.
+Reelle Bilder bestehen somit nur aus den Farbtönen Blau und Gelb.
 
 \begin{figure}
 	\centering
-	\includegraphics{papers/complex/images/colors.pdf}
+	\includegraphics[width=.5\linewidth]{papers/complex/images/colors.pdf}
 	\caption{Farb-Code für komplexe Signale. Die Farbe steht für das Argument, die Helligkeit codiert den Betrag.}
 	\label{complex:color-code}
 \end{figure}
@@ -67,8 +70,6 @@ Bei reellen Bildern sind dann eben nur Blau und Gelb vorhanden.
 
 \input{papers/complex/padding.tex}
 
-\section{Zusammenfassung und abschliessende Beispiele}
-\rhead{Schlussfolgerung}
 \input{papers/complex/schluss.tex}
 
 \printbibliography[heading=subbibliography]
