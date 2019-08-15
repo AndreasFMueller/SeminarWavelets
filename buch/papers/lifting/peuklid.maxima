@@ -1,0 +1,40 @@
+a0: x^4 - 2*x^3 -7*x^2 + 8*x + 12;
+b0: x^4 +   x^3 -7*x^2 -   x +  6;
+
+q0: quotient(a0, b0);
+r0: remainder(a0, b0);
+
+expand(a0 - q0 * b0 - r0);
+
+a1: b0;
+b1: r0;
+
+q1: quotient(a1, b1);
+r1: remainder(a1, b1);
+
+expand(a1 - q1 * b1 - r1);
+
+a2: b1;
+b2: r1;
+
+q2: quotient(a2, b2);
+r2: remainder(a2, b2);
+
+expand(a2 - q2 * b2 - r2);
+
+a3: b2;
+b3: r2;
+
+Q0: matrix([0, 1], [1, -q0]);
+Q1: matrix([0, 1], [1, -q1]);
+Q2: matrix([0, 1], [1, -q2]);
+
+Q: expand(Q2.Q1.Q0);
+
+t: Q[1,1];
+s: Q[1,2];
+
+expand(t * a0 + s * b0);
+
+factor(a0);
+factor(b0);

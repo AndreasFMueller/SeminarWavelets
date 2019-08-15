@@ -47,6 +47,7 @@ BLXFILES = \
 	buch10-blx.bbl \
 	buch11-blx.bbl \
 	buch12-blx.bbl \
+	buch13-blx.bbl
 
 buch.pdf:	buch.tex $(TEXFILES) buch.ind $(BLXFILES)
 	pdflatex buch.tex
@@ -99,6 +100,9 @@ buch11-blx.bbl:	buch11-blx.aux
 
 buch12-blx.bbl:	buch12-blx.aux
 	bibtex buch12-blx
+
+buch13-blx.bbl:	buch13-blx.aux
+	bibtex buch13-blx
 
 clean:	cleansubdir
 	rm -f *.bbl *.aux *.log *.out *.run.xml *.pdf *.blg *.idx *.ind \

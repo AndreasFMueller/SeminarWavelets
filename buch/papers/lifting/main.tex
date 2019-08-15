@@ -1,0 +1,26 @@
+%
+% main.tex -- lifting steps
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\chapter{Faktorisierung der Phasenmatrix und Lifting
+\label{chapter:lifting}}
+\lhead{Lifting}
+\rhead{}
+\begin{refsection}
+\chapterauthor{Andreas Müller}
+
+In Kapitel~\ref{chapter:fpga} wurde gezeigt, wie man die
+Wavelet-Transformation als Folge sogenannter Lifting-Steps implementieren
+kann, die sich durch eine besonders einfache Phasenmatrix auszeichnen.
+Die Multiplikation mit diesen einfach Phasenmatrizen ist mit nur
+einer Multiplikation und einer Addition möglich.
+Das Kapitel hat jedoch nicht erklärt, wie diese Faktorisierung
+überhaupt gefunden werden kann.
+Dies soll hier mindestens ansatzweise nachgeholt werden.
+
+\input{papers/lifting/euklid.tex}
+\input{papers/lifting/phase.tex}
+
+\printbibliography[heading=subbibliography]
+\end{refsection}
