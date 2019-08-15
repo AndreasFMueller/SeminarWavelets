@@ -67,7 +67,7 @@ e^{-i\omega/2}
 =
 \frac1{\sqrt{2\pi}}
 e^{-i\omega/2}
-\sinc\frac{\omega}2.
+\si\frac{\omega}2.
 \end{align*}
 Daraus und aus \eqref{Bn-ft} folgt jetzt der folgende Satz
 
@@ -83,15 +83,15 @@ Die Fourier-Transformierte von $B_n$ ist
 (\!\sqrt{2\pi})^n
 \biggl(
 \frac{1}{\sqrt{2\pi}}
-e^{-i\omega/2} \sinc\frac{\omega}2
+e^{-i\omega/2} \si\frac{\omega}2
 \biggr)^{n+1}
 =
 \frac{1}{\sqrt{2\pi}}
 \biggl(
-e^{-i\omega/2} \sinc\frac{\omega}2
+e^{-i\omega/2} \si\frac{\omega}2
 \biggr)^{n+1},
 \\
-\hat{B}_0(\omega)
+\hat{B}_n(0)
 &=
 \frac{e^{-i(n+1)\omega/2}}{\sqrt{2\pi}}
 .
@@ -121,7 +121,7 @@ Den Periodisierungs-Operator kann man direkt berechnen:
 \sum_{l\in\mathbb Z}
 \biggl|
 e^{-i\omega/2 -il\pi}
-\sinc\biggl(\frac{\omega}2+l\pi\biggr)^{n+1}
+\si\biggl(\frac{\omega}2+l\pi\biggr)^{n+1}
 \biggr|^2
 \notag
 \\
@@ -170,17 +170,17 @@ Vielfachen von $2\pi$ sind.
 Die Formel~\eqref{Phin:expression} funktioniert nicht mehr, wenn $\omega$
 ein Vielfaches von $2\pi$ ist, da dann der Zähler verschwinden kann.
 Sei also $\omega = 2\pi k$ mit $k\in\mathbb Z$.
-Wir müssen die Funktion $\sinc$ auf den Argumenten
+Wir müssen die Funktion $\si$ auf den Argumenten
 $\omega/2+l\pi$ auswerten.
 Wegen $\omega/2 + l\pi=k\pi + l\pi = (k+l)\pi$ sind dies die ganzzahligen
 Vielfachen von $\pi$, deren Sinus verschwindet.
 Es gilt nämlich
 \begin{align*}
-\sinc (\pi k)
+\si (\pi k)
 &=
 \begin{cases}
 \sin(k\pi)/k\pi&\qquad k\ne 0\\
-\sinc(0)=1&\qquad k=0
+\si(0)=1&\qquad k=0
 \end{cases}
 \\
 &=
@@ -199,7 +199,7 @@ berechnet werden:
 \\
 &=
 \frac1{2\pi}
-\sum_{l\in\mathbb Z} |e^{-il\pi}\sinc(l\pi)|^{2n+2}
+\sum_{l\in\mathbb Z} |e^{-il\pi}\si(l\pi)|^{2n+2}
 =
 \frac1{2\pi}
 \sum_{l\in\mathbb Z} \delta_{l0}
@@ -220,13 +220,13 @@ Damit kann die Fourier-Transformierte $\hat{\varphi}_n(\omega)$ als
 \frac{\hat{B}_n(\omega)}{\sqrt{\Phi_n(\omega)}}
 =
 \frac{1}{\sqrt{2\pi}}
-\biggl(e^{-i\omega/2}\sinc\frac{\omega}2\biggr)^{n+1}
+\biggl(e^{-i\omega/2}\si\frac{\omega}2\biggr)^{n+1}
 \]
 geschrieben werden.
 
 Als nächstes muss die Funktion $1/\sqrt{\Phi_n(\omega)}$ in eine komplexe
 Fourier-Reihe entwickelt werden.
-Da die Funktion $\sinc$ gerade ist, ist auch $\Phi_n(\omega)$ gerade.
+Da die Funktion $\si$ gerade ist, ist auch $\Phi_n(\omega)$ gerade.
 Da $\Phi_n(\omega)$ gerade ist, muss dies auch mit einer reinen
 Fourier-Kosinus-Reihe möglich sein.
 Dies bedeutet, dass die Koeffizienten $c_k$ der komplexen Fourier-Reihe
@@ -262,7 +262,7 @@ $\varphi_n(\omega)$ stückweise Grad-$n$-po\-ly\-no\-miell.
 In \cite{buch:blatter} wird sogar gezeigt, dass $\sqrt{\Phi_n(\omega)}$
 als Polynom in $\cos\omega$ mit rationalen Koeffizienten geschrieben
 werden kann.
-Wir benötigen diese Eigenschaft im folgenden nicht und sie ist auch nicht
+Wir benötigen diese Eigenschaft im Folgenden nicht und sie ist auch nicht
 weiter hilfreich für die Berechnung der Koeffizienten $c_k$, die mit
 Hilfe der Formel \eqref{sqrtPhincoef}
 numerisch berechnet werden müssen.
@@ -344,7 +344,7 @@ zusammengestellt.
 \subsection{Koeffizienten der Skalierungsrelation
 \label{subsection:spline-skalierungskoeffizienten}}
 Für die praktische Durchführung der Wavelet-Analyse mit Hilfe der
-zugehörigen Multiskalen-Analyse brauchen wir die Skalierungsrelation 
+zugehörigen Multiskalen-Ana\-ly\-se brauchen wir die Skalierungsrelation 
 für die Funktionen $\phi_n$ und daraus abgeleitet die
 Skalierungsrelation für das zugehörige Wavelet $\psi_n$.
 
@@ -362,7 +362,7 @@ H_n\biggl(\frac{\omega}2\biggr)
 &&\Rightarrow&
 H_n(\omega)
 &=
-\frac{\hat{\varphi}_n(2\omega)}{\hat{\varphi}_n(\omega)}
+\frac{\hat{\varphi}_n(2\omega)}{\hat{\varphi}_n(\omega)}.
 \end{aligned}
 \label{Hnformel}
 \end{equation}
@@ -378,7 +378,7 @@ Setzen wir dies in \eqref{Hnformel} ein, erhalten wir
 H_n(\omega)
 =
 \frac{\hat{B}_n(2\omega)}{\hat{B}_n(\omega)}
-\frac{\sqrt{\Phi_n(\omega)}}{\sqrt{\Phi_n(2\omega)}}
+\frac{\sqrt{\Phi_n(\omega)}}{\sqrt{\Phi_n(2\omega)}}.
 \label{formel:phinskal}
 \end{equation}
 
@@ -455,7 +455,7 @@ e^{is\omega}
 \frac{1}{2^{n+1}}
 \binom{n+1}{l}d_{s-l}.
 \end{align*}
-Daraus liest die Koeffizienten
+Daraus liest man die Koeffizienten
 \begin{equation}
 h_s
 = 

@@ -28,7 +28,7 @@ des Einheitsintervalls
 \end{cases}
 \end{equation}
 Aus $\varphi^{(0)}$ lässt sich wie in Kapitel~\ref{chapter:haar-wavelet}
-ausgeführt in eine Multiskalen-Analyse verwandeln.
+ausgeführt eine Multiskalen-Analyse aufbauen.
 Eine solche garantiert zunächst einmal eine lineare Darstellung von
 $\varphi^{(0)}$ duch skalierte und translierte Kopien von $\varphi^{(0)}$
 in der Form
@@ -46,7 +46,7 @@ h_k D_{\frac12}T_k\varphi^{(0)}(t).
 Aus der Skalierungsrelation~\eqref{splines:skalierungsrelation}
 kann man dann das Mutter-Wavelet gewinnen, wie in
 Abschnitt~\ref{section:mutter-aus-vater} gezeigt wird.
-Im Falle des Haar-Wavelets sind sind die Koeffzienten der
+Im Falle des Haar-Wavelets sind die Koeffzienten der
 Skalierungsrelation
 \[
 \varphi^{(0)}(t)
@@ -77,17 +77,19 @@ Nach Lemma~\ref{lemma:msa:psirelation} ist dann das Mutterwavelet
 \varphi^{(0)}(2t-1)
 \biggr),
 \]
-wie ebenfalss bereits in Kapitel~\ref{chapter:haar-wavelet}.
+wie ebenfalls bereits in Kapitel~\ref{chapter:haar-wavelet}.
 Auch wurde bereits auf die schlechten Stetikeitseigenschaften und
 die schlechte Frequenz-Lokalisierung des Haar-Wavelets hingewiesen,
 welche den praktischen Nutzen des Haar-Wavelets limitiert.
 Damit stellt sich das Problem, ob man Funktionen gewinnen kann, die
-eine ähnlich einfach zu gewinnende Skalierungsrelation haben.
+eine ähnlich einfach zu gewinnende Skalierungsrelation haben,
+aber bessere Lokalisierungseigenschaften im Frequenzbereich haben und
+stetig oder sogar differenzierbar sind.
 
 \subsection{Splines
 \label{subsection:splines}}
 Gesucht ist jetzt also eine Vater-Wavelet-Funktion, welche ähnlich
-einfach ist wie das eben repetiert Haar-Wavelet, aber bessere 
+einfach ist wie das eben in Erinnerung gerufene Haar-Wavelet, aber bessere 
 Stetigkeitseigenschaften und damit bessere Lokalisierung im Frequenzbereich
 hat.
 
@@ -154,7 +156,9 @@ Mit Hilfe der Formel~\eqref{eq:varphin-berechnung} kann man die Ableitung
 berechnen.
 Für $n>1$ ist die Funktion $\varphi^{(n-1)}$ stetig, also auch die
 Ableitung.
-Damit ist $\varphi^{(n)}$ stetig differenzierbar.
+Damit ist $\varphi^{(n)}$ einmal mehr differenzierbar als
+$\varphi^{(n-1)}$.
+Wiederholte Anwendung dieser Eigenschaft liefert die Aussage des Lemmas.
 \end{proof}
 
 \begin{beispiel}
@@ -391,11 +395,14 @@ Formel~\eqref{eq:faltung-linearkombination}
 \]
 Diese Koeffizienten haben wir im Wesentlichen schon in
 \eqref{eq:skalierung-phi1-proto} angetroffen.
+Das Auftauchen von Binomialkoeffizienten auf der rechten Seite wird
+durch den nachfolgenden Satz~\ref{spline:satz:koef} erklärt.
 \end{beispiel}
 
 Das Beispiel lässt sich verallgemeinern und führt auf den folgenden Satz.
 
 \begin{satz}
+\label{spline:satz:koef}
 Die Funktion $\varphi^{(n)}$ hat die Skalierungseigenschaft  mit den
 Koeffizienten
 \[

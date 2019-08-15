@@ -1,0 +1,32 @@
+Drücken Sie die Faltung $D_af * D_bg$ durch die Faltung $D_cf*g$ mit einem
+geeigneten Skalierungsfaktor $c$ aus.
+Leiten Sie als Spezialfall das Resultat von Satz~\ref{satz:faltung:Da} daraus
+ab.
+
+\begin{loesung}
+Wir schreiben die Faltung als Skalarprodukt
+\begin{align*}
+(D_af * D_bg)(t)
+&=
+\langle D_af, T_tRD_bg\rangle
+=
+\langle D_af, T_tD_bRg\rangle
+=
+\langle D_af, D_bT_{t/b}Rg\rangle
+\\
+&=
+\langle D_{a/b}f, T_{t/b}Rg\rangle
+=
+\sqrt{b} D_b
+\langle D_{a/b}f, T_tRg\rangle
+=
+\sqrt{b}(D_b (D_{a/b}f * g))(t)
+\end{align*}
+Insbesondere ist $c=a/b$ der geeignete Skalierungsfaktor.
+
+Der Satz~\ref{satz:faltung:Da} betrifft den Fall $b=a$. 
+In diesem Fall ist $a/b=1$, der Operator $D_{a/b}=D_a$ ist die identische
+Abbildung und kann daher einfach weggelassen werden.
+Es folgt $D_af*D_ag = \sqrt{a} f*g$.
+\end{loesung}
+

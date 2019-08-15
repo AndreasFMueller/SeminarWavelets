@@ -14,27 +14,78 @@ Formel \eqref{definition:formel:faltung}
 \[
 (f*g)(t)
 =
-\int_{-\infty}^\infty f(s)g(t-s)\,ds.
+\int_{-\infty}^\infty f(s)g(t-s)\,ds
+\]
+für die Faltung.
+
+\subsection{Faltung als Skalarprodukt}
+\index{Faltung als Skalarprodukt}%
+Die Faltung ist ein Integral über ein Produkt von Funktionen,
+kann man sie als Skalarprodukt schreiben?
+Leider hat die Integrationsvariable im Faktor $g(t-s)$ das falsche
+Vorzeichen, die Funktion ist ``verkehrt''.
+Wir korrigieren dies mit Hilfe des Umkehroperators, der wie folgt
+definiert ist.
+
+\begin{definition}
+Der Operator $R$ wirkt auf eine Funktion $f(t)$ mittels
+\[
+(Rf)(t) = f(-t).
+\]
+$R$ heisst {\em Umkehrungsoperator} (engl.~{\em Reversing operator}).
+\end{definition}
+\index{Umkehrungsoperator}%
+\index{Reversing oeprator}%
+
+Offenbar ist $R$ eine Isometrie von $L^2(\mathbb R)$.
+$R$ ist ein Spezialfall des Skalierungsoperators: $R=D_{-1}$.
+Daraus ergeben sich automatisch die Rechenregeln
+\[
+T_aR = RT_a = T_{-a}
+\qquad\text{und}\qquad
+D_aR = D_{-a}=RD_a.
 \]
 
-\subsection{Translation und Dilatation
+Mit Hilfe des Operators $R$ lässt sich die Faltung jetzt als
+Skalarprodukt schreiben.
+Es ist nämlich
+\begin{align*}
+(f*g)(t)
+&=
+\int_{-\infty}^\infty f(s) g(t-s) \,ds
+=
+\int_{-\infty}^\infty f(s) (Rg)(s-t) \,ds
+=
+\int_{-\infty}^\infty f(s) (T_tRg)(s) \,ds
+=
+\langle f,T_tRg\rangle.
+\end{align*}
+Mit dieser Schreibweise lässt sich das Zusammenspiel zwischen Faltung
+und den Operatoren $T_b$ und $D_a$ viel leicht verstehen.
+
+\subsection{Faltung und Translation und Dilatation
 \label{subsection:translation-und-dialatation}}
-Wir berechnen die Faltung der Translate $T_bf$ und $T_cg$:
+Mit Hilfe der Darstellung als Skalarprodukt können wir jetzt sofort
+die Faltung von translierten oder skalierten Funktionen ermitteln.
+
+Wir beginnen mit der Faltung der Translate $T_bf$ und $T_cg$:
 \begin{align*}
 (T_bf * T_cg)(t)
 &=
-\int_{-\infty}^\infty T_bf(s) T_cg(t-s)\,ds
+\langle T_bf, T_tRT_cg\rangle
+=
+\langle T_bf, T_tT_{-c}Rg\rangle
+=
+\langle f, T_{-b}T_tT_{-c}Rg\rangle
 \\
 &=
-\int_{-\infty}^\infty f(s-b) g(t-s-c)\,ds
-\\
-&=
-\int_{-\infty}^\infty f(\sigma) g(t-\sigma-b-c)\,d\sigma
-\\
-&=
-T_{b+c}(f*g)(t)
+\langle f, T_{-b+t-c}Rg\rangle
+=
+T_{b+c}
+\langle f, T_tRg\rangle
+=
+T_{b+c}(f*g)(t).
 \end{align*}
-mit der Substitution $\sigma=s-b$ oder $s=\sigma+b$.
 Wir formulieren dieses Resultat als
 
 \begin{satz}
@@ -47,31 +98,32 @@ T_{b+c}(f*g).
 \end{equation}
 \end{satz}
 
-Für zwei Funktionen $f$ und $g$ berechnen wir die Faltung von
-$D_af$ und $D_ag$:
+In ganz ähnlicher Weise können wir auch die Faltung von
+$D_af$ und $D_ag$ bestimmen:
 \begin{align*}
 (D_af * D_ag)(t)
 &=
-\int_{-\infty}^\infty D_af(s) D_ag(t-s)\,ds
+\langle D_af, T_tRD_ag\rangle
+=
+\langle D_af, T_tD_aRg\rangle
+=
+\langle D_af, D_aT_{t/a}Rg\rangle
 \\
 &=
-\int_{-\infty}^\infty \frac{1}{a}f(s/a) g((t-s)/a)\,ds
-\\
-&=
-\int_{-\infty}^\infty f(s/a) g((t-s)/a)\,\frac{ds}{a}
-\\
-&=
-\int_{-\infty}^\infty f(\sigma) g(t/a- \sigma)\,d\sigma
-\\
-&=
-(f*g)(t/a) = \sqrt{a} D_a(f*g)(t)
+\langle f, T_{t/a}Rg\rangle
+=
+\sqrt{a} D_a \langle f, T_t Rg\rangle
+=
+\sqrt{a}(D_a (f*g))(t).
 \end{align*}
-mit der Substitution $\sigma=s/a$.
 In der Skalierungsrelation einer Multiskalenanalyse kommen keine
 gemischten Skalierungsfaktoren $a$ vor, daher reicht die Form
 \eqref{eq:Dconv} für die nachfolgenden Rechnung aus.
+Für gemischte Skalierungsfaktoren lässt sich keine Formel angeben,
+wie in Übungsaufgabe~1 dieses Kapitels gezeigt wird.
 
 \begin{satz}
+\label{satz:faltung:Da}
 Für beliebige Funktionen $f,g\in L^2(\mathbb R)$ gilt
 \begin{align}
 D_af * D_ag &= \sqrt{a}D_a(f*g)
@@ -106,9 +158,13 @@ Damit ist auch die zweite Relation bewiesen.
 
 \subsection{Linearkombinationen
 \label{subsection:linearkombinationen}}
-Ein wesentlicher Aspekt einer Multiskalenanalyse ist, dass sich das
-skalierte Vaterwavelet $D_2\varphi$ eine Linearkombination von
-Translaten des Vater-Wavelets ist.
+Ein wesentlicher Aspekt einer Multiskalenanalyse ist, dass das
+Vaterwavelet $\varphi$ eine Linearkombination von skalierten
+Translaten $D_{\frac12}T_k\varphi$ des Vater-Wavelets ist.
+Wir vereinfachen die manchmal etwas umständlichen Formeln für
+die Skalierungsrelationen etwas, indem wir auf beiden Seiten
+den Operator $D_2$ anwenden.
+Dies führt auf die folgende Definition.
 
 \begin{definition}
 Wir sagen, eine Funktion $f$ erfüllt die {\em Skalierungseigenschaft},
@@ -248,6 +304,8 @@ H_2\biggl(\frac{\omega}2\biggr)
 \,
 \widehat{\mathstrut\varphi_1*\varphi_2}\biggl(\frac{\omega}2\biggr).
 \end{align*}
+In der zweiten Zeile haben wir den gemeinsamen Faktor $\sqrt{2\pi}$
+auf beiden Seiten weggelassen.
 Die Faltung $\varphi_1*\varphi_2$ erfüllt also die Skalierungsrelation
 mit der erzeugenden Funktion $H_1\cdot H_2$, die wegen
 \[
