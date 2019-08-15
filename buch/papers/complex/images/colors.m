@@ -18,7 +18,7 @@ r = 1.01;
 idx = find(abs(z) > r);
 z(idx) = r;
 
-z = (exp( 2.5 * abs(z)) - 1) .* exp(1i * angle(z)); % Adapt to eye
+z = (exp( 2 * abs(z)) - 1) .* exp(1i * angle(z)); % Adapt to eye
 z = round(z / max(abs(z(:))) * 255);
 
 

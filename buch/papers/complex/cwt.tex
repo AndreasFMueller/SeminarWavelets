@@ -70,8 +70,8 @@ Rechnen wir das erste Beispiel.
 Hierfür benötigen wir zwei Dinge: Signal und Wavelet.
 Als Signale nehmen wir zwei Sinus-Schwingungen, eine mit linear ansteigender und eine mit stückweise konstanter Frequenz.
 \begin{align}
-    x_1(t) &= \sin\left( \int_{0}^{t} 2\pi f_1(t')\,\mathrm{d}t'\right) & f_1(t) &= 2 + 6/4 \cdot t \\
-    x_2(t) &= \sin\left( \int_{0}^{t} 2\pi f_2(t')\,\mathrm{d}t'\right) & f_2(t) &= \left\lbrace \begin{matrix}
+    x_1(t) &= \sin\left( \int_{0}^{t} 2\pi f_1(\tau)\,\mathrm{d}\tau\right) & f_1(t) &= 2 + 6/4 \cdot t \\
+    x_2(t) &= \sin\left( \int_{0}^{t} 2\pi f_2(\tau)\,\mathrm{d}\tau\right) & f_2(t) &= \left\lbrace \begin{matrix}
     4, & &t& < 1\\
     8, & 1.0 \le &t& < 2.0\\
     4, & 2.0 \le &t& < 3.0\\

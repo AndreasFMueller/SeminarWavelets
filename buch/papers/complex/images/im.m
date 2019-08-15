@@ -47,7 +47,7 @@ end
 [yab, a] = myCWT(x, dt, height, pad, WL, a_max);
 
 yab = yab / max(abs(yab(:))); % Scale to +- 1
-yab = (exp( 2.5 * abs(yab)) - 1) .* exp(1i * angle(yab)); % Adapt to eye
+yab = (exp( 2 * abs(yab)) - 1) .* exp(1i * angle(yab)); % Adapt to eye
 
 yab = yab / max(abs(yab(:))) * 254;
 if show_max
