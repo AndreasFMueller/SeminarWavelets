@@ -112,9 +112,9 @@ $D_af$ und $D_ag$ bestimmen:
 &=
 \langle f, T_{t/a}Rg\rangle
 =
-\sqrt{a} D_a \langle f, T_t Rg\rangle
+\sqrt{|a|} D_a \langle f, T_t Rg\rangle
 =
-\sqrt{a}(D_a (f*g))(t).
+\sqrt{|a|}(D_a (f*g))(t).
 \end{align*}
 In der Skalierungsrelation einer Multiskalenanalyse kommen keine
 gemischten Skalierungsfaktoren $a$ vor, daher reicht die Form
@@ -126,7 +126,7 @@ wie in Übungsaufgabe~1 dieses Kapitels gezeigt wird.
 \label{satz:faltung:Da}
 Für beliebige Funktionen $f,g\in L^2(\mathbb R)$ gilt
 \begin{align}
-D_af * D_ag &= \sqrt{a}D_a(f*g)
+D_af * D_ag &= \sqrt{|a|}D_a(f*g)
 &&\text{und}
 &
 \tilde{D}_af * \tilde{D}_ag &= a\tilde{D}_a(f*g).
@@ -138,18 +138,18 @@ für $a>0$.
 \begin{proof}[Beweis]
 Wir müssen nur noch die zweite Formel für den Operator $\tilde{D}_a$
 nachweisen.
-Dazu verwenden wir die Relation $D_af = \sqrt{a}\tilde{D}_a$ und die
+Dazu verwenden wir die Relation $D_af = \sqrt{|a|}\tilde{D}_a$ und die
 erste Beziehung in \eqref{eq:Dconv} und erhalten
 \[
 \tilde{D}_af * \tilde{D}_ag
 =
-\sqrt{a}D_af * \sqrt{a}D_ag
+\sqrt{|a|}D_af * \sqrt{|a|}D_ag
 =
-a
-\sqrt{a}
+|a|
+\sqrt{|a|}
 D_a (f*g)
 =
-a
+|a|
 \tilde{D}_a(f*g).
 \]
 Damit ist auch die zweite Relation bewiesen.
