@@ -11,16 +11,17 @@ Für die Praxis sind nur Wavelets interessant, für die die
 Wavelet-Transformation und die Rücktransformation mit beschränktem Aufwand,
 effizient und stabil berechnet werden können.
 Die Untersuchungen in Kapitel~\ref{chapter:algo} haben gezeigt, dass 
-die diskrete Wavelet-Transformation mit einem einfachen kaskadierten
-Faltungsfilter berechnet werden kann.
+die diskrete Wavelet-Transformation mit zwei einfachen kaskadierten
+Faltungsfilteren mit Koeffizienten $h_k$ und $g_k$ berechnet werden kann.
 Ein solcher Filter kann aber nur dann effizient berechnet werden,
 wenn nur endlich viele der Filterkoeffizienten von 0 verschieden sind.
-
 Das Haar-Wavelet hat diese Eigenschaft, genau zwei der Filterkoeffizienten
 sind von 0 verschieden.
-Lange Zeit war nicht klar, aber es überhaupt andere Wavelets mit
+
+Lange Zeit war nicht klar, ob es überhaupt andere Wavelets mit
 nur endlich vielen nicht verschwindenden Filterkoeffizienten gibt.
 Yves Meyer versuchte sogar zu zeigen, dass es gar keine solche Funktionen
+\index{Meyer, Yves}%
 $\varphi$ und $\psi$ gibt, wie sie in der Multiskalen-Analyse verlangt
 werden, also erst recht keine mit endlich vielen nicht verschwindenden
 Koeffizienten.
@@ -28,6 +29,20 @@ Als es ihm dann 1985 gelang, solche Wavelets zu finden, stellte sich
 die Frage nach Wavelets mit kompaktem Träger erneut.
 Schliesslich war Ingrid Daubechies in der Konstruktion solcher Wavelets
 erfolgreich.
+
+In diesem Kapitel wird die Konstruktion der Daubechies-Wavelets
+in mehreren Schritten durchgeführt.
+Am Anfang stehen allgemeine Bedingungen an die Koeffizienten,
+die für beliebige Wavelets mit kompaktem Träger gelten.
+Diese reichen nicht aus, die Koeffizienten zu bestimmen.
+In den Abschnitten~\ref{section:ordnung} und \ref{section:betrag} werden
+als ``willkürliche'' zusätzliche Forderung eingeführt, dass  die
+Wavelets eine bestimmte Ordnung haben und die Koeffizienten $h_k$ reell
+sein sollen.
+Damit kann dann mit Hilfe des Lemmas von Riesz eine Lösung für die
+erzeugende Funktion $H(\omega)$ gefunden werden.
+Wie in Kapitel~\ref{chapter:msa} gezeigt wurde, sind damit auch
+die Funktionen $\varphi$ und $\psi$ vollständig festgelegt.
 
 \input{chapters/8-kompakt/bedingungen.tex}
 \input{chapters/8-kompakt/ordnung.tex}

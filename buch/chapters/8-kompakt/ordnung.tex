@@ -7,24 +7,32 @@
 \rhead{Ordnung}
 Bis jetzt haben wir nur die Bedingungen \eqref{buch:kompakt:hsumme}
 und \eqref{buch:kompakt:orthorel} an die Koeffizienten 
-$h_k$ der Skalierungsrelation.
+$h_k$ der Skalierungsrelation gefunden.
 Wir haben ebenfalls bereits gesehen, dass für grösseren Träger die
 Bedinungen \eqref{buch:kompakt:orthorel} nicht ausreichen, die
 Koeffizienten festzulegen.
 Es werden daher zusätzliche Bedingungen nötig sein, um die
 Multiskalenanalyse eindeutig zu bestimmen.
 
+Die Art dieser zusätzlichen Bedingungen ist mehr oder weniger willkürlich.
+Sie kann durch beabsichtigte Anwendungen motiviert sein oder durch
+interessante mathematische Eigenschaften der resultierenden Funktionen.
+Im vorliegenden Fall ist es die {\em Ordnung}, die wie folgt definiert ist.
+
 \begin{definition}
-Das Wavelet $\psi(t)$ heisst von Ordnung $N$ wenn
+\label{kompakt:ordnung:definition}
+\index{Ordnung}%
+Das Wavelet $\psi(t)$ heisst von {\em Ordnung} $N$ wenn
 $t^N\psi(t)\in L^1(\mathbb R)$ und
-\[
+\begin{equation}
 \int_{\mathbb R} t^k\psi(t)\,dt=0\quad \text{für $k<N$.}
-\]%
+\label{kompakt:ordnung:formel}
+\end{equation}
 \label{definition:ordnung}
 \end{definition}
 
 Für ein Wavelet der Ordnung $N$ folgt mit Hilfe der Ableitung unter
-dem Integralzeichen
+dem Integralzeichen oder mit Hilfe von Satz~\ref{four-int:trans-dial}
 \begin{align*}
 \frac{d}{d\omega}
 \hat{\psi}(\omega)
@@ -48,7 +56,7 @@ dem Integralzeichen
 \psi(t) e^{-i\omega t}\,dt.
 \end{align*}
 Für ein Wavelet der Ordnung $N$ sind die Ableitungen von $\hat{\psi}(\omega)$
-im Nullpunkt
+im Nullpunkt gegeben durch
 \[
 \frac{d^k}{d\omega^k}
 \hat{\psi}(0)
@@ -56,7 +64,6 @@ im Nullpunkt
 \frac{(-i)^k}{\sqrt{2\pi}}
 \int_{\mathbb R} t^k \psi(t) \,dt = 0
 \]
-
 für $k<N$. 
 Die Taylorreihe von $\hat{\psi}$ hat daher die Form
 \[
@@ -65,20 +72,84 @@ Die Taylorreihe von $\hat{\psi}$ hat daher die Form
 \frac{\hat{\psi}^{(N)}(0)}{N!} \omega^N + \text{Terme höherer Ordnung}
 \]
 Insbesondere hat $\hat{\psi}$ eine Nullstelle $N$-ter Ordnung bei $\omega=0$.
+Die Ordnung sagt also etwas über die Regularität von $\hat{\psi}$ aus.
 
+Die Eigenschaft, Ordnung $N$ zu haben, verträgt sich mit den Operatoren
+$D_a$ und $T_b$.
+Man kann formal die Bedingung \eqref{kompakt:ordnung:formel} aus
+Defintion~\ref{kompakt:ordnung:definition} als Skalarprodukt mit der
+Funktion $t^k$ betrachten:
+\[
+\langle t^k,\psi\rangle = \int_{\mathbb{R}} t^k\psi(t)\,dt.
+\]
+Für eine skalierte Funktion folgt dann
+\[
+\langle t^k,D_a\psi\rangle 
+=
+\langle D_{1/a}t^k,\psi\rangle
+=
+\langle \sqrt{a}(at)^k,\psi\rangle
+=
+a^{k+\frac12}\langle t^k,\psi\rangle = 0
+\qquad
+\forall k<N.
+\]
+Für den Operator $T_b$ ist zu berücksichtigen, dass $T_bt^k$ das
+Polynom
+\[
+T_bt^k
+=
+(t-b)^k
+=
+\sum_{i=0}^k (-1)^i \binom{k}{i}t^ib^{k-i}
+\]
+ist.
+Damit kann auch die Ordnung von $T_b\psi$ berechnet werden.
+Es gilt
+\[
+\langle t^k,T_b\psi\rangle
+=
+\langle T_{-b}t^k,\psi\rangle
+=
+\biggl\langle \sum_{i=0}^k \binom{k}{i}t^ib^{k-i},\psi\biggr\rangle
+=
+\sum_{i=0}^k b^{k-i} \underbrace{\langle t^i,\psi\rangle}_{\displaystyle=0}
+=
+0.
+\]
+Mit $\psi$ hat daher auch $D_a\psi$ und $T_b\psi$ die Ordnung $n$.
+Die Forderung nach einer bestimmten Ordnung ist damit eine ``natürliche''
+Forderung für ein Wavelet.
+
+\begin{forderung}
+Das gesuchte Wavelet hat Ordnung $N$.
+\end{forderung}
+
+Das Integral der Skalierungsfunktion $\varphi$ darf nicht verschwinden,
+es ist also $\hat{\varphi}(0)\ne 0$.
+Für ein Wavelet der Ordnung $N$ hat $\hat{\psi}$ bei $0$ eine Nullstelle
+$N$-ter Ordnung.
 Aus dem Zusammenhang zwischen Vater- und Mutter-Wavelet im Frequenzbereich
 \[
 \hat{\psi}(\omega)
 =
 e^{i\omega/2}
-\overline{H\biggl(\frac{\omega}+\pi\biggr)}
+\overline{H\biggl(\frac{\omega}2+\pi\biggr)}
 \hat{\varphi}\biggl(\frac{\omega}2\biggr)
 \]
-folgt daher, dass auch die Funktion $H$ eine Nullstelle $N$-ter
+folgt, dass die rechte Seite eine Nullstelle $N$-ter Ordnung hat.
+Da $e^{i\omega/2}$ nicht verschwinden kann und $\hat{\varphi}(0)\ne 0$ folgt,
+dass die Funktion $H$ bei $\pi$ eine Nullstelle $N$-ter
 Ordnung haben muss.
-Da $\hat{\varphi}(0)\ne 0$ und $e^{i\omega}\ne 0$ ist, muss daher
-$H$ eine Nullstelle $N$-ter Ordnung bei $\pi$ haben.
 
+\begin{konsequenz}
+Die erzeugende Funktion $H(\omega)$ einer Multiskalenanalyse mit einem
+Wavelet der Ordnung $N$ ist ein trigonometrisches Polynom mit einer
+Nullstelle $N$-ter Ordnung bei $\omega=\pi$.
+\end{konsequenz}
+
+Da die erzeugende Funktion ein Polynom ist, können wir für die
+bekannten Nullstellen als Linearfaktoren abspalten.
 Das trigonometrische Polynom
 \[
 \biggl(

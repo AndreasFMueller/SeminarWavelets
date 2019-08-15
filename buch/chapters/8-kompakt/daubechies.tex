@@ -6,7 +6,7 @@
 \section{Daubechies-Wavelets\label{section:daubechies}}
 \rhead{Daubechies-Wavelets}
 In den vorangegangenen Abschnitten wurde gezeigt, wie die erzeugende
-Funktion $H(s)$ einer Multi\-skalen-Analyse mit Wavelets beliebiger
+Funktion $H(s)$ einer Multi\-skalen-Analyse für Wavelets beliebiger
 Ordnung bestimmt werden kann.
 Es wurde auch klar, dass das Haar-Wavelet eine Lösung dieser Aufgabe
 ist.
@@ -38,11 +38,22 @@ B(\omega),
 \]
 aus ihr müssen die Koeffizienten $h_k$ abgelesen werden.
 \end{enumerate}
-
-Wir führen den Prozess im folgenden für $N=2$ und $N=3$ durch.
+Auf diese Weise entsteht für jede Ordnung $N$ ein Wavelet, welches
+genau $2N$ Koeffizienten verwendet und Träger im Interval
+$[0,N]$ hat.
+Es heisst das Daubechies-Wavelet
+\index{Daubechies-Wavelet}
+nach Ingrid Daubechies, die diese Konstruktion als erste durchgeführt hat.
+\index{Ingrid Daubechies}
+Das Daubechies-Wavelet mit $n$ Koeffizienten wird mit $\texttt{db}n$
+bezeichnet.
 
 \subsection{Der Fall $N=2$}
-Für $N=2$ is $P_N(y)=P_2(y)=1+2y$.
+Im Fall $N=2$ ergeben sich vier Koeffizienten, die das Daubechies-Wavelet
+\texttt{db4} definieren.
+\index{db4}%
+
+Es ist $P_N(y)=P_2(y)=1+2y$.
 Wegen $y=(1-\cos \omega)/2$ folgt
 \[
 A(\omega) = 1 + 2\frac{1-\cos\omega}2 = 2-\cos\omega
@@ -134,7 +145,9 @@ h_3
 =
 -0.129409522551260
 \end{align*}
-
+Diese Koeffizienten sind für die Rekonstruktion von
+Skalierungsfunktion und Wavelet in Abbildung~\ref{buch:algo:db1}
+verwendet worden.
 
 \subsection{Der Fall $N=3$}
 Für $N=3$ ist $P_N(y)=P_3(y)=1+3y+6y^2$.
@@ -223,14 +236,18 @@ b_0^2 + b_1^2 + b_2^2 -2b_0b_2
 \end{align*}
 Durch Koeffizientenvergleich lesen wir die Gleichungen
 \begin{align*}
-b_0^2+b_1^2+b_2^2-2b_0b_2&=\frac83
+b_0^2+b_1^2+b_2^2-2b_0b_2&=\phantom{-}\frac83
 \\
 (b_0+b_2)b_1 &= -\frac94
 \\
 b_0b_2
 &=
+\phantom{-}
 \frac{3}{8}
 \end{align*}
+Dies sind drei quadratische Gleichungen für die Koeffizienten
+$b_0$, $b_1$ und $b_2$, mit denen die Werte für die Koeffizienten
+gefunden werden können.
 
 
 
