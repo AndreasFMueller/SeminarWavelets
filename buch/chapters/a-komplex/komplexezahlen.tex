@@ -68,7 +68,7 @@ der Algebra erhalten bleiben\footnote{Man nennt dies das Permanenz-Prinzip.}.
 Die Rechenoperationen folgen aus der Definition:
 \begin{align*}
 (a+bi)+(c+di)&=(a+c)+(b+d)i\\
-(a+bi)(c+di)&=ac-i^2bd+(ad+bc)i=ac-bd+(ad+bc)i
+(a+bi)(c+di)&=ac-i^2bd+(ad+bc)i=ac-bd+(ad+bc)i.
 \end{align*}
 Die Division stellt noch ein Problem dar. Hier hilft das Konzept der
 konjugiert komplexen Zahl.
@@ -125,8 +125,8 @@ b=\frac{(a+bi)-(a-bi)}{2i}=\frac{z-\bar z}{2i}.
 Die Darstellung der komplexen Zahlen als Punkte einer Ebene suggeriert
 auch eine alternative Schreibweise.
 Ein Punkt $z$ der komplexen Ebene kann auch charakterisiert werden mit Hilfe von
-Polarkoordinaten, also durch seine Entfernung $r=|z|$ vom Nullpunkt,
-und durch Polarwinkel zwischen der reellen Achse und der Richtung
+Polarkoordinaten, also durch seine Entfernung $r=|z|$ vom Nullpunkt
+und durch den Polarwinkel zwischen der reellen Achse und der Richtung
 zur komplexen Zahl. Der Polarwinkel heisst auch {\em Argument} $\operatorname{arg}z$,
 \index{Argument}%
 und es gilt
@@ -154,7 +154,7 @@ r_1r_2\bigl(
 &=
 r_1r_2(\cos(\varphi_1+\varphi_2)+i\sin(\varphi_1+\varphi_2))
 \\
-\Rightarrow \operatorname{arg}z_1z_2&=\arg z_1 + \arg z_2
+\Rightarrow \operatorname{arg}z_1z_2&=\arg z_1 + \arg z_2.
 \end{align*}
 Die Multiplikation zweier komplexen Zahlen entspricht also der
 Multiplikation der Beträge und der Addition der Argumente.
@@ -229,7 +229,7 @@ schreiben. Dazu betrachten wir die Abbildung
 \[
 \varphi\colon
 \mathbb C\to M_2(\mathbb R):
-a+bi\mapsto\begin{pmatrix}a&b\\-b&a\end{pmatrix}
+a+bi\mapsto\begin{pmatrix}a&b\\-b&a\end{pmatrix}.
 \]
 Die imaginäre Einheit $i$ wird von $\varphi$ auf die Matrix
 \[
@@ -249,7 +249,7 @@ Wir illustrieren dies für die Multiplikation:
 &=\begin{pmatrix}
 ac-bd&ad-bc\\
 -ad+bc&ac-bd
-\end{pmatrix}
+\end{pmatrix}.
 \end{aligned}
 \]
 In dieser Darstellung kann man auch $e^{Jt}$ ausrechnen, indem man $Jt$ in
@@ -331,7 +331,7 @@ Wir müssen also von einem komplexen Skalarprodukt verlangen, dass es
 \index{konjugiert linear}
 im ersten Faktor {\em konjugiert linear} ist:
 \[
-(\lambda u,v)=\bar\lambda(u,v)
+(\lambda u,v)=\bar\lambda(u,v).
 \]
 Eine Funktion von zwei Vektoren, welche linear im zweiten Vektor ist
 und konjugiert linear im ersten heisst {\em sesquilinear}.
@@ -590,7 +590,7 @@ reeller Vektorraum. Die Abbildung
 ist eine Bijektion zwischen $\mathbb R^4$, $\mathbb C^2$ und $V$.
 Auch geometrisch ist $\mathbb C^2=\mathbb C\times \mathbb C$ das Produkt
 von zwei Ebenen, hat also eine vierdimensionale Geometrie.
-Darin ist $\operatorname{SU}(2)$ die Teilmenge der vierdimensionalen Vektoren,
+Darin ist $\operatorname{SU}(2)$ die Teilmenge der vierdimensionalen Vektoren
 und zwar derjenigen für die gilt
 \[
 1
@@ -719,7 +719,7 @@ Satz~\ref{skript:ewreell} reell. Dann gilt
           &=(Av_1,v_2)=\bar\lambda_1(v_1,v_2)=\lambda_1(v_1,v_2)
 \\
 \Rightarrow\quad
-(\lambda_1-\lambda_2)(v_2,v_2)&=0
+(\lambda_1-\lambda_2)(v_2,v_2)&=0.
 \end{align*}
 Die letzte Gleichung kann wegen $\lambda_1\ne\lambda_2$ nur wahr sein,
 wenn $(v_1,v_2)=0$, die Vektoren $v_1$ und $v_2$ müssen also orthogonal sein.
@@ -804,7 +804,7 @@ Jacobi-Identität:
 +
 [C,[A, B]]
 =
-0
+0.
 \label{skript:jacobi}
 \end{equation}
 Um dies einzusehen rechnen wir die Kommutatoren aus:
@@ -856,7 +856,7 @@ Solche Matrizen haben die Form
     0    & \omega_3&-\omega_2\\
 -\omega_3&   0     & \omega_1\\
  \omega_2&-\omega_1&    0
-\end{pmatrix}
+\end{pmatrix}.
 \]
 Der Vektorraum $\operatorname{so}(3)$ ist also dreidimensional.
 
@@ -958,7 +958,7 @@ u_2v_3 - u_3v_2
 u_2v_3 - u_3v_2         
 	&-( u_3v_1 - u_1v_3)
 		& 0
-\end{pmatrix}
+\end{pmatrix}.
 \end{align*}
 Die Matrix $[U,V]$ gehört zum Vektor $\vec u\times\vec v$.
 Damit können wir aus der Jacobi-Identität jetzt folgern, dass
@@ -1010,14 +1010,14 @@ $\operatorname{tr}A$ verschwindet, oder dass $a=-d$:
 =
 \left\{ A\in M_2(\mathbb C)\,|\,
 A^*=-A\wedge \operatorname{tr}A=0
-\right\}
+\right\}.
 \end{equation}
 Matrizen in $\operatorname{su}(2)$ haben also die Form
 \begin{equation}
 \begin{pmatrix}
    ia&b+ic\\
 -b+ic& -ia
-\end{pmatrix},\qquad a,b,c\in\mathbb R
+\end{pmatrix},\qquad a,b,c\in\mathbb R.
 \end{equation}
 Die Menge $\operatorname{su}(2)$ ist also eine dreidimensionale 
 Lie-Algebra.
@@ -1091,7 +1091,7 @@ J
 &
 IK
 &=
--J
+-J.
 \end{align*}
 \index{Quaternionen}%
 Dies ist die Algebra der Quaternionen.

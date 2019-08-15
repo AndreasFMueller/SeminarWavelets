@@ -163,7 +163,7 @@ Diese Identitäten können durch Nachrechnen verifiziert werden:
 \end{proof}
 
 %
-% Orthogonalitätsbedingung für die Translate des Vater-Wavelets
+% Orthogonalitätsbedingung für die Translate des Vaterwavelets
 %
 \subsection{Orthogonalität der Translate von $\varphi$}
 Die Funktion $\varphi$ hat die Bedingung zu erfüllen, dass
@@ -263,7 +263,7 @@ Nach Voraussetzung gilt für alle $b\in\mathbb Z$
 \\
 &=
 2\pi
-\widehat{\mathcal{P}(\hat{\varphi}\bar{\hat{\psi}})}(b)
+\widehat{\mathcal{P}(\hat{\varphi}\bar{\hat{\psi}})}(b).
 \end{align*}
 Die $2\pi$-periodische Funktion $\mathcal{P}(\hat{\varphi}\bar{\hat{\psi}})$ 
 hat also lauter verschwindende Fourier-Koeffizienten, also verschwindet
@@ -285,7 +285,7 @@ Dies beweist die Aussage.
 %
 \subsection{Die Skalierungsrelation
 \label{msa:skal}}
-Das Vater-Wavelet einer Multiskalen-Analyse muss einer Skalierungsrelation
+Das Vaterwavelet einer Multiskalen-Analyse muss einer Skalierungsrelation
 genügen, die wir in der Form
 \begin{equation}
 \varphi(t)
@@ -303,7 +303,7 @@ Wir wenden darauf die Fourier-Transformation an und erhalten
 =
 \frac1{\sqrt{2}}
 \biggl(\sum_{k\in\mathbb Z}h_ke^{-ik\omega/2}\biggr)
-\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr).
 \]
 
 \begin{definition}
@@ -321,7 +321,7 @@ für die sogenannte {\em erzeugende Funktion} einer Multiskalen-Analyse.
 
 Mit der erzeugenden Funktion $H(s)$ wird die
 Skalierungsbedingung~\eqref{msa:skalt} im Zeitbereich
-für das Vater-Wavelet zu der Bedingung
+für das Vaterwavelet zu der Bedingung
 \begin{equation}
 \hat{\varphi}(\omega) 
 =
@@ -486,7 +486,7 @@ für fast alle $\omega\in\mathbb R$.
 Die Funktion $H$ ist natürlich nichts anders als der Spezialfall
 des Vaterwavelets $f=\varphi\in V_0$, also $H=m_{\varphi}$.
 
-In der Multiskalen-Analyse bilden die Translate des Mutter-Wavelet $\psi$
+In der Multiskalen-Analyse bilden die Translate des Mutterwavelet $\psi$
 ein orthonormierte Basis von $V_1$.
 Die Funktion $m_{\psi}$ erfüllt daher nicht nur \eqref{msa:mfskaleq},
 es muss ausserdem eine Relation geben, die ausdrückt, dass alle Translate auf
@@ -514,7 +514,7 @@ Nach Satz~\ref{satz:msa:alleorthogonal} ist dies gleichbedeutend mit
 \hat{f}(\omega+2\pi k)
 \overline{\hat{\varphi}(\omega+2\pi k)}
 =
-0
+0.
 \]
 Die Summe auf der rechten Seite kann wieder in je eine Summe für die
 Geraden und die ungeraden $k$ aufgeteilt werden.
@@ -586,14 +586,14 @@ Die Axiome der Multiskalen-Analyse besagen, dass es eine Funktion $\psi$
 gibt derart, dass die Translate von $\psi$ eine orthonormierte Basis
 von $W_0$ sind.
 In den Sätzen dieses Abschnitts wurde genau dieser Sachverhalt
-in Abschnitt~\ref{msa:skal} bereits für das Vater-Wavelet $\varphi$ untersucht
+in Abschnitt~\ref{msa:skal} bereits für das Vaterwavelet $\varphi$ untersucht
 sowie ganz allgemein für eine Funktion $f\in V_1$ in Abschnitt~\ref{msa:skalv1} untersucht.
-Für das Mutter-Wavelet $\psi$ müssen diese Eigenschaften alle
+Für das Mutterwavelet $\psi$ müssen diese Eigenschaften alle
 auch gelten.
 Wir fassen diese im folgenden Satz zusammen.
 
 \begin{satz}
-Die Funktion $m_\psi$, die zum Mutter-Wavelet einer Multiskalen-Analyse 
+Die Funktion $m_\psi$, die zum Mutterwavelet einer Multiskalen-Analyse 
 gehört, erfüllt
 \[
 m_{\psi}\biggl(\frac{\omega}2+\pi\biggr)
@@ -620,11 +620,11 @@ für die Funktion $H(\omega)$.
 Diese Bedingungen schränkten stark ein, was $\psi$ überhaupt sein
 kann.
 Wir zeigen zunächst, wie sich aus $\varphi$ eine Funktion $\psi$
-konstruieren lässt, die als Mutter-Wavelet in Frage kommt.
+konstruieren lässt, die als Mutterwavelet in Frage kommt.
 
 \begin{lemma}
 \label{lemma:msa:psivorschlag}
-Ist $\varphi$ das Vater-Wavelet einer Multiskalen-Analyse, dann sind die
+Ist $\varphi$ das Vaterwavelet einer Multiskalen-Analyse, dann sind die
 Translate der Funktion mit der Fourier-Transformierten
 \begin{equation}
 \hat{\psi}(\omega)
@@ -638,7 +638,7 @@ orthonormiert.
 \end{lemma}
 
 Bis auf weiteres meinen wir im Folgenden immer dieses $\psi$, wenn wir
-vom Mutter-Wavelet einer Multiskalen-Analyse sprechen.
+vom Mutterwavelet einer Multiskalen-Analyse sprechen.
 Wir werden weiter unten untersuchen, wie andere mögliche Funktionen 
 $\psi$ aussehen könnten.
 
@@ -876,7 +876,7 @@ H\biggl(\frac{\omega}{2^n}\biggr)
 =
 \hat{\varphi}\biggl(\frac{\omega}{2^n}\biggr)
 \prod_{k=1}^n 
-H\biggl(\frac{\omega}{2^k}\biggr)
+H\biggl(\frac{\omega}{2^k}\biggr).
 \end{align*}
 In vielen Fällen ist $\hat{\varphi}$ eine stetige Funktion, so dass
 $\hat{\varphi}(\omega 2^{-n})$ gegen $\hat{\varphi}(0)=1$.
@@ -887,90 +887,4 @@ Daher konvergiert das Produkt und es gilt
 Insbesondere ist die Funktion $\hat{\varphi}$ eindeutig bestimmt 
 durch die Funktion $H(\omega)$, die wiederum eindeutig bestimmt ist
 durch die Koeffizienten $h_k$ der Skalierungsrelation.
-
-% XXX woher weiss man \int \varphi(t)\,dt = 1?
-
-%
-% 
-%
-\section{Mutter-Wavelet $\psi$ aus dem Vater-Wavelet $\varphi$
-\label{section:mutter-aus-vater}}
-Lemma~\ref{lemma:msa:psivorschlag} stellt einen Zusammenhang zwischen
-den Fouriertransformation von $\psi$ und $\varphi$ und der Skalierungsrelation
-von $\varphi$ her.
-Daraus können wir auch eine Relation gewinnen, die $\psi$ als
-Linearkombination der $\varphi$ festlegt.
-Dazu erinnern wir daran, dass per Definition
-\[
-H(\omega) = \sum_{k\in\mathbb Z} h_k e^{-ik\omega} 
-\quad\Rightarrow\quad
-\bar{H}(\omega)
-=
-\frac{1}{\sqrt{2}}
-\sum_{k\in\mathbb Z} \bar{h}_k e^{ik\omega} 
-\]
-ist.
-Setzen wir dies in die Relation~\eqref{msa:psivorschlag} ein, erhalten wir
-\begin{align*}
-\hat{\psi}(\omega)
-&=
-e^{i\omega/2}
-\bar{H}\biggl(\frac{\omega}2+\pi\biggr)
-\hat{\varphi}\biggl(\frac{\omega}2\biggr)
-=
-e^{i\omega/2}
-\frac{1}{\sqrt{2}}
-\sum_{k\in\mathbb Z} \bar{h}_k e^{ik\omega/2 + ik\pi} 
-\hat{\varphi}\biggl(\frac{\omega}2\biggr)
-=
-\frac{1}{\sqrt{2}}
-\sum_{k\in\mathbb Z} \bar{h}_k e^{i(k+1)\omega/2} (-1)^k
-\hat{\varphi}\biggl(\frac{\omega}2\biggr)
-\\
-&=
-\frac{1}{\sqrt{2}}
-\sum_{k\in\mathbb Z}
-(-1)^{l+1}
-\bar{h}_{-l-1} e^{-il\omega/2}
-\hat{\varphi}\biggl(\frac{\omega}2\biggr)
-\\
-\intertext{In dieser Form kann die Fourier-Transformation umgekehrt werden,
-da die letzten zwei Faktoren Skalierungen und Translation von $\varphi$
-beschreiben.
-Es ergibt sich}
-\psi(t)
-&=
-\sqrt{2}\sum_{l\in\mathbb Z} (-1)^{l+1}\bar{h}_{-l-1} \varphi(2t-k).
-\end{align*}
-
-\begin{lemma}
-\label{lemma:msa:psirelation}
-Das Mutterwavelet definiert durch die Fourier-Transformierte
-\eqref{msa:psivorschlag}
-ist die Linearkombination
-\begin{equation}
-\psi(t)
-=
-\sqrt{2}\sum_{l\in\mathbb Z} (-1)^{l+1}\bar{h}_{-l-1} \varphi(2t-k).
-\end{equation}
-von Translaten des Vater-Wavelets $\varphi$.
-\end{lemma}
-
-Durch Vergleich mit~\eqref{msa:skalrel-g} kann die $g$-Koeffizienten als
-\[
-g_k = (-1)^{k+1} \bar{h}_{-k-1}
-\]
-ausdrücken.
-
-Früher wurde bereits darauf hingewiesen, dass diese Wahl des Mutter-Wavelets
-nicht eindeutig ist.
-Zum Beispiel ist jede ganzzahlig verschobene Version dieses Mutter-Wavelets
-ebenfalls ein adäquates Mutter-Wavelet.
-Dies folgt auch schon aus der Definition der Multiskalen-Analyse.
-Diese Freiheit ermöglicht zum Beispiel bei Wavelets mit kompaktem Träger,
-den Träger von $\varphi$ mit dem Träger von $\psi$ zur Deckung zu
-bringen.
-Wir werden auf diese Möglichkeit in Kapitel~\ref{chapter:kompakt}
-zurück kommen.
-
 

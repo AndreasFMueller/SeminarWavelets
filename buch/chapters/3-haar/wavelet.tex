@@ -176,7 +176,7 @@ durch die oben gewählte Normierung sichergestellt.
 \centering
 \includegraphics{chapters/3-haar/images/wavelets.pdf}
 \caption{Hierarchie der Wavelets $\psi_{k,j}$ für das Haar-Wavelet.
-In der untersten Zeile ist das Vater-Wavelet $\varphi$ dargestellt,
+In der untersten Zeile ist das Vaterwavelet $\varphi$ dargestellt,
 darüber die Wavelets $\psi_{k,j}$, wobei die Wavelets mit ungeradem
 $j$ jeweils grau hinterlegt sind.
 \label{haar:allwavelets:image}}
@@ -314,7 +314,7 @@ durch Funktionen aus $V_j$ approximieren, also
 \bigcup_{j\in\mathbb Z} V_j = V_\infty.
 \]
 \item
-Es gibt eine orthonormierte Familie von Funktionen $\psi_{l,j}\in V_{j+1}$
+Es gibt eine orthonormierte Familie von Funktionen $\psi_{l,j}\in V_{j+1}$,
 die auf $V_j$ orthogonal sind, und die genau das erfassen, was in $V_{j+1}$
 gegenüber $V_j$ dargestellt werden kann.
 Etwas formaler: die $\psi_{l,j}$ spannen einen Unterraum
@@ -334,7 +334,7 @@ $\psi(x)=\psi_{0,0}(x)$ bezeichnen wollen:
 \[
 \psi_{0,j}(x) = \frac1{2^{j/2}}\psi_{0,0}(2^jx).
 \]
-$\psi$ heisst das {\em Mutter-Wavelet}.
+$\psi$ heisst das {\em Mutterwavelet}.
 \item 
 Nur für die Nullfunktion verschwinden alle Abtastungen mit Funktionen
 $\psi_{l,j}$, oder etwas formeller:
@@ -347,7 +347,7 @@ $\psi_{l,j}$, oder etwas formeller:
 Man nennt diese Struktur eine Multiskalen-Analyse, sie wird im
 Kapitel~\ref{chapter:msa} definiert und analysiert.
 
-\subsection{Vater-Wavelet}
+\subsection{Vaterwavelet}
 Die Konstruktion der Funktionen $\psi$ zeigt aber noch eine weitere 
 Besonderheit, die später von Nutzen sein wird.
 Die $\psi$-Funktionen wurden als Differenzen von charakteristischen
@@ -374,8 +374,8 @@ aufbauen:
 \psi_{0,0}(x) = \varphi(2x) - \varphi(2x - 1).
 \label{haar:psiphi}
 \end{equation}
-Die Funktion $\varphi$ heisst auch das {\em Vater-Wavelet}.
-Das Vater-Wavelet $\varphi$ erfüllt eine ähnliche Relation
+Die Funktion $\varphi$ heisst auch das {\em Vaterwavelet}.
+Das Vaterwavelet $\varphi$ erfüllt eine ähnliche Relation
 wie \eqref{haar:psiphi}.
 Bei der Konstruktion haben wir diese Relation sogar in entscheidender
 Weise gebraucht, indem wir das Intervall in zwei Halbintervalle aufgeteilt
@@ -387,7 +387,7 @@ Diese Aufteilung bedeutet
 bis auf das Vorzeichen des zweiten Summanden dasselbe wie 
 \eqref{haar:psiphi}.
 
-Das Vater-Wavelet und seine ganzzahlig verschobenen Kopien bilden
+Das Vaterwavelet und seine ganzzahlig verschobenen Kopien bilden
 eine Basis des Vektorraumes $V_0$.
 Schreiben wir $\varphi_k(x)=\varphi(x-k)$, dann ist
 \[
@@ -419,8 +419,8 @@ in Form einer Kette \eqref{haar:kette} derart, dass die ``Zwischenräume''
 $W_j$ eine Orthonormalbasis haben, die aus verschobenen und gestreckten
 Kopien
 $\psi()$
-einer einzigen Funktion $\psi$, dem Mutter-Wavelet, besteht.
-Das Mutter-Wavelet ist eine Linearkombination von verschobenen
+einer einzigen Funktion $\psi$, dem Mutterwavelet, besteht.
+Das Mutterwavelet ist eine Linearkombination von verschobenen
 und skalierten Kopien des Vaterwavelets $\varphi(x)$, welches seinerseits
 eine Linearkombination von verschobenen und skalierten Kopien seiner
 selbst ist.
