@@ -5,7 +5,7 @@ Verlassen wir nun den Rahmen der Analysis und wenden uns zum Schluss noch der Nu
 Zur effizienten Berechnung haben wir ausgenutzt, dass die Multiplikation im Zeitbereich der Faltung im Frequenzbereich entspricht.
 Anschliessend haben wir die schnelle Fourier-Transformation zur Berechnung der Bilder verwendet.
 Die FFT berechnet jedoch eine Fourier-Reihe, welche im Kapitel~\ref{section:fourier-reihen} behandelt wurden.
-Für Fourier-Reihen wurde vorausgesetzt, dass die Signale $2\pi$-periodisch und im Interval $\left[0, 2\pi\right)$ quadratintegrierbar sind.
+Für Fourier-Reihen wurde vorausgesetzt, dass die Signale $2\pi$-periodisch und im Intervall $\left[0, 2\pi\right)$ quadratintegrierbar sind.
 
 Reale Signale sind aber nie periodisch.
 Sie haben immer irgendwo einen Anfang $t_0$ und ein Ende $t_1$.
@@ -14,7 +14,7 @@ Sei $\tilde{x}(t)$ ein quadratintegrierbares Zeitsignal mit Träger $\left[t_0, 
 \[
 	x(t) = \tilde{x}\biggl(2\pi\frac{t-t_0}{t_1-t_0}\biggr)
 \]
-eine affine Transformation auf das Interval $\left[0, 2\pi \right)$ und
+eine affine Transformation auf das Intervall $\left[0, 2\pi \right)$ und
 \[
 	\Peri x(t) = x( t \,\text{mod}\, 2\pi) \in L^2\left(\left[0, 2\pi \right)\right)
 \]
@@ -60,7 +60,7 @@ Selbst bei einem periodischen Signal tritt dadurch im Allgemeinen eine Unstetigk
 
 Anhand der Bilder in Abbildung~\ref{complex:padding} kann man sich leicht überzeugen, dass es keine 'richtige' Art gibt, das Signal zu extrapolieren.
 Auch durch Spiegeln des Signals an den Rändern entsteht eine Unstetigkeit, die Frequenz wird invertiert. Dafür tritt kein Phasen-Sprung auf.
-Falls die Randwerte wirklich wichtig sind, kann man versuchen, das Signal zu extrapolieren, etwa über eine Polynom-Aproximation.
+Falls die Randwerte wirklich wichtig sind, kann man versuchen, das Signal zu extrapolieren, etwa über eine Polynom-Approximation.
 Man sollte sich jedoch im Klaren sein, dass man gerade dabei ist, neue Signal-Werte zu erfinden.
 
 Die Beispielsignale sind so gewählt, dass sie eine ganzzahlige Anzahl Perioden durchlaufen. 

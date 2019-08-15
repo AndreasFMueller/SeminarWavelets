@@ -8,13 +8,13 @@
 \rhead{Stückweise konstante Funktionen}
 Eine Funktion $f\colon[a,b]\to\mathbb R$ heisst {\em stückweise konstant},
 \index{stückweise konstant}
-wenn es eine Unterteilung des Intervals $[a,b]$ durch Punkte
+wenn es eine Unterteilung des Intervalls $[a,b]$ durch Punkte
 \index{Unterteilung}%
 $x_k\in\mathbb R$ mit $0\le k\le n$ gibt, also
 \[
 a=x_0 < x_1 < \dots < x_k < \dots < x_{n-1} < x_n = b,
 \]
-so dass die Funktion $f$ in jedem Teilinterval $[x_k,x_{k+1})$
+so dass die Funktion $f$ in jedem Teilintervall $[x_k,x_{k+1})$
 konstant ist.
 Es gibt also eine Menge von Zahlen $f_k$ derart, dass
 \begin{equation}
@@ -49,11 +49,11 @@ Stelle $x_k$.
 \centering
 \includegraphics{chapters/3-haar/images/chi.pdf}
 \caption{Indikatorfunktion oder charakteristische Funktion $\chi_I(t)$
-des Intervals $I=[a,b]\subset \mathbb R$ (vgl. auch \eqref{formel:chi}).
+des Intervalls $I=[a,b]\subset \mathbb R$ (vgl. auch \eqref{formel:chi}).
 \label{haar:figure:chi}}
 \end{figure}
 Mit Hilfe der Indikatorfunktion oder charakteristischen Funktion
-eines Intervals lässt sich eine stückweise konstante Funktion etwas
+eines Intervalls lässt sich eine stückweise konstante Funktion etwas
 eleganter schreiben.
 Wir definieren  die
 {\em Indikatorfunktion}
@@ -61,7 +61,7 @@ Wir definieren  die
 oder
 {\em charakteristische Funktion}
 \index{charakteristische Funktion}
-des Intervals $I$ als
+des Intervalls $I$ als
 \begin{equation}
 \chi_{I}(x) = \begin{cases}
 1&\qquad x\in I\\
@@ -116,7 +116,7 @@ Als Mass dafür definieren wir das {\em Korn} einer Unterteilung:
 \index{Korn}%
 
 \begin{definition}
-Die grösste Länge eines Teilintervals einer Unterteilung $U$
+Die grösste Länge eines Teilintervalls einer Unterteilung $U$
 \[
 \delta(U)
 =
@@ -137,7 +137,7 @@ dass
 |f(x) - f(y)| < \varepsilon\qquad\forall x,y\in [a,b]\quad\text{mit}\quad
 |x-y|<\delta.
 \]
-Man wählt nun eine Unterteilung des Intervals mit Korn
+Man wählt nun eine Unterteilung des Intervalls mit Korn
 $\delta(\{x_0,\dots,x_n\}) < \delta$ und setzt
 \[
 g_k = f(x_k),\quad 0\le k < n.
@@ -157,7 +157,7 @@ für $x\in [x_k,x_{k+1})$.
 
 \subsection{Obere und untere Approximation}
 Sei $f$ ein stetige Funktion, und $\{x_0,\dots,x_n\}$ eine Unterteilung
-des Intervals $[a,b]$.
+des Intervalls $[a,b]$.
 Dann kann man sofort zwei weitere stückweise konstanten Approximationen 
 konstruieren, die {\em obere Approximation}
 \begin{align*}
@@ -190,7 +190,7 @@ Funktion $f(x)$ die Ungleichung
 für $x\in[a,b]$.
 
 \subsection{Vektorraum der stückweise stetigen Funktionen}
-Die stetigen Funktionen auf einem Interval bilden einen Vektorraum: eine
+Die stetigen Funktionen auf einem Intervall bilden einen Vektorraum: eine
 Summe von stetigen Funktionen ist wieder eine stetige Funktionen.
 Intuitiv ist auch klar, dass ein Summe stückweise konstanter Funktionen
 wieder stückweise konstant ist.
@@ -304,6 +304,6 @@ Weil er nicht vollständig ist, kann er kein Hilbertraum sein.
 Um ihn besser zu verstehen wäre es schön, wenn man eine Hilbert-Basis
 angeben könnte, also eine Folge von orthonormierten Funktionen, mit
 denen man jede Funktion approximieren kann.
-Die vielen möglichen Teilpunkte des Intervals sind dafür aber eher 
+Die vielen möglichen Teilpunkte des Intervalls sind dafür aber eher 
 hinderlich.
 

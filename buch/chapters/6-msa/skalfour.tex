@@ -23,13 +23,13 @@ $\varphi$ von Translaten von $f$ finden lässt, so dass die Translate
 von $\varphi$ orthonormiert sind.
 
 %
-% Interval-Trick: Aufteilung eines Fourier-Integrals in Teilintervalle
+% Intervall-Trick: Aufteilung eines Fourier-Integrals in Teilintervalle
 %                 für ganzzahlige Argumente
 %
-\subsection{Der Interval-Trick und der Periodisierungs-Operator}
+\subsection{Der Intervall-Trick und der Periodisierungs-Operator}
 Wir werden im Folgenden wiederholt einen Trick verwenden, mit dem
 Fourier-Integrale über $\mathbb R$ in gewöhnliche Integrale
-über ein endliches Interval umgeformt werden können.
+über ein endliches Intervall umgeformt werden können.
 Sei $f$ eine Funktion auf $\mathbb R$ und $b,\,k\in\mathbb Z$.
 Da $b,\,k$ ganze Zahlen sind, ist
 \[
@@ -51,7 +51,7 @@ Für das Fourier-Integral folgt dann
 \sum_{k\in\mathbb Z} \int_{0}^{2\pi} f(t+2\pi k) e^{-ibt}\,dt
 =
 \int_{0}^{2\pi} \biggl(\sum_{k\in\mathbb Z} f(t+2\pi k)\biggr) e^{-ibt}\,dt
-\label{msa:intervaltrick}
+\label{msa:intervalltrick}
 \end{align}
 Der Klammerausdruck ist eine $2\pi$-periodische Funktion auf $\mathbb R$.
 Wir werden diese Operation wiederholt benötigen und spendieren ihr daher
@@ -92,7 +92,7 @@ Wir rechnen dazu nach
 \end{align*}
 \end{proof}
 
-Da $b\in\mathbb Z$, berechnet das Integral~\eqref{msa:intervaltrick}
+Da $b\in\mathbb Z$, berechnet das Integral~\eqref{msa:intervalltrick}
 bis auf einen Faktor $2\pi$ die Fourier-Koeffizienten von $\mathcal{P}f$.
 Wir haben daher den folgenden Satz gefunden:
 
@@ -186,7 +186,7 @@ um dieses Skalarprodukt zu vereinfachen:
 |\hat{\varphi}(\omega)|^2 e^{i\omega b}
 \,d\omega.
 \\
-\intertext{Dies ist genau ein Integral der Art~\eqref{msa:intervaltrick}.
+\intertext{Dies ist genau ein Integral der Art~\eqref{msa:intervalltrick}.
 Wir können es daher durch Fourier-Koeffizienten der periodische 
 gemachten Funktion $\mathcal{P}|\hat{\varphi}|^2$ ausdrücken und
 erhalten

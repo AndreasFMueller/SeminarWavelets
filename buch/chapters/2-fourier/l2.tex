@@ -118,7 +118,7 @@ Norm.
 
 \subsection{Definition des Skalarproduktes}
 In diesem Abschnitt betrachten wir ausschliesslich komplexwertige Funktionen,
-die auf einem endlichen oder unendlichen Interval $I$ definiert sind.
+die auf einem endlichen oder unendlichen Intervall $I$ definiert sind.
 
 \begin{definition}
 \label{l2:definition:skalarprodukt}
@@ -207,7 +207,7 @@ f_0(t) = \begin{cases}
 \end{cases}
 \]
 ist dagegen unstetig.
-Die Funktionen $f_n$ und $f_0$ unterscheiden sich nur in einem Interval
+Die Funktionen $f_n$ und $f_0$ unterscheiden sich nur in einem Intervall
 der Länge $\frac1n$, der Unterschied ist $\le 1$.
 Damit können wir den Unterschied in der Norm berechnen:
 \[
@@ -262,7 +262,7 @@ Doch kann man leicht Folgen konstruieren, die im Sinne dieser Norm
 Cauchy-Folgen sind, aber die Grenzfunktion ist nicht mehr integrierbar.
 
 \begin{beispiel}
-Die Menge $[0,1]\cap \mathbb Q$ der rationalen Zahlen im Interval
+Die Menge $[0,1]\cap \mathbb Q$ der rationalen Zahlen im Intervall
 $[0,1]$ ist abzählbar, es gibt  also eine Folge $q_k$, die alle rationalen
 Zahlen durchläuft.
 Daraus kann man jetzt eine Funktionen-Folge $f_n$ wie folgt konstruieren:
@@ -298,7 +298,7 @@ Die intuitive Vorstellung des ``Volumens'' der Menge
 $[0,1]\cap\mathbb{Q}$ zeigt, dass das Problem tiefer liegt.
 Die Menge $[0,1]\cap\mathbb{Q}$ ist abzählbare Vereinigung von Mengen $\{q_n\}$,
 die natürlich alle Volumen $0$ haben.
-Trotzdem liegt die Menge $[0,1]\cap\mathbb{Q}$ dicht im Interval $[0,1]$,
+Trotzdem liegt die Menge $[0,1]\cap\mathbb{Q}$ dicht im Intervall $[0,1]$,
 die geometrische Intuition möchte ihr daher das Volumn $1$ geben.
 
 \subsubsection{Lebesgue-Integral}
@@ -399,13 +399,13 @@ Die Beziehung der Funktionenräume $\mathcal{L}^1(I)$ und $\mathcal{L}^2(I)$
 zueinander ist nicht ganz offensichtlich.
 Die folgenden Beispiele sollen zeigen, dass der Definitionsbereich
 dabei eine wichtige Rolle spielt.
-Wir beginnen damit zu zeigen, dass auf einem beschränkten Interval
+Wir beginnen damit zu zeigen, dass auf einem beschränkten Intervall
 die quadratintegrierbaren Funktionen eine echte Teilmenge der integrierbaren
 Funktionen bilden.
 
 \begin{lemma}
 \label{fourier:l1l2}
-Ist $I$ ein beschränktes Interval, dann ist $\mathcal{L}^2(I)$ eine
+Ist $I$ ein beschränktes Intervall, dann ist $\mathcal{L}^2(I)$ eine
 echte Teilmenge von $\mathcal{L}^1(I)$.
 Es gibt also eine integrierbare Funktion auf $I$, die nicht
 quadratintegrierbar ist.
@@ -415,7 +415,7 @@ quadratintegrierbar ist.
 \begin{figure}
 \centering
 \includegraphics{chapters/2-fourier/images/intfun.pdf}
-\caption{Funktionen der Form $f(x)=x^{-\alpha}$ auf dem Interval
+\caption{Funktionen der Form $f(x)=x^{-\alpha}$ auf dem Intervall
 $[0,\frac{10}{3}]$ sind nicht integrierbar für $\alpha > 1$ (grün).
 Für $\alpha <\frac12$ ist $f(x)$ quadratintegrierbar und auch integrierbar.
 Dazwischen, für $\frac12 <\alpha < 1$, ist $f(x)$ zwar integrierbar, aber
@@ -445,8 +445,8 @@ und die Cauchy-Schwarz-Ungleichung auf das Produkt anwenden können:
 &=
 \int_I |f(x)|^2\,dx \cdot \int_I 1\,dx
 \end{align*}
-Da das Interval $I$ beschränkt ist, ist das rechte Integral gerade die
-Länge des Intervals.
+Da das Intervall $I$ beschränkt ist, ist das rechte Integral gerade die
+Länge des Intervalls.
 Das erste Integral ist die Norm $\|f\|_2$, so dass wir ablesen können,
 dass $\|f\|_1$ beschränkt ist.
 Eine quadratintegrierbare Funktion ist also automatisch integrierbar,
@@ -509,7 +509,7 @@ dargestellt.
 \end{proof}
 
 Das nachfolgende Beispiel sollen zeigen, dass die Situation für eine
-unbeschränktes Interval viel komplizierter ist.
+unbeschränktes Intervall viel komplizierter ist.
 Insbesondere gibt es quadratintegrierbare Funktionen auf $\mathbb R$,
 die nicht integrierbar sind, und integrierbare Funktionen, die nicht
 quadratintegrierbar sind.
@@ -521,7 +521,7 @@ schnell divergiert haben.
 Das Verhalten für $x\to \frac{10}3$ war nicht relevant, weil dort keine
 Divergenz auftrat.
 
-Auf dem unbeschränkten Interval $I=[0,\infty)$ kann eine Funktion 
+Auf dem unbeschränkten Intervall $I=[0,\infty)$ kann eine Funktion 
 für $x\to\infty$ zwar gegen Null gehen, aber das Integral kann trotzdenm
 divergieren.
 Diese Eigenschaft können wir ausnützen, um zu zeigen, dass weder
@@ -657,7 +657,7 @@ Integrationstechniken anwendbar.
 %Cauchy-Folgen sind, aber die Grenzfunktion ist nicht mehr integrierbar.
 
 %\begin{beispiel}
-%Die Menge $[0,1]\cap \mathbb Q$ der rationalen Zahlen im Interval
+%Die Menge $[0,1]\cap \mathbb Q$ der rationalen Zahlen im Intervall
 %$[0,1]$ ist abzählbar, es gibt  also eine Folge $q_k$, die alle rationalen
 %Zahlen durchläuft.
 %Daraus kann man jetzt eine Funktionen-Folge $f_n$ wie folgt konstruieren:
@@ -748,7 +748,7 @@ Als Beispiel dafür, wie sich solche Aussagen auf die Räume $L^1$ und $L^2$
 %anwachsen, so dass das Quadrat nicht mehr integrierbar ist.
 %
 %\begin{beispiel}
-%Auf dem Interval $I=[0,1]$ ist die Funktion
+%Auf dem Intervall $I=[0,1]$ ist die Funktion
 %\[
 %f\colon I\to \mathbb R: t\mapsto \begin{cases} 0&\qquad t=0\\
 %t^{-\alpha}&\qquad t > 0
@@ -793,7 +793,7 @@ Als Beispiel dafür, wie sich solche Aussagen auf die Räume $L^1$ und $L^2$
 %Eine solche Funktion ist in $L^2(\mathbb R)$, aber nicht in $L^1(\mathbb R)$.
 %
 %\begin{beispiel}
-%Auf dem Interval $J=[1,\infty)$ ist die Funktion
+%Auf dem Intervall $J=[1,\infty)$ ist die Funktion
 %$f(t)=t^{-\alpha}$ gegeben.
 %Die Integrale von $f$ und $f^2$ sind
 %\begin{align*}
@@ -824,13 +824,13 @@ Als Beispiel dafür, wie sich solche Aussagen auf die Räume $L^1$ und $L^2$
 %\end{beispiel}
 %
 %Der Fall des letzten Beispiels kann vermieden werden, wenn man den
-%Definitionsbereich der Funktion auf ein kompaktes Interval beschränkt.
+%Definitionsbereich der Funktion auf ein kompaktes Intervall beschränkt.
 %Dann folgt, der folgende Satz.
 
 \begin{satz}
 \label{satz:l2inl1}
-Ist $I$ ein kompaktes Interval, dann ist $L^2(I)\subset L^1(I)$, oder:
-jede quadratintegrierbare Funktion auf einem kompakten Interval ist 
+Ist $I$ ein kompaktes Intervall, dann ist $L^2(I)\subset L^1(I)$, oder:
+jede quadratintegrierbare Funktion auf einem kompakten Intervall ist 
 integrierbar.
 \end{satz}
 
@@ -867,7 +867,7 @@ $f_+$ und $f_-$ zerlegen:
 \int_I |f(t)|^2\,dt + |I|
 \le \|f\|^2 + |I|.
 \end{align*}
-Da nach Voraussetzung $f^2$ integrierbar ist und das Interval $I$ kompakt ist
+Da nach Voraussetzung $f^2$ integrierbar ist und das Intervall $I$ kompakt ist
 und damit beschränkte Länge $|I|$ länge hat, ist das Integral von $|f|$
 ebenfalls beschränkt.
 \end{proof}

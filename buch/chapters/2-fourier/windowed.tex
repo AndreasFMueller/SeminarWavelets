@@ -53,26 +53,26 @@ Die {\em gefensterte Fouriertransformation} ermöglich, etwas Orts-Information
 in die Fourier-Koeffizienten zu rechnen.
 Zu diesem Zweck wird das Definitionsgebiet in kleinere Intervalle gleicher
 Grösser unterteilt.
-In jedem Teil-Interval kann das vorgegebene Signal in eine Fourier-Reihe
+In jedem Teil-Intervall kann das vorgegebene Signal in eine Fourier-Reihe
 entwickelt werden.
 Die so ermittelten Fourier-Koeffizienten können sich dann nur auf den Teil
-der Funktion im Teilinterval bezienen.
+der Funktion im Teilintervall bezienen.
 Eine Störung im Punkt $t_0$ wirkt sich nur auf die Fourier-Koeffizienten
-für das Interval aus, welches $t_0$ enthält.
+für das Intervall aus, welches $t_0$ enthält.
 
 Die Unterteilung in kleinere Intervalle erhöht aber auch die Frequenz
 der Analysefunktionen.
-Wird das Interval $[0,2\pi]$ in $n$ Intervalle unterteilt, dann wird in
-jedem Teilinterval mit den Funktionen $e^{inkt}$ für $k\in\mathbb Z$
+Wird das Intervall $[0,2\pi]$ in $n$ Intervalle unterteilt, dann wird in
+jedem Teilintervall mit den Funktionen $e^{inkt}$ für $k\in\mathbb Z$
 analysiert.
-Die Koeffizienten in den Teilintervalen repräsentieren also ein $n$-mal
-grössers Frequenz-Interval, wie dies in Abbildung~\ref{wft:ftplane}
+Die Koeffizienten in den Teilintervallen repräsentieren also ein $n$-mal
+grössers Frequenz-Intervall, wie dies in Abbildung~\ref{wft:ftplane}
 dargestellt ist.
 
 Die Unterteilung in Teilintervalle löst zwar das Problem der Lokalisierung,
 ist aber aus anderen Gründen nicht optimal.
-Die Berechnung der Fourier-Reihe für das Teilinterval $[2\pi k/n, 2\pi(k+1)/n]$
-läuft darauf hinaus, die Fourier-Reihe im Interval $[0,2\pi]$ der Funktion
+Die Berechnung der Fourier-Reihe für das Teilintervall $[2\pi k/n, 2\pi(k+1)/n]$
+läuft darauf hinaus, die Fourier-Reihe im Intervall $[0,2\pi]$ der Funktion
 $f(t) \chi_{[2\pi k/n, 2\pi(k+1)/n]}(t)$
 zu berechnen, wobei 
 \[
@@ -83,13 +83,13 @@ zu berechnen, wobei
 0&\qquad\text{sonst}
 \end{cases}
 \]
-die charakteristische Funktion des Intervals $[2\pi k/n, 2\pi(k+1)/n]$
+die charakteristische Funktion des Intervalls $[2\pi k/n, 2\pi(k+1)/n]$
 ist.
 Die Schwierigkeiten rühren daher, dass die charakteristische
 Funktion Sprünge aufweist.
 Bessere Resultate kann man daher erreichen, wenn man statt einer
-charakterisischen Funktion eines Intervals eine glatte Funktion
-verwendet, deren Träger das Interval enthält.
+charakterisischen Funktion eines Intervalls eine glatte Funktion
+verwendet, deren Träger das Intervall enthält.
 Die Wahl dieser sogenannten Fensterfunktion beeinflusst die
 Analyse-Koeffizienten, bei sorgfältiger Wahl können aber mindestens
 die Glattheits-Eigenschaften der analysierten Funktion und die zugehörigen
