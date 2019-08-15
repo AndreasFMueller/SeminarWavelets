@@ -25,17 +25,17 @@ mit zunehmen dunklerer Farbe.
 \includegraphics{chapters/7-algo/images/db2.pdf}
 };
 \end{tikzpicture}
-\caption{Vater-Wavelet $\varphi$ (blau) und Mutter-Wavelet $\psi$
-(rot) für die Daubechies-Wavelets \texttt{db1} und \texttt{db2}.
-Das Daubechies-Wavelet \texttt{db1} ist identisch mit dem Haar-Wavelet.
+\caption{Vaterwavelet $\varphi$ (blau) und Mutterwavelet $\psi$
+(rot) für die Daubechies-Wavelets \texttt{db2} und \texttt{db4}.
+Das Daubechies-Wavelet \texttt{db2} ist identisch mit dem Haar-Wavelet.
 \label{buch:algo:db1}}
 \end{figure}%
 \begin{figure}
 \includegraphics{chapters/7-algo/images/db3.pdf}\\
 \includegraphics{chapters/7-algo/images/db4.pdf}\\
 \includegraphics{chapters/7-algo/images/db5.pdf}
-\caption{Vater-Wavelet $\varphi$ (blau) und Mutter-Wavelet $\psi$
-(rot) für die Daubechies-Wavelets \texttt{db3} bis \texttt{db5}
+\caption{Vaterwavelet $\varphi$ (blau) und Mutterwavelet $\psi$
+(rot) für die Daubechies-Wavelets \texttt{db6} bis \texttt{db10}
 von oben nach unten.
 \label{buch:algo:db2}}
 \end{figure}%
@@ -44,7 +44,7 @@ die konkrete Darstellung der Funktionen $\varphi$ und $\psi$
 nicht notwendig.
 Die schnellen Algorithmen sind völlig ausreichend um die
 Koeffizienten $a_{j,k}$ und $b_{j,k}$ zu berechnen.
-Ebenso kann die Umkehrtransformation mit belieger Genauigkeit
+Ebenso kann die Umkehrtransformation mit beliebiger Genauigkeit
 jedes Signal wieder rekonstruieren, ohne dass dazu explizit 
 Linearkombinationen der Funktionen $\varphi$ und $\psi$ gebildet
 werden müssten.
@@ -54,7 +54,7 @@ von $\varphi$ und $\psi$ zu haben, zum Beispiel um die in der
 Wavelet-Transformation sichtbaren Features besser verstehen
 zu können.
 Dazu kann der schnelle Synthese-Algorithmus verwendet werden.
-Ist nämlich $f(t)=\psi(t)$ das Mutter-Wavelet, dann gilt
+Ist nämlich $f(t)=\psi(t)$ das Mutterwavelet, dann gilt
 \[
 \begin{aligned}
 a_{j,k}
@@ -73,8 +73,8 @@ $a_{j,k}$ für beliebige Werte von $j$ und $k$ bestimmen.
 Für genügend grosses $j$ sind die Koeffizienten $a_{j,k}$ im Wesentlichen
 die Funktionswerte $\psi(k2^{-j}) = a_{j,k}$.
 Auf analoge Weise können die Funktionswerte $\varphi(k2^{-j})$
-rekonstruiert werden ausgehend von $a_{0,k}=\delta_{0k}$ für alle $k$
-und $b_{j,k}=0$ für alle $j$ und $k$.
+ausgehend von $a_{0,k}=\delta_{0k}$ für alle $k$
+und $b_{j,k}=0$ für alle $j$ und $k$ rekonstruiert werden.
 In Abbildung~\ref{buch:algo:approx} sind die verschiedenen Approximationen
 für Werte von $j$ zwischen $1$ und $9$ dargestellt als Stufenfunktionen
 mit zunehmend dunklerer Farbe.
@@ -92,7 +92,7 @@ $\sqrt{2} g_k$ statt mit $h_k$ und $g_k$ durchführt.
 
 In den Abbildungen \ref{buch:algo:db1} und \ref{buch:algo:db2}
 ist das Resultat der Rücktransformation für die Daubechies-Wavelets
-\texttt{db1} bis \texttt{db5} dargestellt.
+\texttt{db2} bis \texttt{db10} dargestellt.
 Die Koeffizienten für die Skalierungsfunktionen dieser Wavelets werden
 im Kapitel~\ref{chapter:kompakt} berechnet.
 

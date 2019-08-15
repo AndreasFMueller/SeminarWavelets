@@ -3,13 +3,20 @@
 %
 % (c) 2019 prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Betrag\label{section:betrag}}
-\rhead{Betrag}
+\section{Betrag der erzeugenden Funktion\label{section:betrag}}
+\rhead{Betrag der erzeugenden Funktion}
+Die Koeffizienten der Skalierungsrelation sollen reell sein, damit
+der Transformationsalgorithmus vollständig in $\mathbb R$ gerechnet
+werden kann.
+
+\begin{forderung}
+\label{forderung:reell}
+Die Koeffizienten $h_k$ der Skalierungsrelation sind reell.
+\end{forderung}
+
 Um die Funktion $H(\omega)$ zu bestimmen untersuchen wir erst den
 Betrag $|H(\omega)|^2$.
-Hier verwenden wir jetzt, dass die Koeffizienten der Skalierungsrelation
-reell sein sollen.
-Dies hat zur Folge, dass
+Die Forderung~\ref{forderung:reell} hat zur Folge, dass
 \[
 \overline{H(\omega})
 =
@@ -24,7 +31,7 @@ Dies hat zur Folge, dass
 \frac1{\sqrt{2}}
 \sum_{k\in\mathbb Z} h_ke^{-ik(-\omega)}
 =
-H(-\omega)
+H(-\omega).
 \]
 Damit ist
 \[
@@ -39,8 +46,13 @@ H(\omega)H(-\omega).
 \]
 Dieser Ausdruck ändert sich nicht, wenn man $\omega$ durch $-\omega$
 ersetzt, die Funktion $M(\omega)$ ist daher eine gerade Funktion.
-Da sie ausserdem ein trigonometrisches Polynom ist, muss sie geschrieben
-werden können als ein Polynom in $\cos\omega$.
+Da sie ausserdem ein trigonometrisches Polynom ist, muss sie
+als ein Polynom in $\cos\omega$ geschrieben werden können.
+
+\begin{konsequenz}
+Die Funktion $M(\omega)=|H(\omega)|^2$ ist eine gerade Funktion
+und kann also Polynom in $\cos\omega$ geschrieben werden.
+\end{konsequenz}
 
 Die Faktorisierung \eqref{buch:kompakt:HB} von $H(\omega)$
 zeigt, dass $M(\omega)$ den Faktor
@@ -51,7 +63,7 @@ zeigt, dass $M(\omega)$ den Faktor
 \biggl( \frac{1+\cos\omega}2\biggr)^N
 =
 \biggl(
-\cos\frac{\omega}2
+\cos^2\frac{\omega}2
 \biggr)^N
 \]
 enthält.
@@ -60,7 +72,7 @@ Oder für $M(\omega)$
 M(\omega)
 = 
 \biggl(
-\cos\frac{\omega}2
+\cos^2\frac{\omega}2
 \biggr)^N
 B(\omega)B(-\omega)
 \label{buch:kompakt:MB}
@@ -75,15 +87,26 @@ welches als Funktion von $\omega$ gerade ist.
 Es muss also wieder als Polynom in $\cos\omega$
 in der Form $A(\omega)=\tilde{P}(\cos\omega)$
 geschrieben werden können.
-Aus der Halbwinkelformel für den Kosinus folgt
+Aus der Halbwinkelformel
 \[
 \cos^2\frac{\omega}2
 =
 \frac{1+\cos\omega}2,
+\qquad
+\text{für den Kosinus folgt}
+\qquad
+\cos\omega
+=
+2\cos^2\frac{\omega}2 - 1,
 \]
 so dass das Polynom $A(\omega)$ auch durch $\cos^2\frac{\omega}2$
 ausgedrückt werden kann.
-Wir verwenden im folgenden die Variable 
+
+\begin{konsequenz}
+Die Funktion $A(\omega)$ ist ein Polynom in $\cos^2\frac{\omega}2$.
+\end{konsequenz}
+
+Wir verwenden im Folgenden die Variable 
 \[
 y=\sin^2\frac{\omega}2
 \qquad\Rightarrow\qquad
@@ -102,6 +125,7 @@ Damit wird auch
 \]
 Die Funktion $A(\omega)$ als Polynom in $\cos\omega$ wird
 dann zu $\tilde{P}(1-2y) = P(y)$.
+
 Um $A(\omega)$ zu bestimmen ist also ein Polynom $P(y)$ zu finden.
 Für die Funktion $M(\omega)$ folgt jetzt
 \[
@@ -113,10 +137,20 @@ A(\omega)
 (1-y)^N P(y).
 \]
 
+\begin{konsequenz}
+Die Funktion $M(\omega)$ ist eine Polynom der Form
+$(1-y)^NP(y)$ mit $y=\sin^2\omega/2$.
+\end{konsequenz}
+
 Die Funktion $M(\omega)$ genügt auch der Relation
-\[
-M(\omega) + M(\omega+\pi)=1,
-\]
+\begin{equation}
+1
+=
+|H(\omega)|^2 + |H(\omega+\pi)|^2
+=
+M(\omega) + M(\omega+\pi),
+\label{kompakt:orthogonalitaetsbedingung}
+\end{equation}
 die wir bis jetzt noch nicht genutzt haben.
 In der Variablen $y$ ausgedrückt ist
 \[
@@ -124,19 +158,30 @@ In der Variablen $y$ ausgedrückt ist
 =
 \sin^2\frac{\omega}2
 =
-y
+y.
 \]
-Setzen wir \eqref{buch:kompakt:MB} ein, wird daraus die Relation
+Die Addition von $\pi$ im Argument $\omega$ entspricht also dem
+Übergang von $y$ zu $1-y$.
+Wenden wir dies auf die Orthogonalitätsbedingung
+\eqref{kompakt:orthogonalitaetsbedingung} an, entsteht die Relation
 \begin{equation}
 1
 =
 M(\omega) + M(\omega+\pi)
 =
 (1-y)^N P(y) + y^N P(1-y).
-\label{buch:kompakt:Prel}
 \end{equation}
 Um $A(\omega)$ zu finden ist also ein Polynom
 $P(y)$ zu finden, welches die Relation
 \eqref{buch:kompakt:Prel} erfüllt.
 
+\begin{konsequenz}
+Die Funktion $A(\omega)$ kann aus einem Polynom $P(y)$ konstruiert werden,
+welches die Funktionalgleichung
+\begin{equation}
+(1-y)^N P(y) + y^N P(1-y) = 1
+\label{buch:kompakt:Prel}
+\end{equation}
+erfüllt.
+\end{konsequenz}
 

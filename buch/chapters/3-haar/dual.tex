@@ -5,7 +5,7 @@
 %
 \section{Dualzahlen-Unterteilung%
 \label{section:dualzahlen}}
-\rhead{Dualzahlen}
+%\rhead{Dualzahlen}
 Wir beginnen mit der Unterteilung
 \[
 U_0
@@ -20,6 +20,8 @@ Länge des Abtastintervalls verwendet.
 Abtastung erfolgt also nur an ganzzahligen $x$-Werten und
 Translationen um ganze Zahlen sind uneingeschränkt möglich.
 
+% moved here
+\rhead{Dualzahlen}
 \begin{figure}
 \centering
 \includegraphics{chapters/3-haar/images/dual.pdf}
@@ -157,124 +159,3 @@ Mit den Vektorräumen $V_j$ ist es also möglich, ein Signal beliebig
 genau abzutasten, aber die naheliegende Basis führt nicht zu einer
 effizienten Charakterisierung des Signals.
 
-%Die Funktionen $\psi_{l,j}$ erfassen also genau die Details, die beim
-%Abtasten mit der feineren Unterteilung mit Korn $2^{-j-1}$ erkennbar
-%werden.
-%Aber warum bei $U_0$ beginnen?
-%Der Mittelwert zweier benachbarter Abtastwerte sagt bereits einiges
-%über die Werte aus, der Unterschied dieser Werte ist aber das, was
-%was erst in der Abtastung mit ganzzahligen Abtastpunkten erkennbar wird.
-%Wir könnten also auch mit $U_{-1}$ beginnen, der Unterteilung
-%\[
-%U_{-1} = \{\dots -4,-2,0,2,4,6,8,\cdots\},
-%\]
-%und der Menge $V_{-1}$ der stückweise konstanten Funktionen mit
-%Sprungestellen bei geraden Zahlen.
-%Doch warum da aufhören: Es gibt eine Zerlegung des Raums der stückweise
-%konstanten Funktionen mit Sprungstellen in $\mathbb D$ in Form einer
-%Kette
-%\begin{equation}
-%\{0\}
-%\subset
-%\dots
-%\subset
-%V_{-2}\subset V_{-1} \subset V_{0} \subset V_{2} \subset\dots\subset
-%V_j \subset V_{j+1}\subset\dots \subset V_{\infty}
-%\label{haar:kette}
-%\end{equation}
-%mit folgenden zum Teil noch nachzuweisenden Eigenschaften:
-%\begin{enumerate}
-%% XXX Problem approximation
-%\item
-%Jede stückweise konstante Funktion lässt sich beliebig genau
-%durch Funktionen aus $V_j$ approximieren, also
-%\[
-%\bigcup_{j\in\mathbb Z} V_j = V_\infty
-%\]
-%\item
-%Es gibt eine orthonormierte Familie von Funktionen $\psi_{l,j}\in V_{j+1}$
-%die auf $V_j$ orthogonal sind, und die genau das erfassen, was in $V_{j+1}$
-%gegenüber $V_j$ dargestellt werden kann.
-%Etwas formaler: die $\psi_{l,j}$ spannen einen Unterraum
-%$W_{j} = \langle \psi_{l,j}\,|\, l\in\mathbb Z\rangle \subset V_{j+1}$
-%auf derart, dass
-%\[
-%V_{j+1} = V_j \oplus W_j.
-%\]
-%\item 
-%Die Funktionen $\psi_{l,j}$ sind Translate einer einzigen Funktion.
-%Die Funktion $\psi_{l,j}$ ist die Verschiebung der Funktion $\psi_{0,j}$ 
-%um $l2^{-j}$.
-%\item
-%Die Funktionen $\psi_{0,j}$ sind Streckung der Funktion
-%$\psi_{0,0}$ um den Faktor $2^{-j}$, die wir auch mit
-%$\psi(x)=\psi_{0,0}(x)$ bezeichnen wollen:
-%\[
-%\psi_{0,j}(x) = \frac1{2^{j/2}}\psi_{0,0}(2^jx).
-%\]
-%$\psi$ heisst das {\em Mutter-Wavelet}.
-%\item 
-%Nur für die Nullfunktion verschwinden alle Abtastungen mit Funktionen
-%$\psi_{l,j}$, oder etwas formeller:
-%\[
-%\bigcap_{j\in\mathbb Z} = \{0\}.
-%\]
-%\end{enumerate}
-%
-%Die Konstruktion der Funktionen $\psi$ zeigt aber noch eine weitere 
-%Besonderheit, die später von Nutzen sein wird.
-%Die $\psi$-Funktionen wurden als Differenzen von charakteristischen
-%Funktionen von Intervallen aufeinanderfolgenden Endpunkten in $U_{j+1}$
-%aufgebaut.
-%Alle diese charakteristischen Funktionen sind verschobene und geeignet
-%gestreckte Versionen der charakteristischen Funktion des Grundintervalls
-%$[0,1)$.
-%Setzen wir
-%\[
-%\varphi(x) = \chi_{[0,1)} (x),
-%\]
-%dann ist
-%\[
-%\chi_{[l2^{-j},(l+1)2^{-j})}(x)
-%=
-%\varphi((x-l2^{-j})2^j).
-%\]
-%% XXX Begründung
-%Und auch die Funktion $\psi_{0,0}$, aus der sich alle $\psi_{l,j}$ durch
-%Streckung und Verschiebung gewinnen lassen, lässt sich aus $\varphi$
-%aufbauen:
-%\begin{equation}
-%\psi_{0,0}(x) = \varphi(2x) - \varphi(2x - 1).
-%\label{haar:psiphi}
-%\end{equation}
-%Die Funktion $\varphi$ heisst auch das {\em Vater-Wavelet}.
-%Das Vater-Wavelet $\varphi$ erfüllt eine ähnliche Relation
-%wie \eqref{haar:psiphi}.
-%Bei der Konstruktion haben wir diese Relation sogar in entscheidender
-%Weise gebraucht, indem wir das Intervall in zwei Halbintervalle aufgeteilt
-%haben.
-%Diese Aufteilung bedeutet
-%\[
-%\varphi(x) = \varphi(2x) + \varphi(2x-1),
-%\]
-%bis auf das Vorzeichen des zweiten Summanden dasselbe wie 
-%\eqref{haar:psiphi}.
-%
-%Aus diesem Beispiel können wir einen Plan für die Konstruktion allgemeinerer
-%Wavelet-Basen ableiten.
-%Wir hätten gerne eine Aufteilung des interessiernden Funktionenraumes
-%in Form einer Kette \eqref{haar:kette} derart, dass die ``Zwischenräume''
-%$W_j$ eine Orthonormalbasis haben, die aus verschobenen und gestreckten
-%Kopien
-%$\psi()$
-%einer einzigen Funktion $\psi$, dem Mutter-Wavelet, besteht.
-%Das Mutter-Wavelet ist eine Linearkombination von verschobenen
-%und skalierten Kopien des Vaterwavelets $\varphi(x)$, welches seinerseits
-%eine Linearkombination von verschobenen und skalierten Kopien seiner
-%selbst ist.
-%Die Koeffizienten der Linearkombinationen für $\psi$ und $\varphi$ sind
-%bis auf die Vorzeichen identisch.
-%
-%
-%
-%

@@ -5,7 +5,7 @@
 %
 \section{Hilbertraum
 \label{section:hilbertraum}}
-\rhead{Hilbertraum}
+%\rhead{Hilbertraum}
 Die bisher entwickelte Theorie ist aus zwei Gründen nicht ausreichend für das,
 was wir vorhaben.
 
@@ -29,6 +29,9 @@ dass $0 \le x^2$ ist für $x\in\mathbb R$. Für $x\in\mathbb C$ ist dies
 nicht mehr wahr.
 Der bisher formulierte Begriff des Skalarproduktes funktioniert daher
 nicht für komplexe Signale.
+
+%moved here
+\rhead{Hilbertraum}
 
 Damit die endlichdimensionale Theorie vollständig übertragen werden kann,
 müssen folgende Eigenschaften gerettet werden:
@@ -372,7 +375,7 @@ Cauchy-Folge auch tatsächlich einen Grenzwert hat.
 \begin{beispiel}
 Wir betrachten den Vektorraum
 \[
-c_0 = \{ X=(x_0, x_1, \dots ,x_k,0,\dots)\,| x_i \in \mathbb C\}
+c_0 = \{ X=(x_0, x_1, \dots ,x_k,0,\dots)\,|\, x_i \in \mathbb C\}
 \]
 von Folgen, die nur endlich viele Terme haben, die von $0$ verschieden sind.
 Wir können diesem Vektorraum ein komplexes Skalarprodukt verpassen, indem wir
@@ -469,7 +472,7 @@ Sei $l^2$ der komplexe Vektorraum der quadratsummierbaren komplexen
 Zahlfolgen $(x_k)$, d.~h.
 \index{$l^2$, Hilbertraum der quadratintegrierbaren Folgen}%
 \[
-l^2 = \left\{ (x_k)\,\left| \sum_{k=1}^\infty |x_k|^2 < \infty \right.\right\}
+l^2 = \biggl\{ (x_k)\,\bigg| \sum_{k=1}^\infty |x_k|^2 < \infty \biggr\}
 \]
 mit dem Skalarprodukt
 \[
@@ -1154,6 +1157,7 @@ zu $y-v=u$ sein.
 \subsubsection{Darstellungssatz von Riesz
 \label{subsubsection:riesz}}
 \index{Satz von Riesz}%
+\index{Riesz!Darstellungssatz von}%
 \index{Darstellungssatz von Riesz}%
 \index{Riesz, Friedrich}%
 Zu einem gegebenen Vektor $v\in H$ eines Hilbertraums ist die Abbildung

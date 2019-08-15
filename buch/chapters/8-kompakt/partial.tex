@@ -4,40 +4,52 @@
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 
-\section{Partialbruchzerlegung\label{section:partialbruch}}
-\rhead{Partialbruchzerlegung}
+\section{Lösung der Funktionalgleichung für $P(y)$
+\label{section:partialbruch}}
+%\rhead{Lösung der Funktionalgleichung für $P(y)$}
 Es muss ein Polynom $P(y)$ gefunden werden mit der Eigenschaft, dass
 \begin{equation}
 y^N P(1-y) + (1-y)^N P(y) = 1.
 \label{buch:kompakt:bedingung}
 \end{equation}
-Division durch $y^N(1-y)^N$ macht daraus
+Wir zeigen zunächst, wie sich die Funktionalgleichung
+\eqref{buch:kompakt:bedingung} mit Hilfe der Partialbruchzerlegung lösen
+lässt mit einem Polynom $P_N(y)$ vom Grad $N-1$.
+In Abschnitt~\ref{subsection:weitere loesungen} werden wir dann
+zeigen, dass weiter Lösungen $P(y)$ möglich sind, aber höheren Grad haben.
+
+% moved here
+\rhead{Lösung der Funktionalgleichung für $P(y)$}
+
+\subsection{Partialbruchzerlegung und die Lösung $P_N(y)$}
+\index{Partialbruchzerlegung}%
+Division der Funktionalgleichung \eqref{buch:kompakt:bedingung} für $P(y)$
+durch $y^N(1-y)^N$ macht daraus
 \[
-Q(y)
-=
-\frac{1}{y^N(1-y)^N}
-=
 \frac{P(1-y)}{(1-y)^N}
 +
 \frac{P(y)}{y^N}
+=
+\frac{1}{y^N(1-y)^N}
+=:
+Q(y).
 \]
-Die beiden Terme auf der rechten Seite sind rationale Funktionen, die im
+Die beiden Terme auf der linken Seite sind rationale Funktionen, die im
 Nenner ausschliesslich Potenzen von $1-y$ im ersten und $y$ im zweiten
 Term haben.
-Dies sind genau die Nenner, die man in der Partialbruchzerlegung der linken
+Dies sind genau die Nenner, die man in der Partialbruchzerlegung der rechten
 Seite findet.
 
-Wir berechnen daher die Partialbruchzerlegung
+Wir berechnen daher die Partialbruchzerlegung von $Q(y)$ mit dem Ansatz
 \begin{equation}
 \frac{1}{y^N(1-y)^N}
 =
 \sum_{k=1}^N\frac{C_k}{y^k}
 +
-\sum_{k=1}^N\frac{C'_k}{(1-y)^k}
+\sum_{k=1}^N\frac{C'_k}{(1-y)^k}.
 \label{buch:kompakt:pbruch}
 \end{equation}
-von $Q(y)$.
-Der Ausdruck $Q(y)$ ist symmetrisch bezüglich bezüglich der Abbildung
+Der Ausdruck $Q(y)$ ist symmetrisch bezüglich der Vertauschung
 $y\leftrightarrow 1-y$.
 Da die Koeffizienten der Partialbruchzerlegung eindeutig bestimmt sind,
 müssen die Koeffizienten der beiden Summen in \eqref{buch:kompakt:pbruch}
@@ -65,7 +77,8 @@ P_N(1-y).
 Das Polynom $P_N(y)$, gebildet mit den Koeffizienten der Partialbruchzerlegung
 von $Q(y)$ löst also das eingangs gestellte Problem.
 
-\subsection{Die Fälle $N=2$ und $N=3$}
+\subsection{Der Fall $N=2$
+\label{subsection:falln=2}}
 Wir berechnen die Partialbruchzerlegung für kleine Werte von $N$.
 Für $N=2$ ist
 \begin{align*}
@@ -129,6 +142,8 @@ P_2(y) = C_1y + C_2
 2y+1.
 \]
 
+\subsection{Der Fall $N=3$
+\label{subsection:falln=3}}
 Die analoge Rechnung für $N=3$ liefert die Bedingungen
 \[
 \begin{aligned}
@@ -151,9 +166,13 @@ ab.
 Auf die gleiche Weise findet man auch
 \begin{align*}
 P_4(y) &=
-1 + 4y + 10y^2 + 20y^3
+1 + 4y + 10y^2 + 20y^3.
 \end{align*}
-Daraus kann man die Vermutung ablesen, dass
+
+\subsection{Der allgemeine Fall}
+Aus den Spezialfällen $N=2$ in Abschnitt~\ref{subsection:falln=2}
+und $N=3$ in Abschnitt~\ref{subsection:falln=3}
+kann man die Vermutung ablesen, dass
 \begin{equation}
 P_N(y)
 =
@@ -164,31 +183,33 @@ y^k
 \end{equation}
 sein könnte.
 
-\subsection{Der allgemeine Fall}
-Das Polynom $P_N(y)$ ist die einzige Lösung vom Grad $N-1$ der Gleichung
+In diesem Abschnitt wollen wir zeigen, dass $P_N(y)$ die einzige Lösung vom
+Grad $N-1$ der Gleichung
 $
-(1-y)^NP(y)+y^NP(1-y)=1.
+(1-y)^NP(y)+y^NP(1-y)=1
 $
+ist.
 Die Bedingung ist gleichbedeutend mit
 \begin{equation}
 P(y) = (1-y)^{-N} (1-y^NP(y)).
 \label{buch:kompakt:produkt}
 \end{equation}
-Das Ziel dieses Abschnitts ist, $P_N(y)$ explizit zu bestimmen.
 
 Um mehr über $P_N(y)$ herauszufinden, können wir beide Seiten von
 \eqref{buch:kompakt:produkt} in Taylor-Reihen um den Punkt $y=0$
 entwickeln.
 Da wir nur ein Polynom vom Grad $N-1$ suchen, können wir die Taylor-Reihen
 nach $y^{N-1}$ abbrechen.
-Der Ausdruck $y^Np(y)$ auf der rechten Seite von \eqref{buch:kompakt:produkt}
+Der Ausdruck $y^NP(y)$ auf der rechten Seite von \eqref{buch:kompakt:produkt}
 enthält nur Terme vom Grad mindestens $N$ in $y$,
-für die Terme vom Grad $<N$ spielt er daher keine Rolle.
+für die Terme vom Grad $<N$ spielt er daher keine Rolle, wir lassen ihn weg.
 Eine Lösung vom Grad $N-1$ erhält man daher, indem man die Reihe
-für $(1-y)^{-N}$ nach dem Terme vom Grade $N-1$ abbricht.
+für $(1-y)^{-N}$ nach dem Term vom Grade $N-1$ abbricht.
 
-Auf der rechten Seite von \eqref{buch:kompakt:produkt}
+Zur Berechnung der rechten Seite von \eqref{buch:kompakt:produkt}
 kann man die Newtonsche Potenzreihe
+\index{Newtonsche Reihe}%
+\index{Reihe, newtonsche}%
 \begin{equation*}
 (1-y)^{\alpha} = \sum_{k=0}^{\infty} \binom{\alpha}{k} (-y)^k
 \end{equation*}
@@ -205,10 +226,10 @@ Im vorliegenden Fall ist $\alpha=-N$ und damit sind die Koeffizienten
 (-1)^k \binom{N+k-1}{k}.
 \end{align*}
 Daraus können wir das Polynom $P_N(y)$ ablesen.
-Wegen $(-y)^k(-1)^k=y^k$ folgt das folgende Lemma,
+Wegen $(-y)^k(-1)^k=y^k$ folgt das folgende Resultat,
 welches auch die Vermutung \eqref{buch:kompakt:vermutung} bestätigt.
 
-\begin{lemma}
+\begin{konsequenz}
 \label{buch:kompakt:lemma-partial}
 Das Polynom
 \begin{equation}
@@ -219,9 +240,10 @@ ist das einzige Polynom vom Grad $N$, welches die Gleichung
 (1-y)^NP_N(y) + y^NP_N(1-y)=1
 \]
 erfüllt.
-\end{lemma}
+\end{konsequenz}
 
-\subsection{Weitere Lösungen von höherem Grad}
+\subsection{Weitere Lösungen von höherem Grad
+\label{subsection:weitere loesungen}}
 Das Polynom $P_N(y)$ ist nicht die einzige Lösung der Gleichung
 \eqref{buch:kompakt:bedingung}.
 Weitere Lösungen $P(y)$ haben aber notwendigerweise Grad mindestens $N$.
@@ -233,7 +255,7 @@ Die Differenz $D(y) = P(y)-P_N(y)$ erfüllt die Bedingung
 \]
 Die rechte Seite hat eine $N$-fache Nullstelle bei $y=0$, also muss
 $D(y)$ ebenfalls eine $N$-fache Nullstelle haben. 
-Der term niedrigsten Grades in $D(y)$ hat daher mindestens den Grad $N$.
+Der Term niedrigsten Grades in $D(y)$ hat daher mindestens den Grad $N$.
 Wir schreiben daher $D(y) = y^NR(y)$.
 
 Damit die Bedingung \eqref{buch:kompakt:bedingung} erfüllt ist, muss
@@ -256,7 +278,7 @@ erfüllt sein.
 Es genügt daher, dass $R(y)$ ein Polynom ist, welches bezüglich $y=\frac12$
 antisymmetrisch ist.
 
-\begin{lemma}
+\begin{konsequenz}
 Eine beliebige Lösung $P(y)$ der Gleichung 
 \[
 (1-y)^N P(y) + y^N P(1-y)=1
@@ -267,7 +289,9 @@ P(y) = P_N(y) + y^N R(y),
 \]
 wobei $R(y)$ ein bezüglich $y=\frac12$ antisymmetrisches Polynom ist,
 also $R(1-y)=-R(y)$.
-\end{lemma}
+$P_N(y)$ ist das in Konsequenz~\label{buch:kompakt:lemma-partial}
+definierte Polynom.
+\end{konsequenz}
 
 
 

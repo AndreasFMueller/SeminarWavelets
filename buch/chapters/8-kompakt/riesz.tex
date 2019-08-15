@@ -8,7 +8,9 @@
 % Lemma von Riesz
 %
 \section{Das Lemma von Riesz\label{section:riesz}}
-\rhead{Das Lemma von Riesz}
+%\rhead{Das Lemma von Riesz}
+\index{Riesz!Lemma von}%
+\index{Lemma von Riesz}%
 Mit Hilfe der Partialbruchzerlegung war es im
 Abschnitt~\ref{section:partialbruch}
 möglich, die Funktion $M(\omega)$ als Polynom in $\cos\omega$ zu finden,
@@ -19,9 +21,14 @@ M(\omega) + M(\omega + \pi) = 1
 erfüllt.
 Gesucht wird aber eine Funktion $H(\omega)$ mit
 $M(\omega)=H(\omega)H(-\omega)$.
+Bereits gefunden wurde ein $A(\omega)$ mit
+$M(\omega)=(\cos^2\omega/2)^N A(\omega)$, gesucht wird jetzt noch 
+eine Faktorisierung on $A(\omega)$ in $A(\omega)=B(\omega)B(-\omega)$.
 Diese Faktorisierung wird ermöglicht dank des in diesem Abschnitt
 formulierten und beschriebenen Lemmas von Riesz.
-Das Lemma von Riesz ist die folgende etwas überraschende Aussage:
+Das Lemma von Riesz ist die folgende, etwas überraschende Aussage:
+
+\rhead{Das Lemma von Riesz}
 
 \begin{lemma}[Riesz]
 \label{lemma:riesz}
@@ -44,8 +51,15 @@ B(\omega)
 mit $B(0)=1$ und $A(\omega)=B(\omega)B(-\omega)$.
 \end{lemma}
 
-Im Laufe des nachfolgenden Beweises werden wir wiederholt die folgende
-Identität verwenden:
+Der folgende Beweis verwendet die algebraischen Eigenschaften der
+Nullstellen des trigonometrischen Polynoms $A(\omega)$.
+Es ist daher immer wieder nötig, zwischen der Schreibweise mit
+$\cos\omega$ und der komplexen Darstellung
+\[
+\cos\omega = \frac{e^{i\omega}+e^{-i\omega}}{2}
+\]
+hin- und her zu wechseln.
+Dazu ist die rein algebraische Identität
 \begin{align}
 \frac{z+z^{-1}}2-\frac{s+s^{-1}}2
 &=
@@ -60,8 +74,26 @@ Identität verwenden:
 \frac1{2s}(z-s)(z^{-1}-s)
 \label{buch:kompakt:cosh}
 \end{align}
+nützlich, die im Folgenden wiederholt verwendet wird.
+Man beachte, dass 
+\[
+\frac{s+s^{-1}}2
+\ge 1\quad\text{für $s>0$}
+\qquad\text{und}\qquad
+\frac{s+s^{-1}}2
+\le -1\quad\text{für $s<0$}
+\]
+gilt.
 
-\begin{proof}[Beweis]
+\begin{figure}
+\centering
+\includegraphics{chapters/8-kompakt/images/nullstellen.pdf}
+\caption{Lokalisierung der Nullstellen von $A(\omega)$ in der komplexen
+Ebene.
+\label{kompakt:figure:nullstellen}}
+\end{figure}
+
+\begin{proof}[Beweis des Lemmas von Riesz]
 Die Funktion $A(\omega)$ kann geschrieben werden als
 $A(\omega) = p(\cos\omega)$, wobei $p(x)$ ein Polynom vom
 Grad $n$ ist.
@@ -91,13 +123,20 @@ für die einzelnen Faktoren von $p(x)$ aufzubauen.
 Ein einzelner Faktor $A_j(\omega=)=\cos\omega - c_j$ erfüllt die Bedingungen an
 $A$ im Lemma im Allgemeinen nicht.
 Ist zum Beispiel $c_j$ reell zwischen $-1$ und $1$, dann hat
-$\cos\omega-c_j$ eine Nullstelle hat daher auch negative Werte.
+$\cos\omega-c_j$ eine Nullstelle und hat daher auch negative Werte.
 Wenn $c_j$ komplex ist, dann ist $\cos\omega-c_j$ keine rellwertige
 Funktion.
-Wir unterscheiden daher die folgenden drei Fälle:
+Es ist also notwendig, die Faktoren geeignet zu gruppieren,
+was je nach Ort der Nullstelle in der komplexen Ebene auf andere
+Weise zu geschehen hat (siehe auch Abbildung~\ref{kompakt:figure:nullstellen}).
+
+Wir unterscheiden daher die folgenden drei Fälle, die in
+Abbildung~\ref{kompakt:figure:nullstellen} in unterschiedlichen Farben
+dargestellt sind:
 \begin{enumerate}
 \item
-Fall $|c_j|\ge 1$ und $c_j\in\mathbb R$:
+Fall $|c_j|\ge 1$ und $c_j\in\mathbb R$ ({\color{blue}Blau} in
+Abbildung~\ref{kompakt:figure:nullstellen}):
 In diesem Fall kann $c_j$ geschrieben werden als
 \[
 c_j = \frac{s+s^{-1}}2
@@ -116,10 +155,10 @@ A_j(\omega)
 \]
 mit Hilfe von \eqref{buch:kompakt:cosh}.
 Falls $c_j < 0$ ist auch $s<0$ und wir können dem Produkt $B(\omega)$
-den Faktor $B_j(\omega)=(z-s)/\sqrt{2s}$ hinzufügen, für den gilt
+den Faktor $B_j(\omega)=(z-s)/\sqrt{-2s}$ hinzufügen, für den gilt
 $B_j(\omega)B_j(-\omega)=A_j(\omega)$.
 Falls $c_j > 0$ ist auch $s>0$ und wir können dem Produkt $B(\omega)$
-den Faktor $B_j(\omega) =(z-s)/\sqrt{-2s}$ hinzufügen, für den
+den Faktor $B_j(\omega) =(z-s)/\sqrt{2s}$ hinzufügen, für den
 gilt $B_j(\omega)B_j(-\omega)=-A_j(\omega)$.
 Das Vorzeichen im zweiten Fall stört nicht, weil wegen $A(\omega)\ge 0$
 noch ein weiterer Faktor $A_{j'}(\omega)$ vorhanden sein muss, der ebenfalls
@@ -127,7 +166,8 @@ $A_{j'}(\omega)\le 0$ ist für alle $\omega$ und der daher ebenfalls
 mit dem ``falschen'' Vorzeichen in das Produkt eingeht, wodurch das
 Vorzeichen wieder korrigiert wird.
 \item
-Fall $|c_j| < 1$ und $c_j\in\mathbb R$:
+Fall $|c_j| < 1$ und $c_j\in\mathbb R$ ({\color{red}Rot} in
+Abbildung~\ref{kompakt:figure:nullstellen}):
 In diesem Fall hat $A_j(\omega)$ und damit $A(\omega)$ eine Nullstelle
 für jedes $\omega$ mit $\cos\omega=c_j$.
 Wegen $A(\omega)\ge 0$ müssen alle solchen Nullstellen in gerader
@@ -181,14 +221,15 @@ A_j(\omega)^2
 (z^2-2z\cos\alpha +1)
 \cdot
 \frac{1}{2}
-(z^{-2}-2z^{-1}\cos\alpha +1)
+(z^{-2}-2z^{-1}\cos\alpha +1).
 \end{align*}
 Wir fügen daher der Funktion $B(\omega)$ den Faktor
 $B_j(\omega)=\frac12(z^2-2z\cos\alpha +1)$ hinzu, für
 den 
 $B_j(\omega)B_j(-\omega)=A_j(\omega)^2$ gilt.
 \item
-Fall $c_j\in\mathbb C\setminus\mathbb R$:
+Fall $c_j\in\mathbb C\setminus\mathbb R$ ({\color{darkgreen}Grün} in
+Abbildung~\ref{kompakt:figure:nullstellen}):
 In diesem Fall gibt es einen zweiten, komplex konjugierten Faktor mit
 $c_{j'}=\bar{c}_j$.
 Wir möchten $c_j$ wieder als
@@ -257,7 +298,9 @@ In allen drei Fällen haben wir für die behandelten Faktoren $A_j(\omega)$
 und der eventuell zugehörigen Faktoren $A_{j'}(\omega)$ eine Funktion
 $B_j(\omega)$ gefunden, so dass das Produkt all dieser Faktoren
 \[
-B(\omega) = \prod_j B_j(\omega)
+B(\omega)
+=
+\prod_j B_j(\omega)
 \]
 genau die im Lemma versprochenen Eigenschaften hat.
 \end{proof}
@@ -269,21 +312,26 @@ dem das Polynom $B(\omega)$ konstruiert werden kann.
 Bestimme die Nullstellen von $A(\omega) = P((1-\cos \omega)/2)$ 
 als Polynom in $\omega$ und schreibe $A(\omega)$ als Produkt
 \[
-A(\omega) = \prod_j (\cos\omega - c_j)
+A(\omega)
+=
+\prod_j A_j(\omega)
+=
+\prod_j (\cos\omega - c_j)
 \]
 \item Für jede Nullstelle $c_j$ mit $|c_j|>1$ füge einen Faktor 
 \[
 B_j(z)=\frac{1}{\sqrt{-2s}}(z-s),\qquad s = \operatorname{sign}c_j\cdot \operatorname{arcosh}|c_j|
 \]
-zu $B(z)$ hinzu.
+zu $B(z)$ hinzu (Fall {\color{blue}blau}).
 \item
-Jede Nullstelle $c_j \in\mathbb R$ mit $|c_j|<1$ kommt eine Gerade Anzahl mal
-vor, füge für jedes Paar einen Faktor
+Jede Nullstelle $c_j \in\mathbb R$ mit $|c_j|<1$ kommt eine gerade Anzahl mal
+vor.
+Füge für jedes Paar von Nullstellen einen Faktor
 \[
 B_j(z) = \frac12(z^2 -2 z\cos \alpha +1),
 \qquad\text{mit $c_j=\cos\alpha$}
 \]
-hinzu.
+hinzu (Fall {\color{red}rot}).
 \item
 Für jede Nullstelle $c_j\in \mathbb C\setminus\mathbb R$ gibt es
 eine konjugiert komplexe Nullstelle $c_{j'}=\bar{c}_j$.
@@ -293,7 +341,7 @@ B_j(z) = \frac{1}{2|s|}(z^2 -2z\operatorname{Re}s-|s|^2),
 \qquad
 \text{wobei $s$ eine Lösung von $s^2 -2c_js+1=0$ ist,}
 \]
-hinzu.
+hinzu (Fall {\color{darkgreen}grün}).
 \end{enumerate}
 
 \begin{beispiel}
@@ -307,9 +355,12 @@ A(\omega)
 =
 2-\frac12(e^{i\omega}+e^{-i\omega})
 \]
-an.
-Das Polynom $-(\cos\omega -2)$ hat nur einen einzigen Faktor mit $c_0=2$.
-Der Faktor $B_j(z)$ muss von der Form $B_j(z)=b_0+b_1z$ sein.
+an, welches wir für den Fall $N=2$ im nächsten Abschnitt brauchen werden.
+
+Das Polynom $-(\cos\omega -2)$ hat nur einen einzigen Faktor mit $c_0=2$,
+dies entspricht dem Fall {\color{blue}blau} in
+Abbildung~\ref{kompakt:figure:nullstellen}.
+Der Faktor $B_j(z)$ muss daher von der Form $B_j(z)=b_0+b_1z$ sein.
 Setze man dies für $B_j$ ein, erhält man
 \[
 A(\omega)

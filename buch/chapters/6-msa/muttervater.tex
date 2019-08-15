@@ -1,0 +1,86 @@
+%
+% muttervater.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Mutterwavelet $\psi$ aus dem Vaterwavelet $\varphi$
+\label{section:mutter-aus-vater}}
+Lemma~\ref{lemma:msa:psivorschlag} stellt einen Zusammenhang zwischen
+den Fouriertransformation von $\psi$ und $\varphi$ und der Skalierungsrelation
+von $\varphi$ her.
+Daraus können wir auch eine Relation gewinnen, die $\psi$ als
+Linearkombination der $\varphi$ festlegt.
+Dazu erinnern wir daran, dass per Definition
+\[
+H(\omega) = \sum_{k\in\mathbb Z} h_k e^{-ik\omega} 
+\quad\Rightarrow\quad
+\bar{H}(\omega)
+=
+\frac{1}{\sqrt{2}}
+\sum_{k\in\mathbb Z} \bar{h}_k e^{ik\omega} 
+\]
+ist.
+Setzen wir dies in die Relation~\eqref{msa:psivorschlag} ein, erhalten wir
+\begin{align*}
+\hat{\psi}(\omega)
+&=
+e^{i\omega/2}
+\bar{H}\biggl(\frac{\omega}2+\pi\biggr)
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+=
+e^{i\omega/2}
+\frac{1}{\sqrt{2}}
+\sum_{k\in\mathbb Z} \bar{h}_k e^{ik\omega/2 + ik\pi} 
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+=
+\frac{1}{\sqrt{2}}
+\sum_{k\in\mathbb Z} \bar{h}_k e^{i(k+1)\omega/2} (-1)^k
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\\
+&=
+\frac{1}{\sqrt{2}}
+\sum_{k\in\mathbb Z}
+(-1)^{l+1}
+\bar{h}_{-l-1} e^{-il\omega/2}
+\hat{\varphi}\biggl(\frac{\omega}2\biggr)
+\\
+\intertext{In dieser Form kann die Fourier-Transformation umgekehrt werden,
+da die letzten zwei Faktoren Skalierungen und Translation von $\varphi$
+beschreiben.
+Es ergibt sich}
+\psi(t)
+&=
+\sqrt{2}\sum_{l\in\mathbb Z} (-1)^{l+1}\bar{h}_{-l-1} \varphi(2t-k).
+\end{align*}
+
+\begin{lemma}
+\label{lemma:msa:psirelation}
+Das Mutterwavelet definiert durch die Fourier-Transformierte
+\eqref{msa:psivorschlag}
+ist die Linearkombination
+\begin{equation}
+\psi(t)
+=
+\sqrt{2}\sum_{l\in\mathbb Z} (-1)^{l+1}\bar{h}_{-l-1} \varphi(2t-k)
+\end{equation}
+von Translaten des Vaterwavelets $\varphi$.
+\end{lemma}
+
+Durch Vergleich mit~\eqref{msa:skalrel-g} kann die $g$-Koeffizienten als
+\[
+g_k = (-1)^{k+1} \bar{h}_{-k-1}
+\]
+ausdrücken.
+
+Früher wurde bereits darauf hingewiesen, dass diese Wahl des Mutterwavelets
+nicht eindeutig ist.
+Zum Beispiel ist jede ganzzahlig verschobene Version dieses Mutterwavelets
+ebenfalls ein adäquates Mutterwavelet.
+Dies folgt auch schon aus der Definition der Multiskalen-Analyse.
+Diese Freiheit ermöglicht zum Beispiel bei Wavelets mit kompaktem Träger,
+den Träger von $\varphi$ mit dem Träger von $\psi$ zur Deckung zu
+bringen.
+Wir werden auf diese Möglichkeit in Kapitel~\ref{chapter:kompakt}
+zurück kommen.
+
+

@@ -107,7 +107,7 @@ mit der Sinus cardinalis Funktion
 \]
 (siehe auch Abbildung~\ref{cwt:figure:haarzulaessig}).
 Die Sinus-Funktion auf der rechten Seite ist beschränkt.
-Es ist wohl bekannt, dass die Kardinalsinus-Funktion integierbar ist.
+Es ist wohlbekannt, dass die Kardinalsinus-Funktion integierbar ist.
 Folglich ist auch das Integral \eqref{cwt:zulaessig} beschränkt.
 \end{beispiel}
 
@@ -137,14 +137,98 @@ Tatsächlich gilt der folgende Satz
 \label{satz:zulaessigkeit}
 Ist $\psi \in L^2(\mathbb R)$ so, dass $t\psi\in L^1(\mathbb R)$, dann
 ist die Zulässigkeitsbedingung gleichbedeutend mit
-\[
+\begin{equation}
 \int_{-\infty}^\infty \psi(t)\,dt = 0
 \qquad\text{oder gleichbedeutend}\qquad
 \hat{\psi}(0)=0.
-\]
+\label{gleichbedeutend}
+\end{equation}
 \end{satz}
 
-% XXX TODO: Beweis des Satzes siehe Blatter p. 54
+\begin{proof}[Beweis]
+Zunächst ist 
+\[
+\hat{\psi}(0)
+=
+\frac1{\sqrt{2\pi}}
+\int_{-\infty}^\infty \psi(t) e^{-i0\cdot t}\,dt
+=
+\frac1{\sqrt{2\pi}}
+\int_{-\infty}^\infty \psi(t) \,dt,
+\]
+was die Gleichwertigkeit der beiden Bedingungen in \eqref{gleichbedeutend}
+zeigt.
+
+Es ist nun zu zeigen, dass aus der Zulässigkeitsbedingung folgt, dass
+$\hat{\psi}(0)=0$ und umgekehrt.
+
+Wir betrachten erst denn Fall, dass die Zulässigkeitsbedingung
+\eqref{cwt:zulaessig}
+erfüllt ist.
+Aus Satz~\ref{fourier:satz:ableitung} folgt, das $\hat{\psi}$ eine stetige
+Funktion ist.
+Das Integral~\eqref{cwt:zulaessig} kann daher nur existieren,
+wenn $\hat{\psi}(0)=0$ ist.
+
+Sei jetzt umgekehrt $\hat{\psi}(0)=0$. 
+Wir zerlegen das Integral der Zulässigkeitsbedingung in zwei Teile
+\begin{align}
+\int_{-\infty}^\infty \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,d\omega
+&=
+\int_{|\omega|\le 1} \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,d\omega
++
+\int_{|\omega|> 1} \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,d\omega.
+\notag
+\intertext{%
+Für das zweite Integral verwenden wir, dass $\psi\in L^2(\mathbb R)$,
+so dass auch $\hat{\psi}\in L^2(\mathbb R)$.
+Für $\omega\ge 1$ wird der Integrand grösser, wenn wir den Nenner
+weglassen, also}
+&\le 
+\int_{|\omega|\le 1} \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,d\omega
++
+\underbrace{
+\int_{|\omega|> 1} |\hat{\psi}(\omega)|^2\,d\omega
+}_{\displaystyle = \|\hat{\psi}\|^2 = \|\psi\|^2}.
+\label{cwt:wavelet:zu1}
+\end{align}
+Für das erste Integral verwenden wir, dass nach
+Satz~\ref{fourier:satz:ableitung} die Funktion $\hat{\psi}$ sogar stetig
+differenzierbar ist.
+Sei $M$ eine obere Schranke für die Ableitung $\hat{\psi}'$ im Interval
+$[-1,1]$:
+\[
+M=\sup_{|\omega|\le 1} |\hat{\psi}'(\omega)|.
+\]
+Nach dem Mittelwertsatz der Differentialrechnung folgt dann
+\[
+|\hat{\psi}(\omega)| \le M\cdot |\omega|
+\qquad\Rightarrow\qquad
+\frac{|\hat{\psi}(\omega)|^2}{|\omega|}
+\le
+\frac{M^2|\omega|^2}{|\omega|}
+=
+M^2|\omega|.
+\]
+Damit kann man auch das erste Integral abschätzen als
+\[
+\int_{|\omega|\le 1} \frac{|\hat{\psi}|^2}{|\omega|}\,d\omega
+\le
+\int_{|\omega|\le 1} M^2|\omega|\,d\omega
+=
+M^2 \cdot 2\int_0^1 \omega\,d\omega
+=
+M^2 \cdot 2\biggl[ \frac{\omega}2 \biggr]_0^1
+=
+M^2.
+\]
+Setzt man dies in die Ungleichung \eqref{cwt:wavelet:zu1} ein erhält man
+\[
+\int_{-\infty}^\infty \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,d\omega
+\le M^2 + \|\psi\|^2 \le \infty.
+\]
+Damit ist die Zulässigkeitsbedingung erfüllt.
+\end{proof}
 
 Dieses Kriterium ist vor allem darum so nützlich, weil die Bedingung
 $t\psi\in L^1(\mathbb R)$ für praktisch in Frage kommende Wavelets sehr
@@ -177,7 +261,7 @@ Das Mexikanerhut-Wavelet ist definiert durch die Funktion
 Der Faktor $e^{-t^2/2}$ fällt derart schnell ab, dass auch $|t|^k e^{-t^2/2}$
 immer noch exponentiell schnell gegen Null abfällt.
 Sein Graph ist dargestellt in Abbildung~\ref{wavelet:mexikanerhut:graph}.
-Die Funktion $\psi_{\text{M}}$ ist zudem eine ungerade Funktion und %TODO: Mexikanerhut ist gerade.
+Die Funktion $\psi_{\text{M}}$ ist zudem eine gerade Funktion und %TODO: Mexikanerhut ist gerade.
 erfüllt damit automatisch die Bedingung von Satz~\ref{satz:zulaessigkeit}.
 \end{beispiel}
 

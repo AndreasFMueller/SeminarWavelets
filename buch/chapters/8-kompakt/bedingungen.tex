@@ -6,11 +6,36 @@
 \section{Bedingungen für die Koeffizienten\label{section:bedingungen}}
 \rhead{Bedingungen für die Koeffizienten}
 Bis jetzt ist ausser dem Haar-Wavelet kein Beispiel einer
+\index{Haar-Wavelet}
 Multiskalen-Analyse konstruiert worden, in dem die Funktionen 
 $\varphi$ und $\psi$ kompakten Träger haben.
+Wir untersuchen in diesem Abschnitt, welche Eigenschaften an die 
+Koeffizienten sich bereits aus den Axiomen einer Multiskalen-Analyse
+ergeben.
+Wir fordern daher:
+
+\begin{forderung}
+\label{forderung:msa}
+Das Wavelet $\psi$ und die Skalierungsfunktion $\varphi$ gehören zu
+einer Multiskalen-Analyse.
+\end{forderung}
 
 \subsection{Kompakter Träger}
-Wir gehen davon aus, dass der Träger der Funktion $\varphi$ im Intervall
+\index{Träger}%
+\index{kompakter Träger}%
+Wie in der Einleitung motiviert wollen wir aus Gründen der numerischen
+Berechenbarkeit nur Wavelets betrachten, die eine ``endlichkeitsbedingung''
+erfüllen.
+Für die Synthese eines Signals in $V_j$ in einem Punkt sollen nur endlich
+viele Summanden nötig sein.
+Dies führt auf die folgende Forderung:
+
+\begin{forderung}
+\label{forderung:kompakt}
+Die Skalierungsfunktion $\varphi$ hat kompakten Träger.
+\end{forderung}
+
+Wir gehen also davon aus, dass der Träger der Funktion $\varphi$ im Intervall
 $[a,b]$ enthalten ist.
 Dann ist der Träger der Translate $T_k\varphi$ in $[a+k,b+k]$ enthalten
 und der Träger der skalierten Funktion $D_{\frac12}T_k\varphi$ ist
@@ -41,10 +66,20 @@ D_{\frac12}T_k\varphi
 =
 \sum_{k\in\mathbb Z}
 \bar{h}_k
+\langle
+T_r\varphi,
+T_k\varphi
+\rangle
+=
+\sum_{k\in\mathbb Z}
+\bar{h}_k
 \delta_{kr}
 =
-\bar{h}_r.
+\bar{h}_r,
 \end{align*}
+wobei wir verwendet haben, dass $T_k\varphi$ und $T_r\varphi$ orthogonal
+sind für $k\ne r$.
+
 Das Skalarprodukt
 $\langle \varphi, D_{\frac12}T_k\varphi\rangle$
 ist ein Integral über das Produkt der Funktion $\varphi$ mit Träger im Intervall
@@ -54,9 +89,9 @@ Dieses Integral verschwindet, wenn die Intervalle nicht überlappen.
 Dieser Fall tritt ein, wenn
 \[
 \begin{aligned}
-b&<\frac12(a+r) &&\text{oder}& \frac12(b+r) < a
+b&<\frac12(a+r) &&\text{oder}& \frac12(b+r) &< a,
 \\
-2b-a&<r         &&           & r < 2a-b
+2b-a&<r         &&           &            r &< 2a-b.
 \end{aligned}
 \]
 Die einzigen Koeffizienten $h_r$, die nicht verschwinden können, erfüllen
@@ -66,8 +101,15 @@ Die einzigen Koeffizienten $h_r$, die nicht verschwinden können, erfüllen
 es können also nur endlich viele Koeffizienten $h_r$ von $0$ verschieden
 sein.
 
+\begin{konsequenz}
+Die erzeugende Funktion $H(\omega)$ einer Multiskalenanalyse, in der
+$\varphi$ kompakten Träger hat, ist ein Polynom in $e^{i\omega}$ oder auch
+trigonometrisches Polynom.
+\end{konsequenz}
+
 \subsection{Normierung}
-Wir gehen wieder von einer Multiskalen-Analyse mit einem Vater-Wavelet
+\index{Normierungskonvention für Wavelet-Koeffizienten}%
+Wir gehen wieder von einer Multiskalen-Analyse mit einem Vaterwavelet
 $\varphi$ mit kompaktem Träger aus.
 Die Analyse des konstanten Signals $f(t)=1$ erfolgt mit Hilfe des
 Skalarprodukts $\langle f,\varphi\rangle$.
@@ -85,20 +127,20 @@ Anwendung der Skalierungsrelation auf $\varphi$ liefert
 1,
 D_{\frac12}T_k\varphi
 \rangle
-\\
-&=
-\sum_{k\in\mathbb Z}
-\bar{h}_k
-\int_{-\infty}^\infty \sqrt{2}\varphi(2t-k)\,dt
 =
 \sum_{k\in\mathbb Z}
 \bar{h}_k
-\int_{-\infty}^\infty \sqrt{2} \varphi(\tau) \,\frac{d\tau}{2}
+\langle
+D_21,
+T_k\varphi
+\rangle
 =
 \sum_{k\in\mathbb Z}
 \bar{h}_k
-\frac{1}{\sqrt{2}}
-\int_{-\infty}^\infty \varphi(\tau) \,d\tau
+\langle
+D_21,
+T_k\varphi
+\rangle
 \\
 &=
 \sum_{k\in\mathbb Z}
@@ -120,18 +162,19 @@ ob sie die gleiche Normierungskonvention für die Skalierungsrelation
 verwendet.
 
 \begin{beispiel}
-Für das Haarwavelet sind nur zwei Koeffizienten $h_k$ von $0$ verschieden
+Für das Haar-Wavelet sind nur zwei Koeffizienten $h_k$ von $0$ verschieden
 und beide sind gleich gross.
 Aus der Relation \eqref{buch:kompakt:hsumme} folgt
-\[
+\begin{equation}
 \sqrt{2}
 =
 h_0+h_1
 =2h_0
 \qquad\Rightarrow\qquad
 h_0 = h_1 = \frac{\sqrt{2}}{2}=\frac{1}{\sqrt{2}}.
+\label{kompakt:haar:normierung}
+\end{equation}
 \qedhere
-\]
 \end{beispiel}
 
 \subsection{Orthogonalität}
@@ -154,21 +197,23 @@ folgen die Relationen
 &=
 \sum_{l,r\in\mathbb Z} h_l\bar{h}_r \delta_{l,r+2k}
 =
-\sum_{r\in\mathbb Z} h_{r+2k}\bar{h}_r
+\sum_{r\in\mathbb Z} h_{r+2k}\bar{h}_r.
 \label{buch:kompakt:orthorel}
 \end{align}
 Nehmen wir an, dass genau die Koeffizienten $h_k$ mit $k$ zwischen
-$0$ und $N$ von $0$ verschieden sind.
-Dann wird die Summe~\eqref{buch:kompakt:orthorel} trivialerweise
-verschwinden, wenn $2k>N$.
-Dies liefert maximal $N/2$ Bedinungen für die $N+1$ Koeffizienten
+$0$ und $n$ von $0$ verschieden sind,
+dann wird die Summe~\eqref{buch:kompakt:orthorel} trivialerweise
+verschwinden, wenn $2k>n$.
+Dies liefert maximal $n/2$ Bedinungen für die $n+1$ Koeffizienten
 $h_k$, sie werden daher im Allgemeinen noch nicht bestimmt sein.
 Weitere Bedingungen müssen formuliert werden, um die Koeffizienten
 festzulegen.
 
 \begin{beispiel}
 Die Skalierungsrelation des Haar-Wavelets enthält nur zwei Koeffizienten
-$h_0$ und $h_1$, also $N=2$.
+$h_0$ und $h_1$, also $n=1$.
+Sie wurden im Beispiel auf Seite~\pageref{kompakt:haar:normierung}
+in \eqref{kompakt:haar:normierung} bereits bestimmt.
 Von den Relationen \eqref{buch:kompakt:orthorel} ist nur jene mit $k=0$
 nichttrivial, es gilt
 \[
@@ -185,6 +230,13 @@ h_0\bar{h}_0 + h_1\bar{h}_1
 \qedhere
 \]
 \end{beispiel}
+
+Die bisher gesammelten Forderungen reichen bereits, die Multiskalenanalyse
+vollständig festzulegen, wenn wir nicht zu viele Koeffizienten zu
+bestimmen haben.
+Das folgende Beispiel zeigt, dass im Falle $N=1$, in dem genau zwei 
+Koeffizienten bestimmt werden müssen, alles bereits festgelegt ist
+und auf das Haar-Wavelet führt.
 
 \begin{beispiel}
 Gesucht ist die Skalierungsrelation für eine Multiskalenanalyse derart,
@@ -214,7 +266,7 @@ a^2 + b^2
 \\
 0
 &=
-a^2 - \sqrt{2}a + \frac12 + b^2
+a^2 - \sqrt{2}a + \frac12 + b^2.
 \label{buch:kompakt:quadr}
 \end{align}
 Dies ist eine quadratische Gleichung für $a$.
@@ -232,6 +284,7 @@ h_0=h_1=\frac{1}{\sqrt{2}},
 \]
 also die Koeffizienten der Skalierungsrelation des Haar-Wavelets.
 
+Gibt es weitere Lösungen?
 Die quadratische Gleichung \eqref{buch:kompakt:quadr} hat nur dann
 relle Lösungen für $a$, wenn die Diskriminante
 $D=\sqrt{2}^2 - 4\cdot (b^2+\frac12) \ge 0$ ist:
@@ -241,9 +294,9 @@ D=2-2-4b^2 =-4b^2\le 0.
 Es folgt, dass $b=0$ die einzige Lösung ist.
 \end{beispiel}
 
-Das Beispiel zeigt, dass das Haar-Wavelet durch die bisher gefundenen
-Relationen bereits eindeutig festgelegt ist.
 Es gibt also nur eine einzige Multiskalen-Analyse mit einem Wavelet,
 dessen Träger im Intervall $[0,1]$ enthalten ist, nämlich das Haar-Wavelet.
-
+Da $n=1$ in diesem Fall sehr klein ist, ist das nicht überraschen, wir
+haben wenige Koeffizienten und genügend einschränkende Bedingungen.
+Für grösseres $n$ bleibt das Problem offen.
 

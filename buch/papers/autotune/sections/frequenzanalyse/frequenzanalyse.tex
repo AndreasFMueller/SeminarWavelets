@@ -5,14 +5,14 @@ In diesem Abschnitt wird die stetige und diskrete Wavelet-Transformation betrach
 
 \subsection{Stetige Wavelet-Transformation} 
 In Kapitel \ref{chapter:cwt} wurde die Theorie der stetigen Wavelet-Transformation, auch cwt genannt, behandelt. In dieser Theorie haben wir gesehen, dass wir mit der stetigen Wavelet-Transformation eine Zeit-Frequenz-Analyse machen können, welche uns gut interpretierbare Egebnisse liefert. Der Nachteil bei der cwt ist jedoch die grosse Redundanz. Diese Redundanz spiegelt sich in der Analysedauer wieder, welche schon bei simplen Datensätzen mehrere Sekunden dauern kann, weshalb die cwt für eine realtime Applikation nicht geeignet ist.\\
-Um dennoch zu zeigen welche Vorteile eine cwt bringen kann, wurde noch einmal der Frequenzsweep \ref{fig:stftsig} mit einem komplexen Gauss Wavelet analysiert. Das komplexe Gauss-Wavelet ist wie folgt definiert:
+Um dennoch zu zeigen welche Vorteile eine cwt bringen kann, wurde noch einmal der Frequenzsweep der Abbildung \ref{fig:stftsig} mit einem komplexen Gauss Wavelet analysiert. Das komplexe Gauss-Wavelet ist wie folgt definiert:
 \begin{equation}
 \psi(t)=C \cdot e^{-it} e^{-t^{2}}
-\label{eq:cgau}
+\label{eq:cgau}.
 \end{equation}
 Bei $C$ handelt es sich um eine Konstante. Das Wavelet wurde in der folgenden Analyse in der achten Ableitung verwendet. In der Python Library wird dies mit $\texttt{cgau}N$ benannt. \text{N} steht dabei für die Häufigkeit der Ableitungen der Waveletfunktion.\\
 
-Alle Wavelet-Transformationen wurden mit der Python Library pywt \cite{Lee2019PyWavelets} durchgeführt. Pywt stellt schon eine cwt- und viele weitere Waveletfunktionen bereit. In der folgenden Abbildung \ref{fig:python-cwt} ist ein wesentlicher Ausschnitt aus dem Python Code dargestellt, mit dessen Hilfe die cwt jeweils erstellt wurde. Da es sich um ein komplexes Wavelet handelt, wurden zur besseren Illustration der Resultate die Absolutwerte der Transformation verwendet.\\
+Alle Wavelet-Transformationen wurden mit der Python Library pywt \cite{Lee2019PyWavelets} durchgeführt. Pywt stellt schon eine cwt- und viele weitere Waveletfunktionen bereit. In der Abbildung \ref{fig:python-cwt} ist ein wesentlicher Ausschnitt aus dem Python Code dargestellt, mit dessen Hilfe die cwt jeweils erstellt wurde. Da es sich um ein komplexes Wavelet handelt, wurden zur besseren Illustration der Resultate die Absolutwerte der Transformation verwendet.\\
 
 \begin{figure}[!ht]
 	\centering
@@ -21,7 +21,7 @@ Alle Wavelet-Transformationen wurden mit der Python Library pywt \cite{Lee2019Py
 	\label{fig:python-cwt}
 \end{figure}
 
-Das Ergebnis der cwt, die auf $x_{\text{sweep}}(t)$\ref{fig:stft-sig} angewendet wurde, ist in der Grafik \ref{fig:cwt-sweep} ersichtlich. Dabei stehen sich eine STFT \ref{fig:stft-4096} und cwt\ref{fig:cwt-sweep} gegenüber. Dringend ist zu beachten, dass dieser Vergleich in der Grafik \ref{fig:STFTCWT} in keinster Weise eine allgemeingültige Aussage über diese zwei Arten der Zeit-Frequenz-Analyse sein soll, sondern mehr eine Gegenüberstellung zur Betrachtung von Unterschieden. \\
+Das Ergebnis der cwt, die auf $x_{\text{sweep}}(t)$ in Abbildung \ref{fig:stft-sig} angewendet wurde, ist in der Grafik \ref{fig:cwt-sweep} ersichtlich. Dabei stehen sich eine STFT ()Abbildung \ref{fig:stft-4096}) und cwt (Abbildung\ref{fig:cwt-sweep}) gegenüber. Es ist zu beachten, dass dieser Vergleich in der Grafik \ref{fig:STFTCWT} in keinster Weise eine allgemeingültige Aussage über diese zwei Arten der Zeit-Frequenz-Analyse sein soll, sondern mehr eine Gegenüberstellung zur Betrachtung von Unterschieden. \\
 
 
 \begin{figure}[!ht]
@@ -40,14 +40,14 @@ Das Ergebnis der cwt, die auf $x_{\text{sweep}}(t)$\ref{fig:stft-sig} angewendet
 
 
 \subsection{Diskrete Wavelet-Transformation}
- Um eine diskrete Wavelet-Transformation über mehrere Skalen zu berechnen, bietet sich der schnelle Multiskalenanalyse-Algorithmus an. Dieser wurde genauer im Kapitel \ref{chapter:msa} behandelt. In den folgenden Teilen dieser Arbeit wurde vermehrt mit der Multiskalenanalyse gearbeitet. Für Berechnungen wurde erneut die Python pywt Library verwendet. Für die Multiskalenanalyse wurde dabei immer die Funktion \text{wavedec()} verwendet. Für die Auswertungen der Analyse ist jedoch die Erkenntnis ausschlaggebend, dass nur Frequenzen verwendet werden die das $2^n$-fache einer Grundfrequenz sind. Die Analyse kann also nur Oktaven unterscheiden. Dabei sind Töne einer Tonleiter im Frequenzverhältnis von $\sqrt[12]{2}$. Wir können also mit einer normalen Multiskalenanalyse nicht einzelne Töne eines Signales unterscheiden. Dennoch können wir gewisse Vorteile nutzen, wie z.B. das automatische Fenstern einer Multiskalenanalyse, wobei die Mutiskalenanalyse eine $2^n$-fache Fensterungseigenschaft besitzt. In der folgenden Grafik\ref{fig:faauf} ist die Zeit-Frequenz-Fensterung der Multiskalenanalyse neben der STFT Fensterung aufgezeigt.  \\
+ Um eine diskrete Wavelet-Transformation über mehrere Skalen zu berechnen, bietet sich der schnelle Multiskalenanalyse-Algorithmus an. Dieser wurde genauer im Kapitel \ref{chapter:msa} behandelt. In den folgenden Teilen dieser Arbeit wurde vermehrt mit der Multiskalenanalyse gearbeitet. Für Berechnungen wurde erneut die Python pywt Library verwendet. Für die Multiskalenanalyse wurde dabei immer die Funktion \texttt{wavedec()} verwendet. Für die Auswertungen der Analyse ist jedoch die Erkenntnis ausschlaggebend, dass nur Frequenzen verwendet werden die das $2^n$-fache einer Grundfrequenz sind. Die Analyse kann also nur Oktaven unterscheiden. Dabei sind Töne einer Tonleiter im Frequenzverhältnis von $\sqrt[12]{2}$. Wir können also mit einer normalen Multiskalenanalyse nicht einzelne Töne eines Signales unterscheiden. Dennoch können wir gewisse Vorteile nutzen, wie z.B. das automatische Fenstern einer Multiskalenanalyse, wobei die Mutiskalenanalyse eine $2^n$-fache Fensterungseigenschaft besitzt. In der folgenden Grafik\ref{fig:faauf} ist die Zeit-Frequenz-Fensterung der Multiskalenanalyse neben der STFT Fensterung aufgezeigt. 
  
 
 
 \begin{figure}[!ht]
 	\centering
-	\scalebox{.75}{
-		\begin{tikzpicture}
+	\scalebox{0.9}{
+		\begin{tikzpicture}[>=latex]
 		\draw (6,-5.3) node{$t$};
 		\draw (-0.4,0) node{$Hz$};
 		
@@ -110,11 +110,12 @@ Das Ergebnis der cwt, die auf $x_{\text{sweep}}(t)$\ref{fig:stft-sig} angewendet
 	
 \end{figure}
 
-Wie man in der Abbildung \ref{fig:faauf} erkennt, übernimmt die Multiskalenanalyse, folgend auch msa abgekürzt, das Fenstern. Dabei geht die Wavelet-Transformation einen Kompromiss ein. Im oberen Bereich, wo die höheren Frequenzen liegen, sieht man den Zeitpunkt sehr genau. Die tieferen Frequenzen werden dabei wie bei einem Hochpass weggefiltert. In den tieferen Levels erkennt man die tiefen Frequenzen, jedoch sind diese nicht mehr sehr genau auf dem Zeitstrahl abgebildet. Gerade bei der Multiskalenanalyse können durch tiefe Frequenzen an den Rändern oder bei den Unstetigkeiten eines Signales, Artefakten enstehen. In der Grafik \ref{fig:faauf} können die beiden Darstellungen der Zeit-Frequenzaufteilung von der STFT und Multiskalenanalyse nicht direkt miteinander verglichen werden. Die Grafiken sind dafür nicht richtig skaliert. Sie dienen lediglich zur sinnbildlichen Darstellung in dessen Aufteilung.\\
+Wie man in der Abbildung \ref{fig:faauf} erkennt, übernimmt die Multiskalenanalyse, folgend auch msa abgekürzt, das Fenstern. Dabei geht die Wavelet-Transformation einen Kompromiss ein. Im oberen Bereich, wo die höheren Frequenzen liegen, sieht man den Zeitpunkt sehr genau. Die tieferen Frequenzen werden dabei wie bei einem Hochpass weggefiltert. In den tieferen Levels erkennt man die tiefen Frequenzen, jedoch sind diese nicht mehr sehr genau auf dem Zeitstrahl abgebildet. Gerade bei der Multiskalenanalyse können durch tiefe Frequenzen an den Rändern oder bei den Unstetigkeiten eines Signales, Artefakten enstehen. In der Grafik \ref{fig:faauf} können die beiden Darstellungen der Zeit-Frequenzaufteilung von der STFT und Multiskalenanalyse nicht direkt miteinander verglichen werden. Die Grafiken sind dafür nicht richtig skaliert. Sie dienen lediglich zur sinnbildlichen Darstellung in dessen Aufteilung.
 
-Um die $2^{n}$-fache Fensterung zu verdeutlichen, wird eine  Multiskalenanalyse des weiter oben verwendeten Sinussweeps \ref{fig:STFT} gemacht und gleich mit der STFT verglichen.
-Die msa wird mit einem Daubechies 8 Wavelet durchgeführt. Die verwendete Daubechies-Familie ist in der folgenden Tabelle \ref{tab:Daubechies} zu finden. Eine Multiskalenanalyse kann nicht mit dem gleichen Wavelet durchgeführt werden wie die cwt. Der Grund dafür ist, dass in der Python pywt Library die stetigen und diskreten Wavelets getrennt sind und es keine Überlappungen gibt. \\
-In dieser Tabelle \ref{tab:Daubechies} werden vier verschiedene Daubechies Wavelets, in verschiedener Auflösung, dargestellt. Dabei handelt es sich um die numerisch berechneten Vater und Mutter Wavelets. Auch wird gut ersichtlich, dass die höheren Daubechiesfunktionen mehr Samples brauchen um korrekt dargestellt zu werden. Zur Berechnung der Koeffizienten wird auf das Kapitel \ref{section:daubechies} verwiesen.\\
+Um die $2^{n}$-fache Fensterung zu verdeutlichen, wird eine  Multiskalenanalyse des weiter oben verwendeten Sinussweeps (Abbildung \ref{fig:STFT}) gemacht und gleich mit der STFT verglichen.
+Die msa wird mit einem Daubechies 8 Wavelet durchgeführt. Die verwendete Daubechies-Familie ist in der tabellarischen Abbildung \ref{tab:Daubechies} zu finden. Eine Multiskalenanalyse kann nicht mit dem gleichen Wavelet durchgeführt werden wie die cwt. Der Grund dafür ist, dass in der Python pywt Library die stetigen und diskreten Wavelets getrennt sind und es keine Überlappungen gibt.
+
+In dieser Tabelle \ref{tab:Daubechies} werden vier verschiedene Daubechies Wavelets, in verschiedener Auflösung, dargestellt. Dabei handelt es sich um die numerisch berechneten Vater und Mutter Wavelets. Auch wird gut ersichtlich, dass die höheren Daubechiesfunktionen mehr Samples brauchen um korrekt dargestellt zu werden. Zur Berechnung der Koeffizienten wird auf das Kapitel \ref{section:daubechies} verwiesen.
 
 
 \begin{table}[!ht]

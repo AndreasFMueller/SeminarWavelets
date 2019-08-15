@@ -39,6 +39,7 @@ CHAPTERFILES =								\
 	chapters/6-msa/chapter.tex					\
 	chapters/6-msa/definition.tex					\
 	chapters/6-msa/skalfour.tex					\
+	chapters/6-msa/muttervater.tex					\
 	chapters/6-msa/orthonormalisierung.tex				\
 	chapters/7-algo/chapter.tex					\
 	chapters/7-algo/fast.tex					\
