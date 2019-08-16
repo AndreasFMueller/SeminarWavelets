@@ -3,7 +3,7 @@
 %
 \section{Faktorisierung der Polyphasenmatrix}
 In diesem Abschnitt wenden wir den euklidischen Algorithmus auf das
-Problem an, die Polyhasenmatrix in einfache Schritte zu zerlegen.
+Problem an, die Polyphasenmatrix in einfache Schritte zu zerlegen.
 
 \subsection{Die Polyphasen-Matrix}
 In \cite{fpga:Daubechies1998} wird erklärt, wie man die beiden
@@ -20,7 +20,7 @@ Im schnellen Algorithmus (Kapitel~\ref{chapter:algo}), der zu einer
 Multiskalenanalyse (Kapitel~\ref{chapter:msa}) gehört, werden die
 geraden und die ungeraden Samples leicht unterschiedlich behandelt.
 Daher liegt es nahe, auch die Polynome $h(z)$ und $g(z)$ in die
-geraden und ungeraden Teile aufzuteilen:
+geraden und ungeraden Terme aufzuteilen:
 \[
 h_e(z) = \sum_k h_{2k}z^{-k},
 \quad
@@ -54,9 +54,42 @@ g(z)
 P(z^2)^t
 \begin{pmatrix} 1\\ z^{-1} \end{pmatrix}.
 \]
+Die gesamte Information über die Filter $h$ und $g$ ist in der Matrix
+$P(z)$ enthalten.
+
+Die Wirkung des Filters auf einem Signal wird durch die Multiplikation
+von $h(z)$ mit der Z-Transformation des Signals durchgeführt.
+Um dies mit der Polyphasenmatrix durchzuführen, müssen auch die Samples
+des Signals in gerade und ungerade numeriert Samples aufgeteilt werden.
+Statt Signals $x_k$ verwendet man auch
+\[
+\left.
+\begin{aligned}
+x_e(z) &= \sum_k x_{2k}z^{-k} \\
+x_o(z) &= \sum_k x_{2k+1}z^{-k}
+\end{aligned}
+\quad\right\}
+\qquad
+\Rightarrow
+\qquad
+x(z) = x_e(z^2) + z^{-1} x_o(z^2).
+\]
+Die Wirkung der beiden Filter auf dem Signal kann durch das Produkt
+\[
+P(z)^t \begin{pmatrix} x_e(z)\\ x_o(z) \end{pmatrix}
+\]
+beschrieben werden.
+
+Wir versuchen, die Anzahl der Operationen abzuschätzen, die zur
+Berechnung nötig sind.
+Dazu nehmen wir an, dass die Polynome $h(z)$ und $g(z)$ höchstens $n$
+von $0$ verschiedene Koeffizienten hat.
+Die Multiplikation mit $h(z)$ und $g(z)$ erfordert bei naiver 
+Implementation je $n$ Multiplikationen und Additionen, also
+insgesamt $2n$.
 
 \subsection{Faktorisierung eines Filters}
-Wir wenden den euklidischen Algorithmus auf die beiden Polyonem $h_e(z)$
+Wir wenden den euklidischen Algorithmus auf die beiden Polynome $h_e(z)$
 und $h_o(z)$ an.
 Die Quotienten bezeichnen wir mit $q_0(z),\dots,q_n(z)$ und erhalten dann
 \begin{align*}
@@ -169,7 +202,7 @@ V
 V^{-1} = V, \qquad V^2=E
 \]
 hinzuzieht.
-Es gelten nämlich die Relationen.
+Es gelten nämlich die Relationen
 \begin{align}
 Q(q(z))V 
 &=
@@ -178,7 +211,7 @@ Q(q(z))V
 =
 \begin{pmatrix} 1 & 0 \\ -q(z) & 1 \end{pmatrix}
 =
-L(-q(z))
+L(-q(z)),
 \notag
 \\
 VQ(q(z))
@@ -188,7 +221,7 @@ VQ(q(z))
 =
 \begin{pmatrix} 1 & -q(z) \\ 0 & 1 \end{pmatrix}
 =
-R(-q(z))
+R(-q(z)),
 \notag
 \\
 Q(q(z))^{-1}V
@@ -198,7 +231,7 @@ Q(q(z))^{-1}V
 =
 \begin{pmatrix} 1 & q(z) \\ 0 & 1 \end{pmatrix}
 =
-R(q(z))
+R(q(z)),
 \label{lifting:step:qvr}
 \\
 VQ(q(z))^{-1}
@@ -247,6 +280,54 @@ R(q_0(z)) L(q_1(z)) \cdots R(q_{2k}(z)) L(q_{2k+1}(z)) \cdots
 von Lifting Steps konstruiert werden.
 Falls $n$ ungerade ist, bleibt am Ende die Matrix $Q(q_n(z))^{-1}$
 übrig.
+
+\subsection{Rechenaufwand für die faktorisierte Polyphasenmatrix}
+Die Faktorisierung der Polyphasenmatrix liefert $n/2$ Faktoren,
+die je mit einer Multiplikation und einer Addition berechnet werden
+können.
+Die Berechnung ist daher mit $n$ Multiplikationen und Additionen
+möglich.
+Die Faktorisierung hat also eine Beschleunigung um den Faktor $2$ 
+gebraucht.
+
+\subsection{Was wir bis jetzt verschwiegen haben}
+In der obigen Darstellung der Zerlegung der Polyphasen-Matrix 
+haben wir im Interesse einer flüssigen Präsentation einige
+wichtige Punkte einfach übergangen.
+Dieser Abschnitt soll auf diese Schwierigkeiten aufmerksam machen
+und mindestens andeuten, wie man mit ihnen umgehen kann.
+Für vollständige Lösungen sei auf \cite{fpga:Daubechies1998} verwiesen.
+
+\subsubsection{Laurent-Polynome}
+Bei der Durchführung der Faktorisierung sind wir davon ausgegangen,
+dass die $h(z)$ und $g(z)$ Polynome sind.
+Dies ist jedoch nicht korrekt, denn es können auch negative
+Exponenten vorkommen.
+Man nennt Polynome in $z$ und $z^{-1}$ auch Laurent-Polynome.
+\index{Laurent-Polynom}
+Dies ist jedoch kein wesentliches Problem, denn der euklidische
+Algorithmus funktioniert mit etwas Vorsicht auch für Laurent-Polynome.
+
+\subsubsection{Was ist $K(z)$?}
+Der grösste gemeinsame Teiler von $h_e(z)$ und $h_o(z)$ ist $K(z)$,
+also ein Laurent-Polynom.
+Dies ist der Teil, der nicht in Lifting-Steps faktorisiert werden kann.
+Es ist daher nicht viel gewonnen, wenn dies ein Polynom hohen Grades ist.
+Allerdings kann man mit Hilfe von hier nicht weiter diskutierten
+Eigenschaften der beiden Filter einer Multiskalenanalyse zeigen,
+dass die Polyphasenmatrix Determinante $1$ hat.
+Da die Lifting-Steps alle Determinante $1$ haben, kann man daraus
+ableiten, dass $K(z)=K$ nur eine Konstante ist.
+
+\subsubsection{Was ist der Grad von $q_k(z)$?}
+Die einzelnen Quotienten $q_k(z)$ könnten Polynome hohen Grades sein.
+Dies würde bedeuten, dass ein einzelner Lifting Step doch wieder
+mehrere Additionen und Multiplikationen verlangen würde.
+Ebenfalls aus Eigenschaften der beiden Filter $h$ und $g$ lässt
+sich ableiten, dass die Polynome $q_k(z)$ genau einen
+von $0$ verschiedenen Koeffizienten haben.
+Sie sind daher immer mit einer einzigen Multiplikation und einer
+Addition und schlimmstenfalls einer Verzögerung realisierbar.
 
 
 

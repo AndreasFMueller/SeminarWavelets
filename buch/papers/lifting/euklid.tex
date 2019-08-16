@@ -5,8 +5,8 @@
 %
 \section{Der euklidische Algorithmus}
 \rhead{Der euklidische Algorithmus}
-Der euklidische Algorithmus bestimmt zu zwei gegebenen Zahlen $a$ und $b$
-den grössten gemeinsamen Teiler $g$.
+Der euklidische Algorithmus bestimmt zu zwei gegebenen ganzen
+Zahlen $a$ und $b$ den grössten gemeinsamen Teiler $g$.
 Zusätzlich findet er ganze Zahlen $s$ und $t$ derart, dass
 \[
 sa + tb = g.
@@ -19,20 +19,25 @@ in Matrixform niedergeschrieben wird.
 Gegeben sind zwei ganze Zahlen $a$ und $b$ und wir dürfen annehmen,
 dass $a\ge b$.
 Gesucht ist der grösste gemeinsame Teiler $g$ von $a$ und $b$.
-Ist $b|a$, dann ist offenbar $b$ der grösste gemeinsame Teiler.
+Wir schreiben $g|a$ für ``$g$ teilt $a$'', gesucht ist also
+die grösste ganze Zahl derart, dass $g|a$ und $g|b$.
+
+Ist $b|a$, dann ist offenbar $b$ der grösste gemeinsame Teiler von $a$
+und $b$.
 Im Allgemeinen wird der grösste Teiler aber kleiner sein.
 Wir teilen daher $a$ durch $b$, was nur mit Rest möglich ist.
-Es gibt daher Zahlen $t$ und $r$ derart, dass
-\[
-a = tb+ r
+Es gibt ganze Zahlen $q$, der Quotient, und $r$, der Rest, derart, dass
+\begin{equation}
+a = qb+ r
 \qquad \Rightarrow \qquad
-r = a - tb.
-\]
-Es ist sicher $r < b$.
+r = a - qb.
+\label{lifting:euklid:raqb}
+\end{equation}
+Nach Definition des Restes ist $r < b$.
 Da der grösste gemeinsame Teiler sowohl $a$ als auch $b$ teilt, muss er
-auch $r$ teilen.
+wegen~\eqref{lifting:euklid:raqb} auch $r$ teilen.
 Somit haben wir das Problem, den grössten gemeinsamen Teiler von $a$ und
-$b$ zu finden auf das ``kleinere'' Problem zurückgeführt, den grössten
+$b$ zu finden, auf das ``kleinere'' Problem zurückgeführt, den grössten
 gemeinsamen Teiler von $b$ und $r$ zu finden.
 
 Um den eben beschriebenen Schritt zu wiederholen, wählen wir die folgende
@@ -41,8 +46,8 @@ Wir schreiben $a_0=a$ und $b_0=b$.
 Im ersten Schritt finden wird $q_0$ und $r_0$ derart,
 dass $a_0-q_0b_0 = r_0$.
 Dann setzen wir $a_1=b_0$ und $b_1=r_0$.
-Mit $a_1$ und $b_1$ wiederholen wir den Divisionsschritt, der Zahlen
-$q_1$ und $r_1$ liefert mit $a_1-q_1b_1=r_1$.
+Mit $a_1$ und $b_1$ wiederholen wir den Divisionsschritt, der einen
+neuen Quotienten $q_1$ und einen neuen Rest $r_1$ liefert mit $a_1-q_1b_1=r_1$.
 So entstehen vier Folgen von Zahlen $a_k$, $b_k$, $q_k$ und $r_k$ derart,
 dass in jedem Schritt gilt
 \begin{align*}
@@ -113,7 +118,7 @@ Faktoren.
 \subsection{Matrixschreibweise}
 Die Durchführung des euklidischen Algorithmus lässt sich besonders elegant
 in Matrixschreibweise dokumentieren.
-In jedem Schritt arbeitet man mit zwei Zahlen $a_k$ und $b_k$, die wir
+In jedem Schritt arbeitet man mit zwei ganzen Zahlen $a_k$ und $b_k$, die wir
 als zweidimensionalen Spaltenvektor betrachten können.
 Der Algorithmus macht aus $a_k$ und $b_k$ die neuen Zahlen
 $a_{k+1} = b_k$ und $b_{k+1} = r_k = a_k - q_kb_k$, dies
@@ -175,18 +180,19 @@ Q(q_k) = \begin{pmatrix} 0 & 1 \\ 1 & -q_k \end{pmatrix}
 ab.
 \end{definition}
 
-Mit dieser Definition lässt sich der euklidische Algorithmus so
+Mit dieser Definition lässt sich der euklidische Algorithmus wie folgt
 beschreiben.
 
 \begin{algorithmus}[Euklid]
 \label{lifting:euklid}
-Der Algorithmus operiert auf zweidimensionalen Zustandsvektoren $x$ 
+Der Algorithmus operiert auf zweidimensionalen Zustandsvektoren
+$x\in\mathbb Z^2$ 
 wie folgt:
 \begin{enumerate}
-\item Initialisiere  den Zustandsvektor mit den Zahlen $a$ und $b$:
+\item Initialisiere  den Zustandsvektor mit den ganzen Zahlen $a$ und $b$:
 $\displaystyle x = \begin{pmatrix}a\\b\end{pmatrix}$
-\item Bestimme den Quotienten $q$ als die grösste Zahl, für die $qx_2\le x_1$
-gilt.
+\item Bestimme den Quotienten $q$ als die grösste ganze Zahl,
+für die $qx_2\le x_1$ gilt.
 \item Berechne den neuen Zustandsvektor als $Q(q)x$.
 \item Wiederhole Schritte 2 und 3 bis die zweite Komponente des Zustandsvektors
 verschwindet.
@@ -203,7 +209,7 @@ Q(q_n)Q(q_{n-1})\cdots Q(q_0)
 \begin{pmatrix} a \\ b \end{pmatrix}.
 \]
 Schreiben wir $Q=Q(q_n)Q(q_{n-1})\cdots Q(q_0)$, dann enthält die Matrix
-$Q$ in der erste Zeile die Zahlen $s$ und $t$ mit denen sich der
+$Q$ in der erste Zeile die ganzen Zahlen $s$ und $t$, mit denen sich der
 grösste gemeinsame Teiler aus $a$ und $b$ darstellen lässt:
 \[
 Q =

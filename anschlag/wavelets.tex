@@ -7,35 +7,40 @@
 \mode<beamer>{%
 \usetheme{Copenhagen}
 }
-\usepackage[orientation=landscape,size=a3,debug,scale=2.9]{beamerposter}
+\usepackage[orientation=landscape,size=a3,debug,scale=2.7]{beamerposter}
 \title[]{}
 \begin{document}
 \begin{frame}
-\frametitle{MathSem 2019: Wavelets}
+\frametitle{%\hspace{0pt plus 1 filll}
+MathSem 2019: Wavelets}
 \begin{columns}[onlytextwidth]
-\begin{column}{0.32\textwidth}
-{\bf\large Das Buch zum Seminar}
-\bigskip
-\vskip 1cm
+\begin{column}{0.31\textwidth}
+%{%\bf
+%\large Das Buch zum Seminar}
+%\bigskip
+%\vskip 1cm
 \includegraphics[width=\hsize]{../cover/buchcover.png}
 \vskip 0.2cm
-%\bigskip
-%\bigskip
-%\bigskip
-Erscheint im Sommer 2019.
+\bigskip
+\bigskip
+Erscheint im Herbst 2019.
 Anfragen an
 Prof.~Dr.~Andreas Müller,
 {\texttt{andreas.mueller@hsr.ch}}
+\bigskip
+\bigskip
+\bigskip
+%\vskip 1.2cm
 \end{column}
-\begin{column}{0.63\textwidth}
+\begin{column}{0.67\textwidth}
 \begin{description}
 \item[Teil 1:] Grundlagen
 \begin{enumerate}
 \item Sampling und Geometrie
+\item Frames
 \item Fouriertheorie und die $L^2$-Hilberträume
 \item Das Haar-Wavelet
 \item Stetige Wavelet-Transformation
-\item Abtast-Theorem und Rekonstruktion
 \item Multiskalen-Analyse
 \item Schnelle Wavelet-Algorithmen
 \item Wavelets mit kompaktem Träger
@@ -44,17 +49,19 @@ Prof.~Dr.~Andreas Müller,
 \item[Teil 2:] Anwendungen und weiterführende Themen
 \begin{enumerate}
 \setcounter{enumi}{9}
-\item Cédric Renda: {\em Autotune}
+\item Cédric Renda: {\em Tonhöhenerkennung}
 \item Manuel Tischhauser: {\em Wavelet-Deconvolution}
-\item Nicolas Tobler und Jonas Gründler: {\em FPGA-Implementation der
-schnellen Wavelet-Transformation}
-\item Julian Bärtschi: {\em Audio-Kompression mit Daubechies-Wavelets}
+\item Julian Bärtschi: {\em Audio-Komprimierung mit Daubechies-Wavelets}
+\item Nicolas Tobler und Jonas Gründler: {\em VHDL-Implementation of the
+Fast Wavelet Transform}
+\item Andreas Müller: {\em Faktorisierung der Polyphasenmatrix und Lifting}
 \item Raphael Unterer: {\em Gabor-Wavelets und visuelle Wahrnehmung}
-\item Roy Seitz: {\em Komplexe Analysis und Wavelets}
-\item Raphael Nestler: {\em 2D-Wavelets und Oberflächen}
-\item Kris Wyss: {\em Signalanalyse in GIS}
+\item Roy Seitz: {\em Komplexe Wavelets und CWT}
+\item Raphael Nestler: {\em Wavelets und polynomiale Signale}
+\item Kris Wyss: {\em Signalanalyse von UHF Teilentladungssignalen im Zeitbereich}
 \item Dominique Hüppi: {\em Analyse von Meteor-Echos}
 \item Michael Schmid: {\em Wetter-Wavelet-Transformation}
+\item Hansruedi Patzen: {\em Spektral Graph Wavelet Transformation}
 \end{enumerate}
 \end{description}
 \end{column}
