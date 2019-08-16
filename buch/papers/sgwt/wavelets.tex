@@ -13,30 +13,32 @@ Fourier Theorie auf Funktionen auf Graphen anzuwenden. Dazu nehmen wir das
 Beispiel eines Dirac-Stosses $\delta(x)$, siehe~\cref{fig:sgwt:gft:dirac}.
 \begin{figure}
     \centering
+    \begin{minipage}[b]{0.49\textwidth}
     \includegraphics[
     angle=-90,
     origin=c,
-    scale=0.6
+    width=\textwidth
     ]{papers/sgwt/images/dirac.pdf}
-    \vspace{-70pt}
-    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximalem Wert $1$. 
-    \label{fig:sgwt:gft:dirac}}
+    \vspace{-45pt}
+    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
+        \label{fig:sgwt:gft:dirac}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    angle=-90,
+    origin=c,
+    width=\textwidth
+    ]{papers/sgwt/images/dirac_fft.pdf}
+    \vspace{-45pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:fftdirac}}
+    \end{minipage}
 \end{figure}
 Wenn wir davon die Fourier Transformation berechnen, zu sehen 
 in~\cref{fig:sgwt:gft:fftdirac}, stellen wir fest, das nicht nur alle 
 Frequenzen vorhanden sondern auch alle gleich stark vorhanden sind. Die 
 Fouriertransformierte $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
-\begin{figure}
-    \centering
-    \includegraphics[
-    angle=-90,
-    origin=c,
-    scale=0.6
-    ]{papers/sgwt/images/dirac_fft.pdf}
-    \vspace{-70pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:fftdirac}}
-\end{figure}
 
 $g(\lambda)\cdot\hat{\delta}(\lambda)$
 
