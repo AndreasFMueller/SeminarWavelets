@@ -111,128 +111,114 @@ Faktoren.
 \end{beispiel}
 
 \subsection{Matrixschreibweise}
-Die Berechnung der Zahlen $s$ und $t$ lässt sich besser verstehen, wenn
-wir die Koeffizienten von $a_k$ und $b_k$ als Vektoren betrachen und
-die Berechnung in Matrixschreibweise durchführen.
-In jedem Schritt finden wir so einen Vektor mit Koordinaten $s_k$ und $t_k$
-derart, dass das Skalarprodukt
+Die Durchführung des euklidischen Algorithmus lässt sich besonders elegant
+in Matrixschreibweise dokumentieren.
+In jedem Schritt arbeitet man mit zwei Zahlen $a_k$ und $b_k$, die wir
+als zweidimensionalen Spaltenvektor betrachten können.
+Der Algorithmus macht aus $a_k$ und $b_k$ die neuen Zahlen
+$a_{k+1} = b_k$ und $b_{k+1} = r_k = a_k - q_kb_k$, dies
+kann man als
 \[
-\begin{pmatrix}s_k\\t_k \end{pmatrix}
-\cdot
-\begin{pmatrix}a_k\\b_k \end{pmatrix}
+\begin{pmatrix} a_{k+1} \\ b_{k+1} \end{pmatrix}
 =
-g
+\begin{pmatrix} 0 & 1 \\ 1 & -q_k \end{pmatrix}
+\begin{pmatrix} a_{k} \\ b_{k} \end{pmatrix}
 \]
-ist.
+schreiben.
+Der Algorithmus bricht ab, wenn die zweite Komponente des Vektors $=0$ ist,
+in der ersten steht dann der grösste gemeinsame Teiler.
+Hier ist die Durchführung des Algorithmus in Matrix-Schreibweise:
+\begin{align*}
+\begin{pmatrix} 23205 \\ 6800 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-3 \end{pmatrix}
+\begin{pmatrix} 76415 \\ 23205 \end{pmatrix}
+\\
+\begin{pmatrix} 6800 \\ 2805 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-3 \end{pmatrix}
+\begin{pmatrix} 23205 \\ 6800 \end{pmatrix}
+\\
+\begin{pmatrix} 2805 \\ 1190 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-2 \end{pmatrix}
+\begin{pmatrix} 6800 \\ 2805 \end{pmatrix}
+\\
+\begin{pmatrix} 1190 \\ 425 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-2 \end{pmatrix}
+\begin{pmatrix} 2805 \\ 1190 \end{pmatrix}
+\\
+\begin{pmatrix} 425 \\ 340 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-2 \end{pmatrix}
+\begin{pmatrix} 1190 \\ 425 \end{pmatrix}
+\\
+\begin{pmatrix} 340 \\ 85 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-1 \end{pmatrix}
+\begin{pmatrix} 425 \\ 340 \end{pmatrix}
+\\
+\begin{pmatrix} 85 \\ 0 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-4 \end{pmatrix}
+\begin{pmatrix} 340 \\ 85 \end{pmatrix}
+=
+\begin{pmatrix}g\\0\end{pmatrix}.
+\end{align*}
 
-In jedem Schritt verwenden wir, dass
+\begin{definition}
+Wir kürzen
 \[
-\begin{pmatrix}
-a_{k}\\b_{k}
-\end{pmatrix}
-=
-\begin{pmatrix}
-b_{k-1}\\r_{k-1}
-\end{pmatrix}
-=
-\begin{pmatrix}
-b_{k-1}\\
-a_{k-1}-q_{k-1}b_{k-1}
-\end{pmatrix}
-=
-\begin{pmatrix}
-0&1\\
-1&-q_{k-1}
-\end{pmatrix}
-\begin{pmatrix}
-a_{k-1}\\b_{k-1}
-\end{pmatrix}.
+Q(q_k) = \begin{pmatrix} 0 & 1 \\ 1 & -q_k \end{pmatrix}
 \]
-Durch Iteration findet man daher
+ab.
+\end{definition}
+
+Mit dieser Definition lässt sich der euklidische Algorithmus so
+beschreiben.
+
+\begin{algorithmus}[Euklid]
+\label{lifting:euklid}
+Der Algorithmus operiert auf zweidimensionalen Zustandsvektoren $x$ 
+wie folgt:
+\begin{enumerate}
+\item Initialisiere  den Zustandsvektor mit den Zahlen $a$ und $b$:
+$\displaystyle x = \begin{pmatrix}a\\b\end{pmatrix}$
+\item Bestimme den Quotienten $q$ als die grösste Zahl, für die $qx_2\le x_1$
+gilt.
+\item Berechne den neuen Zustandsvektor als $Q(q)x$.
+\item Wiederhole Schritte 2 und 3 bis die zweite Komponente des Zustandsvektors
+verschwindet.
+Die erste Komponente ist dann der gesuchte grösste gemeinsame Teiler.
+\end{enumerate}
+\end{algorithmus}
+
+Auch die Berechnung der Zahlen $s$ und $t$ lässt sich jetzt leichter verstehen.
+Nach Algorithmus~\eqref{lifting:euklid} ist
 \[
-\begin{pmatrix}
-a_{n}\\b_{n}
-\end{pmatrix}
+\begin{pmatrix} g \\ 0 \end{pmatrix}
 =
-\begin{pmatrix}
-0&1\\
-1&-q_{n-1}
-\end{pmatrix}
-\begin{pmatrix}
-a_{n-1}\\b_{n-1}
-\end{pmatrix}
-=
-\begin{pmatrix}
-0&1\\
-1&-q_{n-1}
-\end{pmatrix}
-\begin{pmatrix}
-0&1\\
-1&-q_{n-2}
-\end{pmatrix}
-\cdots
-\begin{pmatrix}
-0&1\\
-1&-q_{0}
-\end{pmatrix}
-\begin{pmatrix}
-a_{0}\\b_{0}
-\end{pmatrix}.
+Q(q_n)Q(q_{n-1})\cdots Q(q_0)
+\begin{pmatrix} a \\ b \end{pmatrix}.
 \]
-Der grösste gemeinsame Teiler $g$  erfüllt die Bedingung $g=a_n-q_nb_n$,
-dies ist die zweite Zeile von
+Schreiben wir $Q=Q(q_n)Q(q_{n-1})\cdots Q(q_0)$, dann enthält die Matrix
+$Q$ in der erste Zeile die Zahlen $s$ und $t$ mit denen sich der
+grösste gemeinsame Teiler aus $a$ und $b$ darstellen lässt:
 \[
+Q =
 \begin{pmatrix}
-0&1\\
-1&-q_n
-\end{pmatrix}
-\begin{pmatrix}a_n\\b_n\end{pmatrix}
-=
-\begin{pmatrix}
-b_n\\
-g
-\end{pmatrix}
-\]
-Insbesondere kann man $g$ erhalten als Skalarprodukt des Vektors
-$\begin{pmatrix}0&1\end{pmatrix}^t$ mit dem Produkt
-\[
-\underbrace{
-\begin{pmatrix} 0&1 \\ 1&-q_n\end{pmatrix}
-\begin{pmatrix} 0&1 \\ 1&-q_{n-1}\end{pmatrix}
-\cdots
-\begin{pmatrix} 0&1 \\ 1&-q_{0}\end{pmatrix}
-}_{\displaystyle = Q_n}
-\begin{pmatrix}a_0\\b_0\end{pmatrix}
-=
-Q \begin{pmatrix}a_0\\b_0\end{pmatrix}
-\]
-Das Skalarprodukt mit
-$\begin{pmatrix}0&1\end{pmatrix}^t$ ist dasselbe wie die Multiplikation
-von links mit dem Zeilenvektor $\begin{pmatrix}0&1\end{pmatrix}$.
-Dafür ist nur die zweite Zeile von $Q$ nötig:
-\[
-\begin{pmatrix}0&1\end{pmatrix}
-Q
-=
-\begin{pmatrix}0&1\end{pmatrix}
-\begin{pmatrix}
-*&*\\
-s&t
+s&t\\
+q_{21}&q_{22}
 \end{pmatrix}
 \qquad\Rightarrow\qquad
-g
-=
-\begin{pmatrix}0&1\end{pmatrix}
-\begin{pmatrix}
-*&*\\
-s&t
-\end{pmatrix}
-\begin{pmatrix}a\\b\end{pmatrix}
-=
-ta+sb
+\bigg\{
+\quad
+\begin{aligned}
+g&=sa+tb\\
+0&=q_{21}a+q_{22}b.
+\end{aligned}
 \]
-Das Matrizenprodukt enthält also in der zweiten Zeile genau die
-gesuchten Zahlen $t$ und $s$.
 
 \begin{beispiel}
 Wir verifizieren die Behauptung 
@@ -246,79 +232,70 @@ Q
 \\
 &=
 \underbrace{
+\begin{pmatrix} 0&1 \\ 1& -4 \end{pmatrix}
 \begin{pmatrix} 0&1 \\ 1& -1 \end{pmatrix}
-\begin{pmatrix} 0&1 \\ 1& -2 \end{pmatrix}
 }_{}
 \underbrace{
 \begin{pmatrix} 0&1 \\ 1& -2 \end{pmatrix}
 \begin{pmatrix} 0&1 \\ 1& -2 \end{pmatrix}
 }_{}
 \underbrace{
-\begin{pmatrix} 0&1 \\ 1& -3 \end{pmatrix}
+\begin{pmatrix} 0&1 \\ 1& -2 \end{pmatrix}
 \begin{pmatrix} 0&1 \\ 1& -3 \end{pmatrix}
 }_{}
+\begin{pmatrix} 0&1 \\ 1& -3 \end{pmatrix}
 \\
 &=
 \underbrace{
-\begin{pmatrix} 1 & -2 \\ -1 &  3 \end{pmatrix}
+\begin{pmatrix} 1 & -1 \\ -4 &  5 \end{pmatrix}
 \begin{pmatrix} 1 & -2 \\ -2 &  5 \end{pmatrix}
 }_{}
-\begin{pmatrix} 1 & -3 \\ -3 & 10 \end{pmatrix}
+\underbrace{
+\begin{pmatrix} 1 & -2 \\ -3 &  7 \end{pmatrix}
+\begin{pmatrix} 0 &  1 \\  1 & -3 \end{pmatrix}
+}_{}
 \\
 &=
-\begin{pmatrix} 5 & -12 \\ -7 & 17 \end{pmatrix}
-\begin{pmatrix} 1 &  -3 \\ -3 & 10 \end{pmatrix}
+\begin{pmatrix}  3 &  -7 \\ -14 &  33 \end{pmatrix}
+\begin{pmatrix} -3 &  10 \\   7 & -23 \end{pmatrix}
 =
-\begin{pmatrix} 41 & -135 \\ -58 & 191 \end{pmatrix}.
+\begin{pmatrix} -58 & 191 \\ 273 & -899 \end{pmatrix}.
+%(%i9) Q6 . Q5
+%                                 [  1   - 1 ]
+%(%o9)                            [          ]
+%                                 [ - 4   5  ]
+%(%i10) Q4 . Q3
+%                                 [  1   - 2 ]
+%(%o10)                           [          ]
+%                                 [ - 2   5  ]
+%(%i11) Q2 . Q1
+%                                 [  1   - 3 ]
+%(%o11)                           [          ]
+%                                 [ - 2   7  ]
+%(%i12) Q6 . Q5 . Q4 . Q3
+%                                 [  3    - 7 ]
+%(%o12)                           [           ]
+%                                 [ - 14  33  ]
+%(%i13) Q2 . Q1 . Q0
+%                                 [ - 3   10  ]
+%(%o13)                           [           ]
+%                                 [  7   - 23 ]
+%(%i14) Q6 . Q5 . Q4 . Q3 . Q2 . Q1 . Q0
+%                                [ - 58   191  ]
+%(%o14)                          [             ]
+%                                [ 273   - 899 ]
 \end{align*}
-In der zweiten Zeile finden wir tatsächlich die beiden Zahlen $t=-58$ und 
-$s=191$, für die wir schon früher erkannt haben, dass sie die beiden
-Zahlen $a$ und $b$ linear zum grössten gemeinsamen Teiler kombinieren.
-
-Wir können das Matrizenprodukt auch noch einen Schritt weiter treiben:
-\[
-\begin{pmatrix} 0 & 1 \\ 1 & -4 \end{pmatrix}
-\begin{pmatrix} 41 & -135 \\ -58 & 191 \end{pmatrix}
-=
-\begin{pmatrix} -58 & 191 \\ 273 & -899 \end{pmatrix}
-\]
 In der zweiten Zeile findet man Zahlen, die $a$ und $b$ zu 0 kombinieren:
 \[
 273 \cdot 76415 - 899 \cdot 23205 = 0,
 \]
-denn dies ist die Bedingung $r_{n+1} = 0$.
+in der ersten stehen die Zahlen $s=-58$ und $t=191$ und tatsächlich
+ergibt
+\[
+ta+sb = -58\cdot 76415  + 191\cdot 23205 = 85 = g
+\]
+den grössten gemeinsamen Teiler von 76415 und 23205.
 \end{beispiel}
-
-Wir fassen das Gefundene zusammen in folgendem Satz:
-
-\begin{satz}
-Seien $q_k$ die Reste, die während der Durchführung des euklidischen
-Algorithmus auf den Zahlen $a$ und $b$ durchgeführten Quotienten.
-Der euklidische Algorithmus berechnet dann
-\[
-\begin{pmatrix} 0 & 1 \\ 1 & -q_k \end{pmatrix}
-\begin{pmatrix} a_k \\ b_k \end{pmatrix}
-=
-\begin{pmatrix} b_k \\ r_k \end{pmatrix}
-=
-\begin{pmatrix} r_{k-1} \\ r_k \end{pmatrix}
-\]
-Das Produkt dieser $2\times 2$-Matrizen erfüllt
-\[
-\begin{pmatrix}g\\0\end{pmatrix}
-=
-\begin{pmatrix}r_n\\r_{n+1}\end{pmatrix}
-=
-\begin{pmatrix} 0&1 \\ 1&-q_n\end{pmatrix}
-\begin{pmatrix} 0&1 \\ 1&-q_{n-1}\end{pmatrix}
-\cdots
-\begin{pmatrix} 0&1 \\ 1&-q_{0}\end{pmatrix}
-\begin{pmatrix}a\\b\end{pmatrix}
-=
-Q_n
-\begin{pmatrix}a\\b\end{pmatrix}
-\]
-\end{satz}
 
 Die Wirkung der Matrix
 \[
