@@ -185,9 +185,9 @@ The DWT using polyphase implementation is depicted graphically in figure \ref{fp
 
 The core idea of the polyphase decomposition is the possibility of factorizing the $\bm P$ matrix.
 Daubechies et al. prove that this is possible for an arbitrary complementary matrix $\bm P$ if composed only of Laurent polynomials.
+The factorization of $\bm P(z)$ and $\bm{\bar P}(z)$ is done using the Euclidean algorithm, which is elaborated in chapter \ref{chapter:lifting}, and leads to
 %The factorization algorithm is explained in detail in chapter \ref{chapter:lifting} which is about the general theory behind factorisation of the polyphase matrix and lifting.
-The factorization algorithm is not explained in this paper, but detailed information can be found in chapter \ref{chapter:lifting}.
-However, it results in the form
+%The factorization algorithm is not explained in this paper, but detailed information can be found in chapter \ref{chapter:lifting}.
 \begin{align}
 	\bm{\bar P}(z) &=
 	\Biggl(
@@ -237,8 +237,8 @@ Hence, it is two times more efficient than the convolutional DWT.
 	\caption{DWT signal flow graph with factorized filter functions (lifting steps)}
 	\label{fpga:fig:liftingStepFactorization}
 \end{figure}
-$\bm s(z)$ and $\bm t(z)$ result from the factorizing algorithm.
-They replace $\bm h(z)$ and $\bm g(z)$ completely.
+$s(z)$ and $t(z)$ result from the factorizing algorithm.
+They replace $h(z)$ and $g(z)$ completely.
 
 \subsection{Haar wavelet}
 \label{fpga:sec:haar}
