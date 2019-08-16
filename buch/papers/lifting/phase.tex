@@ -1,7 +1,249 @@
 %
 % phase.tex
 %
-\section{Faktorisierung der Phasenmatrix}
+\section{Faktorisierung der Polyphasenmatrix}
 In diesem Abschnitt wenden wir den euklidischen Algorithmus auf das
-Problem an, die Phasenmatrix in einfache Schritte zu zerlegen.
+Problem an, die Polyhasenmatrix in einfache Schritte zu zerlegen.
 
+\subsection{Die Polyphasen-Matrix}
+In \cite{fpga:Daubechies1998} wird erklärt, wie man die beiden
+Filter einer Multiskalen-Analyse in Form einer $2\times 2$-Matrix
+schreiben kann.
+Die Filter mit Koeffizientenvektoren $h_k$ und $g_k$ können durch 
+ihre Z-Transformation beschrieben werden, also durch die Polynome
+\[
+h(z) = \sum_{k} h_kz^{-k}
+\qquad\text{und}\qquad
+g(z) = \sum_{k} g_kz^{-k}.
+\]
+Im schnellen Algorithmus (Kapitel~\ref{chapter:algo}), der zu einer
+Multiskalenanalyse (Kapitel~\ref{chapter:msa}) gehört, werden die
+geraden und die ungeraden Samples eine leicht unterschiedlich
+behandelt.
+Daher liegt es nahe, auch die Polynome $h(z)$ und $g(z)$ in die
+geraden und ungeraden Teile aufzuteilen:
+\[
+h_e(z) = \sum_k h_{2k}z^{-k},
+\quad
+h_o(z) = \sum_k h_{2k+1}z^{-k},
+\quad
+g_e(z) = \sum_k g_{2k}z^{-k}
+\quad\text{und}\quad
+g_o(z) = \sum_k g_{2k+1}z^{-k}.
+\]
+Die Polyphasenmatrix ist dann definiert als
+\[
+P(z)
+=
+\begin{pmatrix}
+h_e(z)&g_e(z)\\
+h_o(z)&g_o(z)\\
+\end{pmatrix}.
+\]
+Die ursprünglichen Polynome sind
+\[
+\begin{aligned}
+h(z) &= h_e(z^2) + z^{-1}h_o(z^2)\\
+g(z) &= g_e(z^2) + z^{-1}g_o(z^2)
+\end{aligned}
+\qquad\Rightarrow\qquad
+\begin{pmatrix}
+h(z)\\
+g(z)
+\end{pmatrix}
+=
+P(z^2)^t
+\begin{pmatrix} 1\\ z^{-1} \end{pmatrix}
+\]
+
+\subsection{Faktorisierung eines Filters}
+Wir wenden den eukldischen Algorithmus auf die beiden Polyonem $h_e(z)$
+und $h_o(z)$ an.
+Die Quotienten bezeichnen wir mit $q_0(z),\dots,q_n(z)$ und erhalten dann
+\begin{align*}
+\begin{pmatrix} K(z) \\ 0 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\ 1&-q_n(z) \end{pmatrix}
+\begin{pmatrix} 0&1\\ 1&-q_{n-1}(z) \end{pmatrix}
+\cdots
+\begin{pmatrix} 0&1\\ 1&-q_0(z) \end{pmatrix}
+\begin{pmatrix} h_e(z)\\h_o(z)\end{pmatrix}
+\\
+&=
+Q(q_n(z))
+Q(q_{n-1}(z))
+\cdots
+Q(q_0(z))
+\begin{pmatrix} h_e(z)\\h_o(z)\end{pmatrix}.
+\end{align*}
+Durch Invertieren aller Matrizen $Q(q_k(z))$ können wir nach $h_e(z)$
+und $h_o(z)$ auflösen und erhalten
+\[
+\begin{pmatrix} h_e(z)\\h_o(z)\end{pmatrix}
+=
+Q(q_0(z))^{-1}
+\cdots
+Q(q_{n-1}(z))^{-1}
+Q(q_n(z))^{-1}
+\begin{pmatrix}K(z)\\0\end{pmatrix}.
+\]
+Die inverse Matrix von $Q(q(z))$ ist
+\[
+Q(q(z))^{-1}
+= 
+\begin{pmatrix}
+0&1\\
+1&-q(z)
+\end{pmatrix}^{-1}
+=
+\begin{pmatrix}
+q(z)&1\\
+1&0
+\end{pmatrix},
+\]
+so dass für $h_e(z)$ und $h_o(z)$ folgt
+\[
+\begin{pmatrix} h_e(z)\\h_o(z)\end{pmatrix}
+=
+\begin{pmatrix} q_0(z)&1\\1&0 \end{pmatrix}
+\begin{pmatrix} q_1(z)&1\\1&0 \end{pmatrix}
+\cdots
+\begin{pmatrix} q_n(z)&1\\1&0 \end{pmatrix}
+\begin{pmatrix} K(z) \\ 0 \end{pmatrix}.
+\]
+
+\subsection{Lifting Steps}
+Ein Lifting-Step ist eine besonders einfache Operation, die sich in
+Hardware mit nur einer Multiplikation und einer durchführen lässt.
+Aus zwei Input-Samples $x$ und $y$ wird ein neuer Wert $x$ 
+in der Form $x_{\text{neu}}=x+sy$ oder für $y$ in der Form
+$y_{\text{neu}}=tx+y$ berechnet, der andere Wert wird unverändert
+gelassen.
+In Matrixform lauten diese Operationen
+\[
+\begin{pmatrix} x_{\text{neu}}\\y_{\text{neu}} \end{pmatrix}
+=
+\begin{pmatrix} 1&s \\ 0&1\end{pmatrix}
+\begin{pmatrix}x\\y\end{pmatrix}
+\qquad\text{bzw.}\qquad
+\begin{pmatrix} x_{\text{neu}}\\y_{\text{neu}} \end{pmatrix}
+=
+\begin{pmatrix} 1&0 \\ t&1\end{pmatrix}
+\begin{pmatrix}x\\y\end{pmatrix}.
+\]
+Für die Anwendung auf die Wavelettransformation müssen wir zulassen,
+dass in einem Lifting Step ein ``verzögertes'' Sample verwendet wird.
+Dies wird dadurch ausgedrückt, dass $s$ nicht nur eine Konstante,
+sondern möglicherweise ein Polynom in $z$ ist.
+
+\begin{definition}
+Ein Lifting Step ist die Operation auf zwei Samplewerten $x$ und $y$,
+die durch eine der Matrizen
+\[
+R(s)
+=
+\begin{pmatrix}
+1&s\\
+0&1
+\end{pmatrix}
+\qquad\text{bzw.}\qquad
+L(t)
+=
+\begin{pmatrix}
+1&0\\
+t&1
+\end{pmatrix}
+\]
+beschrieben werden.
+\end{definition}
+
+\subsection{Zerlegung in Lifting Steps}
+Die mit dem euklidischen Algorithmus gefundenen Matrizen $Q(q)$ sind
+keine Lifting-Steps.
+Sie lassen sich aber leicht in diese Form bringen, wenn man die
+Vertauschungsmatrix 
+\[
+V
+=
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\qquad\text{mit}\qquad
+V^{-1} = V, \qquad V^2=E
+\]
+hinzuzieht.
+Es gelten nämlich die Relationen.
+\begin{align}
+Q(q(z))V 
+&=
+\begin{pmatrix} 0 & 1 \\ 1 & -q(z) \end{pmatrix}
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+=
+\begin{pmatrix} 1 & 0 \\ -q(z) & 1 \end{pmatrix}
+=
+L(-q(z))
+\notag
+\\
+VQ(q(z))
+&=
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\begin{pmatrix} 0 & 1 \\ 1 & -q(z) \end{pmatrix}
+=
+\begin{pmatrix} 1 & -q(z) \\ 0 & 1 \end{pmatrix}
+=
+R(-q(z))
+\notag
+\\
+Q(q(z))^{-1}V
+&=
+\begin{pmatrix} q(z) & 1 \\ 1 & 0 \end{pmatrix}
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+=
+\begin{pmatrix} 1 & q(z) \\ 0 & 1 \end{pmatrix}
+=
+R(q(z))
+\label{lifting:step:qvr}
+\\
+VQ(q(z))^{-1}
+&=
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\begin{pmatrix} q(z) & 1 \\ 1 & 0 \end{pmatrix}
+=
+\begin{pmatrix} 1 & 0 \\ q(z) & 1 \end{pmatrix}
+=
+L(q(z)).
+\label{lifting:step:vql}
+\end{align}
+
+Zwei aufeinanderfolgende $Q$-Matrizen können wir jetzt durch Zwischenschieben
+der Einheitsmatrix $E=V^2$ in zwei Lifting Steps verwandeln.
+\begin{equation}
+Q(t(z))^{-1}Q(s(z))^{-1}
+=
+Q(t(z))^{-1}V^2Q(s(z))^{-1}
+=
+(Q(t(z))^{-1}V)(VQ(-s(z))^{-1})
+=
+R(t(z)) L(s(z)),
+\label{lifting:split}
+\end{equation}
+wobei wir im letzten Schritt die zwei Regeln~\eqref{lifting:step:qvr}
+und \eqref{lifting:step:vql} angewendet haben.
+
+Für eine gerade Anzahl von Schritten im euklidischen Algorithmus 
+kann man \eqref{lifting:split} für jedes Paar von $Q$-Matrizen anwenden.
+So können die beiden Polynome $h_e(z)$ und $h_o(z)$ durch die Folge
+\begin{align*}
+\begin{pmatrix} h_e(z)\\h_o(z)\end{pmatrix}
+&=
+Q(q_0(z))^{-1}
+Q(q_1(z))^{-1}
+\cdots
+Q(q_n(z))^{-1}
+\begin{pmatrix}K(z)\\ 0 \end{pmatrix}
+\\
+&=
+R(q_0(z)) L(q_1(z)) \cdots R(q_{2k}(z)) L(q_{2k+1}(z)) \cdots 
+\begin{pmatrix}K(z)\\ 0 \end{pmatrix}
+\end{align*}
+von Lifting Steps konstruiert werden.
+Falls $n$ ungerade ist, bleibt am Ende die Matrix $Q(q_n(z))^{-1}$
+übrig.
