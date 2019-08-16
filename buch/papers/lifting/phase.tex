@@ -18,8 +18,7 @@ g(z) = \sum_{k} g_kz^{-k}.
 \]
 Im schnellen Algorithmus (Kapitel~\ref{chapter:algo}), der zu einer
 Multiskalenanalyse (Kapitel~\ref{chapter:msa}) gehört, werden die
-geraden und die ungeraden Samples eine leicht unterschiedlich
-behandelt.
+geraden und die ungeraden Samples leicht unterschiedlich behandelt.
 Daher liegt es nahe, auch die Polynome $h(z)$ und $g(z)$ in die
 geraden und ungeraden Teile aufzuteilen:
 \[
@@ -53,11 +52,11 @@ g(z)
 \end{pmatrix}
 =
 P(z^2)^t
-\begin{pmatrix} 1\\ z^{-1} \end{pmatrix}
+\begin{pmatrix} 1\\ z^{-1} \end{pmatrix}.
 \]
 
 \subsection{Faktorisierung eines Filters}
-Wir wenden den eukldischen Algorithmus auf die beiden Polyonem $h_e(z)$
+Wir wenden den euklidischen Algorithmus auf die beiden Polyonem $h_e(z)$
 und $h_o(z)$ an.
 Die Quotienten bezeichnen wir mit $q_0(z),\dots,q_n(z)$ und erhalten dann
 \begin{align*}
@@ -114,7 +113,7 @@ so dass für $h_e(z)$ und $h_o(z)$ folgt
 
 \subsection{Lifting Steps}
 Ein Lifting-Step ist eine besonders einfache Operation, die sich in
-Hardware mit nur einer Multiplikation und einer durchführen lässt.
+Hardware mit nur einer Multiplikation und einer Addition durchführen lässt.
 Aus zwei Input-Samples $x$ und $y$ wird ein neuer Wert $x$ 
 in der Form $x_{\text{neu}}=x+sy$ oder für $y$ in der Form
 $y_{\text{neu}}=tx+y$ berechnet, der andere Wert wird unverändert
@@ -215,6 +214,7 @@ L(q(z)).
 
 Zwei aufeinanderfolgende $Q$-Matrizen können wir jetzt durch Zwischenschieben
 der Einheitsmatrix $E=V^2$ in zwei Lifting Steps verwandeln.
+Wir rechnen
 \begin{equation}
 Q(t(z))^{-1}Q(s(z))^{-1}
 =
@@ -247,3 +247,6 @@ R(q_0(z)) L(q_1(z)) \cdots R(q_{2k}(z)) L(q_{2k+1}(z)) \cdots
 von Lifting Steps konstruiert werden.
 Falls $n$ ungerade ist, bleibt am Ende die Matrix $Q(q_n(z))^{-1}$
 übrig.
+
+
+
