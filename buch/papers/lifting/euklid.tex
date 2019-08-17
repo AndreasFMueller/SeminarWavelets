@@ -19,12 +19,12 @@ in Matrixform niedergeschrieben wird.
 Gegeben sind zwei ganze Zahlen $a$ und $b$ und wir dürfen annehmen,
 dass $a\ge b$.
 Gesucht ist der grösste gemeinsame Teiler $g$ von $a$ und $b$.
-Wir schreiben $g|a$ für ``$g$ teilt $a$'', gesucht ist also
-die grösste ganze Zahl derart, dass $g|a$ und $g|b$.
+Wir schreiben $g|a$ für ``$g$ ist Teiler von $a$'' oder ``$g$ teilt $a$'',
+gesucht ist also die grösste ganze Zahl $g$ derart, dass $g|a$ und $g|b$.
 
 Ist $b|a$, dann ist offenbar $b$ der grösste gemeinsame Teiler von $a$
 und $b$.
-Im Allgemeinen wird der grösste Teiler aber kleiner sein.
+Im Allgemeinen wird der grösste gemeinsame Teiler aber kleiner sein.
 Wir teilen daher $a$ durch $b$, was nur mit Rest möglich ist.
 Es gibt ganze Zahlen $q$, der Quotient, und $r$, der Rest, derart, dass
 \begin{equation}
@@ -125,6 +125,8 @@ $a_{k+1} = b_k$ und $b_{k+1} = r_k = a_k - q_kb_k$, dies
 kann man als
 \[
 \begin{pmatrix} a_{k+1} \\ b_{k+1} \end{pmatrix}
+=
+\begin{pmatrix} b_k \\ r_k \end{pmatrix}
 =
 \begin{pmatrix} 0 & 1 \\ 1 & -q_k \end{pmatrix}
 \begin{pmatrix} a_{k} \\ b_{k} \end{pmatrix}
@@ -314,7 +316,15 @@ Wavelet-Transformation anstreben.
 
 \subsection{Polynome}
 Der Ring $\mathbb{Q}[X]$ der Polynome in der Variablen $X$ mit rationalen
-Koeffizienten verhält
+Koeffizienten\footnote{Es kann auch ein beliebiger anderer Körper für
+die Koeffizienten verwendet werden.
+Es gelten sogar ähnlich interessante Gesetzmässigkeiten, wenn man für
+die Koeffizienten ganze Zahlen zulässt.
+Dann wird das Problem der Faktorisierung allerdings verkompliziert 
+durch das Problem der Teilbarkeit der Koeffizienten.
+Dieses Problem entfällt, wenn man die Koeffizienten aus einem
+Bereich wählt, in dem Teilbarkeit kein Problem ist, also in einem Körper.}
+verhält
 sich bezüglich Teilbarkeit ganz genau gleich wie die ganzen Zahlen.
 Insbesondere ist der euklidische Algorithmus genauso wie die
 Matrixschreibweise auch für Polynome durchführbar.
@@ -398,12 +408,17 @@ q_{21}a+q_{22}b
 Man kann natürlich den grössten gemeinsamen Teiler auch mit Hilfe einer
 Faktorisierung der Polynome $a$ und $b$ finden:
 \begin{align*}
+&\text{Faktorisierung von $a$:}&
 a  &=         (X-3) (X-2)\phantom{(X-1)}(X+1)         (X+2) \phantom{(X+3)}\\
+&\text{Faktorisierung von $b$:}&
 b  &=\phantom{(X-3)}(X-2)         (X-1) (X+1)\phantom{(X+2)}         (X+3) \\
+&\text{gemeinsame Faktoren:}&
 g  &=\phantom{(X-3)}(X-2)\phantom{(X-1)}(X+1)\phantom{(X+2)}\phantom{(X+3)}
     = X^2 -X + 2\\
+&&
 v=a/g&=         (X-3)\phantom{(X-2)(X-1)(X+1)} (X+2) \phantom{(X+3)}
     = X^2-X-6 \\
+&&
 u=b/g&=\phantom{(X-3)(X-2)} (X-1)\phantom{(X+1)(X+2)}(X+3)
     = X^2+2X-3
 \end{align*}

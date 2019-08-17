@@ -2,8 +2,12 @@
 % phase.tex
 %
 \section{Faktorisierung der Polyphasenmatrix}
+\rhead{Lifting Steps}
 In diesem Abschnitt wenden wir den euklidischen Algorithmus auf das
 Problem an, die Polyphasenmatrix in einfache Schritte zu zerlegen.
+Um möglichst direkt zur Faktorisierung~\eqref{lifting:faktorisierung}
+zu kommen, werden wir mit einzelnen Details etwas salop umgehen, dies wird
+im letzten Abschnitt~\ref{lifting:verschwiegen} teilweise korrigiert werden.
 
 \subsection{Die Polyphasen-Matrix}
 In \cite{fpga:Daubechies1998} wird erklärt, wie man die beiden
@@ -264,7 +268,7 @@ und \eqref{lifting:step:vql} angewendet haben.
 Für eine gerade Anzahl von Schritten im euklidischen Algorithmus 
 kann man \eqref{lifting:split} für jedes Paar von $Q$-Matrizen anwenden.
 So können die beiden Polynome $h_e(z)$ und $h_o(z)$ durch die Folge
-\begin{align*}
+\begin{align}
 \begin{pmatrix} h_e(z)\\h_o(z)\end{pmatrix}
 &=
 Q(q_0(z))^{-1}
@@ -272,11 +276,13 @@ Q(q_1(z))^{-1}
 \cdots
 Q(q_n(z))^{-1}
 \begin{pmatrix}K(z)\\ 0 \end{pmatrix}
+\notag
 \\
 &=
 R(q_0(z)) L(q_1(z)) \cdots R(q_{2k}(z)) L(q_{2k+1}(z)) \cdots 
 \begin{pmatrix}K(z)\\ 0 \end{pmatrix}
-\end{align*}
+\label{lifting:faktorisierung}
+\end{align}
 von Lifting Steps konstruiert werden.
 Falls $n$ ungerade ist, bleibt am Ende die Matrix $Q(q_n(z))^{-1}$
 übrig.
@@ -290,7 +296,8 @@ möglich.
 Die Faktorisierung hat also eine Beschleunigung um den Faktor $2$ 
 gebraucht.
 
-\subsection{Was wir bis jetzt verschwiegen haben}
+\subsection{Was wir bis jetzt verschwiegen haben
+\label{lifting:verschwiegen}}
 In der obigen Darstellung der Zerlegung der Polyphasen-Matrix 
 haben wir im Interesse einer flüssigen Präsentation einige
 wichtige Punkte einfach übergangen.
