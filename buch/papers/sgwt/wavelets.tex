@@ -15,24 +15,38 @@ Beispiel eines Dirac-Stosses $\delta(x)$, siehe~\cref{fig:sgwt:gft:dirac}.
     \centering
     \begin{minipage}[b]{0.49\textwidth}
     \includegraphics[
-    angle=-90,
-    origin=c,
     width=\textwidth
-    ]{papers/sgwt/images/dirac.pdf}
-    \vspace{-45pt}
+    ]{papers/sgwt/images/dirac/dirac_delta.pdf}
+    \vspace{-0pt}
     \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
         \label{fig:sgwt:gft:dirac}}
     \end{minipage}
     ~
     \begin{minipage}[b]{0.49\textwidth}
     \includegraphics[
-    angle=-90,
-    origin=c,
     width=\textwidth
-    ]{papers/sgwt/images/dirac_fft.pdf}
-    \vspace{-45pt}
+    ]{papers/sgwt/images/dirac/dirac_g_igft.pdf}
+    \vspace{-0pt}
     \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:fftdirac}}
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_g_gft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
     \end{minipage}
 \end{figure}
 Wenn wir davon die Fourier Transformation berechnen, zu sehen 
@@ -42,7 +56,142 @@ Fouriertransformierte $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
 
 $g(\lambda)\cdot\hat{\delta}(\lambda)$
 
+\begin{figure}
+    \centering
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_fft_imag.pdf}
+    \vspace{-0pt}
+    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
+        \label{fig:sgwt:gft:dirac}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_fft_real.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igft}}
+    \end{minipage}
+\end{figure}
 
+\begin{figure}
+    \centering
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt1_gft.pdf}
+    \vspace{-0pt}
+    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
+        \label{fig:sgwt:gft:dirac}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt1_igft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt2_gft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt2_igft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt3_gft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt3_igft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
+    \end{minipage}
+\end{figure}
+
+
+
+\begin{figure}
+    \centering
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt4_gft.pdf}
+    \vspace{-0pt}
+    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
+        \label{fig:sgwt:gft:dirac}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt4_igft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt5_gft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt5_igft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_h_gft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_h_igft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
+    \end{minipage}
+\end{figure}
 
 \begin{figure}
     \centering
@@ -476,75 +625,6 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \vspace{-45pt}
         \caption{$\phi(v_{10})$-Wavelets eines Streckengraphen mit 100 Knoten.}
         \label{fig:sgwt:wavelets:line5}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets-psi-1-sphere-334.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_1(v_{334})$ eines ungewichteten Kugelgraphen mit 
-        1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere0}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets-psi-2-sphere-334.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_2(v_{334})$ eines ungewichteten Kugelgraphen mit 
-        1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere1}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets-psi-3-sphere-334.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_3(v_{334})$ eines ungewichteten Kugelgraphen mit 
-        1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere2}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets-psi-4-sphere-334.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_4(v_{334})$ eines nicht gewichteten Kugelgraphen mit 
-        1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere3}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets-psi-5-sphere-334.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_4(v_{334})$ eines ungewichteten Kugelgraphen mit 
-        1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere4}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets-phi-sphere-334.pdf}
-        \vspace{-45pt}
-        \caption{$\phi(v_{334})$ eines ungewichteten Kugelgraphen mit 1252 
-        Knoten.}
-        \label{fig:sgwt:wavelets:sphere5}
     \end{minipage}
 \end{figure}
 
