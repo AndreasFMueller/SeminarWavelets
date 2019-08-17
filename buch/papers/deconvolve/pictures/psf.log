@@ -1,118 +1,160 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.4.25)  5 JUL 2019 15:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.6.19)  17 AUG 2019 15:03
 entering extended mode
-**./psf.tex
-(psf.tex
-LaTeX2e <2018-12-01>
-("C:\Program Files\MiKTeX 2.9\tex/latex/standalone\standalone.cls"
-Document Class: standalone 2018/03/26 v1.3a Class to compile TeX sub-files stan
-dalone
-("C:\Program Files\MiKTeX 2.9\tex/latex/tools\shellesc.sty"
-Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
-Package shellesc Info: Restricted shell escape enabled on input line 69.
-)
-("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifluatex.sty"
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**psf.tex
+(./psf.tex
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/standalone/sta
+ndalone.cls
+Document Class: standalone 2015/07/15 v1.2 Class to compile TeX sub-files stand
+alone
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifl
+uatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.sty"
-Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifp
+df.sty
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/ifxetex\ifxetex.sty"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxe
+tex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/xkeyval\xkeyval.sty"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/xkeyval/xkeyva
+l.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/xkeyval\xkeyval.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/xkeyval\xkvutils.tex"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/xkeyval/xkey
+val.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/xkeyval/xkvu
+tils.tex
 \XKV@toks=\toks14
 \XKV@tempa@toks=\toks15
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/xkeyval\keyval.tex"))
-\XKV@depth=\count80
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/xkeyval/keyv
+al.tex))
+\XKV@depth=\count79
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-\sa@internal=\count81
-\c@sapage=\count82
+\sa@internal=\count80
+\c@sapage=\count81
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/standalone\standalone.cfg"
-File: standalone.cfg 2018/03/26 v1.3a Default configuration file for 'standalon
-e' class
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/standalone/sta
+ndalone.cfg
+File: standalone.cfg 2015/07/15 v1.2 Default configuration file for 'standalone
+' class
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
-Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\size10.clo"
-File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/base/article.c
+ls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/base/size10.cl
+o
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
-\c@part=\count83
-\c@section=\count84
-\c@subsection=\count85
-\c@subsubsection=\count86
-\c@paragraph=\count87
-\c@subparagraph=\count88
-\c@figure=\count89
-\c@table=\count90
+\c@part=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
+\c@figure=\count88
+\c@table=\count89
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-\sa@box=\box27
+\sa@box=\box26
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgfplots\pgfplots.sty"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplots.revision.tex")
-Package: pgfplots 2018/03/28 v1.16 Data Visualization (1.16)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgfplots/pgfpl
+ots.sty
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plots.revision.tex)
+Package: pgfplots 2016/01/06 v1.13 Data Visualization (1.13)
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
-Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
-Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\trig.sty"
-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-)
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.cfg"
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: pdftex.def on input line 99.
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-def\pdftex.def"
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
-))
-\Gin@req@height=\dimen103
-\Gin@req@width=\dimen104
-)
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/frontendlayer\tikz.sty"
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/basiclayer\pgf.sty"
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/utilities\pgfrcs.sty"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/utilities\pgfutil-common.tex"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/frontendla
+yer/tikz.sty
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer
+/pgf.sty
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/utilities/
+pgfrcs.sty
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/utilitie
+s/pgfutil-common.tex
 \pgfutil@everybye=\toks16
-\pgfutil@tempdima=\dimen105
-\pgfutil@tempdimb=\dimen106
+\pgfutil@tempdima=\dimen103
+\pgfutil@tempdimb=\dimen104
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/utilities\pgfutil-common-lists.te
-x")) ("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/utilities\pgfutil-latex.def"
-\pgfutil@abb=\box28
-("C:\Program Files\MiKTeX 2.9\tex/latex/ms\everyshi.sty"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/utilitie
+s/pgfutil-common-lists.tex))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/utilitie
+s/pgfutil-latex.def
+\pgfutil@abb=\box27
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/ms/everyshi.st
+y
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/utilities\pgfrcs.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf\pgf.revision.tex")
-Package: pgfrcs 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/utilitie
+s/pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
 ))
-Package: pgf 2019/04/04 v3.1.2 (3.1.2)
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/basiclayer\pgfcore.sty"
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/systemlayer\pgfsys.sty"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/systemlayer\pgfsys.code.tex"
-Package: pgfsys 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer
+/pgfcore.sty
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/graphics/graph
+icx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/utilities\pgfkeys.code.tex"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/graphics/graph
+ics.sty
+Package: graphics 2016/05/09 v1.0r Standard LaTeX Graphics (DPC,SPQR)
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/graphics/trig.
+sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/g
+raphics.cfg
+File: graphics.cfg 2016/01/02 v1.10 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 96.
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pdftex-def/pdf
+tex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/oberdiek/inf
+warerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ltx
+cmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count90
+))
+\Gin@req@height=\dimen105
+\Gin@req@width=\dimen106
+)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/systemlaye
+r/pgfsys.sty
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/systemla
+yer/pgfsys.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/utilitie
+s/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks17
 \pgfkeys@temptoks=\toks18
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/utilities\pgfkeysfiltered.code.te
-x"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/utilitie
+s/pgfkeysfiltered.code.tex
 \pgfkeys@tmptoks=\toks19
 ))
 \pgf@x=\dimen107
@@ -132,32 +174,37 @@ x"
 \t@pgf@toka=\toks20
 \t@pgf@tokb=\toks21
 \t@pgf@tokc=\toks22
-\pgf@sys@id@count=\count95
- ("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/systemlayer\pgf.cfg"
-File: pgf.cfg 2019/04/04 v3.1.2 (3.1.2)
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/systemla
+yer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/systemlayer\pgfsys-pdftex.def"
-File: pgfsys-pdftex.def 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/systemla
+yer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def
-"
-File: pgfsys-common-pdf.def 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/systemla
+yer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 )))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.t
-ex"
-File: pgfsyssoftpath.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgfsyssoftpath@smallbuffer@items=\count96
-\pgfsyssoftpath@bigbuffer@items=\count97
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/systemla
+yer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count95
+\pgfsyssoftpath@bigbuffer@items=\count96
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/systemlayer\pgfsysprotocol.code.t
-ex"
-File: pgfsysprotocol.code.tex 2019/04/04 v3.1.2 (3.1.2)
-)) ("C:\Program Files\MiKTeX 2.9\tex/latex/xcolor\xcolor.sty"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/systemla
+yer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/xcolor/xcolor.
+sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/c
+olor.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -171,43 +218,50 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcore.code.tex"
-Package: pgfcore 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmath.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathcalc.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathutil.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathparser.code.tex"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+math.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathcalc.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathutil.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathparser.code.tex
 \pgfmath@dimen=\dimen115
-\pgfmath@count=\count98
-\pgfmath@box=\box29
+\pgfmath@count=\count97
+\pgfmath@box=\box28
 \pgfmath@toks=\toks23
 \pgfmath@stack@operand=\toks24
 \pgfmath@stack@operation=\toks25
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfunctions.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfunctions.basic.code.
-tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfunctions.trigonometr
-ic.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfunctions.random.code
-.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfunctions.comparison.
-code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfunctions.base.code.t
-ex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfunctions.round.code.
-tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfunctions.misc.code.t
-ex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfunctions.integerarit
-hmetics.code.tex")))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count99
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfunctions.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfunctions.basic.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfunctions.trigonometric.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfunctions.random.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfunctions.comparison.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfunctions.base.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfunctions.round.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfunctions.misc.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfunctions.integerarithmetics.code.tex)))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+mathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count98
 ))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
-"
-File: pgfcorepoints.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
 \pgf@picminx=\dimen116
 \pgf@picmaxx=\dimen117
 \pgf@picminy=\dimen118
@@ -223,119 +277,130 @@ File: pgfcorepoints.code.tex 2019/04/04 v3.1.2 (3.1.2)
 \pgf@zx=\dimen128
 \pgf@zy=\dimen129
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorepathconstruct.c
-ode.tex"
-File: pgfcorepathconstruct.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
 \pgf@path@lastx=\dimen130
 \pgf@path@lasty=\dimen131
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorepathusage.code.
-tex"
-File: pgfcorepathusage.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
 \pgf@shorten@end@additional=\dimen132
 \pgf@shorten@start@additional=\dimen133
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
-"
-File: pgfcorescopes.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgfpic=\box30
-\pgf@hbox=\box31
-\pgf@layerbox@main=\box32
-\pgf@picture@serial@count=\count100
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box29
+\pgf@hbox=\box30
+\pgf@layerbox@main=\box31
+\pgf@picture@serial@count=\count99
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcoregraphicstate.co
-de.tex"
-File: pgfcoregraphicstate.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
 \pgflinewidth=\dimen134
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcoretransformations
-.code.tex"
-File: pgfcoretransformations.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
 \pgf@pt@x=\dimen135
 \pgf@pt@y=\dimen136
 \pgf@pt@temp=\dimen137
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorequick.code.tex"
-File: pgfcorequick.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcoreobjects.code.te
-x"
-File: pgfcoreobjects.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorepathprocessing.
-code.tex"
-File: pgfcorepathprocessing.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
-"
-File: pgfcorearrows.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
 \pgfarrowsep=\dimen138
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex"
-File: pgfcoreshade.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
 \pgf@max=\dimen139
-\pgf@sys@shading@range@num=\count101
-\pgf@shadingcount=\count102
-) ("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcoreimage.code.te
-x"
-File: pgfcoreimage.code.tex 2019/04/04 v3.1.2 (3.1.2)
+\pgf@sys@shading@range@num=\count100
+)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcoreexternal.code.t
-ex"
-File: pgfcoreexternal.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgfexternal@startupbox=\box33
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box32
 ))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
-"
-File: pgfcorelayers.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcoretransparency.co
-de.tex"
-File: pgfcoretransparency.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorepatterns.code.t
-ex"
-File: pgfcorepatterns.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/basiclay
+er/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/
+pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box33
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex"
-File: pgfcorerdf.code.tex 2019/04/04 v3.1.2 (3.1.2)
-))) ("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/modules\pgfmoduleshapes.code.
-tex"
-File: pgfmoduleshapes.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgfnodeparttextbox=\box34
-) ("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/modules\pgfmoduleplot.code.tex"
-File: pgfmoduleplot.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/
+pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/compatibility\pgfcomp-version-0-65.
-sty"
-Package: pgfcomp-version-0-65 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/compatibil
+ity/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
 \pgf@nodesepstart=\dimen140
 \pgf@nodesepend=\dimen141
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/compatibility\pgfcomp-version-1-18.
-sty"
-Package: pgfcomp-version-1-18 2019/04/04 v3.1.2 (3.1.2)
-)) ("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/utilities\pgffor.sty"
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/utilities\pgfkeys.sty"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/utilities\pgfkeys.code.tex"))
-("C:\Program Files\MiKTeX 2.9\tex/latex/pgf/math\pgfmath.sty"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmath.code.tex"))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/utilities\pgffor.code.tex"
-Package: pgffor 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/compatibil
+ity/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/utilities/
+pgffor.sty
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/utilities/
+pgfkeys.sty
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/utilitie
+s/pgfkeys.code.tex))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/pgf/math/pgfma
+th.sty
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+math.code.tex))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/utilitie
+s/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/math\pgfmath.code.tex")
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/math/pgf
+math.code.tex)
 \pgffor@iter=\dimen142
 \pgffor@skip=\dimen143
 \pgffor@stack=\toks26
 \pgffor@toks=\toks27
 ))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex"
-Package: tikz 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/frontend
+layer/tikz/tikz.code.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/libraries\pgflibraryplothandlers.
-code.tex"
-File: pgflibraryplothandlers.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgf@plot@mark@count=\count103
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/librarie
+s/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count101
 \pgfplotmarksize=\dimen144
 )
 \tikz@lastx=\dimen145
@@ -344,125 +409,134 @@ File: pgflibraryplothandlers.code.tex 2019/04/04 v3.1.2 (3.1.2)
 \tikz@lastysaved=\dimen148
 \tikzleveldistance=\dimen149
 \tikzsiblingdistance=\dimen150
-\tikz@figbox=\box35
-\tikz@figbox@bg=\box36
-\tikz@tempbox=\box37
-\tikz@tempbox@bg=\box38
-\tikztreelevel=\count104
-\tikznumberofchildren=\count105
-\tikznumberofcurrentchild=\count106
-\tikz@fig@count=\count107
+\tikz@figbox=\box34
+\tikz@figbox@bg=\box35
+\tikz@tempbox=\box36
+\tikz@tempbox@bg=\box37
+\tikztreelevel=\count102
+\tikznumberofchildren=\count103
+\tikznumberofcurrentchild=\count104
+\tikz@fig@count=\count105
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/modules\pgfmodulematrix.code.tex"
-File: pgfmodulematrix.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgfmatrixcurrentrow=\count108
-\pgfmatrixcurrentcolumn=\count109
-\pgf@matrix@numberofcolumns=\count110
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/
+pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count106
+\pgfmatrixcurrentcolumn=\count107
+\pgf@matrix@numberofcolumns=\count108
 )
-\tikz@expandcount=\count111
+\tikz@expandcount=\count109
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/frontendlayer/tikz/libraries\tikz
-librarytopaths.code.tex"
-File: tikzlibrarytopaths.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/frontend
+layer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplots.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplotscore.code.tex"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plots.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plotscore.code.tex
 \t@pgfplots@toka=\toks28
 \t@pgfplots@tokb=\toks29
 \t@pgfplots@tokc=\toks30
 \pgfplots@tmpa=\dimen151
-\c@pgfplots@coordindex=\count112
-\c@pgfplots@scanlineindex=\count113
+\c@pgfplots@coordindex=\count110
+\c@pgfplots@scanlineindex=\count111
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/sys\pgfplotssysgeneric.code.
-tex"))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/libs\pgfplotslibrary.code.te
-x")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpg
-fsupp_loader.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/libraries\pgflibraryfpu.code.tex"
-)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/sys
+/pgfplotssysgeneric.code.tex))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/lib
+s/pgfplotslibrary.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/old
+pgfcompatib/pgfplotsoldpgfsupp_loader.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/librarie
+s/pgflibraryfpu.code.tex)
 Package pgfplots: loading complementary arithmetics for your pgf version...
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpg
-fsupp_pgflibraryfpu.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpg
-fsupp_pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count114
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/old
+pgfcompatib/pgfplotsoldpgfsupp_pgflibraryfpu.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/old
+pgfcompatib/pgfplotsoldpgfsupp_pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count112
 ))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/util\pgfplotsutil.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/liststructure\pgfplotslistst
-ructure.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/liststructure\pgfplotslistst
-ructureext.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/liststructure\pgfplotsarray.
-code.tex"
-\c@pgfplotsarray@tmp=\count115
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/uti
+l/pgfplotsutil.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/lis
+tstructure/pgfplotsliststructure.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/lis
+tstructure/pgfplotsliststructureext.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/lis
+tstructure/pgfplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count113
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/liststructure\pgfplotsmatrix
-.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/numtable\pgfplotstableshared
-.code.tex"
-\c@pgfplotstable@counta=\count116
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/lis
+tstructure/pgfplotsmatrix.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/num
+table/pgfplotstableshared.code.tex
+\c@pgfplotstable@counta=\count114
 \t@pgfplotstable@a=\toks31
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/liststructure\pgfplotsdeque.
-code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/util\pgfplotsbinary.code.tex
-"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/util\pgfplotsbinary.data.cod
-e.tex"))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/util\pgfplotsutil.verb.code.
-tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/libs\pgflibrarypgfplots.surf
-shading.code.tex"
-\c@pgfplotslibrarysurf@no=\count117
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/lis
+tstructure/pgfplotsdeque.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/uti
+l/pgfplotsbinary.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/uti
+l/pgfplotsbinary.data.code.tex))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/uti
+l/pgfplotsutil.verb.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/lib
+s/pgflibrarypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count115
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/sys\pgflibrarypgfplots.surfs
-hading.pgfsys-pdftex.def")))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/util\pgfplotscolormap.code.t
-ex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots/util\pgfplotscolor.code.tex"
-))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplotsstackedplots.code.te
-x")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplotsplothandlers.code.te
-x"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplotsmeshplothandler.code
-.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplotsmeshplotimage.code.t
-ex")))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplots.scaling.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplotscoordprocessing.code
-.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplots.errorbars.code.tex"
-) ("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplots.markers.code.tex"
-) ("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplotsticks.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgfplots\pgfplots.paths.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/frontendlayer/tikz/libraries\tikz
-librarydecorations.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/modules\pgfmoduledecorations.code
-.tex"
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/sys
+/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def)))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/uti
+l/pgfplotscolormap.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/uti
+l/pgfplotscolor.code.tex))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plotsstackedplots.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plotsplothandlers.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plotsmeshplothandler.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plotsmeshplotimage.code.tex)))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plots.scaling.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plotscoordprocessing.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plots.errorbars.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plots.markers.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plotsticks.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgfplots/pgf
+plots.paths.code.tex)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/frontend
+layer/tikz/libraries/tikzlibrarydecorations.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/modules/
+pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen152
 \pgfdecoratedremainingdistance=\dimen153
 \pgfdecoratedinputsegmentcompleteddistance=\dimen154
 \pgfdecoratedinputsegmentremainingdistance=\dimen155
 \pgf@decorate@distancetomove=\dimen156
-\pgf@decorate@repeatstate=\count118
+\pgf@decorate@repeatstate=\count116
 \pgfdecorationsegmentamplitude=\dimen157
 \pgfdecorationsegmentlength=\dimen158
 )
-\tikz@lib@dec@box=\box39
+\tikz@lib@dec@box=\box38
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/frontendlayer/tikz/libraries\tikz
-librarydecorations.pathmorphing.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/libraries/decorations\pgflibraryd
-ecorations.pathmorphing.code.tex"))
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/frontendlayer/tikz/libraries\tikz
-librarydecorations.pathreplacing.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/libraries/decorations\pgflibraryd
-ecorations.pathreplacing.code.tex"))
-\pgfplots@numplots=\count119
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/frontend
+layer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/librarie
+s/decorations/pgflibrarydecorations.pathmorphing.code.tex))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/frontend
+layer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/librarie
+s/decorations/pgflibrarydecorations.pathreplacing.code.tex))
+\pgfplots@numplots=\count117
 \pgfplots@xmin@reg=\dimen159
 \pgfplots@xmax@reg=\dimen160
 \pgfplots@ymin@reg=\dimen161
@@ -470,14 +544,14 @@ ecorations.pathreplacing.code.tex"))
 \pgfplots@zmin@reg=\dimen163
 \pgfplots@zmax@reg=\dimen164
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/frontendlayer/tikz/libraries\tikz
-libraryplotmarks.code.tex"
-File: tikzlibraryplotmarks.code.tex 2019/04/04 v3.1.2 (3.1.2)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/frontend
+layer/tikz/libraries/tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/pgf/libraries\pgflibraryplotmarks.cod
-e.tex"
-File: pgflibraryplotmarks.code.tex 2019/04/04 v3.1.2 (3.1.2)
-))) (psf.aux)
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/pgf/librarie
+s/pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
+))) (./psf.aux)
 \openout1 = `psf.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
@@ -493,91 +567,104 @@ LaTeX Font Info:    ... okay on input line 8.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
 
-("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
+ABD: EveryShipout initializing macros
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/context/base/mkii/su
+pp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
+\scratchcounter=\count118
 \scratchdimen=\dimen165
-\scratchbox=\box40
-\nofMPsegments=\count121
-\nofMParguments=\count122
+\scratchbox=\box39
+\nofMPsegments=\count119
+\nofMParguments=\count120
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count123
+\MPscratchCnt=\count121
 \MPscratchDim=\dimen166
-\MPnumerator=\count124
-\makeMPintoPDFobject=\count125
+\MPnumerator=\count122
+\makeMPintoPDFobject=\count123
 \everyMPtoPDFconversion=\toks33
-) ("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\infwarerr.sty"
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\grfext.sty"
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\kvdefinekeys.sty"
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-
-("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds.sty"
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)))
-("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\kvoptions.sty"
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\kvsetkeys.sty"
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\etexcmds.sty"
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-)))
-("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\pdftexcmds.sty"
-Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/oberdiek/pdf
+texcmds.sty
+Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epsto
+pdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/oberdiek/grfex
+t.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/oberdiek/kvd
+efinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+))
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/oberdiek/kvopt
+ions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/oberdiek/kvs
+etkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ete
+xcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
 Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
-)
-ABD: EveryShipout initializing macros
+
+(/Volumes/Macintosh HD 2/local/texlive/2016/texmf-dist/tex/latex/latexconfig/ep
+stopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 Package pgfplots notification 'compat/show suggested version=true': document ha
-s been generated with the most recent feature set (\pgfplotsset{compat=1.16}).
+s been generated with the most recent feature set (\pgfplotsset{compat=1.13}).
 
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 10.
-<pix_ges.png, id=4, 8.1906pt x 2.6499pt>
-File: pix_ges.png Graphic file (type png)
-<use pix_ges.png>
-Package pdftex.def Info: pix_ges.png  used on input line 11.
-(pdftex.def)             Requested size: 284.52756pt x 92.08688pt.
-<pic.png, id=6, 415.5525pt x 182.18062pt>
+<pix_ges-scaled.png, id=4, 51.59433pt x 16.69228pt>
+File: pix_ges-scaled.png Graphic file (type png)
+ <use pix_ges-scaled.png>
+Package pdftex.def Info: pix_ges-scaled.png used on input line 11.
+(pdftex.def)             Requested size: 284.52756pt x 92.05347pt.
+
+<pic.png, id=5, 415.5525pt x 182.18062pt>
 File: pic.png Graphic file (type png)
-<use pic.png>
-Package pdftex.def Info: pic.png  used on input line 12.
+ <use pic.png>
+Package pdftex.def Info: pic.png used on input line 12.
 (pdftex.def)             Requested size: 284.52756pt x 124.74292pt.
-(pix_row.tikz) [1
+ (./pix_row.tikz)
+[1
 
- <./pix_ges.png> <./pic.png>] (psf.aux) ) 
+ <./pix_ges-scaled.png> <./pic.png>] (./psf.aux) ) 
 Here is how much of TeX's memory you used:
- 22157 strings out of 492945
- 586928 string characters out of 3135516
- 769951 words of memory out of 3000000
- 25699 multiletter control sequences out of 15000+200000
- 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 21457 strings out of 493014
+ 571861 string characters out of 6133351
+ 730053 words of memory out of 5000000
+ 24652 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 78i,11n,136p,729b,1988s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,11n,84p,726b,1858s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on psf.pdf (1 page, 83056 bytes).
+Output written on psf.pdf (1 page, 82998 bytes).
 PDF statistics:
- 14 PDF objects out of 1000 (max. 8388607)
+ 16 PDF objects out of 1000 (max. 8388607)
+ 8 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
