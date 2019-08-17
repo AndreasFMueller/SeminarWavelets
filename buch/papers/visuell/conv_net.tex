@@ -2,12 +2,17 @@
 \rhead{Künstliches Neuronales Netz}
 
 Künstliche neuronale Netze (KNN) stellen eine Möglichkeit des maschinellen Lernens dar, welche vom Gehirn inspiriert wurde.
+\index{künstliche neuronale Netze}%
+\index{KNN}%
 Ein KNN besteht aus verschiedenen Neuronen, welche hierarchisch in sogenannten Layern angeordnet werden (vgl. Abbildung \ref{fig:neuralnet}).
 Jeder Eingangswert $x_i$ zu einem Neuron wird mit einem Gewicht $w_i$ multipliziert.
+\index{Gewicht}%
 Alle gewichteten Eingänge werden zusammen mit einem Schwellenwert $b$ addiert.
+\index{Schwellenwert}%
 Diese Summe wird danach durch eine nichtlineare Aktivierungsfunktion $H$ aktiviert und bildet so den Ausgang $y$
+\index{Aktivierungsfunktion}%
 \begin{equation} \label{eq:neuron}
-y=H\left(\sum_{i} x_i w_i+b\right).
+y=H\biggl(\sum_{i} x_i w_i+b\biggr).
 \end{equation}
 Die Nichtlinearität ist entscheidend um nichtlineare Probleme lösen zu können.
 Der Aufbau eines Neuron ist in Abbildung \ref{fig:neuron} gezeigt. 
@@ -29,10 +34,13 @@ Der Aufbau eines Neuron ist in Abbildung \ref{fig:neuron} gezeigt.
 \subsection{Convolutional Neural Nets}
 
 Eine Unterkategorie der KNNs stellen die Convolutional Neural Nets (CNN) dar.
+\index{Convolutional neural network}%
+\index{CNN}
 Wie der Name schon sagt, spielen dabei Faltungen eine wichtige Rolle.
 Bevor die normalen KNN Layer kommen, werden Bilddaten üblicherweise zuerst von einigen Faltungslayern vorverarbeitet.
 Ein solcher Faltungslayer besteht aus verschiedenen Kernels, welche mit dem Eingangsbild gefaltet werden.
 Die Funktion der zweidimensionalen Faltung ist analog zur klassischen Bildverarbeitung, wo häufig Faltungskernel verwendet werden um ein Bild zu filtern oder Features zu erkennen.
+\index{Faltungskernel}%
 Wie eine zweidimensionale Faltung funktioniert ist in Abbildung \ref{fig:2dconv} gezeigt.
 
 \begin{figure}
@@ -43,7 +51,7 @@ Wie eine zweidimensionale Faltung funktioniert ist in Abbildung \ref{fig:2dconv}
 \end{figure}
 
 Inspiriert wurden auch die CNNs von der Neurologie, genauer vom V1.
-Die rezeptiven Felder (vgl. \ref{subsec:v1}) bilden die Eingänge der Neuronen.
+Die rezeptiven Felder (vgl. Abschnitt~\ref{subsec:v1}) bilden die Eingänge der Neuronen.
 Diese Neuronen sind so angeordnet, dass jede Position im Bild abgedeckt ist.
 Es wird also vom Eingangsbild eine abstrakte Abbildung erstellt.
 Ein Neuron kann so als Multiplikation (mit anschliessender Aktivierungsfunktion) des rezeptiven Feldes mit einem Kernel interpretiert werden.
@@ -78,6 +86,7 @@ Zwei verschiedene Dinge sollen überprüft werden:
 	\item Lernt ein CNN Kernels welche Ähnlichkeiten zu den Gabor-Kerneln besitzen?
 \end{enumerate}
 Um diese Ziele zu erreichen wurde ein Versuch durchgeführt, bei welchem der CIFAR-10 \cite{paper:cifar10} Datensatz klassifiziert werden soll.
+\index{CIFAR-10}%
 Beim CIFAR-10 Datensatz handelt es sich um $32 \times 32$ Pixel grosse farbige Bilder,welche zu zehn verschiedenen Klassen gehören (z.B. Flugzeug, Vogel, etc.).
 Der Datensatz umfasst dabei 50'000 Trainings- und 10'000 Testbilder.
 Ein Beispiel jeder Klasse ist in Abbildung \ref{fig:cifar10} gezeigt.
@@ -86,7 +95,7 @@ Die Schwierigkeit ist wichtig, um überhaupt einen Unterschied in der Genauigkei
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth, trim=0 60 0 40, clip]{./papers/visuell/images/cifar10}
+	\includegraphics[width=1.0\linewidth, trim=0 60 0 40, clip]{./papers/visuell/images/cifar10}
 	\caption{Die zehn verschiedenen Klassen des CIFAR-10 Datensatzes.}
 	\label{fig:cifar10}
 \end{figure}
@@ -99,8 +108,8 @@ Also wird das Netzwerk zwei mal trainiert, einmal mit einem fixen ersten Layer (
 Die Parametrisierung (vgl. \ref{subsec:2D}) der Gabor-Wavelets für den ersten Layer wird vor dem Trainingsbeginn festgelegt.
 Dabei wurden je acht verschiedene Werte für $\theta$ und $\lambda$ eingesetzt, die anderen Parameter sind für alle Kernels identisch.
 Die Variante mit Gabor-Layer stellt dem Netzwerk weniger Freiheitsgrade zur Verfügung und sollte theoretisch ein schlechteres Resultat zeigen.
-Da wir aber vermuten das ein Gabor-Layer eine optimale Vorverarbeitung darstellt, können wir die folgende Hypothese formulieren:
-\newtheorem{hypothese}{Hypothese}
+Da wir aber vermuten, dass ein Gabor-Layer eine optimale Vorverarbeitung darstellt, können wir die folgende Hypothese formulieren:
+\newtheorem*{hypothese}{Hypothese}
 \begin{hypothese}\label{hyp:1}
 	 Ein Gabor-Layer stellt eine vorteilhafte Vorverarbeitung dar.
 	 Aus diesem Grund sollten die Gabor-Kernels bessere Resultate als die selbst gelernten zeigen.
