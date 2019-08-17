@@ -10,404 +10,48 @@ vereinen.
 
 Bevor wir uns auf die Graph Wavelets st\"urzen, wollen wir zuerst versuchen die 
 Fourier Theorie auf Funktionen auf Graphen anzuwenden. Dazu nehmen wir das 
-Beispiel eines Dirac-Stosses $\delta(x)$, siehe~\cref{fig:sgwt:gft:dirac}.
-\begin{figure}
-    \centering
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_delta.pdf}
-    \vspace{-0pt}
-    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
-        \label{fig:sgwt:gft:dirac}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_g_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_g_gft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
-    \end{minipage}
-\end{figure}
+Beispiel eines Dirac-Stosses $\delta(x)$, siehe~\cref{fig:sgwt:fft:dirac}.
 Wenn wir davon die Fourier Transformation berechnen, zu sehen 
-in~\cref{fig:sgwt:gft:fftdirac}, stellen wir fest, das nicht nur alle 
-Frequenzen vorhanden sondern auch alle gleich stark vorhanden sind. Die 
-Fouriertransformierte $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
-
-$g(\lambda)\cdot\hat{\delta}(\lambda)$
-
+in~\cref{fig:sgwt:fft:fftreal} und~\cref{fig:sgwt:fft:fftimag}, stellen wir 
+fest, dass wir darin alle Frequenzen wiederfinden. Die Fouriertransformierte 
+$\hat{\delta}$ ist somit vollst\"andig delokalisiert.
 \begin{figure}
+    \begin{minipage}[t]{\textwidth}
     \centering
-    \begin{minipage}[b]{0.49\textwidth}
     \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_fft_imag.pdf}
-    \vspace{-0pt}
+    width=0.7\textwidth
+    ]{papers/sgwt/images/dirac/dirac_delta.pdf}
+    \vspace{-10pt}
     \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
-        \label{fig:sgwt:gft:dirac}}
+    \label{fig:sgwt:fft:dirac}}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
     \includegraphics[
     width=\textwidth
     ]{papers/sgwt/images/dirac/dirac_fft_real.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igft}}
+    \vspace{-20pt}
+    \caption{Kosinus Anteile $a_n$  der Fourier Transformation des 
+    Dirac-Stosses $\hat{\delta}(x)$.
+    \label{fig:sgwt:fft:fftreal}}
     \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{minipage}[b]{0.49\textwidth}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
     \includegraphics[
     width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt1_gft.pdf}
-    \vspace{-0pt}
-    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
-        \label{fig:sgwt:gft:dirac}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt1_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt2_gft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt2_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt3_gft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt3_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
-    \end{minipage}
-\end{figure}
-
-
-
-\begin{figure}
-    \centering
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt4_gft.pdf}
-    \vspace{-0pt}
-    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
-        \label{fig:sgwt:gft:dirac}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt4_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt5_gft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt5_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_h_gft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_h_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-        aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ggft}}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[
-    angle=-90,
-    origin=c,
-    scale=0.6
-    ]{papers/sgwt/images/wavelets/lambda.pdf}
-    \vspace{-50pt}
-    \caption{Eigenwerte $\lambda$ eines Kugelgraphen mit 1252 Knoten. 
-    \label{fig:sgwt:wavelets:sphere:lambda}}
-\end{figure}
-
-\begin{figure}
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/gt1.pdf}
-        \vspace{-45pt}
-        \caption{Die Kernelfunktion $g(t_1\lambda)$ eines Kugelgraphen mit 1252 
-        Knoten und $t_1 = 0.2$.}
-        \label{fig:sgwt:wavelets:sphere:gt1}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t1_50_25_630_flat.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_1(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:psi1:flat}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t1_50_25_630.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_1(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten 
-        und $t = 0.42295$.}
-        \label{fig:sgwt:wavelets:sphere:psi1}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/gt2.pdf}
-        \vspace{-45pt}
-        \caption{Die Kernelfunktion $g(t_2\lambda)$ eines Kugelgraphen mit 1252 
-            Knoten und $t_2 = 0.42295$.}
-        \label{fig:sgwt:wavelets:sphere:gt2}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t2_50_25_630_flat.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_2(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:psi2:flat}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t2_50_25_630.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_2(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:psi2}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/gt3.pdf}
-        \vspace{-45pt}
-        \caption{Die Kernelfunktion $g(t_3\lambda)$ eines Kugelgraphen mit 1252 
-            Knoten und $t_3 = 0.89443$.}
-        \label{fig:sgwt:wavelets:sphere:gt3}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t3_50_25_630_flat.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_3(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:psi3:flat}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t3_50_25_630.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_3(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:psi3}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/gt4.pdf}
-        \vspace{-45pt}
-        \caption{Die Kernelfunktion $g(t_4\lambda)$ eines Kugelgraphen mit 1252 
-            Knoten und $t_4 = 1.89148$.}
-        \label{fig:sgwt:wavelets:sphere:gt4}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t4_50_25_630_flat.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_4(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:psi4:flat}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t4_50_25_630.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_4(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:psi4}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/gt5.pdf}
-        \vspace{-45pt}
-        \caption{Die Kernelfunktion $g(t_5\lambda)$ eines Kugelgraphen mit 1252 
-            Knoten und $t_5 = 4$.}
-        \label{fig:sgwt:wavelets:sphere:gt5}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t5_50_25_630_flat.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_5(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:psi5:flat}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/psi_t5_50_25_630.pdf}
-        \vspace{-45pt}
-        \caption{$\psi_5(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:psi5}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/h.pdf}
-        \vspace{-45pt}
-        \caption{Die Kernelfunktion $h(\lambda)$ eines Kugelgraphen mit 1252 
-            Knoten.}
-        \label{fig:sgwt:wavelets:sphere:h}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{0.49\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/phi_50_25_630_flat.pdf}
-        \vspace{-45pt}
-        \caption{$\phi(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:phi:flat}
-    \end{minipage}
-    ~
-    \begin{minipage}[b]{\textwidth}
-        \includegraphics[
-        angle=-90,
-        origin=c,
-        width=\textwidth]{papers/sgwt/images/wavelets/phi_50_25_630.pdf}
-        \vspace{-45pt}
-        \caption{$\phi(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
-        \label{fig:sgwt:wavelets:sphere:phi}
+    ]{papers/sgwt/images/dirac/dirac_fft_imag.pdf}
+    \vspace{-20pt}
+    \caption{Sinus Anteile $b_n$ der Fourier Transformation des Dirac-Stosses 
+    $\hat{\delta}(x)$.
+    \label{fig:sgwt:fft:fftimag}}
     \end{minipage}
 \end{figure}
 
 \subsubsection{Kernelfunktionen}
 
 Um dieses Problem zu l\"osen nehmen wir eine Kernelfunktion $g(\lambda)$, 
-welche die Eigenschaften $g(0) = 0$ und $\lim_{\lambda\to\infty} g(x) = 0$ 
+welche die Eigenschaften $g(0) = 0$ und $\lim_{\lambda\to\infty} g(\lambda) = 
+0$ 
 erf\"ullt. Mit Hilfe dieses Bandpasses k\"onnen wir die Eigenwerte bewusst 
 delokalisieren. Wenn wir nun zus\"atzlich die Eigenwerte mit einem 
 Skalierungsfaktor $t$ multiplizieren, erhalten wir auch eine 
@@ -420,6 +64,216 @@ also den konstanten Anteil der zu analysierenden und synthetisierenden
 Funktion. Um das zu umgehen nehmen brauchen wir eine zus\"atzliche 
 Kernelfunktion $h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und 
 $\lim_{\lambda\to\infty} = 0$.
+
+\begin{figure}
+    \centering
+    \includegraphics[
+    angle=-90,
+    origin=c,
+    scale=0.6
+    ]{papers/sgwt/images/wavelets/lambda.pdf}
+    \vspace{-50pt}
+    \caption{Eigenwerte $\lambda$ eines Kugelgraphen mit 1252 Knoten. 
+        \label{fig:sgwt:wavelets:sphere:lambda}}
+\end{figure}
+
+\begin{figure}
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/gt1.pdf}
+        \vspace{-45pt}
+        \caption{Die Kernelfunktion $g(t_1\lambda)$ eines Kugelgraphen mit 1252 
+            Knoten und $t_1 = 0.2$.}
+        \label{fig:sgwt:wavelets:sphere:gt1}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t1_50_25_630_flat.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_1(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi1:flat}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t1_50_25_630.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_1(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi1}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/gt2.pdf}
+        \vspace{-45pt}
+        \caption{Die Kernelfunktion $g(t_2\lambda)$ eines Kugelgraphen mit 1252 
+            Knoten und $t_2 = 0.42295$.}
+        \label{fig:sgwt:wavelets:sphere:gt2}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t2_50_25_630_flat.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_2(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi2:flat}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t2_50_25_630.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_2(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi2}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/gt3.pdf}
+        \vspace{-45pt}
+        \caption{Die Kernelfunktion $g(t_3\lambda)$ eines Kugelgraphen mit 1252 
+            Knoten und $t_3 = 0.89443$.}
+        \label{fig:sgwt:wavelets:sphere:gt3}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t3_50_25_630_flat.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_3(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi3:flat}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t3_50_25_630.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_3(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi3}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/gt4.pdf}
+        \vspace{-45pt}
+        \caption{Die Kernelfunktion $g(t_4\lambda)$ eines Kugelgraphen mit 1252 
+            Knoten und $t_4 = 1.89148$.}
+        \label{fig:sgwt:wavelets:sphere:gt4}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t4_50_25_630_flat.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_4(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi4:flat}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t4_50_25_630.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_4(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi4}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/gt5.pdf}
+        \vspace{-45pt}
+        \caption{Die Kernelfunktion $g(t_5\lambda)$ eines Kugelgraphen mit 1252 
+            Knoten und $t_5 = 4$.}
+        \label{fig:sgwt:wavelets:sphere:gt5}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t5_50_25_630_flat.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_5(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi5:flat}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/psi_t5_50_25_630.pdf}
+        \vspace{-45pt}
+        \caption{$\psi_5(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:psi5}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/h.pdf}
+        \vspace{-45pt}
+        \caption{Die Kernelfunktion $h(\lambda)$ eines Kugelgraphen mit 1252 
+            Knoten.}
+        \label{fig:sgwt:wavelets:sphere:h}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/phi_50_25_630_flat.pdf}
+        \vspace{-45pt}
+        \caption{$\phi(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:phi:flat}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{\textwidth}
+        \includegraphics[
+        angle=-90,
+        origin=c,
+        width=\textwidth]{papers/sgwt/images/wavelets/phi_50_25_630.pdf}
+        \vspace{-45pt}
+        \caption{$\phi(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
+        \label{fig:sgwt:wavelets:sphere:phi}
+    \end{minipage}
+\end{figure}
 
 Die in~\cref{sec:sgwt:spectralanalysis} vorgestellten Eigenfunktionen 
 k\"onnen wir direkt nutzen um eine Graph Fourier Transformation zu definieren. 
@@ -462,6 +316,171 @@ Eigenwerte der Laplace Matrix eines Graphen definiert. Die Eigenwerte sind
 allerdings komplett lokalisiert, sie kommen also einem Dirac-Stoss an 
 einem Knoten gleich.
 
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_delta.pdf}
+        \vspace{-20pt}
+        \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert 
+        $1$. 
+            \label{fig:sgwt:gft:dirac}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_g_igft.pdf}
+        \vspace{-20pt}
+        \caption{R\"ucktransformation der mittels Kernelfunktion $g(lambda)$ 
+            modifizierten Dirac-Stoss Graph Transformation        
+            aus~\cref{fig:sgwt:gft:ggft}, 
+            $\psi = \chi\hat{\delta}_g(\lambda)$.
+            \label{fig:sgwt:gft:igft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gft.pdf}
+        \vspace{-20pt}
+        \caption{Graph Transformation des Dirac-Stosses 
+            aus~\cref{fig:sgwt:gft:dirac},
+            $\hat{\delta}(x) = \chi^*\delta(x)$.
+            \label{fig:sgwt:gft:gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_g_gft.pdf}
+        \vspace{-20pt}
+        \caption{Anwendung der Kernelfunktion $g(\lambda)$ auf die Graph 
+            Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac},
+            $\hat{\delta}_g(\lambda) = g(\lambda)\cdot\hat{\delta}(\lambda)$.
+            \label{fig:sgwt:gft:ggft}}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt1_gft.pdf}
+        \vspace{-0pt}
+        \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert 
+        $1$. 
+            \label{fig:sgwt:gft:gt1gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt1_igft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt1gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt2_gft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt2gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt2_igft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt2gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt3_gft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt3gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt3_igft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt3gft}}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt4_gft.pdf}
+    \vspace{-0pt}
+    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
+    \label{fig:sgwt:gft:gt4gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt4_igft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt4gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt5_gft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt5gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_gt5_igft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt5gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_h_gft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:hgft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/dirac/dirac_h_igft.pdf}
+    \vspace{-0pt}
+    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ihgft}}
+    \end{minipage}
+\end{figure}
+
+
+
 \subsection{Graph Wavelets: Skalierung\label{subsec:sgwt:gwt:scaling}}
 
 \subsection{Frames}
@@ -499,7 +518,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
 
 \begin{figure}
     \centering
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -509,7 +528,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:ring0}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -519,7 +538,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:ring1}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -529,7 +548,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:ring2}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -539,7 +558,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:ring3}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -549,7 +568,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:ring4}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -562,7 +581,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
 
 \begin{figure}
     \centering
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -573,7 +592,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:line0}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -584,7 +603,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:line1}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -595,7 +614,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:line2}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -606,7 +625,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:line3}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
@@ -617,7 +636,7 @@ einer Verzerrung der Wavelets in Richtung der Pole kommt.
         \label{fig:sgwt:wavelets:line4}
     \end{minipage}
     ~
-    \begin{minipage}[b]{0.49\textwidth}
+    \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         angle=-90,
         origin=c,
