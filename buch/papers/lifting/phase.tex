@@ -14,7 +14,7 @@ In \cite{fpga:Daubechies1998} wird erklärt, wie man die beiden
 Filter einer Multiskalen-Analyse in Form einer $2\times 2$-Matrix
 schreiben kann.
 Die Filter mit Koeffizientenvektoren $h_k$ und $g_k$ können durch 
-ihre Z-Transformation beschrieben werden, also durch die Polynome
+ihre $z$-Transformation beschrieben werden, also durch die Polynome
 \[
 h(z) = \sum_{k} h_kz^{-k}
 \qquad\text{und}\qquad
@@ -62,7 +62,7 @@ Die gesamte Information über die Filter $h$ und $g$ ist in der Matrix
 $P(z)$ enthalten.
 
 Die Wirkung des Filters auf einem Signal wird durch die Multiplikation
-von $h(z)$ mit der Z-Transformation des Signals durchgeführt.
+von $h(z)$ mit der $z$-Transformation des Signals durchgeführt.
 Um dies mit der Polyphasenmatrix durchzuführen, müssen auch die Samples
 des Signals in gerade und ungerade numeriert Samples aufgeteilt werden.
 Statt Signals $x_k$ verwendet man auch
