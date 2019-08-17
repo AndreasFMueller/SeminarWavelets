@@ -128,7 +128,7 @@ erstes Wavelet $\psi$, zu sehen in~\cref{fig:sgwt:gft:iggft}.
         ]{papers/sgwt/images/dirac/dirac_g_igft.pdf}
         \vspace{-20pt}
         \caption{R\"ucktransformation der mittels Kernelfunktion $g(\lambda)$ 
-            modifizierten Dirac-Stoss Graph Transformation        
+            modifizierten Dirac-Stoss Graph-Transformation        
             aus~\cref{fig:sgwt:gft:ggft}, 
             $\psi = \chi\hat{\delta}_g(\lambda)$.
             \label{fig:sgwt:gft:iggft}}
@@ -139,7 +139,7 @@ erstes Wavelet $\psi$, zu sehen in~\cref{fig:sgwt:gft:iggft}.
         width=\textwidth
         ]{papers/sgwt/images/dirac/dirac_gft.pdf}
         \vspace{-20pt}
-        \caption{Graph Transformation des Dirac-Stosses 
+        \caption{Graph-Transformation des Dirac-Stosses 
             aus~\cref{fig:sgwt:gft:dirac},
             $\hat{\delta}(v) = \chi^*\delta(v)$.
             \label{fig:sgwt:gft:gft}}
@@ -153,123 +153,34 @@ erstes Wavelet $\psi$, zu sehen in~\cref{fig:sgwt:gft:iggft}.
         \caption{Anwendung der Kernelfunktion $g(\lambda)$ auf die Graph 
             Transformation des Dirac-Stosses $\hat{\delta}(v)$ 
             aus~\cref{fig:sgwt:gft:dirac},
-            $\hat{\delta}_g(\lambda) = g(\lambda)\cdot\hat{\delta}(v)$.
+            $\hat{\delta}_g(\lambda) = g(\lambda)\hat{\delta}(v)$.
             \label{fig:sgwt:gft:ggft}}
     \end{minipage}
 \end{figure}
 
-\subsection{Graph Wavelets: Skalierung\label{subsec:sgwt:gwt:scaling}}
+Wir haben jetzt aber noch das Problem, dass $\lambda_0 = 0$ gilt. Wir verlieren 
+also den konstanten Anteil der zu analysierenden und synthetisierenden 
+Funktion. Um das zu l\"osen ben\"otigen wir eine zus\"atzliche 
+Kernelfunktion $h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und 
+$\lim_{\lambda\to\infty} h(\lambda) = 0$, oder anders ausgedr\"uckt, wir 
+ben\"otigen einen Tiefpass.
 
-Wenn wir nun zus\"atzlich die Eigenwerte mit 
-einem Skalierungsfaktor $t$ multiplizieren, erhalten wir auch eine 
-M\"oglichkeit, das Spektrum zu verschieben. Obwohl $t$ ein kontinuierlicher 
-Faktor ist, werden wir uns in der Praxis auf $J$ Faktoren, also eine endliche 
-Anzahl $\{t_j\}^J_{j=1}$, beschr\"anken m\"ussen.
-
-
+Diese neu gefundene Funktion $h(\lambda)$ k\"onnen wir wieder auf die Graph 
+Fourier Transformierte eines Dirac-Stosses anwenden und erhalten damit
+$\hat{\delta}_h(\lambda)$, zu sehen in~\cref{fig:sgwt:gft:hgft}. Die 
+R\"ucktransformation, zu sehen in~\cref{fig:sgwt:gft:ihgft}, liefert uns damit 
+dann unser zweites Wavelet $\phi$.
 \begin{figure}
-    \centering
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt1_gft.pdf}
-        \vspace{-0pt}
-        \caption{Spektrum eines Ringgraphen 
-            \label{fig:sgwt:gft:gt1gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt1_igft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt1gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt2_gft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt2gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt2_igft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt2gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt3_gft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt3gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt3_igft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt3gft}}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt4_gft.pdf}
-        \vspace{-0pt}
-        \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert 
-        $1$. 
-            \label{fig:sgwt:gft:gt4gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt4_igft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt4gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt5_gft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt5gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt5_igft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt5gft}}
-    \end{minipage}
-    ~
     \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
         width=\textwidth
         ]{papers/sgwt/images/dirac/dirac_h_gft.pdf}
         \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:hgft}}
+        \caption{Anwendung der Kernelfunktion $h(\lambda)$ auf die Graph 
+        Transformation des Dirac-Stosses $\hat{\delta}(v)$ 
+        aus~\cref{fig:sgwt:gft:dirac}, $\hat{\delta}_h(\lambda) = 
+        h(\lambda)\cdot\hat{\delta}(v)$.
+        \label{fig:sgwt:gft:hgft}}
     \end{minipage}
     ~
     \begin{minipage}[t]{0.49\textwidth}
@@ -277,11 +188,142 @@ Anzahl $\{t_j\}^J_{j=1}$, beschr\"anken m\"ussen.
         width=\textwidth
         ]{papers/sgwt/images/dirac/dirac_h_igft.pdf}
         \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ihgft}}
+        \caption{R\"ucktransformation der mittels Kernelfunktion $h(\lambda)$ 
+        modifizierten Dirac-Stoss Graph-Transformation
+        aus~\cref{fig:sgwt:gft:hgft}, $\phi = \chi\hat{\delta}_h(\lambda)$.
+        \label{fig:sgwt:gft:ihgft}}
     \end{minipage}
 \end{figure}
 
+\subsection{Graph Wavelets: Skalierung\label{subsec:sgwt:gwt:scaling}}
+
+Nachdem wir nun in~\cref{subsec:sgwt:gwt:localizing} eine M\"oglichkeit 
+gefunden haben die Lokalisierung im Spektrum eines Graphen durchzuf\"uhren, 
+fehlt uns noch ein Werkzeug zur Skalierung der Wavelets. Das Problem ist hier 
+aber, dass ein Graph keine geometrische Skalierungstransformation kennt. Wir 
+m\"ussen also versuchen, wie schon die Lokalisierung, unsere 
+Skalierung im Spektrum des Graphen vorzunehmen. Dazu ben\"otigen wir einen 
+Skalierungsfaktor $t$ den wir mit unseren Eigenwerten $\lambda$ multiplizieren.
+Dabei wird verwendet, dass das Spektrum mit $D_a$ skaliertes klassischen 
+Wavelet eben auch mit $D_{1/2}$ (modulo Normierungsfaktoren) skaliert. Statt 
+dass wir also auf dem Graphen versuchen unser Wavelet zu skalieren, skalieren 
+wir den Bandpass $g(\lambda)$, den wir ja auf das Spektrum anwenden und 
+erhalten die Kernelfunktion $g(t\lambda)$. Dies ergibt dann eine skalierte 
+Wavelet-Familie $\psi_t$.
+
+\Cref{fig:sgwt:gft:gt1gft,fig:sgwt:gft:gt2gft,fig:sgwt:gft:gt3gft,fig:sgwt:gft:gt4gft,fig:sgwt:gft:gt5gft}
+zeigen Beispiele von unterschiedlich skalierten Kernelfunktionen, 
+die auf die Fourier Graph-Transformierte eines Dirac-Stosses angewandt werden.
+\Cref{fig:sgwt:gft:igt1gft,fig:sgwt:gft:igt2gft,fig:sgwt:gft:igt3gft,fig:sgwt:gft:igt4gft,fig:sgwt:gft:igt5gft}
+wiederum zeigen die daraus resultierende Wavelet-Familie $\psi_t$.
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt1_gft.pdf}
+        \vspace{-0pt}
+        \caption{Eine mit $g(t\lambda)$, $t = 0.2$, modifizierte Fourier Graph 
+        Transformierte eines Dirac-Stosses.
+        \label{fig:sgwt:gft:gt1gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt1_igft.pdf}
+        \vspace{-0pt}
+        \caption{Das aus~\cref{fig:sgwt:gft:gt1gft} resultierende Wavelet.
+        \label{fig:sgwt:gft:igt1gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt2_gft.pdf}
+        \vspace{-0pt}
+        \caption{Eine mit $g(t\lambda)$, $t = 0.42295$, modifizierte Fourier 
+        Graph-Transformierte eines Dirac-Stosses.
+        \label{fig:sgwt:gft:gt2gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt2_igft.pdf}
+        \vspace{-0pt}
+        \caption{Das aus~\cref{fig:sgwt:gft:gt2gft} resultierende Wavelet.
+        \label{fig:sgwt:gft:igt2gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt3_gft.pdf}
+        \vspace{-0pt}
+        \caption{Eine mit $g(t\lambda)$, $t = 0.89443$, modifizierte Fourier 
+        Graph-Transformierte eines Dirac-Stosses.
+        \label{fig:sgwt:gft:gt3gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt3_igft.pdf}
+        \vspace{-0pt}
+        \caption{Das aus~\cref{fig:sgwt:gft:gt3gft} resultierende Wavelet.
+        \label{fig:sgwt:gft:igt3gft}}
+    \end{minipage}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt4_gft.pdf}
+        \vspace{-0pt}
+        \caption{Eine mit $g(t\lambda)$, $t = 1.89148$, modifizierte Fourier 
+        Graph-Transformierte eines Dirac-Stosses.
+        \label{fig:sgwt:gft:gt4gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt4_igft.pdf}
+        \vspace{-0pt}
+        \caption{Das aus~\cref{fig:sgwt:gft:gt4gft} resultierende Wavelet.
+        \label{fig:sgwt:gft:igt4gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt5_gft.pdf}
+        \vspace{-0pt}
+        \caption{Eine mit $g(t\lambda)$, $t = 4$, modifizierte Fourier Graph 
+        Transformierte eines Dirac-Stosses.
+        \label{fig:sgwt:gft:gt5gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt5_igft.pdf}
+        \vspace{-0pt}
+        \caption{Das aus~\cref{fig:sgwt:gft:gt5gft} resultierende Wavelet.
+        \label{fig:sgwt:gft:igt5gft}}
+    \end{minipage}
+\end{figure}
+
+Die $t$ entsprechen somit genau dem $a$ in der klassischen 
+Wavelet-Transformation. Es dr\"uckt die ``Verbreiterung'' des Wavelets aus.
+Die Translation $b$ der klassischen Transformation kann man dagegen nicht 
+retten, denn die Existenz des $b$ in der klassischen Transformation drückt ja 
+aus, dass man die Analyse an jedem Punkt des Definitionsbereichs mit der 
+``gleichen'' Funktion machen kann. Das ist aber auf einem Graphen 
+grunds\"atzlich nicht m\"oglich, denn man kann die Eigenfunktionen nicht 
+miteinander vergleichen.
 
 \begin{figure}
     \centering
@@ -495,21 +537,20 @@ Anzahl $\{t_j\}^J_{j=1}$, beschr\"anken m\"ussen.
 
 \subsection{Frames}
 
+Obwohl $t$ ein kontinuierlicher Faktor ist, werden wir uns in der Praxis auf 
+$J$ Faktoren, also eine endliche Anzahl $\{t_j\}^J_{j=1}$, beschr\"anken 
+m\"ussen. Die Wahl der unterschiedlichen $t_j$ ist frei und kann somit auf den 
+jeweiligen Graphen und den Funktionen auf diesem Graphen angepasst werden. 
 
-Wir haben jetzt nur noch das Problem, dass $\lambda_0 = 0$ gilt. Wir verlieren 
-also den konstanten Anteil der zu analysierenden und synthetisierenden 
-Funktion. Um das zu umgehen nehmen brauchen wir eine zus\"atzliche 
-Kernelfunktion $h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und 
-$\lim_{\lambda\to\infty} = 0$.
-
-Mit $h(\lambda)$ und den $J$ skalierten $g(t\lambda)$ haben wir also $J + 1$ 
-Kernelfunktionen f\"ur die Analyse und Synthese zur Verf\"ugung. Wir arbeiten 
-also mit einem Frame. Die Grenzen sind dabei gegeben als
+Mit $h(\lambda)$ und den $J$ skalierten $g(t_j\lambda)$ haben wir dann 
+also $J + 1$ Kernelfunktionen f\"ur die Analyse und Synthese zur Verf\"ugung. 
+Wir haben es also mit einem also mit einem Frame zu tun, dessen Grenzen durch
 \begin{align*}
 A &= \min_{\lambda \in \left[0, \lambda_{N-1}\right]} f(\lambda) \\
 B &= \max_{\lambda \in \left[0, \lambda_{N-1}\right]} f(\lambda) \\
-\text{mit } f(\lambda) &= h(\lambda)^2 + \sum_{j = 1}^{J} g(t_j\lambda)^2.
+\text{mit } f(\lambda) &= h(\lambda)^2 + \sum_{j = 1}^{J} g(t_j\lambda)^2
 \end{align*}
+gegeben sind.
 
 \subsection{\texorpdfstring{$\psi_j$}{psi} und \texorpdfstring{$\phi$}{phi}}
 Damit lassen sich nun unsere Wavelets $\psi_j$ und $\phi$ wie folgt konstruieren
