@@ -15,11 +15,16 @@
 \rhead{Introduction}
 
 VHDL, an acronym for Very High Speed Integrated Circuit Hardware Description Language, is commonly used to implement fast, application-specific logic for an FPGA or custom silicon chip.
+\index{VHDL}%
+\index{Very High Speed Integrated Circuit Hardware Description Language}%
 As every other programming language, VHDL relies heavily on reuse of code.
 Blocks of encapsulated code can be stored as a semiconductor intellectual property core (IP core) and reused for further applications.
-A often used IP core is the Fast Fourier Transform (FFT), which is available online for free.
+An often used IP core is the Fast Fourier Transform (FFT), which is available online for free.
+\index{IP core}%
+\index{Fast Fourier Transform}%
+\index{FFT}%
 Discrete wavelet transforms (DWT), however, are not that common.
-Therefore, we have committed ourselfs to implementing a wavelet transform as a hardware block in VHDL.
+Therefore, we have committed ourselves to implementing a wavelet transform as a hardware block in VHDL.
 
 A hardware implementation of a wavelet transform has many advantages over a software implementation.
 First, chained arithmetic operations in hardware can be executed much faster than in software.
@@ -33,6 +38,8 @@ Then, an implementation of this algorithm in VHDL is presented.
 
 \section{Discrete Wavelet Transform}
 \rhead{Discrete Wavelet Transform}
+\index{DWT}%
+\index{Diskrete Wavelettransformation}%
 
 The DTW is covered in detail in chapter \ref{section:schnelle-synthese} of part 1.
 This section provides a short summary, as well as some additions, notably the lifting scheme.
@@ -59,6 +66,9 @@ b_{j,l} .
 \end{align}
 In order to create a connection between the theory covered in the script and additional theory, the $z$-transform is used.
 The $z$-transform of a FIR (finite impulse response) filter $h$ is a Laurent polynomial given by
+\index{Laurent Polynom}%
+\index{FIR}%
+\index{finite impulse response}%
 \begin{equation}
 h(z) = \sum_{k} h_k z^{-k}
 \end{equation}
@@ -83,6 +93,7 @@ Figure \ref{fpga:fig:dwt} depicts the computational flow graph of the DWT follow
 \end{figure}
 The DWT splits an input signal into only two wavelet coefficients.
 If more details are required, a multiresolution analysis can be performed.
+\index{Multiskalenanalyse}%
 An input signal $\bm x$, where $x_k$ is its value at time step $k$, can be transformed into a tower of wavelet coefficients.
 $x_t$ is set equal to $a_{0,k}$ and represents the first layer of the tower.
 The $a_{i,k}$ coefficients are now recursively transformed into $a_{i-1,k}$ and $b_{i-1,k}$ coefficients
@@ -97,15 +108,20 @@ Figure \ref{fpga:fig:dwtTower} shows a decomposition of 3 levels using DWTs and 
 \end{figure}
 
 \subsection{Lifting Scheme}
+\index{Lifting Schema}%
 
 The lifting scheme is a technique to perform a DWT efficiently.
 It was introduced in a paper by Ingrid Daubechies and Wim Sveldens \cite{fpga:Daubechies1998}. 
+\index{Daubechies, Ingrid}%
+\index{Sveldens, Wim}%
 The lifting scheme is a widely used algorithm, which is more efficient in terms of the number of multiplications than normal wavelet transformations.
 The number of arithmetic operations is reduced nearly by a factor of two compared to an ordinary, convolutional calculation.
 
 The lifting scheme factorizes any discrete wavelet transform with finite filters into a series of elementary convolutions which are referred to as lifting steps.
+\index{Lifting step}
 This factorization splits a long filter into a tree of small filters, which is numerically superior in terms of rounding errors.
 This decomposition is equivalent to a factorization of the polyphase matrix of the wavelet filter into elementary matrices, as elaborated in the following sections.
+\index{Polyphasenzerlegung}%
 
 %In this paper, we want to focus only on orthogonal wavelets, where $\bm h = \bm{\bar h}$ and $\bm g = \bm{\bar g}$.
 In order to be consistent with the paper, we use the terminology of Daubechies et al. who refer to the coefficients
@@ -242,12 +258,13 @@ They replace $h(z)$ and $g(z)$ completely.
 
 \subsection{Haar wavelet}
 \label{fpga:sec:haar}
+\index{Haar-Wavelet}%
 
 For the sake of simplicity, we initially chose the unnormalized Haar wavelet for the VHDL implementation, which consists of the following coefficients:
 \begin{align}
 	h(z) = 1 + z^{-1} \quad & \Rightarrow \quad \bar h(z) = \frac{1}{2} + \frac{1}{2} z^{-1}
 	\\
-	g(z) = - \frac{1}{2} + \frac{1}{2} z^{-1} \quad & \Rightarrow \quad \bar g(z) = -1 + z^{-1}
+	g(z) = - \frac{1}{2} + \frac{1}{2} z^{-1} \quad & \Rightarrow \quad \bar g(z) = -1 + z^{-1}.
 \end{align}
 If these coefficients are split into even and odd components and filled into the polyphase matrix we get for the forward transform
 \begin{equation*}
@@ -319,9 +336,10 @@ Figure \ref{fpga:fig:liftingStepHaar} shows both transforms graphically.
 
 The VHDL implementation adds some complexity to the mathematical representation of the algorithm.
 A physical implementation allows only causal filters.
+\index{kausaler Filter}%
 In other words, a filter may only use information of the past and not the future.
 These are recognizable by containing solely negative powers of $z$.
-All non-causal filters must be delayed, in order to get causal.
+All non-causal filters must be delayed, in order to become causal.
 Notably, the polyphase decomposition of the forward wavelet transform is non-causal and must be delayed by one sample.
 
 \subsection{Design Considerations}
@@ -383,7 +401,7 @@ Thanks to lossless reconstruction, \texttt{y} is equal to \texttt{x} if delayed 
 
 The transformation block \texttt{haar} implements the algorithm needed for the Haar DWT.
 So far, only the Haar wavelet has been implemented.
-Yet, the outline stays the same for every other discrete wavelet and allows a later implementation of more wavelets.
+Yet, the outline stays the same for every other discrete wavelet and allows a later implementation of further wavelets.
 Figure \ref{fpga:fig:haar} shows the interface of the \texttt{haar} and \texttt{inv\_haar} block.
 \begin{figure}
 	\centering
@@ -411,8 +429,8 @@ Each hold $N$ \texttt{haar} or \texttt{inv\_haar} blocks respectively, which are
 The \texttt{branching} and \texttt{inv\_branching} block are sufficient for an independent forward or inverse transform.
 However, the output of the forward transform and the input of the inverse transform are not compatible if applied to the same stream.
 A direct connection of the two blocks shifts the coefficients out of phase, which results in a faulty interpretation of the signals.
-This behavior is mostly due to the exponentially growing delay caused by the causal implementation of the polyphase decomposition.
-In order to make the blocks connectable, a delay block must be inserted in between of the two blocks.
+This behavior is mostly due to the growing delay caused by the causal implementation of the polyphase decomposition.
+In order to make the blocks connectable, a delay block must be inserted in between the two blocks.
 Figure \ref{fpga:fig:delay} compares the ready signals of the forward DWT output coefficients and the inverse DWT input coefficients.
 Clearly, they are not in sync.
 \begin{figure}
@@ -440,6 +458,9 @@ The test setup is shown in figure \ref{fpga:fig:testing}.
 \end{figure}
 If no mistakes are present, the output should resemble the input, delayed by the latency of the whole pipeline.
 The Vivado toolchain by Xilinx has been used to simulate the VHDL modules.
+\index{Vivado}%
+\index{Xilinx}%
+\index{MATLAB}
 The wavelet transforms have also been implemented using integer numbers in MATLAB in order to provide a direct comparison.
 An important point is to round towards negative infinity when performing divisions.
 This leads to divisions which are numerically identical to integer divisions in hardware.
