@@ -47,23 +47,241 @@ $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
     \end{minipage}
 \end{figure}
 
-\subsubsection{Kernelfunktionen}
+Mit den in ~\cref{sec:sgwt:spectralanalysis} vorgestellten Eigenfunktionen 
+k\"onnen wir aber nutzen um eine Graph Fourier Transformation zu definieren. 
+Dazu ersetzen wir bei der Fourier Transformation die Exponentialfunktion durch 
+die Eigenvektoren der Laplace Matrix und erhalten
+\begin{equation*}
+\hat{f} = \langle \chi, f \rangle = \sum_{n = 1}^{N} \chi^*(n)f(n).
+\end{equation*}
+Wenn wir, wie zum Beispiel in \texttt{octave} \"ublich, die Eigenvektoren als 
+Spalten einer Matrix
+\begin{equation}
+\chi = 
+\left[
+\begin{pmatrix}\\\chi_0\\\\\end{pmatrix}
+\begin{pmatrix}\\\chi_1\\\\\end{pmatrix}
+\begin{pmatrix}\\\chi_2\\\\\end{pmatrix}
+\cdots
+\begin{pmatrix}\\\chi_{N-1}\\\\\end{pmatrix}
+\right]
+\end{equation}
+zur Verf\"ugung haben, k\"onnen wir die Transformation 
+einfach durch eine Matrix-Vektor Multiplikation ersetzen
+\begin{equation*}
+\hat{f} = \chi^* f.
+\end{equation*}
+Die R\"ucktransformation ist dann auch wieder analog der Fouriertheorie
+\begin{equation*}
+f = \chi \hat{f}.
+\end{equation*}
 
-Um dieses Problem zu l\"osen nehmen wir eine Kernelfunktion $g(\lambda)$, 
-welche die Eigenschaften $g(0) = 0$ und $\lim_{\lambda\to\infty} g(\lambda) = 
-0$ 
-erf\"ullt. Mit Hilfe dieses Bandpasses k\"onnen wir die Eigenwerte bewusst 
-delokalisieren. Wenn wir nun zus\"atzlich die Eigenwerte mit einem 
-Skalierungsfaktor $t$ multiplizieren, erhalten wir auch eine 
+\subsection{Graph Wavelets: Lokalisierung\label{subsec:sgwt:gwt:localizing}}
+
+Mit der Graph Fourier Transformation k\"onnen wir nun Funktionen auf Graphen 
+analysieren und dann auch wieder synthetisieren, aber noch nicht zu 
+lokalisieren. Wir m\"ussen also unsere Graph Fourier Transformation zur Graph 
+Wavelet Transformation erweitern, denn diese erm\"oglichen uns, genau dies zu 
+tun.
+
+Leider haben Graphen den Nachteil, dass die Knoten keine inh\"arente 
+Reihenfolge haben. Es ist also nicht klar was mit $f(v - h)$ gemeint ist. Wir 
+haben allerdings in~\cref{eq:sgwt:lambda:series} eine Reihenfolge f\"ur die 
+Eigenwerte der Laplace Matrix eines Graphen definiert. Die Eigenwerte sind 
+allerdings vollst\"andig lokalisiert, womit sie einem Dirac-Stoss an einem 
+Knoten gleich kommen. Wir k\"onnten also versuchen das Spektrum des Graphen so 
+zu manipulieren, dass eine Lokalisierung m\"oglich wird.
+
+Mit der Definition verschiedener Kernelfunktionen, wollen wir genau diese 
+Lokalisierung im Spektrum erreichen. Wir konstruieren dazu eine Kernelfunktion 
+$g(\lambda)$, welche die Eigenschaften $g(0) = 0$ und $\lim_{\lambda\to\infty} 
+g(\lambda) = 0$ erf\"ullt. Mit Hilfe dieses Bandpasses k\"onnen wir die 
+Eigenwerte bewusst lokalisieren.
+Wir nehmen also wieder den Dirac-Stoss $\delta(v)$, 
+siehe~\cref{fig:sgwt:gft:dirac}, und einen Ringgraphen, da dieser die normalen 
+Fourier Transformation am besten 
+approximiert. Darauf wenden wir jetzt die Graph Fourier Transformation an, 
+indem wir $\delta(v)$ mit $\chi^*$ multiplizieren.
+In~\cref{fig:sgwt:gft:gft} sehen wir das Resultat dieser Multiplikation als eine
+eine Kombination von~\cref{fig:sgwt:fft:fftreal} 
+und~\cref{fig:sgwt:fft:fftimag}. \Cref{fig:sgwt:gft:gft} zeigt auch, 
+dass die Graph Fourier Transformation nicht perfekt sondern nur eine 
+Approximation der Fourier Transformation ist. Wenn wir jetzt die Kernelfunktion 
+$g(\lambda)$ auf unser $\hat{\delta}(v)$ anwenden, erhalten wir ein im gewissen 
+Masse lokalisiertes Spektrum in~\cref{fig:sgwt:gft:ggft}. Dieses lokalisierte 
+Spektrum k\"onnen wir jetzt R\"ucktransformieren und erhalten damit unser 
+erstes Wavelet $\psi$, zu sehen in~\cref{fig:sgwt:gft:iggft}.
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_delta.pdf}
+        \vspace{-20pt}
+        \caption{Darstellung eines Dirac-Stoss $\delta(v)$ mit maximal 
+        Wert $1$. \label{fig:sgwt:gft:dirac}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_g_igft.pdf}
+        \vspace{-20pt}
+        \caption{R\"ucktransformation der mittels Kernelfunktion $g(\lambda)$ 
+            modifizierten Dirac-Stoss Graph Transformation        
+            aus~\cref{fig:sgwt:gft:ggft}, 
+            $\psi = \chi\hat{\delta}_g(\lambda)$.
+            \label{fig:sgwt:gft:iggft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gft.pdf}
+        \vspace{-20pt}
+        \caption{Graph Transformation des Dirac-Stosses 
+            aus~\cref{fig:sgwt:gft:dirac},
+            $\hat{\delta}(v) = \chi^*\delta(v)$.
+            \label{fig:sgwt:gft:gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_g_gft.pdf}
+        \vspace{-20pt}
+        \caption{Anwendung der Kernelfunktion $g(\lambda)$ auf die Graph 
+            Transformation des Dirac-Stosses $\hat{\delta}(v)$ 
+            aus~\cref{fig:sgwt:gft:dirac},
+            $\hat{\delta}_g(\lambda) = g(\lambda)\cdot\hat{\delta}(v)$.
+            \label{fig:sgwt:gft:ggft}}
+    \end{minipage}
+\end{figure}
+
+\subsection{Graph Wavelets: Skalierung\label{subsec:sgwt:gwt:scaling}}
+
+Wenn wir nun zus\"atzlich die Eigenwerte mit 
+einem Skalierungsfaktor $t$ multiplizieren, erhalten wir auch eine 
 M\"oglichkeit, das Spektrum zu verschieben. Obwohl $t$ ein kontinuierlicher 
 Faktor ist, werden wir uns in der Praxis auf $J$ Faktoren, also eine endliche 
 Anzahl $\{t_j\}^J_{j=1}$, beschr\"anken m\"ussen.
 
-Wir haben jetzt nur noch das Problem, dass $\lambda_0 = 0$ gilt. Wir verlieren 
-also den konstanten Anteil der zu analysierenden und synthetisierenden 
-Funktion. Um das zu umgehen nehmen brauchen wir eine zus\"atzliche 
-Kernelfunktion $h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und 
-$\lim_{\lambda\to\infty} = 0$.
+
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt1_gft.pdf}
+        \vspace{-0pt}
+        \caption{Spektrum eines Ringgraphen 
+            \label{fig:sgwt:gft:gt1gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt1_igft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt1gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt2_gft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt2gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt2_igft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt2gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt3_gft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt3gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt3_igft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt3gft}}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt4_gft.pdf}
+        \vspace{-0pt}
+        \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert 
+        $1$. 
+            \label{fig:sgwt:gft:gt4gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt4_igft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt4gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt5_gft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt5gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_gt5_igft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt5gft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_h_gft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:hgft}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+        \includegraphics[
+        width=\textwidth
+        ]{papers/sgwt/images/dirac/dirac_h_igft.pdf}
+        \vspace{-0pt}
+        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
+            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ihgft}}
+    \end{minipage}
+\end{figure}
+
 
 \begin{figure}
     \centering
@@ -275,215 +493,14 @@ $\lim_{\lambda\to\infty} = 0$.
     \end{minipage}
 \end{figure}
 
-Die in~\cref{sec:sgwt:spectralanalysis} vorgestellten Eigenfunktionen 
-k\"onnen wir direkt nutzen um eine Graph Fourier Transformation zu definieren. 
-Wir ersetzen bei der Fourier Transformation einfach die Exponentialfunktion 
-oder Kugelfunktionen durch die Eigenvektoren der Laplace Matrix
-\begin{equation*}
-\hat{f} = \langle \chi, f \rangle = \sum_{n = 1}^{N} \chi^*(n)f(n).
-\end{equation*}
-Wenn wir, wie zum Beispiel in \texttt{octave} \"ublich, die Eigenvektoren als 
-Spalten einer Matrix
-\begin{equation}
-\chi = 
-\left[
-\begin{pmatrix}\\\chi_0\\\\\end{pmatrix}
-\begin{pmatrix}\\\chi_1\\\\\end{pmatrix}
-\begin{pmatrix}\\\chi_2\\\\\end{pmatrix}
-\cdots
-\begin{pmatrix}\\\chi_{N-1}\\\\\end{pmatrix}
-\right]
-\end{equation}
-zur Verf\"ugung haben, k\"onnen wir die Transformation 
-einfach durch eine Matrix-Vektor Multiplikation ersetzen
-\begin{equation*}
-\hat{f} = \chi^* f.
-\end{equation*}
-Die R\"ucktransformation ist dann auch wieder analog der Fouriertheorie
-\begin{equation*}
-f = \chi \hat{f}.
-\end{equation*}
-
-\subsection{Graph Wavelets: Lokalisierung\label{subsec:sgwt:gwt:localizing}}
-
-Mit der Graph Fourier Transformation k\"onnen wir nun Funktionen auf Graphen 
-analysieren und dann auch wieder synthetisieren. Mit Hilfe von Wavelets haben 
-wir aber bereits gesehen, dass damit auch eine Lokalisierung m\"oglich ist. 
-Graphen haben da den Nachteil, dass die Knoten keine inh\"arente Reihenfolge 
-haben. Es ist also nicht klar was mit $f(x - h)$ gemeint ist. Wir haben 
-allerdings in~\cref{eq:sgwt:lambda:series} eine Reihenfolge f\"ur die 
-Eigenwerte der Laplace Matrix eines Graphen definiert. Die Eigenwerte sind 
-allerdings komplett lokalisiert, sie kommen also einem Dirac-Stoss an 
-einem Knoten gleich.
-
-\begin{figure}
-    \centering
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_delta.pdf}
-        \vspace{-20pt}
-        \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert 
-        $1$. 
-            \label{fig:sgwt:gft:dirac}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_g_igft.pdf}
-        \vspace{-20pt}
-        \caption{R\"ucktransformation der mittels Kernelfunktion $g(lambda)$ 
-            modifizierten Dirac-Stoss Graph Transformation        
-            aus~\cref{fig:sgwt:gft:ggft}, 
-            $\psi = \chi\hat{\delta}_g(\lambda)$.
-            \label{fig:sgwt:gft:igft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gft.pdf}
-        \vspace{-20pt}
-        \caption{Graph Transformation des Dirac-Stosses 
-            aus~\cref{fig:sgwt:gft:dirac},
-            $\hat{\delta}(x) = \chi^*\delta(x)$.
-            \label{fig:sgwt:gft:gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_g_gft.pdf}
-        \vspace{-20pt}
-        \caption{Anwendung der Kernelfunktion $g(\lambda)$ auf die Graph 
-            Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac},
-            $\hat{\delta}_g(\lambda) = g(\lambda)\cdot\hat{\delta}(\lambda)$.
-            \label{fig:sgwt:gft:ggft}}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt1_gft.pdf}
-        \vspace{-0pt}
-        \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert 
-        $1$. 
-            \label{fig:sgwt:gft:gt1gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt1_igft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt1gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt2_gft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt2gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt2_igft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt2gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt3_gft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt3gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-        \includegraphics[
-        width=\textwidth
-        ]{papers/sgwt/images/dirac/dirac_gt3_igft.pdf}
-        \vspace{-0pt}
-        \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-            aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt3gft}}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{minipage}[t]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt4_gft.pdf}
-    \vspace{-0pt}
-    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
-    \label{fig:sgwt:gft:gt4gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt4_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt4gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt5_gft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:gt5gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_gt5_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:igt5gft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_h_gft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:hgft}}
-    \end{minipage}
-    ~
-    \begin{minipage}[t]{0.49\textwidth}
-    \includegraphics[
-    width=\textwidth
-    ]{papers/sgwt/images/dirac/dirac_h_igft.pdf}
-    \vspace{-0pt}
-    \caption{Fourier Transformation des Dirac-Stosses $\hat{\delta(x)}$ 
-    aus~\cref{fig:sgwt:gft:dirac}.\label{fig:sgwt:gft:ihgft}}
-    \end{minipage}
-\end{figure}
-
-
-
-\subsection{Graph Wavelets: Skalierung\label{subsec:sgwt:gwt:scaling}}
-
 \subsection{Frames}
+
+
+Wir haben jetzt nur noch das Problem, dass $\lambda_0 = 0$ gilt. Wir verlieren 
+also den konstanten Anteil der zu analysierenden und synthetisierenden 
+Funktion. Um das zu umgehen nehmen brauchen wir eine zus\"atzliche 
+Kernelfunktion $h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und 
+$\lim_{\lambda\to\infty} = 0$.
 
 Mit $h(\lambda)$ und den $J$ skalierten $g(t\lambda)$ haben wir also $J + 1$ 
 Kernelfunktionen f\"ur die Analyse und Synthese zur Verf\"ugung. Wir arbeiten 
