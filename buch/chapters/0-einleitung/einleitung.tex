@@ -22,21 +22,30 @@ Signale in einem digitalen System zu verarbeiten.
 \index{Abtastung}%
 Die Methoden der Analysis sind für Folgen von Abtastwerten $x_k=f(t_k)$
 fast nutzlos.
-Sogar das Konzept der Frequenz ist fragwürdig, denn ein Sinus-Signal
+Sogar das Konzept der Frequenz ist fragwürdig, denn ein Sinussignal
 $s(t)=\sin(2\pi t/\Delta t)$ nimmt auf allen Abtastpunkten $t_k$
 den Wert $s(t_k)=\sin(2\pi t_0/\Delta t+2\pi k)=\sin(2\pi t_0/\Delta t)$,
 also den gleichen Wert an.
 Allgemeiner: ein Signal mit der gleichen Frequenz wie die Abtastfrequenz
 ist nicht von einem konstanten Signal unterscheidbar.
-Die Signalverarbeitung verlang daher nach einem Satz von Werk\-zeugen, die
+Dieses als Aliasing bekannte Phänomen findet seine allgemeine Erklärung
+\index{Aliasing}%
+im Nyquist-Shannon-Abtasttheorem, welches besagt, dass ein Signal
+\index{Abtasttheorem}%
+\index{Shannon, Claude}%
+\index{Nyquist, Henri}%
+aus den Abtastwerten nur exakt rekonstruiert werden kann, wenn es
+keine Frequenzen grösser als die halbe Abtastfrequenz enthält.
+Die Signalverarbeitung entwickelt daher einen Satz von Werk\-zeugen, die
 einerseits mit dieser Schwierigkeit fertig werden, aber andererseits auch
 in der Lage sind gut verstandene technische Prozesse, wie das Ausfiltern
 bestimmter Frequenzbereiche, adäquat zu beschreiben.
 
 Das übliche und für den Ingenieur naheliegende Werkzeug ist die 
-Fourier-Theorie, die ursprünglich als analytisches Hilfsmittel zur Lösung
+Fourier-Theorie, die von Joseph Fourier ursprünglich als analytisches
+\index{Fourier, Jospeh}%
 \index{Fourier-Theorie}%
-von Differentialgleichungen entwickelt wurde.
+Hilfsmittel zur Lösung von Differentialgleichungen entwickelt wurde.
 Sie machte erstmals möglich, ein Signal über die darin vertretenen
 Frequenzen zu charakterisieren und zu manipulieren.
 Mit der Entwickung der schnellen Fourier-Transformation
@@ -49,15 +58,15 @@ von Beispielfunktionen zu betrachten, die besonderes einfach zu
 verstehen sind.
 Konkret sind dies die Funktionen $\sin kt$ und $\cos kt$ mit
 $k\in\mathbb N$ bei der Analyse periodischer Signale,
-oder allgemeiner die Funktion $t\mapsto e^{ikt}$ mit $k\in\mathbb Z$
-bei beliebigen Signalen.
+oder allgemeiner die Funktionen $t\mapsto e^{i\omega t}$ mit
+$\omega\in\mathbb R$ bei beliebigen Signalen.
 Die daraus entwickelte Theorie ist zwar sehr reichhaltig und auch erfolgreich,
 aber doch in einem Punkt unbefriedigend.
 Die Fourier-Transformation liefert zu einem Signal detaillierte Information
 über die darin enthaltenen Frequenzen, dafür gehen aber Informationen
 darüber verloren, wann interessante Ereignisse eingetreten sind.
 Die Information ist nicht ganz verloren, da sie immer noch in den Phasen
-der Koeffizienten stecken, aber sie sind für alle praktischen Zwecke 
+der Koeffizienten stecken, aber sie sind für viele praktischen Zwecke 
 nicht mehr nutzbar, da nur über eine Rücktransformation wieder erschliessbar.
 
 Es stellt sich daher die Frage, ob es Möglichkeiten der Analyse von Signalen
@@ -76,7 +85,7 @@ Welche Arten von Vergleichssignalen soll man verwenden, um solche kurzlebigen
 Ereignisse zu beschreiben?
 Die trigonometrischen Funktionen sind zweifellos naheliegend und ihre
 analytischen Eigenchaften einladend, doch ihre unendliche Ausdehnung entlang
-der Zeitachse torpedieren von vornherein die Möglichkeit der zeitlichen
+der Zeitachse torpediert von vornherein die Möglichkeit der zeitlichen
 Lokalisierung von interessanten Ereignissen.
 Gibt es Funktionen, die ähnliche oszillatorische Form haben
 aber trotzdem über hilfreiche analytische Eigenschaften haben?
@@ -99,7 +108,7 @@ aus der diskreten Analyse möglich?
 Das Verfahren ist nur dann praktisch einsetzbar, wenn sowohl die Analyse als
 auch die Synthese mit effizienten numerischen Algorithmen möglich sind.
 Diese Algorithmen müssen ausserdem stabil sein, d.~h.~kleine Störungen in
-den Input-Daten oder Rundungsfehler während der Durchführung des Verfahrens
+den Inputdaten oder Rundungsfehler während der Durchführung des Verfahrens
 dürfen sich nicht zu unbrauchbaren Resultaten aufschaukeln.
 \item
 Welche Vergleichssignale sind für welchen Anwendungszweck geeignet?
@@ -114,12 +123,12 @@ Daraus entwickelt sich dann die Theorie der Hilberträume, der
 unendlichdimensionalen komplexen Vektorräume mit Skalarprodukt.
 % Diese bilden den geometrischen Rahmen, in dem man die ganze 
 
-In der Vektorgeometrie lernt man, Vektoren in Vektorräume mit Hilfe
+In der Vektorgeometrie lernt man, Vektoren in Vektorräumen mit Hilfe
 orthonormierter Basen zu beschreiben.
 Oft erzwingt die Wahl einer orthonormierten Basis die Zerstörung
 der Symmetrie der ursprünglichen Problemstellung, was die Lösung
 erwschweren kann.
-Einen Ausweg aus diesem Dilemman stellen die Frames dar, die in
+Einen Ausweg aus diesem Dilemma stellen die Frames dar, die in
 Kapitel~\ref{chapter:frames} beschrieben werden.
 \index{Frame}%
 Ein Frame beschreibt Vektoren auf redundante Art, erlaubt aber eventuell
@@ -127,54 +136,50 @@ vorhandene Symmetrien zu erhalten.
 
 Die bekannte Fourier-Theorie wird im Kapitel~\ref{chapter:fourier} in
 den neuen Rahmen des Hilbertraumes eingeordnet.
-Es demonstriert, wie die Hilbertraumtheorie die Vielfalt der vielen
+Es demonstriert, wie die Hilbertraumtheorie die Vielfalt der 
 verschiedenen Varianten der Fouriertheorie vereinheitlicht.
 
 Die Basisfunktionen der Fourier-Theorie sind darauf ausgelegt,
 die Translationssymmetrie der Zeitachse auszunützen.
-Die Tatsache, dass sich die Zeitachse auch dehen lässt, ist von
+Die Tatsache, dass sich die Zeitachse auch dehnen lässt, ist von
 untergeordneter Bedeutung.
-Wavelet-Basen oder Wavelet-Frames stellen sicher, dass die Signalanalyse
+Waveletbasen oder Waveletframes stellen sicher, dass die Signalanalyse
 sowohl bei gewissen Translationen als auch bei gewissen Dilatationen
 erhalten bleibt.
 \index{Translation}%
 \index{Dilatation}%
-Das Haar-Wavelet ist das älteste bekannte Wavelet.
+Das Haar-Wavelet ist das älteste bekannte Beispiel dieser Art.
 \index{Haar-Wavelet}
-Es ist einfach und übersichtlich und kann als Beispiel für die
+Es ist einfach und übersichtlich und kann als Muster für die
 Phänomene dienen, die bei komplizierteren Wavelets nicht so leicht
 zu verstehen sind.
 Es wird in Kapitel~\ref{chapter:haar-wavelet} im Detail besprochen.
 
-Die stetige Wavelet-Transformation analysiert ein Signal auf höchst
-\index{Wavelet-Transformation}%
-redundante Art.
-Die Hilbert\-raum\-theorie wird in diesem Kapitel~\ref{chapter:cwt} hier
-erstmals allgemeiner angewendet.
+Die in Kapitel~\ref{chapter:cwt} definierte stetige Wavelettransformation
+\index{Wavelet-Transformation, stetig}%
+demonstriert die Fähigkeit, mit Wavelets Ereignisse sowohl nach Zeit
+als auch nach Frequenz zu lokalisieren.
+Sie analysiert ein Signal jeodch auf hächst redundante Art.
+Die Hilbert\-raum\-theorie wird in diesem Kapitel erstmals allgemeiner
+angewendet.
 Wir lernen die Be\-ding\-ungen kennen, die nötig sind, damit ein Signal
 aus seiner Wavelet-Transformation rekonstruierbar ist.
 Wir geben sogar eine Formel für die Rekonstruktion an.
 
-%Bei der Diskretisierung geht Information verloren.
-%Das in Kapitel~\ref{chapter:shannon} diskutierte Abtast-Theorem
-%von Shannon gibt an, unter welchen Voraussetzungen das Signal trotz
-%des Informationsverlustes rekonstruierbar bleibt.
-
 Die diskrete Wavelet-Transformation überträgt die stetige
 Wavelet-Transformation auf abgetastete Signale.
-Der Begriff der Multiskalen-Analyse wird in Kapitel~\ref{chapter:msa}
+Der Begriff der Multiskalenanalyse wird in Kapitel~\ref{chapter:msa}
 dazu verwendet, die angemessene Diskretisierung im ``Frequenzraum''
 zu finden.
-
-Aus der Multiskalen-Analyse lassen sich auch die schnellen Algorithmen
-\index{Multiskalen-Analyse}%
+Aus der Multiskalenanalyse lassen sich auch die schnellen Algorithmen
+\index{Multiskalenanalyse}%
 ableiten, welche Wavelets überhaupt erst praktisch nützlich machen.
 Diese Algorithmen werden in Kapitel~\ref{chapter:algo} hergeleitet.
 
-Selbst mit einer Multiskalen-Analyse brauchen die Algorithmen noch nicht
+Selbst mit einer Multiskalenanalyse brauchen die Algorithmen noch nicht
 perfekt zu sein.
 Schon bei der Fourier-Transformation war das Problem, dass zur Berechnung
-der Fourier-Trans\-for\-ma\-tion alle Input-Daten notwendig sind.
+der Fourier-Trans\-for\-ma\-tion alle Inputdaten notwendig sind.
 Dies bedeutet, dass das Transformationsresultat erst verfügbar ist,
 wenn das ganze Signal abgetastet ist.
 Damit sind Verarbeitungen in Echtzeit von vornherein ausgeschlossen.
@@ -186,14 +191,17 @@ Solche Wavelets wurden von Ingrid Daubechies in den neunzehnachtizger
 \index{Daubechies, Ingrid}%
 \index{Ingrid Daubechies}%
 Jahren konstruiert und waren massgebend für den schnellen Siegeszug 
-der Wavelet-Transformation in den Anwendungen.
+der Wavelettransformation in den Anwendungen.
 
 Natürlich sind die Daubechies-Wavelets nicht die einzigen praktisch
 \index{Daubechies-Wavelet}%
 nützlichen Wavelets.
 Die verbleibenden Kapitel zeigen eine Reihe von alternativen Wavelets,
-zum Beispiel in Kapitel~\ref{chapter:spline} die Spline-Wavelets.
+Kapitel~\ref{chapter:spline} zum Beispiel beschreibt die sogenannten
+Spline-Wavelets, die sich durch eine interesssante Faltungskonstruktion
 \index{Spline-Wavelet}%
+auszeichnen.
+Dies gibt uns Gelegenheit, die Faltung etwas besser kennen zu lernen.
 Das Haar-Wavelet ist sowohl das einfachste Daubechies-Wavelet als auch
 das primäre Spline-Wavelet.
 

@@ -18,75 +18,99 @@ Dabei werden andere Schwierigkeiten auftreten, die in verschiedenen
 Arbeiten untersucht werden.
 In einem Autotune-System muss man die nächstliegende Frequenz der
 Tonleiter aus einem Signal extrahieren.
-{\em Cédric Renda} untersucht, wie man dies mit Wavelets machen könnte.
+\hyperref[chapter:autotune]{\em Cédric Renda} untersucht,
+wie man dies mit Wavelets machen könnte.
 Deconvolution lässt sich mit Fourier-Theorie dank der schnellen
 Fourier-Transformation (FFT) effizient durchführen.
-Der Versuch von {\em Manuel Tischhauser} deckt auf, dass Deconvolution
+Der Versuch von \hyperref[chapter:deconvolve]{\em Manuel Tischhauser}
+deckt auf, dass Deconvolution
 mit Wavelets zwar auch möglich ist, dass die Lokalisierung der
 Wavelet-Transformation aber neue Schwierigkeiten bringt.
-Das MP3-Audioformat verwendet Fourier-Theorie und Psychoakustische
+Das MP3-Audioformat verwendet Fourier-Theorie und psychoakustische
 Gesetzmässigkeiten zur Reduktion der Datenmenge.
-{\em Julian Bärtschi} skizziert verschiedene Ideen, wie auch Wavelets
-zur Datenreduktion verwendet werden können.
+\hyperref[chapter:compress]{\em Julian Bärtschi} skizziert verschiedene
+Ideen, wie auch Wavelets zur Datenreduktion verwendet werden können.
 
 Die Wavelet-Transformation ist nur dann nützlich, wenn sie sich auch
 effizient implementieren lässt.
 Wavelets mit kompaktem Träger und Multiskalen-Analysen sind der Weg dazu.
-{\em Nicolas Tobler} und {\em Jonas Gründler} beschreiben, wie eine
-solche Wavelettransformation in einem FPGA implementiert werden kann.
+\hyperref[chapter:fpga]{{\em Nicolas Tobler} und {\em Jonas Gründler}}
+beschreiben, wie eine
+solche Wavelettransformation in VHDL implementiert werden kann.
+Eine besonders effiziente Implementation verwendet die Faktorisierung
+des Filters in sogenannte Lifting Steps, die besonders resourcensparend
+implementiert werden können.
+Sie ermöglichen nochmals eine Verbesserung um den Faktor $2$.
+Die Herkunft dieser Zerlegung wird in Kapitel~\ref{chapter:lifting}
+erklärt.
 
-Es ist schon länger bekannt, dass der visuelle Kortex eine Vorverarbeitung
-der von der Netzhaut kommenden Signale durchführt, die der Analyse mit
-einem Gabor-Wavelet ähnelt.
-{\em Raphael Unterer} untersucht, ob sich die Leistung eines neuronalen
-Netzwerks bei der Klassifizierung von Bildern verbessern lässt, indem
-man dem Netzwerk einen Layer vorschaltet, der eine Wavelettransformation
-durchführt.
+Es ist in der Gehirnforschung schon länger bekannt, dass der visuelle Kortex
+im Gehirn von Säugetieren eine Vorverarbeitung der von der Netzhaut des
+Auges kommenden Signale durchführt, die der Analyse mit einem Gabor-Wavelet
+ähnelt.
+Es liegt daher nahe, in künstlichen neuronalen Netzwerken diese Architektur
+zu emulieren.
+\hyperref[chapter:visuell]{\em Raphael Unterer} untersucht, ob sich die
+Leistung eines neuronalen Netzwerks bei der Klassifizierung von Bildern
+verbessern lässt, indem man dem Netzwerk einen Layer vorschaltet, der
+eine Wavelettransformation mit Gabor-Wavelets durchführt.
+Seine Experimente zeigen eine erstaunliche Leistungsverbesserung.
 
 Viele Beispiele von interessanten Wavelets sind reell, dies führt jedoch
 auch dazu, dass die stetige Wavelet-Transformation eines periodischen Signals
-in eine Folge von Punkten hoher Intensität zerfällt.
+in eine Folge von Punkten hoher Intensität zerfällt, wie die Beispiele
+in Kapitel~\ref{chapter:cwt} klar gezeigt haben.
 Nur bei komplexen Wavelets wie dem komplexen Morlet-Wavelet zeigt sich 
 ein periodisches Signal als langezogene Zone hohen Absolutwertes.
-{\em Roy Seitz} geht diesem Phänomen auf den Grund und untersucht,
-wie man mit Hilfe der Hilbert-Transformation zu einem reellen Wavelet
-einen ``Imaginärteil'' finden kann.
+\hyperref[chapter:complex]{\em Roy Seitz} geht diesem Phänomen auf den
+Grund und untersucht, wie man mit Hilfe der Hilbert-Transformation zu
+einem reellen Wavelet einen passenden ``Imaginärteil'' finden kann.
 
 Die Daubechies-Wavelet haben besondere Eigenschaften, wenn man sie
 auf polynomiale Signale anwendet.
-{\em Raphael Nestler} untersucht, was dies genau bedeutet und was
+\hyperref[chapter:polynomials]{\em Raphael Nestler} untersucht, was dies genau bedeutet und was
 sich aus der Wavelet-Transformation etwas über hochfrequente, aber sehr
 schwache Störungen und Ableitungen sagen lässt, Dinge, die in der
 Fourier-Transformation schwierig zu analysieren sind.
 
 In der Praxis kann man oft mit der Wavelettransformation die
 Klassifizierung von Signalen vereinfachen.
-Der Ingenieur hat dabei oft mit Vorurteilen zu kämpfen, die ihm die
+Der Ingenieur hat dabei mit Vorurteilen zu kämpfen, die ihm die
 ``Indoktrination'' mit den Prinzipien der Fourier-Theorie eingetrichtert hat.
 Dinge wie die Bestimmung einer Frequenz, die bei der Fourier-Transformation
 naheligend und natürlich sind, funktionieren mit der Wavelet-Transformation
 plötzlich etwas anders.
-{\em Kris Wyss} versucht dies bei Signalen, die bei Fehlern in gasisolierten
-Schaltanlagen erzeugt werden.
-{\em Dominic Hüppi} analysiert Radar-Echos von Meteoren und Flugzeugen
-und findet neue Anforderung an die Sampling-Frequenz, die stringenter sind
-als bei der Fourier-Theorie.
+Der Ingenieur muss sich daher neue Ansätze einfallen lassen um zu verstehen,
+was ihm die Wavelet-Transformation seiner Signale genau sagen will.
+\hyperref[chapter:gis]{\em Kris Wyss} versucht dies bei Signalen, die bei
+Fehlern in gasisolierten Schaltanlagen erzeugt werden.
+\hyperref[chapters:meteor]{\em Dominic Hüppi} analysiert Radar-Echos von
+Meteoren und Flugzeugen und findet neue Anforderung an die Sampling-Frequenz,
+die stringenter sind als bei der Fourier-Theorie.
 Wetter-Daten zeichnen sich durch wenige Periodizitäten und häufige
 Transienten aus.
-Die Analyse der Wetterereignisse muss diese Transienten detailliert
+Die Analyse von Wetterereignissen muss diese Transienten detailliert
 untersuchen, was mit der Fourier-Theorie nicht funktioniert.
-{\em Michael Schmid} zeigt, wie man mit einer Wavelet-Analyse zum Ziel
-kommen kann.
+\hyperref[chapter:wwt]{\em Michael Schmid} zeigt, wie man mit einer
+Wavelet-Analyse zum Ziel kommen kann.
 
 Die Wavelet-Transformation ist nur anwendbar auf Funktionen auf
 Definitionsgebieten, in denen Translation und Dilatation wohldefinierte
 Operationen sind.
-In jüngster Zeit hat sich aber herausgestellt, dass die Dilatationseigenschaft
-aleine auch schon ein nützliches Hilfsmittel bei der Funktionsanalyse sein 
-kann.
-Dies ermöglicht, den Definitionsbereich zu erweitern.
-{\em Hansruedi Patzen} zeigt, wie die spektrale Graphentheorie sich dazu
-verwenden lässt, eine Familie von Wavelets auf einem Graphen zu definieren.
+Sie erzeugen aus dem Mutterwavelet eine Orthonormalbasis oder ein Frame,
+in dem für jeden Punkt Funktionen beliebig guter Lokalisierung um
+diesen Punkt vorhanden sind.
+Diese Eigenschaft kann man jedoch auch ohne die Operation der Translation
+und Dilatation erreichen.
+Dies ermöglicht, den Wavelet-Gedanken auch auf Definitionsgebiete
+anzwenden, für die die nötigen Translations- und Dilatationssymmetrien fehlen.
+\hyperref[chapter:sgwt]{\em Hansruedi Patzen} zeigt, wie die spektrale
+Graphentheorie sich dazu verwenden lässt, eine Familie von Wavelets auf
+einem Graphen zu definieren.
+Translation und Dilatation können nicht mehr aus geometrischen Prinzipien
+abgeleitet werden, aber es lässt sich ein Frame von Funktionen definieren,
+welches für jeden Knoten des Graphen eine Reihe von von Funktionen enthält,
+die mit variabler Genauigkeit an diesem Knoten lokalisiert sind.
 Diese ``Spectral Graph Wavelet Transform'' scheint grosses Potential in
 Anwendungen zu haben.
 
