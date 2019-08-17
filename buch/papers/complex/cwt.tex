@@ -58,7 +58,7 @@ Gleichung~\eqref{complex:ffcwt} muss für jedes $a$ einzeln gelöst werden.
 Sie wird besonders interessant, wenn das Wavelet im Frequenzbereich eine geschlossene, analytische Form besitzt.
 Dann benötigt man nur eine FFT für das Signal, so wie für jedes $a$ eine inverse FFT und eine punktweise Multiplikation zwischen Signal und Wavelet.
 
-\clearpage
+%\clearpage
 \subsection{Das Haar-Wavelet}
 \rhead{Haar-Wavelet}
 \begin{figure}
@@ -119,6 +119,7 @@ Auffallend ist, dass das im Zeitbereich besonders gut lokalisierte Haar-Wavelet 
 	\label{complex:dom-freq}
 \end{figure}
 An dieser Stelle definieren wir noch die \emph{dominante Frequenz} eines Wavelets.
+\index{dominante Frequenz}%
 \begin{definition}
 	Die Fourier-Transformierte eines Wavelets erreicht den maximalen Betrag bei der \emph{dominanten Frequenz $\omega_\psi$}.
 	\begin{equation}
@@ -127,11 +128,11 @@ An dieser Stelle definieren wir noch die \emph{dominante Frequenz} eines Wavelet
 	
 \end{definition}
 
-Die dominante Frequenz erlaubt es, die $a$-Achse der Wavelet-Transformation als Frequenz-Achse zu interpretieren.
+Die dominante Frequenz erlaubt, die $a$-Achse der Wavelet-Transformation als Frequenz-Achse zu interpretieren.
 Für die Momentanfrequenz gilt
 \[
 	\omega(b) \approx \frac{\omega_\psi}{a_\text{max}(b)},
-	\quad 
+	\qquad 
 	a_\text{max}(b)
 	= 
 	\underset{a}{\text{argmax}} \, |\!\Wave f(a,b)|.

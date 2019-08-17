@@ -8,7 +8,7 @@ Das Skalarprodukt zwischen Signal und Wavelet ist also abhängig von der Phase m
 
 Diese Oszillation in der Amplitude ist unschön, da sich etwa $a_\text{max}(b)$ so nicht durchgehend bestimmen lässt.
 Dieser Abschnitt dreht sich um die Lösung dieses Problems.
-Ziel ist es, am Ende einen Operator $\Ana\,$ zu haben, der ein bestehendes Wavelet durch möglichst kleine Änderungen so anpasst, dass die Separation von Amplitude und Phase möglich wird.
+Ziel ist, am Ende einen Operator $\Ana\,$ zu haben, der ein bestehendes Wavelet durch möglichst kleine Änderungen so anpasst, dass die Separation von Amplitude und Phase möglich wird.
 
 Dazu gehen wir wie folgt vor:
 Als erstes identifizieren wir negative Frequenzen als Ursache des Problems und zeigen, dass es kein reelles Wavelet geben kann, bei dem sich Amplitude und Phase einer Schwingung separieren lassen.
@@ -20,11 +20,11 @@ Dazu werden wir den Begriff des \emph{analytischen Wavelets} einführen.
 Wir werden sehen, dass ein solcher Operator lediglich einen passenden Imaginärteil hinzufügt, den Realteil jedoch unverändert lässt.
 
 \subsection{Das Problem negativer Frequenzen}
-Negative Frequenzen sind erstmal etwas unintuitiv.
+Negative Frequenzen sind erst mal etwas unintuitiv.
 Durch die Symmetrien
 \[
 	\cos(-\omega t) = \cos(\omega t)
-	\quad
+	\qquad
 	\sin(-\omega t) = -\sin(\omega t)
 \]
 machen negative Frequenzen für reelle Signale auch nicht wirklich Sinn.
@@ -59,7 +59,7 @@ eine separate Betrachtung von Amplitude und Phase.
 Komplexe Basisfunktionen alleine garantieren die Separierbarkeit von Betrag und Winkel jedoch noch nicht.
 Diese beiden Teile müssen linear unabhängig sein.
 Sind sie es nicht, so gilt
-\[\Im \psi = \lambda \Re \psi, \quad \lambda \in \mathbb R.\]
+\[\Im \psi = \lambda \Re \psi, \quad \lambda \in \mathbb R\]
 und es folgt
 \begin{align*}
 	\psi &= \Re \psi + i \Im \psi\\
@@ -73,10 +73,10 @@ Er kann aus der Wavelettransformation ausgeklammert werden und es folgt
 	= \langle f, \psi \rangle
 	&= \langle f, (1+i\lambda) \Re \psi \rangle
 %	&= \overline{1+i\lambda} \langle f, \Re \psi \rangle
-	= (1-i\lambda) \Wave_{\Re\psi}\! f
+	= (1-i\lambda) \Wave_{\Re\psi}\! f.
 \end{align*}
 Ein solches Wavelet birgt also keinen zusätzlichen Nutzen gegenüber reellen Wavelets.
-Insbesondere erfüllen rein reelle Wavelets die obere Gleichung für $\lambda=0$.
+Insbesondere erfüllen rein reelle Wavelets die obige Gleichung für $\lambda=0$.
 Wie aber finden wir zu einem gegebenen, reellen Wavelet einen passenden, linear unabhängigen Imaginärteil?
 
 Betrachten wir wieder die Exponentialfunktion.
@@ -97,7 +97,7 @@ Wenden wir dies auf die Exponentialfunktion an, so erhalten wir
 	\frac{e^{i\omega t} - \overline{e^{i\omega t}}}{2i} = \sin(\omega t). \label{complex:euler}
 \end{equation}
 
-Bei der Exponentialfunktion ist aber nach Gleichung~\ref{complex:exp-inv-conj} die komplexe Konjugation gleichbedeutend mit einer Invertierung der Frequenz.
+Bei der Exponentialfunktion ist aber nach Gleichung~\ref{complex:exp-inv-conj} die komplexe Konjugation gleichbedeutend mit einem Vorzeichenwechsel der Frequenz.
 Folglich muss für ein geeignetes Wavelet gelten:
 \[
 	\forall \omega \colon |\hat\psi(\omega)| > 0 
@@ -107,7 +107,8 @@ Folglich muss für ein geeignetes Wavelet gelten:
 Es darf also immer nur entweder die positive oder negative Frequenz vorhanden sein, aber nie beide zugleich.
 Wir wagen einen Versuch mit folgender Definition.
 \begin{definition}
-	Der Auslöschungsoperator besitzt folgende Gestalt
+	Der {\em Auslöschungsoperator} besitzt folgende Gestalt
+\index{Auslöschungsoperator}%
 		\[\Ana\, \colon L^2(\mathbb R) \to L^2(\mathbb C)
 		~\colon~
 		f \mapsto f^\ast = \mathcal{F}^{-1}\frac{1+\sgn(\omega)}{\sqrt 2}\Four f\]
@@ -118,7 +119,7 @@ Dieser Operator entfernt alle negativen Frequenzen.
 Folglich ist auch für keine Frequenz sowohl die positive, als auch die negative Komponente enthalten.
 \begin{lemma}
 	Der Auslöschungsoperator entfernt alle negativen Frequenzanteile.
-	\[\forall \omega < 0 \colon \Four\Ana f = 0\]
+	\[ \omega < 0 \quad\Rightarrow\quad \Four\Ana f(\omega) = 0.\]
 \end{lemma}
 \begin{proof}
 	Der Beweis folgt direkt aus der Definition, da
@@ -127,8 +128,8 @@ Folglich ist auch für keine Frequenz sowohl die positive, als auch die negative
 		\left\lbrace\begin{matrix}
 		2 & \omega > 0\\
 		1 & \omega = 0\\
-		0 & \omega < 0
-		\end{matrix}\right..\qedhere
+		0 & \omega < 0.
+		\end{matrix}\right.\qedhere
 	\]
 \end{proof}
 Der Operator $\Ana\,$ konstruiert ausgehend von einem reellen Signal etwas Komplexes.
@@ -157,20 +158,21 @@ Aber handelt es sich bei $\psi^\ast = \Ana\psi$ überhaupt um ein Wavelet?
 		&= 2\pi	\int_{-\infty}^\infty \frac{|\hat{\psi}^\ast(\omega)|^2}{|\omega|}\,\mathrm{d}\omega \\
 		&= 2\pi \int_{0}^\infty \frac{|\!\sqrt{2}\hat{\psi}(\omega)|^2}{|\omega|}\,\mathrm{d}\omega
 	\end{align*}
-	Durch die hermitesche Symmetrie reeller Wavelets gilt 
+	Durch die hermitesche Symmetrie der Fourier-Transformierten
+	reeller Wavelets gilt 
 	\[|\hat\psi(\omega)| = |\hat\psi(-\omega)|,\]
 	woraus folgt, dass $C_{\psi^\ast} = C_{\psi} < \infty.$
 	Somit bleibt nur noch die Norm zu prüfen.
 	Sie muss $1$ sein.
 	Wir rechnen nach.
 	\begin{align}
-	1 = \|\psi\| = \|\hat{\psi}\| 
+	1 = \|\psi\|^2 = \|\hat{\psi}\|^2
 	&= \int_{-\infty}^{\infty}|\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega \label{complex:norm-proof-p1}\\
 	&= \int_{-\infty}^{0}|\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega +  \int_{0}^{\infty}|\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega \notag\\
 	&=  2\int_{0}^{\infty} |\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega \label{complex:norm-proof}\\
 	&=  \int_{0}^{\infty}|\!\sqrt{2}\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega \notag\\
 	&=  \int_{-\infty}^{\infty}|\hat{\psi}^\ast(\omega)|^2 \,\mathrm{d}\omega 
-	= \|\hat{\psi}^\ast\| = \|\psi^\ast\|.\label{complex:norm-proof-p2}
+	= \|\hat{\psi}^\ast\|^2 = \|\psi^\ast\|^2.\label{complex:norm-proof-p2}
 	\end{align}
 	In den Gleichungen~\eqref{complex:norm-proof-p1} und \eqref{complex:norm-proof-p2} kam die Plancherel-Formel zur Anwendung, welche besagt, dass die Normen im Zeit- und Frequenzbereich identisch sind.
 	In Gleichung~\eqref{complex:norm-proof} nutzten wir wieder die hermitesche Symmetrie der Fourier-Transformierten eines reellen Wavelets.
@@ -181,6 +183,7 @@ Bevor wir diesen Operator aber genauer untersuchen, testen wir ihn am Gabor-Wave
 
 \subsection{Von Gabor zu Morlet}
 \label{complex:gabor-to-morlet}
+\index{Gabor-Wavelet}%
 
 \begin{figure}
 	\centering
@@ -237,6 +240,7 @@ und durch Rücktransformation in den Zeitbereich
 	\psi^\ast_\text{Gabor} = c_\sigma e^{- \frac{t^2}{2}} \cdot (\!\sqrt 2 e^{i\sigma t} +	\kappa_\sigma ).
 \]
 Durch Skalierung der Faktoren $c_\sigma$ und $\kappa_\sigma$ werden wir die Wurzeln los und landen bei einem alten Bekannten: dem Morlet-Wavelet
+\index{Morlet-Wavelet}%
 \[\psi_\text{Morlet} = c_\sigma e^{- \frac{t^2}{2}} \cdot (e^{i\sigma t} + \kappa_\sigma).\]
 Wir trafen es bereits in Gleichung~\eqref{cwt:morlet} als Beispiel für die CWT.
 Das Morlet-Wavelet ist in Abbildung~\ref{complex:morlet} im Zeit- und Frequenzbereich dargestellt.

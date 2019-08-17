@@ -125,9 +125,11 @@ int main(int argc, char *argv[]) {
 		for (int x = 0; x < width; x++) {
 			m = mag[y][x];
 			if ((m == 255) & show_max){
-				row_pointers[height - y][3 * x + 0] = 255;
-				row_pointers[height - y][3 * x + 1] = 255;
-				row_pointers[height - y][3 * x + 2] = 255;
+				for (int d = -4; d <= 4; d++) {
+				row_pointers[height - y + d][3 * x + 0] = 255;
+				row_pointers[height - y + d][3 * x + 1] = 255;
+				row_pointers[height - y + d][3 * x + 2] = 255;
+				}
 			} else {
 				hue2rgb(&row_pointers[height - y][3 * x], phi[y][x], m);
 			}

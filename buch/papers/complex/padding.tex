@@ -18,7 +18,7 @@ eine affine Transformation auf das Intervall $\left[0, 2\pi \right)$ und
 \[
 	\Peri x(t) = x( t \,\text{mod}\, 2\pi) \in L^2\left(\left[0, 2\pi \right)\right)
 \]
-ein $2\pi$-periodisches Signal, welches dieselbe Information beinhaltet, wie das ursprüngliche Signal $\tilde{x}(t)$.
+ein $2\pi$-periodisches Signal, welches dieselbe Information beinhaltet wie das ursprüngliche Signal $\tilde{x}(t)$.
 Die FFT als Fourierreihe geht implizit immer von der Annahme aus, dass das Signal periodisch war.
 Erst darauf sind die Fourier-Reihen sinnvoll definiert und die gesamte Theorie funktioniert wie gewünscht.
 Ausser, man beginnt, Signale miteinander zu falten.
@@ -38,6 +38,7 @@ Durch diese Fortsetzung überlappen die verschiedenen Signal-Kopien, falls am Ra
 Bei realen Signalen ist dies in der Regel nicht der Fall, die Aufzeichnung beginnt erst, wenn auch etwas Interessantes passiert.
 
 Es ist also wichtig, dem Signal vor der FFT extra Platz einzuräumen, sogenanntes \emph{Signal Padding}.
+\index{Signal Padding}%
 Dies kann auf verschiedene Arten geschehen.
 Abbildung~\ref{complex:padding} zeigt die zwei meistverwendeten, Zero Padding und Spiegeln an den Rändern, am Beispiel einer Cosinus- und Sinus-Schwingung.
 \begin{figure}
@@ -90,4 +91,4 @@ Die Auswirkungen des Signal Paddings können in den Abbildungen~\ref{complex:pad
 	\label{complex:padding-sym}
 \end{figure}
 
-\clearpage
+%\clearpage

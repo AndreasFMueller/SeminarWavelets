@@ -12,7 +12,7 @@
 
 \usetikzlibrary{arrows,intersections,math}
 \begin{document}
-\begin{tikzpicture}[>=latex]
+\begin{tikzpicture}[>=latex,scale=0.5]
 
 % Can be overwritten by compiling with: pdflatex '\newcommand{\imname}{im.jpg} \input{im.tex}'
 \providecommand{\imname}{colors.jpg} 
@@ -24,7 +24,7 @@
 \pgfmathparse{(12/(2*\myL))} % scale to tend
 \xdef\a{\pgfmathresult} 
 
-\node at (0, 0) {\includegraphics[width=12cm]{\imname}};
+\node at (0, 0) {\includegraphics[width=6cm]{\imname}};
 
 \draw[line width=4pt, color=white] (0,0) circle ({6cm + 2pt}); % smooth boarder
 

@@ -11,6 +11,7 @@
 
 % \section{Einleitung}
 Die diskrete Wavelet-Transformation (DWT) mit reellen Wavelets ist besonders schnell zu berechnen.
+\index{diskrete Wavelettransformation}%
 Deshalb ist sie die bevorzugte Wahl zur Signalverarbeitung.
 In der Analyse und beim Erstellen `schöner' Bilder trifft man indes, unter anderem, auf folgende drei Probleme:
 
@@ -22,11 +23,12 @@ Drittens ist es, wenn man Schwingungen finden möchte, vorteilhaft, wenn die Amp
 Sie kann beispielsweise als Helligkeit abgebildet werden. 
 Bei reellen Wavelets sind Amplitude und Phase jedoch nicht einfach zu trennen.
 
-Die CWT aus Kapitel~\ref{chapter:cwt} ist die bevorzugte Wahl für analytische Berechnungen.
+Die CWT aus Kapitel~\ref{chapter:cwt} ist die bevorzugte Wahl für analytische Betrachtungen.
 Als kontinuierliche Transformation benötigt sie jedoch etwas Vorarbeit,
 nämlich eine Diskretisierung der $a$- und $b$-Variablen.
 Eine anschliessende direkte Berechnung der diskretisierten Integrale ist sehr rechenintensiv.
 Im ersten Abschnitt betrachten wir deshalb, wie man die CWT als Faltung interpretieren kann, welche sich effizient mittels FFT berechnen lässt.
+\index{FFT}%
 Zur Illustration verwenden wir zwei einfache Beispielsignale und die CWT mittels Haar-Wavelet.
 
 Die Wahl des Wavelets spielt eine zentrale Rolle und beeinflusst das erhaltene Bild wesentlich.
@@ -37,6 +39,7 @@ Deshalb betrachten wir als Vergleich noch die CWT mittels Gabor-Wavelet.
 Im zweiten Abschnitt wenden wir uns der Separation von Phase und Amplitude zu.
 Wir definieren einen Operator $\Ana\,$, welcher uns ein passendes Wavelet erzeugt.
 Wir werden sehen, dass die Hilberttransformation uns immer erlaubt, zu einem reellen Wavelet einen Imaginärteil zu finden,
+\index{Hilbert-Transformation}
 so dass das erhaltene, komplexe Wavelet eine Separierung von Phase und Amplitude erlaubt.
 
 Als drittes betrachten wir die Artefakte, die durch die Berechnung der CWT mittels FFT entstehen.
@@ -48,14 +51,14 @@ Zuletzt betrachten wir noch ein paar weitere, interessante Bilder und sehen uns 
 
 Für die Bilder werden wir in diesem Kapitel immer wieder komplexe, zweidimensionale Signale abbilden müssen.
 Dazu verwenden wir die Farbcodierung aus Abbildung~\ref{complex:color-code}.
-Rein reelle, zweidimensionale Bilder werden kanonisch in den komplexen Raum eingebettet, 
+Rein reelle, zweidimensionale Bilder werden natürlich in den komplexen Raum eingebettet, 
 \[ \mathbb R \hookrightarrow \mathbb C \colon x \mapsto z = x + 0i,\]
 und ebenfalls so abgebildet.
 Reelle Bilder bestehen somit nur aus den Farbtönen Blau und Gelb.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=.5\linewidth]{papers/complex/images/colors.pdf}
+	\includegraphics{papers/complex/images/colors.pdf}
 	\caption{Farb-Code für komplexe Signale. Die Farbe steht für das Argument, die Helligkeit codiert den Betrag.}
 	\label{complex:color-code}
 \end{figure}
