@@ -6,6 +6,7 @@
 \section{Das Plancherel-Prinzip
 \label{section:plancherel}}
 \rhead{Das Plancherel-Prinzip}
+\index{Plancherel-Prinzip}
 Im Abschnitt~\ref{section:ginv} wurde gezeigt, wie der Gram-Operator
 für ein beliebiges Frame numerisch invertiert werden kann.
 In vielen praktischen Fällen ist dies jedoch gar nicht nötig, denn
@@ -44,7 +45,8 @@ Die in Kapitel~\ref{chapter:cwt} definierte stetige Wavelet-Transformation
 verwendet jedoch eine Menge von Vektoren für die Analyse, die sehr viel
 grösser ist.
 Ausgehend von einer Funktion $\psi\colon\mathbb R\to\mathbb R$
-wirt für jedes Paar $(a,b)\in \mathbb{R}^*\times \mathbb R$ mit
+wird eine Funktion $f$ für jedes Paar
+$(a,b)\in \mathbb{R}^*\times \mathbb R$ mit
 $\psi_{a,b}=T_bD_a\psi$ analysiert.
 Die Menge der Analyse-Vektoren $\psi_{a,b}$ ist also überabzähltbar.
 Trotzdem lässt sich die Rücktransformation verallgemeinern, wenn 
@@ -86,6 +88,7 @@ der Funktionen auf $X$ mit dem Skalarprodukt
 \langle f,g\rangle_{L^2(X)} = \int_X f(x) \bar{g}(x)\,d\mu(x).
 \]
 Man sagt, $T$ erfüllt die {\em Plancherel-Bedingung}, wenn $T$
+\index{Plancherel-Bedingung}%
 eine Transformation $H\to L^2(X)$ ist und es eine Konstante $C$
 gibt mit
 \[
@@ -114,7 +117,7 @@ L^2(X) \to H
 :
 a \mapsto \frac{1}{C}\int_X v_x a(x) \,d\mu(x)
 \]
-eine Inverse der Transformation $T$.
+eine Linksinverse der Transformation $T$.
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -153,8 +156,8 @@ u = \frac{1}{C^2}\int_X \langle u,v_x\rangle v_x\,d\mu(x).
 Das Integral reproduziert also den Vektor $u$.
 \end{proof}
 
-Die Umkehrbarkeit der Transformation $T$ ist also nicht nur für gewöhliche
-Frames mit $A=B$ möglich sondern auch in Fällen, wo mit einer überabzählbaren
+Die Umkehrbarkeit der Transformation $T$ ist also nicht nur für gewöhnliche
+straffe Frames möglich sondern auch in Fällen, wo mit einer überabzählbaren
 Menge von Vektoren analyisiert wird.
 Wir werden diese Eigenschaft im Kapitel~\ref{chapter:cwt} wieder antreffen,
 wenn wir die Umkehrformel für die stetige Wavelet-Transformation finden.
