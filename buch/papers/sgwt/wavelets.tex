@@ -8,8 +8,8 @@ vereinen.
 
 \subsection{Graph Fourier Transformation\label{subsec:sgwt:gft}}
 
-Bevor wir uns auf die Graph Wavelets st\"urzen, wollen wir zuerst versuchen die 
-Fourier Theorie auf Funktionen auf Graphen anzuwenden. Dazu nehmen wir das 
+Bevor wir uns auf die Graph Wavelets st\"urzen, wollen wir zuerst versuchen, 
+die Fourier Theorie auf Funktionen auf Graphen anzuwenden. Dazu nehmen wir das 
 Beispiel eines Dirac-Stosses $\delta(x)$, siehe~\cref{fig:sgwt:fft:dirac}.
 Wenn wir davon die Fourier Transformation berechnen, zu sehen 
 in~\cref{fig:sgwt:fft:fftreal} und~\cref{fig:sgwt:fft:fftimag}, stellen wir 
@@ -22,7 +22,7 @@ $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
     width=0.7\textwidth
     ]{papers/sgwt/images/dirac/dirac_delta.pdf}
     \vspace{-10pt}
-    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit maximal Wert $1$. 
+    \caption{Darstellung eines Dirac-Stoss $\delta(x)$ mit Maximalwert $1$. 
     \label{fig:sgwt:fft:dirac}}
     \end{minipage}
     ~
@@ -79,13 +79,13 @@ f = \chi \hat{f}.
 \subsection{Graph Wavelets: Lokalisierung\label{subsec:sgwt:gwt:localizing}}
 
 Mit der Graph Fourier Transformation k\"onnen wir nun Funktionen auf Graphen 
-analysieren und dann auch wieder synthetisieren, aber noch nicht zu 
+analysieren und dann auch wieder synthetisieren, aber noch nicht 
 lokalisieren. Wir m\"ussen also unsere Graph Fourier Transformation zur Graph 
 Wavelet Transformation erweitern, denn diese erm\"oglichen uns, genau dies zu 
 tun.
 
 Leider haben Graphen den Nachteil, dass die Knoten keine inh\"arente 
-Reihenfolge besitzen. Es ist also nicht klar was mit $f(v - h)$ gemeint ist. 
+Reihenfolge besitzen. Es ist also nicht klar, was mit $f(v - h)$ gemeint ist. 
 Wir haben allerdings in~\cref{eq:sgwt:lambda:series} eine Reihenfolge f\"ur die 
 Eigenwerte der Laplace Matrix eines Graphen definiert. Die Eigenwerte sind 
 allerdings vollst\"andig lokalisiert, womit sie einem Dirac-Stoss an einem 
@@ -109,7 +109,7 @@ dass die Graph Fourier Transformation nicht perfekt sondern nur eine
 Approximation der Fourier Transformation ist. Wenn wir jetzt die Kernelfunktion 
 $g(\lambda)$ auf unser $\hat{\delta}(v)$ anwenden, erhalten wir ein im gewissen 
 Masse lokalisiertes Spektrum in~\cref{fig:sgwt:gft:ggft}. Dieses lokalisierte 
-Spektrum k\"onnen wir jetzt R\"ucktransformieren und erhalten damit unser 
+Spektrum k\"onnen wir jetzt r\"ucktransformieren und erhalten damit unser 
 erstes Wavelet $\psi$, zu sehen in~\cref{fig:sgwt:gft:iggft}.
 \begin{figure}
     \centering
@@ -380,8 +380,8 @@ f = L \hat{f} = (T^*T)^{-1}T^* \hat{f}.
 Zur Veranschaulichung sehen wir hier die Wavelets eines Kreisgraphen 
 in~\cref{fig:sgwt:wavelets:ring0,fig:sgwt:wavelets:ring1,fig:sgwt:wavelets:ring2,fig:sgwt:wavelets:ring3,fig:sgwt:wavelets:ring4,fig:sgwt:wavelets:ring5},
 eines Streckengraphen 
-in~\cref{fig:sgwt:wavelets:line0,fig:sgwt:wavelets:line1,fig:sgwt:wavelets:line2,fig:sgwt:wavelets:line3,fig:sgwt:wavelets:line4,fig:sgwt:wavelets:line5}
-Gut zu erkennen ist dabei, dass der Kreisgraph die wohl beste Approximation der 
+in~\cref{fig:sgwt:wavelets:line0,fig:sgwt:wavelets:line1,fig:sgwt:wavelets:line2,fig:sgwt:wavelets:line3,fig:sgwt:wavelets:line4,fig:sgwt:wavelets:line5}.
+Dabei ist gut zu erkennen, dass der Kreisgraph die wohl beste Approximation der 
 bisherigen Wavelettheorie ist. Beim Streckengraph fehlt die Periodisierung, die 
 wir durch die Verbindungskante des Start- und Endknoten beim Kreisgraphen 
 erreicht haben.
