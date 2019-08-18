@@ -80,17 +80,17 @@ Man kann formal die Bedingung \eqref{kompakt:ordnung:formel} aus
 Defintion~\ref{kompakt:ordnung:definition} als Skalarprodukt mit der
 Funktion $t^k$ betrachten:
 \[
-\langle t^k,\psi\rangle = \int_{\mathbb{R}} t^k\psi(t)\,dt.
+\langle \psi,t^k\rangle = \int_{\mathbb{R}} \psi(t)t^k\,dt.
 \]
 Für eine skalierte Funktion folgt dann
 \[
-\langle t^k,D_a\psi\rangle 
+\langle D_a,t^k\psi\rangle 
 =
-\langle D_{1/a}t^k,\psi\rangle
+\langle\psi, D_{1/a}t^k\rangle
 =
-\langle \sqrt{|a|}(at)^k,\psi\rangle
+\langle\psi, \sqrt{|a|}(at)^k\rangle
 =
-a^k|a|^{\frac12}\langle t^k,\psi\rangle = 0
+a^k|a|^{\frac12}\langle \psi, t^k\rangle = 0
 \qquad
 \forall k<N.
 \]
@@ -107,17 +107,17 @@ ist.
 Damit kann auch die Ordnung von $T_b\psi$ berechnet werden.
 Es gilt
 \[
-\langle t^k,T_b\psi\rangle
+\langle T_b\psi,t^k\rangle
 =
-\langle T_{-b}t^k,\psi\rangle
+\langle \psi,T_{-b}t^k\rangle
 =
-\biggl\langle \sum_{i=0}^k \binom{k}{i}t^ib^{k-i},\psi\biggr\rangle
+\biggl\langle \psi, \sum_{i=0}^k \binom{k}{i}t^ib^{k-i}\biggr\rangle
 =
-\sum_{i=0}^k b^{k-i} \underbrace{\langle t^i,\psi\rangle}_{\displaystyle=0}
+\sum_{i=0}^k b^{k-i} \underbrace{\langle \psi, t^i\rangle}_{\displaystyle=0}
 =
 0.
 \]
-Mit $\psi$ hat daher auch $D_a\psi$ und $T_b\psi$ die Ordnung $n$.
+Mit $\psi$ hat daher auch $D_a\psi$ und $T_b\psi$ die Ordnung $N$.
 Die Forderung nach einer bestimmten Ordnung ist damit eine ``natürliche''
 Forderung für ein Wavelet.
 

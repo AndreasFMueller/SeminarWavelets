@@ -7,24 +7,24 @@
 \rhead{Bedingungen für die Koeffizienten}
 Bis jetzt ist ausser dem Haar-Wavelet kein Beispiel einer
 \index{Haar-Wavelet}
-Multiskalen-Analyse konstruiert worden, in dem die Funktionen 
+Multiskalenanalyse konstruiert worden, in dem die Funktionen 
 $\varphi$ und $\psi$ kompakten Träger haben.
 Wir untersuchen in diesem Abschnitt, welche Eigenschaften an die 
-Koeffizienten sich bereits aus den Axiomen einer Multiskalen-Analyse
+Koeffizienten sich bereits aus den Axiomen einer Multiskalenanalyse
 ergeben.
 Wir fordern daher:
 
 \begin{forderung}
 \label{forderung:msa}
 Das Wavelet $\psi$ und die Skalierungsfunktion $\varphi$ gehören zu
-einer Multiskalen-Analyse.
+einer Multiskalenanalyse.
 \end{forderung}
 
 \subsection{Kompakter Träger}
 \index{Träger}%
 \index{kompakter Träger}%
-Wie in der Einleitung motiviert wollen wir aus Gründen der numerischen
-Berechenbarkeit nur Wavelets betrachten, die eine ``endlichkeitsbedingung''
+Wie in der Einleitung motiviert, wollen wir aus Gründen der numerischen
+Berechenbarkeit nur Wavelets betrachten, die eine ``Endlichkeitsbedingung''
 erfüllen.
 Für die Synthese eines Signals in $V_j$ in einem Punkt sollen nur endlich
 viele Summanden nötig sein.
@@ -37,7 +37,7 @@ Die Skalierungsfunktion $\varphi$ hat kompakten Träger.
 
 Wir gehen also davon aus, dass der Träger der Funktion $\varphi$ im Intervall
 $[a,b]$ enthalten ist.
-Dann ist der Träger der Translate $T_k\varphi$ in $[a+k,b+k]$ enthalten
+Dann ist der Träger des Translates $T_k\varphi$ in $[a+k,b+k]$ enthalten
 und der Träger der skalierten Funktion $D_{\frac12}T_k\varphi$ ist
 enthalten in $[\frac12(a+k),\frac12(b+k)]$.
 
@@ -81,7 +81,7 @@ wobei wir verwendet haben, dass $T_k\varphi$ und $T_r\varphi$ orthogonal
 sind für $k\ne r$.
 
 Das Skalarprodukt
-$\langle \varphi, D_{\frac12}T_k\varphi\rangle$
+$\langle D_{\frac12}T_k\varphi, \varphi \rangle$
 ist ein Integral über das Produkt der Funktion $\varphi$ mit Träger im Intervall
 $[a,b]$ und der Funktion $D_{\frac12}T_r\varphi$  mit Träger in
 $[\frac12(a+r),\frac12(b+r)]$.
@@ -109,7 +109,7 @@ trigonometrisches Polynom.
 
 \subsection{Normierung}
 \index{Normierungskonvention für Wavelet-Koeffizienten}%
-Wir gehen wieder von einer Multiskalen-Analyse mit einem Vaterwavelet
+Wir gehen wieder von einer Multiskalenanalyse mit einem Vaterwavelet
 $\varphi$ mit kompaktem Träger aus.
 Die Analyse des konstanten Signals $f(t)=1$ erfolgt mit Hilfe des
 Skalarprodukts $\langle f,\varphi\rangle$.
@@ -234,7 +234,7 @@ h_0\bar{h}_0 + h_1\bar{h}_1
 Die bisher gesammelten Forderungen reichen bereits, die Multiskalenanalyse
 vollständig festzulegen, wenn wir nicht zu viele Koeffizienten zu
 bestimmen haben.
-Das folgende Beispiel zeigt, dass im Falle $N=1$, in dem genau zwei 
+Das folgende Beispiel zeigt, dass im Falle $n=1$, in dem genau zwei 
 Koeffizienten bestimmt werden müssen, alles bereits festgelegt ist
 und auf das Haar-Wavelet führt.
 
@@ -282,7 +282,7 @@ also ist in diesem Fall $a=\frac1{\sqrt{2}}$ und damit
 \[
 h_0=h_1=\frac{1}{\sqrt{2}},
 \]
-also die Koeffizienten der Skalierungsrelation des Haar-Wavelets.
+dies sind die Koeffizienten der Skalierungsrelation des Haar-Wavelets.
 
 Gibt es weitere Lösungen?
 Die quadratische Gleichung \eqref{buch:kompakt:quadr} hat nur dann
@@ -294,7 +294,7 @@ D=2-2-4b^2 =-4b^2\le 0.
 Es folgt, dass $b=0$ die einzige Lösung ist.
 \end{beispiel}
 
-Es gibt also nur eine einzige Multiskalen-Analyse mit einem Wavelet,
+Es gibt also nur eine einzige Multiskalenanalyse mit einem Wavelet,
 dessen Träger im Intervall $[0,1]$ enthalten ist, nämlich das Haar-Wavelet.
 Da $n=1$ in diesem Fall sehr klein ist, ist das nicht überraschen, wir
 haben wenige Koeffizienten und genügend einschränkende Bedingungen.

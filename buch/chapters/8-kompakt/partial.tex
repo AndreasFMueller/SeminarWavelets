@@ -16,13 +16,13 @@ Wir zeigen zunächst, wie sich die Funktionalgleichung
 \eqref{buch:kompakt:bedingung} mit Hilfe der Partialbruchzerlegung lösen
 lässt mit einem Polynom $P_N(y)$ vom Grad $N-1$.
 In Abschnitt~\ref{subsection:weitere loesungen} werden wir dann
-zeigen, dass weiter Lösungen $P(y)$ möglich sind, aber höheren Grad haben.
+zeigen, dass weitere Lösungen $P(y)$ möglich sind, aber höheren Grad haben.
 
 % moved here
-\rhead{Lösung der Funktionalgleichung für $P(y)$}
 
 \subsection{Partialbruchzerlegung und die Lösung $P_N(y)$}
 \index{Partialbruchzerlegung}%
+\rhead{Lösung der Funktionalgleichung für $P(y)$}
 Division der Funktionalgleichung \eqref{buch:kompakt:bedingung} für $P(y)$
 durch $y^N(1-y)^N$ macht daraus
 \[
@@ -75,7 +75,7 @@ y^N
 P_N(1-y).
 \end{align*}
 Das Polynom $P_N(y)$, gebildet mit den Koeffizienten der Partialbruchzerlegung
-von $Q(y)$ löst also das eingangs gestellte Problem.
+von $Q(y)$, löst also das eingangs gestellte Problem.
 
 \subsection{Der Fall $N=2$
 \label{subsection:falln=2}}
@@ -142,7 +142,7 @@ P_2(y) = C_1y + C_2
 2y+1.
 \]
 
-\subsection{Der Fall $N=3$
+\subsection{Die Fälle $N=3$ und $N=4$
 \label{subsection:falln=3}}
 Die analoge Rechnung für $N=3$ liefert die Bedingungen
 \[
@@ -171,7 +171,7 @@ P_4(y) &=
 
 \subsection{Der allgemeine Fall}
 Aus den Spezialfällen $N=2$ in Abschnitt~\ref{subsection:falln=2}
-und $N=3$ in Abschnitt~\ref{subsection:falln=3}
+und $N=3$ und $N=4$ in Abschnitt~\ref{subsection:falln=3}
 kann man die Vermutung ablesen, dass
 \begin{equation}
 P_N(y)
@@ -235,7 +235,7 @@ Das Polynom
 \begin{equation}
 P_N(y) = \sum_{k=0}^{N-1} \binom{N+k-1}{k}y^k,
 \end{equation}
-ist das einzige Polynom vom Grad $N$, welches die Gleichung
+ist das einzige Polynom vom Grad $N-1$, welches die Gleichung
 \[
 (1-y)^NP_N(y) + y^NP_N(1-y)=1
 \]
@@ -289,7 +289,7 @@ P(y) = P_N(y) + y^N R(y),
 \]
 wobei $R(y)$ ein bezüglich $y=\frac12$ antisymmetrisches Polynom ist,
 also $R(1-y)=-R(y)$.
-$P_N(y)$ ist das in Konsequenz~\label{buch:kompakt:lemma-partial}
+$P_N(y)$ ist das in Konsequenz~\ref{buch:kompakt:lemma-partial}
 definierte Polynom.
 \end{konsequenz}
 
