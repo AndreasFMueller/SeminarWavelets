@@ -6,9 +6,10 @@
 \section{Faltung
 \label{section:faltung}}
 \rhead{Faltung}
-Die Faltung kann dazu verwendet werden, neue Funktionen zu erzeugen.
+Die Faltung kann dazu verwendet werden, neue Kandidatenfunktionen
+für Wavelets zu erzeugen.
 Dazu müssen wir verstehen, wie die Faltung und die Operatoren $T_b$ und
-$D_b$ zusammenwirken.
+$D_a$ zusammenwirken.
 Wir erinnern an die Definition~\ref{definition:faltung} und die
 Formel \eqref{definition:formel:faltung}
 \[
@@ -20,30 +21,42 @@ für die Faltung.
 
 \subsection{Faltung als Skalarprodukt}
 \index{Faltung als Skalarprodukt}%
-Die Faltung ist ein Integral über ein Produkt von Funktionen,
-kann man sie als Skalarprodukt schreiben?
+Die Faltung ist ein Integral über ein Produkt von Funktionen.
+Kann man sie als Skalarprodukt schreiben, welches ebenfalls ein Integral
+über ein Produkt von Funktionen ist?
 Leider hat die Integrationsvariable im Faktor $g(t-s)$ das falsche
 Vorzeichen, die Funktion ist ``verkehrt''.
-Wir korrigieren dies mit Hilfe des Umkehroperators, der wie folgt
-definiert ist.
+Wir korrigieren dies mit Hilfe zweier Operator, die wie folgt
+definiert sind.
 
 \begin{definition}
-Der Operator $R$ wirkt auf eine Funktion $f(t)$ mittels
-\[
-(Rf)(t) = f(-t).
-\]
+Die Operatoren $C$ und $R$ wirken auf eine Funktion $f(t)$ mittels
+\begin{align*}
+&\text{Konjugation:}
+&(Cf)(t) &= \bar{f}(t)&
+&\text{und}&
+&\text{``Umkehrung''}&
+(Rf)(t) = \bar{f}(-t).
+\end{align*}
+$C$ heisst der {\em Konjugationsoperator} oder auch einfach die
+{\em Konjugation}.
 $R$ heisst {\em Umkehrungsoperator} (engl.~{\em Reversing operator}).
 \end{definition}
+\index{Konjugationsoperato}%
 \index{Umkehrungsoperator}%
 \index{Reversing operator}%
 
-Offenbar ist $R$ eine Isometrie von $L^2(\mathbb R)$.
-$R$ ist ein Spezialfall des Skalierungsoperators: $R=D_{-1}$.
+Offenbar sind sowohl $R$ also auch $C$  Isometrien von $L^2(\mathbb R)$.
+$R$ lässt sich aus einem Spezialfall des Skalierungsoperators aufbauen:
+$R=CD_{-1}$.
+Selbstverständlich vertauscht $C$ mit allen Operatoren $T_b$ und $D_a$,
+da er auf die Werte wirkt, währen $T_b$ und $D_a$ auf die Argumente
+wirken.
 Daraus ergeben sich automatisch die Rechenregeln
 \[
-T_bR = RT_b = T_{-b}
+T_bR = RT_b = CT_{-b}
 \qquad\text{und}\qquad
-D_aR = D_{-a}=RD_a.
+D_aR = CD_{-a}=RD_a.
 \]
 
 Mit Hilfe des Operators $R$ lässt sich die Faltung jetzt als
@@ -54,14 +67,14 @@ Es ist nämlich
 &=
 \int_{-\infty}^\infty f(s) g(t-s) \,ds
 =
-\int_{-\infty}^\infty f(s) (Rg)(s-t) \,ds
+\int_{-\infty}^\infty f(s) \overline{(Rg)(s-t)} \,ds
 =
-\int_{-\infty}^\infty f(s) (T_tRg)(s) \,ds
+\int_{-\infty}^\infty f(s) \overline{(T_tRg)(s)} \,ds
 =
 \langle f,T_tRg\rangle.
 \end{align*}
 Mit dieser Schreibweise lässt sich das Zusammenspiel zwischen Faltung
-und den Operatoren $T_b$ und $D_a$ viel leicht verstehen.
+und den Operatoren $T_b$ und $D_a$ viel leichter verstehen.
 
 \subsection{Faltung und die Translations- und Dilatationsoperatoren
 \label{subsection:translation-und-dialatation}}
@@ -194,11 +207,13 @@ D_2f
 &=
 \sum_{k\in\mathbb Z} f_k T_kf
 &
+&\text{und}&
 D_2g
 &=
 \sum_{k\in\mathbb Z} g_k T_kg.
 \end{align*}
 Nach \eqref{eq:Dconv} ist die Faltung der Funktionen $D_2f$ und $D_2g$
+gegeben durch
 \[
 D_2f * D_2g
 =
@@ -225,7 +240,7 @@ D_2f * D_2g
 \sum_{k+l=s} f_kg_l T_{k+l}(f * g)
 =
 \sum_{s\in\mathbb Z}
-\biggl(\sum_{k+l=s} f_kg_l\biggr) T_sh
+\biggl(\sum_{k+l=s} f_kg_l\biggr) T_sh.
 \end{align*}
 Es folgt, dass
 \[
@@ -254,7 +269,7 @@ der erzeugenden Funktion
 H(\omega)
 =
 \frac{1}{\sqrt{2}}
-\sum_{k\in\mathbb Z} h_ke^{ik\omega}
+\sum_{k\in\mathbb Z} h_ke^{-ik\omega}
 \]
 (siehe Definition~\ref{definition:erzeugende-funktion-msa})
 als
@@ -312,13 +327,13 @@ mit der erzeugenden Funktion $H_1\cdot H_2$, die wegen
 H_1(\omega)\,H_2(\omega)
 =
 \frac{1}{\sqrt{2}}
-\sum_{k\in\mathbb Z} h_{1,k}e^{ik\omega}
+\sum_{k\in\mathbb Z} h_{1,k}e^{-ik\omega}
 \cdot
 \frac{1}{\sqrt{2}}
-\sum_{l\in\mathbb Z} h_{2,l}e^{il\omega}
+\sum_{l\in\mathbb Z} h_{2,l}e^{-il\omega}
 =
 \frac{1}{\sqrt{2}}
-\sum_{s\in\mathbb Z} e^{is\omega}
+\sum_{s\in\mathbb Z} e^{-is\omega}
 \frac{1}{\sqrt{2}}
 \sum_{k+l=s}h_{1,k}h_{2,l}
 \]

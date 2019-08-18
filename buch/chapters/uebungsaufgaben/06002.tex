@@ -1,0 +1,40 @@
+Für eine Multiskalenanalyse gibt es immer Koeffizienten $g_k$,
+die das Mutterwavelet linear aus skalierten Translaten des Vaterwavelets
+$\varphi$ kombinieren:
+\begin{equation}
+\psi = \sum_{k\in\mathbb Z} D_{\frac12}T_k\varphi.
+\label{06002:eq}
+\end{equation}
+Zeigen Sie, dass $\displaystyle\sum_{k\in\mathbb Z} g_k=0$ gilt.
+
+\begin{loesung}
+Da $\psi$ ein Wavelet ist, muss nach der Zulässigkeitsbedingung
+\[
+\int_{\mathbb R}\psi(t)\,dt
+=
+0
+\]
+sein.
+Wir integrieren Gleichung~\eqref{06002:eq} und erhalten
+\begin{align*}
+0
+=
+\int_{\mathbb R}\psi(t)\,dt
+&=
+\sum_{k\in\mathbb Z} \biggl(g_k\int_{\mathbb R} (D_{\frac12}T_k \varphi)(t)\,dt\biggr)
+\\
+&=
+\sum_{k\in\mathbb Z} \biggl(g_k \int_{\mathbb R} (D_{\frac12}\varphi)(t)\,dt\biggr)
+=
+\biggl(\sum_{k\in\mathbb Z} g_k\biggr)\cdot
+\int_{\mathbb R} (D_{\frac12}\varphi)(t)\,dt.
+\end{align*}
+Die Integrale sind alle gleich und der Operator $T_k$ kann weggelassen
+werden, weil das Lebesgue-Mass translationsinvariant ist.
+Das Integral auf der rechten Seite verschwindet nicht, also muss die
+Summe verschwinden:
+\[
+\sum_{k\in\mathbb Z} g_k = 0.
+\]
+Damit ist die Behauptung bewiesen.
+\end{loesung}

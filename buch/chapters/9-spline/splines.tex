@@ -7,7 +7,7 @@
 \label{section:spline-funktionen}}
 \rhead{Spline-Funktionen}
 In diesem Abschnitt konstruieren wir ausgehend vom Haar-Wavelet mit Hilfe
-der Faltung eine Familie $\varphi^{(n)}$ von Funktionen die zunehmend glatt
+der Faltung eine Familie $\varphi^{(n)}$ von Funktionen, die zunehmend glatt
 sind in dem Sinne, dass $\varphi^{(n)}$ für $n>1$ $n$ mal stetig
 differenzierbar ist, und die alle eine Skalierungsrelation erfüllen.
 Diese Funktionen werden wir dann im nächsten Abschnitt jeweils ein
@@ -28,7 +28,7 @@ des Einheitsintervalls
 \end{cases}
 \end{equation}
 Aus $\varphi^{(0)}$ lässt sich wie in Kapitel~\ref{chapter:haar-wavelet}
-ausgeführt eine Multiskalen-Analyse aufbauen.
+ausgeführt eine Multiskalenanalyse aufbauen.
 Eine solche garantiert zunächst einmal eine lineare Darstellung von
 $\varphi^{(0)}$ duch skalierte und translierte Kopien von $\varphi^{(0)}$
 in der Form
@@ -78,7 +78,7 @@ Nach Lemma~\ref{lemma:msa:psirelation} ist dann das Mutterwavelet
 \biggr),
 \]
 wie ebenfalls bereits in Kapitel~\ref{chapter:haar-wavelet} gezeigt wurde.
-Auch wurde bereits auf die schlechten Stetikeitseigenschaften und
+Auch wurde bereits auf die schlechten Stetigkeitseigenschaften und
 die schlechte Frequenz-Lokalisierung des Haar-Wavelets hingewiesen,
 welche den praktischen Nutzen des Haar-Wavelets limitiert.
 Damit stellt sich das Problem, ob man Funktionen gewinnen kann, die
@@ -135,7 +135,10 @@ mit der Substitution $\tau=t-s$.
 
 \begin{lemma}
 \label{lemma:phidiffbar}
-Die Funktion $\varphi^{(n)}$ ist für $n>1$ $n$ mal stetig differenzierbar.
+Die Funktion $\varphi^{(n)}$ ist ausser in den ganzzahligen Punkten
+$0,1,\dots,n+1$ $n$ mal stetig differenzierbar.
+In den Punkte $0,1,\dots,n+1$ ist $\varphi^{(n)}$ $n-1$ mal
+differenzierbar, die $n-1$-te Ableitung ist dort aber nicht stetig.
 \end{lemma}
 
 \begin{proof}[Beweis]
@@ -190,7 +193,10 @@ dargestellt.
 \centering
 \includegraphics{chapters/9-spline/images/phi1.pdf}
 \caption{Der Graph der Funktion $\varphi^{(1)}(t)$ zeigt, dass die
-Funktion $\varphi^{(1)}$ stetig ist.
+Funktion $\varphi^{(1)}$ überall ausser in den Punkten $0,1,2$ stetig
+differenzierbar ist.
+In diesen Punkten ist sie nicht mehr differenzierbar, der rechts
+und linksseitige Grenzwert ist verschieden.
 \label{spline:phi1}}
 \end{figure}
 \end{beispiel}
@@ -260,7 +266,7 @@ das Intervall $[t-1,t]$ berechnet werden:
 &
 \varphi^{(2)}(t)
 &=
-0
+0.
 \end{align*}
 Der Graph der Funktion $\varphi^{(2)}$ ist in Abbildung~\ref{spline:phi2}
 dargestellt.
@@ -337,7 +343,7 @@ von Kurven in der Computergraphik verwendet.
 \subsection{Skalierungsrelation für $\varphi^{(n)}$
 \label{subsection:skalierungsrelation-phin}}
 Die Funktionen $B_n=\varphi^{(n)}$ können nur dann Anlass zu einer
-Multiskalen-Analyse geben, wenn sie die Skalierungseigenschaft
+Multiskalenanalyse geben, wenn sie die Skalierungseigenschaft
 besitzen.
 Wir wissen bereits aus Abschnitt~\ref{subsection:spline:haar},
 dass das Haar-Wavelet $\varphi^{(0)}$ die Skalierungsrelation

@@ -10,11 +10,12 @@
 Das Haar-Wavelet ist charakterisiert durch die erzeugende Funktion $H$,
 die in einer Funktionalgleichung der Fourier-Transformierten von $\varphi$
 vorkommt.
-Es stellt sich heraus, dass sich eine solche Funktionalgleichung für 
+Es stellt sich heraus, dass sich eine solche Funktionalgleichung auch für 
 Faltungen von $\varphi$ mit sich selbst sofort ableiten lässt.
-Allerdings bilden die verschobenen Kopien keine orthonormierte Basis,
-dazu müssen sie erst orthonormiert werden.
-Da sich dafür aber ein Verfahren angeben lässt, kann man eine Familie 
+Allerdings bilden die verschobenen Kopien dieser Faltungen keine
+orthonormierte Basis, dazu müssen sie erst orthonormiert werden.
+Da wir dafür aber bereits ein Verfahren kennengelernt haben, ist das nicht
+weiter schwierig und man kann man eine Familie 
 von Wavelets konstruieren, die sich dadurch auszeichnen, dass sie
 stückweise polynomiell sind, genauso wie das Haar-Wavelet stückweise
 konstant war.
@@ -23,12 +24,12 @@ sollen.
 
 Die B-Spline-Wavelets haben nicht kompakten Träger, aber Koeffizienten
 mit grossem Index sind sehr klein.
-Ausserdem sind sie wie die Wavelet-Koeffizienten typischerweise irrational,
-müssen also in einer Implementation notwendigerweise gerundet werden.
+Ausserdem sind die Wavelet-Koeffizienten typischerweise irrational,
+müssen also in einer Implementation ohnehin gerundet werden.
 Die Stabilität der Wavelet-Transformation stellt sicher, dass die Rundung
 nicht zu unbrauchbaren Resultaten führt.
 Indem sehr kleine Koeffizienten zu $0$ gerundet werden, können auch die
-B-Spline-Wavelets als Wavelets mit kompaktem Träger behandelt werden.
+B-Spline-Wavelets wie Wavelets mit kompaktem Träger behandelt werden.
 Dasselbe gilt natürlich auch für jede andere Form von Wavelet, bei dem
 die Werte der Koeffizienten rasch gegen $0$ gehen.
 
