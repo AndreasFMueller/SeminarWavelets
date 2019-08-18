@@ -157,7 +157,7 @@ Für die Versuche werden auf die Daten des BRAMS (Belgian RAdio Meteor Stations)
 Das Netzwerk besteht aus einem Sender und circa 30 Empfängern.
 Verschiedene Institutionen und auch Private studieren damit den Meteor-Niedergang über Belgien.
 Durch das Erstellen eines Benutzerkontos kann jeder frei über die gesammelten Daten verfügen.
-Die Empfangsdaten einer Station können als Audiofile im .wav Format bezogen werden und dauern fünf Minuten.
+Die Empfangsdaten einer Station können als Audiofile im \texttt{.wav} Format bezogen werden und dauern fünf Minuten.
 
 %\newpage
 \subsection{Signalanalyse}
@@ -166,17 +166,17 @@ Folgend werden wichtige Ausschnitte aus dem Matlab-Sourcecode gezeigt und erklä
 Das Signal stammt von einer Messung des BRAMS Netzwerk und besitzt eine Dauer von circa 2 Minuten.
 Es kann ein beliebiger Satz Daten des Netzwerks verarbeitet werden.
 
-Die Audiofiles im .wav Format können wie folgt eingelesen werden:
+Die Audiofiles im \text{.wav} Format können wie folgt eingelesen werden:
 \lstinputlisting[language=Matlab,style=Matlab]{papers/meteor/listings/bandpass.m}
 %\begin{lstlisting}
 %dataname    = 'PFAD_ZU_FILE';
 %[sig,Fs]    = audioread(dataname);
 %info        = audioinfo(dataname);
 %\end{lstlisting}
-Die Abtastrate `Fs' beträgt 5512,5 Punkte pro Sekunde.
-Aus der Variable `info' können Informationen wie zB. die Dauer entnommen werden. 
+Die Abtastrate \texttt{Fs} beträgt 5512.5 Punkte pro Sekunde.
+Aus der Variable \texttt{info} können Informationen wie z.~B.~die Dauer entnommen werden. 
 
-Der interessante Bereich liegt zwischen 1050 und 1150 Herz.
+Der interessante Bereich liegt zwischen 1050 und 1150\,Hz.
 Daher wird ein Bandpassfilter für diesen Bereich eingesetzt:
 \lstinputlisting[language=Matlab,style=Matlab]{papers/meteor/listings/bandpass2.m}
 %\begin{lstlisting}
@@ -217,7 +217,7 @@ Dargestellt wird die spektrale Leistungsdichte.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{papers/meteor/images/signal_gfft.png}
+	\includegraphics[width=\linewidth]{papers/meteor/images/signal_gfft-clipped.png}
 	\caption{Die gefensterte Fourier-Transformation mit Matlab grafisch dargestellt}
 	\label{fig:signalmitgfft}
 \end{figure}
@@ -270,7 +270,7 @@ Das Resultat ist eine Grafik welche zu jedem Zeitpunkt zeigt wie gut das Gabor W
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{papers/meteor/images/signal_wscalo.png}
+	\includegraphics[width=\linewidth]{papers/meteor/images/signal_wscalo-clipped.png}
 	\caption{Die kontinuierliche Wavelet-Transformation mit Matlab grafisch dargestellt}
 	\label{fig:signalmitwscalo}
 \end{figure}
@@ -334,11 +334,11 @@ Um diesen Phänomenen auf den Grund zu gehen, wurden mit verschiedenen künstlic
 Um das Verhalten des Trägersignals nachzuvollziehen, werden Signale mit gleichbleibender Frequenzen von 100\,Hz bis 2400\,Hz untersucht.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/beam/cwt_0100hz.png}
+	\includegraphics[width=1.0\linewidth]{papers/meteor/images/anomalie/beam/cwt_0100hz-clipped.png}
 	\caption{100 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
 	Das Wavelet korreliert bei circa der Streckung 43 am besten mit dem Signal. 
 	Dies zeigt uns die stark rote Färbung in diesem Bereich.}
-	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/beam/cwt_0500hz.png}
+	\includegraphics[width=1.0\linewidth]{papers/meteor/images/anomalie/beam/cwt_0500hz-clipped.png}
 	\caption{500 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
 	Mit zunehmender Frequenz, korreliert ein weniger gestrecktes Wavelet besser mit dem Signal und der am besten korrelierende Bereich wandert im Bild nach oben. }
 	\label{fig:cwt_anomalie_beam_1}
@@ -346,12 +346,12 @@ Um das Verhalten des Trägersignals nachzuvollziehen, werden Signale mit gleichb
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/beam/cwt_1000hz.png}
+	\includegraphics[width=1.0\linewidth]{papers/meteor/images/anomalie/beam/cwt_1000hz-clipped.png}
 	\caption{1000 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
 	Diese Frequenz entspricht ungefähr dem zu untersuchenden belgischen Radarsignal.
 	Das Gabor Wavelet korreliert mit einer Dilatation von etwa 10 am besten mit dem Signal.
 	Der untersuchte Bereich liegt nach Skala um Faktor 10 darüber.}
-	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/beam/cwt_1200hz.png}
+	\includegraphics[width=1.0\linewidth]{papers/meteor/images/anomalie/beam/cwt_1200hz-clipped.png}
 	\caption{1200 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
 	Diese Bild bestätigt die Annahme, dass die ursprünglichen Untersuchungen nicht im korrekten Bereich vorgenommen wurden.}
 	\label{fig:cwt_anomalie_beam_2}
@@ -365,11 +365,11 @@ Ich nehme an, dass sämtliche Vielfache der zu untersuchenden Frequenz ebenfalls
 Um das Verhalten der Signale der Flugobjekte nachzuvollziehen, werden Signale mit ansteigenden Frequenzen von 100\,Hz bis 2400\,Hz untersucht.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/sweep/cwt_0100to0300hz.png}
+	\includegraphics[width=1.0\linewidth]{papers/meteor/images/anomalie/sweep/cwt_0100to0300hz-clipped.png}
 	\caption{100 bis 300 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
 	Nun wird gut sichtbar, wie sich die Deutung des Bildes verkompliziert. 
 	Es zeigen auch bereits Signaturen bei viel grösserer Dilatation.}
-	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/sweep/cwt_0500to0700hz.png}
+	\includegraphics[width=1.0\linewidth]{papers/meteor/images/anomalie/sweep/cwt_0500to0700hz-clipped.png}
 	\caption{500 bis 700 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
 	Wie bereits beim untersuchten Signal mit gleichbleibender Frequenz, wandert der am besten korrelierende Bereich im Bild mit zunehmender Frequenz nach oben.
 	Die V-förmigen Signaturen sind bereits gut sichtbar.}
@@ -378,12 +378,12 @@ Um das Verhalten der Signale der Flugobjekte nachzuvollziehen, werden Signale mi
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/sweep/cwt_0900to1100hz.png}
+	\includegraphics[width=1.0\linewidth]{papers/meteor/images/anomalie/sweep/cwt_0900to1100hz-clipped.png}
 	\caption{900 bis 1100 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
 	Dies ist der Frequenzbereich, der dem des belgischen Radarsignals entspricht.
 	Es ist sehr schön zu sehen, wie dominant sich die V-förmige Signatur zeigt.
 	Der Zeitpunkt des Auftretens scheint nicht klar definiert.}
-	\includegraphics[width=0.9\linewidth]{papers/meteor/images/anomalie/sweep/cwt_2200to2400hz.png}
+	\includegraphics[width=1.0\linewidth]{papers/meteor/images/anomalie/sweep/cwt_2200to2400hz-clipped.png}
 	\caption{2200 bis 2400 Herz Sinussignal mit kontinuierliche Wavelet-Transformation.
 	Bei diesen hohen Frequenzen ist ein neues Phänomen zu beobachten.
 	Obwohl die Frequenz des Signales ansteigt, zeigt die Wavelet-Transformation einen stark korrelierenden Bereich mit entgegengesetzter Aussage.}
@@ -411,7 +411,7 @@ Leider ist bei der Analyse des Radarsignals in diesem Bereich nichts sichtbar.
 Meine Wavelet-Transformation ist in der derzeitigen Form nicht fähig diesen Bereich hoch genug aufzulösen, damit ein brauchbares Bild entsteht.
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{papers/meteor/images/anomalie/cwt_signal_scale1to20.png}
+	\includegraphics[width=\linewidth]{papers/meteor/images/anomalie/cwt_signal_scale1to20-clipped.png}
 	\caption{Das Radarsignal aufgelöst im Bereich der Skala von 1 bis 20. 
 	Aufgrund der niedrigen Auflösung in diesem Bereich sind keine verwertbaren Signaturen erkennbar.}
 	\label{fig:signalmitwscaloscale1to20}
