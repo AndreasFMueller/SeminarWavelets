@@ -58,7 +58,7 @@ morlet.pdf: morlet.tex
 im : im.cpp
 	g++ -o im -Wall -O2 im.cpp -lpng16
 
-gamma=2
+gamma=1
 
 colors.pdf: im colors.m colors.tex
 	octave --silent --eval 'colors(1024, 1024, "colors.dat") '

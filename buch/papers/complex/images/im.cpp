@@ -20,27 +20,27 @@ required_argument, NULL, 'm' }, { "phase", no_argument, NULL, 'P' }, {
 		"absolute", no_argument, NULL, 'A' }, { "maximum", no_argument, NULL,
 		'M' }, { NULL, 0, NULL, 0 } };
 
-int ang2blue(double phi, double mag){
+int ang2blue(double phi, double mag) {
 	// Blue is a even function
 	phi *= 180.0 / M_PI;
 	int ang = round(phi);
 	ang = abs((ang + 180) % 360 - 180);
 
-	if (ang <= 60){ // Fully on
+	if (ang <= 60) { // Fully on
 		return round(mag);
 	} else if (ang < 120) { // Linearly falling
 		return round(mag * (240.0 - 2.0 * ang) / 120.0);
-	} else // Fully off
+	} else
+		// Fully off
 		return 0;
 }
 
-int hue2rgb(png_bytep res, double phi, double mag){
+int hue2rgb(png_bytep res, double phi, double mag) {
 	res[0] = ang2blue(phi + M_PI * 2 / 3, mag); // Red
 	res[1] = ang2blue(phi + M_PI * 4 / 3, mag); // Green
-	res[2] = ang2blue(phi + 0.0  , mag); // Blue
+	res[2] = ang2blue(phi + 0.0, mag); // Blue
 	return 0;
 }
-
 
 int main(int argc, char *argv[]) {
 	const char *infilename = "im.dat";
@@ -124,18 +124,24 @@ int main(int argc, char *argv[]) {
 	for (int y = 1; y <= height; y++) {
 		for (int x = 0; x < width; x++) {
 			m = mag[y][x];
-			if ((m == 255) & show_max){
-				for (int d = -4; d <= 4; d++) {
-				row_pointers[height - y + d][3 * x + 0] = 255;
-				row_pointers[height - y + d][3 * x + 1] = 255;
-				row_pointers[height - y + d][3 * x + 2] = 255;
-				}
-			} else {
-				hue2rgb(&row_pointers[height - y][3 * x], phi[y][x], m);
-			}
+			hue2rgb(&row_pointers[height - y][3 * x], phi[y][x], m);
 		}
 	}
 
+	const int delta = 2;
+	if (show_max)
+		for (int y = 1 + delta; y <= height - delta; y++) {
+			for (int x = 0; x < width; x++) {
+				m = mag[y][x];
+				if (m == 255) {
+					for (int d = -delta; d <= delta; d++) {
+						row_pointers[height - y + d][3 * x + 0] = 255;
+						row_pointers[height - y + d][3 * x + 1] = 255;
+						row_pointers[height - y + d][3 * x + 2] = 255;
+					}
+				}
+			}
+		}
 	cout << "Saving png..." << endl;
 
 	png_write_image(png, row_pointers);

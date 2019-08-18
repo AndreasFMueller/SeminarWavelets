@@ -37,6 +37,7 @@ end
 
 % Noise
 if sig >= 8
+  randn ("seed", 2)
   if mod(floor(sig/2), 2) == 1
     x = x + sum([1, 1i] .* randn(length(x), 2), 2);
   else
@@ -46,14 +47,13 @@ end
 
 [yab, a] = myCWT(x, dt, height, pad, WL, a_max);
 
-yab = yab / max(abs(yab(:))); % Scale to +- 1
-yab = (exp( 2 * abs(yab)) - 1) .* exp(1i * angle(yab)); % Adapt to eye
+yab = scale(yab);
 
-yab = yab / max(abs(yab(:))) * 254;
+yab = yab * 254;
 if show_max
   [~, idx] = max(abs(yab), [], 2);
   for i = 1:width
-    if abs(yab(i, idx(i))) >= 255*0.25
+    if abs(yab(i, idx(i))) >= 255*0.5
       yab(i, idx(i)) = 255;
     end
   end
