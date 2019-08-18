@@ -6,9 +6,23 @@
 Mit der Spektral Graph Wavelet Transformation ist es uns gelungen, die bekannte 
 Wavelettheorie auch auf Graphen anzuwenden. Damit k\"onnen wir uns von der 
 Geometrie der Oberfl\"ache einer Funktion l\"osen und betrachten nur noch, was 
-in der Nachbarschaft der einzelnen Knoten geschieht. Auch wenn die SGWT, im 
-Vergleich zu zur Wavelet- oder gar Fouriertheorie noch ziemlich neu ist, 
-scheinen die M\"oglichkeiten \"ausserst weitl\"aufig zu sein, wie Beispiele in 
-der in der Bildbearbeitung~\cite{shuman_emerging_2013} oder bei der Verwendung 
-von neuronalen Netzwerken~\cite{xu_graph_2019} zeigen.
+in der Nachbarschaft der einzelnen Knoten geschieht.
+
+Um nun eine Funktion $f(v)$ auf einem Graphen $G$ zu analysieren, k\"onnen wir 
+also wie folgt vorgehen
+\begin{itemize}
+    \item[1.] Generierung der \laplaceL{} Matrix aus dem Graphen $G$.
+    \item[2.] Berechnung der Eigenwerte $\lambda$ und Eigenvektoren $\chi$.
+    \item[3.] Berechnung der $\psi_j$ und $\phi$ Wavelets 
+    mit~\cref{eq:sgwt:psi,eq:sgwt:phi}.
+    \item[4.] Berechnung der Wavelet Koeffizienten $\hat{f}$ 
+    mit~\cref{eq:sgwt:hatf}.
+\end{itemize}
+Danach k\"onnen wir die Funktion $f$ mittels~\cref{eq:sgwt:pseudof} wieder 
+synthetisieren, indem wir das Pseudoinverse der $T$-Matrix verwenden.
+
+Auch wenn die SGWT, im Vergleich zu zur Wavelet- oder gar Fouriertheorie noch 
+ziemlich neu ist, scheinen die M\"oglichkeiten \"ausserst weitl\"aufig zu sein, 
+wie Beispiele in der in der Bildbearbeitung~\cite{shuman_emerging_2013} oder 
+bei der Verwendung von neuronalen Netzwerken~\cite{xu_graph_2019} zeigen.
 
