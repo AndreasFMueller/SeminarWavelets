@@ -11,6 +11,7 @@
 {\parindent=0pt
 In} der Literatur zu Wavelets findet man die folgende Aussage zu Daubechies
 Wavelets:
+\index{Daubechies Wavelet}%
 \begin{displayquote}[\cite{wikipedia:daubechies}]
 For example, $D2$, with one vanishing moment, easily encodes polynomials of one
 coefficient, or constant signal components. $D4$ encodes polynomials with two
@@ -18,7 +19,9 @@ coefficients, i.e.\ constant and linear signal components; and $D6$ encodes
 3-polynomials, i.e.\ constant, linear and quadratic signal components.
 \end{displayquote}
 Ein Daubechies Wavelet mit $A$ verschwindenden Momenten und Filterlänge $N=2A$
+\index{Moment}%
 sollte also ein Polynom der Ordnung $A-1$ einfach darstellen können. Wir wollen
+\index{Ordnung}%
 erörtern, was das nun in der Praxis genau bedeutet und welche Anwendungen es
 ermöglicht.
 
@@ -33,7 +36,11 @@ mit db$A$ bezeichnen. Auch werden wir die Wavelet-Transformation als Filter
 betrachten wie in \cref{haar:approximation:filter} beschrieben. Dabei werden
 wir die Notation von Detail- und Approximationskoeffizienten verwenden. Die
 Detailkoeffizienten auf Ebene $j$ ($cDj$) sind dabei der Ausgang des Hochpasses
+\index{Detailkoeffizient}%
+\index{Hochpass}%
 $h$ und die Approximationskoeffizienten auf Ebene $j$ ($cAj$) der Ausgang des
+\index{Approximationskoeffizient}%
+\index{Tiefpass}%
 Tiefpasses $g$.
 
 Die Detailkoeffizienten auf Ebene $j$ entsprechen der Analyse mit einem $2^j$
@@ -41,15 +48,19 @@ skalierten Mutterwavelet $\psi$ und die Approximationskoeffizienten der
 entsprechenden Analyse mit einem Vaterwavelet $\varphi$.
 
 Die Analysen und Simulationen wurden jeweils mittels Python~\cite{python} und im
+\index{Python}%
 Speziellen dem PyWavelets~\cite{gregory_r_lee_2019_2634243} Paket durchgeführt.
+\index{PyWavelets}%
 Der dazu verwendete Code wurde in einem GitHub-Repository%
 \footnote{\url{https://github.com/rnestler/mathsem-FS2019/tree/paper}}%
 ~\cite{polynomials:repo}
 abgelegt. Zusätzlich sind auch interaktive Jupyter Notebooks vorhanden um den
+\index{Jupyter}%
 Einfluss von verschiedenen Parametern auszuprobieren. Mittels
 Binder%
 \footnote{\url{https://mybinder.org/v2/gh/rnestler/mathsem-FS2019/paper}}%
 ~\cite{project_jupyter-proc-scipy-2018}
+\index{Binder}%
 kann eine Online-Umgebung gestartet werden um diese Beispiele auszuführen.
 
 \section{Analyse von polynomialen Signalen}
@@ -84,6 +95,7 @@ die Ableitungen der verschiedenen Signale gegeben.
 \end{figure}
 
 Dieses Verhalten ist zu erwarten wenn man bedenkt, dass das Haar Wavelet
+\index{Haar-Wavelet}%
 jeweils die Summe und die Differenz zweier benachbarter Samples analysiert.
 Siehe dazu auch \cref{haar:allwavelets:image} im Kapitel zum Haar Wavelet. Aus
 \cref{fast:akoefgleichung} von \cref{section:fast} wissen wir, dass die
@@ -100,18 +112,20 @@ cD_{j+1,k}
 \label{polynomials:cD_haar}
 \end{align}
 Setzen wir nun in \cref{polynomials:cD_haar} die $g$ Koeffizienten $g_0=1$ und
-$g_1=-1$ des Haarwavelet und die Samples $f(x_k)$ und $f(x_{k + 1})$ erhalten
-wir die Detailkoeffizienten
+$g_1=-1$ des Haarwavelet und die Samples $f(x_k)$ und $f(x_{k + 1})$ ein,
+erhalten wir die Detailkoeffizienten
 \begin{align}
     cD_{1,k} & = \frac{1}{\sqrt{2}}\left(f(x_k) - f(x_{k + 1})\right).
 \end{align}
-Vergleichen wir diese mit der Ableitung
+Vergleichen wir diese mit dem Differenzenquotienten
 \begin{align}
 \frac{\Delta y}{\Delta x} &= \frac{f(x_0+\Delta x) - f(x_0)}{\Delta x}
                            = \frac{f(x_{k+1}) - f(x_k)}{x_{k+1} - x_k} \nonumber \\
                           &= cD_{1,k} \frac{-\sqrt{2}}{x_{k+1} - x_k},
                           \label{polynomials:eq:cD_haar_ableitung}
 \end{align}
+als Approximation der Ableitung,
+\index{Ableitung}%
 stellt sich heraus, dass sie dem mit $-\frac{\sqrt{2}}{\Delta x}$ skalierten
 Detailkoeffizienten entspricht.
 
@@ -126,10 +140,10 @@ sehen.
              proportional zur zweiten und dritten Ableitung der
              Polynome.\label{polynomials:db2_3}}
 \end{figure}
-Wie sich herausstellt liefern diese Wavelets jeweils Detailkoeffizienten,
+Wie sich herausstellt, liefern diese Wavelets jeweils Detailkoeffizienten,
 welche proportional zur zweiten und dritten Ableitung der Polynome ist.
 
-Warum ist das so? Betrachten wir zuerst einmal algebraisch wie sich konstante
+Warum ist das so? Betrachten wir zuerst einmal algebraisch, wie sich konstante
 und lineare Funktionen mit den Daubechies Wavelets verhalten.
 
 \subsection{Konstante Funktionen}
@@ -160,7 +174,7 @@ Bei der Analyse mit dem db2 Wavelet ergeben sich die Detailkoeffizienten
        &= (g_0 + g_1 + g_2 + g_3) (a + bx) + b \Delta x (g_1 + 2 g_2 + 3 g_3).
 \end{align*}
 Da $(g_0 + g_1 + g_2 + g_3) = 0$ bleibt noch $(g_1 + 2 g_2 + 3 g_3)$. Wenn wir
-nun die Koeffizienten des db2 Wavelet aus \cref{section:daubechies} einsetzen
+nun die Koeffizienten des db2 Wavelet aus \cref{section:daubechies} einsetzen,
 erhalten wir
 \begin{align*}
     g_1 + 2 g_2 + 3 g_3 &= \frac{3 + \sqrt{3}}{4\sqrt{2}} + 2 \frac{-3 + \sqrt{3}}{4\sqrt{2}} + 3 \frac{1 - \sqrt{3}}{4\sqrt{2}} = 0.
@@ -173,7 +187,7 @@ Analyse mit dem db2 Wavelet analog die Detailkoeffizienten \[cD =
 -\sqrt{\frac{3}{2}} c \Delta x^2.\] Diese sind somit proportional zur zweiten
 Ableitung $\frac{2c x}{\Delta x^2}$ der Funktion.
 
-Wir könnten dies weiterführen für Polynome und Daubechie Wavelets höherer
+Wir könnten dies weiterführen für Polynome und Daubechies Wavelets höherer
 Ordnung $A$. Es würde ersichtlich, dass immer die Terme niedriger Ordnung
 verschwinden und von den Termen der Ordnung $A$ etwas proportionales zur
 $A$-ten Ableitung entsteht. Dieses Verhalten ist ein Resultat davon wie die
@@ -191,6 +205,7 @@ dem Mutterwavelet $\psi$ verschwinden.
 In diesem Abschnitt wollen wir zeigen, dass die Daubechies Wavelets eine
 Approximation der Ableitung beliebiger analytischer Funktionen liefern können.
 Eine analytische Funktion lässt sich nämlich als Taylorreihe darstellen:
+\index{Taylor-Reihe}%
 \begin{align*}
     f(x) = T f(x; a) & = \sum_{n=0}^\infty  \frac{f^{(n)}(a)}{n!} (x-a)^n = f(a) + f'(a) (x-a) + \frac{f''(a)}{2}(x-a)^2 + \frac{f'''(a)}{6} (x-a)^3 + \cdots.
 \end{align*}
@@ -209,11 +224,13 @@ höherer Ordnung einen Einfluss auf die Detailkoeffizienten haben:
        &= \mathcal{W}_{dbA} \frac{f^{A}(0)}{A!}x^A + \mathcal{W}_{dbA}\sum_{n=A+1}^\infty \frac{f^{(n)}(0)}{n!} x^n.
 \end{align*}
 Wenn der Restterm \[R_A = \sum_{n=A+1}^\infty \frac{f^{(n)}(0)}{n!} x^n\] nun
+\index{Restterm}%
 vernachlässigbar klein ist, liefern uns die Detailkoeffizienten eine
 zuverlässige Approximation für die Ableitung beliebiger analytischer
 Funktionen.
 
-Wir wollen das am Beispiel der Exponentialfunktion $e(x)$ erläutern. Die
+Wir wollen das am Beispiel der Exponentialfunktion $\exp(x)$ erläutern. Die
+\index{Exponentialfunktion}
 Taylorreihe der Exponentialfunktion ist
 \begin{align*}
     e^{x} = \sum^{\infty}_{n=0} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots.
@@ -237,6 +254,7 @@ entsprechend klein ist.
 
 \section{Anwendung zur rauscharmen Ableitung}
 \rhead{Rauscharme Ableitung}
+\index{Ableitung, rauscharm}%
 
 Beim diskreten Ableiten (Differenzieren) von Signalen stellt sich oftmals das
 Problem, dass Rauschen im Signal verstärkt wird. Anstelle der Ableitung des
@@ -273,7 +291,7 @@ proportional zur Ableitung ist, ist kaum mehr erkennbar.
 \end{figure}
 
 Nun können wir aber mit dem Wavelet eine Multiskalenanalyse durchführen. Im
-Fall vom Haar Wavelet ist dies vergleichbar wie wenn zuerst der Mittelwert
+Fall vom Haar Wavelet ist dies vergleichbar damit, dass zuerst der Mittelwert
 gebildet und dann abgeleitet wird. Aus \cref{fast:akoefgleichung} von
 \cref{section:fast} wissen wir, dass die Approximationskoeffizienten $cA_{j,k}$
 und die Detailkoeffizienten $dA_{j,k}$ folgendermassen gebildet werden:
@@ -302,7 +320,7 @@ a_{0,3}\}$ so ergeben sich für die erste Ebene die Approximationskoeffizienten
 \begin{align}
 cA_{1,0}
 &=
-\frac{1}{\sqrt{2}} (a_{0,0} + a_{0,1})~\text{und}
+\frac{1}{\sqrt{2}} (a_{0,0} + a_{0,1})\qquad\text{und}
 \nonumber \\
 cA_{1,1}
 &=
@@ -315,7 +333,7 @@ cA_{2,0}
 &=
 \frac{1}{\sqrt{2}} (cA_{1,0} + cA_{1,1})
 =
-\frac{1}{2} (a_{0,0} + a_{0,1}) + \frac{1}{2} (a_{0,2} + a_{0,3})~\text{und}
+\frac{1}{2} (a_{0,0} + a_{0,1}) + \frac{1}{2} (a_{0,2} + a_{0,3})\qquad \text{und}
 \nonumber \\
 cD_{2,0}
 &=
@@ -327,25 +345,41 @@ Die Detailkoeffizienten entsprechen somit der Differenz der Mittelwerte zweier
 benachbarter Abtastwerte.
 
 \begin{figure}
-    \centering
-    \includegraphics{papers/polynomials/images/polynomials_noise_db1_multi.pdf}
-    \caption{Multiskalenanalyse von $x^2 + r(x)$ mit Haar Wavelet.\\
-        Blau: Signal mit den einzelnen Samples\\
-        Orange: Detailkoeffizienten $cD_{1-4}$ \\
-        Grün: Approximationskoeffizienten $cA_4$\\
-        Die Detailkoeffizienten der Stufe 4 sind kaum noch vom Rauschen
-        betroffen und approximieren die Ableitung des Ursprungssignals gut.
-        Jedoch ist die zeitliche Auflösung reduziert.\label{polynomials:noise:db1_multi}}
+\centering
+\includegraphics{papers/polynomials/images/polynomials_noise_db1_multi.pdf}
+\caption{Multiskalenanalyse von $x^2 + r(x)$ mit Haar Wavelet.\\
+Blau: Signal mit den einzelnen Samples\\
+Orange: Detailkoeffizienten $cD_{1-4}$ \\
+Grün: Approximationskoeffizienten $cA_4$\\
+Die Detailkoeffizienten der Stufe 4 sind kaum noch vom Rauschen
+betroffen und approximieren die Ableitung des Ursprungssignals gut.
+Jedoch ist die zeitliche Auflösung reduziert.\label{polynomials:noise:db1_multi}}
 \end{figure}
 \begin{figure}
-    \centering
-    \includegraphics{papers/polynomials/images/polynomials_noise_moving_average.pdf}
-    \caption{Ableitung nach Mittelwertbildung.\\
-        Blau: Signal mit den einzelnen Samples\\
-        Orange: Ableitungen nach Mittelwertbildung über 1, 2, 4 und 8 Samples\\
-        Grün: Mittelwerte über 8 Samples\\
-        Die zeitliche Auflösung ist doppelt so hoch im Vergleich zu der
-        Multiskalenanalyse mit dem Haar Wavelet.\label{polynomials:noise:average}}
+\centering
+\includegraphics{papers/polynomials/images/polynomials_noise_moving_average.pdf}
+\caption{Ableitung nach Mittelwertbildung.\\
+Blau: Signal mit den einzelnen Samples\\
+Orange: Ableitungen nach Mittelwertbildung über 1, 2, 4 und 8 Samples\\
+Grün: Mittelwerte über 8 Samples\\
+Die zeitliche Auflösung ist doppelt so hoch im Vergleich zu der
+Multiskalenanalyse mit dem Haar Wavelet.\label{polynomials:noise:average}}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics{papers/polynomials/images/polynomials_noise_db2_multi.pdf}
+\caption{Multiskalenanalyse von $x^3 + r(x)$ mit db2 Wavelet. \\
+Blau: Signal mit den einzelnen Samples\\
+Orange: Detailkoeffizienten $cD_{1-4}$ \\
+Grün: Approximationskoeffizienten $cA_4$\label{polynomials:noise:db2_multi}}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics{papers/polynomials/images/polynomials_noise_moving_average_2nd.pdf}
+\caption{Zweite Ableitung nach Mittelwertbildung.\\
+Blau: Signal mit den einzelnen Samples\\
+Orange: Ableitungen nach Mittelwertbildung über 1, 2, 4 und 8 Samples\\
+Grün: Mittelwerte über 8 Samples\label{polynomials:noise:average2nd}}
 \end{figure}
 In \cref{polynomials:noise:db1_multi} ist das Signal $x^2 + r(x)$, die
 Detailkoeffizienten der verschiedenen Stufen der Multiskalenanalyse mit dem
@@ -374,25 +408,9 @@ Wavelet und die Approximationskoeffizienten der letzten Stufe abgebildet.
 Es zeigt sich ein ähnliches Verhalten wie schon bei der Berechnung der ersten
 Ableitung.
 
-\begin{figure}
-    \centering
-    \includegraphics{papers/polynomials/images/polynomials_noise_db2_multi.pdf}
-    \caption{Multiskalenanalyse von $x^3 + r(x)$ mit db2 Wavelet. \\
-             Blau: Signal mit den einzelnen Samples\\
-             Orange: Detailkoeffizienten $cD_{1-4}$ \\
-             Grün: Approximationskoeffizienten $cA_4$\label{polynomials:noise:db2_multi}}
-\end{figure}
 Im Vergleich dazu sind in \cref{polynomials:noise:average} die direkt
 berechnete zweite Ableitung und die zweite Ableitungen nach der
 Mittelwertbildung über 2, 4 und 8 Werte zu sehen.
-\begin{figure}
-    \centering
-    \includegraphics{papers/polynomials/images/polynomials_noise_moving_average_2nd.pdf}
-    \caption{Zweite Ableitung nach Mittelwertbildung.\\
-        Blau: Signal mit den einzelnen Samples\\
-        Orange: Ableitungen nach Mittelwertbildung über 1, 2, 4 und 8 Samples\\
-        Grün: Mittelwerte über 8 Samples\label{polynomials:noise:average2nd}}
-\end{figure}
 Wieder liefern uns beide Verfahren ähnliche Resultate. Da die Daubechies
 Wavelets höherer Ordnung im Vergleich zum einfachen Mitteln des
 Ursprungssignals ein anderes Verhalten aufweisen, ist ein direkter Vergleich
@@ -453,6 +471,7 @@ dass der Peak bei 20, welcher durch den Sinus entsteht, unter geht. Dies ist
 verständlich, wenn man bedenkt wie die Fourierreihen von Polynomen aussehen.
 Nehmen wir als Beispiel das Polynom $f(x) = x$. Im Bereich $[0, 1]$ entspricht
 es einer Sägezahnfunktion. Die Fourierreihe eines Sägezahns ist \[f(x) =
+\index{Sägezahn}%
 \frac{1}{2} - \frac{1}{\pi} \sum{\frac{1}{n} \sin(2 n \pi x)}.\] Nun ist
 ersichtlich, dass die Fourier-Transformierte jede Frequenz $n$ mit
 $\frac{1}{n}$ skaliert enthalten wird.
@@ -463,7 +482,7 @@ hat jedoch den Nachteil das zeitlich kurz auftretende Signale, je nach
 Fenstergrösse und Position, unterschiedlich gedämpft werden.
 
 Ein weiterer Vorteil der Wavelet-Transformation ist, dass sie uns auch den
-Zeitpunkt bei dem das Signal aufgetreten ist liefert.
+Zeitpunkt liefert, bei dem das Signal aufgetreten ist.
 \cref{polynomials:sin:padded} zeigt die Resultate einer Wavelet-Analyse mit
 einem zeitlich lokalisierten Sinussignal.
 \begin{figure}
@@ -487,7 +506,7 @@ nachvollzogen werden.
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
-Ziel dieser Arbeit war es einen Überblick über die Eigenschaften der Daubechies
+Ziel dieser Arbeit war, einen Überblick über die Eigenschaften der Daubechies
 Wavelets zu bekommen. Wir konnten zeigen, dass Daubechies Wavelets mit $A$
 verschwindenden Momenten Polynome der Ordnung $A-1$ schon komplett durch ihre
 Skalierungfunktion $\varphi$ darstellen können. Als Folge daraus zeigte sich,
@@ -495,7 +514,7 @@ dass Polynome der Ordnung $A$ abgeleitet werden können.
 
 In der Anwendung zum rauscharmen Ableiten konnten wir zeigen, dass Daubechies
 Wavelets einen guten Kompromiss zwischen Rauschempfindlichkeit und zeitlicher
-Auflösung der Ableitung liefern können. Interessant wäre es zu untersuchen
+Auflösung der Ableitung liefern können. Interessant wäre zu untersuchen,
 welche Effekte die Filtereigenschaften der Daubechies Wavelets höherer Ordnung
 im Vergleich zum einfachen Mitteln und mehrfachen Ableiten von verrauschten
 Signalen hat.

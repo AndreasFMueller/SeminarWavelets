@@ -4,13 +4,12 @@
 \rhead{Laplace Operator und Graphen}
 
 F\"ur die Analyse und Synthese von Funktionen auf Graphen und deren Spektren 
-spielen der 
-Laplace Operator und besonders die Laplace Matrix eine wichtige Rolle, wie 
-bereits Graphen in~\cref{sec:sgwt:graphs}, wollen wir daher zuerst 
-die Grundlagen des Laplace Operators in~\cref{subsec:sgwt:laplaceop} und der 
-Laplace Matrix \laplaceL{} in~\cref{subsec:sgwt:laplacem} eingehen, bevor wir 
-dann in~\cref{sec:sgwt:spectralanalysis} mit der Analyse des Spektrums und 
-Konstruktion der SGWT beginnen.
+spielen der Laplace Operator und besonders die Laplace Matrix eine wichtige 
+Rolle. Analog den Graphen in~\cref{sec:sgwt:graphs}, wollen wir zuerst 
+auf die Grundlagen des Laplace Operators in~\cref{subsec:sgwt:laplaceop} und 
+der Laplace Matrix \laplaceL{} in~\cref{subsec:sgwt:laplacem} eingehen. 
+In~\cref{sec:sgwt:spectralanalysis} folgt dann die Analyse des Spektrums und 
+Konstruktion der SGWT.
 
 \subsection{Laplace Operator\label{subsec:sgwt:laplaceop}}
 \rhead{Laplace Operator}
@@ -36,9 +35,9 @@ approximierte Form des Laplace Operators zu haben.
 \subsection{Finite-Differenzen}
 \rhead{Finite-Differenzen}
 
-Finite-Differenzen erm\"oglichen uns eine diskrete Approximation des 
-Laplace Operators. Sie stellen also eine L\"osung f\"ur unsere Problem dar, auf 
-die wir weiter eingehen wollen.
+Finite-Differenzen erlauben uns eine diskrete Approximation des 
+Laplace Operators. Sie erm\"oglichen uns also genau das, was wir 
+in~\cref{subsec:sgwt:laplaceop} gesucht haben.
 
 Als Ausgangslage nehmen wir die Funktion $u(x)$ mit dem eindimensionalen 
 Definitionsbereich $u: \mathbb{R} \rightarrow \mathbb{R}$ und beginnen zuerst 
@@ -75,7 +74,7 @@ Dies k\"onnen wir wiederum mittels Finiten-Differenzen approximieren, mit $h =
 \label{eq:sgwt:fivepointstencil}
 \end{align}
 Dieser Operator ist auch bekannt als der F\"unfpunkte-Stern-Operator 
-oder five-point stencil im Englischen, siehe~\cref{fig:sgwt:graph:star}.
+oder five-point stencil (im Englischen), siehe~\cref{fig:sgwt:graph:star}.
 \begin{figure}
 \centering
 \includegraphics[
@@ -109,9 +108,9 @@ multipliziert mit dem Funktionswert $u(P)$, was uns folgende Gleichung
 \Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{8}u(P_i) - 8u(P)\right)
 \end{equation*}
 liefert. Generell erhalten wir f\"ur den Laplace Operator an einem Knoten $v$ 
-mit $n$~Nachbarn die folgende~\cref{eq:sgwt:generallaplace}.
+mit $n$~Nachbarn die Definition
 \begin{equation}
-\Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{n}u(v_i) - d(v)u(v)\right)
+\Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{n}u(v_i) - d(v)u(v)\right).
 \label{eq:sgwt:generallaplace}
 \end{equation}
 
@@ -133,32 +132,23 @@ Grad $d(\text{P}_i) = 1$ hervor.
 \rhead{Laplace Matrix}
 
 Wenn wir nun mit Hilfe von Taschenrechnern oder Computer rechnen wollen, ist 
-meist die Darstellung in Form einer Matrix besonders geeignet.
-Die Laplace Matrix \laplaceL{}~\cite{noauthor_laplace-matrix_2017} ist genau 
-dies, sie beschreibt einen Graphen anhand seiner Gradmatrix 
-\degreeM{}~\cite{noauthor_degree_2018} und Adjazenzmatrix 
-\adjacencyM{}~\cite{noauthor_adjacency_2019} wie folgt
-\begin{equation}
-\laplaceL = \degreeM - \adjacencyM.
-\label{eq:sgwt:laplace}
-\end{equation}
+meist die Darstellung in Form einer Matrix besonders geeignet. Die Laplace 
+Matrix \laplaceL{}~\cite{noauthor_laplace-matrix_2017} ist genau 
+dies. Sie basiert auf der Nachbarschaft der einzelnen Knoten und deren Grad, 
+welche in der Adjazenzmatrix und der Gradmatrix codiert werden k\"onnen.
 
-Die Gradmatrix \degreeM{} ist dabei eine Diagonalmatrix, die den Grad der 
-einzelnen Knoten beinhaltet. Die Adjazenzmatrix hingegen zeigt die Kanten und 
-deren Gewichte des Graphen auf. Als Beispiel dient uns 
-wieder der Graph aus~\cref{fig:sgwt:graph:simple}, dessen Grad- und 
-Adjazenzmatrix wie folgt
-\begin{equation*}
-\degreeM =
-\begin{bmatrix}
-1 & 0 & 0 & 0 & 0 \\
-0 & 4 & 0 & 0 & 0 \\
-0 & 0 & 1 & 0 & 0 \\
-0 & 0 & 0 & 1 & 0 \\
-0 & 0 & 0 & 0 & 1
-\end{bmatrix}
-\end{equation*}
-sowie
+\subsubsection{Adjazenzmatrix \texorpdfstring{\adjacencyM{}}{A}}
+
+Die Adjazenzmatrix \adjacencyM{}~\cite{noauthor_adjacency_2019} codiert die 
+Nachbarschaftsbeziehungen innerhalb eines Graphen. Ihre Zeilen und Spalten 
+stehen dabei f\"ur die einzelnen Knoten und die Werte der Matrix f\"ur das 
+Gewicht der einzelnen Kanten zwischen den jeweiligen Knoten. Da wir keine 
+Verbindung von einem Knoten zu sich selber zulassen, wird die Diagonale immer 
+$0$ sein. 
+
+Als Beispiele nehmen wir den Graphen aus~\cref{fig:sgwt:graph:simple} und den 
+gewichteten Graphen aus~\cref{fig:sgwt:graph:simpleweight}. F\"ur ersteren 
+erhalten wir die Adjazenzmatrix
 \begin{equation*}
 \adjacencyM =
 \begin{bmatrix}
@@ -169,7 +159,61 @@ sowie
 0 & 1 & 0 & 0 & 0
 \end{bmatrix}
 \end{equation*}
-aussehen. Die Differenz der beiden ergibt dann die Laplace Matrix
+und f\"ur letzteren
+\begin{equation*}
+\adjacencyM =
+\begin{bmatrix}
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 1.2 & 0.4 & 0.8 \\
+0 & 1.2 & 0 & 0 & 0 \\
+0 & 0.4 & 0 & 0 & 0 \\
+0 & 0.8 & 0 & 0 & 0
+\end{bmatrix}.
+\end{equation*}
+
+\subsubsection{Gradmatrix \texorpdfstring{\degreeM{}}{D}}
+
+Die Gradmatrix \degreeM{}~\cite{noauthor_degree_2018} codiert den Grad der 
+einzelnen Knoten eines Graphen. Die Zielen und Spalten repr\"asentieren dabei, 
+wie schon bei der Adjazenzmatrix \adjacencyM{}, die Knoten des Graphen. Damit 
+ist klar, dass wir es hier mit einer Diagonalmatrix zu tun haben.
+
+Auch hier nehmen wir wieder die Beispielgraphen 
+aus~\cref{fig:sgwt:graph:simple} und~\cref{fig:sgwt:graph:simpleweight}. 
+Ersterer hat die Gradmatrix
+\begin{equation*}
+\degreeM =
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 \\
+0 & 4 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1
+\end{bmatrix}
+\end{equation*}
+und letzterer
+\begin{equation*}
+\degreeM =
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 \\
+0 & 3.4 & 0 & 0 & 0 \\
+0 & 0 & 1.2 & 0 & 0 \\
+0 & 0 & 0 & 0.4 & 0 \\
+0 & 0 & 0 & 0 & 0.8
+\end{bmatrix}.
+\end{equation*}
+
+\subsubsection{Laplace Matrix \texorpdfstring{\laplaceL{}}{L}}
+
+Mit der Adjazenzmatrix und er Gradmatrix haben wir alles zusammen um die 
+Laplace Matrix \laplaceL{} zu bestimmen. Diese setzt sich wie folgt zusammen
+\begin{equation}
+\laplaceL = \degreeM - \adjacencyM.
+\label{eq:sgwt:laplace}
+\end{equation}
+Zur Veranschaulichung nehmen wir nochmals die Graphen 
+aus~\cref{fig:sgwt:graph:simple} und~\cref{fig:sgwt:graph:simpleweight} und 
+erhalten
 \begin{equation*}
 \laplaceL =
 \begin{bmatrix}
@@ -178,36 +222,85 @@ aussehen. Die Differenz der beiden ergibt dann die Laplace Matrix
 0 & -1 & 1 & 0 & 0 \\
 0 & -1 & 0 & 1 & 0 \\
 0 & -1 & 0 & 0 & 1
-\end{bmatrix}.
+\end{bmatrix}
 \end{equation*}
-Wenden wir nun die Funktion $u$ auf diese Matrix an, erhalten wir
+respektive
 \begin{equation*}
-\laplaceL u =
+\laplaceL =
 \begin{bmatrix}
 1 & -1 & 0 & 0 & 0 \\
--1 & 4 & -1 & -1 & -1 \\
-0 & -1 & 1 & 0 & 0 \\
-0 & -1 & 0 & 1 & 0 \\
-0 & -1 & 0 & 0 & 1
+-1 & 3.4 & -1.2 & -0.4 & -0.8 \\
+0 & -1.2 & 1.2 & 0 & 0 \\
+0 & -0.4 & 0 & 0.4 & 0 \\
+0 & -0.8 & 0 & 0 & 0.8
+\end{bmatrix}.
+\end{equation*}
+
+Im allgemeinen Fall eines gewichteten Graphen mit $n$ Knoten erhalten wir die 
+Laplace Matrix
+\begin{equation*}
+\laplaceL =
+\begin{bmatrix}
+d_w(v_1) & -w(e_{v_1, v_2}) & \dotso & -w(e_{v_1, v_n}) \\
+-w(e_{v_2, v_1}) & d_w(v_2) & \dotso & \vdots \\
+\vdots & \vdots & \ddots &  \vdots \\
+-w(e_{v_n, v_1}) & -w(e_{v_n, v_2}) & \dotso & d_w(v_n)
+\end{bmatrix}.
+\end{equation*}
+Die Kantengewichtsfunktion $w(e)$ liefert dabei entweder das Kantengewicht 
+falls $e \in E$ oder anderenfalls $0$. Im Fall des ungewichteten Graphen werden 
+die Kanten jeweils alle mit $1$ gewichtet.
+
+Aufgrund unserer Konstruktion von \laplaceL{} ist ersichtlich, dass die Summe 
+der jeweiligen Zeilen und Spalten immer gleich $0$ sein wird. Womit wir bereits 
+jetzt sagen k\"onnen, dass mindestens ein Eigenwert~$\lambda$ von \laplaceL{} 
+auch gleich $0$ sein wird.
+
+\subsubsection{Laplace Matrix \texorpdfstring{\laplaceL{}}{L} als 
+Verallgemeinerung des Laplace-Operators \texorpdfstring{$\Delta$}{Delta}}
+
+Wenn wir jetzt die Funktion $u$ auf die Laplace Matrix \laplaceL{} anwenden,
+erhalten wir
+\begin{align*}
+\laplaceL u &=
+\begin{bmatrix}
+d_w(v_1) & -w(e_{v_1, v_2}) & \dotso & -w(e_{v_1, v_n}) \\
+-w(e_{v_2, v_1}) & d_w(v_2) & \dotso & \vdots \\
+\vdots & \vdots & \ddots &  \vdots \\
+-w(e_{v_n, v_1}) & -w(e_{v_n, v_2}) & \dotso & d_w(v_n)
 \end{bmatrix}
 \begin{pmatrix}
 u_0 \\
 u_1 \\
-u_2 \\
-u_3 \\
-u_4
-\end{pmatrix}
-=
+\vdots \\
+u_{N-1}
+\end{pmatrix}\\
+&=
 \begin{pmatrix}
-u_0 - u_1 \\
-4 u_1 - u_0 - u_2 - u_3 - u_4 \\
-u_2 - u_1 \\
-u_3 - u_1 \\
-u_4 - u_1
-\end{pmatrix}
-\end{equation*}
-oder generell ausgedr\"uckt, mit $h = 1$
+d_w(v_1)u_0 - w(e_{v_1, v_2}) u_1 - \dotsm -w(e_{v_1, v_N}) u_{n-1} \\
+d_w(v_2)u_1 - w(e_{v_2, v_1}) u_0 - \dotsm -w(e_{v_2, v_N}) u_{n-1} \\
+\vdots \\
+d_w(v_n)u_{n-1} - w(e_{v_1, v_2}) u_0 - \dotsm -w(e_{v_N, v_{N-1}}) u_{n-2} \\
+\end{pmatrix}\\
+&=
+d_w(v)u-\sum_{i\text{ Nachbarn}}^{n} w(e_i)u_i
+.
+\end{align*}
+Wenn wir nun einen ungewichteten Graphen nehmen, der vollst\"andig verbunden 
+ist, wo also jeder Knoten mit jedem anderen Verbunden ist, und dessen 
+Kantengewichte alle gleich $\frac{1}{h^2}$ setzen, erhalten wir
 \begin{equation*}
-\laplaceL u = \frac{1}{h^2}n\left(\frac{1}{n}\sum_{i\text{ Nachbarn}}^{n}u_i - 
-u_0\right) = \Delta u.
+\laplaceL u =
+\left(
+    \frac{1}{h^2} n u - \sum_{i\text{ Nachbarn}}^{n} \frac{1}{h^2} u_i
+\right)
+=
+-\frac{1}{h^2} n \left(
+    \frac{1}{n}\sum_{i\text{ Nachbarn}}^{n} u_i - u
+\right)
+= -\Delta u.
 \end{equation*}
+Es zeigt sich also, dass die Laplace Matrix \laplaceL{} den bereits 
+kennengelernten Laplace-Operator~$\Delta$ verallgemeinert, da wir damit nicht 
+nur den vollst\"andig verbundenen, sondern auch jeden anderen Graphen abbilden 
+k\"onnen.

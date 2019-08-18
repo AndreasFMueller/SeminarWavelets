@@ -12,14 +12,21 @@
 \rhead{Vorwort}
 
 Gasisolierte Schaltanlagen (GIS) dienen der elektrischen Energieverteilung, dem Schutz der Komponenten und ermöglichen eine sichere Wartung des Energieübertragungsnetzes.
+\index{Gasisolierte Schaltanlagen}%
+\index{GIS}%
+\index{Energieverteilung}%
 Als Isoliergas wird Schwefelhexafluorid (SF\textsubscript{6}) eingesetzt. SF\textsubscript{6} hat bei Atmosphärendruck eine etwa drei mal so grosse dielektrische Festigkeit (Spannungs-Isolationsvermögen) wie Luft. 
+\index{Schwefelhexafluorid}%
+\index{SF$\mathstrut_6$}%
 Es besitzt auch drei bis vier mal bessere Lichtbogenlöscheigenschaft als Luft. 
+\index{Lichtbogen}%
 Diese Eigenschaften führen zu einer erheblichen Platzeinsparung gegenüber einer luftisolierten Schaltanlage (AIS) \cite{buch:ABB}.
 Deshalb und aufgrund anderer Gründe, aufgezeigt in \cite{buch:GIS/AIS}, hat sich der Einsatz von GIS überall dort durchgesetzt, wo Boden teuer ist, wie zum Beispiel in urbanen Gebieten. 
 Bei Leistungsschaltern hat SF\textsubscript{6} nicht ausschliesslich die Aufgabe eines Isoliermediums, sondern dient auch als Löschgas des Lichtbogens.
 Dieser trägt bis zu mehrere tausend Ampere, wenn grosse Verbraucher vom Übertragungsnetz getrennt werden \cite{buch:ABB}. 
 
 Bei der Quantifizierung der Qualität einer GIS spielt der Begriff Teilentladung (TE) eine wichtige Rolle. 
+\index{Teilentladung}%
 Wenn das elektrische Feld örtlich über die dielektrische Festigkeit steigt, entstehen Entladungen, welche nur einen Teil der Isolationsstrecke überbrücken und nicht zu einem kompletten Durchschlag führen, daher die Namensgebung "Teilentladung" \cite{buch:Kuchler}.
 Teilentladung im Isolierstoff lässt das Isoliermedium  schneller altern. Dies kann zum dielektrischen Durchschlag führen welcher einen Totalausfall der Anlage zur Folge hat.
 Aufgrund dessen ist TE ein wichtiges Qualitätsmerkmal bei Hochspannungskomponenten. 
@@ -51,6 +58,9 @@ TE wird in zwei Grundkategorien und deren Unterkategorien unterteilt \cite{buch:
 		\item Oberflächentladung
 	\end{itemize}
 \end{itemize}
+\index{Hohlraumentladung}%
+\index{Koronaentladung}%
+\index{Oberflächenentladung}%
 Die Innere-TE ist dadurch charakterisiert, dass sich die TE-Quelle im Innern eines festen oder flüssigen Isolierstoffes befindet. 
 Bei GIS gehören zur Kategorie der Inneren-TE folgende Fehlerarten: Hohlräume, Risse und Spalten in Isolierstoffen und Delamination zwischen Isolierschichten.
  
@@ -65,6 +75,7 @@ In dieser Arbeit werden UHF TE-Signale von Oberflächenentladungen und Hohlraume
 In den folgenden Abschnitten werden die physikalischen Hintergründe von zwei Entladungsarten aufgezeigt und die herkömmliche Fehleranalyse beschrieben. 
 
 \subsection{Oberflächenentladung}
+\index{Oberflächenentladung}%
 
 Diese Entladungsart entsteht, wenn an Oberflächen von Festisolierstoffen hohe elektrische Feldstärken auftreten. 
 Dies kann konstruktionsbedingt oder aufgrund einer fehlerhaften Montage entstehen.
@@ -99,6 +110,7 @@ to[american gas filled surge arrester=$F$] (3, -2) -- (3, -3) -- (0,-3)
 
 
 \subsection{Hohlraumentladung}
+\index{Hohlraumentladung}%
 
 Hohlraumentladungen in GIS kommen am häufigsten aufgrund von Hohlräumen im Isolierstoff vor. 
 Hohlräume entstehen beim Herstellungsprozess der Isolatoren. Während dem Abkühlprozess kann es zu Diffusionsvorgängen in der
@@ -110,6 +122,7 @@ In Abbildung \ref{fig:hohlraum} sind diverse Hohlräume 1--3 illustriert. Unter 
 Die beiden anderen Hohlräume haben Elektrodenkontakt und die Nummer 3 stellt eine Ablösung von der leitfähigen Elektrodenschicht dar  \cite{buch:Kuchler, skript:InnereTE}.
 
 Elektrisch wird die Fehlerart mit dem Ersatzschaltbild gemäss \ref{fig:M2} modelliert. 
+\index{Ersatzschaltbild}%
 Die Kapazität $C\textsubscript{0}$ stellt dabei die Gesamtkapazität über der Isolierstrecke dar und $C\textsubscript{h}$ ist die Hohlraumkapazität, welche die Fehlerstelle abbildet.
 Die Spannung $u\textsubscript{h}(t)$ folgt der äusseren Spannung $u(t)$, bis die Zündspannung erreicht ist. 
 Bei dieser Spannung hat die Feldstärke über der Hohlraumkapazität einen kritischen Wert überschritten und die Energie, bei Vorhandensein eines Startelektrons, entlädt sich über die Funkenstrecke $F$.
@@ -174,22 +187,30 @@ Die Muster werden über den Zeitraum von einer bis mehreren Minuten aufgezeichne
 
 
 \section{Messkette}
+\index{Messkette}%
 \rhead{Abschnitt}
 In dieser Arbeit wird untersucht, ob mit der kontinuierlichen Wavelet Transformation fehlerspezifische Merkmale im Zeitsignal auszumachen sind. 
 Dafür ist es wichtig, dass der Messpfad von der Fehlerursache bis zum Oszilloskop bekannt ist. 
+\index{Oszilloskop}%
 Die untersuchten Signale wurden bei einer Abklärung vor Ort, an einer Anlage die in Betrieb war, aufgezeichnet.  
 Im ersten Abschnitt wird auf den Signalpfad innerhalb der GIS eingegangen und in einem Zweiten auf die Messkette ausserhalb.
 \subsection{Messkette innerhalb GIS}
 Bei der Fehlstelle am Punkt 0 in Abbildung \ref{fig:messketteingis} wird aufgrund der schnellen Entladung des Strompulses eine elektromagnetische Welle abgestrahlt. 
 Das Signal besitzt Frequenzanteile bis in den zweistelligen GHz Bereich. 
 In erster Näherung wird die GIS oft als Koaxialkabel modelliert. 
+\index{Koaxialkabel}%
 Diese Vereinfachung ist jedoch nicht ausreichend, da Reflexionsphänomene auftreten. 
+\index{Reflexion}%
 An diverser Unstetigkeitsstellen in einer GIS, wie Epoxidisolatoren (Punkt 1), Verzweigungen (Punkt 2),  Änderung der Leiterdurchmesser (Punkt 3), schaltenden Elementen und den Enden der Anordnung, ändert der Wellenwiderstand und es kommt zu Reflexionen der Welle.
+\index{Wellenwiderstand}%
 Eine weitere Signalverzerrung entsteht auf Grund von Dispersionsphänomenen, die sich besonders bei den Epoxidisolatoren am Punkt 1 bemerkbar machen. 
+\index{Dispersion}%
+\index{Epoxidisolator}%
 Aufgrund von all den oben erwähnten Effekten, erfährt die Signalleistung auf dem Signalpfad eine hohe Dämpfung.
 In Abbildung \ref{fig:messketteingis} sind einige approximative Dämpfungswerte für GIS Komponenten angezeigt  \cite{report:PDBasicABB}.
 
 Eine GIS hat an diversen Stellen breitbandige Koppelantennen wie bei Punkt 4, damit die UHF Teilentladungssignale für Fehleranalysen ausgekoppelt werden können \cite{buch:UHFSignale, skript:Judd24ps, buch:Kuchler}.
+\index{Koppelantenne}%
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{papers/gis/Bilder/MessketteInGIS}
@@ -198,10 +219,13 @@ Eine GIS hat an diversen Stellen breitbandige Koppelantennen wie bei Punkt 4, da
 \end{figure}
 \subsection{Messkette ausserhalb GIS}
 Nach der Koppelantenne ist ein Hochpassfilter mit der Eckfrequenz 83MHz geschaltet.
+\index{Hochpassfilter}%
 Dieser dient dem Schutz der dahinterliegenden Messgeräte.
 Falls es zu einem dielektrischen Durchschlag kommt, werden die hochenergetischen Signalanteile gegen Erde abgeleitet.
+\index{Durchschlag}%
 Danach wird das Signal mit 50dB verstärkt.
 Die 50$\Omega$ Signalkabel werden an einen Multiplexer angeschlossen. 
+\index{Multiplexer}%
 Der Multiplexer ermöglicht eine schnelle Auswahl zwischen vielen verschiedenen Koppelantennen, damit das erwünschte Signal auf einem Frequenzanalysator oder Oszilloskop angezeigt werden kann. 
 
 Für die untersuchten Daten sind die Zeitsignale mit einem 10GS/s Oszilloskop mit 2GHz Bandbreite aufgezeichnet worden.
@@ -218,8 +242,11 @@ Die Abtastzeit wurde für alle Signale gleich gewählt und liegt bei 100ps.
 \rhead{Abschnitt}
 
 Die analysierten Zeitsignale sind während Laufzeitmessungen (TOF: Time of flight) aufgenommen worden. 
+\index{time of flight}%
 Bei einer TOF Messung sind nur die Anfänge der Signale von Interesse.
-Dies bedeutet, dass selten die ganze Einhüllende aufgezeichnet wird und oft werden die Analog Digital Wander (ADC) übersteuert. 
+Dies bedeutet, dass selten die ganze Einhüllende aufgezeichnet wird und oft werden die Analog Digital Wandler (ADC) übersteuert. 
+\index{Analog Digital Wandler}%
+\index{ADC}%
 Somit sind die Signale nicht brauchbar für eine CWT.
 Es wurden aus ca. 700 Aufzeichnungen vier passende Signale gefunden, welche genug lange aufgezeichnet wurden und bei denen die Signalamplituden nicht abgeschnitten sind. 
 Mit Hilfe des Kundenberichtes, welcher die PRPD-Muster enthält, und den Handnotizen, auf welchen die Zeitstempel und Ortsangaben vermerkt sind, konnten die Zeitsignale den Fehlerquellen zugeordnet werden.
@@ -279,11 +306,12 @@ Bei einer Abtastzeit von 100ps entspricht dies 3000 Datenpunkte, welche den Date
 Um den Startpunkt des Signals zu extrahieren, wurde ein Thresholdlevel, in Deutsch Schwellwert, mit folgendem Algorithmus implementiert:
 
 Aus den ersten 300 Datenwerten wird der Vektorindex $v_\text{max}$ mit dem grössten absoluten Wert ermittelt.
-Der Thresholdlevel
+Dieser legt den
 \begin{equation}
 \text{Tresholdlevel} = 3\cdot v_\text{max}^2
 \end{equation}
-wird durch Quadrieren vom Wert in $v_{max}$ und Multiplikation mit 3 festgelegt.
+%wird durch Quadrieren vom Wert in $v_{max}$ und Multiplikation mit 3
+fest.
 Der Startpunkt wird ermittelt, indem das erste Vektorelement im Datenvektor $v_d$ gesucht wird, welches diesen überschreitet.
 Dazu wird der gesamte Datenvektor 
 \begin{equation}
@@ -302,6 +330,7 @@ Die Frequenzapproximation
 F_a=\dfrac{F_c}{a}
 \end{equation}
 ist definiert durch die Division der Mittelfrequenz $F_c$ des entsprechenden Wavelets und dem Wavelet-Dilatationsfaktor $a$.
+\index{Mittelfrequenz}%
 
 Diese wird durch den höchsten Wert des Skalarproduktes 
 \begin{equation}
@@ -336,6 +365,7 @@ Da bei dem zu untersuchenden Problem nicht klar war, nach was genau gesucht werd
 	\item Real und komplex Morlet
 \end{itemize}
 Es sind von jeder Familie mit verschiedenen Exponaten jeweils zwei CWT Plots erstellt worden. 
+\index{CWT}%
 Die zwei dazu verwendeten Zeitsignale gehörten entweder zur Fehlerart Oberflächenentladung oder Hohlraumentladung.
 Visuell sind die zwei Plots miteinander verglichen worden.
 Bei Auffälligkeiten wurden zwei weitere Zeitsignale transformiert, um diese zu bestätigen.
@@ -344,6 +374,7 @@ Es konnte jedoch keine typische Bildcharakteristik gefunden werden, welche nur b
 \subsection{Erkenntnisse Waveleteigenschaften}
 Mit der Wahl des Wavelet kann bestimmt werden, ob mehr Zeit $\Delta t$ oder Frequenzauflösung $\Delta f$ gewünscht ist. 
 Der Grund dafür ist die küpfmüllersche Unbestimmtheitsrelation oder auch Unschärferelation der Nachrichtentechnik genannt
+\index{Unbestimmtheitsrelation, küpfmüllersche}%
 \begin{equation}
 \Delta t \cdot \Delta f = k
 \qquad\text{mit}\qquad
@@ -388,7 +419,7 @@ Dies ist gut erkennbar in der Abbildung \ref{fig:cgau5} im Zeitintervall von 28n
 
 \section{Schlussfolgerung}
 \rhead{Schlussfolgerung}
-Das Ziel dieser Arbeit war es, mit Hilfe der CWT Analyse aus Zeitsignalen fehlerspezifische Charakteristiken zu extrahieren.
+Das Ziel dieser Arbeit war, mit Hilfe der CWT Analyse aus Zeitsignalen fehlerspezifische Charakteristiken zu extrahieren.
 Die verwendeten Signale stammen von TOF-Aufzeichnungen, welche während der TE-Analyse bei einer Anlage in Betrieb aufgezeichnet wurden.
 Es bestand Klarheit über die Teilentladungsquelle und die damit verbundene Fehlerart. 
 Es wurde auf die physikalischen sowie elektrotechnischen fehlerspezifischen Phänomene eingegangen, mit dem Ziel aus diesen Erkenntnissen Rückschlüsse auf die CWT Plots ziehen zu können.
@@ -396,13 +427,14 @@ Es wurde auf die physikalischen sowie elektrotechnischen fehlerspezifischen Phä
 In der Analyse des Messpfades wurde der Ausbreitungsweg elektromagnetischer Wellen innerhalb und ausserhalb einer GIS aufgezeigt.
 Hier wurde klar, dass das Finden von fehlerspezifischen Charakteristiken im CWT Plot schwierig sein wird.
 Dies aufgrund der Tatsache, dass die GIS nicht als Koaxialkabel mit konstantem Wellenwiderstand betrachtet werden kann und sich die Fehlstelle nicht in naher Umgebung der Koppelantenne befinden.
-Die Signale werden von der Fehlerquelle bis zur Koppelantenne aufgrund von Refelxions- und Dispersionsphänomenen (frequenzabhängige Laufzeiten) stark verzerrt und die ursprüngliche Form geht verloren.
+Die Signale werden von der Fehlerquelle bis zur Koppelantenne aufgrund von Reflexions- und Dispersionsphänomenen (frequenzabhängige Laufzeiten) stark verzerrt und die ursprüngliche Form geht verloren.
 Die Verzerrung des Signals ist ersichtlich, wenn die Bilder vom Signalpuls an der Fehlstelle \ref{fig:Teilentaldungspuls} und dem Signal der Koppelantenne \ref{fig:Zeitsig} verglichen wird.
 
 Bei der optischen Analyse beider Fehlerarten wurden keine Auffälligkeiten in den CWT Plots entdeckt. 
 Der Autor geht davon aus, dass dieses Resultat auf die erwähnte Signalverzerrung zurückzuschliessen ist und der Signalpfad innerhalb der GIS zu viele Unstetigkeitsstellen aufweist.
 
 Bei der Beurteilung der Resultate, welche in dieser Arbeit vorliegen, sollte jedoch in Betracht gezogen werden, dass vielleicht mit einer breiteren Datenbasis und Machine Learning fehlerspezifische Charakteristiken herausgefiltert werden könnten. 
+\index{Machine Learning}%
 
 \section{Danksagung}
 Ein grosser Dank geht an Glenn Behrmann von der Firma ABB Schweiz AG. 
