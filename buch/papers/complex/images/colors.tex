@@ -12,25 +12,25 @@
 
 \usetikzlibrary{arrows,intersections,math}
 \begin{document}
-\begin{tikzpicture}[>=latex,scale=0.5]
+\begin{tikzpicture}[>=latex]
 
 % Can be overwritten by compiling with: pdflatex '\newcommand{\imname}{im.jpg} \input{im.tex}'
 \providecommand{\imname}{colors.jpg} 
 \providecommand{\myL}{1}
 
-\pgfmathparse{(12/(2*\myL))}
+\pgfmathparse{(6/(2*\myL))}
 \xdef\s{\pgfmathresult} % scale to picture width
 
-\pgfmathparse{(12/(2*\myL))} % scale to tend
+\pgfmathparse{(6/(2*\myL))} % scale to tend
 \xdef\a{\pgfmathresult} 
 
 \node at (0, 0) {\includegraphics[width=6cm]{\imname}};
 
-\draw[line width=4pt, color=white] (0,0) circle ({6cm + 2pt}); % smooth boarder
+\draw[line width=4pt, color=white] (0,0) circle ({3cm + 2pt}); % smooth boarder
 
 
-\draw[->,line width=0.75pt] (-6.1,0)--({6.3},0) coordinate[label={$\Re z$}];
-\draw[->,line width=0.75pt] (0,-6.1)--(0,6.3)	coordinate[label={right:$\Im z$}];
+\draw[->,line width=0.75pt] (-3.1,0)--({3.3},0) coordinate[label={$\Re z$}];
+\draw[->,line width=0.75pt] (0,-3.1)--(0,3.3)	coordinate[label={right:$\Im z$}];
 
 \foreach \y in {-\myL, \myL}{
 	\draw[line width=0.75pt] (-0.1,{\y*\s})--(0,{\y*\s});
