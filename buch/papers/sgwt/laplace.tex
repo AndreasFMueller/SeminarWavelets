@@ -4,10 +4,10 @@
 \rhead{Laplace Operator und Graphen}
 
 F\"ur die Analyse und Synthese von Funktionen auf Graphen und deren Spektren 
-spielen der Laplace Operator und besonders die Laplace Matrix eine wichtige 
+spielen der Laplace Operator und besonders die Laplace-Matrix eine wichtige 
 Rolle. Analog den Graphen in~\cref{sec:sgwt:graphs}, wollen wir zuerst 
 auf die Grundlagen des Laplace Operators in~\cref{subsec:sgwt:laplaceop} und 
-der Laplace Matrix \laplaceL{} in~\cref{subsec:sgwt:laplacem} eingehen. 
+der Laplace-Matrix~\laplaceL{} in~\cref{subsec:sgwt:laplacem} eingehen. 
 In~\cref{sec:sgwt:spectralanalysis} folgt dann die Analyse des Spektrums und 
 Konstruktion der SGWT.
 
@@ -32,7 +32,7 @@ Wie Anfangs bereits beschrieben, sind unsere Daten meist nur in diskreter Form
 vorhanden. Daher w\"are es vorteilhaft, auch eine diskretisierte oder zumindest 
 approximierte Form des Laplace Operators zu haben.
 
-\subsection{Finite-Differenzen}
+\subsection{Finite-Differenzen\label{subsec:sgwt:finitediff}}
 \rhead{Finite-Differenzen}
 
 Finite-Differenzen erlauben uns eine diskrete Approximation des 
@@ -108,11 +108,15 @@ multipliziert mit dem Funktionswert $u(P)$, was uns folgende Gleichung
 \Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{8}u(P_i) - 8u(P)\right)
 \end{equation*}
 liefert. Generell erhalten wir f\"ur den Laplace Operator an einem Knoten $v$ 
-mit $n$~Nachbarn die Definition
+mit $n$~Nachbarn, womit $n$ dem Grad $d(v)$ eines Knotens entspricht, die 
+Definition
 \begin{equation}
-\Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{n}u(v_i) - d(v)u(v)\right).
+\Delta u
+= \frac{1}{h^2}\left(\sum_{i \text{ Nachbarn}}u(v_i) - nu(v)\right).
+= \frac{1}{h^2}\left(\sum_{i \text{ Nachbarn}}u(v_i) - d(v)u(v)\right)
 \label{eq:sgwt:generallaplace}
 \end{equation}
+
 
 \begin{figure}
 \centering
@@ -128,8 +132,8 @@ Grad $d(\text{P}_i) = 1$ hervor.
     \label{fig:sgwt:laplace:nstar}}
 \end{figure}
 
-\subsection{Laplace Matrix\label{subsec:sgwt:laplacem}}
-\rhead{Laplace Matrix}
+\subsection{Laplace-Matrix\label{subsec:sgwt:laplacem}}
+\rhead{Laplace-Matrix}
 
 Wenn wir nun mit Hilfe von Taschenrechnern oder Computer rechnen wollen, ist 
 meist die Darstellung in Form einer Matrix besonders geeignet. Die Laplace 
@@ -171,16 +175,16 @@ und f\"ur letzteren
 \end{bmatrix}.
 \end{equation*}
 
-\subsubsection{Gradmatrix \texorpdfstring{\degreeM{}}{D}}
+\subsubsection{Grad-Matrix \texorpdfstring{\degreeM{}}{D}}
 
-Die Gradmatrix \degreeM{}~\cite{noauthor_degree_2018} codiert den Grad der 
+Die Grad-Matrix~\degreeM{}~\cite{noauthor_degree_2018} codiert den Grad der 
 einzelnen Knoten eines Graphen. Die Zielen und Spalten repr\"asentieren dabei, 
 wie schon bei der Adjazenzmatrix \adjacencyM{}, die Knoten des Graphen. Damit 
 ist klar, dass wir es hier mit einer Diagonalmatrix zu tun haben.
 
 Auch hier nehmen wir wieder die Beispielgraphen 
 aus~\cref{fig:sgwt:graph:simple} und~\cref{fig:sgwt:graph:simpleweight}. 
-Ersterer hat die Gradmatrix
+Ersterer hat die Grad-Matrix
 \begin{equation*}
 \degreeM =
 \begin{bmatrix}
@@ -203,10 +207,10 @@ und letzterer
 \end{bmatrix}.
 \end{equation*}
 
-\subsubsection{Laplace Matrix \texorpdfstring{\laplaceL{}}{L}}
+\subsubsection{Laplace-Matrix \texorpdfstring{\laplaceL{}}{L}}
 
-Mit der Adjazenzmatrix und er Gradmatrix haben wir alles zusammen um die 
-Laplace Matrix \laplaceL{} zu bestimmen. Diese setzt sich wie folgt zusammen
+Mit der Adjazenzmatrix und er Grad-Matrix haben wir alles zusammen um die 
+Laplace-Matrix~\laplaceL{} zu bestimmen. Diese setzt sich wie folgt zusammen
 \begin{equation}
 \laplaceL = \degreeM - \adjacencyM.
 \label{eq:sgwt:laplace}
@@ -237,7 +241,7 @@ respektive
 \end{equation*}
 
 Im allgemeinen Fall eines gewichteten Graphen mit $n$ Knoten erhalten wir die 
-Laplace Matrix
+Laplace-Matrix
 \begin{equation*}
 \laplaceL =
 \begin{bmatrix}
@@ -256,10 +260,10 @@ der jeweiligen Zeilen und Spalten immer gleich $0$ sein wird. Womit wir bereits
 jetzt sagen k\"onnen, dass mindestens ein Eigenwert~$\lambda$ von \laplaceL{} 
 auch gleich $0$ sein wird.
 
-\subsubsection{Laplace Matrix \texorpdfstring{\laplaceL{}}{L} als 
+\subsubsection{Laplace-Matrix \texorpdfstring{\laplaceL{}}{L} als 
 Verallgemeinerung des Laplace-Operators \texorpdfstring{$\Delta$}{Delta}}
 
-Wenn wir jetzt die Funktion $u$ auf die Laplace Matrix \laplaceL{} anwenden,
+Wenn wir jetzt die Funktion $u$ auf die Laplace-Matrix~\laplaceL{} anwenden,
 erhalten wir
 \begin{align*}
 \laplaceL u &=
@@ -283,24 +287,23 @@ d_w(v_2)u_1 - w(e_{v_2, v_1}) u_0 - \dotsm -w(e_{v_2, v_N}) u_{n-1} \\
 d_w(v_n)u_{n-1} - w(e_{v_1, v_2}) u_0 - \dotsm -w(e_{v_N, v_{N-1}}) u_{n-2} \\
 \end{pmatrix}\\
 &=
-d_w(v)u-\sum_{i\text{ Nachbarn}}^{n} w(e_i)u_i
+d_w(v)u-\sum_{i\text{ Nachbarn}} w(e_i)u_i
 .
 \end{align*}
-Wenn wir nun einen ungewichteten Graphen nehmen, der vollst\"andig verbunden 
-ist, wo also jeder Knoten mit jedem anderen Verbunden ist, und dessen 
-Kantengewichte alle gleich $\frac{1}{h^2}$ setzen, erhalten wir
+
+Nehmen wir nun den Graphen eines regelm\"assigen zweidimensionalen Gitters 
+mit einer Maschenweite $h$ und $d(v) = n$. Damit k\"onnen wir die 
+in~\cref{subsec:sgwt:finitediff} gefundene \cref{eq:sgwt:generallaplace} 
+anwenden und erhalten
 \begin{equation*}
-\laplaceL u =
-\left(
-    \frac{1}{h^2} n u - \sum_{i\text{ Nachbarn}}^{n} \frac{1}{h^2} u_i
-\right)
-=
--\frac{1}{h^2} n \left(
-    \frac{1}{n}\sum_{i\text{ Nachbarn}}^{n} u_i - u
-\right)
-= -\Delta u.
+\Delta u
+= \frac{1}{h^2}\left(\sum_{i\text{ Nachbarn}}u_i - d(v)u\right)
+= -\frac{1}{h^2}n\left(\frac{1}{n}\sum_{i\text{ Nachbarn}}u_i + u\right)
+= -\left(\frac{1}{h^2}nu-\sum_{i\text{ Nachbarn}}\frac{1}{h^2}u_i\right)
+= -\laplaceL u.
 \end{equation*}
-Es zeigt sich also, dass die Laplace Matrix \laplaceL{} den bereits 
-kennengelernten Laplace-Operator~$\Delta$ verallgemeinert, da wir damit nicht 
-nur den vollst\"andig verbundenen, sondern auch jeden anderen Graphen abbilden 
-k\"onnen.
+Damit haben wir gezeigt, dass die Laplace-Matrix~\laplaceL{} eine Approximation 
+des bereits kennengelernten Laplace-Operator~$\Delta$ auf dem Gebiet ist, 
+welches dieses regelm\"assige zweidimensionale Gitter enth\"alt. Da wir mit 
+Hilfe der Laplace-Matrix~\laplaceL{} jegliche Graphen abbilden k\"onnen, kann 
+sie auch als Verallgemeinerung des Laplace-Operators~$\Delta$ verstanden werden.
