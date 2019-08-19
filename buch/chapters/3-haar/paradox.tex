@@ -28,7 +28,7 @@ konstante Funktion
 ersetzt.
 Natürlich geht dadurch etwas Information verloren und es haben auch
 schon Autoren darauf hingewiesen, dass die unkritische Verwendung solcher
-Samples als Input für nachfolgende Wavelet-Filter nicht zulässig sei.
+Samples als Input für nachfolgende Waveletfilter nicht zulässig sei.
 Doch ist diese Kritik nicht aus den folgenden Gründen nicht wirklich
 nachvollziehbar:
 \begin{enumerate}
@@ -36,7 +36,7 @@ nachvollziehbar:
 Meistens steht keine weiter Information über das Signal zur Verfügung,
 es ist nicht einfach möglich, die Abtastrate eines Systems zu erhöhen.
 \item
-Das Sampling-Theorem stellt sicher, dass aus diesen Samples die Funktion
+Das Sampling Theorem stellt sicher, dass aus diesen Samples die Funktion
 wiederhergestellt werden kann, wenn die Bandbreite der Funktion 
 begrenzt ist.
 Dies bedeutet, dass die Änderungen zwischen den Abtastpunkten so klein
@@ -77,7 +77,7 @@ Zusammen zerlegen die beiden Filter $P_f$ und $I-P_f$ die Funktion
 in einen hochfrequenten und einen tieffrequenten Teil, aus dem sich
 die Funktion exakt rekonstruieren lässt.
 
-\subsection{Wavelet-Koeffizienten}
+\subsection{Waveletkoeffizienten}
 Für die Funktion $f$ bedeutet die Aufteilung \eqref{haar:filtersumme},
 dass sie geschrieben werden kann als
 \[
@@ -126,7 +126,7 @@ erforderlich ist, oder mindestens die Berechnung einer grossen Summe.
 Die spezielle Struktur erlaubt hingegen eine drastische Vereinfachung.
 
 
-\subsection{Der schnelle Approximations-Algorithmus}
+\subsection{Der schnelle Approximationsalgorithmus}
 Wir betrachten die Berechnung der Koeffizienten $b_{kj}$ etwas genauer für
 $j=n$.
 Dazu verwenden wir die Tatsache, dass 
@@ -143,8 +143,8 @@ Die beiden Integrale sind aber nichts anderes als die Mittelwerte
 der Funktion $f$ über das jeweils halbe Intervall.
 
 Für die $j=n$ bedeutet dies, dass die Koeffizienten $b_{kn}$ im Wesentlichen
-die Differenzen sind zwischen benachbarten Sample-Werten.
-Der Hochpass-Filter $P_n$ extrahiert also bis auf die Normierung
+die Differenzen sind zwischen benachbarten Samplewerten.
+Der Hochpassfilter $P_n$ extrahiert also bis auf die Normierung
 die Differenzen benachbarter Samplewerte.
 Ein neuer Koeffizient fällt nach jedem zweiten Abtastwert an.
 
@@ -162,7 +162,7 @@ Der Tiefpassfilter $I-P_n$ ermittelt den Mittelwert.
 Um den Rest der Funktion weiter zu analysieren, ist die Projektion $P_{n-1}$
 auf den Output von $I-P_n$ anzuwenden.
 Die Koeffizienten $b_{k,n-1}$ sind daher Differenzen aufeinanderfolgender
-Tiefpass-Werte.
+Tiefpasswerte.
 Um die weiteren Koeffizienten zu ermitteln müssen also Schrittweise
 immer wieder die Filter $P_j$ und $I-P_j$ oder Differenz und Mittelwert
 angewendet werden.
@@ -179,9 +179,9 @@ Koeffizienten ja schon früher bereitstehen.
 
 Die Diskussion hat gezeigt, dass die Struktur der Ketten von Unterräumen
 und vor allem die Skalierungseigenschaften der Funktionen $\varphi$ und $\psi$
-dazu führen, dass sich die Wavelet-Transformation besonders effizient
+dazu führen, dass sich die Wavelettransformation besonders effizient
 als Output zweier einfacher Filter berechnen lässt
-Diese Eigenschaft der Wavelet-Transformation steht in krassem Gegensatz
+Diese Eigenschaft der Wavelettransformation steht in krassem Gegensatz
 zum Beispiel zur Fourier-Transformation.
 Eine FFT mit $N=1024=2^{10}$ Punkten kann erst begonnen werden, wenn der
 letzte Punkt zur Verfügung steht, und braucht anschliessend etwa
@@ -190,10 +190,11 @@ Verfügung stehen.
 Die Wavelet Transformation mit gleicher Auflösung liefert den ersten Koeffizienten nach 2 Abtastwerten und nach dem letzten Abtastwert können die letzten 10
 Koeffizienten mit 10 Operationen ermittelt werden.
 Die Anzahl der Operationen ist zwar von ungefähr ähnlicher Grösse, aber
-die Wavelet-Transformation beginnt bereits viel früher, Resultate zu
+die Wavelettransformation beginnt bereits viel früher, Resultate zu
 liefern.
 
-\subsection{Ein Paradoxon}
+\subsection{Ein Paradoxon
+\label{haar:paradoxon}}
 Indem man die Analyse für negative $j$ weiter treibt, erhält man
 eine Approximation einer Funktion $f(x)$ als Linearkombination von
 Funktionen $\psi_{lj}$ mit $-n\le j\le n$.

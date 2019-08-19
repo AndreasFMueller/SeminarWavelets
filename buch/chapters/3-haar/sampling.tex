@@ -22,7 +22,7 @@ werden.
 % moved here because section begins at top of page
 \rhead{Sampling}
 
-\subsection{Konstante Sampling-Rate}
+\subsection{Konstante Samplingrate}
 Das Problem kann gelöst werden, indem man die Unterteilung ein für alle
 Male festlegt, zum Beispiel indem man das Intervall in $n$ gleichgrosse
 Teil unterteilt:
@@ -50,8 +50,8 @@ Operationen viel einfacher.
 Um die Summe zu bilden ist es nicht mehr nötig, eine gemeinsame
 Unterteilung zu finden, weil alle Funktionen bereits die gemeinsame
 Unterteilung~\eqref{sampling:unterteilung} verwenden.
-Die Vektorraum-Operationen sind ebenfalls einfach zu bilden,
-da sie direkt auf den Sample-Vektoren wirken:
+Die Vektorraumoperationen sind ebenfalls einfach zu bilden,
+da sie direkt auf den Samplevektoren wirken:
 \begin{align*}
 (f+g)_k &= f_k + g_k \\
 (\lambda f)_k &= \lambda f_k.
@@ -101,12 +101,12 @@ die Funktionen $e^{(l)}$ sind daher orthonormiert.
 
 \subsection{Erweiterung auf $\mathbb R$}
 Diese Konstruktion kann auf die ganze reelle Achse erweitert werden.
-Der Sample-Abstand $h$ definiert eine Unterteilung
+Der Sampleabstand $h$ definiert eine Unterteilung
 \[
 \dots < x_{k} = kh < x_{k+1} < \dots
 \]
 der reellen Achse mit Korn $h$.
-Zu einer stetigen Funktion $f(x)$ gehört dann ein Sample-Vektor
+Zu einer stetigen Funktion $f(x)$ gehört dann ein Samplevektor
 $f_k=f(x_k)=f(kh)$ mit $k\in\mathbb Z$, für den auch die
 arithmetischen Operationen definiert sind.
 Das Skalarprodukt wird durch die unendliche Summe
@@ -145,16 +145,16 @@ beliebige Funktion beliebig genau approximieren.
 %In der Tat hat das Sampling-Theorem gezeigt, dass nur bandbreitenbegrenzte
 %Funktionen exakt rekonstruiert werden können.
 Man könnte natürlich von Vornherein ein so feines Korn wählen, dass alle
-möglicherweise interessierenden Details durch den Sampling-Prozess
+möglicherweise interessierenden Details durch den Samplingprozess
 erfasst werden.
 Bei einem langsam veränderlichen Signal werden aufeinanderfolgende Samples
 sehr nahe beeinander liegen.
 Es wird daher eine grosse Datenmenge produziert, die aber in hohem
 Masse redundant ist, da der grösste Teil der Information bereits bei
-viel kleinerem Sample-Abstand erkennbar wird.
+viel kleinerem Sampleabstand erkennbar wird.
 
 Gesucht ist also eine Hierarchie von Unterteilungen, so dass wir einerseits
-die nützliche Trans\-la\-tions-Invarianz retten können, aber andererseits auch
+die nützliche Translationsinvarianz retten können, aber andererseits auch
 beliebig gute Approximation eines Signals finden können.
 
 
