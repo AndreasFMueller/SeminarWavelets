@@ -7,8 +7,6 @@
 \label{section:skalfour}}
 \rhead{Skalierungsrelation und Fouriertransformation}
 
-% XXX TODO Funktion H und Skalierungsrelation
-
 Gibt es überhaupt eine Funktion $\varphi$ derart, dass die Translate
 $T_b\varphi$ mit $b\ne 0$ alle orthogonal sind?
 Lange Zeit war nicht klar, dass es ausser dem schon lange bekannten
@@ -26,7 +24,7 @@ von $\varphi$ orthonormiert sind.
 % Intervall-Trick: Aufteilung eines Fourier-Integrals in Teilintervalle
 %                 für ganzzahlige Argumente
 %
-\subsection{Der Intervall-Trick und der Periodisierungs-Operator}
+\subsection{Der Intervalltrick und der Periodisierungsoperator}
 Wir werden im Folgenden wiederholt einen Trick verwenden, mit dem
 Fourier-Integrale über $\mathbb R$ in gewöhnliche Integrale
 über ein endliches Intervall umgeformt werden können.
@@ -49,7 +47,9 @@ Für das Fourier-Integral folgt dann
 \sum_{k\in\mathbb Z} \int_{2\pi k}^{2\pi(k+1)} f(t) e^{-ibt}\,dt
 =
 \sum_{k\in\mathbb Z} \int_{0}^{2\pi} f(t+2\pi k) e^{-ibt}\,dt
-=
+\notag
+\\
+&=
 \int_{0}^{2\pi} \biggl(\sum_{k\in\mathbb Z} f(t+2\pi k)\biggr) e^{-ibt}\,dt
 \label{msa:intervalltrick}
 \end{align}
@@ -63,10 +63,10 @@ Für eine Funktion $f\in L^2(\mathbb R)$ ist die periodisch gemachte Funktion
 \[
 \mathcal{P}f(t) = \sum_{k\in\mathbb Z} f(t+2\pi k)
 \]
-eine Funktion $L^2([0,2\pi])$.
-$\mathcal{P}$ heisst Periodisierungs-Operator.
+eine Funktion in $L^2([0,2\pi])$.
+$\mathcal{P}$ heisst Periodisierungsoperator.
 \end{definition}
-\index{Periodisierungs-Operator}%
+\index{Periodisierungsoperator}%
 
 \begin{proof}[Beweis]
 Die Definition behauptet, dass die Operation $\mathcal{P}$ für
@@ -83,8 +83,7 @@ Wir rechnen dazu nach
 \sum_{k\in\mathbb Z}f(t+2\pi k)
 \biggr|^2
 \,dt
-\\
-&\le
+\le
 \int_{-\infty}^\infty |f(t)|^2 \,dt
 =
 \| f\|^2.
@@ -92,7 +91,7 @@ Wir rechnen dazu nach
 \end{align*}
 \end{proof}
 
-Da $b\in\mathbb Z$, berechnet das Integral~\eqref{msa:intervalltrick}
+Da $b\in\mathbb Z$ ist, berechnet das Integral~\eqref{msa:intervalltrick}
 bis auf einen Faktor $2\pi$ die Fourier-Koeffizienten von $\mathcal{P}f$.
 Wir haben daher den folgenden Satz gefunden:
 
@@ -117,7 +116,7 @@ hängen also mit den Werten der Fourier-Transformation an ganzzahligen
 Punkten zusammen.
 
 \begin{lemma}
-Der Periodisierungs-Operator $\mathcal{P}$ ist linear:
+Der Periodisierungsoperator $\mathcal{P}$ ist linear:
 \begin{align*}
 \mathcal{P}(f+g)(t)
 &=
@@ -210,9 +209,9 @@ e^{-i\omega b}
 =
 \delta_{0b}.
 \end{align*}
-\index{Orthgonalitätsbedingung}
+\index{Orthgonalitätsbedingung}%
 Die Funktion $\mathcal{P}|\hat{\varphi}|^2$ ist also $2\pi$-periodisch und
-derart, dass alle Fourier-Koeffizienten ausser der Koeffizienten für
+derart, dass alle Fourier-Koeffizienten ausser dem Koeffizienten für
 $b=0$ verschwinden.
 Diese Funktion muss daher eine Konstante sein.
 Damit haben wir den folgenden Satz bewiesen.
@@ -285,7 +284,7 @@ Dies beweist die Aussage.
 %
 \subsection{Die Skalierungsrelation
 \label{msa:skal}}
-Das Vaterwavelet einer Multiskalen-Analyse muss einer Skalierungsrelation
+Das Vaterwavelet einer Multiskalenanalyse muss einer Skalierungsrelation
 genügen, die wir in der Form
 \begin{equation}
 \varphi(t)
@@ -315,7 +314,7 @@ H(s)
 \frac1{\sqrt{2}}
 \sum_{k\in\mathbb Z}h_ke^{-iks},
 \]
-für die sogenannte {\em erzeugende Funktion} einer Multiskalen-Analyse.
+für die sogenannte {\em erzeugende Funktion} einer Multiskalenanalyse.
 \end{definition}
 \index{erzeugende Funktion einer MSA}
 
@@ -339,13 +338,15 @@ Die Funktionalgleichung~\eqref{msa:skalomega} deutet bereits an,
 dass diese Koeffizienten die Funktion $\varphi$ eindeutig bestimmen
 könnten.
 
-Ein weiterer Schritt in diese Richtung ist, dass sich die
+Ein weiterer Schritt in diese Richtung ist, dass sich
+aus der Orthogonalität der $T_b\varphi$ und der
 Orthogonalitätsbedingung~\eqref{msa:orthogonalitaetsbedingung}
-durch $H$ ausdrücken lässt.
+eine Orthogonalitätsbedingung für $H$ gewinnen lässt.
+Dies geschieht im folgenden Satz.
 
 \begin{satz}
 \label{satz:Hbed}
-Die erzeugende Funktion $H(s)$ einer Multiskalen-Analyse erfüllt die
+Die erzeugende Funktion $H(s)$ einer Multiskalenanalyse erfüllt die
 Bedingung
 \begin{equation}
 |H(\omega)|^2 + |H(\omega+\pi)|^2 = 1
@@ -412,7 +413,9 @@ H\biggl(\frac{\omega}2 + \pi\biggr)
 \biggr|^2
 \mathcal{P}|\hat{\varphi}|^2\biggl(\frac{\omega}2+\pi\biggr)
 \\
-\intertext{Aus der Orthogonalitätsbedingung folgt, dass die Terme
+\intertext{Aus der
+Orthogonalitätsbedingung~\eqref{msa:orthogonalitaetsbedingung} folgt,
+dass die Terme
 $\mathcal{P}|\hat{\varphi}|^2$ fast überall konstant sind:}
 &=
 \biggl|
@@ -434,11 +437,11 @@ Damit ist die Aussage \eqref{msa:Hbed} bewiesen.
 
 \subsection{Skalierungsrelationen für $f\in V_1$
 \label{msa:skalv1}}
-Die Multiskalen-Analyse besagt, dass $V_0 \oplus W_0 = V_1$ und dass
+Die Multiskalenanalyse besagt, dass $V_0 \oplus W_0 = V_1$ und dass
 $\varphi$ ein orthogonale Basis von $V_0$ ist.
-Eine Funktion $f\in V_1$ muss dann eine Linear-Kombination von
+Eine Funktion $f\in V_1$ muss dann eine Linearkombination von
 skalierten Funktionen $\varphi_{1,b}(t)=\varphi(2t-b)$ sein.
-Es gibt also $f_k\in\mathbb C$ mit
+Es gibt also $f_b\in\mathbb C$ mit
 \[
 f(t) = \sum_{b\in\mathbb Z} f_b \varphi_{1,b}(t).
 \]
@@ -486,8 +489,9 @@ für fast alle $\omega\in\mathbb R$.
 Die Funktion $H$ ist natürlich nichts anders als der Spezialfall
 des Vaterwavelets $f=\varphi\in V_0$, also $H=m_{\varphi}$.
 
-In der Multiskalen-Analyse bilden die Translate des Mutterwavelet $\psi$
-ein orthonormierte Basis von $V_1$.
+In der Multiskalenanalyse bilden die Translate des Mutterwavelet $\psi$
+ein orthonormierte Basis von $W_0$, insbesondere sind sie orthogonal
+zu $V_0$.
 Die Funktion $m_{\psi}$ erfüllt daher nicht nur \eqref{msa:mfskaleq},
 es muss ausserdem eine Relation geben, die ausdrückt, dass alle Translate auf
 $V_0$ orthogonal sind.
@@ -582,18 +586,23 @@ woraus die Behauptung folgt.
 % Skalierungsrelation für \psi
 %
 \subsection{Skalierungsrelation für $\psi$}
-Die Axiome der Multiskalen-Analyse besagen, dass es eine Funktion $\psi$
+Die Axiome der Multiskalenanalyse besagen, dass es eine Funktion $\psi$
 gibt derart, dass die Translate von $\psi$ eine orthonormierte Basis
 von $W_0$ sind.
 In den Sätzen dieses Abschnitts wurde genau dieser Sachverhalt
-in Abschnitt~\ref{msa:skal} bereits für das Vaterwavelet $\varphi$ untersucht
-sowie ganz allgemein für eine Funktion $f\in V_1$ in Abschnitt~\ref{msa:skalv1} untersucht.
+bereits
+in Abschnitt~\ref{msa:skal}
+für das Vaterwavelet $\varphi$
+sowie
+in Abschnitt~\ref{msa:skalv1}
+ganz allgemein für eine Funktion $f\in V_1$
+untersucht.
 Für das Mutterwavelet $\psi$ müssen diese Eigenschaften alle
 auch gelten.
 Wir fassen diese im folgenden Satz zusammen.
 
 \begin{satz}
-Die Funktion $m_\psi$, die zum Mutterwavelet einer Multiskalen-Analyse 
+Die Funktion $m_\psi$, die zum Mutterwavelet einer Multiskalenanalyse 
 gehört, erfüllt
 \[
 m_{\psi}\biggl(\frac{\omega}2+\pi\biggr)
@@ -617,14 +626,14 @@ zusätzlich
 
 Ausserdem gilt natürlich immer noch die Relation~\eqref{msa:Hbed}
 für die Funktion $H(\omega)$.
-Diese Bedingungen schränkten stark ein, was $\psi$ überhaupt sein
+Diese Bedingungen schränken stark ein, was $\psi$ überhaupt sein
 kann.
 Wir zeigen zunächst, wie sich aus $\varphi$ eine Funktion $\psi$
 konstruieren lässt, die als Mutterwavelet in Frage kommt.
 
 \begin{lemma}
 \label{lemma:msa:psivorschlag}
-Ist $\varphi$ das Vaterwavelet einer Multiskalen-Analyse, dann sind die
+Ist $\varphi$ das Vaterwavelet einer Multiskalenanalyse, dann sind die
 Translate der Funktion mit der Fourier-Transformierten
 \begin{equation}
 \hat{\psi}(\omega)
@@ -638,7 +647,7 @@ orthonormiert.
 \end{lemma}
 
 Bis auf weiteres meinen wir im Folgenden immer dieses $\psi$, wenn wir
-vom Mutterwavelet einer Multiskalen-Analyse sprechen.
+vom Mutterwavelet einer Multiskalenanalyse sprechen.
 Wir werden weiter unten untersuchen, wie andere mögliche Funktionen 
 $\psi$ aussehen könnten.
 
@@ -694,14 +703,14 @@ Folglich erfüllt auch $\psi$
 die Orthonormalitätsbedingung~\eqref{msa:orthogonalitaetsbedingung}.
 \end{proof}
 
-Für eine Multiskalen-Analyse muss aber noch mehr gezeigt werden.
+Für eine Multiskalenanalyse muss aber noch mehr gezeigt werden.
 Es muss gezeigt werden, dass die Translate von $\psi$ eine
 Basis von $W_0$ bilden.
 Ausserdem ist zu untersuchen, wieviel Freiheit bei der Wahl von 
 $\hat{\psi}$ in \eqref{msa:psivorschlag} besteht.
 
 Die Relation zwischen $H$ und $m_f$ mit $f\in W_0$, wozu auch $f=\psi$
-zu zählen ist, kann etwas kompakter ausgedrückt werden, in dem an sie
+zu zählen ist, kann etwas kompakter ausgedrückt werden, in dem man sie
 als komplexe zweidimensionalen Vektoren
 \[
 \vec{m}_{\psi}(\omega)
@@ -719,7 +728,7 @@ H(\omega + \pi)
 \end{pmatrix}
 \]
 schreibt.
-Die Relationen für $H$ und $m_f$ sind dann nichts anderes 
+Die Relationen für $H$ und $m_f$ sind dann nichts anderes  als
 Orthogonalitätsrelationen für die beiden Vektoren $\vec{H}$ und
 $\vec{m}_f$:
 \begin{align}
@@ -812,7 +821,7 @@ f = \sum_{k\in\mathbb Z} p_k\,T_k\psi.
 \end{lemma}
 
 \begin{proof}[Beweis]
-Nach Lemma~\eqref{lemma:msa:pperiodisch} gibt es eine $\pi$-periodische
+Nach Lemma~\ref{lemma:msa:pperiodisch} gibt es eine $\pi$-periodische
 Funktion $p(\omega)$ derart, dass $\hat{f}(\omega)=p(\omega)\hat{\psi}(\omega)$.
 Diese lässt sich in eine Fourier-Reihe 
 \[

@@ -57,12 +57,10 @@ Vielmehr ist das Skalarprodukt
 % moved here
 \rhead{Orthonormalisierung}
 
-% XXX TODO bild zu \varphi_{B^2} und der Berechnung des Skalarproduktes
-
 In diesem Abschnitt soll daher die folgende Aufgabe gelöst werden.
 \begin{aufgabe}
 \label{aufgabe:orthonormalisierung}
-Gegeben $f\in L^2(\mathbb R)$ konstruiere eine Funktion 
+Gegeben $f\in L^2(\mathbb R)$, konstruiere eine Funktion 
 $F\in L^2(\mathbb R)$, die eine Linearkombination von 
 Translaten von $f$ ist, also
 \[
@@ -73,11 +71,11 @@ und so, dass die Translate von $F$ orthonormiert sind.
 
 In der linearen Algebra lernt man üblicherweise das Verfahren von
 Gram-Schmidt zur Orthonormalisierung einer Basis eines Vektorraumes.
-Es beginnt beim ersten Vektor der nur in seiner Länge verändert wird.
+Es beginnt beim ersten Vektor, der nur in seiner Länge verändert wird.
 Die folgenden Vektoren werden dann sukzessive modifiziert, so dass sie
 auf den bisher behandelten Vektoren senkrecht stehen.
 Dieses Vorgehen ist im vorliegenden Fall nicht angebracht, da die
-entstehenden Vektoren nicht alle Translate des ersten Vektor sind.
+entstehenden Vektoren nicht alle Translate des ersten Vektors sind.
 
 \begin{proof}[Lösung]
 In Satz~\ref{satz:msa:orthogonalitaetsbedingung} wurde eine Bedingung
@@ -129,10 +127,10 @@ Wenn also
 $\Phi(\omega)=\mathcal{P}|\hat{f}(\omega)|^2$ dergestalt ist, dass 
 $1/\sqrt{\Phi(\omega}$ eine quadratinterierbare periodische Funktion ist,
 dann lassen sich die Translate von $f$ so linear zu $F$ kombinieren, dass die
-die Translate von $F$ orthonormiert sind.
-Die Aufgabe lässt sich also insbesondere dann läsen, wenn $\Phi(\omega)$
+Translate von $F$ orthonormiert sind.
+Die Aufgabe lässt sich also insbesondere dann lösen, wenn $\Phi(\omega)$
 keine Nullstellen hat.
-Dieser Prozess ersetzt also das Gram-Schmidtsche Orthogonalisierungsverfahren
+Dieser Prozess ersetzt das Gram-Schmidtsche Orthogonalisierungsverfahren
 im Falle der Wavelets.
 
 

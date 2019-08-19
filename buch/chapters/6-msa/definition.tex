@@ -3,7 +3,7 @@
 %
 % (c) 2019 Prof Dr Andreas Müller
 %
-\section{Definition einer Multiskalen-Analyse
+\section{Definition einer Multiskalenanalyse
 \label{section:skalen und vektorraeume}}
 \rhead{Definition}
 Wir möchten zum Ausdruck bringen, dass Funktionen in $L^2(\mathbb R)$
@@ -63,9 +63,9 @@ Dazu muss verlangt werden, dass
 $D_{\frac12}V_j = V_{j+1}$
 gilt.
 
-Wie in Abbildung~\ref{haar:figure:detail} möchten wir die zusätzlichen
-Details, die $V_1$ gegenüber $V_0$ auflösen kann, in einem orthogonalen
-Unterraum $W_0$ von $V_1$ enthalten ist.
+Wie in Abbildung~\ref{haar:figure:detail} suggeriert,
+möchten wir die zusätzlichen Details, die $V_1$ gegenüber $V_0$ auflösen kann,
+in einem orthogonalen Unterraum $W_0$ von $V_1$ unterbringen.
 Wir schreiben dafür $V_1 = V_0 \oplus W_0$ und meinen damit, dass
 \[
 V_0\cap W_0= \{0\}
@@ -101,10 +101,10 @@ Man kann dies durch
 ausdrücken.
 
 Damit haben wir alle Elemente zusammen für die folgende formale Definition
-einer Multiskalen-Analyse.
+einer Multiskalenanalyse.
 
 \begin{definition}
-Eine {\em Multiskalen-Analyse} ist ein Turm
+Eine {\em Multiskalenanalyse} ist ein Turm
 \index{Multiskalenanalyse}%
 \[
 \dots
@@ -119,8 +119,10 @@ V_j\subset
 \]
 von Unterräumen von $L^2(\mathbb R)$ mit den folgenden Eigenschaften
 \begin{enumerate}
-\item Es gibt eine Funktion $\varphi\in V_0$, das sogenannte Vaterwavelet,
+\item Es gibt eine Funktion $\varphi\in V_0$, das sogenannte Vaterwavelet oder
+die Skalierungsfunktion,
 \index{Vaterwavelet}%
+\index{Skalierungsfunktion}%
 derart, dass die Funktionen
 $T_k\varphi$ eine orthonormierte Basis von $V_0$ bilden.
 \item $D_{\frac12} V_j = V_{j+1}$
@@ -139,7 +141,7 @@ Das Orthogonalkomplement von $V_j$ in $V_{j+1}$ wird mit $W_j$ bezeichnet.
 \end{definition}
 
 Im Folgenden werden wir häufig mit ganzzahligen Translaten und
-Zweierpotenz-Skalierungen von Funktion zu tun haben, wir führen dafür
+Zweierpotenzskalierungen von Funktion zu tun haben, wir führen dafür
 die folgende Bezeichnung ein.
 
 \begin{definition}
@@ -151,7 +153,10 @@ für die um $k$ verschobene und mit $2^{-j}$ skalierte Funktion.
 \end{definition}
 
 Man beachte, dass die Reihenfolge der Operationen $T_k$ und $D_{2^{-j}}$
-von der bei der stetigen Wavelet-Transformation verwendeten abweicht.
+von der bei der stetigen Wavelettransformation verwendeten abweicht.
+Auch wird von der Multiskalenanalyse nicht verlangt, dass 
+die $T_b\psi$ orthogonal sein müssen.
+Wir werden aber sehen, dass sich dies immer einrichten lässt.
 
 \begin{figure}
 \centering
@@ -161,10 +166,6 @@ mit
 $V_{j+1} = V_j \oplus = W_j$.
 \label{msa:vektorraumhierarchie}}
 \end{figure}
-
-Man beachte, es wird von der Multiskalen-Analyse nicht verlangt, dass 
-die $T_b\psi$ orthogonal sein müssen.
-Wir werden aber sehen, dass sich dies immer einrichten lässt.
 
 Die Funktion $\varphi$ ist enthalten in $V_0$.
 Wegen $V_0\subset V_1$ ist $\varphi\in V_1$.
@@ -179,7 +180,7 @@ bilden, muss es Koeffizienten $h_k$ geben derart, dass
 gilt.
 
 Aus der Tatsache, dass die Funktionen $\varphi_{1,k}$ eine orthonormierte
-Basis von $V_1$ bilden kann man schliessen, dass es Koeffizienten $g_k$
+Basis von $V_1$ bilden, kann man schliessen, dass es Koeffizienten $g_k$
 geben muss derart, dass
 \begin{equation}
 \psi(t)
@@ -189,14 +190,14 @@ geben muss derart, dass
 \sum_{k\in\mathbb Z}\sqrt{2}g_k \varphi(2t-k).
 \label{msa:skalrel-g}
 \end{equation}
-A priori haben die Koeffizienten $g_k$ nicht mit den Koeffizienten $h_k$
+A priori haben die Koeffizienten $g_k$ nichts mit den Koeffizienten $h_k$
 zu tun.
 Wir werden später zeigen, dass eine Multiskalenanalyse und damit
 insbesondere auch die $g$-Koeffizienten vollständig durch
 die $h$-Koeffizienten bestimmt sind.
 
 \begin{beispiel}
-Das Haar-Wavelet erzeugt eine Multiskalen-Analyse von $L^2(\mathbb R)$.
-% XXX TODO Haar MRA darstellen
+Das Haar-Wavelet (Kapitel~\ref{chapter:haar-wavelet}) erzeugt eine
+Multiskalenanalyse von $L^2(\mathbb R)$.
 \end{beispiel}
 
