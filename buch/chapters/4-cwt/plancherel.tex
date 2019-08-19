@@ -210,7 +210,9 @@ Das Produkt $\hat{f}(\omega)\overline{\hat{g}(\omega)}$ deutet darauf hin,
 dass dies fast schon ein Skalarprodukt ist.
 Es wird tatsächlich das Skalarprodukt, wenn das innere Integral $I$ konstant
 ist.
-Wir betrachten dieses separat und setzen $a\omega = s$, was
+Wir betrachten dieses separat und setzen $a\omega = s$, dann können
+wir das Integral mit Hilfe der Zulässigkeitsbedingung~\eqref{cwt:zulaessig}
+berechnen:
 \begin{align*}
 I
 =
@@ -224,9 +226,8 @@ I
 \int_{\mathbb R^*} |\hat{\psi}(s)|^2 \,\frac{ds}{|s|}
 =
 %2\pi
-C_{\psi}
+C_{\psi}.
 \end{align*}
-ergibt.
 Das innere Integral ist also tatsächlich eine Konstante, die aus dem
 Integral herausgezogen werden kann.
 Ersetzen wir $I$ in \eqref{cwtplancherel:p1} durch $C_{\psi}$ erhalten wir
@@ -248,15 +249,15 @@ Damit ist die Plancherel-Formel bewiesen.
 Mit dem Satz~\ref{satz:wplancherel} wird jetzt klar, warum die
 Zulässigkeitsbedingung so wichtig ist.
 Die Zulässigkeitsbedingung ist genau das, was wir brauchen um zu schliessen,
-dass die stetige Wavelet-Transformation stetig ist.
+dass die stetige Wavelettransformation stetig ist.
 Aus dem Satz folgt, dass
 \[
 \| \mathcal{W}f \|_H = \sqrt{C_{\psi}}\|f\|.
 \]
 Es ist also nicht möglich, dass eine Funktion $f\ne 0$ eine verschwindende
-Wavelet-Transformation hat.
+Wavelettransformation hat.
 Anders ausgedrückt: verschiedene Funktionen lassen sich immer auch anhand
-ihrer Wavelet-Transformation unterscheiden.
+ihrer Wavelettransformation unterscheiden.
 
 \subsection{Das Haar-Mass auf $\mathbb R^* \ltimes \mathbb R$
 \label{subsection:haar-mass}}
@@ -303,9 +304,9 @@ ist $x^{-}$.
 Die beiden Beispiel zeigen, dass es unter gewissen Voraussetzungen
 möglich ist, für Funktionen auf einer Gruppe $G$ ein Integral zu definieren,
 welches unverändert bleibt, wenn man die Funktion $f:G\to \mathbb C$ 
-durch die Funktion $(g\cdot f)(x) = f(g\cdot x)$ ersetzt, also
+durch die Funktion $(s\cdot f)(x) = f(s\cdot x)$ ersetzt mit $s\in G$, also
 \[
-\int_G (g\cdot f)(x)\,d\mu(x)
+\int_G (s\cdot f)(x)\,d\mu(x)
 =
 \int_G f(x)\,d\mu(x).
 \]
@@ -337,12 +338,10 @@ dem neutralen Element $(1,0)$ und dem inversen Element
 \end{aligned}
 \right.
 \]
-Die Gruppe $H$ wird auch $H=\mathbb R^*\times \mathbb R$ geschrieben
+Die Gruppe $H$ wird auch $H=\mathbb R^*\ltimes \mathbb R$ geschrieben
 und heisst das semidirekte Produkt der Gruppen $\mathbb R^*$ mit der
 Multiplikation als Gruppenoperation und $\mathbb R$ mit der Addition
 als Gruppenoperation.
-Das semidirekte Produkt wird auch $H=\mathbb R^*\ltimes\mathbb R$
-geschrieben.
 Nach Haar müsste es also auch ein Haarsches Mass auf $H$ geben.
 
 $H$ enthält zwei Gruppen, für die wir das Haarsche Mass schon kennen.
@@ -354,7 +353,7 @@ Man kann daher vermuten, dass das Haar-Integral von der Form
 \]
 sein muss.
 
-Wenden wir die Operation des Gruppen-Elements $(\alpha,\beta)\in H$
+Wenden wir die Operation des Gruppenelements $(\alpha,\beta)\in H$
 auf die Funktion $f$ an und verwenden die Substitution
 $\tilde{a}=\alpha a$ und $\tilde{b}=\alpha b$, erhalten wir für das
 Integral

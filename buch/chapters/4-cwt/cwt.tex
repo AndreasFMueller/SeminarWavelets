@@ -3,9 +3,9 @@
 %
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Stetige Wavelet-Transformation
+\section{Stetige Wavelettransformation
 \label{sextion:cwt}}
-\rhead{Stetige Wavelet-Transformation}
+\rhead{Stetige Wavelettransformation}
 Ein Wavelet soll nun dazu verwendet werden, ein Signal $f(t)$ abzutasten.
 Da das Wavelet lokalisiert ist, müssen wir es der $t$-Achse entlang
 verschieben, um jeden Abschnitt des Signals sinnvoll abtasten zu
@@ -78,9 +78,9 @@ Analyse-Funktionen für das Signal dienen.
 
 \begin{definition}
 \label{cwt:definition}
-Die {\em stetige Wavelet-Transformation} des Signals $f(t)$ mit dem Wavelet
-\index{Wavelet-Transformation, stetig}%
-\index{stetige Wavelet-Transformation}%
+Die {\em stetige Wavelettransformation} des Signals $f(t)$ mit dem Wavelet
+\index{Wavelettransformation, stetig}%
+\index{stetige Wavelettransformation}%
 $\psi$ ist die Funktion
 \begin{equation}
 \mathcal{W}f (a,b)
@@ -91,10 +91,10 @@ $\psi$ ist die Funktion
 \psi\biggl(\frac{t-b}{a}\biggr)}\,dt.
 \label{cwt:definition:eq}
 \end{equation}
-Falls in einem Kontext verschiedene Wavelet-Funktionen vorkommen, kann die
-Notation eindeutig gemacht werden, indem die Wavelet-Transformation
-$\mathcal{W}_{\psi}f$ geschrieben wird.
-Der Definitionsbereich der stetigen Wavelet-Transformation ist die Menge
+Falls in einem Kontext verschiedene Waveletfunktionen vorkommen, kann 
+die verwendete Waveletfunktion als Index von $\mathcal{W}$ wie in
+$\mathcal{W}_{\psi}f$ notiert werden.
+Der Definitionsbereich der stetigen Wavelettransformation ist die Menge
 \[
 H
 =
@@ -107,15 +107,16 @@ H
 die Ebene ohne die Achse $a=0$.
 \end{definition}
 
-Die Wavelet-Transformation liefert also eine Funktion von {\em zwei}
+Die Wavelettransformation liefert also eine Funktion von {\em zwei}
 Variablen.
-Die beiden Parameter erlauben, unabhängig voneinander eine bestimmte
-Stelle des Signals genauer anzuschauen durch Wahl von $b$ sowie die
-Details genauer aufzulösen durch Vergrösserung von $a$.
+Die beiden Parameter erlauben, unabhängig voneinander
+durch Wahl von $b$ eine bestimmte Stelle des Signals genauer anzuschauen
+sowie durch Vergrösserung von $a$ die Details genauer aufzulösen.
 
-Da die stetige Wavelet-Transformation einer Funktion $f$ ein Skalarprodukt
+Da die stetige Wavelettransformation einer Funktion $f$ ein Skalarprodukt
 mit einer skalierten und verschobenen Waveletfunktion ist, kann die Skalierung
-und Verschiebung auch auf die Funktion $f$ geschoben werden.
+und Verschiebung auch auf den anderen Faktor $f$ des Skalarprodktes
+übertragen werden.
 Nach Satz~\ref{fourier:satz:adjungierte} gilt
 \begin{equation}
 \mathcal{W}f(a,b)
@@ -136,15 +137,15 @@ Wir verwenden diese Idee im folgenden Beispiel.
 \centering
 \includegraphics{chapters/4-cwt/images/psigraph.pdf}
 \caption{Graph der Funktion $\psi(t)$ für das Beispiel der
-Wavelet-Transformation in Abbildung~\ref{cwt:psi-cwt}.
+Wavelettransformation in Abbildung~\ref{cwt:psi-cwt}.
 \label{cwt:psi-graph}}
 \end{figure}
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/4-cwt/images/psisin.pdf}
-\caption{Wavelet-Transformation der Funktion $f(t)=\sin t$ berechnet
+\caption{Wavelettransformation der Funktion $f(t)=\sin t$ berechnet
 mit dem Wavelet $\psi(t)$ von Abbildung~\ref{cwt:psi-graph}.
-Rot steht für positive Werte der Wavelet-Transformation, blau für negative.
+Rot steht für positive Werte der Wavelettransformation, blau für negative.
 \label{cwt:psi-cwt}}
 \end{figure}
 Der Graph der Funktion ist auch in Abbildung~\ref{cwt:psi-graph} dargestellt.
@@ -161,10 +162,10 @@ Dies ist eine gestreckte und verschobene Version des Haar-Wavelets
 und erfüllt daher automatisch die Zulässigkeitsbedingung für ein Wavelet.
 Ausserdem gilt $\|\psi\|=1$.
 Gegenüber dem Haar-Mutterwavelet hat diese Funktion den Vorteil, dass 
-sie antisymmetrisch ist, so dass auch die stetige Wavelettransformation
+sie antisymmetrisch ist, so dass die stetige Wavelettransformation
 einer antisymmetrischen Funktion wieder symmetrisch sein wird.
 
-Wir berechnen jetzt die stetige Wavelet-Transformat des Signals $f(t)=\sin t$.
+Wir berechnen jetzt die stetige Wavelettransformation des Signals $f(t)=\sin t$.
 Nach Definition und
 \eqref{cwt:formel:shift}
 ist
@@ -210,7 +211,7 @@ Wir erhalten
 \end{align*}
 
 Wir betrachten einige einfach zu berechnende Werte von $\mathcal{W}f$.
-Die Kosinus-Funktion ist antisymmetrisch bezüglich ungeraden Vielfachen
+Die Kosinusfunktion ist antisymmetrisch bezüglich ungeraden Vielfachen
 von $\pi/2$.
 Wir setzen daher $b=(2k+1)\frac{\pi}2$ und berechnen den Wert von
 \begin{align*}
@@ -231,9 +232,9 @@ Wenn $b$ ein ganzzahliges Vielfaches von $\pi$ ist, also $b=k\pi$, dann ist
 \begin{align*}
 \mathcal{W}f(a,b)
 &=
-\frac{1}{\sqrt{2|a|}}(2\cos k\pi - \cos(k\pi +a) -\cos(k\pi-a))
+\frac{1}{\sqrt{2|a|}}(2\cos k\pi - \cos(k\pi +a) -\cos(k\pi-a)).
 \\
-\intertext{Die Kosinus-Funktion ist symmetrisch bezüglich $b$, so dass die
+\intertext{Die Kosinusfunktion ist symmetrisch bezüglich $b$, so dass die
 beiden letzten Terme gleich sind.  }
 &=
 \frac{1}{\sqrt{2|a|}}(2\cos k\pi - 2\cos(k\pi +a))
@@ -247,24 +248,24 @@ Im ersten Term können wir $\cos k\pi=(-1)^k$ ersetzen und erhalten}
 \frac{2(-1)^k}{\sqrt{2|a|}}(1 - \cos a).
 \end{align*}
 
-Die Wavelet-Transformation $\mathcal{W}f$ ist in Abbildung~\ref{cwt:psi-cwt}
+Die Wavelettransformation $\mathcal{W}f$ ist in Abbildung~\ref{cwt:psi-cwt}
 dargestellt.
 Intensivere Farbe bedeutet grösseren absoluten Betrag von $\mathcal{W}f$,
 positive Werte von $\mathcal{W}f$ sind rot, negative blau dargestellt.
 Immer wenn die Funktion $\psi$ so skaliert ist, dass sie auf jeder
-Seite des Nullpunkts eine ganze Zahl vollständiger Sinus-Perioden abdeckt,
-verschwindet der Wert der Wavelet-Transformation.
+Seite des Nullpunkts eine ganze Zahl vollständiger Sinusperioden abdeckt,
+verschwindet der Wert der Wavelettransformation.
 Wenn dagegen $a$ so gewählt ist, dass auf jeder Seite eine halbe Periode
-``übrig'' bleibt, dann nimmt die Wavelet-Transformation den grösstmöglichen
+``übrig'' bleibt, dann nimmt die Wavelettransformation den grösstmöglichen
 Wert an.
-Da das Signal $\sin t$ periodisch ist, ist auch die Wavelet-Transformiation
+Da das Signal $\sin t$ periodisch ist, ist auch die Wavelettransformiation
 $\mathcal{W}f$ periodisch in $b$.
 Dies erklärt das Muster in Abbildung~\ref{cwt:psi-cwt}.
 
 Man kann dies auch formal einsehen. 
 Ein Signal $f(t)$ ist periodisch mit Periode $p$, wenn $f(t+p) = f(t)$
 oder mit dem Translationsoperator ausgedrückt $T_{-p}f=f$.
-Für die Wavelet-Transformation folgt dann
+Für die Wavelettransformation folgt dann
 \begin{align*}
 \mathcal{W}f(a,b)
 &=
@@ -278,11 +279,11 @@ Für die Wavelet-Transformation folgt dann
 =
 \mathcal{W}f(a,b+p),
 \end{align*}
-die Wavelet-Transformation ist auch periodisch mit Periode $p$.
+die Wavelettransformation ist auch periodisch mit Periode $p$.
 \end{beispiel}
 
 \begin{beispiel}
-Wir berechnen die stetige Haar-Wavelet-Transformation der Sinus-Funktion
+Wir berechnen die stetige Haar-Wavelettransformation der Sinusfunktion
 $f(t)=\sin t$.
 Sei wieder $\psi_{\text{Haar}}$ das Haar-Wavelet.
 Es ist eine skalierte und verschobene Version der in
@@ -290,7 +291,7 @@ Es ist eine skalierte und verschobene Version der in
 \[
 \psi_{\text{Haar}}(t) = T_{\frac12}D_{\frac12}\psi(t).
 \]
-Damit können wir die Berechnung der Wavelet-Transformation
+Damit können wir die Berechnung der Wavelettransformation
 $\mathcal{W}_{\psi_{\text{Haar}}}$ auf die bereits durchgeführte
 Berechnung von $\mathcal{W}_{\psi}$ zurückführen.
 Die Anwendung der Rechenregeln für die Operatoren $T_b$ und $D_a$,
@@ -313,7 +314,7 @@ insbesondere der Vertauschungsregel, ergibt
 \mathcal{W}_{\psi}f\biggl(\frac{a}2,\frac{a}2+b\biggr).
 \end{align*}
 Die Wavelettransformation $\mathcal{W}_{\psi_{\text{Haar}}}f$ ist also
-eine verschobene und skalierte Version der Wavelet-Transformation 
+eine verschobene und skalierte Version der Wavelettransformation 
 $\mathcal{W}_{\psi}f$.
 \end{beispiel}
 
@@ -328,12 +329,12 @@ Dieses Beispiel stammt aus \cite[p.~60]{buch:blatter}.
 \begin{figure}
 \centering
 \includegraphics{chapters/4-cwt/images/notes.pdf}
-\caption{Stetige Wavelet-Transformation der Funktion \eqref{cwt:blatterf}
+\caption{Stetige Wavelettransformation der Funktion \eqref{cwt:blatterf}
 (Graph in Abbildung~\ref{cwt:blatterfgraph}).
 \label{cwt:blattercwt}}
 \end{figure}
-Wir berechnen die Wavelet-Transformation der folgenden Funktion $f$
-für das Mexikanerhut-Wavelet \eqref{wavelet:mexikanerhut}, wir setzen also
+Wir berechnen die Wavelettransformation der folgenden Funktion $f$
+für das Mexikanerhutwavelet \eqref{wavelet:mexikanerhut}, wir setzen also
 $\psi=\psi_\text{M}$.
 \begin{equation}
 f(t) = \begin{cases}
@@ -352,7 +353,7 @@ Die Funktion besteht aus drei Teilfunktionen, die von Intervallen getrennt sind,
 in denen die Funktion verschwindet.
 In den Intervallen $[0,3]$ und $[4,6]$ hat die Funktion oszillatorischen
 Charakter.
-Die Wavelet-Transformation ist in der Lage, dieses Verhalten zu detektieren.
+Die Wavelettransformation ist in der Lage, dieses Verhalten zu detektieren.
 Es lässt sich sogar eine ungefähre Aussage über die Frequenzverhältnisse
 machen.
 Die Oszillation im Intervall $[4,6]$ hat $2.5$-mal höhere Frequenz als im
@@ -368,6 +369,7 @@ Intensitätsgraphen sind.
 In Anwendungen der Signalverarbeitung wird daher oft $1/a$ oder $-\log a$ 
 auf der vertikalen Achse aufgetragen, so dass hohe Frequenzen wie in
 einem Sonogramm weiter oben dargestellt werden.
+\index{Sonogramm}%
 
 \begin{beispiel}
 In diesem Beispiel verwenden wir komplexe Morlet-Wavelets%
@@ -375,11 +377,13 @@ In diesem Beispiel verwenden wir komplexe Morlet-Wavelets%
 erfüllt die Zulässigkeitsbedingung nicht, was für die folgenden 
 Betrachtungen jedoch nicht von Bedeutung ist.
 Mehr zum Morlet-Wavelet in Kapitel~\ref{chapter:complex}.}
+\index{Morlet-Wavelet}%
 \begin{equation}
 \psi(t) = e^{-\frac{t^2}2 +5it}
 \label{cwt:morlet}
 \end{equation}
 um das Sweep-Signal mit linear ansteigender Frequenz
+\index{Sweep-Signal}%
 \begin{equation}
 f(t)
 =
@@ -390,7 +394,7 @@ zwischen $t=0$ und $t=26$.
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/4-cwt/images/sweep2.pdf}
-\caption{Absolutwert und Phase der stetigen Wavelet-Transformation
+\caption{Absolutwert und Phase der stetigen Wavelettransformation
 der Sweep-Funktion~\eqref{cwt:sweep-function} 
 für komplexe Morlet-Wavelets $\psi(t) = e^{-t^2/2+5it}$.
 \label{cwt:sweep-cwt-abs-phase}}
@@ -398,7 +402,7 @@ für komplexe Morlet-Wavelets $\psi(t) = e^{-t^2/2+5it}$.
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/4-cwt/images/sweep.pdf}
-\caption{Farbcodierte Darstellung der stetigen Wavelet-Transformation
+\caption{Farbcodierte Darstellung der stetigen Wavelettransformation
 der Sweep-Funktion~\eqref{cwt:sweep-function}
 für komplexe Morlet-Wavelets $\psi(t) = e^{-t^2/2} \sin(5t)$.
 \label{cwt:sweep-cwt-color}}
@@ -417,7 +421,7 @@ codiert, auch hier wird offensichtlich, dass die Phase sehr schnell ändert,
 während die Amplitude nur langsam abfällt.
 
 Ein reelles Wavelet ergibt dagegen immer dann einen maximalen Wert der
-Wavelet-Trans\-for\-ma\-tion, wenn die Extrema des Wavelets mit den Extrema
+Wavelettransformation, wenn die Extrema des Wavelets mit den Extrema
 des Signals zusammenfallen.
 Die komplexen Oszillation $e^{5it}=\cos 5t + i\sin 5t$ kann durch einen
 Phasenfaktor immer so modifiziert werden, dass die Extrema des Realteils

@@ -17,7 +17,7 @@ daher wird verlangt dass $\|\psi\|=1$.
 Diese Voraussetzungen reichen jedoch nicht.
 Es stellt sich heraus, dass einfache Rekonstruktionsformeln nur zu
 bekommen sind, wenn die Funktion $\psi(t)$ zusätzlich der folgenden
-{\em Zulässigkeitsbedingung} genügen.
+{\em Zulässigkeitsbedingung} genügt.
 \index{Zulässigkeitsbedingung}%
 
 \begin{definition}
@@ -90,7 +90,7 @@ Es gilt
 &=
 \frac{1}{\sqrt{2\pi}}
 ie^{-i\omega/2}
-\frac{\sin(\omega/4)^2}{\omega/4}
+\frac{\sin(\omega/4)^2}{\omega/4}.
 \end{align*}
 Die Zulässigkeitsbedingung ist jetzt leicht zu verifizieren, denn
 der Integrand der Zulässigkeitsbedingung~\eqref{cwt:zulaessig} ist
@@ -106,8 +106,8 @@ mit der Sinus cardinalis Funktion
 \si x = \frac{\sin x}{x}
 \]
 (siehe auch Abbildung~\ref{cwt:figure:haarzulaessig}).
-Die Sinus-Funktion auf der rechten Seite ist beschränkt.
-Es ist wohlbekannt, dass die Kardinalsinus-Funktion integierbar ist.
+Die Sinusfunktion auf der rechten Seite ist beschränkt.
+Es ist wohlbekannt, dass die Kardinalsinusfunktion integierbar ist.
 Folglich ist auch das Integral \eqref{cwt:zulaessig} beschränkt.
 \end{beispiel}
 
@@ -189,7 +189,7 @@ weglassen, also}
 +
 \underbrace{
 \int_{|\omega|> 1} |\hat{\psi}(\omega)|^2\,d\omega
-}_{\displaystyle = \|\hat{\psi}\|^2 = \|\psi\|^2}.
+}_{\displaystyle \le \|\hat{\psi}\|^2 = \|\psi\|^2}.
 \label{cwt:wavelet:zu1}
 \end{align}
 Für das erste Integral verwenden wir, dass nach
@@ -222,7 +222,7 @@ M^2 \cdot 2\biggl[ \frac{\omega}2 \biggr]_0^1
 =
 M^2.
 \]
-Setzt man dies in die Ungleichung \eqref{cwt:wavelet:zu1} ein erhält man
+Setzt man dies in die Ungleichung \eqref{cwt:wavelet:zu1} ein, erhält man
 \[
 \int_{-\infty}^\infty \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,d\omega
 \le M^2 + \|\psi\|^2 \le \infty.
@@ -249,11 +249,11 @@ sehr rasch abfallen, wie im folgenden Beispiel.
 \begin{figure}
 \centering
 \includegraphics{chapters/4-cwt/images/mexican.pdf}
-\caption{Mexikaner-Hut Wavelet gemäss
+\caption{Mexikanerhut Wavelet gemäss
 \eqref{wavelet:mexikanerhut}
 \label{wavelet:mexikanerhut:graph}}
 \end{figure}
-Das Mexikanerhut-Wavelet ist definiert durch die Funktion
+Das Mexikanerhutwavelet ist definiert durch die Funktion
 \begin{equation}
 \psi_{\text{M}}(t) = \frac{2}{\pi^{\frac14}\sqrt{3}}(1-t^2) e^{-t^2/2}.
 \label{wavelet:mexikanerhut}
@@ -267,11 +267,15 @@ erfüllt damit automatisch die Bedingung von Satz~\ref{satz:zulaessigkeit}.
 
 Das Kriterium von Satz~\ref{satz:zulaessigkeit} führt uns aber auch auf
 das folgende Paradoxon. 
-Da das Integral von $\psi$ verschwindet, dann auch von allen verschobenen
-und skalierten Versionen von $\psi$, dann müsste doch auch die Grenzfunktion
-diese Eigenschaft haben.
-Wir werden später zeigen, dass die Approximationen der Ausgangsfunktion,
-die mit der Wavelet-Transformation gewonnen wurden, zwar im Sinne von $L^2$
+Da das Integral von $\psi$ verschwindet, dann verschwinden auch die Integrale
+von allen verschobenen und skalierten Versionen von $\psi$.
+Eine Überlagerung von skalierten Translaten von $\psi$ wird daher
+immer verschwindendes Integral haben.
+Wie in aller Welt soll es möglich sein, Signale, deren Integral nicht 
+verschwindet, mit einer Funktion zu approximieren, deren Integral
+verschwindet?
+Man kann zeigen, dass die Approximationen der Ausgangsfunktion,
+die mit der Wavelettransformation gewonnen wurden, zwar im Sinne von $L^2$
 gegen die Ausgangsfunktion konvergieren, nicht aber im Sinne von $L^1$.
 
 
