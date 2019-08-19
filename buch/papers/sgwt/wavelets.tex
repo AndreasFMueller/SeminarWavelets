@@ -50,7 +50,7 @@ $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
 Mit den in ~\cref{sec:sgwt:spectralanalysis} vorgestellten Eigenfunktionen 
 k\"onnen wir aber nutzen um eine Graph Fourier Transformation zu definieren. 
 Dazu ersetzen wir bei der Fourier Transformation die Exponentialfunktion durch 
-die Eigenvektoren der Laplace Matrix und erhalten
+die Eigenvektoren der Laplace-Matrix und erhalten
 \begin{equation*}
 \hat{f} = \langle \chi, f \rangle = \sum_{n = 1}^{N} \chi^*(n)f(n).
 \end{equation*}
@@ -87,7 +87,7 @@ tun.
 Leider haben Graphen den Nachteil, dass die Knoten keine inh\"arente 
 Reihenfolge besitzen. Es ist also nicht klar, was mit $f(v - h)$ gemeint ist. 
 Wir haben allerdings in~\cref{eq:sgwt:lambda:series} eine Reihenfolge f\"ur die 
-Eigenwerte der Laplace Matrix eines Graphen definiert. Die Eigenwerte sind 
+Eigenwerte der Laplace-Matrix eines Graphen definiert. Die Eigenwerte sind 
 allerdings vollst\"andig lokalisiert, womit sie einem Dirac-Stoss an einem 
 Knoten gleich kommen. Wir k\"onnten also versuchen das Spektrum des Graphen so 
 zu manipulieren, dass eine Lokalisierung m\"oglich wird.
@@ -128,7 +128,7 @@ erstes Wavelet $\psi$, zu sehen in~\cref{fig:sgwt:gft:iggft}.
         ]{papers/sgwt/images/dirac/dirac_g_igft.pdf}
         \vspace{-20pt}
         \caption{R\"ucktransformation der mittels Kernelfunktion $g(\lambda)$ 
-            modifizierten Dirac-Stoss Graph-Transformation        
+            modifizierten Dirac-Stoss Graph Fourier Transformation        
             aus~\cref{fig:sgwt:gft:ggft}, 
             $\psi = \chi\hat{\delta}_g(\lambda)$.
             \label{fig:sgwt:gft:iggft}}
@@ -139,7 +139,7 @@ erstes Wavelet $\psi$, zu sehen in~\cref{fig:sgwt:gft:iggft}.
         width=\textwidth
         ]{papers/sgwt/images/dirac/dirac_gft.pdf}
         \vspace{-20pt}
-        \caption{Graph-Transformation des Dirac-Stosses 
+        \caption{Graph Fourier Transformation des Dirac-Stosses 
             aus~\cref{fig:sgwt:gft:dirac},
             $\hat{\delta}(v) = \chi^*\delta(v)$.
             \label{fig:sgwt:gft:gft}}
@@ -189,7 +189,7 @@ dann unser zweites Wavelet $\phi$.
         ]{papers/sgwt/images/dirac/dirac_h_igft.pdf}
         \vspace{-0pt}
         \caption{R\"ucktransformation der mittels Kernelfunktion $h(\lambda)$ 
-        modifizierten Dirac-Stoss Graph-Transformation
+        modifizierten Dirac-Stoss Graph Fourier Transformation
         aus~\cref{fig:sgwt:gft:hgft}, $\phi = \chi\hat{\delta}_h(\lambda)$.
         \label{fig:sgwt:gft:ihgft}}
     \end{minipage}
@@ -213,7 +213,7 @@ Wavelet-Familie $\psi_t$.
 
 \Cref{fig:sgwt:gft:gt1gft,fig:sgwt:gft:gt2gft,fig:sgwt:gft:gt3gft,fig:sgwt:gft:gt4gft,fig:sgwt:gft:gt5gft}
 zeigen Beispiele von unterschiedlich skalierten Kernelfunktionen, 
-die auf die Fourier Graph-Transformierte eines Dirac-Stosses angewandt werden.
+die auf die Graph Fourier Transformierte eines Dirac-Stosses angewandt werden.
 \Cref{fig:sgwt:gft:igt1gft,fig:sgwt:gft:igt2gft,fig:sgwt:gft:igt3gft,fig:sgwt:gft:igt4gft,fig:sgwt:gft:igt5gft}
 wiederum zeigen die daraus resultierende Wavelet-Familie $\psi_t$.
 \begin{figure}
@@ -242,8 +242,8 @@ wiederum zeigen die daraus resultierende Wavelet-Familie $\psi_t$.
         width=\textwidth
         ]{papers/sgwt/images/dirac/dirac_gt2_gft.pdf}
         \vspace{-20pt}
-        \caption{Eine mit $g(t\lambda)$, $t = 0.42295$, modifizierte Fourier 
-        Graph-Transformierte eines Dirac-Stosses.
+        \caption{Eine mit $g(t\lambda)$, $t = 0.42295$, modifizierte 
+        Graph Fourier Transformierte eines Dirac-Stosses.
         \label{fig:sgwt:gft:gt2gft}}
     \end{minipage}
     ~
@@ -261,8 +261,8 @@ wiederum zeigen die daraus resultierende Wavelet-Familie $\psi_t$.
         width=\textwidth
         ]{papers/sgwt/images/dirac/dirac_gt3_gft.pdf}
         \vspace{-20pt}
-        \caption{Eine mit $g(t\lambda)$, $t = 0.89443$, modifizierte Fourier 
-        Graph-Transformierte eines Dirac-Stosses.
+        \caption{Eine mit $g(t\lambda)$, $t = 0.89443$, modifizierte 
+        Graph Fourier Transformierte eines Dirac-Stosses.
         \label{fig:sgwt:gft:gt3gft}}
     \end{minipage}
     ~
@@ -282,8 +282,8 @@ wiederum zeigen die daraus resultierende Wavelet-Familie $\psi_t$.
         width=\textwidth
         ]{papers/sgwt/images/dirac/dirac_gt4_gft.pdf}
         \vspace{-20pt}
-        \caption{Eine mit $g(t\lambda)$, $t = 1.89148$, modifizierte Fourier 
-        Graph-Transformierte eines Dirac-Stosses.
+        \caption{Eine mit $g(t\lambda)$, $t = 1.89148$, modifizierte 
+        Graph Fourier Transformierte eines Dirac-Stosses.
         \label{fig:sgwt:gft:gt4gft}}
     \end{minipage}
     ~
@@ -517,20 +517,40 @@ erreicht haben.
 
 Auch f\"ur Kugelgraphen lassen sich nun einfach Wavelets konstruieren.
 In~\cref{fig:sgwt:wavelets:sphere:lambda} sehen wir die Eigenwerte $\lambda$ 
-eines Kugelgraphen mit 1252 Knoten. Im Unterschied zu Kreis- oder 
-Streckengraphen sieht man einen grossen Sprung beim letzten Eigenwert, da die 
-beiden Polknoten im Vergleich zu den anderen einen sehr viel h\"oheren Grad 
-besitzen.
+eines Kugelgraphen mit 1252 Knoten. Im Unterschied zu den Eigenwerten eines 
+Kreisgraphen, zu sehen in~\cref{fig:sgwt:wavelets:ring:lambda}, oder 
+Streckengraphen, in~\cref{fig:sgwt:wavelets:line:lambda}, sieht man einen 
+grossen Sprung beim letzten Eigenwert, da die beiden Polknoten im Vergleich zu 
+den anderen einen sehr viel h\"oheren Grad besitzen.
 \begin{figure}
-    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/wavelets/lambda-ring.pdf}
+    \vspace{-20pt}
+    \caption{Eigenwerte $\lambda$ eines Ringgraphen mit 1252 Knoten.
+    \label{fig:sgwt:wavelets:ring:lambda}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{0.49\textwidth}
+    \includegraphics[
+    width=\textwidth
+    ]{papers/sgwt/images/wavelets/lambda-line.pdf}
+    \vspace{-20pt}
+    \caption{Eigenwerte $\lambda$ eines Streckengraphen mit 1252 Knoten.
+    \label{fig:sgwt:wavelets:line:lambda}}
+    \end{minipage}
+    ~
+    \begin{minipage}[t]{\textwidth}
     \includegraphics[
     angle=-90,
     origin=c,
-    scale=0.5
+    width=\textwidth
     ]{papers/sgwt/images/wavelets/lambda.pdf}
-    \vspace{-50pt}
+    \vspace{-65pt}
     \caption{Eigenwerte $\lambda$ eines Kugelgraphen mit 1252 Knoten. 
-        \label{fig:sgwt:wavelets:sphere:lambda}}
+    \label{fig:sgwt:wavelets:sphere:lambda}}
+    \end{minipage}
 \end{figure}
 \Cref{fig:sgwt:wavelets:sphere:gt1,fig:sgwt:wavelets:sphere:psi1:flat,fig:sgwt:wavelets:sphere:psi1,fig:sgwt:wavelets:sphere:gt2,fig:sgwt:wavelets:sphere:psi2:flat,fig:sgwt:wavelets:sphere:psi2,fig:sgwt:wavelets:sphere:gt3,fig:sgwt:wavelets:sphere:psi3:flat,fig:sgwt:wavelets:sphere:psi3,fig:sgwt:wavelets:sphere:gt4,fig:sgwt:wavelets:sphere:psi4:flat,fig:sgwt:wavelets:sphere:psi4,fig:sgwt:wavelets:sphere:gt5,fig:sgwt:wavelets:sphere:psi5:flat,fig:sgwt:wavelets:sphere:psi5,fig:sgwt:wavelets:sphere:h,fig:sgwt:wavelets:sphere:phi:flat,fig:sgwt:wavelets:sphere:phi}
 zeigen uns die Auswirkungen der verschiedenen mit $t_j$ skalierten 
@@ -562,7 +582,7 @@ Kernelfunktionen $g(t_j\lambda)$ sowie $h(\lambda)$.
         angle=-90,
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets/psi_t1_50_25_630.pdf}
-        \vspace{-45pt}
+        \vspace{-65pt}
         \caption{$\psi_1(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
         \label{fig:sgwt:wavelets:sphere:psi1}
     \end{minipage}
@@ -594,7 +614,7 @@ Kernelfunktionen $g(t_j\lambda)$ sowie $h(\lambda)$.
         angle=-90,
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets/psi_t2_50_25_630.pdf}
-        \vspace{-45pt}
+        \vspace{-65pt}
         \caption{$\psi_2(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
         \label{fig:sgwt:wavelets:sphere:psi2}
     \end{minipage}
@@ -626,7 +646,7 @@ Kernelfunktionen $g(t_j\lambda)$ sowie $h(\lambda)$.
         angle=-90,
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets/psi_t3_50_25_630.pdf}
-        \vspace{-45pt}
+        \vspace{-65pt}
         \caption{$\psi_3(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
         \label{fig:sgwt:wavelets:sphere:psi3}
     \end{minipage}
@@ -658,7 +678,7 @@ Kernelfunktionen $g(t_j\lambda)$ sowie $h(\lambda)$.
         angle=-90,
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets/psi_t4_50_25_630.pdf}
-        \vspace{-45pt}
+        \vspace{-65pt}
         \caption{$\psi_4(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
         \label{fig:sgwt:wavelets:sphere:psi4}
     \end{minipage}
@@ -690,7 +710,7 @@ Kernelfunktionen $g(t_j\lambda)$ sowie $h(\lambda)$.
         angle=-90,
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets/psi_t5_50_25_630.pdf}
-        \vspace{-45pt}
+        \vspace{-65pt}
         \caption{$\psi_5(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
         \label{fig:sgwt:wavelets:sphere:psi5}
     \end{minipage}
@@ -722,7 +742,7 @@ Kernelfunktionen $g(t_j\lambda)$ sowie $h(\lambda)$.
         angle=-90,
         origin=c,
         width=\textwidth]{papers/sgwt/images/wavelets/phi_50_25_630.pdf}
-        \vspace{-45pt}
+        \vspace{-65pt}
         \caption{$\phi(v_{630})$-Wavelet eines Kugelgraphen mit 1252 Knoten.}
         \label{fig:sgwt:wavelets:sphere:phi}
     \end{minipage}
