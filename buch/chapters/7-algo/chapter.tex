@@ -3,15 +3,20 @@
 %
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\chapter{Schnelle Wavelet-Algorithmen
+\chapter{Waveletanalyse und Waveletsynthese als Faltungsfilter
 \label{chapter:algo}}
-\lhead{Schnelle Wavelet-Algorithmen}
+\lhead{Waveletanalyse und -synthese als Faltungsfilter}
 Wavelets versprechen eine Signalanalyse, die sich auf jeder Skala auf
 die gleiche Art und Weise abspielt.
-Die Multiskalen-Analyse gibt dies auf axiomatische Art und Weise wieder.
-In jedem der Funktionenräume $V_{j+1}$ sind die hochfrequenten und die 
-niederfrequenten Teile der Signale in gleicher Weise auf die 
+Die Multiskalenanalyse gibt dies auf axiomatische Art und Weise wieder.
+In jedem der Funktionenräume $V_{j+1}$ sind die
+hochfrequenten Detailinformationen und die 
+niederfrequenten Approximationsteile der Signale in gleicher Weise auf die 
 orthogonalen Unterräume $W_j$ und $V_j$ verteilt.
+In diesem Kapitel soll gezeigt werden, wie die Aufteilung praktisch mit
+einem Paar von Filtern durchgeführt werden kann.
+Die Skalierungsrelation ermöglicht, die Berechnung wesentlich zu 
+vereinfachen und zu beschleunigen.
 
 \input{chapters/7-algo/fast.tex}
 \input{chapters/7-algo/synthese.tex}

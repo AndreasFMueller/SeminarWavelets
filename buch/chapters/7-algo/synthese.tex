@@ -18,12 +18,12 @@ Invertierung einer Matrix, ein im Allgmeinen aufwendiger Prozess.
 Doch für orthonormierte Basen ist die Umkehrung einfach.
 In diesem Falle ist die Koordinationentransformationsmatrix
 orthogonal und die inverse Matrix ist die Transponierte.
-Da die aus einer Multiskalen-Analyse hervorgegangenen Wavelet-Basen
+Da die aus einer Multiskalenanalyse hervorgegangenen Waveletbasen
 orthonormiert sind, erwarten wir daher eine ebenfalls leicht zu
 berechnende schnelle Umkehrtransformation.
 Sie soll im Folgenden dargestellt werden.
 
-Die schnelle Wavelet-Transformation erzeugt die Detail-Koeffizienten
+Die schnelle Wavelettransformation erzeugt die Detailkoeffizienten
 $b_{jk}$ aus den Samples $a_{Nk}$.
 Dies entspricht einem Basiswechsel von $\varphi_{N,k}$ zu den
 Vektoren $\psi_{j,k}$ für $j<N$.
@@ -54,9 +54,8 @@ Koordinaten $\xi_i$, er lässt sich also als Linearkombination
 v=\sum_{i} \xi_i b_i
 \]
 schreiben.
-Unter Verwendung der Koeffizienten $t_{ji}$ für den Basiswechsel
-gemäss~\eqref{algo:basiswechsel} lassen
-sich die Koordinaten von $v$ in der Basis $\mathcal{C}$ finden:
+Durch Substitution der Ausdrücke \eqref{algo:basiswechsel} für $b_i$
+lassen sich die Koordinaten von $v$ in der Basis $\mathcal{C}$ finden:
 \[
 \sum_{i} \xi_i b_i
 =
@@ -69,17 +68,17 @@ den Vektor $\xi$ der Koordinaten $\xi_i$ mittels eines Produktes $T\xi$
 in den Vektor $\eta$ der Koordinaten $\eta_j$ der Koordinaten bezüglich
 der Basis $\mathcal{C}$ transformiert.
 
-\subsection{Transformationsmatrix für Wavelet-Koeffizienten}
-Im Wavelet-Kontext liefert die Skalierungs-Relation den Zusammenhang
+\subsection{Transformationsmatrix für Waveletkoeffizienten}
+Im Waveletkontext liefert die Skalierungsrelation den Zusammenhang
 zwischen den verschiedenen Basen.
-Die Multiskalen-Analyse verspricht, dass sich jeder der Vektorräume
+Die Multiskalenanalyse verspricht, dass sich jeder der Vektorräume
 $V_{j+1}$ auf zwei Arten mit einer Basis ausstatten lässt.
 Einerseits bilden die Vektoren $D_{j+1}T_k\varphi$ eine orthonormierte
 Basis von $V_{j+1}$.
 Andererseits lässt sich $V_{j+1}$ schreiben als orthogonale Summe
 $V_j\oplus W_j$, in der jeder Summand eine orthonormierte Basis hat.
-In $V_j$ ist des die Basis der Vektoren $D_jT_k\varphi$, in $W_j$
-sind es die $D_jT_k\psi$.
+In $V_j$ ist des die Basis der Vektoren $D_{2^{-j}}T_k\varphi$, in $W_j$
+sind es die $D_{2^{-j}}T_k\psi$.
 
 Die Skalierungsrelation für das Vaterwavelet und die Darstellung des
 Mutterwavelets liefern die Beziehungen
@@ -91,7 +90,7 @@ Mutterwavelets liefern die Beziehungen
 \end{align*}
 
 Im Abschnitt~\ref{section:fast} haben wir daraus die Formeln für
-die schnelle Wavelet-Transformation abgeleitet:
+die schnelle Wavelettransformation abgeleitet:
 \begin{align*}
 a_{j,k} &= \sum_{l} \bar{h}_l a_{j+1,l+2k} \qquad\text{und}
 \\
@@ -117,8 +116,64 @@ und die Reihenfolge
 \]
 zu verwenden.
 Für die Umrechnung der Koeffzienten $a_{j+1,k}$ in $a_{j,k}$ und $b_{j,k}$
-ist dann die folgende Matrix anzuwenden:
-\begin{equation}
+ist dann die Matrix \eqref{fast:transmatrix} anzuwenden.
+Der oben beschriebene schnelle Waveletalgorithmus implementiert diese
+Matrixmultiplikation.
+\begin{figure}
+\begin{gather}
+\bgroup
+\def\arraystretch{1.5}
+\begin{tabular}{>{$\mathstrut}c<{$}|
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}}
+        &\dots &a_{j+1,-2}  &a_{j+1,-1}  &a_{j+1,0}   &a_{j+1,1}   &a_{j+1,2}   &a_{j+1,3}   &a_{j+1,4}&a_{j+1,5}&\dots \\
+\hline
+\vdots  &\ddots&\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots   &\vdots   &\ddots\\
+{\color{blue}a_{j,-2}}&\dots &\begin{picture}(0,0)\color{blue}\drawline(-30,-5)(55,-5)(55,10)(-30,10)\end{picture}
+                \bar{h}_2   &\bar{h}_3   &\bar{h}_4   &\bar{h}_5   &\bar{h}_6   &\bar{h}_7   &\bar{h}_8&\bar{h}_9&\dots \\
+{\color{red}b_{j,-2}}&\dots &\begin{picture}(0,0)\color{red}\drawline(-30,-5)(55,-5)(55,10)(-30,10)\end{picture}
+                \bar{g}_2   &\bar{g}_3   &\bar{g}_4   &\bar{g}_5   &\bar{g}_6   &\bar{g}_7   &\bar{g}_8&\bar{g}_9&\dots \\
+{\color{blue}a_{j,-1}}&\dots &\begin{picture}(0,0)\color{blue}\drawline(-10,-5)(125,-5)(125,10)(-10,10)(-10,-5)\end{picture}
+                \bar{h}_0   &\bar{h}_1   &\bar{h}_2   &\bar{h}_3   &\bar{h}_4   &\bar{h}_5   &\bar{h}_6&\bar{h}_7&\dots \\
+{\color{red}b_{j,-1}}&\dots &\begin{picture}(0,0)\color{red}\drawline(-10,-5)(125,-5)(125,10)(-10,10)(-10,-5)\end{picture}
+                \bar{g}_0   &\bar{g}_1   &\bar{g}_2   &\bar{g}_3   &\bar{g}_4   &\bar{g}_5   &\bar{g}_6&\bar{g}_7&\dots \\
+{\color{blue}a_{j, 0}}&\dots &\bar{h}_{-2}&\bar{h}_{-1}&\begin{picture}(0,0)\color{blue}\drawline(-10,-5)(118,-5)(118,10)(-10,10)(-10,-5)\end{picture}
+                                          \bar{h}_0   &\bar{h}_1   &\bar{h}_2   &\bar{h}_3   &\bar{h}_4&\bar{h}_5&\dots \\
+{\color{red}b_{j, 0}}&\dots &\bar{g}_{-2}&\bar{g}_{-1}&\begin{picture}(0,0)\color{red}\drawline(-10,-5)(118,-5)(118,10)(-10,10)(-10,-5)\end{picture}
+                                          \bar{g}_0   &\bar{g}_1   &\bar{g}_2   &\bar{g}_3   &\bar{g}_4&\bar{g}_5&\dots \\
+{\color{blue}a_{j, 1}}&\dots &\bar{h}_{-4}&\bar{h}_{-3}&\bar{h}_{-2}&\bar{h}_{-1}&\begin{picture}(0,0)\color{blue}\drawline(-10,-5)(116,-5)(116,10)(-10,10)(-10,-5)\end{picture}
+                                                                    \bar{h}_0   &\bar{h}_1   &\bar{h}_2&\bar{h}_3&\dots \\
+{\color{red}b_{j, 1}}&\dots &\bar{g}_{-4}&\bar{g}_{-3}&\bar{g}_{-2}&\bar{g}_{-1}&\begin{picture}(0,0)\color{red}\drawline(-10,-5)(116,-5)(116,10)(-10,10)(-10,-5)\end{picture}
+                                                                    \bar{g}_0   &\bar{g}_1   &\bar{g}_2&\bar{g}_3&\dots \\
+{\color{blue}a_{j, 2}}&\dots &\bar{h}_{-6}&\bar{h}_{-5}&\bar{h}_{-4}&\bar{h}_{-3}&\bar{h}_{-2}&\bar{h}_{-1}&\begin{picture}(0,0)\color{blue}\drawline(70,-5)(-10,-5)(-10,10)(70,10)\end{picture}
+              \bar{h}_0&\bar{h}_1&\dots \\
+{\color{red}b_{j, 2}}&\dots &\bar{g}_{-6}&\bar{g}_{-5}&\bar{g}_{-4}&\bar{g}_{-3}&\bar{g}_{-2}&\bar{g}_{-1}&\begin{picture}(0,0)\color{red}\drawline(70,-5)(-10,-5)(-10,10)(70,10)\end{picture}
+              \bar{g}_0&\bar{g}_1&\dots \\
+\vdots  &\ddots&\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots   &\vdots   &\ddots\\
+\end{tabular}
+\egroup
+\label{fast:transmatrix}
+\\[10pt]
+%\end{equation}
+%\caption{Darstellung der Wavelettransformation als Transformationsmatrix.
+%Die Koeffizienten mit Indizes $0$ bis $3$, die bei einem \texttt{db2}-Wavelet
+%von $0$ verschieden sind, sind farblich hervorgehoben, dadurch wird die
+%Struktur besser erkennbar.
+%Alternierende Zeilen sind bis auf eine Verschiebung um 2 identisch,
+%die Matrix beschreibt daher zwei Faltungsfilter mit Koeffizienten
+%$\bar{h}_k$ und $\bar{g}_k$.
+%\label{algo:vorwaertstransformation}}
+%\end{figure}
+%\begin{figure}
+%\begin{equation}
 \bgroup
 \def\arraystretch{1.5}
 \begin{tabular}{>{$}c<{$}|
@@ -131,32 +186,51 @@ ist dann die folgende Matrix anzuwenden:
 >{$}c<{$}
 >{$}c<{$}
 >{$}c<{$}
->{$}c<{$}|}
-        &\dots &a_{j+1,-2}  &a_{j+1,-1}  &a_{j+1,0}   &a_{j+1,1}   &a_{j+1,2}   &a_{j+1,3}   &a_{j+1,4}&a_{j+1,5}&\dots \\
+>{$}c<{$}
+>{$}c<{$}
+>{$}c<{$}}
+          &\dots &{\color{blue}a_{j,-2}}&{\color{red}b_{j,-2}}&{\color{blue}a_{j,-1}}&{\color{red}b_{j,-1}}&{\color{blue}a_{j,0}}&{\color{red}b_{j,0}}&{\color{blue}a_{j,1}}&{\color{red}b_{j,1}}&{\color{blue}a_{j,2}}&{\color{red}b_{j,2}}&\dots \\
 \hline
-\vdots  &\ddots&\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots   &\vdots   &\ddots\\
-a_{j,-2}&\dots &\bar{h}_2   &\bar{h}_3   &\bar{h}_4   &\bar{h}_5   &\bar{h}_6   &\bar{h}_7   &\bar{h}_8&\bar{h}_9&\dots \\
-b_{j,-2}&\dots &\bar{g}_2   &\bar{g}_3   &\bar{g}_4   &\bar{g}_5   &\bar{g}_6   &\bar{g}_7   &\bar{g}_8&\bar{g}_9&\dots \\
-a_{j,-1}&\dots &\bar{h}_0   &\bar{h}_1   &\bar{h}_2   &\bar{h}_3   &\bar{h}_4   &\bar{h}_5   &\bar{h}_6&\bar{h}_7&\dots \\
-b_{j,-1}&\dots &\bar{g}_0   &\bar{g}_1   &\bar{g}_2   &\bar{g}_3   &\bar{g}_4   &\bar{g}_5   &\bar{g}_6&\bar{g}_7&\dots \\
-a_{j, 0}&\dots &\bar{h}_{-2}&\bar{h}_{-1}&\bar{h}_0   &\bar{h}_1   &\bar{h}_2   &\bar{h}_3   &\bar{h}_4&\bar{h}_5&\dots \\
-b_{j, 0}&\dots &\bar{g}_{-2}&\bar{g}_{-1}&\bar{g}_0   &\bar{g}_1   &\bar{g}_2   &\bar{g}_3   &\bar{g}_4&\bar{g}_5&\dots \\
-a_{j, 1}&\dots &\bar{h}_{-4}&\bar{h}_{-3}&\bar{h}_{-2}&\bar{h}_{-1}&\bar{h}_0   &\bar{h}_1   &\bar{h}_2&\bar{h}_3&\dots \\
-b_{j, 1}&\dots &\bar{g}_{-4}&\bar{g}_{-3}&\bar{g}_{-2}&\bar{g}_{-1}&\bar{g}_0   &\bar{g}_1   &\bar{g}_2&\bar{g}_3&\dots \\
-a_{j, 2}&\dots &\bar{h}_{-6}&\bar{h}_{-5}&\bar{h}_{-4}&\bar{h}_{-3}&\bar{h}_{-2}&\bar{h}_{-1}&\bar{h}_0&\bar{h}_1&\dots \\
-b_{j, 2}&\dots &\bar{g}_{-6}&\bar{g}_{-5}&\bar{g}_{-4}&\bar{g}_{-3}&\bar{g}_{-2}&\bar{g}_{-1}&\bar{g}_0&\bar{g}_1&\dots \\
-\vdots  &\ddots&\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots      &\vdots   &\vdots   &\ddots\\
-\hline
+\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
+a_{j+1,-2}&\dots &\begin{picture}(0,0)\color{darkgreen}\drawline(-10,-5)(105,-5)(105,10)(-10,10)(-10,-5)\end{picture}
+                  h_{ 2}  &g_{ 2}  &h_{ 0}  &g_{ 0}  &h_{-2} &g_{-2} &h_{-4} &g_{-4} &h_{-6} &g_{-6} &\dots \\
+a_{j+1,-1}&\dots &\begin{picture}(0,0)\color{orange}\drawline(-10,-5)(105,-5)(105,10)(-10,10)(-10,-5)\end{picture}
+                  h_{ 3}  &g_{ 3}  &h_{ 1}  &g_{ 1}  &h_{-1} &g_{-1} &h_{-3} &g_{-3} &h_{-5} &g_{-5} &\dots \\
+a_{j+1, 0}&\dots &h_{ 4}  &g_{ 4}  &\begin{picture}(0,0)\color{darkgreen}\drawline(-10,-5)(98,-5)(98,10)(-10,10)(-10,-5)\end{picture}
+                  h_{ 2}  &g_{ 2}  &h_{ 0} &g_{ 0} &h_{-2} &g_{-2} &h_{-4} &g_{-4} &\dots \\
+a_{j+1, 1}&\dots &h_{ 5}  &g_{ 5}  &\begin{picture}(0,0)\color{orange}\drawline(-10,-5)(98,-5)(98,10)(-10,10)(-10,-5)\end{picture}
+                  h_{ 3}  &g_{ 3}  &h_{ 1} &g_{ 1} &h_{-1} &g_{-1} &h_{-3} &g_{-3} &\dots \\
+a_{j+1, 2}&\dots &h_{ 6}  &g_{ 6}  &h_{ 4}  &g_{ 4}  &\begin{picture}(0,0)\color{darkgreen}\drawline(-10,-5)(90,-5)(90,10)(-10,10)(-10,-5)\end{picture}
+                  h_{ 2} &g_{ 2} &h_{ 0} &g_{ 0} &h_{-2} &g_{-2} &\dots \\
+a_{j+1, 3}&\dots &h_{ 7}  &g_{ 7}  &h_{ 5}  &g_{ 5}  &\begin{picture}(0,0)\color{orange}\drawline(-10,-5)(90,-5)(90,10)(-10,10)(-10,-5)\end{picture}
+                  h_{ 3} &g_{ 3} &h_{ 1} &g_{ 1} &h_{-1} &g_{-1} &\dots \\
+a_{j+1, 4}&\dots &h_{ 8}  &g_{ 8}  &h_{ 6}  &g_{ 6}  &h_{ 4} &g_{ 4} &\begin{picture}(0,0)\color{darkgreen}\drawline(-10,-5)(90,-5)(90,10)(-10,10)(-10,-5)\end{picture}
+                  h_{ 2} &g_{ 2} &h_{ 0} &g_{ 0} &\dots \\
+a_{j+1, 5}&\dots &h_{ 9}  &g_{ 9}  &h_{ 7}  &g_{ 7}  &h_{ 5} &g_{ 5} &\begin{picture}(0,0)\color{orange}\drawline(-10,-5)(90,-5)(90,10)(-10,10)(-10,-5)\end{picture}
+                  h_{ 3} &g_{ 3} &h_{ 1} &g_{ 1} &\dots \\
+\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
 \end{tabular}
 \egroup
-\label{fast:transmatrix}
-\end{equation}
+\label{fast:rueckmatrix}
+\end{gather}
+%\end{equation}
+\caption{Darstellung der Wavelettransformation~\eqref{fast:transmatrix}
+und der Rücktransformation~\eqref{fast:rueckmatrix} als Transformationsmatrizen.
+Die Koeffizienten mit Indizes $0$ bis $3$, die bei einem \texttt{db2}-Wavelet
+von $0$ verschieden sind, sind farblich hervorgehoben, dadurch wird die
+Struktur besser erkennbar.
+Alternierende Zeilen sind bis auf eine Verschiebung um 2 identisch,
+beide Matrizen beschreiben daher zwei Faltungsfilter mit Koeffizienten
+$\bar{h}_k$ und $\bar{g}_k$, die für die Rücktransformation nur 
+konjugiert und etwas anders angeordnet sind.
+\label{algo:transformation}}
+\end{figure}
 %
 % invertierung der Transformation
 %
 \subsection{Invertierung}
 Wir nehmen jetzt zusätzlich an, dass die Basen $\mathcal{B}$ und $\mathcal{C}$
-orthonormiert sind, eine Voraussetzung die für die skalierten Mutter- und
+orthonormiert sind, eine Voraussetzung, die für die skalierten Mutter- und
 Vaterwavelets einer Multiskalenanalyse erfüllt ist.
 Es gilt also
 \[
@@ -167,7 +241,7 @@ Es gilt also
 \langle c_i,c_j\rangle &=\delta_{ij}\;\forall i,j.
 \end{aligned}
 \]
-Auch diese Bedingung ist für die Basen, die aus einer Multiskalen-Analyse hervorgehen, erfüllt.
+%Auch diese Bedingung ist für die Basen, die aus einer Multiskalenanalyse hervorgehen, erfüllt.
 Die Koeffizienten $t_{ji}$ waren definiert durch die
 Formel~\eqref{algo:basiswechsel}.
 Die Orthogonalitätsbedingungen für die Vektoren $b_i$ werden damit
@@ -183,7 +257,7 @@ Die Orthogonalitätsbedingungen für die Vektoren $b_i$ werden damit
 =
 \sum_{j} t_{ji}\bar{t}_{jk}.
 \]
-In Matrix-Schreibweise ist dies
+In Matrixschreibweise ist dies
 \[
 E
 =
@@ -197,49 +271,49 @@ T^*T=E.
 Daraus kann man ablesen, dass $T^*$ die inverse Matrix zu $T$ ist.
 Wie erwartet ist die Bestimmung der inversen Matrix für die Transformation 
 zwischen orthonormierten Basen einfach.
+\begin{definition}
+Eine komplexe Matrix $T$ mit der Eigenschaft $T^*T=E$ heisst {\em unitär}.
+Für eine reelle Matrix vereinfacht sich die Eigenschaft auf $T^tT=E$, eine
+solche Matrix heisst {\em orthogonal}.
+\index{Matrix!unitär}%
+\index{Matrix!komplex}%
+\end{definition}
+Für Orthonormalbasen ist die Transformationsmatrix also unitär bzw.~in
+einem komplexen Vektorraum unitär.
+Die inverse Transformation ist sehr einfach zu bestimmen, sie ist $T^{-1}=T^t$
+im reellen Fall oder $T^{-1}=T^*$ im komplexen Fall.
 
-\subsection{Schnelle Wavelet-Synthese}
-Für die schnelle Wavelet-Transformation kann mit Hilfe der Matrix~\eqref{fast:transmatrix}
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{chapters/7-algo/images/rueckalgo.pdf}
+\caption{Datenfluss im Rücktransformationsalgorithmus zur in
+Abbildung~\ref{algo:image:fastalgo} dargestellten Wavelettransformation.
+Die grünen und orangen Pfeile entsprechen farblich den Koeffizienten
+in der Rücktransformationsmatrix~\eqref{fast:rueckmatrix} (man beachte
+aber, dass in Abbildung~\ref{algo:image:fastalgo} die Koeffizienten mit
+Indizes $-1,\dots,2$ von $0$ verschieden waren, daher decken sich die
+Pfeile nicht mit der Matrix~\eqref{fast:rueckmatrix}).
+Es wird deutlich, dass für die Rücktransformation nur die Detailkoeffizienten
+$b_{j,k}$ für alle $j$ und $k$
+sowie die ``gröbsten'' Approximationskoeffizienten $a_{0,k}$ benötigt werden.
+Das gleiche hierarchische Muster wie in der Wavelettransformation erlaubt
+die Synthese ebenfalls in einer Zeit, die linear von der Inputlänge
+abhängt.
+\label{fast:rueckfluss}}
+\end{figure}
+
+\subsection{Schnelle Waveletsynthese}
+Die schnelle Wavelettransformation kann mit Hilfe der
+Matrix~\eqref{fast:transmatrix}
 geschrieben werden.
-Die Umkehrtransformation muss daher die transponierte und konjugierte Matrix verwenden:
-\begin{equation}
-\bgroup
-\def\arraystretch{1.5}
-\begin{tabular}{>{$}c<{$}|
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}
->{$}c<{$}|}
-          &\dots &a_{j,-2}&b_{j,-2}&a_{j,-1}&b_{j,-1}&a_{j,0}&b_{j,0}&a_{j,1}&b_{j,1}&a_{j,2}&b_{j,2}&\dots \\
-\hline
-\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
-a_{j+1,-2}&\dots &h_{ 2}  &g_{ 2}  &h_{ 0}  &g_{ 0}  &h_{-2} &g_{-2} &h_{-4} &g_{-4} &h_{-6} &g_{-6} &\dots \\
-a_{j+1,-1}&\dots &h_{ 3}  &g_{ 3}  &h_{ 1}  &g_{ 1}  &h_{-1} &g_{-1} &h_{-3} &g_{-3} &h_{-5} &g_{-5} &\dots \\
-a_{j+1, 0}&\dots &h_{ 4}  &g_{ 4}  &h_{ 2}  &g_{ 2}  &h_{ 0} &g_{ 0} &h_{-2} &g_{-2} &h_{-4} &g_{-4} &\dots \\
-a_{j+1, 1}&\dots &h_{ 5}  &g_{ 5}  &h_{ 3}  &g_{ 3}  &h_{ 1} &g_{ 1} &h_{-1} &g_{-1} &h_{-3} &g_{-3} &\dots \\
-a_{j+1, 2}&\dots &h_{ 6}  &g_{ 6}  &h_{ 4}  &g_{ 4}  &h_{ 2} &g_{ 2} &h_{ 0} &g_{ 0} &h_{-2} &g_{-2} &\dots \\
-a_{j+1, 3}&\dots &h_{ 7}  &g_{ 7}  &h_{ 5}  &g_{ 5}  &h_{ 3} &g_{ 3} &h_{ 1} &g_{ 1} &h_{-1} &g_{-1} &\dots \\
-a_{j+1, 4}&\dots &h_{ 8}  &g_{ 8}  &h_{ 6}  &g_{ 6}  &h_{ 4} &g_{ 4} &h_{ 2} &g_{ 2} &h_{ 0} &g_{ 0} &\dots \\
-a_{j+1, 5}&\dots &h_{ 9}  &g_{ 9}  &h_{ 7}  &g_{ 7}  &h_{ 5} &g_{ 5} &h_{ 3} &g_{ 3} &h_{ 1} &g_{ 1} &\dots \\
-\vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
-\hline
-\end{tabular}
-\egroup
-\end{equation}
-Daraus kann man ablesen, wie die Koeffizienten $a_{j+1,k}$ aus $a_{j,k}$ und $b_{j,k}$
-berechnet werden können.
+Die Umkehrtransformation muss daher die transponierte und konjugierte Matrix
+\eqref{algo:rueckmatrix} verwenden.
+Aus ihr kann man ablesen, wie die Koeffizienten $a_{j+1,k}$ aus $a_{j,k}$
+und $b_{j,k}$ berechnet werden können.
 
 \begin{satz}
-Die Umkehrtransformation der schnellen Wavelet-Transformation berechnet die hochfrequenten
-Wavelet-Koeffizienten $a_{j+1,k}$ aus den Koeffizienten
+Die Umkehrtransformation der schnellen Wavelettransformation berechnet die
+hochfrequenten Waveletkoeffizienten $a_{j+1,k}$ aus den Koeffizienten
 $a_{j,k}$ und $b_{j,k}$ gemäss
 \begin{equation}
 \begin{aligned}
@@ -285,11 +359,22 @@ b_{j,l}.
 \end{equation}
 \end{satz}
 
+Das Datenflussdiagramm in Abbildung~\ref{fast:rueckfluss} zeigt, 
+wie die Detailkoeffizienten $b_{j,k}$ den Approximationen $a_{j,k}$
+mehr Information hinzufügen, wodurch die Approximationskoeffizienten
+$a_{j+1,k}$ entstehen.
+Es liegt die gleiche hierarchische Struktur vor, die den Rechenaufwand
+Analysealgorithmus unter Kontrolle hielt. 
+Auch die Synthese ist daher in Zeit $O(l)$ von der Inputlänge $l$
+möglich.
+
 \begin{beispiel}
 Die Koeffizienten $h_{\cdot}$ und $g_{\cdot}$ für das Haar-Wavelet sind
 wohlbekannt.
 Sie sind $h_0=h_1=1$, $g_0=0$ and $g_1=-1$.
-Die Transformations-Matrix wird damit zu
+Die zugehörige Transformationsmatrix ist in Abbildung~\ref{algo:haarmatrix}
+tabellarisch dargestellt.
+\begin{figure}
 \begin{equation}
 \bgroup
 \def\arraystretch{1.5}
@@ -305,7 +390,7 @@ Die Transformations-Matrix wird damit zu
 >{$}c<{$}
 >{$}c<{$}
 >{$}c<{$}
->{$}c<{$}|}
+>{$}c<{$}}
           &\dots &a_{j,-2}&b_{j,-2}&a_{j,-1}&b_{j,-1}&a_{j,0}&b_{j,0}&a_{j,1}&b_{j,1}&a_{j,2}&b_{j,2}&\dots \\
 \hline
 \vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
@@ -318,10 +403,13 @@ a_{j+1, 3}&\dots &    0   &    0   &    0   &    0   &    0  &    0  &    1  &  
 a_{j+1, 4}&\dots &    0   &    0   &    0   &    0   &    0  &    0  &    0  &    0  &    1  &    1  &\dots \\
 a_{j+1, 5}&\dots &    0   &    0   &    0   &    0   &    0  &    0  &    0  &    0  &    1  &   -1  &\dots \\
 \vdots    &\ddots&\vdots  &\vdots  &\vdots  &\vdots  &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots\\
-\hline
 \end{tabular}
 \egroup
 \end{equation}
+\caption{Transformationsmatrix für die Waveletanalyse mit Haar-Wavelet.
+In jeder Zeile sind nur zwei Koeffizienten von $0$ verschieden.
+\label{algo:haarmatrix}}
+\end{figure}
 Damit werden die Umkehrformeln für das Haar-Wavelet zu
 \begin{align*}
 a_{j+1,2k\phantom{+1}}
@@ -332,7 +420,7 @@ a_{j+1,2k         +1 }
 &= 
 a_{j,k} - b_{j,k}.
 \end{align*}
-In diesem Fall sind die Umkehrformeln also ähnlich einfach wie die Formeln
-für die schnelle Vorwärts-Transformation.
+Die Umkehrformeln sind bis auf die Bezeichnung der Variablen identisch
+mit den Formeln für die schnelle Vorwärtstransformation.
 \end{beispiel}
 

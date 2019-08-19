@@ -26,8 +26,8 @@ mit zunehmen dunklerer Farbe.
 };
 \end{tikzpicture}
 \caption{Vaterwavelet $\varphi$ (blau) und Mutterwavelet $\psi$
-(rot) für die Daubechies-Wavelets \texttt{db2} und \texttt{db4}.
-Das Daubechies-Wavelet \texttt{db2} ist identisch mit dem Haar-Wavelet.
+(rot) für die Daubechies-Wavelets \texttt{db1} und \texttt{db2}.
+Das Daubechies-Wavelet \texttt{db1} ist identisch mit dem Haar-Wavelet.
 \label{buch:algo:db1}}
 \end{figure}%
 \begin{figure}
@@ -35,11 +35,11 @@ Das Daubechies-Wavelet \texttt{db2} ist identisch mit dem Haar-Wavelet.
 \includegraphics{chapters/7-algo/images/db4.pdf}\\
 \includegraphics{chapters/7-algo/images/db5.pdf}
 \caption{Vaterwavelet $\varphi$ (blau) und Mutterwavelet $\psi$
-(rot) für die Daubechies-Wavelets \texttt{db6} bis \texttt{db10}
+(rot) für die Daubechies-Wavelets \texttt{db3} bis \texttt{db5}
 von oben nach unten.
 \label{buch:algo:db2}}
 \end{figure}%
-Für die praktische Anwendung einer Wavelet-Transformation ist
+Für die praktische Anwendung einer Wavelettransformation ist
 die konkrete Darstellung der Funktionen $\varphi$ und $\psi$
 nicht notwendig.
 Die schnellen Algorithmen sind völlig ausreichend um die
@@ -49,11 +49,11 @@ jedes Signal wieder rekonstruieren, ohne dass dazu explizit
 Linearkombinationen der Funktionen $\varphi$ und $\psi$ gebildet
 werden müssten.
 
-Trotzdem ist es interessant eine konkrete Vorstellung der Kurvenform
+Trotzdem ist es interessant, eine konkrete Vorstellung der Kurvenform
 von $\varphi$ und $\psi$ zu haben, zum Beispiel um die in der
-Wavelet-Transformation sichtbaren Features besser verstehen
+Wavelettransformation sichtbaren Features besser verstehen
 zu können.
-Dazu kann der schnelle Synthese-Algorithmus verwendet werden.
+Dazu kann der schnelle Synthesealgorithmus verwendet werden.
 Ist nämlich $f(t)=\psi(t)$ das Mutterwavelet, dann gilt
 \[
 \begin{aligned}
@@ -92,7 +92,7 @@ $\sqrt{2} g_k$ statt mit $h_k$ und $g_k$ durchführt.
 
 In den Abbildungen \ref{buch:algo:db1} und \ref{buch:algo:db2}
 ist das Resultat der Rücktransformation für die Daubechies-Wavelets
-\texttt{db2} bis \texttt{db10} dargestellt.
+\texttt{db1} bis \texttt{db5} dargestellt.
 Die Koeffizienten für die Skalierungsfunktionen dieser Wavelets werden
 im Kapitel~\ref{chapter:kompakt} berechnet.
 
