@@ -82,8 +82,8 @@ in~\eqref{geometrie:cov}.
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/sinsin.pdf}
-\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
-verrauschten Sinus-Signal $\color{blue}y(t)$.
+\caption{Vergleich eines Sinussignals $\color{red}x(t)$ mit einem
+verrauschten Sinussignal $\color{blue}y(t)$.
 Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
 hauptsächlich im ersten und dritten Quadranten.
 \label{geometrie:kovarianz:sinsin:image}}
@@ -91,8 +91,8 @@ hauptsächlich im ersten und dritten Quadranten.
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/sincos.pdf}
-\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
-verrauschten Kosinus-Signal $\color{blue}y(t)$.
+\caption{Vergleich eines Sinussignals $\color{red}x(t)$ mit einem
+verrauschten Kosinussignal $\color{blue}y(t)$.
 Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
 in ungefähr gleicher Zahl in allen vier Quadranten, die Kovarianz
 wird klein sein.
@@ -101,8 +101,8 @@ wird klein sein.
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/sinrect.pdf}
-\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
-verrauschten Rechteck-Signal $\color{blue}y(t)$.
+\caption{Vergleich eines Sinussignals $\color{red}x(t)$ mit einem
+verrauschten Rechtecksignal $\color{blue}y(t)$.
 Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
 hauptsächlich im ersten und dritten Quadranten.
 \label{geometrie:kovarianz:sinrect:image}}
@@ -110,8 +110,8 @@ hauptsächlich im ersten und dritten Quadranten.
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/cosrect.pdf}
-\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
-verrauschten und phasenverschobenen Rechteck-Signal $\color{blue}y(t)$.
+\caption{Vergleich eines Sinussignals $\color{red}x(t)$ mit einem
+verrauschten und phasenverschobenen Rechtecksignal $\color{blue}y(t)$.
 Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
 in ungefähr gleicher Zahl in allen vier Quadranten, die Kovarianz
 wird klein sein.
@@ -120,8 +120,8 @@ wird klein sein.
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{chapters/1-geometrie/images/sinrand.pdf}
-\caption{Vergleich eines Sinus-Signals $\color{red}x(t)$ mit einem
-weissen Rausch-Signal $\color{blue}y(t)$ (normalverteilte Zufallswerte
+\caption{Vergleich eines Sinussignals $\color{red}x(t)$ mit einem
+weissen Rauschsignal $\color{blue}y(t)$ (normalverteilte Zufallswerte
 mit Erwartungswert $0$).
 Die Punkte $({\color{red}x(t)},{\color{blue}y(t)})$ befinden sich
 in ungefähr gleicher Zahl in allen vier Quadranten, die Kovarianz
@@ -176,7 +176,7 @@ in den Abbildungen~\ref{geometrie:kovarianz:sinsin:image} bis
 \ref{geometrie:kovarianz:sinrand:image}.
 
 In den Abbildung~\ref{geometrie:kovarianz:sinsin:image} bis
-\ref{geometrie:kovarianz:sinrand:image} wird ein Sinus-Signal
+\ref{geometrie:kovarianz:sinrand:image} wird ein Sinussignal
 mit Werten $x(t)=\sin t$ abgetastet und verglichen mit
 einer Reihen anderer Signale,
 die alle ebenfalls den Mittelwert $0$ haben.
@@ -185,7 +185,7 @@ Wir wollen beurteilen, wie gut die Summe
 \frac{1}{N}\sum_{k=1}^N x_ky_k
 \]
 wiedergibt, ob die Funktionen etwas miteinander zu tun haben.
-Dazu wird im linken Teil der Abbildung jeweils das Sinus-Signal
+Dazu wird im linken Teil der Abbildung jeweils das Sinussignal
 $x(t)$ rot eingezeichnet und das damit zu vergleichende Signal $y(t)$
 blau.
 Der Unterschiede zwischen den beiden Werten wird durch einen 
@@ -207,14 +207,14 @@ Produkte nur einen kleinen Wert haben wird.
 
 Die Abbildungen~\ref{geometrie:kovarianz:sinsin:image} und
 \ref{geometrie:kovarianz:sinrect:image} zeigen den Vergleich
-des Sinus-Signals mit einer verrauschten Version eines Sinus-Signals
-bzw.~eines Rechteck-Signals $\operatorname{sign}(\sin(t))$.
+des Sinussignals mit einer verrauschten Version eines Sinussignals
+bzw.~eines Rechtecksignals $\operatorname{sign}(\sin(t))$.
 In beiden Fällen liegen die violetten Punkte vorzugsweise im ersten
 und dritten Quadranten, 
 
 In den anderen Abbildungen
-wird das Sinus-Signal der Reihe nach mit einem verrauschten
-Kosinus-Signal (Abbildung~\ref{geometrie:kovarianz:sincos:image}),
+wird das Sinussignal der Reihe nach mit einem verrauschten
+Kosinussignal (Abbildung~\ref{geometrie:kovarianz:sincos:image}),
 einem phasenverschobenen verrauschten Rechtecksignal
 (Abbildung~\ref{geometrie:kovarianz:cosrect:image})
 und mit einem reinen weissen Rauschen
@@ -223,7 +223,7 @@ verglichen.
 In diesen Fällen verteilen sich die violetten Punkte gleichmässig
 über alle vier Quadranten, man erwartet also einen kleinen Wert
 der Summe, was eine geringe Ähnlichkeit der blauen Signale mit dem
-Sinus-Signal ausdrückt.
+Sinussignal ausdrückt.
 
 %Doch auch dies kann nicht ganz richtig sein.
 %Wenn nämlich der Mittelwert der $x_k$ nicht $0$ ist, dann ist die
@@ -340,9 +340,9 @@ $\lambda (u + v) = \lambda u + \lambda v$ für $u,v\in V$ und
 $\lambda\in\mathbb R$.
 \end{enumerate}
 \end{definition}
-Die $n$-dimensionalen Spalten-Vektoren $\mathbb R^n$ bilden ganz offensichtlich
+Die $n$-dimensionalen Spaltenvektoren $\mathbb R^n$ bilden ganz offensichtlich
 einen Vektorraum über $\mathbb R$.
-Zeitbhängige Signale $x(t)$ können ebenfalls zu einem Vektorraum gemacht
+Zeitabhängige Signale $x(t)$ können ebenfalls zu einem Vektorraum gemacht
 werden, wie wir in Abschnitt \ref{section:funktionenraume} sehen werden.
 
 Im vorangegangenen Abschnitt haben wir gelernt, dass wir Skalarprodukte
@@ -364,7 +364,7 @@ V\times V\to\mathbb R
 :
 (u,v)\mapsto \langle u,v\rangle
 \]
-heisst ein {\em Skalarprodukt}, wenn
+heisst ein {\em Skalarprodukt}, wenn gilt:
 \index{Skalarprodukt}%
 \begin{enumerate}
 \item $\langle\;\,,\;\rangle$ ist linear im ersten Argument:
@@ -396,7 +396,7 @@ $\langle u,u\rangle=0$ genau dann, wenn $u=0$.
 \end{enumerate}
 \end{definition}
 
-Für Vektoren $u,v\in\mathbb R^n$ ist das gewohnte Punkt-Produkt
+Für Vektoren $u,v\in\mathbb R^n$ ist das gewohnte Punktprodukt
 \[
 u\cdot v = u^t v = \langle u,v\rangle
 \]
@@ -410,7 +410,7 @@ Das Skalarprodukt eines Vektors mit sich selbst ist
 Wenn es $0$ ist, dann müssen alle Komponenten $u_k=0$ sein, also $u=0$.
 
 \begin{definition}
-Ist $\langle\;,\;\rangle$ ein Skalarprodukt auf $V$, dann ist die zugehörige
+Ist $\langle\;\,,\;\rangle$ ein Skalarprodukt auf $V$, dann ist die zugehörige
 {\em Norm} der Vektoren definiert als
 \index{Norm zu einem Skalarprodukt}%
 \[
@@ -510,9 +510,9 @@ Die Linearität des Skalarproduktes bedeutet nämlich
 \end{align}
 Die Bildung der Norm aus dem Skalarprodukt ist also nicht mit
 Informationsverlust verbunden.
-Formel~\eqref{geometrie:polar} heisst auch {\em Polar-Identität} oder
+Formel~\eqref{geometrie:polar} heisst auch {\em Polaridentität} oder
 {\em Polarisierung} eines reellen Skalarprodukts.
-\index{Polar-Identität}%
+\index{Polaridentität}%
 
 \subsection{Skalarprodukt und orthonormierte Basis}
 In der linearen Algebra lernt man, dass eine orthonormierte Basis besonders
@@ -554,7 +554,7 @@ e_2 = \begin{pmatrix}0\\1\\\vdots\\0\end{pmatrix},\quad
 \qquad
 e_n = \begin{pmatrix}0\\0\\\vdots\\1\end{pmatrix},\quad
 \]
-ist natürlich eine Basis des Vektorraums $\mathbb R^n$.
+sind natürlich eine Basis des Vektorraums $\mathbb R^n$.
 Mit dem früher verwendeten Skalarprodukt sind die $e_k$ orthonormiert.
 
 Die besondere Bedeutung einer orthonormierten Basis ist, dass sich damit

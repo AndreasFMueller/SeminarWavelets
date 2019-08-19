@@ -12,9 +12,6 @@ CHAPTERFILES =								\
 	chapters/1-geometrie/vergleich.tex				\
 	chapters/1-geometrie/funktionen.tex				\
 	chapters/1-geometrie/hilbertraum.tex				\
-	chapters/1-geometrie/rekonstruktion.tex				\
-	chapters/1-geometrie/reziprok.tex				\
-	chapters/1-geometrie/frames.tex					\
 	chapters/1a-frames/chapter.tex					\
 	chapters/1a-frames/frame.tex					\
 	chapters/1a-frames/dual.tex					\

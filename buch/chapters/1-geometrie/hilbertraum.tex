@@ -14,7 +14,7 @@ Beschreibung eines Signals, welches an endlich vielen Stellen abgetastet
 wurde.
 Für kontinuierliche Signale, also Funktionen $x(t)$,  reicht er aber nicht.
 Zunächst ist die Menge aller Funktionen zwar ein Vektorraum, aber es ist
-aussichtslos, eine endliche orthonrmierte Basis zu finden.
+aussichtslos, eine endliche orthonormierte Basis zu finden.
 Vielmehr werden wir sehen, dass bereits der Raum der stetigen Funktionen
 auf einem Intervall unendlich viele Funktionen enthält, die in einem noch
 zu definierenden Sinn aufeinander senkrecht stehen.
@@ -50,17 +50,17 @@ Abschnitt~\ref{subsubsection:komplexevr-mit-skalarprodukt}
 axomiatisch dargestellt.
 \item {\bf Skalarprodukt:}
 Das Skalarprodukt ist das Mass für die Ähnlichkeit zweier Funktionen
-und gleichzeitig die Quelle eines Norm-Begriffs.
+und gleichzeitig die Quelle eines Normbegriffs.
 Abschnitt~\ref{subsection:norm-und-grenzwert} behandelt den Grenzwertbegriff.
 \item {\bf Basis:}
-Anstelle einer Basis genügt es orthonormierte Vektormengen zu finden,
+Anstelle einer Basis genügt es, orthonormierte Vektormengen zu finden,
 mit denen sich jeder beliebige Vektor im Grenzwert linear kombinieren
 lässt.
 Abschnitt~\ref{subsection:hilbertraum-basis} erklärt den Begriff der
-Hilbertraum-Basis.
+Hilbertraumbasis.
 \item {\bf Dualität:}
 In einem endlichdimensionalen Vektorraum ist es so offensichtlich, dass
-jede Linear-Form als Skalarprodukt mit einem geeigneten Vektor 
+jede Linearform als Skalarprodukt mit einem geeigneten Vektor 
 dargestellt werden kann.
 Dies ermöglicht, einen Vektor als Linearform zu charakterisieren.
 In einem unendlichdimensionalen Vektorraum ist dies nicht mehr
@@ -85,7 +85,7 @@ besser verstehen, auf denen die Fourier-Theorie basiert.
 
 \begin{satz}
 Die einzigen stetigen Funktionen, die Eigenvektoren von $T_b$ sind für
-jeden beliebigen Wert von $b$ sind die Funktionen $t\mapsto e^{i\omega t}$.
+jeden beliebigen Wert von $b$, sind die Funktionen $t\mapsto e^{i\omega t}$.
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -321,9 +321,10 @@ Zusammengesetzt finden wir die Formel
 \end{equation}
 für das Skalarprodukt zweier beliebiger Vektoren, ausgedrückt
 ausschliesslich mit der Norm.
-Die Identität \eqref{hilbert:polarisierung} ist auch bekannt unter dem
-Namen {\em Polar-Identität} oder {\em Polarisierung} des Skalarprodukts.
-\index{Polar-Identität}%
+Die Identität \eqref{hilbert:polarisierung} ist die komplexe Version 
+der früher schon gefundenen
+{\em Polaridentität} oder {\em Polarisierung} des Skalarprodukts.
+\index{Polaridentität}%
 \index{Polarisierung}%
 
 
@@ -336,7 +337,7 @@ $e_k$, $k\in\mathbb N$, erfordert, dass Ausdrücken der Form
 \sum_{k=1}^\infty a_k e_k
 \label{hilbert:summe}
 \end{equation}
-einen Sinn gegeben werden muss.
+ein Sinn gegeben werden muss.
 Die Algebra definiert nur endliche Summen.
 Eine unendliche Summe ist in einem rein algebraischen Kontext daher
 sinnlos.
@@ -521,7 +522,7 @@ Hilbertraum $H$ heisst eine {\em Erzeugendensystem}, wenn es keinen Vektor
 $v\in H$ gibt, der auf allen Vektoren von $\mathcal{B}$ senkrecht steht.
 \end{definition}
 
-Das folgende Beispiel zeigt, dass es eine einem unendlichdimensionalen
+Das folgende Beispiel zeigt, dass es in einem unendlichdimensionalen
 Vektorraum möglich ist, eine unendliche Folge orthonormierter Vektoren
 und einen weiteren Vektor zu finden, der auf jedem Vektor senkrecht ist.
 
@@ -694,7 +695,7 @@ Hilbertbasis.
 
 \begin{definition}
 Ein aus orthonormierten Vektoren bestehendes Erzeugendensystem
-eines Hilbertraumes heisst {\em Hilberbasis}
+eines Hilbertraumes heisst {\em Hilbertbasis}
 \end{definition}
 \index{Hilbertbasis}%
 
@@ -797,12 +798,12 @@ Dies ist linke Seite der Parallelogrammregel~\eqref{formel:parallelogrammregel}.
 \begin{figure}
 \centering
 \includegraphics{chapters/1-geometrie/images/parallelogramm.pdf}
-\caption{Parallelogramm-Regel (Satz~\ref{satz:parallelogrammregel})
+\caption{Parallelogrammregel (Satz~\ref{satz:parallelogrammregel})
 \label{figure:parallelogrammregel}}
 \end{figure}
 
 
-Die Parallelogramm-Regel besagt, dass die Summe der Quadrate über den
+Die Parallelogrammregel besagt, dass die Summe der Quadrate über den
 Seiten eines Parallelgramms gleich der Summe der Quadrate über den
 Diagonalen ist.
 Dies ist in Abbildung~\ref{figure:parallelogrammregel} illustriert.
@@ -1198,7 +1199,7 @@ V_1 = \{ u \in H \;|\;\varphi(u)=0\}.
 \]
 Da $\varphi$ eine stetige Linearform ist, ist $V_1$ ein abgeschlossener
 Unterraum von $H$.
-Falls $V_1=H$ folgt, dass $\varphi(u)=0$ für alle $u\in H$ ist,
+Falls $V_1=H$ ist, folgt, dass $\varphi(u)=0$ für alle $u\in H$ ist,
 also kann man $\varphi$ als Skalarprodukt mit dem Nullvektor schreiben:
 $\varphi(u) = \langle u,0\rangle$.
 

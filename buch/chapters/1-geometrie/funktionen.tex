@@ -13,7 +13,7 @@ ansprechend interessante Theorie aufbauen.
 Zum Beispiel könnte man bereits eine Form der diskreten
 Fourier-Transformation entwickeln, wie das zum Beispiel in
 \cite{buch:mathsem-klima} geschieht.
-Für die Entwicklung der Wavelet-Theorie ist es notwendig, dass Signale
+Für die Entwicklung der Wavelettheorie ist notwendig, dass Signale
 entlang der Zeitachse beliebig fein aufgelöst werden können, was
 mit einem bereits abgetasteten Signal nicht möglich ist.
 Es muss daher eine Theorie entwickelt werden, in der man mit
@@ -34,7 +34,7 @@ Dazu müssen die Operationen Addition und Multiplikation mit Skalaren
 definiert werden
 
 \begin{definition}
-Die Vektorraum-Operationen auf $\mathbb R^X$ sind definiert durch
+Die Vektorraumoperationen auf $\mathbb R^X$ sind definiert durch
 \[
 \begin{aligned}
 &\text{Addition:}
@@ -60,7 +60,7 @@ Diese können auch als Spaltenvektoren
 \vec{f} = \begin{pmatrix}f(1)\\\vdots\\f(N)\end{pmatrix}
 \]
 geschrieben werden.
-Die Rechenoperationen in $\mathbb R^X$ und $\mathbb R^N$ sind gleichbedeutent,
+Die Rechenoperationen in $\mathbb R^X$ und $\mathbb R^N$ sind gleichbedeutend,
 wie man zum Beispiel für die Addition verifizieren kann:
 \[
 \overrightarrow{(f+g)}
@@ -130,8 +130,8 @@ auf die übliche geometrische Norm aus.
 In der Supremumnorm spielt nur der maximale Wert eine Rolle,
 Änderungen an kleineren Funktionswerten verändern den Abstand nicht.
 
-Von besonderem Interesse ist für die Zwecke der Signal-Analyse und
--Synthese natürlich der Definitionsbereich $X=\mathbb{R}$, der
+Von besonderem Interesse ist für die Zwecke der Signalanalyse und
+-synthese natürlich der Definitionsbereich $X=\mathbb{R}$, der
 zusätzliche algebraische, geometrische und analytische Struktur trägt, die man
 zur Definition einer Norm verwenden kann, wie wir später sehen werden.
 
@@ -185,7 +185,7 @@ die $D_a$ die zum Skalarprodukt gehörige Norm erhält.
 
 \begin{satz}
 \label{geometrie:satz:inverse}
-Die Operatoren $T_b$ und $D_a$ sind invertierbar und es gilt
+Die Operatoren $T_b$ und $\tilde{D}_a$ sind invertierbar und es gilt
 \[
 T_b^{-1} = T_b
 \qquad\text{und}\qquad
@@ -294,7 +294,7 @@ f((t-ab)/a)
 =
 f((t-ab)/a)
 \end{align*}
-Daraus kann man ablesen, dass $T_{ab}\tilde{D}_a=\tilde{D}_aT_b$.
+Daraus kann man ablesen, dass $T_{ab}\tilde{D}_a=\tilde{D}_aT_b$ ist.
 \end{proof}
 
 Die Abbildung~\ref{geometrie:kommutator:image} illustriert die
@@ -302,26 +302,3 @@ Vertauschungsregel für die Operatoren $T_b$ und $\tilde{D}_a$ und liefert
 einen ``graphischen'' Beweis für die Vertauschungsregel von
 Satz~\ref{satz:kommutator}.
 
-%\begin{satz}
-%Die einzigen stetigen Funktionen, die Eigenvektoren von $T_b$ sind für
-%jeden beliebigen Wert von $b$ sind die Funktionen $t\mapsto e^{i\omega t}$.
-%\end{satz}
-%
-%\begin{proof}[Beweis]
-%Sei $f$ eine Eigenfunktion aller Operatoren $T_b$ mit Eigenwert $\lambda(b)$.
-%$f$ kann keine Nullstelle haben.
-%Wäre nämlich $f(t_0)=0$, dann würde folgen
-%\[
-%(T_bf)(t_0) = f(t_0-b) = \lambda(b) f(t_0) = 0,
-%\]
-%die Funktion würde identisch verschwinden.
-%
-%Weiter kann man aus der Stetigkeit von $f$ schliessen, dass auch
-%\[
-%\lambda(b) = \frac{f(t)}{f(t-b)}
-%\]
-%eine stetige Funktion von $b$ ist, die keine Nullstellen hat.
-%\end{proof}
-%
-%Dieser Satz erklärt die besondere Stellung, die den komplexen
-%Exponentialfunktionen in der Fourier-Theorie zukommt.
