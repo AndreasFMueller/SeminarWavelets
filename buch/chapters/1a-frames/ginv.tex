@@ -41,7 +41,7 @@ welches für einen beliebigen Startwert $x_0$ gegen $y^{-1}$ konvergiert
 aber die Division nicht verwendet (da die Bestimmung der inversen
 Matrix ja vermieden werden soll).
 Der Wert $y^{-1}$ muss also der einzige Fixpunkt der Funktion $f(x)$ sein:
-$f(y^{-1}=y^{-1}$.
+$f(y^{-1})=y^{-1}$.
 
 Die Funktion $f(x) = x + g(x)$ hat als einzigen Fixpunkt die Stelle $x=y^{-1}$
 genau dann, wenn $g(x)$ als einzige Nullstelle die Stelle $x=y^{-1}$ hat.
@@ -63,7 +63,7 @@ $x_{n+1}=f(x_n)$.
 Die Konstruktion des grauen Pfades ist im Text auf
 Seite~\pageref{frame:grauerpfad} erklärt.
 In beiden Fällen ist $\bar{x}=\sqrt{2}$ ein Fixpunkt der Funktion $f$.
-Falls $|f'(\bar{x})| < 1$ konvergiert die Iterationsfolge linear, wie in (a)
+Falls $|f'(\bar{x})| < 1$, konvergiert die Iterationsfolge linear, wie in (a)
 erkennbar.
 Für $f'(\bar{x})=0$ ist die Konvergenz besonders schnell (quadratische
 Konvergenz), wie man in (b) sehen kann.
@@ -84,7 +84,7 @@ Bedingungen zu erfüllen (Abbildungen~\ref{frame:iterationsvergleich}
 und \ref{frame:divergenz}).
 Das Konvergenzverhalten kann wie folgt visualisiert werden.
 Die Auswertung der Funktion $\color{blue}f(x_n)$ zeigen wir durch
-eine Strecken von $(x_n,x_n)$ nach $\color{blue}(x_n,f(x_n))$ auf
+eine Strecke von $(x_n,x_n)$ nach $\color{blue}(x_n,f(x_n))$ auf
 dem blauen Graphen der Funktion $f$.
 Die nächste Iteration startet mit $x_{n+1} = f(x_n)$, wir illustrieren
 dies durch eine Strecke zum Punkt $\color{red}(f(x_n),f(x_n))$ auf der
@@ -124,7 +124,7 @@ Dies bedeutet, dass
 -1 &< 1-cy < 1 \\
 -2 &< -cy < 0 \\
 2 &> cy > 0 \\
-\frac1c &> \frac{y}2 \\
+\frac1c &> \frac{y}2.
 \end{align*}
 Diese Ungleichung muss für alle möglichen Werte für $y$ erfüllt sein,
 also sowohl für $y=A$ also auch für $y=B$.
@@ -180,7 +180,7 @@ x_n - x_{n-1} -\frac{2y}{A+B}(x_n-x_{n-1})
 }_{\displaystyle=\vartheta}
 (x_n - x_{n-1}).
 \end{equation}
-Die Differenz wird also tatsächlich um den Faktor $\vartheta$ ab.
+Die Differenz nimmt also tatsächlich um den Faktor $\vartheta$ ab.
 Wir schätzen diesen Faktor ab
 \[
 \vartheta
@@ -361,7 +361,7 @@ und erhalten}
 \intertext{Die geometrische Reihe auf der rechten Seite kann man mit
 der Summenformel für die geometrische Reihe vereinfachen und man erhält}
 |x-x_n|
-&=
+&\le
 |x-x_k|
 +
 |x_1-x_0|\vartheta^n \frac{1-\vartheta^{k-n}}{1-\vartheta}.
@@ -518,7 +518,7 @@ ist
 \begin{equation}
 x_n-x_{n-1} \frac{2}{A+B}G(x_n-x_{n-1})
 =
-\biggl(E-\frac{2}{A+B}G\biggr) (x_n-x_{n-1})
+\biggl(E-\frac{2}{A+B}G\biggr) (x_n-x_{n-1}).
 \label{inv:iteration:vector1}
 \end{equation}
 Wir müssen die rechte Seite abschätzen.
@@ -600,6 +600,7 @@ Es bleibt
 y-Gx
 \qquad
 \Rightarrow
+\qquad
 y=Gx,
 \]
 $x$ ist also der gesucht Urbildvektor.
