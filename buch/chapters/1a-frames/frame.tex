@@ -21,7 +21,7 @@ Geht einer der Koeffizienten $\hat{v}_k$ verloren, gibt es keine
 Chance, den Vektor zu rekonstruieren.
 Auch diese Situation ist unerwünscht, denn durch Rundungsfehler geht
 mindestens ein Teil der Information in einem Koeffizienten verloren.
-Wir suchen daher nach einer Verallgemeinerung des Basis-Begriffs, welche
+Wir suchen daher nach einer Verallgemeinerung des Basisbegriffs, welche
 auf kontrollierte Weise Redundanz in die Koeffizienten $\hat{v}_k$
 bringt und damit eine robustere Konstruktion ermöglicht.
 
@@ -33,7 +33,7 @@ bringt und damit eine robustere Konstruktion ermöglicht.
 \begin{figure}
 \centering
 \includegraphics{chapters/1-geometrie/images/hexagon.pdf}
-\caption{Sechseck-Gitter in der Ebene zum Frame $\{b_1,b_2,b_3\}$.
+\caption{Sechseckgitter in der Ebene zum Frame $\{b_1,b_2,b_3\}$.
 \label{geometrie:hexagon:image}}
 \end{figure}
 Wir suchen ein geeignetes Koordinatensystem, um ein Problem über
@@ -233,7 +233,7 @@ Form der Plancherel-Formel angesehen werden.
 \includegraphics{chapters/1-geometrie/images/tri.pdf}
 \caption{Darstellung der Koeffizienten $\hat{v}_k$ bezüglich Vektoren $b_i$
 aus \eqref{hexagonbasis}.
-Die drei Vektoren $b_i$ haben als $\hat{v}_k$-Koeffizienten-Vektoren
+Die drei Vektoren $b_i$ haben als $\hat{v}_k$-Koeffizientenvektoren
 die Vektoren $b_i'$.
 Die $x$- und $y$-Achsrichtung werden auf die beiden blauen Vektoren
 abgebildet.
@@ -358,7 +358,7 @@ der auf allen Vektoren $e_k$ senkrecht steht.
 \begin{proof}[Beweis]
 Nehmen wir an, es gäbe einen Vektor $v\in V$ mit $\langle v,e_k\rangle=0$
 für alle $k\in K$.
-Dann folgt aus den Frame-Ungleichungen
+Dann folgt aus den Frameungleichungen
 \[
 \| v \|^2 \le \frac1{A} \sum_{k\in K} |\langle v,e_k\rangle|^2 = 0
 \qquad\Rightarrow\qquad
@@ -383,7 +383,7 @@ eine Isometrie ist, insbesondere gilt
 Dies bedeutet, dass eine orthonormierte Basis ein straffes Frame mit
 Framekonstanten $A=B=1$ ist.
 Umgekehrt drängt sich die Frage auf, ob straffe Frames oder spezielle
-Werte der Frame-Konstanten eine besondere Bedeutung für die Invertierbarkeit
+Werte der Framekonstanten eine besondere Bedeutung für die Invertierbarkeit
 haben.
 
 \begin{figure}
@@ -437,16 +437,16 @@ gilt für jeden Vektor $v\in\mathbb R^n$.
 Da alle beteiligten Vektorräume endlichdimensional sind, können
 die Abbildungen als Matrizen beschrieben werden.
 Ziel dieses Abschnitts ist, neben einer Matrizenbeschreibung
-der Frame-Abbildung $\mathcal{T}$ auch eine Formel für die
+der Frameabbildung $\mathcal{T}$ auch eine Formel für die
 Umkehrabbildung zu finden.
 
-In einem endlichdimensionalen Raum ist die Frame-Bedingung $A>0$ 
+In einem endlichdimensionalen Raum ist die Framebedingung $A>0$ 
 nach Satz~\ref{geometrie:frame:erzeugt}
-gleichbedeutend damit, dass die Frame-Vektoren den ganzen Raum erzeugen.
+gleichbedeutend damit, dass die Framevektoren den ganzen Raum erzeugen.
 
-\subsubsection{Der Frame-Operator}
-\index{Frame-Operator}
-Der Frame-Operator berechnet die Analysekoeffizienten
+\subsubsection{Der Frameoperator}
+\index{Frameoperator}
+Der Frameoperator berechnet die Analysekoeffizienten
 $\hat{v}_k=\langle v,b_k\rangle$ eines Signals
 $v\in \mathbb R^n$ bezüglich des Frames $\mathcal{B}$:
 \[
@@ -478,7 +478,7 @@ T
 \end{pmatrix}
 \]
 zusammenführen.
-Das Matrixprodukt $Tv$ liefert dann genau das Resultat des Frame-Operators
+Das Matrixprodukt $Tv$ liefert dann genau das Resultat des Frameoperators
 \[
 \mathcal{T} v
 =
@@ -506,7 +506,7 @@ v
 =
 Tv.
 \]
-Die Matrix $T$ ist die Matrix des Frame-Operator $\mathcal T$ bezüglich der
+Die Matrix $T$ ist die Matrix des Frameoperator $\mathcal T$ bezüglich der
 Standardbasis von $\mathbb R^n$.
 
 \begin{beispiel}

@@ -10,16 +10,16 @@
 Im Abschnitt~\ref{section:ginv} wurde gezeigt, wie der Gram-Operator
 für ein beliebiges Frame numerisch invertiert werden kann.
 In vielen praktischen Fällen ist dies jedoch gar nicht nötig, denn
-die Frame-Konstanten stimmen überein, wie zum Beispiel im einführenden
+die Framekonstanten stimmen überein, wie zum Beispiel im einführenden
 Beispiel dieses Kapitels.
 In diesem Fall ist der Gram-Operator ein Vielfaches der Einheitsmatrix.
-Die Linksinverse $S$ des Frame-Operators $T$ eines Frames mit $A=B$
+Die Linksinverse $S$ des Frameoperators $T$ eines Frames mit $A=B$
 ist $A^{-1}T^*$.
 Diese Aussagen folgen aus der bisher entwickelten Theorie sofort
 für endlichdimensionale Vektorräume.
 
 Etwas allgemeiner formuliert erfolgt die Analyse von Vektoren
-mit einer diskreten Menge von Analyse-Vektoren, den Vektoren $(b_k)_{k\in I}$
+mit einer diskreten Menge von Analysevektoren, den Vektoren $(b_k)_{k\in I}$
 des Frames.
 Die Situation, in der die Transformation besonders leicht umgekehrt werden
 kann, war gekennzeichnet dadurch, dass die Norm bei der Transformation
@@ -41,14 +41,14 @@ u = \sum_{k\in I} a_k v_k
 durch die Transformation wieder auf die gegeben Koeffizienten abgebildet,
 also $\hat{u}_k = a_k\;\forall k\in I$.
 
-Die in Kapitel~\ref{chapter:cwt} definierte stetige Wavelet-Transformation
+Die in Kapitel~\ref{chapter:cwt} definierte stetige Wavelettransformation
 verwendet jedoch eine Menge von Vektoren für die Analyse, die sehr viel
 grösser ist.
 Ausgehend von einer Funktion $\psi\colon\mathbb R\to\mathbb R$
 wird eine Funktion $f$ für jedes Paar
 $(a,b)\in \mathbb{R}^*\times \mathbb R$ mit
 $\psi_{a,b}=T_bD_a\psi$ analysiert.
-Die Menge der Analyse-Vektoren $\psi_{a,b}$ ist also überabzähltbar.
+Die Menge der Analysevektoren $\psi_{a,b}$ ist also überabzähltbar.
 Trotzdem lässt sich die Rücktransformation verallgemeinern, wenn 
 man die Eigenschaft~\eqref{plancherel:equation:diskret} auf die
 stetige Situation verallgemeinern kann.
@@ -62,7 +62,7 @@ Die Funktionen auf $I$ beilden einen Hilbertraum mit dem Skalarprodukt
 \sum_{k\in I} \hat{v}_k \overline{\hat{w}_k}.
 \]
 Die Bedingung~\eqref{plancherel:equation:diskret} ist also nichts anderes
-als die Aussage, dass die Transformation die Hilbertraum-Norm immer um
+als die Aussage, dass die Transformation die Hilbertraumnorm immer um
 den gleichen Faktor $A$ skaliert:
 \[
 \| Tv \|^2 = A \| v\|^2.
@@ -104,7 +104,7 @@ C \|v\|_H.
 
 Ein Frame mit Framevektoren $v_k, k\in\mathbb N$ 
 ist der Fall $X=\mathbb N$. Die Plancherel-Bedingung ist erfüllt, wenn
-die Frame-Konstanten $A=B$ gleich sind.
+die Framekonstanten $A=B$ gleich sind.
 
 \begin{satz}
 \label{satz:plancherel-prinzip}
@@ -121,7 +121,7 @@ eine Linksinverse der Transformation $T$.
 \end{satz}
 
 \begin{proof}[Beweis]
-Die Polar-Identität besagt, dass nicht nur die Normen sondern auch die
+Die Polaridentität besagt, dass nicht nur die Normen sondern auch die
 Skalarprodukte in den beiden Hilberträumen sich nur um einen Faktor
 unterscheiden:
 \[
@@ -160,7 +160,7 @@ Die Umkehrbarkeit der Transformation $T$ ist also nicht nur für gewöhnliche
 straffe Frames möglich sondern auch in Fällen, wo mit einer überabzählbaren
 Menge von Vektoren analyisiert wird.
 Wir werden diese Eigenschaft im Kapitel~\ref{chapter:cwt} wieder antreffen,
-wenn wir die Umkehrformel für die stetige Wavelet-Transformation finden.
+wenn wir die Umkehrformel für die stetige Wavelettransformation finden.
 
 
 

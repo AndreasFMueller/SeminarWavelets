@@ -8,7 +8,7 @@
 In diesem Abschnitt gehen wird davon aus, dass $\mathcal{B}$ ein
 Frame in $\mathbb{R}^n$ ist mit Framekonstanten $A$ und $B$.
 Die Transformation $\mathcal{T}$, die zu diesem Frame gehört, liefert 
-zu einem Vektor $v$ die Analyse-Koeffizienten $\hat{v} = \mathcal{T}v$.
+zu einem Vektor $v$ die Analysekoeffizienten $\hat{v} = \mathcal{T}v$.
 Die Konstruktion eines Filters auf der Basis einer solchen Analyse verlangt
 jedoch auch, dass die Abbildung $\mathcal{T}$ umgekehrt werden kann.
 Von vornherein ist aber nicht klar, ob die Abbildung überhaupt umkehrbar ist,
@@ -26,7 +26,7 @@ Der Frameoperator $\mathcal{T}$ ordnet dem Vektor $v\in V$ den Vektor
 mit Koordinaten $\hat{v}_k$ zu.
 
 \subsection{Der Gram-Operator}
-Das Frame $\mathcal{B}$ mit den Frame-Konstanten $A$ und $B$ erfüllt
+Das Frame $\mathcal{B}$ mit den Framekonstanten $A$ und $B$ erfüllt
 \[
 A\|v\|^2 \le \sum_{k=1}^m |\langle v,b_k\rangle|^2 \le B\|v\|^2
 \qquad\forall v\in \mathbb R^n.
@@ -35,7 +35,7 @@ Die Quadratsumme in der Mitte ist genau die Norm des Vektors
 $\hat{v}$ in $\mathbb R^m$.
 Unterscheiden wir für den Moment die verschiedenen Skalarprodukte
 und Normen dadurch, dass wir die Vektorräume als Indizes hinzufügen,
-können wir die Frame-Ungleichung schreiben als
+können wir die Frameungleichung schreiben als
 \[
 A \| v\|_{\mathbb R^n}^2
 \le
@@ -57,18 +57,18 @@ v^t(T^tT)v
 \]
 Man beachte, dass $T^tT$ eine symmetrische $n\times n$-Matrix ist,
 die codiert, wie stark die einzelnen Vektoren $v\in\mathbb R^n$ durch
-den Frame-Operator $\mathcal{T}$ verzerrt werden.
+den Frameoperator $\mathcal{T}$ verzerrt werden.
 Dies rechtfertigt eine eigene Definition.
 
 \begin{definition}
 \label{definition:gram-operator}
 \index{Gram-Operator}
-Ist $T$ die Matrix des Frame-Operators $\mathcal{T}$ eines Frames
-$\mathcal{B}$, dann heisst $G=T^tT$ der {\em Gram-Operator} des Frames
+Ist $T$ die Matrix des Frameoperators $\mathcal{T}$ eines Frames
+$\mathcal{B}$, dann heisst $G=T^tT$ der {\em Gramoperator} des Frames
 $\mathcal{B}$.
 \end{definition}
 
-Die Frame-Bedingung lässt sich mit dem Gram-Operator $T^tT$ als
+Die Framebedingung lässt sich mit dem Gram-Operator $T^tT$ als
 \begin{equation}
 A \|v\|^2
 \le
@@ -184,7 +184,7 @@ Die Vektoren
 erzeugen den ganzen Raum $\mathbb R^2$, sie bilden daher ein
 Frame (Abbildung~\ref{frame:beispiel2}).
 Wir berechnen den Frame-Operator, den Gram-Operator und seine Eigenwerte,
-um die Frame-Konstanten zu ermiteln.
+um die Framekonstanten zu ermiteln.
 
 Der Frame-Operator ist die Matrix
 \[
@@ -241,13 +241,13 @@ nicht straff.
 
 \begin{proof}[Beweis des Korollars]
 Ein straffes Frame hat $A=B$, was gleichbedeutend damit ist, dass
-die Eigenwerte des Frame-Operators $T^tT$ mit 
+die Eigenwerte des Frameoperators $T^tT$ mit 
 $A=B=\lambda_1=\dots=\lambda_n$ übereinstimmen.
 Dies wiederum ist gleichbedeutend damit, dass alle Vektoren Eigenvektoren
 zum gleichen Eigenwert sind und $T^tT=AE=BE$.
 \end{proof}
 
-\subsection{Die inverse Abbildung des Frame-Operators}
+\subsection{Die inverse Abbildung des Frameoperators}
 Für ein straffes Frame gilt $T^tT  = AE$.
 Bis auf den Faktor $A$ ist daher $T^t$ bereits eine Linksinverse von $T$.
 Genauer, mit
@@ -279,7 +279,7 @@ die Matrix $S=G^{-1}T^t$ ist also die gesuchte Linksinverse von $T$.
 \subsection{Das duale Frame}
 \index{duales Frame}
 \index{Frame!duales}
-Um den Frame-Operator umzukehren, muss man $G^{-1}T^t$ berechnen
+Um den Frameoperator umzukehren, muss man $G^{-1}T^t$ berechnen
 können.
 Auf einen Vektor $\hat{v} = (\hat{v}_k)_{1\le k\le m} = Tv$ angewendet
 bedeutet dies, dass man $G^{-1}$ auf
@@ -446,8 +446,8 @@ $A$ und $B$, dann hat das duale Frame die Framekonstanten $1/B$ und $1/A$.
 \end{satz}
 
 \begin{proof}[Beweis]
-Um die Frame-Konstanten des dualen Frames zu bestimmen,
-müssen der Frame-Operator $\tilde{T}$ und Gram-Operator $\tilde{G}$
+Um die Framekonstanten des dualen Frames zu bestimmen,
+müssen der Frameoperator $\tilde{T}$ und Gram-Operator $\tilde{G}$
 des dualen Frames bestimmt werden.
 Das duale Frame besteht aus den Spaltenvektoren von $S=G^{-1}T^t$,
 also ist der Frameoperator $\tilde{T}=S^t$ und damit ist der Gram-Operator
@@ -510,7 +510,7 @@ Diese Frage wird in Kapitel~\ref{chapter:fourier} im Detail beantwortet.
 
 Nehmen wir für den Moment an, dass es gelungen ist, eine Hilbertraum $H$
 von Funktionen auf $K$ zu konstruieren.
-Die Frame-Ungleichung kann dann mit Hilfe der Norm von $H$ formuliert
+Die Frameungleichung kann dann mit Hilfe der Norm von $H$ formuliert
 werden, sie lautet
 \[
 A\|v\|^2 \le \|Tv\|^2 \le B\|v\|^2.
@@ -520,7 +520,7 @@ Diese Ungleichungen sagen immer noch aus, dass kein Vektor $v\in V$ bei
 der Transformation $T$ ``unsichtbar'' wird.
 Wäre nämlich $Tv=0$ in $H$, dann wäre auch $\|Tv\|=0$ und damit
 $\|v\|=0$.
-Die Frame-Ungleichung stellt also sicher, dass die Abbildung $T$ 
+Die Frameungleichung stellt also sicher, dass die Abbildung $T$ 
 injektiv und damit potentiell invertierbar ist.
 
 Es ist aber keinesfalls garantiert, dass das Bild der Transformation $T$
