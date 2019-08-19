@@ -11,9 +11,9 @@ Eingang des Analog-/Digital-Wandlers verwendet, welche das Signal für die
 Zeit der Wandlung in einen digitalen Wert konstant hält.
 Die Abtastung eines Signals produziert also auf natürliche Weise
 stückweise konstante Funktionen.
-Digitalisierte Signal bilden also einen Vektorraum mit Skalarprodukt,
-erfüllen also alle Voraussetzungen für eine Theorie ähnlich der Fourier-Theorie
-bauen kann.
+Digitalisierte Signale bilden also einen Vektorraum mit Skalarprodukt,
+erfüllen also alle Voraussetzungen, dass man dafür eine Theorie ähnlich
+der Fourier-Theorie bauen kann.
 Im Abschnitt~\ref{section:stueckweise} wurde auch gezeigt, dass die freie
 Unterteilbarkeit des Intervalls die Konstruktion einer orthonormierten Basis
 erschwert hat, dieses Problem soll in diesem Abschnitt in Angriff genommen
@@ -79,7 +79,7 @@ verwenden.
 Zwecks Normierung verwenden wir statt der Indikatorfunktion die
 Funktionen
 \[
-e^{(l)}(x) = \sqrt{\frac{n}{b-a}}\chi_{[lh,(l+1)h)}(x)j
+e^{(l)}(x) = \sqrt{\frac{n}{b-a}}\chi_{[lh,(l+1)h)}(x)
 \]
 Sie sind auch definiert durch die Abtastwerte
 \[
@@ -120,7 +120,7 @@ definiert.
 Es ist natürlich nur definiert, wenn die Summe konvergiert.
 Dazu müssen die Folgen $f_k$ und $g_k$ quadratsummierbar sein.
 Diese Bedingung ist für die praktischen Anwendungen keine Einschränkung,
-denn praktische Signale sind nur für endliche Zeit von $0$ verschieden,
+denn realistische Signale sind nur für endliche Zeit von $0$ verschieden,
 die Summe hat also von vornherein nur endliche viele Terme.
 Die Funktionen
 \[
@@ -133,7 +133,7 @@ können als orthonormierte Basis verwendet werden.
 Der erweiterte Definitionsbereich der $\{kh\,|\,k\in\mathbb Z\}$ ermöglicht,
 Signale zu vergleichen, die nur zeitlich verschoben sind.
 Sind zwei Funktionen $f(x)$ und $g(x)$ um ein Vielfaches von $h$ verschoben,
-dann gibt es eine ganze Zahl so dass $f(x)=g(x+lh)$ gilt und daher auch
+dann gibt es eine ganze Zahl $l$ so, dass $f(x)=g(x+lh)$ gilt und daher auch
 $f_k = g_{k+l}$.
 Zeitliche Translationen der Funktion $f(x)$ können also abgebildet
 werden auf ganzzahlige Translationen der Folgen $f_k$.

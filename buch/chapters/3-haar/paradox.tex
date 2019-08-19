@@ -14,45 +14,45 @@ Kopien des Mutterwavelets $\psi$ approximiert werden kann.
 Allerdings entsteht hier auch ein Paradoxon, welches im letzten Abschnitt
 aufgelöst wird.
 
-\subsection{Sampling}
-In der Praxis steht das Signal nicht als eine Funktion vor, sondern
-als eine Folge von Abtastwerten, die in Zeitabständen $2^{-n}$ 
-gemessen wurden.
-Die Abtastung hat also das Signal $f(x)$ durch die stückweise
-konstante Funktion
-\[
-\tilde{f}(x)
-=
-\sum_{l=-\infty}^\infty f(l2^{-n}) \chi_{[l2^{-n},(l+1)2^{-n})}
-\]
-ersetzt.
-Natürlich geht dadurch etwas Information verloren und es haben auch
-schon Autoren darauf hingewiesen, dass die unkritische Verwendung solcher
-Samples als Input für nachfolgende Waveletfilter nicht zulässig sei.
-Doch ist diese Kritik nicht aus den folgenden Gründen nicht wirklich
-nachvollziehbar:
-\begin{enumerate}
-\item
-Meistens steht keine weiter Information über das Signal zur Verfügung,
-es ist nicht einfach möglich, die Abtastrate eines Systems zu erhöhen.
-\item
-Das Sampling Theorem stellt sicher, dass aus diesen Samples die Funktion
-wiederhergestellt werden kann, wenn die Bandbreite der Funktion 
-begrenzt ist.
-Dies bedeutet, dass die Änderungen zwischen den Abtastpunkten so klein
-sind, dass sie für die Rekonstruktion keine Rolle spielen.
-\end{enumerate}
+%\subsection{Sampling}
+%In der Praxis steht das Signal nicht als eine Funktion vor, sondern
+%als eine Folge von Abtastwerten, die in Zeitabständen $2^{-n}$ 
+%gemessen wurden.
+%Die Abtastung hat also das Signal $f(x)$ durch die stückweise
+%konstante Funktion
+%\[
+%\tilde{f}(x)
+%=
+%\sum_{l=-\infty}^\infty f(l2^{-n}) \chi_{[l2^{-n},(l+1)2^{-n})}
+%\]
+%ersetzt.
+%Natürlich geht dadurch etwas Information verloren und es haben auch
+%schon Autoren darauf hingewiesen, dass die unkritische Verwendung solcher
+%Samples als Input für nachfolgende Waveletfilter nicht zulässig sei.
+%Doch ist diese Kritik nicht aus den folgenden Gründen nicht wirklich
+%nachvollziehbar:
+%\begin{enumerate}
+%\item
+%Meistens steht keine weiter Information über das Signal zur Verfügung,
+%es ist nicht einfach möglich, die Abtastrate eines Systems zu erhöhen.
+%\item
+%Das Sampling Theorem stellt sicher, dass aus diesen Samples die Funktion
+%wiederhergestellt werden kann, wenn die Bandbreite der Funktion 
+%begrenzt ist.
+%Dies bedeutet, dass die Änderungen zwischen den Abtastpunkten so klein
+%sind, dass sie für die Rekonstruktion keine Rolle spielen.
+%\end{enumerate}
 
 \subsection{Filter}\label{haar:approximation:filter}
 Eine stückweise konstante Funktion $f\in V_n$ lässt sich als Linearkombination
-von Wavelets $\psi_{l,j}$ mit $0\le j \le n$ und den Indikatorfunktionen
+von Wavelets $\psi_{jl}$ mit $0\le j \le n$ und den Indikatorfunktionen
 auf den Einheitsintervallen $\varphi_k(x)$. 
 Dies ist eine Folge der Zerlegung von $V_n$ in
 \begin{equation}
 V_0 \oplus W_1 \oplus W_2 \oplus \dots \oplus W_n = V_n.
 \label{haar:filtersumme}
 \end{equation}
-Die Funktion $f$ kann daher zerlegt in je einen Summanden $f_j$ in $W_j$
+Die Funktion $f$ kann daher zerlegt werden in je einen Summanden $f_j$ in $W_j$
 \[
 f = f_0 + f_1 + f_2 + \dots + f_n
 \]
@@ -85,39 +85,39 @@ f(x)
 =
 \sum_{k\in\mathbb Z} a_k\varphi_k(x)
 +
-\sum_{k\in\mathbb Z} b_{k1}\psi_{k1}(x)
+\sum_{k\in\mathbb Z} b_{1k}\psi_{1k}(x)
 +
-\sum_{k\in\mathbb Z} b_{k2}\psi_{k2}(x)
+\sum_{k\in\mathbb Z} b_{2k}\psi_{2k}(x)
 +
 \dots
 +
-\sum_{k\in\mathbb Z} b_{kn}\psi_{kn}(x)
+\sum_{k\in\mathbb Z} b_{nk}\psi_{nk}(x)
 \]
 Die Filter $P_n$ und $I-P_n$ können daher auch durch die Koeffizienten
 ausgedrückt werden:
 \begin{align*}
 P_nf 
 &=
-\sum_{k\in\mathbb Z} b_{kn}\psi_{kn}(x)
+\sum_{k\in\mathbb Z} b_{nk}\psi_{nk}(x)
 \\
 (I-P_n)f
 &=
 \sum_{k\in\mathbb Z} a_k\varphi_k(x)
 +
-\sum_{k\in\mathbb Z} b_{k1}\psi_{k1}(x)
+\sum_{k\in\mathbb Z} b_{1k}\psi_{1k}(x)
 +
-\sum_{k\in\mathbb Z} b_{k2}\psi_{k2}(x)
+\sum_{k\in\mathbb Z} b_{2k}\psi_{2k}(x)
 +
 \dots
 +
-\sum_{k\in\mathbb Z} b_{k,n-1}\psi_{k,n-1}(x)
+\sum_{k\in\mathbb Z} b_{n-1,k}\psi_{n-1,k}(x)
 \end{align*}
 
 Die Aufgabe besteht jetzt also darin, die Koeffizienten $a_k$ und
-$b_{kj}$ dieser Zerlegung zu finden.
+$b_{jk}$ dieser Zerlegung zu finden.
 Die Koeffizienten können mit dem Skalarprodukt
 \[
-b_{kj} = \langle \psi_{kj}, f\rangle
+b_{jk} = \langle \psi_{jk}, f\rangle
 \]
 gefunden werden.
 Auf den ersten Blick sieht das nach einer aufwendigen Operation
@@ -127,7 +127,7 @@ Die spezielle Struktur erlaubt hingegen eine drastische Vereinfachung.
 
 
 \subsection{Der schnelle Approximationsalgorithmus}
-Wir betrachten die Berechnung der Koeffizienten $b_{kj}$ etwas genauer für
+Wir betrachten die Berechnung der Koeffizienten $b_{jk}$ etwas genauer für
 $j=n$.
 Dazu verwenden wir die Tatsache, dass 
 \[
@@ -142,7 +142,7 @@ Das Skalarprodukt mit dieser Funktion ist
 Die beiden Integrale sind aber nichts anderes als die Mittelwerte
 der Funktion $f$ über das jeweils halbe Intervall.
 
-Für die $j=n$ bedeutet dies, dass die Koeffizienten $b_{kn}$ im Wesentlichen
+Für die $j=n$ bedeutet dies, dass die Koeffizienten $b_{nk}$ im Wesentlichen
 die Differenzen sind zwischen benachbarten Samplewerten.
 Der Hochpassfilter $P_n$ extrahiert also bis auf die Normierung
 die Differenzen benachbarter Samplewerte.
@@ -161,19 +161,19 @@ Differenz.
 Der Tiefpassfilter $I-P_n$ ermittelt den Mittelwert.
 Um den Rest der Funktion weiter zu analysieren, ist die Projektion $P_{n-1}$
 auf den Output von $I-P_n$ anzuwenden.
-Die Koeffizienten $b_{k,n-1}$ sind daher Differenzen aufeinanderfolgender
+Die Koeffizienten $b_{n-1,k}$ sind daher Differenzen aufeinanderfolgender
 Tiefpasswerte.
-Um die weiteren Koeffizienten zu ermitteln müssen also Schrittweise
+Um die weiteren Koeffizienten zu ermitteln müssen also schrittweise
 immer wieder die Filter $P_j$ und $I-P_j$ oder Differenz und Mittelwert
 angewendet werden.
 
 Mit diesem Algorithmus ist es möglich, die Koeffizienten laufend zu ermitteln.
-Der erste Koeffizient $b_{0n}$ steht bereits nach dem zweiten Abtastwert zur
+Der erste Koeffizient $b_{n0}$ steht bereits nach dem zweiten Abtastwert zur
 Verfügung.
-Nach dem vierten Abtastwert fallen $b_{1n}$ und $b_{0,n-1}$ an.
+Nach dem vierten Abtastwert fallen $b_{n1}$ und $b_{n-1,0}$ an.
 Der Koeffizient $a_0$ ist nach $2^n$ Schritten ermittelt, weitere
 Werte $a_k$ stehen jeweils nach weiteren $2^n$ Schritten zur Verfügung.
-Nach $2^n$ Schritt ist die Transformation also bereits abgeschlossen,
+Nach $2^n$ Schritten ist die Transformation also bereits abgeschlossen,
 die Verarbeitung des Output kann aber bereits früher beginnen, da einzelne
 Koeffizienten ja schon früher bereitstehen.
 
@@ -187,32 +187,35 @@ Eine FFT mit $N=1024=2^{10}$ Punkten kann erst begonnen werden, wenn der
 letzte Punkt zur Verfügung steht, und braucht anschliessend etwa
 $O(N\log N)$ Rechenoperationen, bis die ersten Fourier-Koeffizienten zur
 Verfügung stehen.
-Die Wavelet Transformation mit gleicher Auflösung liefert den ersten Koeffizienten nach 2 Abtastwerten und nach dem letzten Abtastwert können die letzten 10
+Die Wavelettransformation mit gleicher Auflösung liefert den ersten
+Koeffizienten nach zwei Abtastwerten und nach dem letzten Abtastwert
+können die letzten 10
 Koeffizienten mit 10 Operationen ermittelt werden.
-Die Anzahl der Operationen ist zwar von ungefähr ähnlicher Grösse, aber
+Die Anzahl der Operationen ist deutlich kleiner und
 die Wavelettransformation beginnt bereits viel früher, Resultate zu
 liefern.
 
 \subsection{Ein Paradoxon
 \label{haar:paradoxon}}
-Indem man die Analyse für negative $j$ weiter treibt, erhält man
+Indem man die Analyse für positive und negative $j$ bis $\pm n$ weiter treibt,
+erhält man
 eine Approximation einer Funktion $f(x)$ als Linearkombination von
-Funktionen $\psi_{lj}$ mit $-n\le j\le n$.
+Funktionen $\psi_{jl}$ mit $-n\le j\le n$.
 Die Funktionen $\varphi_k$ werden nicht gebraucht.
 Nach Konstruktion konvergiert die Approximation
 \[
 f_n(x)
 =
-\sum_{k\in\mathbb Z}\sum_{-n\le j\le n} \langle\psi_{kj},f\rangle \psi_{kj}(x)
+\sum_{k\in\mathbb Z}\sum_{-n\le j\le n} \langle\psi_{jk},f\rangle \psi_{jk}(x)
 \]
 im $L^2$-Sinne gegen die Funktion $f$.
-Allerdings verschwindet das Integral jeder der Funktionen $\psi_{kj}$,
+Allerdings verschwindet das Integral jeder der Funktionen $\psi_{jk}$,
 so dass auch das Integral von $f_n$
 \[
 \int_{-\infty}^\infty f_n(x)\,dx
 =
-\sum_{k\in\mathbb Z}\sum_{-n\le j\le n} \langle\psi_{kj},f\rangle
-\int_{-\infty}^\infty \psi_{kj}(x)\,dx
+\sum_{k\in\mathbb Z}\sum_{-n\le j\le n} \langle\psi_{jk},f\rangle
+\int_{-\infty}^\infty \psi_{jk}(x)\,dx
 =
 0
 \]
@@ -220,23 +223,33 @@ verschwindet.
 Andererseits gibt es keinen Grund, warum das Integral von $f$ verschwindet,
 ein Widerspruch?
 
+\begin{figure}
+\centering
+\includegraphics{chapters/3-haar/images/paradox.pdf}
+\caption{Approximationsfolge $f_n$, die die Funktion ${\color{blue}\varphi}$
+in $L^2(\mathbb R)$ approximiert, aber nicht in $L^1(\mathbb R)$.
+\label{haar:fig:paradox}}
+\end{figure}
+
 Die Auflösung dieses Paradoxons besteht darin, dass die Funktionen
-$f_n$ zwar im $L^2$-Sinn konvergieren, aber nicht im Sinne von $L^1$.
+$f_n$ zwar im $L^2$-Sinn gegen $f$ konvergieren, aber nicht im Sinne von $L^1$.
 Dies kann allgemein gezeigt werden, doch ein Beispiel soll dafür genügen.
 Die Funktion, die approximiert werden soll, sei die Indikatorfunktion
 \[
 f(x) = \chi_{[0,1)}(x).
 \]
 Die Funktion ist das Vaterwavelet.
+Die zugehörige Folge $f_n$ ist in Abbildung~\ref{haar:fig:paradox}
+dargestellt.
 Nach Konstruktion der Haar-Wavelets sind die höherfrequenten Wavelets
 darauf orthogonal, daher verschwinden die Skalarprodukte
-$\langle \psi_{k,j},f\rangle=0$ für $j\ge 0$.
-Nur die Funktion $\psi_{0,j}$ mit $j<0$ tragen daher etwas dazu bei.
+$\langle \psi_{jk},f\rangle=0$ für $j\ge 0$.
+Nur die Funktion $\psi_{j0}$ mit $j<0$ tragen daher etwas dazu bei.
 Es ist
 \[
-\langle \psi_{0j},f\rangle
+\langle \psi_{j0},f\rangle
 =
-\int_0^1 \psi_{0j}(x)\,dx
+\int_0^1 \psi_{j0}(x)\,dx
 =
 2^{j/2}.
 \]
@@ -244,8 +257,8 @@ Daraus kann man jetzt die Approximation für $f$ aufschreiben:
 \[
 f(x)
 =
-\sum_{j=-\infty}^{-1} \langle \psi_{0j},f\rangle \psi_{0j}(x)
-\psi_{0j}(x)
+\sum_{j=-\infty}^{-1} \langle \psi_{j0},f\rangle \psi_{j0}(x)
+\psi_{j0}(x)
 \]
 Es ist klar, dass die Summe $0$ ist für $x<0$.
 Wir haben zu überprüfen, dass für $x\in[0,1)$ die Summe gegen $1$ 
@@ -253,12 +266,12 @@ korrigiert.
 Für $x>1$ dagegen müsste die Summe gegen $0$ konvergieren.
 
 Wir betrachten erst den Fall $0\le x < 1$.
-In diesem Fall ist $\psi_{0j}(x)>0$ für alle Werte von $j\le 0$.
+In diesem Fall ist $\psi_{j0}(x)>0$ für alle Werte von $j\le 0$.
 Die Summe ist
 \begin{align*}
-\sum_{j=-\infty}^{-1} 2^{j/2} \psi_{0j}(x)
+\sum_{j=-\infty}^{-1} 2^{j/2} \psi_{j0}(x)
 &=
-\sum_{j=-\infty}^{-1}0 2^{j/2} 2^{j/2}
+\sum_{j=-\infty}^{-1} 2^{j/2} 2^{j/2}
 =
 \sum_{j=1}^\infty 2^j = 1.
 \end{align*}
@@ -270,7 +283,7 @@ gleichen Wert haben.
 Vielmehr gibt es ein $l<0$ derart, dass $x < 2^{-l}$.
 Dies bedeutet, dass
 \[
-\psi_{0j}(x)
+\psi_{j0}(x)
 =
 \begin{cases}
 0&\qquad j>l\\
@@ -281,7 +294,7 @@ Dies bedeutet, dass
 \]
 Damit kann die Summe ausgewertet werden:
 \begin{align*}
-\sum_{j=-\infty}^{-1} 2^{j/2} \psi_{0j}(x)
+\sum_{j=-\infty}^{-1} 2^{j/2} \psi_{j0}(x)
 &=
 \sum_{j=-\infty}^{l-1} 2^{j/2} 2^{j/2}
 -

@@ -11,7 +11,8 @@ all:	stueckweise1.pdf	\
 	chi.pdf			\
 	dual.pdf		\
 	ortho.pdf		\
-	detail.pdf
+	detail.pdf		\
+	paradox.pdf
 	
 stueckweise1.pdf:	stueckweise1.tex stueckcommon.tex
 	pdflatex stueckweise1.tex
@@ -39,3 +40,6 @@ ortho.pdf:	ortho.tex
 
 detail.pdf:	detail.tex
 	pdflatex detail.tex
+
+paradox.pdf:	paradox.tex
+	pdflatex paradox.tex

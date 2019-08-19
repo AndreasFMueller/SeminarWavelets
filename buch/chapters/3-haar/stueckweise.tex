@@ -25,7 +25,7 @@ f_k
 x_k \le x < x_{k+1}.
 \label{buch:stückweisef}
 \end{equation}
-Stückweise konstante Funktionen sind natürlich nicht überall stetig sein,
+Stückweise konstante Funktionen sind natürlich nicht überall stetig,
 vielmehr ist jeder der Punkte $x_k$ eine potentielle Unstetigkeitsstelle.
 Es gilt nämlich
 \begin{equation*}
@@ -52,7 +52,7 @@ Stelle $x_k$.
 des Intervalls $I=[a,b]\subset \mathbb R$ (vgl. auch \eqref{formel:chi}).
 \label{haar:figure:chi}}
 \end{figure}
-Mit Hilfe der Indikatorfunktion oder charakteristischen Funktion
+Mit Hilfe der Indikatorfunktion %oder charakteristischen Funktion
 eines Intervalls lässt sich eine stückweise konstante Funktion etwas
 eleganter schreiben.
 Wir definieren  die
@@ -130,7 +130,7 @@ heisst das {\em Korn} der Unterteilung.
 Es wird also behauptet, dass eine stetige Funktion durch eine stückweise
 konstante Funktion beliebig genau approximiert werden kann, wenn das
 Korn der Unterteilung klein genug gemacht wird.
-Um dies genauer auszudrücken sei jetzt $\varepsilon >0$ gegeben.
+Um dies genauer auszudrücken, sei jetzt $\varepsilon >0$ gegeben.
 Da die Funktion $f(x)$ stetig ist, gibt es eine Zahl $\delta>0$ derart,
 dass
 \[
@@ -142,7 +142,7 @@ $\delta(\{x_0,\dots,x_n\}) < \delta$ und setzt
 \[
 g_k = f(x_k),\quad 0\le k < n.
 \]
-Die Zahlen $g_k$ definieren eine stückweise konstante Funktion, die 
+Die Zahlen $g_k$ definieren eine stückweise konstante Funktion $g$, die 
 die Funktion $f$ mit maximalem Fehler $\varepsilon$ approximiert:
 \[
 |f(x)-g(x)|
@@ -188,6 +188,18 @@ Funktion $f(x)$ die Ungleichung
 \underline{f}(x) \le g(x) \le \overline{f}(x)
 \]
 für $x\in[a,b]$.
+
+Man kann die obere und untere Approximation kann auch als Linearkombination
+\begin{align*}
+\overline{f}
+&=
+\sum_{k\in\mathbb Z} \sup_{x\in[x_k,x_{k+1})}f(x)\cdot \chi_{[x_k,x_{k+1})},
+\\
+\underline{f}
+&=
+\sum_{k\in\mathbb Z} \inf{x\in[x_k,x_{k+1})}f(x)\cdot \chi_{[x_k,x_{k+1})}.
+\end{align*}
+von Indikatorfunktionen schreiben.
 
 \subsection{Vektorraum der stückweise stetigen Funktionen}
 Die stetigen Funktionen auf einem Intervall bilden einen Vektorraum: eine
@@ -298,7 +310,7 @@ Der Vektorraum der stückweise konstanten Funktionen kann nicht vollständig
 sein.
 Jede stetige Funktion ist ein Grenzwert von stückweise konstanten
 Funktionen.
-Selbstverständlich kann man analoge Art auch einen komplexen
+Selbstverständlich kann man auf analoge Art auch einen komplexen
 Vektorraum mit hermitschem Skalarprodukt konstruieren.
 Weil er nicht vollständig ist, kann er kein Hilbertraum sein.
 Um ihn besser zu verstehen wäre es schön, wenn man eine Hilbert-Basis
