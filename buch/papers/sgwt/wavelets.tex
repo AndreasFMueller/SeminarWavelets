@@ -48,7 +48,7 @@ $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
 \end{figure}
 
 Mit den in ~\cref{sec:sgwt:spectralanalysis} vorgestellten Eigenfunktionen 
-k\"onnen wir aber nutzen um eine Graph Fourier Transformation zu definieren. 
+k\"onnen wir aber nutzen, um eine Graph Fourier Transformation zu definieren. 
 Dazu ersetzen wir bei der Fourier Transformation die Exponentialfunktion durch 
 die Eigenvektoren der Laplace-Matrix und erhalten
 \begin{equation*}
@@ -81,14 +81,14 @@ f = \chi \hat{f}.
 Mit der Graph Fourier Transformation k\"onnen wir nun Funktionen auf Graphen 
 analysieren und dann auch wieder synthetisieren, aber noch nicht 
 lokalisieren. Wir m\"ussen also unsere Graph Fourier Transformation zur Graph 
-Wavelet Transformation erweitern, denn diese erm\"oglichen uns, genau dies zu 
+Wavelet Transformation erweitern, denn diese erm\"oglicht uns, genau dies zu 
 tun.
 
 Leider haben Graphen den Nachteil, dass die Knoten keine inh\"arente 
 Reihenfolge besitzen. Es ist also nicht klar, was mit $f(v - h)$ gemeint ist. 
 Wir haben allerdings in~\cref{eq:sgwt:lambda:series} eine Reihenfolge f\"ur die 
-Eigenwerte der Laplace-Matrix eines Graphen definiert. Die Eigenwerte sind 
-allerdings vollst\"andig lokalisiert, womit sie einem Dirac-Stoss an einem 
+Eigenwerte der Laplace-Matrix eines Graphen definiert. Die zugeh\"rigen Eigenfunktionen sind 
+allerdings vollst\"andig delokalisiert, womit sie einem Dirac-Stoss an einem 
 Knoten gleich kommen. Wir k\"onnten also versuchen das Spektrum des Graphen so 
 zu manipulieren, dass eine Lokalisierung m\"oglich wird.
 
@@ -160,7 +160,7 @@ erstes Wavelet $\psi$, zu sehen in~\cref{fig:sgwt:gft:iggft}.
 
 Wir haben jetzt aber noch das Problem, dass $\lambda_0 = 0$ gilt. Wir verlieren 
 also den konstanten Anteil der zu analysierenden und synthetisierenden 
-Funktion. Um das zu l\"osen ben\"otigen wir eine zus\"atzliche 
+Funktion. Um das zu l\"osen, ben\"otigen wir eine zus\"atzliche 
 Kernelfunktion $h(\lambda)$ mit den Eigenschaften $h(0) > 0$ und 
 $\lim_{\lambda\to\infty} h(\lambda) = 0$, oder anders ausgedr\"uckt, wir 
 ben\"otigen einen Tiefpass.
@@ -198,7 +198,7 @@ dann unser zweites Wavelet $\phi$.
 \subsection{Graph Wavelets: Skalierung\label{subsec:sgwt:gwt:scaling}}
 
 Nachdem wir nun in~\cref{subsec:sgwt:gwt:localizing} eine M\"oglichkeit 
-gefunden haben die Lokalisierung im Spektrum eines Graphen durchzuf\"uhren, 
+gefunden haben, die Lokalisierung im Spektrum eines Graphen durchzuf\"uhren, 
 fehlt uns noch ein Werkzeug zur Skalierung der Wavelets. Das Problem ist hier 
 aber, dass ein Graph keine geometrische Skalierungstransformation kennt. Wir 
 m\"ussen also versuchen, wie schon die Lokalisierung, unsere 
@@ -353,9 +353,9 @@ $\phi$ wie folgt konstruieren
 \phi = \chi h(\lambda) \chi'.
 \label{eq:sgwt:phi}
 \end{align}
-Diese k\"onnen wir dann in die $N(J+1)\text{x}N$ grosse $T$-Matrix 
+Diese k\"onnen wir dann in die $N(J+1)\times N$ grosse $T$-Matrix 
 packen, indem die einzelnen Matrizen \"ubereinander gestapelt werden. Damit 
-l\"asst sich die Analyse der Wavelet Koeffizienten $\hat{f}$ wie folgt
+l\"asst sich die Analyse der Wavelet Koeffizienten $\hat{f}$ nach
 \begin{equation}
 \hat{f} = T f
 \label{eq:sgwt:hatf}
@@ -749,7 +749,7 @@ Kernelfunktionen $g(t_j\lambda)$ sowie $h(\lambda)$.
 \end{figure}
 
 Bei den von uns konstruierten Kugelgraphen sind die Pole und die direkte 
-Nachbarschaft um den Pol, aufgrund des sich stark unterscheidenden Grades, von 
+Nachbarschaft um den Pol aufgrund des sich stark unterscheidenden Grades von 
 besonderem Interesse.
 \Cref{fig:sgwt:wavelets:sphere:psit51,fig:sgwt:wavelets:sphere:psit51:polar,fig:sgwt:wavelets:sphere:phi1,fig:sgwt:wavelets:sphere:phi1:polar}
 zeigen das Verhalten der Wavelets direkt am Pol und
