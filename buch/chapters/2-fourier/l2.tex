@@ -19,13 +19,6 @@ Wir haben ihn bereits im Abschnitt~\ref{section:funktionenraume}
 zu einem Vektorraum gemacht, indem wir die
 Addition von Funktionen und die Multiplikation mit Skalaren
 punktweise definiert.
-%Seien $f,g$ Funktionen auf $X$, dann definieren wir die Summe $f+g$ und
-%$\lambda f$ als
-%\begin{align*}
-%f+g&\colon X\to\mathbb C: x \mapsto f(x) + g(x)
-%\\
-%\lambda f &\colon X \to \mathbb C: x \mapsto \lambda f(x).
-%\end{align*}
 
 Die Signale, die im Folgenden analysiert werden sollen, sind jedoch
 nicht beliebige Funktionen.
@@ -33,7 +26,7 @@ Sie haben zusätzliche Eigenschaften, zum Beispiel sind sie oft stetig
 oder beschränkt.
 Auch den Raum der stetigen Funktionen $C(X,\mathbb C)$ haben wir bereits
 in Abschnitt~\ref{section:funktionenraume} zu einem normierten Raum
-mit der Supremum-Norm $\|\;\cdot\;\|_\infty$ gemacht.
+mit der Supremum-Norm $\|\mathstrut\cdot\mathstrut\|_\infty$ gemacht.
 Wir haben schon damals darauf hingewiesen, dass die Supremum-Norm
 nicht von einem Skalarprodukt herkommt und damit nicht harmoniert
 mit der Art und Weise, wie wir Funktionen analysieren wollen.
@@ -52,12 +45,14 @@ eine Norm auf dem Vektorraum $V$, wenn sie folgende Eigenschaften hat:
 \item $\| \lambda u \| = |\lambda| \,\|u\|$
 \item $\|u + v\| \le \|u\| + \|v\|$ (Dreiecksungleichung)
 \end{enumerate}
+\index{Dreiecksungleichung}%
 \end{definition}
 
 Die Norm, die in Abschnitt~\ref{section:hilbertraum} aus dem Skalarprodukt
 gewonnen wurde, hat tatsächlich diese Eigenschaften.
 Dabei ist nur die Dreiecksungleichung nicht unmittelbar klar.
 Doch aus der Cauchy-Schwarz-Ungleichung folgt
+\index{Cauchy-Schwarz-Ungleichung}%
 \begin{align*}
 \| u + v \|^2
 &=
@@ -87,35 +82,6 @@ Skalarprodukt zu definieren.
 Daraus ergibt sich dann automatisch eine für unsere Zwecke geeignete
 Norm.
 
-%\begin{definition}
-%Der Vektorraum der stetigen Funktionen auf $X\subset R^n$ ist die Menge
-%\[
-%C_{\mathbb C}(X)
-%=
-%C(X)
-%=
-%\{ f\in \mathbb C^X\,|\, \text{$f$ ist stetig}\}
-%\]
-%mit der punktweisen Addition und Multiplikation mit Skalaren und der
-%Norm
-%\[
-%\| f \| = \sup_{x\in X} |f(x)|.
-%\]
-%$\|f\|$ heisst auch die Supremum-Norm.
-%\end{definition}
-
-%Man beachte, dass diese Norm nicht von einem Skalarprodukt herkommt.
-%Man kann aber zeigen, dass Cauchy-Folgen in dieser Norm gegen eine
-%stetige Funktion konvergieren.
-%Diese Norm stellt also sicher, dass die Grenzfunktion einer
-%Approximationsfolge aus stetigen Funktion wieder stetig ist.
-%Umgekehrt können wir bei einer anderen Norm wie der im nächsten
-%Abschnitt definierten $L^2$-Norm nicht mehr garantieren, dass 
-%Grenzfunktionen stetig sind.
-%Dies verursacht zwar ein paar mathematische Unannehmlichkeiten,
-%kommt aber den Anwendungen entgegen, da in der Praxis durchaus
-%nicht stetige Signale vorkommen.
-
 \subsection{Definition des Skalarproduktes}
 In diesem Abschnitt betrachten wir ausschliesslich komplexwertige Funktionen,
 die auf einem endlichen oder unendlichen Intervall $I$ definiert sind.
@@ -134,8 +100,8 @@ als
 \end{definition}
 
 Die bekannten Rechenregeln für Integrale stellen sicher, dass dies
-tatsächlich ein sesquilineares Produkt ist, wie die folgende Rechnung
-zeigt:
+tatsächlich ein sesquilineares Produkt ist, wie die folgenden Rechnungen
+zeigen:
 \begin{align*}
 \langle \lambda_1 f_1+\lambda_2 f_2,g\rangle
 &=
@@ -193,7 +159,7 @@ f_n(t)
 =
 \begin{cases}
 0&\qquad t\le 0\\
-nt&0<t\le \frac1n\\
+nt&\qquad 0<t\le \frac1n\\
 1&\qquad t\ge 0
 \end{cases}
 \]
@@ -281,7 +247,7 @@ Trotzdem kann man nicht sagen, dass die Folge eine Grenzfunktion hat.
 Punktweise konvergiert die Folge $f_n$ gegen die Funktion
 \[
 f_{\mathbb Q}(t) = \begin{cases}
-1&\qquad t\in\mathbb Q\\
+1&\qquad t\in\mathbb Q\cap [0,1]\\
 0&\qquad\text{sonst}
 \end{cases}
 \]
@@ -318,6 +284,33 @@ unter genügend allgemeinen Voraussetzungen integrierbar sind und dass
 Integral und Grenzwert vertauschbar sind.
 Damit ist die Klasse gross genug für das Approximationsproblem.
 
+\begin{definition}
+Sei $p\in \{1,2\}$ 
+\begin{align*}
+\mathcal{L}^p(I)
+=
+\left\{ f \in \mathbb C^I \, \left|
+\text{
+$f$ ist integrierbar und $\int_I |f(t)|^p\,dt<\infty$
+}
+\right.\right\}
+\end{align*}
+mit zugehöriger Norm
+\[
+\|f\|_p = \biggl(\int_I |f(t)|^p \,dt\biggr)^{\frac1p}.
+\]
+Zwei Funktionen $f,g\in\mathcal{L}^2(I)$ haben das Skalarprodukt
+\[
+\langle f,g\rangle
+=
+\int_I f(x)\bar{g}(x)\,dx.
+\]
+\end{definition}
+
+Für $p=2$ ist die Norm $\|f\|_2$ bereits bekannt, es ist die Norm, die
+vom Skalarprodukt herkommt.
+
+\subsubsection{Lebesgue-Nullmengen}
 Abzählbare Mengen wie $\mathbb Q$ haben kein Lebesgue-Mass, sie
 gelten als Mengen mit Mass Null oder {\em Nullmengen}.
 \index{Nullmenge}%
@@ -341,7 +334,9 @@ Dies gilt auch für jede andere Nullfunktion an Stelle von $f_{\mathbb Q}$.
 Man sagt, zwei Funktionen seien {\em fast überall} gleich, wenn sie sich
 nur um eine Nullfunktion unterscheiden.
 \index{fast überall}%
-In $\mathcal{L}^p$ sind daher sehr viele Funktionen nicht unterscheidbar,
+
+\subsubsection{Die Funktionenräume $L^1(I)$ und $L^2(I)$}
+In $\mathcal{L}^p$ sind sehr viele Funktionen nicht unterscheidbar,
 da sie sich nur um eine Nullfunktion unterscheiden.
 
 \begin{definition}
@@ -361,7 +356,7 @@ ist.
 
 Die Menge $L^p(I)$ erbt von $\mathcal{L}^p(I)$ die Struktur eines
 Vektorraums mit der Norm $\|\mathstrut\cdot\mathstrut\|_p$.
-Der Raum $L^2(I)$ wird dank der oben formulierten Grenzwertsätze zu
+Der Raum $L^2(I)$ wird dank der später zu formulierenden Grenzwertsätze zu
 einem Hilbertraum.
 Damit ist der Raum $L^2(I)$ als die Bühne für die nachfolgend zu diskutierende
 Approximationstheorie bereitgestellt.
@@ -371,28 +366,8 @@ ist etwas schwerfällig und ungewohnt, für die Praxis aber kaum von Bedeutung.
 Jegliche Rechnungen mit Funktionen finden immer mit einem
 Riemann-integrierbaren Repräsentaten statt.
 
-
-Die Definition ist natürlich nur sinnvoll für Funktionen, für die diese
-Integrale tatsächlich existieren.
-\begin{definition}
-Sei $p\in \{1,2\}$ 
-\begin{align*}
-\mathcal{L}^p(I)
-=
-\left\{ f \in \mathbb C^I \, \left|
-\text{
-$f$ ist integrierbar und $\int_I |f(t)|^p\,dt<\infty$
-}
-\right.\right\}
-\end{align*}
-mit zugehöriger Norm
-\[
-\|f\|_p = \biggl(\int_I |f(t)|^p \,dt\biggr)^{\frac1p}.
-\]
-\end{definition}
-
-Für $p=2$ ist die Norm $\|f\|_2$ bereits bekannt, es ist die Norm, die
-vom Skalarprodukt herkommt.
+%Die Definition ist natürlich nur sinnvoll für Funktionen, für die diese
+%Integrale tatsächlich existieren.
 
 \subsubsection{Beziehung zwischen $\mathcal{L}^1(I)$ und $\mathcal{L}^2(I)$}
 Die Beziehung der Funktionenräume $\mathcal{L}^1(I)$ und $\mathcal{L}^2(I)$
@@ -1073,7 +1048,7 @@ Für zwei beliebige Funktionen $f,g\in L^2$ gilt nämlich
 =
 \langle f,D_{1/a}g\rangle.
 \end{align*}
-Der zu einem Operator $A$ auf einem Hilbertraum $H$ adjungierte Operatore
+Der zu einem Operator $A$ auf einem Hilbertraum $H$ adjungierte Operator
 \index{adjungiert}%
 $A^*$ ist definiert durch die Eigenschaft, dass
 \[
