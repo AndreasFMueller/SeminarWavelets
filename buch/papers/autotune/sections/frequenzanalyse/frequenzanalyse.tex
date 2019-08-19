@@ -21,7 +21,7 @@ Alle Wavelet-Transformationen wurden mit der Python Library pywt \cite{Lee2019Py
 \label{fig:python-cwt}
 \end{figure}
 
-Das Ergebnis der CWT, die auf $x_{\text{sweep}}(t)$ in Abbildung \ref{fig:stftsig} angewendet wurde, ist in der Grafik \ref{fig:cwt-sweep} ersichtlich. Dabei stehen sich eine STFT (Abbildung \ref{fig:stft-4096}) und CWT (Abbildung\ref{fig:cwt-sweep}) gegenüber. Es ist zu beachten, dass dieser Vergleich in der Grafik \ref{fig:STFTCWT} in keinster Weise eine allgemeingültige Aussage über diese zwei Arten der Zeit-Frequenz-Analyse sein soll, sondern mehr eine Gegenüberstellung zur Betrachtung von Unterschieden. 
+Das Ergebnis der CWT, die auf $x_{\text{sweep}}(t)$ in Abbildung \ref{fig:stftsig} angewendet wurde, ist in der Grafik \ref{fig:cwt-sweep} ersichtlich. Dabei stehen sich eine STFT (Abbildung \ref{fig:stft-4096}) und CWT (Abbildung\ref{fig:cwt-sweep}) gegenüber. Es ist zu beachten, dass dieser Vergleich in keinster Weise eine allgemeingültige Aussage über diese zwei Arten der Zeit-Frequenz-Analyse sein soll, sondern mehr eine Gegenüberstellung zur Betrachtung von Unterschieden. 
 
 %\begin{figure}
 %\centering
@@ -140,7 +140,7 @@ Das Ergebnis der CWT, die auf $x_{\text{sweep}}(t)$ in Abbildung \ref{fig:stftsi
 
 Wie man in der Abbildung \ref{fig:faauf} erkennt, übernimmt die Multiskalenanalyse, folgend auch MSA abgekürzt, das Fenstern. Dabei geht die Wavelet-Transformation einen Kompromiss ein. Im oberen Bereich, wo die höheren Frequenzen liegen, sieht man den Zeitpunkt sehr genau. Die tieferen Frequenzen werden dabei wie bei einem Hochpass weggefiltert. In den tieferen Levels erkennt man die tiefen Frequenzen, jedoch sind diese nicht mehr sehr genau auf dem Zeitstrahl abgebildet. Gerade bei der Multiskalenanalyse können durch tiefe Frequenzen an den Rändern oder bei den Unstetigkeiten eines Signales Artefakte enstehen. In der Grafik \ref{fig:faauf} können die beiden Darstellungen der Zeit-Frequenzaufteilung von der STFT und Multiskalenanalyse nicht direkt miteinander verglichen werden. Die Grafiken sind dafür nicht richtig skaliert. Sie dienen lediglich zur sinnbildlichen Darstellung in dessen Aufteilung.
 
-Um die $2^{n}$-fache Fensterung zu verdeutlichen, wird eine  Multiskalenanalyse des weiter oben verwendeten Sinussweeps (Abbildungen \ref{fig:stft-256}--\ref{fig:stft-8192}) gemacht und gleich mit der STFT verglichen.
+Um die $2^{n}$-fache Fensterung zu verdeutlichen, wird eine  Multiskalenanalyse des weiter oben verwendeten Sinussweeps (Abbildungen \ref{fig:stft256}--\ref{fig:stft8192}) gemacht und gleich mit der STFT verglichen.
 Die MSA wird mit einem Daubechies 8 Wavelet durchgeführt. Die verwendete Daubechies-Familie ist in der tabellarischen Abbildung \ref{tab:Daubechies} zu finden. Eine Multiskalenanalyse kann nicht mit dem gleichen Wavelet durchgeführt werden wie die CWT. Der Grund dafür ist, dass in der Python pywt Library die stetigen und diskreten Wavelets getrennt sind und es keine Überlappungen gibt.
 
 In der Tabelle \ref{tab:Daubechies} werden vier verschiedene Daubechies Wavelets in verschiedener Auflösung dargestellt. Dabei handelt es sich um die numerisch berechneten Vater und Mutter Wavelets. Auch wird gut ersichtlich, dass die höheren Daubechiesfunktionen mehr Samples brauchen, um korrekt dargestellt zu werden. Zur Berechnung der Koeffizienten wird auf das Kapitel \ref{section:daubechies} verwiesen.
