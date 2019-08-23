@@ -1,10 +1,11 @@
 % !TeX spellcheck = de_CH_frami
 
-\section{Spectral Graph Wavelet Transformation\label{sec:sgwt:wavelets}}
-\rhead{SGWT}
+\section{Graph Wavelets\label{sec:sgwt:wavelets}}
+\rhead{Graph Wavelets}
 
-Hier wollen wir nun das Bisherige zur Spectral Graph Wavelet Transformation 
-vereinen.
+Mit der Graph Spektralanalyse aus ~\cref{sec:sgwt:spectralanalysis} haben wir 
+nun alles zusammen um unsere Graph Wavelets der Spektral Graph Wavelet 
+Transformation zu bauen.
 
 \subsection{Graph Fourier Transformation\label{subsec:sgwt:gft}}
 
@@ -71,12 +72,12 @@ einfach durch eine Matrix-Vektor Multiplikation ersetzen
 \begin{equation*}
 \hat{f} = \chi^* f.
 \end{equation*}
-Die R\"ucktransformation ist dann auch wieder analog der Fouriertheorie
+Die R\"ucktransformation ist dann auch wieder analog der Fourier-Theorie
 \begin{equation*}
 f = \chi \hat{f}.
 \end{equation*}
 
-\subsection{Graph Wavelets: Lokalisierung\label{subsec:sgwt:gwt:localizing}}
+\subsection{Lokalisierung\label{subsec:sgwt:gwt:localizing}}
 
 Mit der Graph Fourier Transformation k\"onnen wir nun Funktionen auf Graphen 
 analysieren und dann auch wieder synthetisieren, aber noch nicht 
@@ -195,7 +196,7 @@ dann unser zweites Wavelet $\phi$.
     \end{minipage}
 \end{figure}
 
-\subsection{Graph Wavelets: Skalierung\label{subsec:sgwt:gwt:scaling}}
+\subsection{Skalierung\label{subsec:sgwt:gwt:scaling}}
 
 Nachdem wir nun in~\cref{subsec:sgwt:gwt:localizing} eine M\"oglichkeit 
 gefunden haben, die Lokalisierung im Spektrum eines Graphen durchzuf\"uhren, 
@@ -342,7 +343,7 @@ B &= \max_{\lambda \in \left[0, \lambda_{N-1}\right]} f(\lambda) \\
 \end{align*}
 gegeben sind.
 
-\subsection{Graph Wavelets: Analyse und Synthese}
+\subsection{Analyse und Synthese}
 
 Damit haben wir nun alles zusammen, um unsere Wavelet-Familien $\psi_j$ und 
 $\phi$ wie folgt konstruieren
@@ -382,8 +383,8 @@ in~\cref{fig:sgwt:wavelets:ring0,fig:sgwt:wavelets:ring1,fig:sgwt:wavelets:ring2
 und die eines Streckengraphen 
 in~\cref{fig:sgwt:wavelets:line0,fig:sgwt:wavelets:line1,fig:sgwt:wavelets:line2,fig:sgwt:wavelets:line3,fig:sgwt:wavelets:line4,fig:sgwt:wavelets:line5}.
 Dabei ist gut zu erkennen, dass der Kreisgraph die wohl beste Approximation der 
-bisherigen Wavelettheorie ist. Beim Streckengraph fehlt die Periodisierung, die 
-wir durch die Verbindungskante des Start- und Endknoten beim Kreisgraphen 
+bisherigen Wavelet-Theorie ist. Beim Streckengraph fehlt die Periodisierung, 
+die wir durch die Verbindungskante des Start- und Endknoten beim Kreisgraphen 
 erreicht haben.
 \begin{figure}
     \centering
