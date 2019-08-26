@@ -1,18 +1,18 @@
 % !TeX spellcheck = de_CH_frami
 
-\section{Laplace Operator und Graphen\label{sec:sgwt:laplace}}
-\rhead{Laplace Operator und Graphen}
+\section{Laplace-Operator und Laplace-Matrix\label{sec:sgwt:laplace}}
+\rhead{Laplace-Operator und Laplace-Matrix}
 
 F\"ur die Analyse und Synthese von Funktionen auf Graphen und deren Spektren 
-spielen der Laplace Operator und besonders die Laplace-Matrix eine wichtige 
+spielen der Laplace-Operator und besonders die Laplace-Matrix eine wichtige 
 Rolle. Analog den Graphen in~\cref{sec:sgwt:graphs}, wollen wir zuerst 
-auf die Grundlagen des Laplace Operators in~\cref{subsec:sgwt:laplaceop} und 
+auf die Grundlagen des Laplace-Operators in~\cref{subsec:sgwt:laplaceop} und 
 der Laplace-Matrix~\laplaceL{} in~\cref{subsec:sgwt:laplacem} eingehen. 
 In~\cref{sec:sgwt:spectralanalysis} folgt dann die Analyse des Spektrums und 
-Konstruktion der SGWT.
+in~\cref{sec:sgwt:wavelets} die Konstruktion der f\"ur die Spektral Graph 
+Wavelet Transformation ben\"otigten Graph Wavelets.
 
-\subsection{Laplace Operator\label{subsec:sgwt:laplaceop}}
-\rhead{Laplace Operator}
+\subsection{Laplace-Operator\label{subsec:sgwt:laplaceop}}
 
 Der Laplace Operator $\Delta$ in $\mathbb{R}^n$ wird im kartesischen 
 Koordinatensystem durch die Summe der $n$~zweiten Ableitungen
@@ -25,18 +25,17 @@ Koordinatensystem durch die Summe der $n$~zweiten Ableitungen
 + \dots
 + \frac{\partial^2}{\partial x_n^2}
 \end{equation*}
-beschrieben. H\"aufig trifft man erstmals auf den Laplace Operator wenn man 
-versucht die Poisson-Gleichung $-\Delta u = f$ zu l\"osen.
+beschrieben. H\"aufig trifft man erstmals auf den Laplace-Operator, beim 
+Versuch die Poisson-Gleichung $-\Delta u = f$ zu l\"osen.
 
 Wie Anfangs bereits beschrieben, sind unsere Daten meist nur in diskreter Form 
 vorhanden. Daher w\"are es vorteilhaft, auch eine diskretisierte oder zumindest 
-approximierte Form des Laplace Operators zu haben.
+approximierte Form des Laplace-Operators zu haben.
 
 \subsection{Finite-Differenzen\label{subsec:sgwt:finitediff}}
-\rhead{Finite-Differenzen}
 
 Finite-Differenzen erlauben uns eine diskrete Approximation des 
-Laplace Operators. Sie erm\"oglichen uns also genau das, was wir 
+Laplace-Operators. Sie erm\"oglichen uns also genau das, was wir 
 in~\cref{subsec:sgwt:laplaceop} gesucht haben.
 
 Als Ausgangslage nehmen wir die Funktion $u(x)$ mit dem eindimensionalen 
@@ -47,8 +46,8 @@ $h = \Delta x_i$,
 \frac{\partial u}{\partial x_i}
 = \frac{u(x_i+h)-u(x_i)}{h}.
 \end{equation*}
-Indem wir diese Gleichung nochmals ableiten, erhalten wir die f\"ur den Laplace 
-Operator relevante zweite Ableitung
+Indem wir diese Gleichung nochmals ableiten, erhalten wir die f\"ur den 
+Laplace-Operator relevante zweite Ableitung
 \begin{equation*}
 \frac{\partial}{\partial x_i}\frac{\partial}{\partial x_i}u
 = \frac{\partial^2 u}{\partial x_i^2}
@@ -57,13 +56,13 @@ Operator relevante zweite Ableitung
 \end{equation*}
 
 Dies k\"onnen wir nat\"urlich auch in zwei Dimensionen mit Funktionen der Art 
-$u(x, y)$ machen. Wieder wenden wir zuerst den Laplace Operator $\Delta$ auf 
+$u(x, y)$ machen. Wieder wenden wir zuerst den Laplace-Operator $\Delta$ auf 
 unser $u$ an und erhalten
 \begin{equation*}
 \Delta u(x, y) = u_{xx}(x, y) + u_{yy}(x, y).
 \end{equation*}
-Dies k\"onnen wir wiederum mittels Finiten-Differenzen approximieren, mit $h = 
-\Delta x = \Delta y$ liefert uns das
+Dies k\"onnen wir wiederum mittels Finiten-Differenzen approximieren, wenn wir 
+$h = \Delta x = \Delta y$ setzen, liefert uns das
 \begin{align}
 \Delta u(x,y)
 &=
@@ -73,8 +72,9 @@ Dies k\"onnen wir wiederum mittels Finiten-Differenzen approximieren, mit $h =
 \frac{u(x+h,y)+u(x-h,y)+u(x,y+h)+u(x,y-h)-4u(x, y)}{h^2}.
 \label{eq:sgwt:fivepointstencil}
 \end{align}
-Dieser Operator ist auch bekannt als der F\"unfpunkte-Stern-Operator 
-oder five-point stencil (im Englischen), siehe~\cref{fig:sgwt:graph:star}.
+Dieser Operator wird auch F\"unfpunkte-Stern-Operator oder ``five-point 
+stencil'' genannt, siehe~\cref{fig:sgwt:graph:star} f\"ur eine graphische 
+Darstellung.
 \begin{figure}
 \centering
 \includegraphics[
@@ -95,21 +95,20 @@ in~\cref{fig:sgwt:graph:simple} aus~\cref{sec:sgwt:graphs} kommen. Wenn wir
 diesen n\"amlich mit dem den F\"unfpunkte-Stern-Operator 
 aus~\cref{fig:sgwt:graph:star} vergleichen, wird klar, dass der Graph, obwohl 
 er auf den ersten Blick anders aussieht, der Gleiche ist. Wenn wir also den 
-Laplace Operator auf den jeweiligen Graph anwenden, werden wir das gleiche 
+Laplace-Operator auf den jeweiligen Graphen anwenden, werden wir das gleiche 
 Resultat erhalten.
 
 Wir k\"onnen somit noch einen Schritt weitergehen und uns von den Achsen 
 l\"osen. Nehmen wir als Beispiel den Graphen aus~\cref{fig:sgwt:laplace:nstar}. 
 F\"ur die zweite Ableitung beim Punkt P brauchen wir also nach dem Schema 
 aus~\cref{eq:sgwt:fivepointstencil} die Summe aller Funktionswerte $u(P_1)$ bis 
-$u(P_8)$ abz\"uglich Anzahl Nachbarn von $P$, also dem Grad $d(P)$, 
-multipliziert mit dem Funktionswert $u(P)$, was uns folgende Gleichung
+$u(P_8)$ abz\"uglich der acht Nachbarn von $P$, also dem Grad $d(P)$, 
+multipliziert mit dem Funktionswert $u(P)$, was uns die Gleichung
 \begin{equation*}
 \Delta u = \frac{1}{h^2}\left(\sum_{i = 1}^{8}u(P_i) - 8u(P)\right)
 \end{equation*}
-liefert. Generell erhalten wir f\"ur den Laplace Operator an einem Knoten $v$ 
-mit $n$~Nachbarn, womit $n$ dem Grad $d(v)$ eines Knotens entspricht, die 
-Definition
+liefert. Generell erhalten wir f\"ur den Laplace-Operator an einem Knoten $v$ 
+mit $n$~Nachbarn, die Definition
 \begin{equation}
 \Delta u
 = \frac{1}{h^2}\left(\sum_{i \text{ Nachbarn}}u(v_i) - nu(v)\right).
@@ -133,13 +132,12 @@ Grad $d(\text{P}_i) = 1$ hervor.
 \end{figure}
 
 \subsection{Laplace-Matrix\label{subsec:sgwt:laplacem}}
-\rhead{Laplace-Matrix}
-
 Wenn wir nun mit Hilfe von Taschenrechnern oder Computer rechnen wollen, ist 
-meist die Darstellung in Form einer Matrix besonders geeignet. Die Laplace 
-Matrix \laplaceL{}~\cite{noauthor_laplace-matrix_2017} ist genau 
-dies. Sie basiert auf der Nachbarschaft der einzelnen Knoten und deren Grad, 
-welche in der Adjazenzmatrix und der Gradmatrix codiert werden k\"onnen.
+meist die Darstellung in Form einer Matrix besonders geeignet. Die 
+Laplace-Matrix \laplaceL{}~\cite{noauthor_laplace-matrix_2017} stellt einen 
+Graphen in Form einer Matrix dar. Sie basiert auf der Nachbarschaft der 
+einzelnen Knoten und deren Grad, welche in der Adjazenzmatrix und der 
+Gradmatrix kodiert werden k\"onnen.
 
 \subsubsection{Adjazenzmatrix \texorpdfstring{\adjacencyM{}}{A}}
 
@@ -239,7 +237,6 @@ respektive
 0 & -0.8 & 0 & 0 & 0.8
 \end{bmatrix}.
 \end{equation*}
-
 Im allgemeinen Fall eines gewichteten Graphen mit $n$ Knoten erhalten wir die 
 Laplace-Matrix
 \begin{equation*}
@@ -252,13 +249,13 @@ d_w(v_1) & -w(e_{v_1, v_2}) & \dotso & -w(e_{v_1, v_n}) \\
 \end{bmatrix}.
 \end{equation*}
 Die Kantengewichtsfunktion $w(e)$ liefert dabei entweder das Kantengewicht 
-falls $e \in E$ oder anderenfalls $0$. Im Fall des ungewichteten Graphen werden 
-die Kanten jeweils alle mit $1$ gewichtet.
+falls $e \in E$ oder $0$ falls $e \notin E$. Im Fall des ungewichteten Graphen 
+werden die Kanten jeweils alle mit $1$ gewichtet.
 
 Aufgrund unserer Konstruktion von \laplaceL{} ist ersichtlich, dass die Summe 
 der jeweiligen Zeilen und Spalten immer gleich $0$ sein wird, womit wir bereits 
 jetzt sagen k\"onnen, dass mindestens ein Eigenwert~$\lambda$ von \laplaceL{} 
-auch gleich $0$ sein wird.
+auch $0$ sein wird.
 
 \subsubsection{Laplace-Matrix \texorpdfstring{\laplaceL{}}{L} als 
 Verallgemeinerung des Laplace-Operators \texorpdfstring{$\Delta$}{Delta}}

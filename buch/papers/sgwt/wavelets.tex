@@ -1,10 +1,11 @@
 % !TeX spellcheck = de_CH_frami
 
-\section{Spectral Graph Wavelet Transformation\label{sec:sgwt:wavelets}}
-\rhead{SGWT}
+\section{Graph Wavelets\label{sec:sgwt:wavelets}}
+\rhead{Graph Wavelets}
 
-Hier wollen wir nun das Bisherige zur Spectral Graph Wavelet Transformation 
-vereinen.
+Mit der Graph Spektralanalyse aus ~\cref{sec:sgwt:spectralanalysis} haben wir 
+nun alles zusammen um unsere Graph Wavelets der Spektral Graph Wavelet 
+Transformation zu bauen.
 
 \subsection{Graph Fourier Transformation\label{subsec:sgwt:gft}}
 
@@ -14,7 +15,7 @@ Beispiel eines Dirac-Stosses $\delta(x)$, siehe~\cref{fig:sgwt:fft:dirac}.
 Wenn wir davon die Fourier Transformation berechnen, zu sehen 
 in~\cref{fig:sgwt:fft:fftreal} und~\cref{fig:sgwt:fft:fftimag}, stellen wir 
 fest, dass wir darin alle Frequenzen wiederfinden. Die Fouriertransformierte 
-$\hat{\delta}$ ist somit vollst\"andig delokalisiert.
+$\hat{\delta}(x)$ ist somit vollst\"andig delokalisiert.
 \begin{figure}
     \begin{minipage}[t]{\textwidth}
     \centering
@@ -31,7 +32,7 @@ $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
     width=\textwidth
     ]{papers/sgwt/images/dirac/dirac_fft_real.pdf}
     \vspace{-20pt}
-    \caption{Kosinus Anteile $a_n$  der Fourier Transformation des 
+    \caption{Kosinus-Anteile $a_n$  der Fourier Transformation des 
     Dirac-Stosses $\hat{\delta}(x)$.
     \label{fig:sgwt:fft:fftreal}}
     \end{minipage}
@@ -41,13 +42,13 @@ $\hat{\delta}$ ist somit vollst\"andig delokalisiert.
     width=\textwidth
     ]{papers/sgwt/images/dirac/dirac_fft_imag.pdf}
     \vspace{-20pt}
-    \caption{Sinus Anteile $b_n$ der Fourier Transformation des Dirac-Stosses 
+    \caption{Sinus-Anteile $b_n$ der Fourier Transformation des Dirac-Stosses 
     $\hat{\delta}(x)$.
     \label{fig:sgwt:fft:fftimag}}
     \end{minipage}
 \end{figure}
 
-Mit den in ~\cref{sec:sgwt:spectralanalysis} vorgestellten Eigenfunktionen 
+Die in ~\cref{sec:sgwt:spectralanalysis} vorgestellten Eigenfunktionen 
 k\"onnen wir aber nutzen, um eine Graph Fourier Transformation zu definieren. 
 Dazu ersetzen wir bei der Fourier Transformation die Exponentialfunktion durch 
 die Eigenvektoren der Laplace-Matrix und erhalten
@@ -71,43 +72,43 @@ einfach durch eine Matrix-Vektor Multiplikation ersetzen
 \begin{equation*}
 \hat{f} = \chi^* f.
 \end{equation*}
-Die R\"ucktransformation ist dann auch wieder analog der Fouriertheorie
+Die R\"ucktransformation ist dann analog der Fourier-Theorie
 \begin{equation*}
 f = \chi \hat{f}.
 \end{equation*}
 
-\subsection{Graph Wavelets: Lokalisierung\label{subsec:sgwt:gwt:localizing}}
+\subsection{Lokalisierung\label{subsec:sgwt:gwt:localizing}}
 
 Mit der Graph Fourier Transformation k\"onnen wir nun Funktionen auf Graphen 
 analysieren und dann auch wieder synthetisieren, aber noch nicht 
 lokalisieren. Wir m\"ussen also unsere Graph Fourier Transformation zur Graph 
-Wavelet Transformation erweitern, denn diese erm\"oglicht uns, genau dies zu 
+Wavelet Transformation erweitern, denn diese erm\"oglicht uns, genau das zu 
 tun.
 
 Leider haben Graphen den Nachteil, dass die Knoten keine inh\"arente 
 Reihenfolge besitzen. Es ist also nicht klar, was mit $f(v - h)$ gemeint ist. 
 Wir haben allerdings in~\cref{eq:sgwt:lambda:series} eine Reihenfolge f\"ur die 
-Eigenwerte der Laplace-Matrix eines Graphen definiert. Die zugeh\"rigen Eigenfunktionen sind 
+Eigenwerte der Laplace-Matrix eines Graphen definiert. Die zugeh\"origen 
+Eigenfunktionen sind 
 allerdings vollst\"andig delokalisiert, womit sie einem Dirac-Stoss an einem 
 Knoten gleich kommen. Wir k\"onnten also versuchen das Spektrum des Graphen so 
 zu manipulieren, dass eine Lokalisierung m\"oglich wird.
 
-Mit der Definition verschiedener Kernelfunktionen, wollen wir genau diese 
+Mit der Definition verschiedener Kernelfunktionen, wollen wir diese 
 Lokalisierung im Spektrum erreichen. Wir konstruieren dazu eine Kernelfunktion 
 $g(\lambda)$, welche die Eigenschaften $g(0) = 0$ und $\lim_{\lambda\to\infty} 
 g(\lambda) = 0$ erf\"ullt. Mit Hilfe dieses Bandpasses k\"onnen wir die 
 Eigenwerte bewusst lokalisieren.
-Wir nehmen also wieder den Dirac-Stoss $\delta(v)$, 
-siehe~\cref{fig:sgwt:gft:dirac}, und einen Ringgraphen, da dieser die normalen 
-Fourier Transformation am besten 
-approximiert. Darauf wenden wir jetzt die Graph Fourier Transformation an, 
-indem wir $\delta(v)$ mit $\chi^*$ multiplizieren.
-In~\cref{fig:sgwt:gft:gft} sehen wir das Resultat dieser Multiplikation als eine
-eine Kombination von~\cref{fig:sgwt:fft:fftreal} 
+Wir nehmen einen Dirac-Stoss $\delta(v)$, 
+wie in~\cref{fig:sgwt:gft:dirac} dargestellt, und einen Kreisgraphen, da dieser 
+die normalen Fourier Transformation gut approximiert. Darauf wenden wir 
+jetzt die Graph Fourier Transformation an, indem wir $\delta(v)$ mit $\chi^*$ 
+multiplizieren. In~\cref{fig:sgwt:gft:gft} sehen wir das Resultat dieser 
+Multiplikation als eine eine Kombination von~\cref{fig:sgwt:fft:fftreal} 
 und~\cref{fig:sgwt:fft:fftimag}. \Cref{fig:sgwt:gft:gft} zeigt auch, 
 dass die Graph Fourier Transformation nicht perfekt sondern nur eine 
 Approximation der Fourier Transformation ist. Wenn wir jetzt die Kernelfunktion 
-$g(\lambda)$ auf unser $\hat{\delta}(v)$ anwenden, erhalten wir ein im gewissen 
+$g(\lambda)$ auf unser $\hat{\delta}(v)$ anwenden, erhalten wir ein in gewissem 
 Masse lokalisiertes Spektrum in~\cref{fig:sgwt:gft:ggft}. Dieses lokalisierte 
 Spektrum k\"onnen wir jetzt r\"ucktransformieren und erhalten damit unser 
 erstes Wavelet $\psi$, zu sehen in~\cref{fig:sgwt:gft:iggft}.
@@ -169,7 +170,7 @@ Diese neu gefundene Funktion $h(\lambda)$ k\"onnen wir wieder auf die Graph
 Fourier Transformierte eines Dirac-Stosses anwenden und erhalten damit
 $\hat{\delta}_h(\lambda)$, zu sehen in~\cref{fig:sgwt:gft:hgft}. Die 
 R\"ucktransformation, zu sehen in~\cref{fig:sgwt:gft:ihgft}, liefert uns damit 
-dann unser zweites Wavelet $\phi$.
+unser zweites Wavelet $\phi$.
 \begin{figure}
     \begin{minipage}[t]{0.49\textwidth}
         \includegraphics[
@@ -179,7 +180,7 @@ dann unser zweites Wavelet $\phi$.
         \caption{Anwendung der Kernelfunktion $h(\lambda)$ auf die Graph 
         Transformation des Dirac-Stosses $\hat{\delta}(v)$ 
         aus~\cref{fig:sgwt:gft:dirac}, $\hat{\delta}_h(\lambda) = 
-        h(\lambda)\cdot\hat{\delta}(v)$.
+        h(\lambda)\hat{\delta}(v)$.
         \label{fig:sgwt:gft:hgft}}
     \end{minipage}
     ~
@@ -195,16 +196,16 @@ dann unser zweites Wavelet $\phi$.
     \end{minipage}
 \end{figure}
 
-\subsection{Graph Wavelets: Skalierung\label{subsec:sgwt:gwt:scaling}}
+\subsection{Skalierung\label{subsec:sgwt:gwt:scaling}}
 
 Nachdem wir nun in~\cref{subsec:sgwt:gwt:localizing} eine M\"oglichkeit 
 gefunden haben, die Lokalisierung im Spektrum eines Graphen durchzuf\"uhren, 
 fehlt uns noch ein Werkzeug zur Skalierung der Wavelets. Das Problem ist hier 
 aber, dass ein Graph keine geometrische Skalierungstransformation kennt. Wir 
-m\"ussen also versuchen, wie schon die Lokalisierung, unsere 
+m\"ussen also versuchen, wie schon bei der Lokalisierung, unsere 
 Skalierung im Spektrum des Graphen vorzunehmen. Dazu ben\"otigen wir einen 
 Skalierungsfaktor $t$ den wir mit unseren Eigenwerten $\lambda$ multiplizieren.
-Dabei wird verwendet, dass das Spektrum mit $D_a$ skaliertes klassischen 
+Dabei verwenden wir, dass das Spektrum mit $D_a$ skaliertes klassischen 
 Wavelet eben auch mit $D_{1/2}$ (modulo Normierungsfaktoren) skaliert. Statt 
 dass wir also auf dem Graphen versuchen unser Wavelet zu skalieren, skalieren 
 wir den Bandpass $g(\lambda)$, den wir ja auf das Spektrum anwenden und 
@@ -316,7 +317,7 @@ wiederum zeigen die daraus resultierende Wavelet-Familie $\psi_t$.
     \end{minipage}
 \end{figure}
 
-Die $t$ entsprechen somit genau dem $a$ in der klassischen 
+Die $t$ entsprechen damit dem $a$ in der klassischen 
 Wavelet-Transformation. Es dr\"uckt die ``Verbreiterung'' des Wavelets aus.
 Die Translation $b$ der klassischen Transformation kann man dagegen nicht 
 retten, denn die Existenz des $b$ in der klassischen Transformation drückt ja 
@@ -342,7 +343,7 @@ B &= \max_{\lambda \in \left[0, \lambda_{N-1}\right]} f(\lambda) \\
 \end{align*}
 gegeben sind.
 
-\subsection{Graph Wavelets: Analyse und Synthese}
+\subsection{Analyse und Synthese}
 
 Damit haben wir nun alles zusammen, um unsere Wavelet-Familien $\psi_j$ und 
 $\phi$ wie folgt konstruieren
@@ -355,14 +356,14 @@ $\phi$ wie folgt konstruieren
 \end{align}
 Diese k\"onnen wir dann in die $N(J+1)\times N$ grosse $T$-Matrix 
 packen, indem die einzelnen Matrizen \"ubereinander gestapelt werden. Damit 
-l\"asst sich die Analyse der Wavelet Koeffizienten $\hat{f}$ nach
+l\"asst sich die Analyse der Wavelet Koeffizienten $\hat{f}$ wie folgt
 \begin{equation}
 \hat{f} = T f
 \label{eq:sgwt:hatf}
 \end{equation}
 berechnen.
 
-F\"ur die Synthese nehmen wir als Eingabe die bei der Analyse 
+F\"ur die Synthese nehmen wir die bei der Analyse 
 berechnet und danach m\"oglicherweise modifizierten Koeffizienten $\hat{f}$. 
 Zus\"atzlich brauchen wir unsere Wavelets in der $T$-Matrix, mit deren Inversen 
 wir wieder die Funktion
@@ -370,8 +371,8 @@ wir wieder die Funktion
 f = T^{-1} \hat{f}
 \end{equation*}
 synthetisieren. Da diese Matrix aber nicht mehr quadratisch ist, kann sie nicht 
-mehr so einfach invertiert werden. Wir nehmen uns daher das Pseudoinverse $L = 
-(T^*T)^{-1}T^*$ zur Hilfe und erhalten
+mehr so einfach invertiert werden. Wir nehmen uns daher die Pseudoinverse $L = 
+(T^*T)^{-1}T^*$ Matrix zur Hilfe und erhalten
 \begin{equation}
 f = L \hat{f} = (T^*T)^{-1}T^* \hat{f}.
 \label{eq:sgwt:pseudof}
@@ -381,10 +382,10 @@ Zur Veranschaulichung betrachten wir die Wavelets eines Kreisgraphen
 in~\cref{fig:sgwt:wavelets:ring0,fig:sgwt:wavelets:ring1,fig:sgwt:wavelets:ring2,fig:sgwt:wavelets:ring3,fig:sgwt:wavelets:ring4,fig:sgwt:wavelets:ring5}
 und die eines Streckengraphen 
 in~\cref{fig:sgwt:wavelets:line0,fig:sgwt:wavelets:line1,fig:sgwt:wavelets:line2,fig:sgwt:wavelets:line3,fig:sgwt:wavelets:line4,fig:sgwt:wavelets:line5}.
-Dabei ist gut zu erkennen, dass der Kreisgraph die wohl beste Approximation der 
-bisherigen Wavelettheorie ist. Beim Streckengraph fehlt die Periodisierung, die 
-wir durch die Verbindungskante des Start- und Endknoten beim Kreisgraphen 
-erreicht haben.
+Dabei ist gut zu erkennen, dass der Kreisgraph eine gute Approximation der 
+bisherigen Wavelet-Theorie ist. Beim Streckengraph sehen wir, dass die 
+Periodisierung fehlt, die wir durch die Verbindungskante des Start- und 
+Endknoten beim Kreisgraphen erreicht haben.
 \begin{figure}
     \centering
     \begin{minipage}[t]{0.49\textwidth}
@@ -520,15 +521,15 @@ In~\cref{fig:sgwt:wavelets:sphere:lambda} sehen wir die Eigenwerte $\lambda$
 eines Kugelgraphen mit 1252 Knoten. Im Unterschied zu den Eigenwerten eines 
 Kreisgraphen, zu sehen in~\cref{fig:sgwt:wavelets:ring:lambda}, oder 
 Streckengraphen, in~\cref{fig:sgwt:wavelets:line:lambda}, sieht man einen 
-grossen Sprung beim letzten Eigenwert, da die beiden Polknoten im Vergleich zu 
-den anderen einen sehr viel h\"oheren Grad besitzen.
+grossen Sprung bei den beiden letzten Eigenwerten, da die beiden Polknoten im 
+Vergleich zu den anderen einen sehr viel h\"oheren Grad besitzen.
 \begin{figure}
     \begin{minipage}[t]{0.49\textwidth}
     \includegraphics[
     width=\textwidth
     ]{papers/sgwt/images/wavelets/lambda-ring.pdf}
     \vspace{-20pt}
-    \caption{Eigenwerte $\lambda$ eines Ringgraphen mit 1252 Knoten.
+    \caption{Eigenwerte $\lambda$ eines Kreisgraphen mit 1252 Knoten.
     \label{fig:sgwt:wavelets:ring:lambda}}
     \end{minipage}
     ~

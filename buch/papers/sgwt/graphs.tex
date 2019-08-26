@@ -52,14 +52,14 @@ erhalten wir somit folgende Grade f\"ur die jeweiligen Knoten: $d(A) = 1, d(B)
 
 Den einzelnen Kanten ein Gewicht zu geben, ist eine M\"oglichkeit, 
 zus\"atzliche Informationen in einem Graphen zu hinterlegen. Jeder ungewichtete 
-Graph kann auch als ein gewichteter Graph gesehen werden, dessen Kanten einfach 
-jeweils ein Gewicht von $1$ haben.
+Graph kann auch als ein gewichteter Graph gesehen werden, dessen Kanten jeweils 
+ein Gewicht von $1$ haben.
 
-Bei gewichteten Graphen wird auch der Grad eines Knotens zu einem gewichteten 
-Grad. Das heisst, dass nun nicht mehr einfach die Anzahl Kanten von Bedeutung 
-ist, sondern auch das jeweilige Gewicht der Kante. Der gewichtete Grad eines 
-Graphen ist also die Summe aller Kantengewichte, die den jeweiligen Knoten 
-beinhalten:
+Bei gewichteten Graphen wird neben den Kanten auch der Grad eines Knotens 
+gewichtet. Das heisst, dass nun nicht mehr einfach die Anzahl Kanten von 
+Bedeutung ist, sondern auch das jeweilige Gewicht der Kante. Der gewichtete 
+Grad eines Graphen $d_w(v)$ ist also die Summe aller Kantengewichte $w(e)$, 
+die den jeweiligen Knoten beinhalten:
 \begin{equation*}
     d_w(v) = \sum_{i = 1}^{|E|}w(e_i), \qquad v \in e_i.
 \end{equation*}
@@ -67,10 +67,10 @@ beinhalten:
 Nehmen wir wieder den Beispielgraphen aus~\cref{fig:sgwt:graph:simple} und 
 versehen die einzelnen Kanten mit Gewichten. Damit erhalten wir dann den 
 Graphen in~\cref{fig:sgwt:graph:simpleweight}. Die Gewichte sind dabei 
-willk\"urlich gew\"ahlt worden, sie k\"onnen aber auch einen realen Hintergrund 
-haben, zum Beispiel die reziproke Luftliniendistanz zweier Ortschaften. Der 
-Grade f\"ur die jeweiligen Knoten sind somit: $d_w(A) = 1, d_w(B) = 3.4, d_w(C) 
-= 1.2, d_w(D) = 0.4, d_w(E) = 0.8$.
+willk\"urlich gew\"ahlt worden, sie k\"onnen aber auch einen realen 
+Hintergrund, wie zum Beispiel die reziproke Luftliniendistanz zweier 
+Ortschaften, haben. Der Grad f\"ur die jeweiligen Knoten ist somit: $d_w(A) = 
+1, d_w(B) = 3.4, d_w(C) = 1.2, d_w(D) = 0.4, d_w(E) = 0.8$.
 
 \begin{figure}
     \centering
@@ -99,8 +99,8 @@ Graphen abbilden, indem wir die einzelnen Punkte auf der $x$-Achse als Knoten
 eines Graphen sehen und diese mit einfachen Kanten verbinden. Wir k\"onnen 
 diese Kanten auch gewichten, zum Beispiel in dem wir jeweils die Differenz 
 zwischen zwei Punkten nehmen. Schlussendlich haben wir dann etwas in der Form 
-des Graphen in~\cref{fig:sgwt:graph:fungraph}. Dabei sind die Funktionswerte 
-farblich kodiert und nicht mehr als Zahlen ersichtlich.
+des Graphen in~\cref{fig:sgwt:graph:fungraph} mit farblich kodierten 
+Funktionswerten.
 
 \begin{figure}
     \centering
@@ -145,10 +145,8 @@ illustrieren die jeweiligen Graphen anhand eines Beispieles.
     scale=0.6
     ]{papers/sgwt/images/line-graph.pdf}
     \vspace{-160pt}
-    \caption{Graph Approximation einer einfachen Linie. Speziell sind dabei die 
-    Endknoten $1$ und $8$, die jeweils nur den Grad $1$, statt $2$ wie alle 
-    anderen Knoten, 
-    haben. 
+    \caption{Graph Approximation einer Strecke. Speziell sind dabei 
+    die Endknoten $1$ und $8$, die jeweils nur den Grad $1$ statt $2$ haben. 
     \label{fig:sgwt:graph:line}}
 \end{figure}
 

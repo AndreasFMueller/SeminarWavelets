@@ -3,14 +3,14 @@
 \section{Graph Spektralanalyse\label{sec:sgwt:spectralanalysis}}
 \rhead{Graph Spektralanalyse}
 
-Nachdem wir nun die Grundlagen von Graphen und den Laplace Operator sowie die 
-Laplace Matrix angeschaut haben, wollen wir uns nun der Spektralanalyse eines 
+Nachdem wir nun die Grundlagen von Graphen und den Laplace-Operator sowie die 
+Laplace-Matrix angeschaut haben, wollen wir uns nun der Spektralanalyse eines 
 Graphen widmen.
 
-\subsection{Laplace Matrix Eigenwerte}
+\subsection{Laplace-Matrix Eigenwerte}
 
 Wenn man vom Spektrum eines Graphen spricht, meint man damit die Eigenwerte 
-$\lambda$ seiner Laplace Matrix. Da diese Matrix bei einem ungerichteten 
+$\lambda$ seiner Laplace-Matrix. Da diese Matrix bei einem ungerichteten 
 Graphen immer symmetrisch ist, werden die daraus folgenden Eigenwerte und 
 Eigenfunktionen auch immer reell und gr\"osser gleich $0$ sein. Zudem wollen wir 
 uns hier auf zusammenh\"angende Graphen beschr\"anken, also Graphen, bei denen jeder 
@@ -21,7 +21,7 @@ ist. Es gilt somit
 0 = \lambda_0 < \lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_{N-1}.
 \label{eq:sgwt:lambda:series}
 \end{equation}
-Die berechneten Eigenwerte eines Ringgraphen mit $1000$ Knoten 
+Die berechneten Eigenwerte eines Kreisgraphen mit $1000$ Knoten 
 in~\cref{fig:sgwt:lambda:line} zeigt beispielhaft, wie diese aussehen k\"onnen.
 \begin{figure}
     \centering
@@ -31,19 +31,20 @@ in~\cref{fig:sgwt:lambda:line} zeigt beispielhaft, wie diese aussehen k\"onnen.
     scale=0.5
     ]{papers/sgwt/images/ring-lambda.pdf}
     \vspace{-45pt}
-    \caption{Eigenwerte $\lambda_0$ bis $\lambda_{999}$ eines ungewichteten Ringraphen.
+    \caption{Eigenwerte $\lambda_0$ bis $\lambda_{999}$ eines ungewichteten 
+    Kreisgraphen.
         \label{fig:sgwt:lambda:line}}
 \end{figure}
 
-\subsection{Laplace Matrix Eigenvektoren}
+\subsection{Laplace-Matrix Eigenvektoren}
 
-Eine weitere wichtige Rolle spielen die Eigenvektoren $\chi$ der Laplace 
-Matrix. Diese sind n\"amlich approximierte Eigenfunktionen des Laplace 
-Operators $\Delta$. So ist die komplexe Exponentialfunktion $e^{i\omega x}$ die 
-Eigenfunktion des eindimensionalen Laplace Operators 
+Eine weitere wichtige Rolle spielen die Eigenvektoren $\chi$ der 
+Laplace-Matrix. Diese sind n\"amlich approximierte Eigenfunktionen des 
+Laplace-Operators $\Delta$. So ist die komplexe Exponentialfunktion $e^{i\omega 
+x}$ die Eigenfunktion des eindimensionalen Laplace-Operators 
 $\frac{d^2}{dx^2}$~\cite{chung_spectral_nodate}.
 
-Auch die Kugelfunktionen $Y^m_l$, lassen mit den Hilfe der 
+Auch die Kugelfunktionen $Y^m_l$, lassen sich mit Hilfe der 
 Eigenfunktionen eines Kugelgraphen approximieren, wie man 
 in~\cref{fig:sgwt:chi:sphere} sehen kann. Dabei wird aber auch deutlich, dass 
 diese Approximation nicht \"uberall gleich gut ist. Insbesondere dadurch, dass 
@@ -67,13 +68,13 @@ ist, ist auch der dazugeh\"orende Eigenvektor $\chi_0$ etwas spezieller. Bei
 $\chi_0$ handelt es sich n\"amlich um die konstante Funktion. Die insbesondere 
 f\"ur die Rekonstruktion der Funktion eine wichtige Rolle spielt.
 
-\subsubsection{Eigenvektoren: Ringgraph}
-Die Eigenfunktionen des Ringgraphen, zu sehen 
+\subsubsection{Eigenvektoren: Kreisgraph}
+Die Eigenfunktionen des Kreisgraphen, zu sehen 
 in~\cref{fig:sgwt:chi:ring0,fig:sgwt:chi:ring1,fig:sgwt:chi:ring2,fig:sgwt:chi:ring3,fig:sgwt:chi:ring4,fig:sgwt:chi:ring5},
 treten jeweils paarweise auf. Die Funktionen sind dabei jeweils um 
 $\frac{\pi}{2}$ phasenverschoben. Es handelt sich also um eine 
-Approximation der auch in der Fouriertheorie verwendeten periodischen Sinus und 
-Kosinus Funktionen.
+Approximation der auch in der Fourier-Theorie verwendeten periodischen Sinus 
+und Kosinus Funktionen.
 \begin{figure}
     \centering
     \begin{minipage}[t]{0.49\textwidth}
@@ -82,7 +83,7 @@ Kosinus Funktionen.
         origin=c,
         width=\textwidth]{papers/sgwt/images/ring-chi-1.pdf}
         \vspace{-45pt}
-        \caption{$\chi_0$ eines ungewichteten Ringraphen mit 1000 Knoten.}
+        \caption{$\chi_0$ eines ungewichteten Kreisgraphen mit 1000 Knoten.}
         \label{fig:sgwt:chi:ring0}
     \end{minipage}
     ~
@@ -92,7 +93,7 @@ Kosinus Funktionen.
         origin=c,
         width=\textwidth]{papers/sgwt/images/ring-chi-2.pdf}
         \vspace{-45pt}
-        \caption{$\chi_1$ eines ungewichteten Ringraphen mit 1000 Knoten.}
+        \caption{$\chi_1$ eines ungewichteten Kreisgraphen mit 1000 Knoten.}
         \label{fig:sgwt:chi:ring1}
     \end{minipage}
     ~
@@ -102,7 +103,7 @@ Kosinus Funktionen.
         origin=c,
         width=\textwidth]{papers/sgwt/images/ring-chi-3.pdf}
         \vspace{-45pt}
-        \caption{$\chi_2$ eines ungewichteten Ringraphen mit 1000 Knoten.}
+        \caption{$\chi_2$ eines ungewichteten Kreisgraphen mit 1000 Knoten.}
         \label{fig:sgwt:chi:ring2}
     \end{minipage}
     ~
@@ -112,7 +113,7 @@ Kosinus Funktionen.
         origin=c,
         width=\textwidth]{papers/sgwt/images/ring-chi-4.pdf}
         \vspace{-45pt}
-        \caption{$\chi_3$ eines ungewichteten Ringraphen mit 1000 Knoten.}
+        \caption{$\chi_3$ eines ungewichteten Kreisgraphen mit 1000 Knoten.}
         \label{fig:sgwt:chi:ring3}
     \end{minipage}
     ~
@@ -122,7 +123,7 @@ Kosinus Funktionen.
         origin=c,
         width=\textwidth]{papers/sgwt/images/ring-chi-5.pdf}
         \vspace{-45pt}
-        \caption{$\chi_4$ eines ungewichteten Ringraphen mit 1000 Knoten.}
+        \caption{$\chi_4$ eines ungewichteten Kreisgraphen mit 1000 Knoten.}
         \label{fig:sgwt:chi:ring4}
     \end{minipage}
     ~
@@ -132,7 +133,7 @@ Kosinus Funktionen.
         origin=c,
         width=\textwidth]{papers/sgwt/images/ring-chi-6.pdf}
         \vspace{-45pt}
-        \caption{$\chi_5$ eines ungewichteten Ringraphen mit 1000 Knoten.}
+        \caption{$\chi_5$ eines ungewichteten Kreisgraphen mit 1000 Knoten.}
         \label{fig:sgwt:chi:ring5}
     \end{minipage}
 \end{figure}
@@ -140,7 +141,7 @@ Kosinus Funktionen.
 \subsubsection{Eigenvektoren: Streckengraph}
 Der Streckengraph ist beinahe identisch mit dem Ringgraph. Der Unterschied ist 
 lediglich die fehlende Kante zwischen zweier Knoten. Dies hat allerdings 
-gravierende Auswirkungen, wie wir die Eigenvektoren, zu sehen 
+gravierende Auswirkungen, wenn wir die Eigenvektoren, zu sehen 
 in~\cref{fig:sgwt:chi:line0,fig:sgwt:chi:line1,fig:sgwt:chi:line2,fig:sgwt:chi:line3,fig:sgwt:chi:line4,fig:sgwt:chi:line5},
 betrachten. Es zeigt sich, dass die Funktionen nicht mehr paarweise auftreten, 
 stattdessen finden sich hier Funktionen mit halber Frequenz. Weiter gelten 
