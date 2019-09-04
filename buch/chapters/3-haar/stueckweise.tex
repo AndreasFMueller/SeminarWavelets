@@ -32,11 +32,11 @@ Es gilt nämlich
 \begin{aligned}
 \lim_{x\to x_k-} f(x)
 &=
-f_{k-1}&\forall k\text{ mit }&1\le k \le n
+f_{k-1}&\forall k\text{ mit }&1\le k \le n,
 \\
 \lim_{x\to x_k+} f(x)
 &=
-f_k&\forall k\text{ mit }&0\le k \le n-1
+f_k&\forall k\text{ mit }&0\le k \le n-1.
 \end{aligned}
 \end{equation*}
 Wenn also $f_k\ne f_{k-1}$, dann ist $x_k$ eine Unstetigkeitsstelle.
@@ -197,7 +197,7 @@ Man kann die obere und untere Approximation kann auch als Linearkombination
 \\
 \underline{f}
 &=
-\sum_{k\in\mathbb Z} \inf{x\in[x_k,x_{k+1})}f(x)\cdot \chi_{[x_k,x_{k+1})}.
+\sum_{k\in\mathbb Z} \inf{x\in[x_k,x_{k+1})}f(x)\cdot \chi_{[x_k,x_{k+1})}
 \end{align*}
 von Indikatorfunktionen schreiben.
 
@@ -260,7 +260,7 @@ Dazu bildet man die Integrale
 \le
 \sum_{k=0}^{n-1} \overline{f}_{k}\,(x_{k+1}-x_k)
 =
-\int_a^b \overline{f}(x)\,dx
+\int_a^b \overline{f}(x)\,dx.
 \end{align*}
 Verfeinerung des Korns der verwendeten Unterteilung bringt für eine
 stetige Funktion die beiden Schranken näher zusammen.
