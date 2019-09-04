@@ -50,7 +50,7 @@ Für das Fourier-Integral folgt dann
 \notag
 \\
 &=
-\int_{0}^{2\pi} \biggl(\sum_{k\in\mathbb Z} f(t+2\pi k)\biggr) e^{-ibt}\,dt
+\int_{0}^{2\pi} \biggl(\sum_{k\in\mathbb Z} f(t+2\pi k)\biggr) e^{-ibt}\,dt.
 \label{msa:intervalltrick}
 \end{align}
 Der Klammerausdruck ist eine $2\pi$-periodische Funktion auf $\mathbb R$.
@@ -369,6 +369,7 @@ Teilsummen mit geraden und ungeraden $k$ auf:
 \\
 \intertext{und wenden auf jeden Summanden die 
 Skalierungsrelation~\eqref{msa:skalomega} an:}
+\frac{1}{2\pi}
 &=
 \sum_{k\in\mathbb Z}
 \biggl|
@@ -397,11 +398,12 @@ H\biggl(\frac{\omega}2 + \pi\biggr)
 \sum_{k\in\mathbb Z}
 \biggl|
 \hat\varphi\biggl(\frac{\omega}2 + \pi+ 2\pi k\biggr)
-\biggr|^2
+\biggr|^2.
 \intertext{Darin können wir die Summanden $2\pi k$ in den Argumenten von
 $H$ weglassen, weil $H$ $2\pi$-periodisch ist.
 $k$ verschwindet damit aus den Faktoren $H$, die daher aus der
 Summe ausgeklammert werden können:}
+\frac{1}{2\pi}
 &=
 \biggl|
 H\biggl(\frac{\omega}2\biggr)
@@ -411,12 +413,13 @@ H\biggl(\frac{\omega}2\biggr)
 \biggl|
 H\biggl(\frac{\omega}2 + \pi\biggr)
 \biggr|^2
-\mathcal{P}|\hat{\varphi}|^2\biggl(\frac{\omega}2+\pi\biggr)
+\mathcal{P}|\hat{\varphi}|^2\biggl(\frac{\omega}2+\pi\biggr).
 \\
 \intertext{Aus der
 Orthogonalitätsbedingung~\eqref{msa:orthogonalitaetsbedingung} folgt,
 dass die Terme
 $\mathcal{P}|\hat{\varphi}|^2$ fast überall konstant sind:}
+\frac{1}{2\pi}
 &=
 \biggl|
 H\biggl(\frac{\omega}2\biggr)
