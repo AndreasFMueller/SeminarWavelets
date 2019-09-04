@@ -164,7 +164,7 @@ Für Signale mit Mittelwert $0$ führt dies auf
 \qquad\text{oder}\qquad
 r
 =
-\frac{\operatorname{cov}(x_k,y_k)}{\sqrt{\mathstrut\operatorname{var}(x_k)}\sqrt{\mathstrut\operatorname{var}(y_k)}}
+\frac{\operatorname{cov}(x_k,y_k)}{\sqrt{\mathstrut\vphantom{y_k}\operatorname{var}(x_k)}\sqrt{\mathstrut\operatorname{var}(y_k)}}
 \]
 Die Grösse $r$ ist auch bekannt als der Korrelationskoeffizient.
 \index{Korrelationskoeffizient}%
@@ -450,7 +450,7 @@ Das Skalarprodukt ist positiv definit, also
 \intertext{mit Gleichheit genau dann, wenn $u+tv=0$.
 Wir berechnen}
 \|u+tv\|
-&= \| u \|^2 + 2t \langle u,v\rangle + t^2 \|v\|^2
+&= \| u \|^2 + 2t \langle u,v\rangle + t^2 \|v\|^2.
 \end{align*}
 Die rechte Seite ist eine quadratische Funktion $c+bt + at^2$ mit
 $a=\|v\|^2$, $b=2\langle u,v\rangle$ und $c=\|u\|^2$.
@@ -552,7 +552,7 @@ e_1 = \begin{pmatrix}1\\0\\\vdots\\0\end{pmatrix},\quad
 e_2 = \begin{pmatrix}0\\1\\\vdots\\0\end{pmatrix},\quad
 \dots
 \qquad
-e_n = \begin{pmatrix}0\\0\\\vdots\\1\end{pmatrix},\quad
+e_n = \begin{pmatrix}0\\0\\\vdots\\1\end{pmatrix}
 \]
 sind natürlich eine Basis des Vektorraums $\mathbb R^n$.
 Mit dem früher verwendeten Skalarprodukt sind die $e_k$ orthonormiert.
