@@ -72,7 +72,7 @@ trigonometrischer Funktionen ausdrücken:
 &&\Rightarrow&
 \sin kt \sin lt
 &=
-\frac12 \cos(k-l)t - \frac12\cos(k+l)t
+\frac12 \cos(k-l)t - \frac12\cos(k+l)t,
 \\
 \cos\alpha \cos\beta
 &=
@@ -80,7 +80,7 @@ trigonometrischer Funktionen ausdrücken:
 &&\Rightarrow&
 \cos kt \cos lt
 &=
-\frac12\cos(k-l)t + \frac12\cos(k+l)t
+\frac12\cos(k-l)t + \frac12\cos(k+l)t,
 \\
 \sin\alpha\cos\beta
 &=
@@ -88,7 +88,7 @@ trigonometrischer Funktionen ausdrücken:
 &&\Rightarrow&
 \sin kt\cos lt
 &=
-\frac12\sin(k-l)t + \frac12\sin(k+l)t
+\frac12\sin(k-l)t + \frac12\sin(k+l)t.
 \end{align*}
 Damit können die Skalarprodukte der Funktionen $c_k$ und $s_k$ für natürliche
 $k$ leicht berechnet werden.
@@ -107,7 +107,7 @@ Wir betrachten zunächst den Fall $k\ne l$:
 -
 \frac12\biggl[ \frac{\sin(k+l)t}{k+l} \biggr]_0^{2\pi}
 =
-0
+0,
 \\
 \langle c_k, c_l\rangle
 &=
@@ -122,7 +122,7 @@ Wir betrachten zunächst den Fall $k\ne l$:
 +
 \frac12\biggl[ \frac{\sin (k+l)t}{k+l}\biggr]_0^{2\pi}
 =
-0
+0,
 \\
 \langle s_k, c_l\rangle
 &=
@@ -137,7 +137,7 @@ Wir betrachten zunächst den Fall $k\ne l$:
 +
 \frac12\biggl[-\frac{\cos(k+l)t}{k+l}\biggr]_0^{2\pi}
 =
-0
+0.
 \end{align*}
 Alle diese Integrale verschwinden, weil die Stammfunktionen wieder
 $2\pi$-periodische Funktionen sind.
@@ -155,7 +155,7 @@ Für $k=l>0$ erhält man dagegen
 -
 \frac12\biggl[ \frac{\sin2kt}{2k} \biggr]_0^{2\pi}
 =
-\pi
+\pi,
 \\
 \langle c_k, c_l\rangle
 &=
@@ -168,7 +168,7 @@ Für $k=l>0$ erhält man dagegen
 +
 \frac12\biggl[ \frac{\sin 2kt}{2k}\biggr]_0^{2\pi}
 =
-\pi
+\pi,
 \\
 \langle s_k, c_k\rangle
 &=
@@ -181,7 +181,7 @@ Für $k=l>0$ erhält man dagegen
 &=
 \frac12\biggl[-\frac{\cos2kt}{2k}\biggr]_0^{2\pi}
 =
-0
+0.
 \end{align*}
 Die Funktionen $s_k$ und $c_l$ sind also tatsächlich orthogonal, aber
 die Normierung stimmt nicht.
@@ -294,6 +294,7 @@ Dies ist die übliche Form der Fourier-Reihe.
 \begin{figure}
 \centering
 \includegraphics{chapters/2-fourier/images/ft.pdf}
+\vspace{-3mm}
 \caption{Aufteilung der Frequenz-Zeit-Ebene für Fourierreihen.
 \label{ft:ftplane}}
 \end{figure}
@@ -394,7 +395,7 @@ c_k
 =
 \frac1{2\pi} \int_0^{2\pi} f(t) e^{-ikt}\,dt.
 \]
-Damit wird die Fourier-Reihe dann
+Damit wird die Fourier-Reihe 
 \[
 f(t) = \sum_{k\in\mathbb Z} c_k e^{ikt}.
 \]

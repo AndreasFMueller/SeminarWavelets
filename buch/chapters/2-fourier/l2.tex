@@ -290,9 +290,11 @@ Sei $p\in \{1,2\}$
 \mathcal{L}^p(I)
 =
 \left\{ f \in \mathbb C^I \, \left|
-\text{
-$f$ ist integrierbar und $\int_I |f(t)|^p\,dt<\infty$
-}
+\;
+%\text{
+%$f$ ist integrierbar und
+\int_I |f(t)|^p\,dt<\infty
+%}
 \right.\right\}
 \end{align*}
 mit zugehöriger Norm
@@ -418,7 +420,7 @@ und die Cauchy-Schwarz-Ungleichung auf das Produkt anwenden können:
 \|f\|_2 \cdot \| 1 \|_2
 \\
 &=
-\int_I |f(x)|^2\,dx \cdot \int_I 1\,dx
+\int_I |f(x)|^2\,dx \cdot \int_I 1\,dx.
 \end{align*}
 Da das Intervall $I$ beschränkt ist, ist das rechte Integral gerade die
 Länge des Intervalls.
@@ -535,13 +537,13 @@ Wir berechnen wieder die Normen
 =
 \biggl[
 \frac1{-\beta+1}x^{-\beta+1}
-\biggr]_1^\infty
+\biggr]_1^\infty,
 \\
 \|g_\beta\|_2^2
 &=
 \biggl[
 \frac1{-2\beta+1}x^{-2\beta+1}
-\biggr]_1^\infty
+\biggr]_1^\infty.
 \end{align*}
 Die Normen existieren genau dann, wenn die Exponenten negativ sind.
 Die Norm für $p=1$ ist also beschränkt, wenn $-\beta+1<0$ oder $\beta > 1$
@@ -991,20 +993,20 @@ Norm und Skalarprodukt:
 \|D_af\| &= \|f\|
 \\
 \langle T_bf,T_bg\rangle &= \langle f,g\rangle
-&
+&&\qquad&
 \langle D_af,D_ag\rangle &= \langle f,g\rangle.
 \end{aligned}
 \label{fourier:satz:formel:isometrie}
 \end{equation}
 Ausserdem gelten die Rechenregeln
 \begin{align*}
-T_{b_1}T_{b_2}&=T_{b_1+b_2}
+T_{b_1}T_{b_2}&=T_{b_1+b_2},
 &
 D_{a_1} D_{a_2}&=D_{a_1a_2}
-&
+&&\text{und}&
 D_aT_b
 &=
-T_{ab}D_a
+T_{ab}D_a.
 \end{align*}
 \end{satz}
 
