@@ -91,7 +91,7 @@ mit der konjugiert komplexen Zahl des Nenners erweitert:
 \frac{a+bi}{c+di}&=
 \frac{a+bi}{c+di}
 \cdot
-\frac{c-di}{c-di}=\frac{ac+bd+(bc-ad)i}{c^2+d^2}
+\frac{c-di}{c-di}=\frac{ac+bd+(bc-ad)i}{c^2+d^2}.
 \end{align*}
 Die komplexen Zahlen können in einer Ebene visualisiert werden: 
 Realteil und Imaginärteil werden entlang orthogonaler Achsen abgetragen.
@@ -171,7 +171,7 @@ also nur noch untersucht werden, welche Bedeutung $e^{bi}$ hat.
 
 Betrachten wir die Funktion $f(t)= e^{it}$. Die Ableitungen von $f$ sind
 \begin{align}
-f'(t)&=ie^{it}=if(t)\notag\\
+f'(t)&=ie^{it}=if(t),\notag\\
 f''(t)&=-f(t).\label{skript:exp-dgl}
 \end{align}
 Die Funktion $f$ muss also eine Lösung der Differentialgleichung
@@ -215,7 +215,7 @@ wir können sie auch mit den Formeln \eqref{skript:realteil-formel} und
 =
 \frac{e^{it}+\overline{e^{it}}}2
 =
-\frac{e^{it}+e^{-it}}2
+\frac{e^{it}+e^{-it}}2,
 \\
 \sin t
 &=
@@ -307,10 +307,11 @@ weil es keine anschauliche komplexe Geometrie gibt.
 Um ein komplexes Skalarprodukt zu bekommen, gehen wir daher von den
 algebraischen Eigenschaften des Skalarproduktes aus:
 \begin{compactenum}
-\item Das Skalarprodukt $(u,v)$ von komplexen Vektoren $u$ und $v$ ist linear
-in $v$.
-\item $(u,u) > 0$ falls $u\ne 0$.
-\item Falls $(u,v)\in\mathbb R$, dann ist $(u,v)=(v,u)$.
+\item Das Skalarprodukt $\langle u,v\rangle$ von komplexen Vektoren
+$u$ und $v$ ist linear in $v$.
+\item $\langle u,u\rangle > 0$ falls $u\ne 0$.
+\item Falls $\langle u,v\rangle\in\mathbb R$, dann ist
+$\langle u,v\rangle=\langle v,u\rangle$.
 \end{compactenum}
 Diese Eigenschaften müssen auch für ein komplexes Skalarprodukt gelten.
 Wir zeigen, dass diese Eigenschaften auch ein komplexes Skalarprodukt 
@@ -320,47 +321,52 @@ Zunächst stellen wir fest, dass wir nicht erwarten können, dass
 ein Skalarprodukt linear sein kann.
 Betrachten wir dazu einen eindimensionalen Vektorraum $\mathbb C^1$.
 Vektoren sind hier nur komplexe Zahlen und ein Produkt, welches
-linear in beiden Faktoren ist, ist von der Form $(u,v)=uv$. Dann ist
-aber $(u,u)=u^2$, aber $u^2$ kann auch negativ sein, zum Beispiel für $u=i$.
-Das einzige Produkt, welches immer positiv ist, ist $(u,v)=\bar uv$.
+linear in beiden Faktoren ist, ist von der Form $\langle u,v\rangle=uv$.
+Dann ist aber $\langle u,u\rangle=u^2$, aber $u^2$ kann auch negativ sein,
+zum Beispiel für $u=i$.
+Das einzige Produkt, welches immer positiv ist, ist $\langle u,v\rangle=\bar uv$.
 Dieses Produkt ist aber nicht linear im Faktor $u$:
 \[
-(\lambda u,v)=\overline{(\lambda u)}v=\bar\lambda (\bar uv)=\bar\lambda (u,v).
+\langle\lambda u,v\rangle=\overline{(\lambda u)}v=\bar\lambda (\bar uv)=\bar\lambda \langle u,v\rangle.
 \]
 Wir müssen also von einem komplexen Skalarprodukt verlangen, dass es
 \index{konjugiert linear}
 im ersten Faktor {\em konjugiert linear} ist:
 \[
-(\lambda u,v)=\bar\lambda(u,v).
+\langle\lambda u,v\rangle=\bar\lambda\langle u,v\rangle.
 \]
 Eine Funktion von zwei Vektoren, welche linear im zweiten Vektor ist
 und konjugiert linear im ersten heisst {\em sesquilinear}.
 \index{sesquilinear}%
 \index{Sesquilinearform}%
 
-Sei jetzt also $(\,\cdot\,|\,\cdot\,)$ eine Sesquilinearform.
-Wir setzen $\lambda = 1/(u,v)$, dann gilt
-$(u,\lambda v)$ reell ist. Dann gilt
+Sei jetzt also $\langle\,\cdot\,,\,\cdot\,\rangle$ eine Sesquilinearform.
+Wir setzen $\lambda = 1/\langle u,v\rangle$, dann gilt
+$\langle u,\lambda v\rangle$ reell ist. Dann gilt
 \begin{align*}
-1&=\lambda (u,v)=(u,\lambda v)=(\lambda v,u)=\bar\lambda(v,u)
+1&=\lambda \langle u,v\rangle=\langle u,\lambda v\rangle
+=
+\langle \lambda v,u\rangle=\bar\lambda\langle v,u\rangle
 &
 &\Rightarrow&
-\frac1{(\bar\lambda)}&=(v,u)
+\frac1{(\bar\lambda)}&=\langle v,u\rangle
 &
 &\Rightarrow&
-\overline{(u,v)}&=(v,u).
+\overline{\langle u,v\rangle}&=\langle v,u\rangle.
 \end{align*}
 Vertauschung der Faktoren ist also gleichbedeutend mit komplexer Konjugation
-des Wertes des Skalarproduktes. Man nennt eine Funktion von zwei komplexen
-Vektoren {\em hermitesch}, wenn $(u,v)=\overline{(v,u)}$ gilt.
+des Wertes des Skalarproduktes.
+Man nennt eine Funktion von zwei komplexen Vektoren {\em hermitesch},
+wenn $\langle u,v\rangle=\overline{\langle v,u\rangle}$ gilt.
 \index{hermitesch}
 \index{Matrix!hermitesch}
 
 Eine hermitesche Sesquilinearform heisst {\em positiv definit}, wenn
 \index{positiv definit}
-für jeden Vektor $u\ne 0$ gilt $(u,u)>0$. Diese Eigenschaft stellt
-sicher, dass $(u,u)$ sinnvoll als die ``Länge'' eines Vektors interpretiert
-werden kann.
+für jeden Vektor $u\ne 0$ gilt $\langle u,u\rangle>0$.
+Diese Eigenschaft stellt
+sicher, dass $\langle u,u\rangle$ sinnvoll als die ``Länge'' eines Vektors
+interpretiert werden kann.
 
 \begin{definition}
 Ein komplexes Skalarprodukt ist eine positiv definite,
@@ -370,7 +376,7 @@ hermitesche Sesquilinearform.
 
 Das einfachste Beispiel eines komplexen Skalarproduktes ist
 \[
-(u,v)=\sum_i \bar u_iv_i.
+\langle u,v\rangle =\sum_i \bar u_iv_i.
 \]
 Die Standardbasisvektoren sind auch in diesem Skalarprodukt
 orthonormiert.
@@ -387,11 +393,11 @@ eine lineare Abbildung $A^t$ finden mit der Eigenschaft
 $(u,Av)=(A^tu,v)$. Mit Hilfe der Standardbasisvektoren konnte
 man auch ausrechnen, was dies für die Matrizen von $A$ bedeutet:
 \[
-(e_i,A^te_j),
+\langle e_i,A^te_j\rangle
 =
-(A^te_j, e_i)
+\langle A^te_j, e_i\rangle
 =
-(e_j,Ae_i)=a_{ji}
+\langle e_j,Ae_i\rangle a_{ji}
 \]
 d.~h.~die Matrix von $A^t$ ist die transponierte Matrix von $A$.
 Eine symmetrische Matrix war eine, die sich beim Transponieren nicht
@@ -399,15 +405,16 @@ Eine symmetrische Matrix war eine, die sich beim Transponieren nicht
 
 Dasselbe kann man jetzt auch für ein komplexes Skalarprodukt
 versuchen. Zu einer komplexen Matrix $A$ ist also eine neue
-Matrix $A^*$ gesucht, mit der Eigenschaft, $(A^*u,v)=(u,Av)$ für 
+Matrix $A^*$ gesucht, mit der Eigenschaft,
+$\langle A^*u,v\rangle=\langle u,Av\rangle$ für 
 jedes Paar von Vektoren $u$ und $v$. Für die Standardbasisvektoren
 gilt dann
 \[
-(e_i,A^*e_j),
+\langle e_i,A^*e_j\rangle,
 =
-\overline{(A^*e_j, e_i)}
+\overline{\langle A^*e_j, e_i\rangle}
 =
-\overline{(e_j,Ae_i)}=\overline{a_{ji}},
+\overline{\langle e_j,Ae_i\rangle}=\overline{a_{ji}},
 \]
 die Matrix von $A^*$ ist also nicht nur transponiert, sondern auch komplex
 konjugiert. Hat $A$ die Ma\-trix\-e\-le\-men\-te $a_{ij}$ dann nennt man
@@ -437,9 +444,12 @@ Matrizen, die in reellen Vektorräumen das Skalarprodukt nicht ändern,
 heissen orthogonal. Sie sind charakterisiert durch die Eigenschaft
 \index{Matrix!orthogonal}%
 \index{orthogonal}%
-$(Ox,Oy)=(x,y)$, woraus sich mit Hilfe der Transposition ergibt:
+$\langle Ox,Oy\rangle=\langle x,y\rangle$, woraus sich mit Hilfe der
+Transposition ergibt:
 \[
-(Ox,Oy)=(O^tOx,y)=(x,y)\qquad\Rightarrow\qquad O^tO=E,
+\langle Ox,Oy\rangle=\langle O^tOx,y\rangle=\langle x,y\rangle
+\qquad\Rightarrow\qquad
+O^tO=E,
 \]
 woraus man weiter ablesen kann, dass bei orthogonalen Matrizen
 die transponierte Matrix mit der invertierten Matrix zusammenfällt.
@@ -448,7 +458,7 @@ Für komplexen Vektoren kann man wieder nach den Matrizen fragen, die das
 komplexe Skalarprodukt nicht verändern. Eine Matrix $U$ hat diese
 Eigenschaft, wenn
 \[
-(Ux,Uv)=(U^*Ux,y)=(x,y)\;\forall x,y
+\langle Ux,Uv\rangle=\langle U^*Ux,y\rangle=\langle x,y\rangle\quad\forall x,y
 \qquad\Rightarrow\qquad
 U^*U=E
 \]
@@ -501,7 +511,7 @@ a&b\\-\bar b&\bar a
 \bar ba-a\bar b & \bar bb+a\bar a
 \end{pmatrix}
 =
-E
+E,
 \\
 \det(U)&=\left|
 \begin{matrix}
@@ -572,7 +582,7 @@ a&b\\c&d
 \,
 \right|
 \, a,b,c,d\in\mathbb C
-\right\}
+\right\}.
 \]
 Wir untersuchen die Menge $V$ etwas genauer.
 Zunächst können wir $V$ als zweidimensionalen komplexen Vektorraum
@@ -631,7 +641,7 @@ Daher können wir das charakteristische Polynom immer ausschreiben als
 +(-1)^n\lambda_1\dots\lambda_n
 \\
 &=
-(-1)^n(\lambda^n - \operatorname{tr}A\lambda^{n-1}+\dots + (-1)^n\det A)
+(-1)^n(\lambda^n - \operatorname{tr}A\lambda^{n-1}+\dots + (-1)^n\det A).
 \end{align*}
 Daraus können wir auch eine Formel für $\det(E+tA)$ ableiten:
 \begin{align}
@@ -645,7 +655,7 @@ t^n\biggl(
 \notag
 \\
 &=
-1+t\operatorname{tr}A+\dots+t^n\operatorname{det}A
+1+t\operatorname{tr}A+\dots+t^n\operatorname{det}A.
 \label{skript:detandtrace}
 \end{align}
 
@@ -653,7 +663,7 @@ t^n\biggl(
 % Eigenwertproblem fuer komplexe Matrizen
 %
 \subsection{Eigenwertproblem für komplexe Matrizen}
-\subsubsection{Definition}
+\subsubsection{Eigenwerte und Eigenvektoren}
 Ein Vektor $v\ne 0$ heisst {\em Eigenvektor zum Eigenwert} $\lambda$ einer
 \index{Eigenwert}
 \index{Eigenvektor}
@@ -687,11 +697,11 @@ Die Eigenwerte einer selbstadjungierten Matrix sind reell.
 Sei $v$ ein Eigenvektor zum Eigenwert $\lambda$ einer selbstadjungierten
 Matrix $A$. Dann gilt
 \begin{align*}
-(v,Av)
+\langle v,Av\rangle
 &=
-\lambda(v,v)
+\lambda\langle v,v\rangle
 \\
-&=(Av,v)=(\lambda v,v)=\bar\lambda(v,v)
+&=\langle Av,v\rangle=\langle \lambda v,v\rangle=\bar\lambda\langle v,v \rangle
 \\
 \Rightarrow \lambda&=\bar\lambda,
 \end{align*}
@@ -714,15 +724,18 @@ Eigenwerten. Seien also $v_1,v_2$ Eigenvektoren zu zwei verschiedenen
 Eigenwerten $\lambda_1,\lambda_2$. Die beiden Eigenwerte sind nach
 Satz~\ref{skript:ewreell} reell. Dann gilt
 \begin{align*}
-(v_1,Av_2)&=\lambda_2(v_1,v_2)
+\langle v_1,Av_2\rangle&=\lambda_2\langle v_1,v_2\rangle
 \\
-          &=(Av_1,v_2)=\bar\lambda_1(v_1,v_2)=\lambda_1(v_1,v_2)
+       &=\langle Av_1,v_2\rangle
+	=\bar\lambda_1\langle v_1,v_2\rangle
+	=\lambda_1\langle v_1,v_2\rangle
 \\
 \Rightarrow\quad
-(\lambda_1-\lambda_2)(v_2,v_2)&=0.
+(\lambda_1-\lambda_2)\langle v_2,v_2\rangle&=0.
 \end{align*}
 Die letzte Gleichung kann wegen $\lambda_1\ne\lambda_2$ nur wahr sein,
-wenn $(v_1,v_2)=0$, die Vektoren $v_1$ und $v_2$ müssen also orthogonal sein.
+wenn $\langle v_1,v_2\rangle =0$, die Vektoren $v_1$ und $v_2$ müssen
+also orthogonal sein.
 \end{proof}
 
 %
@@ -830,7 +843,7 @@ BCA-BAC-CAB+ACB
 +
 CAB-CBA-ABC+BAC
 \\
-&=0
+&=0.
 \end{align*}
 Ein Vektorraum mit einer antisymmetrischen, bilinearen Abbildung
 $[\,\cdot\,,\,\cdot\,]$,
