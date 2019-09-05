@@ -148,15 +148,15 @@ Aber handelt es sich bei $\psi^\ast = \Ana\psi$ überhaupt um ein Wavelet?
 	C_{\psi}
 	=
 	2\pi
-	\int_{-\infty}^\infty \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,\mathrm{d}\omega < \infty.
+	\int_{-\infty}^\infty \frac{|\hat{\psi}(\omega)|^2}{|\omega|}\,d\omega < \infty.
 	\]
 	Das Integral für $\psi^\ast$ über $\Omega = (-\infty, 0)$ verschwindet und der Punkt $\lbrace 0 \rbrace$ hat Mass $0$.
 	Im Intervall $\Omega = (0, \infty)$ kommt lediglich ein zusätzlicher Faktor $\sqrt 2$ hinzu.
 	Die Zulässigkeitsbedingung für $\psi^\ast$ lautet also
 	\begin{align*}
 		C_{\psi^\ast}
-		&= 2\pi	\int_{-\infty}^\infty \frac{|\hat{\psi}^\ast(\omega)|^2}{|\omega|}\,\mathrm{d}\omega \\
-		&= 2\pi \int_{0}^\infty \frac{|\!\sqrt{2}\hat{\psi}(\omega)|^2}{|\omega|}\,\mathrm{d}\omega
+		&= 2\pi	\int_{-\infty}^\infty \frac{|\hat{\psi}^\ast(\omega)|^2}{|\omega|}\,d\omega \\
+		&= 2\pi \int_{0}^\infty \frac{|\!\sqrt{2}\hat{\psi}(\omega)|^2}{|\omega|}\,d\omega
 	\end{align*}
 	Durch die hermitesche Symmetrie der Fourier-Transformierten
 	reeller Wavelets gilt 
@@ -167,11 +167,11 @@ Aber handelt es sich bei $\psi^\ast = \Ana\psi$ überhaupt um ein Wavelet?
 	Wir rechnen nach.
 	\begin{align}
 	1 = \|\psi\|^2 = \|\hat{\psi}\|^2
-	&= \int_{-\infty}^{\infty}|\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega \label{complex:norm-proof-p1}\\
-	&= \int_{-\infty}^{0}|\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega +  \int_{0}^{\infty}|\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega \notag\\
-	&=  2\int_{0}^{\infty} |\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega \label{complex:norm-proof}\\
-	&=  \int_{0}^{\infty}|\!\sqrt{2}\hat{\psi}(\omega)|^2 \,\mathrm{d}\omega \notag\\
-	&=  \int_{-\infty}^{\infty}|\hat{\psi}^\ast(\omega)|^2 \,\mathrm{d}\omega 
+	&= \int_{-\infty}^{\infty}|\hat{\psi}(\omega)|^2 \,d\omega \label{complex:norm-proof-p1}\\
+	&= \int_{-\infty}^{0}|\hat{\psi}(\omega)|^2 \,d\omega +  \int_{0}^{\infty}|\hat{\psi}(\omega)|^2 \,d\omega \notag\\
+	&=  2\int_{0}^{\infty} |\hat{\psi}(\omega)|^2 \,d\omega \label{complex:norm-proof}\\
+	&=  \int_{0}^{\infty}|\!\sqrt{2}\hat{\psi}(\omega)|^2 \,d\omega \notag\\
+	&=  \int_{-\infty}^{\infty}|\hat{\psi}^\ast(\omega)|^2 \,d\omega 
 	= \|\hat{\psi}^\ast\|^2 = \|\psi^\ast\|^2.\label{complex:norm-proof-p2}
 	\end{align}
 	In den Gleichungen~\eqref{complex:norm-proof-p1} und \eqref{complex:norm-proof-p2} kam die Plancherel-Formel zur Anwendung, welche besagt, dass die Normen im Zeit- und Frequenzbereich identisch sind.

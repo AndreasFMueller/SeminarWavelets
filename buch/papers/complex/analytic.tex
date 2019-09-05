@@ -44,10 +44,10 @@ Bevor wir den Begriff des analytischen Signals einführen können, benötigen wi
  	\Hilb\,\colon L^2(\mathbb R) \to L^2(\mathbb R)
  	~\quad~
  	f(t) \mapsto \Hilb f(t)
- 	= \frac{1}{\pi} \CH\int_{-\infty}^{\infty}\frac{f(x)}{t-x} \mathrm{d}x
+ 	= \frac{1}{\pi} \CH\int_{-\infty}^{\infty}\frac{f(x)}{t-x} dx
  	\]
  	heisst \emph{Hilbert-Transformation}.
- 	Hierbei bezeichnet $\CH\int_{-\infty}^{\infty} \dots \mathrm{d}x$ den cauchyschen Hauptwert des divergenten Integrals.
+ 	Hierbei bezeichnet $\CH\int_{-\infty}^{\infty} \dots dx$ den cauchyschen Hauptwert des divergenten Integrals.
 \index{Hauptwert}%
 \index{Cauchy-Hauptwert}%
 \end{definition}
@@ -85,7 +85,7 @@ Nun sind wir bereit für die Definition eines analytischen Signals.
 	\begin{align*}
 		\sqrt 2 \Ana f(t) 
 		&= f(t) * \biggl(\delta(t) + \frac{i}{\pi t} \biggr)\\
-		&= f(t) + \frac{i}{\pi} \CH\int_{-\infty}^{\infty} \frac{f(x)}{t - x} \,\mathrm{d}x\\
+		&= f(t) + \frac{i}{\pi} \CH\int_{-\infty}^{\infty} \frac{f(x)}{t - x} \,dx\\
 		&= (1 + i\Hilb\,) f(t)\qedhere
 	\end{align*}
 \end{proof}

@@ -12,7 +12,7 @@ Betrachten wir zuerst die folgende Gleichung
 \langle f,\psi_{a,b}\rangle
 =
 \frac{1}{\sqrt{|a|}}\int_{-\infty}^\infty f(t)\,
-	\overline{\psi}\biggl(\frac{t-b}{a}\biggr)\,\mathrm{d}t,\label{complex:CWT}
+	\overline{\psi}\biggl(\frac{t-b}{a}\biggr)\,dt,\label{complex:CWT}
 \end{equation}
 durch welche in Definition~\ref{cwt:definition} die kontinuierliche Wavelet-Transformation eingeführt wurde.
 Dieses Integral entspricht der Faltung zwischen $f(t)$ und 
@@ -28,10 +28,10 @@ Dafür benötigen wir die Fouriertransformierte $\hat g (\omega)$:
 \begin{align*}
 	\hat g (\omega) = 
     \Four\,\biggl\lbrace \frac{1}{\sqrt{|a|}} \overline\psi \biggl(\frac{-t}{a}\biggr) \biggr\rbrace 
-	&= \frac{1}{\sqrt{|a|}} \int_{-\infty}^{\infty}\overline\psi\biggl(\frac{-t}{a}\biggr) \, e^{-i\omega t}\,\mathrm{d}t\\
-	&= \frac{1}{\sqrt{|a|}} \overline{\int_{-\infty}^{\infty}\psi \biggl(\frac{-t}{a}\biggr) \, e^{i\omega t}\,\mathrm{d}t}  
+	&= \frac{1}{\sqrt{|a|}} \int_{-\infty}^{\infty}\overline\psi\biggl(\frac{-t}{a}\biggr) \, e^{-i\omega t}\,dt\\
+	&= \frac{1}{\sqrt{|a|}} \overline{\int_{-\infty}^{\infty}\psi \biggl(\frac{-t}{a}\biggr) \, e^{i\omega t}\,dt}  
     & \biggl(\text{Substitution } t' = \frac{-t}{a}\biggr)\\
-	&= \frac{1}{\sqrt{|a|}} \overline{\int_{-\infty}^{\infty}\psi(t') \, e^{-ia\omega t'} |a|\,\mathrm{d}t'}\\
+	&= \frac{1}{\sqrt{|a|}} \overline{\int_{-\infty}^{\infty}\psi(t') \, e^{-ia\omega t'} |a|\,dt'}\\
 	&= \sqrt{|a|} \, \overline{\hat{\psi}}(a\omega).
 \end{align*}
 Gleichung~\eqref{complex:CWT} lässt sich somit schreiben als
@@ -70,8 +70,8 @@ Rechnen wir das erste Beispiel.
 Hierfür benötigen wir zwei Dinge: Signal und Wavelet.
 Als Signale nehmen wir zwei Sinus-Schwingungen, eine mit linear ansteigender und eine mit stückweise konstanter Frequenz.
 \begin{align}
-    x_1(t) &= \sin\left( \int_{0}^{t} 2\pi f_1(\tau)\,\mathrm{d}\tau\right) & f_1(t) &= 2 + 6/4 \cdot t \\
-    x_2(t) &= \sin\left( \int_{0}^{t} 2\pi f_2(\tau)\,\mathrm{d}\tau\right) & f_2(t) &= \left\lbrace \begin{matrix}
+    x_1(t) &= \sin\left( \int_{0}^{t} 2\pi f_1(\tau)\,d\tau\right) & f_1(t) &= 2 + 6/4 \cdot t \\
+    x_2(t) &= \sin\left( \int_{0}^{t} 2\pi f_2(\tau)\,d\tau\right) & f_2(t) &= \left\lbrace \begin{matrix}
     4, & &t& < 1\\
     8, & 1.0 \le &t& < 2.0\\
     4, & 2.0 \le &t& < 3.0\\
@@ -95,8 +95,8 @@ Die daraus resultierende Symmetrie wird sich in der Berechnung der Fourier-Trans
 Die Fourier-Transformierte von $\psi_{\text{Haar}}$ berechnet sich wie folgt:
 \begin{align}
 	\Four \psi_\text{Haar}  
-	&= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \psi_\text{Haar} e^{-i\omega t} \,\mathrm{d}t\nonumber\\
-	&= \frac{1}{\sqrt{2\pi}}\Biggl( \int_{-1/2}^{0} e^{-i\omega t} \,\mathrm{d}t - \int_{0}^{1/2} e^{-i\omega t}\,\mathrm{d}t \Biggr) \nonumber\\
+	&= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \psi_\text{Haar} e^{-i\omega t} \,dt\nonumber\\
+	&= \frac{1}{\sqrt{2\pi}}\Biggl( \int_{-1/2}^{0} e^{-i\omega t} \,dt - \int_{0}^{1/2} e^{-i\omega t}\,dt \Biggr) \nonumber\\
 	&= \frac{i}{\sqrt{2\pi}\omega}\bigl( \bigl[ e^{-i\omega t}\bigr]_{-1/2}^0  - \bigl[ e^{-i\omega t}\bigr]_{0}^{1/2} \bigr)\nonumber\\
 	&= \frac{i}{\sqrt{2\pi}} \frac{1-\cos(\omega/2)}{\omega/2}\label{complex:f-psi-haar}
 \end{align}
