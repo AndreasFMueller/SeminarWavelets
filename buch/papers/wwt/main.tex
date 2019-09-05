@@ -193,7 +193,8 @@ Die dafür verwendete Funktion war die cwt()-Funktion.
 Die Funktion arbeitete bei korrekter Parametrisierung wie gewünscht.
 Falls man verstehen möchte, wie die Funktion genau rechnet, muss man sich mit einer eher dürftigen Dokumentation herumschlagen.
 Folgende Parameter wurden verwendet
-\lstinputlisting[language=Matlab,firstline=1,lastline=1,  numbers=left, style = mystyle]{papers/wwt/code/matlab.m}
+%\lstinputlisting[language=Matlab,firstline=1,lastline=1,  numbers=left, style = mystyle]{papers/wwt/code/matlab.m}
+\lstinputlisting[language=Matlab,firstline=1,lastline=1,numbers=left,style=Matlab]{papers/wwt/code/matlab.m}
 \label{fig:matlab_code_cwt}
 wobei Matlab das Gabor-Wavelet als \texttt{amor} bezeichnet, mit \texttt{VoicesPerOctave} konnte die Genauigkeit erhöht werden und die Variable \texttt{fs} beschreibt die Abtastfrequenz der Messsignale.
 Bei den Rückgabewerten werden die Wavelet-Werte in \texttt{wt} als komplexe Matrix und die approximierten Frequenzen in \texttt{F} abgespeichert.
@@ -256,12 +257,12 @@ Dies funktioniert besonders gut, da die Werte rasch gegen null gehen, falls nur 
 
 Genauer betrachtet zeigt das Verfahren mit der Multiplikation Ähnlichkeiten mit der Formel
 \begin{equation}
-COV(X,Y) = \frac{\sum_{i=1}^{N} (x_i- \bar{x})(y_i- \bar{y})}{N-1}
+\operatorname{COV}(X,Y) = \frac{\sum_{i=1}^{N} (x_i- \bar{x})(y_i- \bar{y})}{N-1}
 \label{eq:kovarianz}
 \end{equation}
 oder bei stetigen Werten
 \begin{equation}
-COV(X,Y) = \int_{-\infty}^\infty (x(t)- \bar{x})(y(t)- \bar{y}) \text{\space}dt
+\operatorname{COV}(X,Y) = \int_{-\infty}^\infty (x(t)- \bar{x})(y(t)- \bar{y}) \text{\space}dt
 \label{eq:kovarianz_int}
 \end{equation}
 der Kovarianz aus der Statistik. 
@@ -273,24 +274,24 @@ Auch dies ist eine etwas abgewandelte Art der Kovarianz zwischen dem Datensignal
 
 Setzt man den \textit{Luftdruck} und das Mutter-Wavelet $\psi_{a,b}$ in \eqref{eq:kovarianz_int} ein,
 \begin{align*}
-COV(\text{\textit{Luftdruck}}, \psi_{a,b})
+\operatorname{COV}(\text{\textit{Luftdruck}}, \psi_{a,b})
 &=
 \int_{-\infty}^\infty (\text{\textit{Luftdruck}}(t)- \overline{\text{\textit{Luftdruck}}})(\psi_{a,b}(t)- \overline{\psi_{a,b}}) \text{\space}dt,
 \intertext{%
 kann wie folgt umgeformt werden.
 Gemäss den Zulässigkeitsbedingungen eines Mutter-Wavelets ist $\overline{\psi_{a,b}} = 0$ (Definition \ref{cwt:zulaessig}). Weiter werden Multiplikationen in Skalarprodukte umgewandelt, somit folgt}
-%COV(\text{\textit{Luftdruck}}, \psi_{a,b})
+%\operatorname{COV}(\text{\textit{Luftdruck}}, \psi_{a,b})
 &=
 \int_{-\infty}^\infty\langle \text{\textit{Luftdruck}}(t)- \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t) \rangle \text{\space}dt.
 \intertext{%
 Weiter ausmultipliziert}
-%COV(\text{\textit{Luftdruck}}, \psi_{a,b})
+%\operatorname{COV}(\text{\textit{Luftdruck}}, \psi_{a,b})
 &=
 \int_{-\infty}^\infty	\langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle - \langle \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t)\rangle \text{\space}dt,
 \intertext{%
 schlussendlich ergibt sich mit $\langle \overline{\text{\textit{Luftdruck}}},\psi_{a,b}(t) \rangle = 0$,
 }
-%COV(\text{\textit{Luftdruck}}, \psi_{a,b})
+%\operatorname{COV}(\text{\textit{Luftdruck}}, \psi_{a,b})
 &=
 \int_{-\infty}^\infty \langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle \text{\space}dt 
 \label{eq:wwt_kovarianz}
@@ -330,7 +331,7 @@ Ausgeschrieben auf die vollständige Formel der CWT \eqref{eq:cwt1}
 Die Formel \eqref{eq:wwt_kovarianz} kann, zum optimalen Vergleich mit \eqref{eq:cwt_wwt}, mit dem Produkt des Windes erweitert werden
 \begin{equation}
 \begin{split}
-COV(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b)\cdot COV(\text{\textit{Wind}}, \psi_{a,b})(a,b) \hspace{3cm} \\
+\operatorname{COV}(\text{\textit{Luftdruck}}, \psi_{a,b})(a,b)\cdot \operatorname{COV}(\text{\textit{Wind}}, \psi_{a,b})(a,b) \hspace{3cm} \\
 =  \int _{-\infty}^\infty \langle \text{\textit{Luftdruck}}(t),\psi_{a,b}(t)\rangle \text{\space}dt \cdot \int _{-\infty}^\infty \langle \text{\textit{Wind}}(t),\psi_{a,b}(t)\rangle \text{\space}dt,
 \label{eq:cov_wwt}
 \end{split}
