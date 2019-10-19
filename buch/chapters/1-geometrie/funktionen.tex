@@ -187,14 +187,14 @@ die $D_a$ die zum Skalarprodukt gehörige Norm erhält.
 \label{geometrie:satz:inverse}
 Die Operatoren $T_b$ und $\tilde{D}_a$ sind invertierbar und es gilt
 \[
-T_b^{-1} = T_b
+T_b^{-1} = T_{-b}
 \qquad\text{und}\qquad
 \tilde{D}_a^{-1} = \tilde{D}_{1/a}.
 \]
 \end{satz}
 
 \begin{proof}[Beweis]
-Die folgenden Rechnungen zeigen, dass $T_bT_{-b}f=f$ und $D_aD_{1/a}f=f$:
+Die folgenden Rechnungen zeigen, dass $T_bT_{-b}f=f$ und $\tilde{D}_a\tilde{D}_{1/a}f=f$:
 \begin{align*}
 (T_bT_{-b}f)(t)
 &=
@@ -241,7 +241,7 @@ $T_{ab}\tilde{D}_a = \tilde{D}_aT_b$.
 
 \begin{proof}[Beweis]
 Die Linearität der Operatoren wird durch Nachrechnen verifiziert.
-Für eine Linearkombination $\lambda f+\mu g$ zweier Funktion $f$ und $g$ gilt:
+Für eine Linearkombination $\lambda f+\mu g$ zweier Funktionen $f$ und $g$ gilt:
 \begin{align*}
 \tilde{D}_a(\lambda f+\mu g)(t)
 &=
@@ -280,7 +280,7 @@ f(t-b),
 &=
 f(t/a),
 \\
-(\tilde{D}_aT_bf)
+(\tilde{D}_aT_bf)(t)
 &=
 (T_bf)(t/a)
 =
